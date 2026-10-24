@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCS Pattern Mock Test - Computer Abbreviations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f6f8;
+            user-select: none;
+        }
+        
+        /* Custom Scrollbar for Palette */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c1c1c1; 
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8; 
+        }
+
+        /* Palette States */
+        .q-btn {
+            width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 4px; font-weight: 600; cursor: pointer;
+            border: 1px solid #ccc;
+            transition: all 0.2s ease;
+        }
+        .q-not-visited { background-color: #fff; color: #333; }
+        .q-not-answered { background-color: #ef4444; color: #fff; border-color: #ef4444;}
+        .q-answered { background-color: #22c55e; color: #fff; border-color: #22c55e;}
+        .q-marked { background-color: #a855f7; color: #fff; border-color: #a855f7; border-radius: 50%;}
+        .q-answered-marked { background-color: #a855f7; color: #fff; border-color: #a855f7; border-radius: 50%; position: relative;}
+        .q-answered-marked::after {
+            content: ''; position: absolute; bottom: 2px; right: 2px;
+            width: 8px; height: 8px; background-color: #22c55e; border-radius: 50%;
+            border: 1px solid #fff;
+        }
+        
+        /* Active indicator */
+        .q-active { outline: 2px solid #3b82f6; outline-offset: 2px; }
+
+        /* Radio buttons */
+        input[type="radio"] {
+            accent-color: #2563eb;
+            width: 1.25rem; height: 1.25rem;
+            cursor: pointer;
+        }
+        .option-row:hover { background-color: #f8fafc; }
+        
+        /* Pause Overlay */
+        #pause-overlay { backdrop-filter: blur(5px); }
+    </style>
+</head>
+<body class="h-screen w-full overflow-hidden text-gray-800">
+
+    <!-- 1. INTRO SCREEN -->
+    <div id="intro-screen" class="flex flex-col items-center justify-center h-full w-full bg-white p-6">
+        <div class="max-w-2xl w-full bg-white border border-gray-200 rounded-lg shadow-xl p-8">
+            <h1 class="text-3xl font-bold text-center text-blue-700 mb-6">Computer Knowledge Mock Test</h1>
+            <div class="space-y-4 text-sm text-gray-600 mb-8 border-t border-b py-4">
+                <p><strong>Number of Questions:</strong> 48</p>
+                <p><strong>Total Duration:</strong> 48 Minutes</p>
+                <p><strong>Source:</strong> TCS Previous Years Questions (Exam Tagged)</p>
+                <h3 class="font-bold text-gray-800 mt-4 mb-2">General Instructions:</h3>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li>The clock has been set at the server and the countdown timer will be displayed at the top right corner.</li>
+                    <li>When the timer reaches zero, the examination will end by itself. You will not be required to end or submit your examination.</li>
+                    <li>Clicking 'Start Test' will automatically activate Full Screen mode.</li>
+                    <li>The question palette at the right of screen shows the following statuses:</li>
+                </ul>
+                <div class="grid grid-cols-2 gap-2 mt-3 text-xs">
+                    <div class="flex items-center gap-2"><span class="q-btn q-not-visited w-6 h-6 text-[10px]">1</span> Not Visited</div>
+                    <div class="flex items-center gap-2"><span class="q-btn q-not-answered w-6 h-6 text-[10px]">2</span> Not Answered</div>
+                    <div class="flex items-center gap-2"><span class="q-btn q-answered w-6 h-6 text-[10px]">3</span> Answered</div>
+                    <div class="flex items-center gap-2"><span class="q-btn q-marked w-6 h-6 text-[10px]">4</span> Marked for Review</div>
+                    <div class="flex items-center gap-2"><span class="q-btn q-answered-marked w-6 h-6 text-[10px]">5</span> Answered & Marked</div>
+                </div>
+            </div>
+            <div class="flex justify-center">
+                <button onclick="startTest()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded shadow-md transition duration-200 text-lg">
+                    I am ready to begin
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. EXAM SCREEN -->
+    <div id="exam-screen" class="hidden flex flex-col h-full w-full bg-white">
+        <!-- Header -->
+        <header class="bg-blue-700 text-white flex justify-between items-center px-4 py-3 shadow-md z-10">
+            <div class="text-lg font-bold tracking-wide">TCS Mock Interface</div>
+            <div class="flex items-center gap-6">
+                <button onclick="togglePause()" id="pause-btn" class="bg-white text-blue-700 hover:bg-blue-50 px-3 py-1 rounded text-sm font-semibold transition">Pause</button>
+                <button onclick="exitExamFullscreen()" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm font-semibold transition">Exit Fullscreen</button>
+                <div class="bg-blue-800 px-4 py-1.5 rounded-full font-mono text-lg font-bold border border-blue-500 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span id="timer-display">48:00</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Flex -->
+        <div class="flex flex-1 overflow-hidden">
+            
+            <!-- Left Side: Question Area -->
+            <div class="flex-1 flex flex-col h-full border-r border-gray-300">
+                <!-- Section Header -->
+                <div class="bg-gray-100 border-b border-gray-300 px-6 py-2 flex justify-between items-center">
+                    <span class="font-bold text-gray-700">Section: Computer Knowledge</span>
+                    <div class="text-sm font-bold text-gray-600 bg-white px-2 py-1 rounded border shadow-sm">
+                        Marks: <span class="text-green-600">+1</span> | <span class="text-red-500">-0.25</span>
+                    </div>
+                </div>
+
+                <!-- Question Content -->
+                <div class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+                    <div class="flex justify-between items-start mb-4">
+                        <h2 class="text-xl font-bold text-gray-800">Question <span id="q-no">1</span></h2>
+                        <span id="q-tag" class="text-xs bg-blue-100 text-blue-800 border border-blue-200 px-2 py-1 rounded-full font-medium"></span>
+                    </div>
+                    
+                    <div id="q-text" class="text-lg text-gray-800 mb-8 leading-relaxed font-medium">
+                        <!-- Question text goes here -->
+                    </div>
+
+                    <div id="options-container" class="space-y-3">
+                        <!-- Options injected via JS -->
+                    </div>
+                </div>
+
+                <!-- Footer Buttons -->
+                <div class="bg-gray-50 border-t border-gray-300 p-4 flex flex-wrap justify-between items-center gap-2">
+                    <div class="flex gap-2">
+                        <button onclick="markForReview()" class="bg-white border border-gray-400 text-gray-700 hover:bg-gray-100 px-4 py-2 rounded shadow-sm text-sm font-semibold transition">Mark for Review & Next</button>
+                        <button onclick="clearResponse()" class="bg-white border border-gray-400 text-gray-700 hover:bg-gray-100 px-4 py-2 rounded shadow-sm text-sm font-semibold transition">Clear Response</button>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="prevQuestion()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded shadow-sm text-sm font-semibold transition">Previous</button>
+                        <button onclick="nextQuestion()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded shadow-sm text-sm font-semibold transition">Save & Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Question Palette (Hidden on mobile by default) -->
+            <div class="w-80 bg-blue-50 flex flex-col hidden md:flex h-full border-l border-gray-200">
+                <div class="p-4 border-b border-gray-200 bg-white">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden border border-gray-300">
+                            <svg class="w-8 h-8 text-gray-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <div>
+                            <div class="font-bold text-gray-800 text-sm">Candidate Name</div>
+                            <div class="text-xs text-gray-500">Mock Aspirant</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-white border-b border-gray-200 grid grid-cols-2 gap-2 text-[11px] font-medium">
+                    <div class="flex items-center gap-1"><span class="q-btn q-answered w-5 h-5 text-[10px]" id="count-answered">0</span> Answered</div>
+                    <div class="flex items-center gap-1"><span class="q-btn q-not-answered w-5 h-5 text-[10px]" id="count-not-answered">0</span> Not Answered</div>
+                    <div class="flex items-center gap-1"><span class="q-btn q-not-visited w-5 h-5 text-[10px]" id="count-not-visited">48</span> Not Visited</div>
+                    <div class="flex items-center gap-1"><span class="q-btn q-marked w-5 h-5 text-[10px]" id="count-marked">0</span> Marked</div>
+                    <div class="flex items-center gap-1 col-span-2"><span class="q-btn q-answered-marked w-5 h-5 text-[10px]" id="count-answered-marked">0</span> Answered & Marked for Review (will be considered for evaluation)</div>
+                </div>
+
+                <div class="p-4 bg-blue-50 font-bold text-sm text-gray-700 border-b border-blue-100">
+                    Computer Knowledge
+                </div>
+
+                <!-- Scrollable Palette -->
+                <div class="flex-1 overflow-y-auto p-4 custom-scrollbar bg-blue-50">
+                    <div id="palette-grid" class="grid grid-cols-4 gap-3">
+                        <!-- Palette buttons injected via JS -->
+                    </div>
+                </div>
+
+                <div class="p-4 bg-white border-t border-gray-200 flex justify-center">
+                    <button onclick="submitExam()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow transition">Submit Test</button>
+                </div>
+            </div>
+            
+            <!-- Mobile Toggle for Palette -->
+            <button onclick="toggleMobilePalette()" class="md:hidden fixed bottom-20 right-4 bg-blue-800 text-white p-3 rounded-full shadow-lg z-50">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+
+            <!-- Mobile Palette Overlay -->
+            <div id="mobile-palette" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40 flex justify-end">
+                <div class="w-80 bg-white h-full flex flex-col transform transition-transform shadow-2xl">
+                    <div class="p-4 bg-blue-700 text-white flex justify-between items-center">
+                        <span class="font-bold">Question Palette</span>
+                        <button onclick="toggleMobilePalette()" class="text-white hover:text-gray-200"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+                    </div>
+                    <div id="mobile-palette-container" class="flex-1 overflow-y-auto bg-blue-50 flex flex-col">
+                        <!-- Cloned contents will go here during initialization -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Pause Overlay -->
+        <div id="pause-overlay" class="hidden absolute inset-0 bg-white/80 z-20 flex flex-col items-center justify-center">
+            <h2 class="text-3xl font-bold text-blue-800 mb-4">Test Paused</h2>
+            <button onclick="togglePause()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded shadow-md transition text-lg">Resume Test</button>
+        </div>
+    </div>
+
+    <!-- 3. RESULT SCREEN -->
+    <div id="result-screen" class="hidden h-full w-full bg-gray-100 overflow-y-auto custom-scrollbar p-6">
+        <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="bg-blue-700 text-white text-center py-8">
+                <h1 class="text-3xl font-bold mb-2">Test Submitted Successfully!</h1>
+                <p class="text-blue-100">Here is your detailed analysis.</p>
+            </div>
+            
+            <div class="p-8">
+                <!-- Score Cards -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 text-center">
+                    <div class="bg-gray-50 border rounded-lg p-4">
+                        <div class="text-sm text-gray-500 font-semibold mb-1">Total Score</div>
+                        <div id="res-score" class="text-3xl font-bold text-blue-600">0 / 48</div>
+                    </div>
+                    <div class="bg-green-50 border border-green-100 rounded-lg p-4">
+                        <div class="text-sm text-green-600 font-semibold mb-1">Correct</div>
+                        <div id="res-correct" class="text-3xl font-bold text-green-700">0</div>
+                    </div>
+                    <div class="bg-red-50 border border-red-100 rounded-lg p-4">
+                        <div class="text-sm text-red-600 font-semibold mb-1">Incorrect</div>
+                        <div id="res-incorrect" class="text-3xl font-bold text-red-700">0</div>
+                    </div>
+                    <div class="bg-yellow-50 border border-yellow-100 rounded-lg p-4">
+                        <div class="text-sm text-yellow-600 font-semibold mb-1">Unattempted</div>
+                        <div id="res-skipped" class="text-3xl font-bold text-yellow-700">0</div>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-200 pt-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">Detailed Solutions (Incorrect & Unattempted)</h2>
+                    <p class="text-sm text-gray-500 mb-6">Note: Correctly answered questions are not displayed as per your guidelines.</p>
+                    
+                    <div id="solutions-container" class="space-y-6">
+                        <!-- Solutions injected via JS -->
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <button onclick="location.reload()" class="bg-blue-600 text-white px-6 py-2 rounded font-semibold hover:bg-blue-700 transition">Restart Mock</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 48 Extracted TCS PYQs
+        const rawQuestions = [
+            { q: "Which of the following is the full form of GPRS?", tag: "Delhi Police 20/11/2023 (Evening)", options: ["General Packet Radio Service", "General Packet Release Service", "General Protocol Radio Service", "Group Packet Radio Service"], ans: "General Packet Radio Service", sol: "General Packet Radio Service (GPRS) is a new form of wireless communication used by mobile phones and other unique mobile devices to transport data over a mobile network." },
+            { q: "What is the full form of email?", tag: "Delhi Police 30/11/2023 (Morning)", options: ["Express mail", "Efficient mail", "Electro mail", "Electronic mail"], ans: "Electronic mail", sol: "Electronic mail is a method of exchanging messages over the internet." },
+            { q: "Which of the following is the full form of ASCII?", tag: "SSC CHSL 19/04/2021 (Morning)", options: ["American Standard Code for Information Interchange", "Asian Standard Code for Information Interchange", "Analytical Scientific Code for Information Interchange", "Analytical Standard Code for Intermitted Information"], ans: "American Standard Code for Information Interchange", sol: "ASCII codes represent text in computers, telecommunications equipment, and other devices." },
+            { q: "Which of the following is the full form of EBCDIC?", tag: "SSC CHSL 04/08/2021 (Evening)", options: ["Extended Binary-Coded-Decimal Interchange Code", "Extended Binary-Control-Device Interchange Code", "Electronic Binary-Coded-Device Interchange Code", "Electronic Binary-Control-Decimal Interchange Code"], ans: "Extended Binary-Coded-Decimal Interchange Code", sol: "EBCDIC - It is developed by IBM." },
+            { q: "URL stands for", tag: "RRB NTPC 04/01/2021 (Morning)", options: ["Uniform Resource Locator", "Universal Remote Land", "Uniform Remote Locator", "Universal Resource Locator"], ans: "Uniform Resource Locator", sol: "URL stands for Uniform Resource Locator. A URL has two main components, 1. Protocol identifier (e.g., http) 2. Resource name (e.g., example.com)." },
+            { q: "In telecom field, ISP stands for:", tag: "RRB NTPC 04/01/2021 (Evening)", options: ["Internet Speed Provider", "Internet Speed Protocol", "Internet Service Protocol", "Internet Service Provider"], ans: "Internet Service Provider", sol: "Internet Service Provider (ISP) a company that provides web access to both businesses and consumers." },
+            { q: "In the computer field, what does LIFO stand for?", tag: "RRB NTPC 05/01/2021 (Morning)", options: ["Last-In-First-Out", "Left-In-First-Out", "Last-In-Finish-Out", "Lost-In-First-Out"], ans: "Last-In-First-Out", sol: "In the computer field, LIFO stands for Last In First Out. It is a method to account for inventory." },
+            { q: "In the Computer field, FORTRAN stands for", tag: "RRB NTPC 8/1/2021 (Morning)", options: ["Formula Translation", "Format Transformer", "Forensic Transistor", "Foreign Transmitter"], ans: "Formula Translation", sol: "FORTRAN stands for Formula Translator. It is a general-purpose, compiled imperative programming language that is especially suited to numeric computation and scientific computing." },
+            { q: "What is the full form of COBOL?", tag: "RRB NTPC 08/01/2021 (Evening)", options: ["Compute Basic Operation Language", "Compute Business Oriented Language", "Common Business Organised Language", "Common Business Oriented Language"], ans: "Common Business Oriented Language", sol: "The full form of COBOL is Common Business Oriented Language. It is used in finance, business and administrative systems." },
+            { q: "What does OCR stand for?", tag: "RRB NTPC 09/01/2021 (Evening)", options: ["Optical Computer Recording", "Optimum Color Recognition", "Optimum Computer Recording", "Optical Character Recognition"], ans: "Optical Character Recognition", sol: "Optical character recognition or optical character reader (OCR) is the electronic or mechanical conversion of images of type. Ray Kurzweil invented OCR." },
+            { q: "In the field of computers and Internet, What does W3C stand for?", tag: "RRB NTPC 12/01/2021 (Morning)", options: ["World Wide Web Consortium", "World Wide Web Commission", "World Wide Web Centre", "World Wide Web Content"], ans: "World Wide Web Consortium", sol: "The World Wide Web Consortium (W3C) is an international community where Member organizations, full-time staff, and the public work together to develop Web standards." },
+            { q: "What is the full form of CLI in Computer terminology?", tag: "RRB NTPC 19/01/2021 (Morning)", options: ["Code Line Interface", "Command Line Interface", "Control Line Interface", "Central Line Interface"], ans: "Command Line Interface", sol: "A Command Line Interface(CLI) connects a user to a computer program or operating system." },
+            { q: "In Computer terminology, what is the full form of IDN ?", tag: "RRB NTPC 25/01/2021 (Morning)", options: ["Internal Digital Networks", "Input Distributed Networks", "Internationalized Domain Name", "Intertwined Disc Networks"], ans: "Internationalized Domain Name", sol: "Internationalized Domain Names (IDNs) enable people around the world to use domain names in local languages and scripts." },
+            { q: "In Computer terminology, ALU stands for:", tag: "RRB NTPC 27/01/2021 (Morning)", options: ["Arithmetic Logic Unit", "Active Load Unit", "Air Lock Unit", "Application Logical Unit"], ans: "Arithmetic Logic Unit", sol: "An arithmetic logic unit (ALU) is a digital circuit used to perform arithmetic and logic operations." },
+            { q: "In HTTP, P stands for:", tag: "RRB NTPC 28/01/2021 (Evening)", options: ["Protocol", "Policy", "Pattern", "Program"], ans: "Protocol", sol: "Hypertext Transfer Protocol (HTTP) is an application-layer protocol for transmitting hypermedia documents, such as HTML." },
+            { q: "GUI in the context of computers stands for:", tag: "RRB NTPC 30/01/2021 (Morning)", options: ["Gigabyte Used in Internet", "Group User interface", "Gopher Used Investigation", "Graphical user interface"], ans: "Graphical user interface", sol: "A graphical user interface allows users to interact with electronic devices through graphical icons." },
+            { q: "ESS is a Computer based system that allows users to transform enterprise data. ESS stands for.", tag: "RRB NTPC 02/02/2021 (Evening)", options: ["Executive Support System", "Executive Series System", "Executive Senior System", "Executive Service System"], ans: "Executive Support System", sol: "ESS is a Computer based system that allows users to transform enterprise data. ESS stands for: Executive Support System." },
+            { q: "What is the correct full form of MPEG from below?", tag: "RRB NTPC 04/02/2021 (Morning)", options: ["Micro Pictures Expert Group", "Many Pictures Expert Group", "Moving Picture Experts Group", "Motion Pictures Expert Group"], ans: "Moving Picture Experts Group", sol: "The Moving Picture Experts Group (MPEG) is an alliance of working groups established jointly by ISO and IEC that sets standards for media coding." },
+            { q: "Select the option with the INCORRECT full form for the corresponding acronyms.", tag: "RRB NTPC 08/02/2021 (Evening)", options: ["C-DAC: Centre for Development of Advanced Computing", "CHOGM: Commonwealth Heads of Government Ministers", "CITES: Convention on International Trade in Endangered Species", "CCI: Competition Commission of India"], ans: "CHOGM: Commonwealth Heads of Government Ministers", sol: "Commonwealth Heads of Government Meeting is the correct full form of the CHOGM." },
+            { q: "What does the acronym SMPS stand for?", tag: "RRB NTPC 08/02/2021 (Evening)", options: ["Switched- Mode Power Supply", "Single- Mode Power Supply", "Start- Mode Power Supply", "Store - Mode power Supply"], ans: "Switched- Mode Power Supply", sol: "The acronym SMPS stands for Switched-Mode Power Supply." },
+            { q: "What is the full form of PDF in the context of file formats ?", tag: "RRB NTPC 09/02/2021 (Morning)", options: ["Portable Document format", "Prefixed Detachable Format", "Picture Disc Format", "Processing Digital File"], ans: "Portable Document format", sol: "Portable Document Format (PDF), is a file format developed by Adobe in 1992." },
+            { q: "What is the full form of EVM?", tag: "RRB NTPC 09/02/2021 (Evening)", options: ["Electric Voting Machine", "Essential Voting Machine", "Election Voting Machine", "Electronic Voting Machine"], ans: "Electronic Voting Machine", sol: "The Indian electronic voting machine (EVM) was developed in 1989 by Election Commission of India." },
+            { q: "What is the full form of an ATM ?", tag: "RRB NTPC 09/02/2021 (Evening)", options: ["Automated Teller Machine", "Automatic Totalling Machine", "Automatic Teller Machine", "Automated Totalling Machine"], ans: "Automated Teller Machine", sol: "An automated teller machine (ATM) is an electronic banking outlet." },
+            { q: "What is the function of WinZip ?", tag: "RRB NTPC 10/02/2021 (Morning)", options: ["It compresses large files into a smaller file.", "It is an anti-virus software.", "It expands smaller files into a large file.", "It extracts smaller files from larger files"], ans: "It compresses large files into a smaller file.", sol: "It stands for Windows Zip. WinZip compresses large files into a smaller file." },
+            { q: "In Information Technology, what does DASD stand for?", tag: "RRB NTPC 10/02/2021 (Morning)", options: ["Direct Access Standard Device", "Device for Access and Storage of Domain", "Direct Access Storage Domain", "Direct Access storage Device"], ans: "Direct Access storage Device", sol: "A direct-access storage device (DASD) is a secondary storage device." },
+            { q: "What is the full form of VR in computer technology?", tag: "RRB NTPC 11/02/2021 (Morning)", options: ["Virtual Reality", "Visual Reality", "Vocal Resonance", "Visual Range"], ans: "Virtual Reality", sol: "Virtual reality (VR) is a special kind of graphical user interface which presents a computer generated immersive environment." },
+            { q: "What does FQDN stand for?", tag: "RRB NTPC 17/02/2021 (Morning)", options: ["File Qualified Division Name", "Frequency Query Domain Name", "Fully Qualified Disk Name", "Fully Qualified Domain Name"], ans: "Fully Qualified Domain Name", sol: "FQDN stands for Fully Qualified Domain Name. An FQDN is a complete address for a website, computer, server." },
+            { q: "The full form of BIOS is:", tag: "RRB NTPC 17/02/2021 (Evening)", options: ["Browser Input Operating System", "Basic Input / Output System", "Basic Input Operating System", "Browser Input / Output System"], ans: "Basic Input / Output System", sol: "BIOS (Basic Input/Output System), is the built-in core processor software responsible for booting up your system." },
+            { q: "What is the correct full form of \"VIRUS\" in computer programming?", tag: "RRB NTPC 22/02/2021 (Evening)", options: ["Vital Interchange Result Until Source", "Vital Information Resources Under Siege", "Vital Information Recognize Search", "Vital Information Record User Seize"], ans: "Vital Information Resources Under Siege", sol: "Virus can replicate itself and spread from one computer to another." },
+            { q: "What is the full form of DPI with regard to digital images?", tag: "RRB NTPC 23/02/2021 (Morning)", options: ["Data per inch", "Dots per inch", "Decimal per inch", "Digits per inch"], ans: "Dots per inch", sol: "Dots per inch is a measure of spatial printing, video or image scanner dot density." },
+            { q: "What does CDMA stand for?", tag: "RRB NTPC 05/03/2021 (Evening)", options: ["Code Division Maximum Access", "Code Division Multiple Access", "Core Division Multiple Access", "Core Division Maximum Access"], ans: "Code Division Multiple Access", sol: "Code-division multiple access (CDMA) is a channel access method used by various radio communication technologies." },
+            { q: "In the context of web pages, what does SEO stand for?", tag: "RRB NTPC 07/03/2021 (Morning)", options: ["Search Engine Optimisation", "Search Editing Optimisation", "Slack editing Optimisation", "Slack Engine Optimisation"], ans: "Search Engine Optimisation", sol: "SEO is a set of practices which improve the visibility and position of web pages in search engines." },
+            { q: "ENIAC, the first electronic digital programmable computer device (1943), stands for", tag: "RRB NTPC 19/03/2021 (Evening)", options: ["Electronic Network Integrator and Computer", "Electronic Numerical Integrator and Computer", "Electronic Numerical Integrator and Analytical Computer", "Electronic Numerical Interactive and Computer"], ans: "Electronic Numerical Integrator and Computer", sol: "ENIAC was the first large-scale computer to run at electronic speed without being slowed by any mechanical parts." },
+            { q: "Which of the following is an incorrect pair of abbreviation and its full form ?", tag: "RRB NTPC 01/04/2021 (morning)", options: ["DBMS- Database management system", "URL- Uniform Reserve Locator", "RAM- Random Access Memory", "FAX- Facsimile"], ans: "URL- Uniform Reserve Locator", sol: "URL is Uniform Resource Locator. It is a unique identifier used to locate a resource on the Internet." },
+            { q: "The correct full form of ISCII from the below is:", tag: "RRB NTPC 01/04/2021 (Evening)", options: ["international Standard Code for Information Interchange", "International Standard Code for Indian interaction", "Indian Standard Code for Information Interchange", "Indian Standard Code for International Interaction."], ans: "Indian Standard Code for Information Interchange", sol: "ISCII uses an 8-bit code and it can represent 256 characters. Adopted by Bureau of Indian Standards in 1991." },
+            { q: "What is the correct full form of RODRA?", tag: "RRB NTPC 03/04/2021 (Evening)", options: ["Retired Officers Digital Records Archive", "Reinstated Officers Digital Records Archive", "Returned Officers Digital Records Archive", "Replaced Officers Digital Records Archive"], ans: "Retired Officers Digital Records Archive", sol: "The correct full form of RODRA is Retired Officers Digital Records Archive." },
+            { q: "What is the full form of RDRAM?", tag: "RRB NTPC 05/04/2021 (Morning)", options: ["Rambus Dynamic Random Access Memory", "Read Disc Random Access Memory", "Read Dynamic Random Arrays Material", "Removable Disc Read Access Module"], ans: "Rambus Dynamic Random Access Memory", sol: "RDRAM uses Rambus Inline Memory Module (RIMM) technology." },
+            { q: "What is the full form of DOS?", tag: "RRB NTPC 05/04/2021 (Morning)", options: ["Device Outsourcing System", "Device Operating System", "Different Operating System", "Disk Operating System"], ans: "Disk Operating System", sol: "A DOS, or disk operating system, is an operating system that runs from a disk drive." },
+            { q: "ENIAC, the first general-purpose electronic computer, stands for:", tag: "RRB NTPC 07/04/2021 (Evening)", options: ["Electronic Numerical Integrator and Computer", "Electronic Network Interactive Analytic Computer", "Electronic Network Integrated Analytical Computer", "Electronic Numerical Integrated Automatic Computer"], ans: "Electronic Numerical Integrator and Computer", sol: "ENIAC was designed by John Mauchly and J. Presper Eckert of the University of Pennsylvania, U.S.." },
+            { q: "What does WORM stand for?.", tag: "RRB NTPC 08/04/2021 (Morning)", options: ["Write once, read many", "Wireless once, receive many", "Write others, read me", "World open, receive many"], ans: "Write once, read many", sol: "Write once read many (WORM) describes a data storage device in which information, once written, cannot be modified." },
+            { q: "What is the full form of FTP?", tag: "RRB NTPC 31/01/2021 (Morning)", options: ["Fast Transfer Protocol", "Fast Transfer Program", "File Transfer Program", "File Transfer Protocol"], ans: "File Transfer Protocol", sol: "FTP is a standard protocol for the transfer of files between computer systems from one client to one server over a TCP/IP network." },
+            { q: "Which of the following statements is INCORRECT ?", tag: "RRB NTPC 10/02/2021 (Morning)", options: ["Hotmail is the first free web-based email service introduced in 1995.", "The first computer in India was installed in the Indian Statistical Institute, Kolkata.", "Vint Cerf is recognised as one of the 'Fathers of the Internet'.", "In internet terminology, IP means Internet Practice."], ans: "In internet terminology, IP means Internet Practice.", sol: "IP stands for Internet Protocol. It enables internetworking." },
+            { q: "What does NIU stand for in information technology?", tag: "RRB NTPC 28/12/2020 (Evening)", options: ["Network Interface Unit", "Network Internal Unit", "National Information Usage", "Nominal Internal Unit"], ans: "Network Interface Unit", sol: "NIU stands for Network Interface Unit in information technology, which acts as an interface to allow networked computers to connect." },
+            { q: "What is the full form of DHCP in a networking system?", tag: "RRB NTPC 30/12/2020 (Morning)", options: ["Dynamic Host Configuration Protocol", "Data Host Control Panel", "Dynamic Host Control Point", "Display House Control Protocol"], ans: "Dynamic Host Configuration Protocol", sol: "DHCP is a network management protocol used on internet protocol networks." },
+            { q: "In Computer field OLE is the abbreviation of", tag: "RRB NTPC 30/12/2020 (Evening)", options: ["Object Linking and Embedding", "Object Linking and Enabling", "Object Linking Extension", "Object Location Enabling"], ans: "Object Linking and Embedding", sol: "OLE is a compound document standard developed by Microsoft Corporation." },
+            { q: "What is the full form of W3C ?", tag: "Delhi Police 08/12/2020 (Morning)", options: ["World Wide Web Consortium", "World Wise Web Consortium", "World Wise Web Consolidation", "World Wide Web Consolidation"], ans: "World Wide Web Consortium", sol: "The World Wide Web Consortium is the main international standards organization for the World Wide Web." },
+            { q: "What is the full form of ARPANET?", tag: "Delhi Police 10/12/2020 (Morning)", options: ["American Research Planning Agency Network", "American Research Project Agency Network", "Advanced Research Project Agency Network", "Advanced Research Project Activity Network"], ans: "Advanced Research Project Agency Network", sol: "The U.S. Advanced Research Projects Agency Network (ARPANET) was the first public packet-switched computer network." },
+            { q: "What is the full form of TCP/IP, with reference to internet protocols?", tag: "Delhi Police 14/12/2020 (Morning)", options: ["Transmission Control Protocol and International Protocol", "Transmission Control Protocol and Internet Protocol", "Transmission Control Protocol and Intranet Protocol", "Transfer Control Protocol and Internet Protocol"], ans: "Transmission Control Protocol and Internet Protocol", sol: "TCP/IP stands for Transmission Control Protocol/Internet Protocol and is a suite of communication protocols." }
+        ];
+
+        // System State
+        let questions = []; // Will hold randomized options
+        let answers = {}; // mapping question index -> selected option text
+        let statuses = {}; // mapping question index -> 'not_visited', 'not_answered', 'answered', 'marked', 'answered_marked'
+        
+        let currentQ = 0;
+        let timer = null;
+        let timeLeft = 48 * 60; // 48 minutes
+        let isPaused = false;
+
+        // Shuffle Array (Fisher-Yates)
+        function shuffleArray(array) {
+            let curId = array.length;
+            while (0 !== curId) {
+                let randId = Math.floor(Math.random() * curId);
+                curId -= 1;
+                let tmp = array[curId];
+                array[curId] = array[randId];
+                array[randId] = tmp;
+            }
+            return array;
+        }
+
+        // Initialize Test Data
+        function initData() {
+            questions = rawQuestions.map((q, idx) => {
+                return {
+                    id: idx,
+                    qText: q.q,
+                    tag: q.tag,
+                    options: shuffleArray([...q.options]), // randomize options on load
+                    correct: q.ans,
+                    sol: q.sol
+                };
+            });
+            for(let i=0; i<48; i++){
+                statuses[i] = 'not_visited';
+            }
+        }
+
+        function startTest() {
+            // Fullscreen attempt
+            const elem = document.documentElement;
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen().catch(err => console.log("Fullscreen restriction: ", err));
+            }
+
+            document.getElementById('intro-screen').classList.add('hidden');
+            document.getElementById('exam-screen').classList.remove('hidden');
+            
+            initData();
+            statuses[0] = 'not_answered';
+            renderPalette();
+            loadQuestion(0);
+            
+            timer = setInterval(updateTimer, 1000);
+        }
+
+        function exitExamFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen().catch(err => {});
+            }
+        }
+
+        function updateTimer() {
+            if(timeLeft <= 0) {
+                clearInterval(timer);
+                submitExam();
+                return;
+            }
+            timeLeft--;
+            const mins = Math.floor(timeLeft / 60);
+            const secs = timeLeft % 60;
+            document.getElementById('timer-display').innerText = 
+                `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function togglePause() {
+            isPaused = !isPaused;
+            const overlay = document.getElementById('pause-overlay');
+            const btn = document.getElementById('pause-btn');
+            if(isPaused) {
+                clearInterval(timer);
+                overlay.classList.remove('hidden');
+                btn.innerText = "Resume";
+            } else {
+                timer = setInterval(updateTimer, 1000);
+                overlay.classList.add('hidden');
+                btn.innerText = "Pause";
+            }
+        }
+
+        function loadQuestion(idx) {
+            currentQ = idx;
+            const q = questions[idx];
+            
+            // Status Update
+            if (statuses[idx] === 'not_visited') {
+                statuses[idx] = 'not_answered';
+            }
+            
+            document.getElementById('q-no').innerText = idx + 1;
+            document.getElementById('q-tag').innerText = q.tag;
+            document.getElementById('q-text').innerText = q.qText;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            const labels = ['A', 'B', 'C', 'D'];
+            q.options.forEach((opt, i) => {
+                const checked = answers[idx] === opt ? 'checked' : '';
+                const html = `
+                    <label class="option-row flex items-start p-3 border border-gray-200 rounded-lg cursor-pointer transition">
+                        <div class="flex items-center h-5">
+                            <input type="radio" name="q-option" value="${opt.replace(/"/g, '&quot;')}" class="mt-1" onchange="selectOption('${opt.replace(/"/g, '\\"')}')" ${checked}>
+                        </div>
+                        <div class="ml-3 text-sm flex-1">
+                            <span class="font-bold mr-2">${labels[i]}.</span> ${opt}
+                        </div>
+                    </label>
+                `;
+                optionsContainer.insertAdjacentHTML('beforeend', html);
+            });
+
+            renderPalette();
+        }
+
+        function selectOption(val) {
+            answers[currentQ] = val;
+        }
+
+        function getStatusClass(status) {
+            switch(status) {
+                case 'answered': return 'q-answered';
+                case 'not_answered': return 'q-not-answered';
+                case 'marked': return 'q-marked';
+                case 'answered_marked': return 'q-answered-marked';
+                default: return 'q-not-visited';
+            }
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('palette-grid');
+            grid.innerHTML = '';
+            
+            let counts = { answered:0, not_answered:0, not_visited:0, marked:0, answered_marked:0 };
+
+            for(let i=0; i<48; i++) {
+                counts[statuses[i]]++;
+                
+                let activeClass = (i === currentQ) ? 'q-active' : '';
+                let statusClass = getStatusClass(statuses[i]);
+                
+                let btn = document.createElement('div');
+                btn.className = `q-btn ${statusClass} ${activeClass}`;
+                btn.innerText = i + 1;
+                btn.onclick = () => jumpToQuestion(i);
+                grid.appendChild(btn);
+            }
+
+            // Sync Mobile palette if needed
+            document.getElementById('mobile-palette-container').innerHTML = '';
+            document.getElementById('mobile-palette-container').appendChild(grid.cloneNode(true));
+            // add listeners to mobile cloned buttons
+            const mobileBtns = document.getElementById('mobile-palette-container').querySelectorAll('.q-btn');
+            mobileBtns.forEach((mBtn, i) => {
+                mBtn.onclick = () => { toggleMobilePalette(); jumpToQuestion(i); };
+            });
+
+            // Update Legends
+            document.getElementById('count-answered').innerText = counts.answered;
+            document.getElementById('count-not-answered').innerText = counts.not_answered;
+            document.getElementById('count-not-visited').innerText = counts.not_visited;
+            document.getElementById('count-marked').innerText = counts.marked;
+            document.getElementById('count-answered-marked').innerText = counts.answered_marked;
+        }
+
+        function saveCurrentStatus() {
+            if (answers[currentQ] !== undefined) {
+                if(statuses[currentQ] === 'marked' || statuses[currentQ] === 'answered_marked') {
+                   // Let Save & Next clear the mark if user uses Save&Next.
+                   statuses[currentQ] = 'answered'; 
+                } else {
+                   statuses[currentQ] = 'answered';
+                }
+            } else {
+                if(statuses[currentQ] !== 'marked') {
+                    statuses[currentQ] = 'not_answered';
+                }
+            }
+        }
+
+        function jumpToQuestion(idx) {
+            loadQuestion(idx);
+        }
+
+        function nextQuestion() {
+            saveCurrentStatus();
+            if (currentQ < 47) {
+                loadQuestion(currentQ + 1);
+            } else {
+                renderPalette();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQ > 0) {
+                loadQuestion(currentQ - 1);
+            }
+        }
+
+        function markForReview() {
+            if (answers[currentQ] !== undefined) {
+                statuses[currentQ] = 'answered_marked';
+            } else {
+                statuses[currentQ] = 'marked';
+            }
+            
+            if (currentQ < 47) {
+                loadQuestion(currentQ + 1);
+            } else {
+                renderPalette();
+            }
+        }
+
+        function clearResponse() {
+            delete answers[currentQ];
+            statuses[currentQ] = 'not_answered';
+            loadQuestion(currentQ); // reload UI
+        }
+
+        function toggleMobilePalette() {
+            const mp = document.getElementById('mobile-palette');
+            mp.classList.toggle('hidden');
+        }
+
+        function submitExam() {
+            clearInterval(timer);
+            exitExamFullscreen();
+            
+            document.getElementById('exam-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            calculateResult();
+        }
+
+        function calculateResult() {
+            let correct = 0;
+            let incorrect = 0;
+            let skipped = 0;
+            let score = 0;
+
+            const solContainer = document.getElementById('solutions-container');
+            solContainer.innerHTML = '';
+
+            questions.forEach((q, idx) => {
+                const userAns = answers[idx];
+                const isCorrect = userAns === q.correct;
+                
+                if (userAns === undefined) {
+                    skipped++;
+                    appendSolutionHTML(q, idx, userAns, 'skipped');
+                } else if (isCorrect) {
+                    correct++;
+                    score += 1; // +1 for correct
+                    // Do not append HTML as per requirement: "ONLY incorrect & un-attempted"
+                } else {
+                    incorrect++;
+                    score -= 0.25; // Negative marking standard
+                    appendSolutionHTML(q, idx, userAns, 'incorrect');
+                }
+            });
+
+            document.getElementById('res-score').innerText = score.toFixed(2);
+            document.getElementById('res-correct').innerText = correct;
+            document.getElementById('res-incorrect').innerText = incorrect;
+            document.getElementById('res-skipped').innerText = skipped;
+        }
+
+        function appendSolutionHTML(q, idx, userAns, type) {
+            let statusBadge = type === 'skipped' 
+                ? `<span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded font-bold uppercase">Unattempted</span>`
+                : `<span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded font-bold uppercase">Incorrect</span>`;
+
+            const solContainer = document.getElementById('solutions-container');
+            
+            let html = `
+                <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="font-bold text-gray-800">Q${idx + 1}. ${q.qText}</div>
+                        <div>${statusBadge}</div>
+                    </div>
+                    <div class="mb-4 text-sm bg-gray-50 p-3 rounded text-gray-700">
+                        <div class="mb-2"><span class="font-bold text-gray-500">Your Answer:</span> <span class="${type === 'skipped' ? 'text-gray-400 italic' : 'text-red-600'}">${userAns ? userAns : 'None'}</span></div>
+                        <div><span class="font-bold text-gray-500">Correct Answer:</span> <span class="text-green-600 font-semibold">${q.correct}</span></div>
+                    </div>
+                    <div class="text-sm border-l-4 border-blue-500 pl-3 py-1 bg-blue-50">
+                        <span class="font-bold text-blue-800">Solution:</span> <span class="text-gray-700">${q.sol}</span>
+                    </div>
+                </div>
+            `;
+            solContainer.insertAdjacentHTML('beforeend', html);
+        }
+    </script>
+</body>
+</html>

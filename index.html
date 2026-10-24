@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test Series Portal</title>
+  <!-- Working Embedded SVG Standard CBT Exam Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231e3a5f'/%3E%3Crect x='12' y='12' width='40' height='40' rx='6' fill='%23ffffff'/%3E%3Cpath d='M20 24h24M20 32h24M20 40h16' stroke='%231e3a5f' stroke-width='4' stroke-linecap='round'/%3E%3Ccircle cx='44' cy='40' r='5' fill='%2316a34a'/%3E%3C/svg%3E" />
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --exam-navy: #1e3a5f;
+      --exam-navy-dark: #10243e;
+      --exam-navy-bar: #243e63;
+      --exam-navy-btn: #3b5578;
+      --exam-blue: #1d63dc;
+      --exam-blue-hover: #164eb0;
+      --exam-green: #16a34a;
+      --exam-green-hover: #15803d;
+      --exam-purple: #6d28d9;
+      --exam-purple-hover: #5b21b6;
+      --exam-red: #dc2626;
+      --bg-page: #f4f6f9;
+      --bg-subheader: #f8fafc;
+      --bg-card: #ffffff;
+      --border-std: #d5dde7;
+      --border-hover: #1d63dc;
+      --text-main: #1e293b;
+      --text-sub: #475569;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Standard Exam Top Header Bar (matches screenshot #1e3a5f) */
+    .exam-top-header {
+      background-color: var(--exam-navy);
+      color: #ffffff;
+      border-bottom: 1px solid #142844;
+    }
+
+    .exam-header-pill {
+      background-color: var(--exam-navy-dark);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+    }
+
+    .exam-header-btn {
+      background-color: var(--exam-navy-btn);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: #ffffff;
+      transition: background-color 0.18s ease;
+    }
+
+    .exam-header-btn:hover {
+      background-color: #49668d;
+    }
+
+    /* Secondary Sub-header Bar (matches "Question No. 1 of 65" bar) */
+    .exam-subheader {
+      background-color: #ffffff;
+      border-bottom: 1px solid var(--border-std);
+    }
+
+    /* Core Subject Card (matches Question Palette panel & CBT cards) */
+    .core-subject-card {
+      background-color: #ffffff;
+      border: 1px solid var(--border-std);
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+      overflow: hidden;
+    }
+
+    .core-subject-card:hover {
+      border-color: var(--exam-blue);
+      box-shadow: 0 6px 16px rgba(29, 99, 220, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .subject-card-strip {
+      background-color: var(--exam-navy-bar);
+      color: #ffffff;
+      padding: 10px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Standard Subfolder & Container Card */
+    .exam-card {
+      background-color: #ffffff;
+      border: 1px solid var(--border-std);
+      border-radius: 8px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+    }
+
+    .exam-card:hover {
+      border-color: var(--exam-blue);
+      box-shadow: 0 4px 12px rgba(29, 99, 220, 0.10);
+      transform: translateY(-1px);
+    }
+
+    /* Mock Test / File Option Row (matches MCQ option boxes in screenshot) */
+    .quiz-option-row {
+      background-color: #ffffff;
+      border: 1px solid var(--border-std);
+      border-radius: 8px;
+      transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .quiz-option-row:hover {
+      border-color: var(--exam-blue);
+      background-color: #f8fbff;
+      box-shadow: 0 2px 8px rgba(29, 99, 220, 0.08);
+    }
+
+    /* Question Palette Style Number Tile */
+    .palette-num-tile {
+      background-color: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      color: #1e293b;
+      font-weight: 600;
+      font-size: 12px;
+      transition: all 0.15s ease;
+    }
+
+    .quiz-option-row:hover .palette-num-tile {
+      background-color: var(--exam-blue);
+      border-color: var(--exam-blue);
+      color: #ffffff;
+    }
+
+    /* Exam Action Buttons (matching Next, Submit, Mark for Review, Clear) */
+    .btn-exam-blue {
+      background-color: var(--exam-blue);
+      color: #ffffff;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: background-color 0.15s ease;
+    }
+
+    .btn-exam-blue:hover {
+      background-color: var(--exam-blue-hover);
+    }
+
+    .btn-exam-green {
+      background-color: var(--exam-green);
+      color: #ffffff;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: background-color 0.15s ease;
+    }
+
+    .btn-exam-green:hover {
+      background-color: var(--exam-green-hover);
+    }
+
+    .btn-exam-purple {
+      background-color: var(--exam-purple);
+      color: #ffffff;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: background-color 0.15s ease;
+    }
+
+    .btn-exam-purple:hover {
+      background-color: var(--exam-purple-hover);
+    }
+
+    .btn-exam-neutral {
+      background-color: #ffffff;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn-exam-neutral:hover {
+      background-color: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
+    /* Subject Filter Pills */
+    .subject-pill {
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #334155;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: all 0.15s ease;
+    }
+
+    .subject-pill:hover {
+      border-color: var(--exam-blue);
+      color: var(--exam-blue);
+      background: #f8fbff;
+    }
+
+    .subject-pill.active {
+      background: var(--exam-navy);
+      color: #ffffff;
+      border-color: var(--exam-navy);
+      font-weight: 600;
+    }
+
+    /* 2.4-Second Standard CBT Exam Intro Loader */
+    #intro-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background-color: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.45s ease, visibility 0.45s ease;
+    }
+
+    #intro-loader.loader-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="selection:bg-blue-600/15 selection:text-blue-900">
+
+  <!-- 2.4-Second Standard Exam Intro Loading Screen -->
+  <div id="intro-loader" role="status" aria-live="polite">
+    <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-8 max-w-md w-full mx-4 text-center">
+      <!-- Candidate / Portal Avatar Circle (matches 'WG' circle in screenshot) -->
+      <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center text-white font-bold text-xl shadow-sm"
+           style="background-color: var(--exam-navy);">
+        TS
+      </div>
+
+      <span class="inline-block px-2.5 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-600 border border-slate-200 mb-2">
+        CBT MOCK TEST PORTAL
+      </span>
+
+      <h1 class="text-xl font-bold text-slate-800 mb-1">
+        Test Series Portal
+      </h1>
+      <p id="loader-stage-text" class="text-xs text-slate-500 font-medium h-5 mb-5">
+        Initializing Exam Interface...
+      </p>
+
+      <!-- Progress Bar -->
+      <div class="w-full h-2 rounded-full bg-slate-100 border border-slate-200 overflow-hidden mb-2">
+        <div id="loader-progress-bar" class="h-full transition-all duration-100 ease-out"
+             style="width: 0%; background-color: var(--exam-blue);"></div>
+      </div>
+      <div class="flex items-center justify-between text-[11px] font-mono-code text-slate-500">
+        <span>SYNCING DIRECTORY</span>
+        <span id="loader-percent" class="font-semibold text-slate-700">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Portal Wrapper -->
+  <div class="min-h-screen flex flex-col">
+
+    <!-- Top Solid Navy Exam Header Bar (Matches screenshot top bar) -->
+    <header class="exam-top-header sticky top-0 z-40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
+
+        <!-- Left: Exam Title -->
+        <div class="flex items-center gap-3 min-w-0">
+          <button id="btn-home-logo" type="button"
+                  class="flex items-center gap-2.5 text-left group focus:outline-none"
+                  title="Return to Root Directory">
+            <span class="w-8 h-8 rounded-full bg-white/15 border border-white/25 flex items-center justify-center text-xs font-bold text-white shrink-0 group-hover:bg-white/25 transition-colors">
+              TS
+            </span>
+            <span class="font-bold text-sm sm:text-base tracking-tight text-white truncate">
+              Test Series Portal
+            </span>
+          </button>
+        </div>
+
+        <!-- Right: Compact Stats Pill (matches 'Time Left: 64:58' box) + Action Buttons (matches 'Pause' / 'Exit Fullscreen') -->
+        <div class="flex items-center gap-2 shrink-0">
+
+          <!-- Compact Stats Box -->
+          <div class="hidden md:flex items-center gap-2.5 px-3 py-1.5 rounded text-xs font-semibold exam-header-pill">
+            <span class="inline-flex items-center gap-1.5" title="Top-Level Subject Folders">
+              <span id="repo-status-dot" class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span>Subjects:</span>
+              <strong id="stat-subjects">0</strong>
+            </span>
+            <span class="opacity-40">|</span>
+            <span class="inline-flex items-center gap-1" title="Nested Sub-Folders">
+              <span>Folders:</span>
+              <strong id="stat-chapters">0</strong>
+            </span>
+            <span class="opacity-40">|</span>
+            <span class="inline-flex items-center gap-1" title="Total HTML & PDF Files">
+              <span>Tests:</span>
+              <strong id="stat-quizzes">0</strong>
+            </span>
+          </div>
+
+          <!-- Sync Button -->
+          <button id="btn-sync-repo" type="button"
+                  class="exam-header-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold"
+                  title="Sync folders from GitHub">
+            <svg id="sync-icon" class="w-3.5 h-3.5 text-white transition-transform duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3 3v5h5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 16h5v5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Sync</span>
+          </button>
+
+          <!-- Replay Intro Button -->
+          <button id="btn-replay-intro" type="button"
+                  class="exam-header-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold"
+                  title="Replay Intro Screen">
+            <span>Intro</span>
+          </button>
+
+        </div>
+      </div>
+    </header>
+
+    <!-- Secondary White Sub-Header Bar (Matches 'Question No. 1 of 65' & 'CISF AC 2025' bar in screenshot) -->
+    <div class="exam-subheader">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-2">
+        <!-- Breadcrumb Trail -->
+        <div id="breadcrumb-trail" class="flex flex-wrap items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-800">
+          <!-- Dynamically populated clickable path segments -->
+        </div>
+
+        <!-- Right Grey Pill Badge (Matches 'CISF AC 2025' badge in screenshot) -->
+        <div class="flex items-center gap-2">
+          <span id="layer-depth-indicator"
+                class="px-2.5 py-1 rounded text-xs font-semibold bg-slate-100 text-slate-600 border border-slate-200">
+            Layer 0 • Root Subjects
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6">
+
+      <!-- Mobile Compact Stats Strip -->
+      <div class="flex md:hidden items-center justify-between px-3.5 py-2 mb-4 rounded-lg bg-white border border-slate-200 text-xs font-semibold text-slate-700">
+        <span>Subjects: <strong id="stat-subjects-mob" class="text-blue-700">0</strong></span>
+        <span>•</span>
+        <span>Folders: <strong id="stat-chapters-mob" class="text-blue-700">0</strong></span>
+        <span>•</span>
+        <span>Tests: <strong id="stat-quizzes-mob" class="text-blue-700">0</strong></span>
+      </div>
+
+      <!-- Top-Level Subject Switcher Pills + Status Legend Bar -->
+      <div class="mb-6 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 bg-white p-3.5 rounded-lg border border-slate-200 shadow-sm">
+        <div id="subject-pills-container" class="flex flex-wrap items-center gap-2">
+          <!-- Dynamically populated top-level subject pills -->
+        </div>
+
+        <!-- CBT Legend Indicators (Matches Answered / Not Answered / Marked for Review badges in screenshot) -->
+        <div class="flex flex-wrap items-center gap-3 text-xs text-slate-600 shrink-0 border-t lg:border-t-0 pt-2.5 lg:pt-0 border-slate-100">
+          <span class="inline-flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-emerald-600 text-white text-[10px] font-bold flex items-center justify-center">H</span>
+            <span>HTML Mock</span>
+          </span>
+          <span class="inline-flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-red-600 text-white text-[10px] font-bold flex items-center justify-center">P</span>
+            <span>PDF File</span>
+          </span>
+          <span class="inline-flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-purple-700 text-white text-[10px] font-bold flex items-center justify-center">F</span>
+            <span>Sub-Folder</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Dynamic Multi-Layer Folder Explorer Area -->
+      <section id="portal-content-area" class="min-h-[420px]">
+        <!-- Populated dynamically by JavaScript -->
+      </section>
+
+    </main>
+
+    <!-- Bottom Exam Action / Status Footer Bar (Matches bottom bar of screenshot) -->
+    <footer class="mt-auto bg-white border-t border-slate-200 py-3.5 px-4 sm:px-6 text-xs text-slate-600">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div class="flex items-center gap-2 font-semibold text-slate-700">
+          <span>Test Series Portal</span>
+          <span class="text-slate-300">|</span>
+          <span class="font-normal text-slate-500">Standard CBT Directory</span>
+        </div>
+        <div id="footer-sync-status" class="font-mono-code text-[11px] text-slate-500">
+          GitHub Tree API Ready
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    // =========================================================================
+    // GITHUB REPOSITORY CONFIG (UNTOUCHED)
+    // =========================================================================
+    const REPO_CONFIG = {
+      owner: 'ritukanta',
+      repo: 'Test-Series',
+      branch: 'main'
+    };
+
+    // Application State — Pure Live Tree & Multi-Level Path Navigation
+    const state = {
+      currentPath: [],       // Array of folder names: [] = Root, ['Computer'] = Layer 1, ['Computer', 'Chapter_1'] = Layer 2, etc.
+      liveTreePaths: [],     // Populated strictly from GitHub repository
+      isLoadingRepo: false,
+      rootTree: null,        // Recursive tree root node
+      totalSubjects: 0,
+      totalSubfolders: 0,
+      totalFiles: 0
+    };
+
+    // =========================================================================
+    // UTILITY FUNCTIONS (UNTOUCHED LOGIC)
+    // =========================================================================
+    function formatDisplayName(rawName) {
+      if (!rawName) return '';
+      const withoutExt = rawName.replace(/\.(html?|pdf)$/i, '');
+      return withoutExt
+        .replace(/[_-]+/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .replace(/\b\w/g, function(ch) { return ch.toUpperCase(); });
+    }
+
+    function getSubjectInitials(displayName) {
+      if (!displayName) return 'TS';
+      const words = displayName.trim().split(/\s+/);
+      if (words.length >= 2) {
+        return (words[0][0] + words[1][0]).toUpperCase();
+      }
+      return displayName.slice(0, 2).toUpperCase();
+    }
+
+    // =========================================================================
+    // TRUE MULTI-LAYER RECURSIVE TREE BUILDER (UNTOUCHED LOGIC)
+    // =========================================================================
+    function createFolderNode(name, fullPath) {
+      return {
+        name: name,
+        displayName: formatDisplayName(name),
+        path: fullPath,
+        subfolders: {},          // Immediate child folders only
+        files: [],               // Immediate files at this exact level only
+        totalFilesRecursive: 0,  // All files in this folder + deeper levels
+        totalSubfoldersRecursive: 0
+      };
+    }
+
+    function buildRecursiveTree(filePaths) {
+      const root = createFolderNode('ROOT', '');
+      let subfolderCount = 0;
+      let validFileCount = 0;
+
+      filePaths.forEach(function(rawPath) {
+        const cleanPath = rawPath.replace(/^\/+|\/+$/g, '');
+        if (!cleanPath || !/\.(html?|pdf)$/i.test(cleanPath)) return;
+
+        const segments = cleanPath.split('/');
+        // Ignore root-level files (e.g. index.html, 404.html) and hidden directories (.github)
+        if (segments.length < 2) return;
+        if (segments.some(function(seg) { return seg.startsWith('.'); })) return;
+
+        validFileCount += 1;
+        const fileName = segments[segments.length - 1];
+        const folderSegments = segments.slice(0, segments.length - 1);
+        const fileType = /\.pdf$/i.test(fileName) ? 'PDF' : 'HTML';
+
+        let currentNode = root;
+        currentNode.totalFilesRecursive += 1;
+        let accumulatedPath = '';
+
+        folderSegments.forEach(function(folderSeg, idx) {
+          accumulatedPath = accumulatedPath ? (accumulatedPath + '/' + folderSeg) : folderSeg;
+          if (!currentNode.subfolders[folderSeg]) {
+            currentNode.subfolders[folderSeg] = createFolderNode(folderSeg, accumulatedPath);
+            if (idx > 0) {
+              subfolderCount += 1;
+            }
+          }
+          currentNode = currentNode.subfolders[folderSeg];
+          currentNode.totalFilesRecursive += 1;
+        });
+
+        currentNode.files.push({
+          fileName: fileName,
+          displayName: formatDisplayName(fileName),
+          relativePath: cleanPath,
+          fileType: fileType
+        });
+      });
+
+      function computeSubfolderTotals(node) {
+        const childKeys = Object.keys(node.subfolders);
+        let count = childKeys.length;
+        childKeys.forEach(function(k) {
+          count += computeSubfolderTotals(node.subfolders[k]);
+        });
+        node.totalSubfoldersRecursive = count;
+        return count;
+      }
+      computeSubfolderTotals(root);
+
+      return {
+        root: root,
+        totalSubjects: Object.keys(root.subfolders).length,
+        totalSubfolders: subfolderCount,
+        totalFiles: validFileCount
+      };
+    }
+
+    function getNodeAtPath(pathArray) {
+      if (!state.rootTree) return null;
+      let curr = state.rootTree;
+      for (let i = 0; i < pathArray.length; i++) {
+        const seg = pathArray[i];
+        if (!curr.subfolders || !curr.subfolders[seg]) {
+          return null;
+        }
+        curr = curr.subfolders[seg];
+      }
+      return curr;
+    }
+
+    // =========================================================================
+    // GITHUB REPOSITORY SYNC (UNTOUCHED LOGIC)
+    // =========================================================================
+    async function syncFromGitHub() {
+      const syncIcon = document.getElementById('sync-icon');
+      const statusDot = document.getElementById('repo-status-dot');
+      const footerStatus = document.getElementById('footer-sync-status');
+
+      state.isLoadingRepo = true;
+      if (syncIcon) syncIcon.classList.add('animate-spin');
+      if (footerStatus) footerStatus.textContent = 'Syncing repository tree...';
+
+      const apiUrl = 'https://api.github.com/repos/' +
+        encodeURIComponent(REPO_CONFIG.owner) + '/' +
+        encodeURIComponent(REPO_CONFIG.repo) + '/git/trees/' +
+        encodeURIComponent(REPO_CONFIG.branch) + '?recursive=1';
+
+      try {
+        const res = await fetch(apiUrl, {
+          headers: { 'Accept': 'application/vnd.github.v3+json' }
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          const tree = Array.isArray(data.tree) ? data.tree : [];
+          const matchedFiles = tree
+            .filter(function(item) {
+              return item.type === 'blob' &&
+                     /\.(html?|pdf)$/i.test(item.path) &&
+                     item.path.indexOf('/') !== -1 &&
+                     !item.path.startsWith('.');
+            })
+            .map(function(item) { return item.path; });
+
+          state.liveTreePaths = matchedFiles;
+          if (statusDot) {
+            statusDot.className = matchedFiles.length > 0
+              ? 'w-2 h-2 rounded-full bg-emerald-400'
+              : 'w-2 h-2 rounded-full bg-amber-400 animate-pulse';
+          }
+          if (footerStatus) {
+            footerStatus.textContent = matchedFiles.length > 0
+              ? 'Live Synced • ' + matchedFiles.length + ' Files Indexed'
+              : 'Connected • Awaiting Subject Folders';
+          }
+        } else {
+          state.liveTreePaths = [];
+          if (footerStatus) footerStatus.textContent = 'Connected • Repository Empty';
+        }
+      } catch (err) {
+        state.liveTreePaths = [];
+        if (footerStatus) footerStatus.textContent = 'Offline / Unable to reach GitHub API';
+      } finally {
+        state.isLoadingRepo = false;
+        if (syncIcon) syncIcon.classList.remove('animate-spin');
+        rebuildAndRender();
+      }
+    }
+
+    // =========================================================================
+    // OPENING QUIZ / PDF FILES IN A NEW TAB (UNTOUCHED LOGIC)
+    // =========================================================================
+    function openFileInNewTab(relativePath) {
+      const encodedPath = relativePath
+        .split('/')
+        .map(function(part) { return encodeURIComponent(part); })
+        .join('/');
+
+      const host = window.location.hostname || '';
+      const targetUrl = host.endsWith('github.io')
+        ? './' + encodedPath
+        : 'https://' + REPO_CONFIG.owner + '.github.io/' + REPO_CONFIG.repo + '/' + encodedPath;
+
+      window.open(targetUrl, '_blank', 'noopener,noreferrer');
+    }
+
+    // =========================================================================
+    // RENDERING MULTI-LAYER DIRECTORY UI (CBT EXAM THEME)
+    // =========================================================================
+    function rebuildAndRender() {
+      const parsed = buildRecursiveTree(state.liveTreePaths);
+      state.rootTree = parsed.root;
+      state.totalSubjects = parsed.totalSubjects;
+      state.totalSubfolders = parsed.totalSubfolders;
+      state.totalFiles = parsed.totalFiles;
+
+      if (state.currentPath.length > 0 && !getNodeAtPath(state.currentPath)) {
+        state.currentPath = [];
+      }
+
+      const setTxt = function(id, val) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = String(val);
+      };
+      setTxt('stat-subjects', state.totalSubjects);
+      setTxt('stat-chapters', state.totalSubfolders);
+      setTxt('stat-quizzes', state.totalFiles);
+      setTxt('stat-subjects-mob', state.totalSubjects);
+      setTxt('stat-chapters-mob', state.totalSubfolders);
+      setTxt('stat-quizzes-mob', state.totalFiles);
+
+      renderTopSubjectPills();
+      renderBreadcrumbBar();
+      renderCurrentLayerContent();
+    }
+
+    function renderTopSubjectPills() {
+      const container = document.getElementById('subject-pills-container');
+      const subjectKeys = Object.keys(state.rootTree.subfolders).sort();
+
+      if (subjectKeys.length === 0) {
+        container.innerHTML = '<span class="text-xs text-slate-500 font-medium">Subject Directory</span>';
+        return;
+      }
+
+      const activeTopSubject = state.currentPath.length > 0 ? state.currentPath[0] : 'ALL';
+
+      let html = `
+        <button type="button" data-root-pill="ALL"
+                class="subject-pill px-3 py-1.5 text-xs inline-flex items-center gap-1.5 ${activeTopSubject === 'ALL' ? 'active' : ''}">
+          <span>All Subjects</span>
+          <span class="px-1.5 py-0.5 rounded text-[10px] font-mono-code ${activeTopSubject === 'ALL' ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600'}">${subjectKeys.length}</span>
+        </button>
+      `;
+
+      subjectKeys.forEach(function(folderName) {
+        const node = state.rootTree.subfolders[folderName];
+        const isActive = activeTopSubject === folderName;
+        html += `
+          <button type="button" data-root-pill="${folderName}"
+                  class="subject-pill px-3 py-1.5 text-xs inline-flex items-center gap-1.5 ${isActive ? 'active' : ''}">
+            <span>${node.displayName}</span>
+            <span class="px-1.5 py-0.5 rounded text-[10px] font-mono-code ${isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600'}">${node.totalFilesRecursive}</span>
+          </button>
+        `;
+      });
+
+      container.innerHTML = html;
+
+      container.querySelectorAll('button[data-root-pill]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const target = btn.getAttribute('data-root-pill');
+          state.currentPath = target === 'ALL' ? [] : [target];
+          renderTopSubjectPills();
+          renderBreadcrumbBar();
+          renderCurrentLayerContent();
+        });
+      });
+    }
+
+    function renderBreadcrumbBar() {
+      const trail = document.getElementById('breadcrumb-trail');
+      const depthIndicator = document.getElementById('layer-depth-indicator');
+
+      if (depthIndicator) {
+        depthIndicator.textContent = state.currentPath.length === 0
+          ? 'Layer 0 • Root Subjects'
+          : 'Layer ' + state.currentPath.length + ' • Sub-Directory';
+      }
+
+      let html = `
+        <button type="button" data-crumb-depth="0"
+                class="inline-flex items-center gap-1 px-2.5 py-1 rounded text-xs font-semibold transition-colors ${state.currentPath.length === 0 ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}">
+          <span>Root Directory</span>
+        </button>
+      `;
+
+      state.currentPath.forEach(function(segment, idx) {
+        const isLast = idx === state.currentPath.length - 1;
+        html += `
+          <span class="text-slate-400 font-normal">/</span>
+          <button type="button" data-crumb-depth="${idx + 1}"
+                  class="px-2.5 py-1 rounded text-xs font-semibold transition-colors ${isLast ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}">
+            ${formatDisplayName(segment)}
+          </button>
+        `;
+      });
+
+      trail.innerHTML = html;
+
+      trail.querySelectorAll('button[data-crumb-depth]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const depth = parseInt(btn.getAttribute('data-crumb-depth'), 10);
+          state.currentPath = state.currentPath.slice(0, depth);
+          renderTopSubjectPills();
+          renderBreadcrumbBar();
+          renderCurrentLayerContent();
+        });
+      });
+    }
+
+    function renderCurrentLayerContent() {
+      const area = document.getElementById('portal-content-area');
+      const topSubjectKeys = Object.keys(state.rootTree.subfolders).sort();
+
+      // Empty Repository State
+      if (topSubjectKeys.length === 0) {
+        area.innerHTML = `
+          <div class="exam-card p-8 sm:p-10 text-center max-w-xl mx-auto mt-4">
+            <div class="w-14 h-14 rounded-full mx-auto mb-4 flex items-center justify-center text-white font-bold text-base"
+                 style="background-color: var(--exam-navy);">
+              TS
+            </div>
+            <h2 class="text-lg sm:text-xl font-bold text-slate-800 mb-2">
+              ${state.isLoadingRepo ? 'Scanning Repository Folders...' : 'No Subject Folders Uploaded Yet'}
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+              Upload your subject folders and nested sub-folders (containing <span class="font-mono-code font-semibold text-slate-800">.html</span> or <span class="font-mono-code font-semibold text-slate-800">.pdf</span> files) to the <span class="font-mono-code font-semibold text-slate-800">main</span> branch of your GitHub repository, then click <strong>Sync Directory Now</strong>.
+            </p>
+            <button type="button" id="btn-empty-resync" class="btn-exam-blue px-5 py-2.5 text-xs sm:text-sm inline-flex items-center gap-2">
+              <span>Sync Directory Now</span>
+            </button>
+          </div>
+        `;
+        const resyncBtn = document.getElementById('btn-empty-resync');
+        if (resyncBtn) {
+          resyncBtn.addEventListener('click', function() {
+            syncFromGitHub();
+          });
+        }
+        return;
+      }
+
+      // =======================================================================
+      // LAYER 0 (ROOT): CORE SUBJECT CARDS (CBT EXAM PANEL STYLE)
+      // =======================================================================
+      if (state.currentPath.length === 0) {
+        let html = `
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        `;
+
+        topSubjectKeys.forEach(function(folderName, idx) {
+          const subjNode = state.rootTree.subfolders[folderName];
+          const immediateSubCount = Object.keys(subjNode.subfolders).length;
+          const directFileCount = subjNode.files.length;
+          const initials = getSubjectInitials(subjNode.displayName);
+
+          html += `
+            <article class="core-subject-card flex flex-col justify-between cursor-pointer group"
+                     data-enter-folder="${folderName}">
+              <div>
+                <!-- Navy Section Bar (Matches 'Question Palette' bar in screenshot) -->
+                <div class="subject-card-strip">
+                  <span class="font-mono-code text-[11px] opacity-90">Subject #${idx + 1} • /${subjNode.path}</span>
+                  <span class="px-2 py-0.5 rounded bg-white/15 text-[11px] font-semibold">
+                    ${subjNode.totalFilesRecursive} ${subjNode.totalFilesRecursive === 1 ? 'File' : 'Files'}
+                  </span>
+                </div>
+
+                <!-- Card Body -->
+                <div class="p-5">
+                  <!-- Candidate-style Avatar + Subject Name -->
+                  <div class="flex items-center gap-3.5 mb-4">
+                    <div class="w-11 h-11 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0"
+                         style="background-color: var(--exam-navy);">
+                      ${initials}
+                    </div>
+                    <div class="min-w-0">
+                      <h2 class="text-lg font-bold text-slate-800 group-hover:text-blue-700 transition-colors truncate">
+                        ${subjNode.displayName}
+                      </h2>
+                      <p class="text-xs text-slate-500">
+                        ${immediateSubCount > 0 ? immediateSubCount + ' Sub-Folders' : 'Direct Test Folder'} • ${subjNode.totalFilesRecursive} Total Items
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- Status Counters (Matches Green/Purple/Grey counters in screenshot) -->
+                  <div class="grid grid-cols-2 gap-2.5 pt-3 border-t border-slate-100 text-xs">
+                    <div class="flex items-center gap-2 bg-slate-50 px-2.5 py-2 rounded border border-slate-200/80">
+                      <span class="w-5 h-5 rounded-full bg-purple-700 text-white text-[10px] font-bold flex items-center justify-center shrink-0">
+                        ${immediateSubCount}
+                      </span>
+                      <span class="text-slate-600 font-medium truncate">Sub-Folders</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-slate-50 px-2.5 py-2 rounded border border-slate-200/80">
+                      <span class="w-5 h-5 rounded-full bg-emerald-600 text-white text-[10px] font-bold flex items-center justify-center shrink-0">
+                        ${subjNode.totalFilesRecursive}
+                      </span>
+                      <span class="text-slate-600 font-medium truncate">Total Tests</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bottom Action Footer -->
+              <div class="px-5 pb-5 pt-1">
+                <button type="button"
+                        data-enter-folder="${folderName}"
+                        class="btn-exam-blue w-full py-2.5 px-4 text-xs sm:text-sm flex items-center justify-between">
+                  <span>Open ${subjNode.displayName}</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </article>
+          `;
+        });
+
+        html += `</div>`;
+        area.innerHTML = html;
+        bindLayerInteractions(area);
+        return;
+      }
+
+      // =======================================================================
+      // LAYER 1..N (STEP-BY-STEP SUB-FOLDER DRILL-DOWN)
+      // =======================================================================
+      const activeNode = getNodeAtPath(state.currentPath);
+      if (!activeNode) {
+        state.currentPath = [];
+        rebuildAndRender();
+        return;
+      }
+
+      const childFolderKeys = Object.keys(activeNode.subfolders).sort();
+      const immediateFiles = activeNode.files;
+      const initials = getSubjectInitials(activeNode.displayName);
+
+      let layerHtml = `
+        <div class="space-y-6">
+          <!-- Current Folder Header Bar -->
+          <div class="exam-card p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="flex items-center gap-3.5 min-w-0">
+              <div class="w-11 h-11 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0"
+                   style="background-color: var(--exam-navy);">
+                ${initials}
+              </div>
+              <div class="min-w-0">
+                <div class="font-mono-code text-xs text-slate-500 truncate">
+                  /${activeNode.path}
+                </div>
+                <h2 class="text-lg sm:text-xl font-bold text-slate-800 truncate">
+                  ${activeNode.displayName}
+                </h2>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2.5 self-start sm:self-center shrink-0">
+              ${immediateFiles.length > 1 ? `
+                <button type="button" id="btn-open-all-layer-files"
+                        class="btn-exam-purple px-3.5 py-2 text-xs inline-flex items-center gap-1.5"
+                        title="Open all files in this folder in new tabs">
+                  <span>Open All ${immediateFiles.length} Files</span>
+                  <span>↗</span>
+                </button>
+              ` : ''}
+              <button type="button" id="btn-up-one-level"
+                      class="btn-exam-neutral px-3.5 py-2 text-xs inline-flex items-center gap-1.5">
+                <span>← Previous Layer</span>
+              </button>
+            </div>
+          </div>
+      `;
+
+      // 1. IMMEDIATE CHILD SUB-FOLDERS AT THIS LAYER
+      if (childFolderKeys.length > 0) {
+        layerHtml += `
+          <div class="bg-white rounded-lg border border-slate-200 overflow-hidden shadow-sm">
+            <div class="subject-card-strip">
+              <span>Sub-Folders in ${activeNode.displayName} (${childFolderKeys.length})</span>
+              <span class="font-normal text-[11px] opacity-85">Click a folder to enter the next layer</span>
+            </div>
+
+            <div class="p-4 sm:p-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        `;
+
+        childFolderKeys.forEach(function(subKey, sIdx) {
+          const subNode = activeNode.subfolders[subKey];
+          const deeperFolderCount = Object.keys(subNode.subfolders).length;
+          const directFilesHere = subNode.files.length;
+
+          const subMeta = deeperFolderCount > 0
+            ? `${deeperFolderCount} Sub-Folders • ${subNode.totalFilesRecursive} Files`
+            : `${directFilesHere} ${directFilesHere === 1 ? 'File' : 'Files'} Inside`;
+
+          layerHtml += `
+            <article class="exam-card p-4 flex flex-col justify-between cursor-pointer group"
+                     data-enter-subfolder="${subNode.name}">
+              <div>
+                <div class="flex items-start justify-between gap-2.5 mb-3">
+                  <span class="palette-num-tile w-8 h-8 flex items-center justify-center shrink-0">
+                    ${sIdx + 1}
+                  </span>
+                  <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-purple-50 text-purple-700 border border-purple-200">
+                    ${subNode.totalFilesRecursive} ${subNode.totalFilesRecursive === 1 ? 'File' : 'Files'}
+                  </span>
+                </div>
+
+                <div class="mb-4">
+                  <h4 class="text-sm sm:text-base font-bold text-slate-800 group-hover:text-blue-700 transition-colors">
+                    ${subNode.displayName}
+                  </h4>
+                  <p class="text-xs text-slate-500 mt-1">
+                    ${subMeta}
+                  </p>
+                </div>
+              </div>
+
+              <button type="button"
+                      data-enter-subfolder="${subNode.name}"
+                      class="btn-exam-blue w-full py-2 px-3 text-xs flex items-center justify-between">
+                <span>Open Folder</span>
+                <span>→</span>
+              </button>
+            </article>
+          `;
+        });
+
+        layerHtml += `
+            </div>
+          </div>
+        `;
+      }
+
+      // 2. IMMEDIATE FILES AT THIS EXACT LAYER (.html / .pdf)
+      if (immediateFiles.length > 0) {
+        layerHtml += `
+          <div class="bg-white rounded-lg border border-slate-200 overflow-hidden shadow-sm">
+            <div class="subject-card-strip">
+              <span>Mock Tests &amp; Files in ${activeNode.displayName} (${immediateFiles.length})</span>
+              <span class="font-normal text-[11px] opacity-85">Click any test to open in a new tab</span>
+            </div>
+
+            <div class="p-4 sm:p-5 space-y-3">
+              ${immediateFiles.map(function(fileObj, fIdx) {
+                return renderFileCardHtml(fileObj, fIdx + 1);
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      layerHtml += `</div>`;
+      area.innerHTML = layerHtml;
+      bindLayerInteractions(area, immediateFiles);
+    }
+
+    function renderFileCardHtml(fileObj, indexNum) {
+      const isPdf = fileObj.fileType === 'PDF';
+      const badgeClass = isPdf
+        ? 'bg-red-50 text-red-700 border-red-200'
+        : 'bg-emerald-50 text-emerald-700 border-emerald-200';
+
+      return `
+        <button type="button"
+                data-open-file="${fileObj.relativePath}"
+                class="quiz-option-row p-3.5 sm:p-4 text-left flex items-center justify-between gap-4 group w-full">
+          <div class="flex items-center gap-3.5 min-w-0">
+            <!-- Numbered Box matching Question Palette button -->
+            <div class="palette-num-tile w-9 h-9 flex items-center justify-center shrink-0">
+              ${indexNum}
+            </div>
+            <div class="min-w-0">
+              <div class="flex items-center gap-2">
+                <span class="font-semibold text-sm sm:text-base text-slate-800 group-hover:text-blue-700 transition-colors truncate">
+                  ${fileObj.displayName}
+                </span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-semibold border shrink-0 ${badgeClass}">
+                  ${fileObj.fileType}
+                </span>
+              </div>
+              <div class="font-mono-code text-[11px] text-slate-400 truncate mt-0.5">
+                ${fileObj.relativePath}
+              </div>
+            </div>
+          </div>
+
+          <div class="shrink-0 inline-flex items-center gap-1.5 px-3.5 py-2 text-xs btn-exam-green">
+            <span>Start / Open</span>
+            <span>↗</span>
+          </div>
+        </button>
+      `;
+    }
+
+    function bindLayerInteractions(container, immediateFiles) {
+      // Enter top-level subject card from root
+      container.querySelectorAll('[data-enter-folder]').forEach(function(el) {
+        el.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const folder = el.getAttribute('data-enter-folder');
+          state.currentPath = [folder];
+          renderTopSubjectPills();
+          renderBreadcrumbBar();
+          renderCurrentLayerContent();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+
+      // Enter nested subfolder (step-by-step deeper layer)
+      container.querySelectorAll('[data-enter-subfolder]').forEach(function(el) {
+        el.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const subFolder = el.getAttribute('data-enter-subfolder');
+          state.currentPath = state.currentPath.concat([subFolder]);
+          renderTopSubjectPills();
+          renderBreadcrumbBar();
+          renderCurrentLayerContent();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+
+      // Up one layer button
+      const upBtn = document.getElementById('btn-up-one-level');
+      if (upBtn) {
+        upBtn.addEventListener('click', function() {
+          state.currentPath.pop();
+          renderTopSubjectPills();
+          renderBreadcrumbBar();
+          renderCurrentLayerContent();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+      // Open all immediate files in this folder in separate tabs
+      const openAllBtn = document.getElementById('btn-open-all-layer-files');
+      if (openAllBtn && Array.isArray(immediateFiles)) {
+        openAllBtn.addEventListener('click', function() {
+          immediateFiles.forEach(function(fileObj) {
+            openFileInNewTab(fileObj.relativePath);
+          });
+        });
+      }
+
+      // Open individual HTML or PDF file in new tab
+      container.querySelectorAll('button[data-open-file]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const relPath = btn.getAttribute('data-open-file');
+          openFileInNewTab(relPath);
+        });
+      });
+    }
+
+    // =========================================================================
+    // 2.4-SECOND INTRO LOADING SCREEN CONTROLLER (UNTOUCHED LOGIC)
+    // =========================================================================
+    let introTimerId = null;
+
+    function runIntroLoader() {
+      const loader = document.getElementById('intro-loader');
+      const progressBar = document.getElementById('loader-progress-bar');
+      const percentText = document.getElementById('loader-percent');
+      const stageText = document.getElementById('loader-stage-text');
+
+      if (!loader) return;
+      if (introTimerId) {
+        clearInterval(introTimerId);
+        introTimerId = null;
+      }
+
+      loader.classList.remove('loader-hidden');
+      progressBar.style.width = '0%';
+      percentText.textContent = '0%';
+      stageText.textContent = 'Initializing Exam Interface...';
+
+      const durationMs = 2400;
+      const stepMs = 40;
+      let elapsed = 0;
+
+      introTimerId = setInterval(function() {
+        elapsed += stepMs;
+        const ratio = Math.min(1, elapsed / durationMs);
+        const easedPercent = Math.round((1 - Math.pow(1 - ratio, 2.2)) * 100);
+
+        progressBar.style.width = easedPercent + '%';
+        percentText.textContent = easedPercent + '%';
+
+        if (easedPercent < 35) {
+          stageText.textContent = 'Initializing Exam Interface...';
+        } else if (easedPercent < 72) {
+          stageText.textContent = 'Fetching Repository Folder Tree...';
+        } else if (easedPercent < 96) {
+          stageText.textContent = 'Building Multi-Layer Subject Hierarchy...';
+        } else {
+          stageText.textContent = 'Portal Ready';
+        }
+
+        if (elapsed >= durationMs) {
+          clearInterval(introTimerId);
+          introTimerId = null;
+          setTimeout(function() {
+            loader.classList.add('loader-hidden');
+          }, 150);
+        }
+      }, stepMs);
+    }
+
+    // =========================================================================
+    // INITIALIZATION
+    // =========================================================================
+    window.addEventListener('DOMContentLoaded', function() {
+      runIntroLoader();
+      rebuildAndRender();
+      syncFromGitHub();
+
+      document.getElementById('btn-home-logo').addEventListener('click', function() {
+        state.currentPath = [];
+        rebuildAndRender();
+      });
+
+      document.getElementById('btn-sync-repo').addEventListener('click', function() {
+        syncFromGitHub();
+      });
+
+      document.getElementById('btn-replay-intro').addEventListener('click', function() {
+        runIntroLoader();
+      });
+    });
+  </script>
+</body>
+</html>

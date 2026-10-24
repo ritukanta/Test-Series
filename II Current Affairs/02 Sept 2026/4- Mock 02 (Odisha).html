@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odisha Current Affairs Mock Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            user-select: none;
+        }
+
+        /* Custom Scrollbar for Palette */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+            border-radius: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #c1c1c1; 
+            border-radius: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8; 
+        }
+
+        /* Palette Status Colors */
+        .status-not-visited { background-color: #e5e7eb; color: #374151; border: 1px solid #d1d5db; }
+        .status-not-answered { background-color: #ef4444; color: white; border: 1px solid #dc2626; }
+        .status-answered { background-color: #22c55e; color: white; border: 1px solid #16a34a; }
+        .status-marked { background-color: #8b5cf6; color: white; border: 1px solid #7c3aed; }
+        .status-answered-marked { background-color: #8b5cf6; color: white; border: 1px solid #7c3aed; position: relative; }
+        .status-answered-marked::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 8px;
+            height: 8px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            border: 1px solid white;
+        }
+
+        /* Standardized Radio Customization */
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background-color: white;
+            margin-bottom: 12px;
+        }
+        .option-label:hover {
+            background-color: #f3f4f6;
+        }
+        .option-input:checked + .option-label {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+            box-shadow: 0 0 0 1px #3b82f6;
+        }
+        .option-input {
+            display: none;
+        }
+        .option-custom-radio {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #9ca3af;
+            border-radius: 50%;
+            margin-right: 12px;
+            position: relative;
+            flex-shrink: 0;
+        }
+        .option-input:checked + .option-label .option-custom-radio {
+            border-color: #3b82f6;
+        }
+        .option-input:checked + .option-label .option-custom-radio::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+        }
+    </style>
+</head>
+<body class="h-screen w-screen overflow-hidden flex flex-col">
+
+    <!-- INTRO SCREEN -->
+    <div id="intro-screen" class="absolute inset-0 z-50 bg-white flex flex-col items-center justify-center p-6 overflow-y-auto">
+        <div class="max-w-3xl w-full bg-slate-50 border border-slate-200 rounded-xl shadow-lg p-8">
+            <h1 class="text-3xl font-bold text-slate-800 mb-2 text-center">Odisha Current Affairs Mock Test</h1>
+            <h2 class="text-lg font-medium text-slate-600 mb-6 text-center">September 2026 Edition</h2>
+            
+            <div class="bg-white p-6 rounded-lg border border-slate-200 mb-8">
+                <h3 class="font-bold text-lg mb-4 border-b pb-2">General Instructions:</h3>
+                <ul class="list-disc pl-5 space-y-2 text-slate-700">
+                    <li>This test comprises <strong>40 Multiple Choice Questions (MCQs)</strong>.</li>
+                    <li>Total duration of the examination is <strong>40 Minutes</strong>.</li>
+                    <li>The clock will be set at the server. The countdown timer at the top right of the screen will display the remaining time available for you to complete the examination.</li>
+                    <li>When the timer reaches zero, the examination will end automatically. You will not be required to end or submit your examination.</li>
+                    <li>Clicking on "Start Test" will automatically open the exam in <strong>Fullscreen Mode</strong>.</li>
+                    <li>Results and correct answers will only be revealed upon the final submission of the test. Detailed solutions are provided only for incorrect and unattempted questions.</li>
+                </ul>
+            </div>
+
+            <div class="flex justify-center">
+                <button onclick="startTest()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-lg shadow-md transition transform hover:-translate-y-1">
+                    I am ready to begin (Start Test)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN EXAM INTERFACE -->
+    <div id="exam-screen" class="hidden h-full flex-col bg-slate-50">
+        
+        <!-- Header -->
+        <header class="bg-blue-700 text-white flex justify-between items-center px-4 py-3 shadow-md z-10 shrink-0">
+            <div class="font-bold text-lg truncate w-1/3">Mock Test: Odisha CA Sep 2026</div>
+            <div class="flex items-center space-x-6 w-2/3 justify-end">
+                <div class="flex items-center space-x-2 bg-blue-800 px-4 py-1.5 rounded-full border border-blue-600 shadow-inner">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span id="timer-display" class="font-mono text-xl font-bold tracking-wider">40:00</span>
+                </div>
+                <button onclick="togglePause()" id="pause-btn" class="text-sm font-medium hover:text-blue-200 transition underline underline-offset-2">Pause</button>
+                <button onclick="exitFullscreenUI()" class="text-sm font-medium hover:text-blue-200 transition underline underline-offset-2">Exit Fullscreen</button>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <div class="flex flex-1 overflow-hidden relative">
+            
+            <!-- Left Panel (Questions) -->
+            <div class="flex-1 flex flex-col h-full bg-white relative">
+                
+                <!-- Question Header -->
+                <div class="px-6 py-4 border-b border-slate-200 flex justify-between items-center bg-slate-50">
+                    <h2 class="text-xl font-bold text-slate-800">Question No. <span id="q-number-display">1</span></h2>
+                    <span id="q-category" class="text-xs font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-800 uppercase tracking-wide border border-blue-200">Category</span>
+                </div>
+
+                <!-- Question Body -->
+                <div class="flex-1 overflow-y-auto p-6 custom-scroll">
+                    <div id="question-text" class="text-lg text-slate-900 font-medium mb-6 leading-relaxed">
+                        <!-- Question Text injects here -->
+                    </div>
+                    <div id="options-container" class="flex flex-col">
+                        <!-- Options inject here -->
+                    </div>
+                </div>
+
+                <!-- Footer Controls -->
+                <div class="border-t border-slate-200 p-4 bg-slate-50 flex justify-between items-center flex-wrap gap-y-3">
+                    <div class="flex space-x-3">
+                        <button onclick="markForReviewAndNext()" class="px-4 py-2 border border-purple-600 text-purple-700 font-semibold rounded hover:bg-purple-50 transition shadow-sm bg-white">Mark for Review & Next</button>
+                        <button onclick="clearResponse()" class="px-4 py-2 border border-slate-300 text-slate-600 font-semibold rounded hover:bg-slate-100 transition shadow-sm bg-white">Clear Response</button>
+                    </div>
+                    <div class="flex space-x-3 items-center">
+                        <button onclick="prevQuestion()" class="px-6 py-2 border border-slate-300 text-slate-700 font-semibold rounded hover:bg-slate-100 transition shadow-sm bg-white">Previous</button>
+                        <button onclick="nextQuestion()" class="px-8 py-2 bg-blue-600 text-white font-bold rounded hover:bg-blue-700 transition shadow-sm">Save & Next</button>
+                        <div class="w-px h-8 bg-slate-300 mx-2"></div>
+                        <button onclick="showSubmitConfirm()" class="px-6 py-2 bg-emerald-600 text-white font-bold rounded hover:bg-emerald-700 transition shadow-sm">Submit Test</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel (Palette) - Hidden on Mobile -->
+            <div class="w-72 bg-slate-100 border-l border-slate-300 flex flex-col hidden md:flex shrink-0">
+                <div class="p-3 border-b border-slate-300 bg-white">
+                    <div class="grid grid-cols-2 gap-2 text-xs text-slate-600 font-medium">
+                        <div class="flex items-center"><div class="w-5 h-5 rounded-md status-not-visited mr-2 flex items-center justify-center text-white text-[10px]" id="count-not-visited">0</div> Not Visited</div>
+                        <div class="flex items-center"><div class="w-5 h-5 rounded-md status-not-answered mr-2 flex items-center justify-center text-[10px]" id="count-not-answered">0</div> Not Answered</div>
+                        <div class="flex items-center"><div class="w-5 h-5 rounded-md status-answered mr-2 flex items-center justify-center text-[10px]" id="count-answered">0</div> Answered</div>
+                        <div class="flex items-center"><div class="w-5 h-5 rounded-md status-marked mr-2 flex items-center justify-center text-[10px]" id="count-marked">0</div> Marked</div>
+                        <div class="flex items-center col-span-2"><div class="w-5 h-5 rounded-md status-answered-marked mr-2 flex items-center justify-center text-[10px]" id="count-answered-marked">0</div> Answered & Marked for Review</div>
+                    </div>
+                </div>
+                <div class="p-3 bg-slate-200 font-bold text-slate-700 text-sm text-center border-b border-slate-300">
+                    Question Palette
+                </div>
+                <div class="flex-1 overflow-y-auto p-4 custom-scroll">
+                    <div id="palette-grid" class="grid grid-cols-4 gap-2">
+                        <!-- Palette Buttons inject here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESULT SCREEN -->
+    <div id="result-screen" class="hidden absolute inset-0 z-50 bg-slate-100 flex-col overflow-y-auto custom-scroll">
+        <header class="bg-slate-800 text-white p-6 shadow-md text-center shrink-0">
+            <h1 class="text-3xl font-bold mb-2">Test Submitted Successfully</h1>
+            <p class="text-slate-300">Detailed Performance Analysis</p>
+        </header>
+
+        <div class="max-w-5xl w-full mx-auto p-6 flex-1">
+            
+            <!-- Score Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center">
+                    <div class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-1">Total Score</div>
+                    <div id="res-score" class="text-4xl font-extrabold text-blue-600">0/40</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center">
+                    <div class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-1">Attempted</div>
+                    <div id="res-attempted" class="text-4xl font-extrabold text-slate-700">0</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center">
+                    <div class="text-sm font-bold text-emerald-600 uppercase tracking-wider mb-1">Correct</div>
+                    <div id="res-correct" class="text-4xl font-extrabold text-emerald-600">0</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center">
+                    <div class="text-sm font-bold text-red-500 uppercase tracking-wider mb-1">Incorrect</div>
+                    <div id="res-incorrect" class="text-4xl font-extrabold text-red-500">0</div>
+                </div>
+            </div>
+
+            <!-- Review Section -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-8">
+                <h2 class="text-2xl font-bold text-slate-800 mb-4 border-b pb-2">Review (Incorrect & Unattempted)</h2>
+                <p class="text-slate-600 mb-6 text-sm">Note: As per instructions, solutions are only provided for questions you answered incorrectly or did not attempt.</p>
+                <div id="review-container" class="space-y-6">
+                    <!-- Review items inject here -->
+                </div>
+            </div>
+            
+            <div class="text-center pb-10">
+                 <button onclick="location.reload()" class="px-8 py-3 bg-slate-800 text-white font-bold rounded-lg shadow-md hover:bg-slate-700 transition">Restart Application</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CUSTOM MODALS -->
+    <!-- Pause Modal -->
+    <div id="pause-modal" class="hidden fixed inset-0 z-[100] modal-overlay flex items-center justify-center">
+        <div class="bg-white p-8 rounded-xl shadow-2xl max-w-sm w-full text-center">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4">Test Paused</h2>
+            <p class="text-slate-600 mb-8">Your timer has been paused. Click below to resume your test.</p>
+            <button onclick="togglePause()" class="w-full py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition shadow-md">Resume Test</button>
+        </div>
+    </div>
+
+    <!-- Submit Confirm Modal -->
+    <div id="submit-modal" class="hidden fixed inset-0 z-[100] modal-overlay flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full overflow-hidden">
+            <div class="bg-slate-800 p-4">
+                <h2 class="text-xl font-bold text-white">Confirm Submission</h2>
+            </div>
+            <div class="p-6">
+                <p class="text-slate-700 mb-4">Are you sure you want to submit the test? You will not be able to modify your answers after submission.</p>
+                
+                <div class="grid grid-cols-2 gap-3 mb-6 bg-slate-50 p-4 rounded-lg border border-slate-200 text-sm font-medium">
+                    <div class="text-slate-600">Answered: <span id="modal-ans" class="text-slate-900 font-bold ml-1">0</span></div>
+                    <div class="text-slate-600">Not Answered: <span id="modal-not-ans" class="text-slate-900 font-bold ml-1">0</span></div>
+                    <div class="text-slate-600">Marked: <span id="modal-marked" class="text-slate-900 font-bold ml-1">0</span></div>
+                    <div class="text-slate-600">Not Visited: <span id="modal-not-vis" class="text-slate-900 font-bold ml-1">0</span></div>
+                </div>
+
+                <div class="flex justify-end space-x-3">
+                    <button onclick="hideSubmitConfirm()" class="px-5 py-2 border border-slate-300 text-slate-700 font-bold rounded hover:bg-slate-100 transition">Cancel</button>
+                    <button onclick="submitTest()" class="px-5 py-2 bg-emerald-600 text-white font-bold rounded hover:bg-emerald-700 transition">Yes, Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data derived directly from the provided source document
+        const sourceData = [
+            {
+                q: "How many high-impact development-oriented programs has the Odisha Government identified under 'Odisha Vision 2036'?",
+                opts: ["24 High-Impact Programs", "30 High-Impact Programs", "36 High-Impact Programs", "47 High-Impact Programs"],
+                ans: "36 High-Impact Programs",
+                tag: "Governance & Schemes"
+            },
+            {
+                q: "Which of the following was NOT a key focus of Odisha's World Tourism Day 2026 event?",
+                opts: ["Digital Innovation", "Sustainable Infrastructure", "Institutional Partnerships", "Industrial Mining Expansion"],
+                ans: "Industrial Mining Expansion",
+                tag: "Governance & Schemes"
+            },
+            {
+                q: "Who has been nominated as the Executive Chairperson of the Odisha State Legal Services Authority (OSLSA)?",
+                opts: ["Justice Manash Ranjan Pathak", "Justice Bibhu Prasad Routray", "Justice Sanjeeb Kumar Panigrahi", "Justice Sangam Kumar Sahoo"],
+                ans: "Justice Bibhu Prasad Routray",
+                tag: "Appointments & Polity"
+            },
+            {
+                q: "Which edition of the Odisha Environment Congress (OEC) will be held in 2026?",
+                opts: ["15th Edition", "16th Edition", "17th Edition", "18th Edition"],
+                ans: "17th Edition",
+                tag: "Environment & Wildlife"
+            },
+            {
+                q: "What is the main objective of the 'Sambandh' campaign launched in Odisha?",
+                opts: ["Promoting tourism in tribal regions", "Expanding the cooperative movement to rural households", "Promoting heavy industrialization", "Increasing urban mobility and employment"],
+                ans: "Expanding the cooperative movement to rural households",
+                tag: "Governance & Schemes"
+            },
+            {
+                q: "Who has been appointed as the BJP State In-Charge (Prabhari) for Odisha?",
+                opts: ["Vijay Pal Singh Tomar", "D. Purandeswari (Daggubati Purandeswari)", "Sunil Bansal", "Lata Usendi"],
+                ans: "D. Purandeswari (Daggubati Purandeswari)",
+                tag: "Appointments & Polity"
+            },
+            {
+                q: "Which of the following did Odisha showcase at the India International Water Week (IIWW) 2026?",
+                opts: ["Integrated Water Management Initiatives", "Climate-Resilient Agriculture Practices", "Irrigation Infrastructure", "All of the above"],
+                ans: "All of the above",
+                tag: "Environment & Wildlife"
+            },
+            {
+                q: "What is the main objective of the 'Baristha Nagarika Tirtha Yatra Yojana' (BNTYY)?",
+                opts: ["To promote general tourism in Odisha", "To facilitate senior citizens in undertaking pilgrimages", "To provide employment to rural youth", "To promote railway tourism"],
+                ans: "To facilitate senior citizens in undertaking pilgrimages",
+                tag: "Governance & Schemes"
+            },
+            {
+                q: "Which department of the Odisha Government launched the 'Sahar Sathi' helpline?",
+                opts: ["Energy Department", "Housing and Urban Development Department", "Panchayati Raj & Drinking Water Department", "Works Department"],
+                ans: "Housing and Urban Development Department",
+                tag: "Governance & Schemes"
+            },
+            {
+                q: "What is the total number of electors in Odisha according to the Final Electoral Roll 2026 published under the SIR program?",
+                opts: ["3,12,45,610", "3,16,32,754", "3,20,18,500", "3,08,75,420"],
+                ans: "3,16,32,754",
+                tag: "Appointments & Polity"
+            },
+            {
+                q: "Which indigenous chip designed by NIT Rourkela was presented to Prime Minister Narendra Modi at SEMICON India 2026?",
+                opts: ["ASCON AEAD Security Chip (C2S0091)", "Kalinga RISC-V Processor (C2S0015)", "Konark AI Accelerator Chip (C2S0042)", "Utkal Nano-Crypto Chip (C2S0078)"],
+                ans: "ASCON AEAD Security Chip (C2S0091)",
+                tag: "Science, Tech & Security"
+            },
+            {
+                q: "Which historic temple hosted the state-level 'Ashirbad Deepa' (Lamps of Blessing) program in Bhubaneswar?",
+                opts: ["Lingaraj Temple", "Mukteshwar Temple", "Rajarani Temple", "Ananta Vasudeva Temple"],
+                ans: "Mukteshwar Temple",
+                tag: "Sports, Art & Culture"
+            },
+            {
+                q: "Where in Odisha was the state's third 'Make in India' Doppler Weather Radar (DWR) inaugurated?",
+                opts: ["Paradip", "Gopalpur", "Sambalpur", "Balasore"],
+                ans: "Sambalpur",
+                tag: "Science, Tech & Security"
+            },
+            {
+                q: "In September 2026, five infant orangutans were rescued by forest officials in which district of Odisha?",
+                opts: ["Mayurbhanj", "Balasore (Baleswar)", "Bhadrak", "Kendrapara"],
+                ans: "Balasore (Baleswar)",
+                tag: "Environment & Wildlife"
+            },
+            {
+                q: "The Odisha Department of Higher Education has directed colleges to nominate distinguished women professionals under which new title?",
+                opts: ["Shakti Apa", "Subhadra Didi", "Kalinga Nari", "Utkal Janani"],
+                ans: "Shakti Apa",
+                tag: "Governance & Schemes"
+            },
+            {
+                q: "Which institution in Odisha has been certified as India's first Platinum-rated Green Campus (Governor's House) under the IGBC Green Campus Rating System?",
+                opts: ["Lok Seva Bhavan (State Secretariat)", "Odisha Legislative Assembly", "Lok Bhavan (Raj Bhavan), Odisha", "Gopabandhu Academy of Administration"],
+                ans: "Lok Bhavan (Raj Bhavan), Odisha",
+                tag: "Awards, Honours & Indices"
+            },
+            {
+                q: "Which two people are credited with turning rural Odisha into a cinematic experience through 'Maliput Melodies'?",
+                opts: ["Mohan Charan Majhi and Sudhakar Patnaik", "Vishal Patnaik and Tosh Nanda", "Srikant Gautam and Sekhar Reddy", "Vishal Patnaik and Suresh Pujari"],
+                ans: "Vishal Patnaik and Tosh Nanda",
+                tag: "Sports, Art & Culture"
+            },
+            {
+                q: "The new ex-gratia guidelines issued by the Odisha School and Mass Education Department cover students across which educational range?",
+                opts: ["Class 1 to Class 10", "Shishu Vatika to Class 12", "Class 6 to Class 12", "Nursery to Graduation"],
+                ans: "Shishu Vatika to Class 12",
+                tag: "Governance & Schemes"
+            },
+            {
+                q: "Who received the Odisha Journalism Award 2026 as the Chief Editor of 'Dainik Sanchar'?",
+                opts: ["Ajit Kumar Das", "Bijaylaxmi Rath", "Jalandhar Pradhan", "Arabinda Das"],
+                ans: "Ajit Kumar Das",
+                tag: "Awards, Honours & Indices"
+            },
+            {
+                q: "Which Odisha city topped the 'Swachh Vayu Survekshan 2026' in the mid-sized city category?",
+                opts: ["Bhubaneswar", "Cuttack", "Rourkela", "Sambalpur"],
+                ans: "Rourkela",
+                tag: "Awards, Honours & Indices"
+            },
+            {
+                q: "Who is set to receive the prestigious SKOCH Award for Administrative Excellence in Odisha?",
+                opts: ["Prathamesh Arvind Rajeshirke", "Siddharth Shankar Swain", "Chanchal Rana", "Somesh Kumar Upadhyay"],
+                ans: "Prathamesh Arvind Rajeshirke",
+                tag: "Awards, Honours & Indices"
+            },
+            {
+                q: "Who embarked on Odisha's second international investment roadshow to the UAE?",
+                opts: ["Naveen Patnaik", "Mohan Charan Majhi", "Sampad Chandra Swain", "Kanak Vardhan Singh Deo"],
+                ans: "Mohan Charan Majhi",
+                tag: "Governance & Schemes"
+            },
+            {
+                q: "The Pollution Control Excellence Award 2026 was conferred on Kurmitar Iron Ore Mine by which organization?",
+                opts: ["Odisha Forest Department", "Union Ministry of Environment, Forest and Climate Change", "State Pollution Control Board (SPCB), Odisha", "Odisha Environment Society"],
+                ans: "State Pollution Control Board (SPCB), Odisha",
+                tag: "Awards, Honours & Indices"
+            },
+            {
+                q: "The 'India Electric Mobility Index (IEMI)' report was released by which organization?",
+                opts: ["Ministry of Road Transport and Highways", "NITI Aayog", "Ministry of Power", "Bureau of Energy Efficiency"],
+                ans: "NITI Aayog",
+                tag: "Awards, Honours & Indices"
+            },
+            {
+                q: "Which exercise was recently conducted at Paradip, Odisha to strengthen coastal security?",
+                opts: ["Exercise Sea Vigil", "Exercise Sagar Kavach", "Exercise Varuna", "Exercise Suraksha Chakra"],
+                ans: "Exercise Sagar Kavach",
+                tag: "Science, Tech & Security"
+            },
+            {
+                q: "Odisha Police has launched which special statewide campaign ahead of the festival season to curb criminals, habitual offenders, and anti-social elements?",
+                opts: ["Operation Mission Shakti", "Operation Suraksha", "Operation Daman", "Operation Clean Sweep"],
+                ans: "Operation Daman",
+                tag: "Science, Tech & Security"
+            },
+            {
+                q: "Tanisha Agrawal created history as the first woman from which district of Odisha to obtain a Commercial Pilot License (CPL)?",
+                opts: ["Sambalpur", "Bargarh", "Bolangir", "Sundargarh"],
+                ans: "Bargarh",
+                tag: "Sports, Art & Culture"
+            },
+            {
+                q: "Which app was launched by Chief Minister Mohan Charan Majhi to enhance safety in urban mobility?",
+                opts: ["Odisha Suraksha App", "Odisha Yatri Safety App", "Ama Bus Safety App", "Nagarika Rakshak App"],
+                ans: "Odisha Yatri Safety App",
+                tag: "Governance & Schemes"
+            },
+            {
+                q: "Which day of the week has been declared by the Odisha Government as 'No Meeting Day' for holding public grievance hearings?",
+                opts: ["Sunday", "Monday", "Tuesday", "Saturday"],
+                ans: "Monday",
+                tag: "Governance & Schemes"
+            },
+            {
+                q: "Who created a special sand animation to congratulate shooters Suruchi Singh and Kamaljeet on winning the Gold Medal at the Asian Games?",
+                opts: ["Sudarsan Pattnaik", "Manas Kumar Sahoo", "Subodh Patnaik", "Narayan Sahoo"],
+                ans: "Manas Kumar Sahoo",
+                tag: "Sports, Art & Culture"
+            },
+            {
+                q: "Which port in Odisha has been officially designated as a 'Mega Port' by the Central Government?",
+                opts: ["Dhamra Port", "Gopalpur Port", "Paradip Port", "Astaranga Port"],
+                ans: "Paradip Port",
+                tag: "Governance & Schemes"
+            },
+            {
+                q: "Who have been announced as the Brand Ambassadors of the Odisha T20 League 2026 (CM Trophy)?",
+                opts: ["Suresh Raina and Debasis Mohanty", "Virender Sehwag and Shiv Sundar Das", "Irfan Pathan and Pragyan Ojha", "Rohit Sharma and Biplab Samantaray"],
+                ans: "Suresh Raina and Debasis Mohanty",
+                tag: "Sports, Art & Culture"
+            },
+            {
+                q: "Odisha's Koraput Coffee is set to be served at which international summit?",
+                opts: ["G20 Summit", "BRICS Summit", "ASEAN Summit", "SCO Summit"],
+                ans: "BRICS Summit",
+                tag: "Governance & Schemes"
+            },
+            {
+                q: "Saptagiri Sankar Ulaka, who was selected for the Sansad Ratna Award 2026, is the Member of Parliament (MP) from which Odisha constituency?",
+                opts: ["Kalahandi", "Nabarangpur", "Koraput", "Berhampur"],
+                ans: "Koraput",
+                tag: "Awards, Honours & Indices"
+            },
+            {
+                q: "Who became the youngest female player to hold an official FIDE Rating in September 2026?",
+                opts: ["Elena Mishra", "Padmini Rout", "Saina Salonika", "Aparajita Gochhikar"],
+                ans: "Elena Mishra",
+                tag: "Sports, Art & Culture"
+            },
+            {
+                q: "Who has been appointed as the first Chairman of the Internal Audit Committee of WFEO?",
+                opts: ["Er. Ashok Basa", "Dr. Sudhanshu Sekhar Das", "Prof. Damodar Acharya", "Er. Binod Kumar Dash"],
+                ans: "Er. Ashok Basa",
+                tag: "Appointments & Polity"
+            },
+            {
+                q: "Which certificate was awarded to Odisha's Bamboo Sector under the Indian Forest and Wood Certification Scheme (IFWCS)?",
+                opts: ["Pramana Certificate", "Pragati Certificate", "Prerana Certificate", "Prakruti Certificate"],
+                ans: "Pramana Certificate",
+                tag: "Environment & Wildlife"
+            },
+            {
+                q: "Where was a life-size statue of former Odisha Chief Minister Nandini Satpathy unveiled?",
+                opts: ["Indira Gandhi Park, Bhubaneswar", "Daya Ashram Park, Cuttack", "Biju Patnaik Park, Cuttack", "Ekamra Kanan, Bhubaneswar"],
+                ans: "Daya Ashram Park, Cuttack",
+                tag: "Sports, Art & Culture"
+            },
+            {
+                q: "Who took charge as the new Deputy Commissioner of Police (DCP) of Bhubaneswar?",
+                opts: ["Pinak Mishra", "Dr. Saravana Vivek M.", "Abhinav Sonkar", "Prateek Singh"],
+                ans: "Dr. Saravana Vivek M.",
+                tag: "Appointments & Polity"
+            },
+            {
+                q: "What is the name of the first state-level special handicraft exhibition launched by the Odisha Government?",
+                opts: ["Utkal Shree Ganesh", "Kalinga Shilpa Utsav", "Odia Hastashilpa Mela", "Ekamra Karigari"],
+                ans: "Utkal Shree Ganesh",
+                tag: "Sports, Art & Culture"
+            }
+        ];
+
+        let questions = [];
+        let currentQIndex = 0;
+        let selectedAnswers = new Array(40).fill(null);
+        let qStatus = new Array(40).fill('not_visited'); // states: not_visited, not_answered, answered, marked, answered_marked
+        
+        let timerInterval;
+        let timeLeft = 40 * 60; // 40 minutes in seconds
+        let isPaused = false;
+        let isSubmitted = false;
+
+        // Shuffle array helper
+        function shuffleArray(array) {
+            let curId = array.length;
+            while (0 !== curId) {
+                let randId = Math.floor(Math.random() * curId);
+                curId -= 1;
+                let tmp = array[curId];
+                array[curId] = array[randId];
+                array[randId] = tmp;
+            }
+            return array;
+        }
+
+        function initQuestions() {
+            // Map and shuffle options but KEEP questions in order
+            questions = sourceData.map(item => {
+                let optsCopy = [...item.opts];
+                return {
+                    q: item.q,
+                    opts: shuffleArray(optsCopy),
+                    ans: item.ans,
+                    tag: item.tag
+                };
+            });
+            qStatus[0] = 'not_answered'; // First question visited immediately
+        }
+
+        function startTest() {
+            document.getElementById('intro-screen').classList.add('hidden');
+            document.getElementById('exam-screen').classList.remove('hidden');
+            document.getElementById('exam-screen').classList.add('flex');
+            
+            // Try Fullscreen safely
+            try {
+                let fsPromise;
+                if (document.documentElement.requestFullscreen) {
+                    fsPromise = document.documentElement.requestFullscreen();
+                } else if (document.documentElement.mozRequestFullScreen) { /* Firefox */
+                    fsPromise = document.documentElement.mozRequestFullScreen();
+                } else if (document.documentElement.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                    fsPromise = document.documentElement.webkitRequestFullscreen();
+                } else if (document.documentElement.msRequestFullscreen) { /* IE/Edge */
+                    fsPromise = document.documentElement.msRequestFullscreen();
+                }
+                
+                if (fsPromise && typeof fsPromise.catch === 'function') {
+                    fsPromise.catch(err => console.warn("Fullscreen blocked by policy:", err));
+                }
+            } catch (err) {
+                console.warn("Fullscreen request failed", err);
+            }
+
+            initQuestions();
+            buildPalette();
+            renderQuestion();
+            startTimer();
+        }
+
+        function renderQuestion() {
+            const q = questions[currentQIndex];
+            document.getElementById('q-number-display').textContent = currentQIndex + 1;
+            document.getElementById('q-category').textContent = q.tag;
+            document.getElementById('question-text').textContent = q.q;
+
+            const optsContainer = document.getElementById('options-container');
+            optsContainer.innerHTML = '';
+            
+            const selectedOpt = selectedAnswers[currentQIndex];
+
+            q.opts.forEach((opt, idx) => {
+                const optId = `opt-${idx}`;
+                
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.name = 'current_question';
+                input.id = optId;
+                input.value = opt;
+                input.className = 'option-input';
+                if (selectedOpt === opt) {
+                    input.checked = true;
+                }
+                
+                // When an option is selected, we DO NOT mark it as correct/incorrect visually. 
+                // We just record the selection.
+                input.addEventListener('change', (e) => {
+                    selectedAnswers[currentQIndex] = e.target.value;
+                });
+
+                const label = document.createElement('label');
+                label.htmlFor = optId;
+                label.className = 'option-label';
+                
+                const customRadio = document.createElement('div');
+                customRadio.className = 'option-custom-radio';
+                
+                const textSpan = document.createElement('span');
+                textSpan.textContent = opt;
+                
+                label.appendChild(customRadio);
+                label.appendChild(textSpan);
+                
+                optsContainer.appendChild(input);
+                optsContainer.appendChild(label);
+            });
+
+            updatePaletteUI();
+        }
+
+        function buildPalette() {
+            const grid = document.getElementById('palette-grid');
+            grid.innerHTML = '';
+            for (let i = 0; i < 40; i++) {
+                const btn = document.createElement('button');
+                btn.id = `pal-btn-${i}`;
+                btn.className = 'w-10 h-10 rounded-md font-bold text-sm shadow-sm transition hover:opacity-80 flex items-center justify-center';
+                btn.textContent = i + 1;
+                btn.onclick = () => jumpToQuestion(i);
+                grid.appendChild(btn);
+            }
+            updatePaletteUI();
+        }
+
+        function updatePaletteUI() {
+            let counts = { not_visited: 0, not_answered: 0, answered: 0, marked: 0, answered_marked: 0 };
+            
+            for (let i = 0; i < 40; i++) {
+                const btn = document.getElementById(`pal-btn-${i}`);
+                if (!btn) continue;
+                
+                // Clear previous state classes
+                btn.classList.remove('status-not-visited', 'status-not-answered', 'status-answered', 'status-marked', 'status-answered-marked', 'ring-2', 'ring-blue-500', 'ring-offset-1');
+                
+                const status = qStatus[i];
+                counts[status]++;
+                
+                if (status === 'not_visited') btn.classList.add('status-not-visited');
+                else if (status === 'not_answered') btn.classList.add('status-not-answered');
+                else if (status === 'answered') btn.classList.add('status-answered');
+                else if (status === 'marked') btn.classList.add('status-marked');
+                else if (status === 'answered_marked') btn.classList.add('status-answered-marked');
+                
+                // Highlight current question
+                if (i === currentQIndex) {
+                    btn.classList.add('ring-2', 'ring-blue-800', 'ring-offset-2');
+                }
+            }
+
+            document.getElementById('count-not-visited').textContent = counts.not_visited;
+            document.getElementById('count-not-answered').textContent = counts.not_answered;
+            document.getElementById('count-answered').textContent = counts.answered;
+            document.getElementById('count-marked').textContent = counts.marked;
+            document.getElementById('count-answered-marked').textContent = counts.answered_marked;
+        }
+
+        function saveCurrentState(isMarking = false) {
+            const hasAns = selectedAnswers[currentQIndex] !== null;
+            const currentStatus = qStatus[currentQIndex];
+            
+            if (isMarking) {
+                qStatus[currentQIndex] = hasAns ? 'answered_marked' : 'marked';
+            } else {
+                // If saving normally, un-mark it if it was marked
+                qStatus[currentQIndex] = hasAns ? 'answered' : 'not_answered';
+            }
+        }
+
+        function nextQuestion() {
+            saveCurrentState(false);
+            if (currentQIndex < 39) {
+                currentQIndex++;
+                if (qStatus[currentQIndex] === 'not_visited') {
+                    qStatus[currentQIndex] = 'not_answered';
+                }
+                renderQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            saveCurrentState(qStatus[currentQIndex].includes('marked')); // retain mark state on simple nav
+            if (currentQIndex > 0) {
+                currentQIndex--;
+                if (qStatus[currentQIndex] === 'not_visited') {
+                    qStatus[currentQIndex] = 'not_answered';
+                }
+                renderQuestion();
+            }
+        }
+
+        function jumpToQuestion(idx) {
+            saveCurrentState(qStatus[currentQIndex].includes('marked'));
+            currentQIndex = idx;
+            if (qStatus[currentQIndex] === 'not_visited') {
+                qStatus[currentQIndex] = 'not_answered';
+            }
+            renderQuestion();
+        }
+
+        function markForReviewAndNext() {
+            saveCurrentState(true);
+            if (currentQIndex < 39) {
+                currentQIndex++;
+                if (qStatus[currentQIndex] === 'not_visited') {
+                    qStatus[currentQIndex] = 'not_answered';
+                }
+                renderQuestion();
+            } else {
+                // Just update UI if last question
+                updatePaletteUI();
+            }
+        }
+
+        function clearResponse() {
+            selectedAnswers[currentQIndex] = null;
+            // Uncheck UI radios
+            document.querySelectorAll('.option-input').forEach(input => input.checked = false);
+            // Revert state appropriately
+            if (qStatus[currentQIndex] === 'answered') qStatus[currentQIndex] = 'not_answered';
+            if (qStatus[currentQIndex] === 'answered_marked') qStatus[currentQIndex] = 'marked';
+            updatePaletteUI();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (isPaused || isSubmitted) return;
+                
+                timeLeft--;
+                
+                let m = Math.floor(timeLeft / 60);
+                let s = timeLeft % 60;
+                document.getElementById('timer-display').textContent = 
+                    (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    autoSubmitTest();
+                }
+            }, 1000);
+        }
+
+        function togglePause() {
+            if (isSubmitted) return;
+            isPaused = !isPaused;
+            const modal = document.getElementById('pause-modal');
+            const btn = document.getElementById('pause-btn');
+            
+            if (isPaused) {
+                modal.classList.remove('hidden');
+                btn.textContent = 'Resume';
+            } else {
+                modal.classList.add('hidden');
+                btn.textContent = 'Pause';
+            }
+        }
+
+        function exitFullscreenUI() {
+            try {
+                let fsPromise;
+                if (document.exitFullscreen) {
+                    fsPromise = document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    fsPromise = document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    fsPromise = document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    fsPromise = document.msExitFullscreen();
+                }
+                
+                if (fsPromise && typeof fsPromise.catch === 'function') {
+                    fsPromise.catch(err => console.warn("Exit fullscreen failed:", err));
+                }
+            } catch(e) { console.warn("Exit fullscreen error:", e); }
+        }
+
+        function showSubmitConfirm() {
+            // Ensure current question state is captured
+            saveCurrentState(qStatus[currentQIndex].includes('marked'));
+            updatePaletteUI();
+            
+            document.getElementById('modal-ans').textContent = document.getElementById('count-answered').textContent;
+            
+            // "Not Answered" logic inside modal should include Marked without answers
+            let notAnsCount = parseInt(document.getElementById('count-not-answered').textContent) + parseInt(document.getElementById('count-marked').textContent);
+            document.getElementById('modal-not-ans').textContent = notAnsCount;
+            
+            let markedCount = parseInt(document.getElementById('count-marked').textContent) + parseInt(document.getElementById('count-answered-marked').textContent);
+            document.getElementById('modal-marked').textContent = markedCount;
+            
+            document.getElementById('modal-not-vis').textContent = document.getElementById('count-not-visited').textContent;
+            
+            document.getElementById('submit-modal').classList.remove('hidden');
+        }
+
+        function hideSubmitConfirm() {
+            document.getElementById('submit-modal').classList.add('hidden');
+        }
+
+        function autoSubmitTest() {
+            saveCurrentState(qStatus[currentQIndex].includes('marked'));
+            hideSubmitConfirm();
+            executeSubmission();
+        }
+
+        function submitTest() {
+            hideSubmitConfirm();
+            executeSubmission();
+        }
+
+        function executeSubmission() {
+            isSubmitted = true;
+            clearInterval(timerInterval);
+            exitFullscreenUI();
+            
+            document.getElementById('exam-screen').classList.add('hidden');
+            document.getElementById('exam-screen').classList.remove('flex');
+            
+            const resScreen = document.getElementById('result-screen');
+            resScreen.classList.remove('hidden');
+            resScreen.classList.add('flex');
+
+            evaluatePerformance();
+        }
+
+        function evaluatePerformance() {
+            let correct = 0;
+            let incorrect = 0;
+            let attempted = 0;
+            
+            const reviewContainer = document.getElementById('review-container');
+            reviewContainer.innerHTML = '';
+            
+            let hasReviewItems = false;
+
+            questions.forEach((q, idx) => {
+                const userAns = selectedAnswers[idx];
+                let isAttempted = userAns !== null;
+                let isCorrect = userAns === q.ans;
+                
+                if (isAttempted) attempted++;
+                if (isAttempted && isCorrect) correct++;
+                if (isAttempted && !isCorrect) incorrect++;
+                
+                // Show ONLY incorrect & un-attempted questions in review
+                if (!isAttempted || !isCorrect) {
+                    hasReviewItems = true;
+                    
+                    const reviewEl = document.createElement('div');
+                    reviewEl.className = 'p-4 rounded-lg bg-slate-50 border ' + (isAttempted ? 'border-red-200' : 'border-slate-300');
+                    
+                    let statusBadge = isAttempted 
+                        ? '<span class="px-2 py-1 bg-red-100 text-red-700 text-xs font-bold rounded-md uppercase tracking-wide">Incorrect</span>' 
+                        : '<span class="px-2 py-1 bg-slate-200 text-slate-700 text-xs font-bold rounded-md uppercase tracking-wide">Unattempted</span>';
+                    
+                    reviewEl.innerHTML = `
+                        <div class="flex items-start justify-between mb-3">
+                            <h3 class="font-bold text-slate-800 flex-1 pr-4"><span class="text-slate-500 mr-2">Q${idx + 1}.</span> ${q.q}</h3>
+                            <div class="shrink-0 mt-1">${statusBadge}</div>
+                        </div>
+                        <div class="pl-7 space-y-2">
+                            ${isAttempted ? `<div class="text-sm"><span class="font-semibold text-slate-600">Your Answer:</span> <span class="text-red-600 font-medium">${userAns}</span></div>` : ''}
+                            <div class="text-sm bg-emerald-50 border border-emerald-100 p-2 rounded text-emerald-800 font-medium flex items-start">
+                                <svg class="w-5 h-5 mr-2 shrink-0 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span><span class="font-bold">Correct Answer:</span> ${q.ans}</span>
+                            </div>
+                        </div>
+                    `;
+                    reviewContainer.appendChild(reviewEl);
+                }
+            });
+
+            if (!hasReviewItems) {
+                reviewContainer.innerHTML = `
+                    <div class="text-center py-8 text-emerald-600 font-bold text-lg bg-emerald-50 rounded-lg border border-emerald-200">
+                        Excellent! You answered all questions correctly.
+                    </div>
+                `;
+            }
+
+            document.getElementById('res-score').textContent = `${correct}/40`;
+            document.getElementById('res-attempted').textContent = attempted;
+            document.getElementById('res-correct').textContent = correct;
+            document.getElementById('res-incorrect').textContent = incorrect;
+        }
+
+    </script>
+</body>
+</html>

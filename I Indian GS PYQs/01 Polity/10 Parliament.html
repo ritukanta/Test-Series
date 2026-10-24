@@ -1,0 +1,3129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parliament of India - Mock Test (109 Questions)</title>
+  <style>
+    :root {
+      --tcs-blue: #1d4ed8;
+      --tcs-blue-dark: #1e3a8a;
+      --tcs-header: #0f172a;
+      --tcs-subbar: #1e293b;
+      --tcs-bg: #f1f5f9;
+      --tcs-border: #cbd5e1;
+      --ans-green: #16a34a;
+      --not-ans-red: #dc2626;
+      --review-purple: #7e22ce;
+      --not-visited-bg: #e2e8f0;
+      --not-visited-text: #334155;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      height: 100%;
+      width: 100%;
+      font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+      -webkit-font-smoothing: antialiased;
+    }
+    .hidden-view {
+      display: none !important;
+    }
+
+    /* Introductory Screen */
+    .intro-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: #f1f5f9;
+    }
+    .top-brand-bar {
+      background: linear-gradient(90deg, #0f172a 0%, #1e3a8a 100%);
+      color: #ffffff;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid #3b82f6;
+      flex-shrink: 0;
+    }
+    .brand-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+    .brand-subtitle {
+      font-size: 12px;
+      color: #bfdbfe;
+      margin-top: 2px;
+    }
+    .candidate-pill {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .intro-container {
+      max-width: 1020px;
+      width: 100%;
+      margin: 24px auto;
+      padding: 0 16px 32px;
+      flex: 1;
+    }
+    .intro-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+      overflow: hidden;
+    }
+    .intro-card-header {
+      background: #f8fafc;
+      border-bottom: 1px solid #cbd5e1;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .intro-card-header h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .intro-body {
+      padding: 24px;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .meta-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid #1d4ed8;
+      padding: 12px 16px;
+      border-radius: 6px;
+    }
+    .meta-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #64748b;
+      font-weight: 600;
+    }
+    .meta-val {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 4px;
+    }
+    .section-heading {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1e293b;
+      margin: 20px 0 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .inst-list {
+      list-style: decimal;
+      padding-left: 22px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: #334155;
+    }
+    .inst-list li {
+      margin-bottom: 8px;
+    }
+    .legend-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 18px;
+      font-size: 13.5px;
+    }
+    .legend-table th, .legend-table td {
+      border: 1px solid #e2e8f0;
+      padding: 10px 14px;
+      text-align: left;
+    }
+    .legend-table th {
+      background: #f1f5f9;
+      font-weight: 600;
+      color: #334155;
+    }
+    .declaration-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin-top: 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13.5px;
+      color: #1e3a8a;
+      cursor: pointer;
+    }
+    .declaration-box input {
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+    .intro-footer {
+      background: #f8fafc;
+      border-top: 1px solid #cbd5e1;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    /* Exam Active Layout (Viewport Locked so buttons never scroll out of view) */
+    .exam-wrapper {
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+    }
+    .exam-header {
+      height: 56px;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 0 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #2563eb;
+      flex-shrink: 0;
+      gap: 12px;
+    }
+    .exam-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+    .exam-title-text {
+      font-size: 15px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .section-pill {
+      background: #1e3a8a;
+      color: #93c5fd;
+      border: 1px solid #3b82f6;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .exam-header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .timer-badge {
+      background: #1e293b;
+      border: 1px solid #475569;
+      padding: 5px 12px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .timer-value {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 16px;
+      font-weight: 700;
+      color: #38bdf8;
+      letter-spacing: 0.5px;
+    }
+    .timer-urgent {
+      color: #f87171 !important;
+      animation: pulseRed 1s infinite;
+    }
+    @keyframes pulseRed {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.55; }
+    }
+    .top-ctrl-btn {
+      background: #334155;
+      color: #f8fafc;
+      border: 1px solid #475569;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .top-ctrl-btn:hover {
+      background: #475569;
+    }
+
+    /* Main Split Body */
+    .exam-main {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      overflow: hidden;
+    }
+    .question-column {
+      flex: 1;
+      min-width: 0;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+    }
+    .question-meta-bar {
+      height: 44px;
+      background: #f8fafc;
+      border-bottom: 1px solid #cbd5e1;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .q-number-label {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .exam-tag-badge {
+      font-size: 11px;
+      font-weight: 600;
+      color: #475569;
+      background: #e2e8f0;
+      border: 1px solid #cbd5e1;
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.2px;
+    }
+    .question-scroll-area {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 22px 28px;
+    }
+    .question-stem {
+      font-size: 16.5px;
+      line-height: 1.65;
+      color: #0f172a;
+      font-weight: 500;
+      white-space: pre-line;
+      margin-bottom: 22px;
+    }
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 900px;
+    }
+    .option-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: border-color 0.12s, background-color 0.12s;
+      text-align: left;
+      width: 100%;
+      font-size: 15px;
+      line-height: 1.5;
+      color: #1e293b;
+    }
+    .option-row:hover {
+      border-color: #64748b;
+      background: #f8fafc;
+    }
+    .option-row.selected {
+      border-color: #2563eb;
+      background: #eff6ff;
+    }
+    .radio-circle {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      background: #ffffff;
+    }
+    .option-row.selected .radio-circle {
+      border-color: #2563eb;
+    }
+    .radio-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: transparent;
+    }
+    .option-row.selected .radio-dot {
+      background: #2563eb;
+    }
+    .option-letter {
+      font-weight: 700;
+      color: #334155;
+      min-width: 20px;
+    }
+    .option-text {
+      flex: 1;
+      word-break: break-word;
+    }
+
+    /* Fixed Bottom Action Bar */
+    .question-action-bar {
+      background: #f1f5f9;
+      border-top: 1px solid #cbd5e1;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .action-group-left, .action-group-right {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .exam-btn {
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s;
+    }
+    .exam-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    .btn-secondary {
+      background: #ffffff;
+      color: #1e293b;
+      border-color: #94a3b8;
+    }
+    .btn-secondary:hover:not(:disabled) {
+      background: #e2e8f0;
+    }
+    .btn-review {
+      background: #6b21a8;
+      color: #ffffff;
+      border-color: #581c87;
+    }
+    .btn-review:hover:not(:disabled) {
+      background: #581c87;
+    }
+    .btn-primary {
+      background: #1d4ed8;
+      color: #ffffff;
+      border-color: #1e40af;
+    }
+    .btn-primary:hover:not(:disabled) {
+      background: #1e40af;
+    }
+    .btn-submit {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #0369a1;
+    }
+    .btn-submit:hover:not(:disabled) {
+      background: #0369a1;
+    }
+
+    /* Right-side Question Palette (Hidden on mobile phone interface) */
+    .palette-sidebar {
+      width: 290px;
+      background: #f8fafc;
+      border-left: 1px solid #cbd5e1;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 0;
+      flex-shrink: 0;
+    }
+    .mobile-only-submit {
+      display: none;
+    }
+    @media (max-width: 767px) {
+      .palette-sidebar {
+        display: none !important;
+      }
+      .mobile-only-submit {
+        display: inline-block;
+      }
+      .question-scroll-area {
+        padding: 16px;
+      }
+      .exam-header {
+        padding: 0 10px;
+      }
+      .section-pill {
+        display: none;
+      }
+    }
+    .palette-legend {
+      padding: 10px 12px;
+      background: #ffffff;
+      border-bottom: 1px solid #cbd5e1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 8px;
+      font-size: 11.5px;
+      color: #334155;
+      flex-shrink: 0;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-item.full-span {
+      grid-column: span 2;
+    }
+    .status-Swatch {
+      width: 24px;
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: 4px;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .st-not-visited {
+      background: #e2e8f0;
+      color: #334155;
+      border: 1px solid #94a3b8;
+    }
+    .st-not-answered {
+      background: #dc2626;
+      color: #ffffff;
+      border: 1px solid #b91c1c;
+      border-radius: 8px 8px 2px 2px;
+    }
+    .st-answered {
+      background: #16a34a;
+      color: #ffffff;
+      border: 1px solid #15803d;
+      border-radius: 2px 2px 8px 8px;
+    }
+    .st-review {
+      background: #7e22ce;
+      color: #ffffff;
+      border: 1px solid #6b21a8;
+      border-radius: 50%;
+    }
+    .st-ans-review {
+      background: #7e22ce;
+      color: #ffffff;
+      border: 1px solid #6b21a8;
+      border-radius: 50%;
+    }
+    .st-ans-review::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 9px;
+      height: 9px;
+      background: #22c55e;
+      border: 1.5px solid #ffffff;
+      border-radius: 50%;
+    }
+    .palette-title-bar {
+      background: #1e293b;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .palette-grid-container {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 10px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      align-content: start;
+      background: #f8fafc;
+    }
+    .palette-num-btn {
+      height: 32px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+    .palette-num-btn:hover {
+      transform: translateY(-1px);
+    }
+    .palette-num-btn.active-q {
+      outline: 2.5px solid #0f172a;
+      outline-offset: 1px;
+    }
+    .palette-footer {
+      padding: 10px 12px;
+      background: #e2e8f0;
+      border-top: 1px solid #cbd5e1;
+      flex-shrink: 0;
+    }
+    .palette-footer .exam-btn {
+      width: 100%;
+      padding: 9px 12px;
+      font-size: 14px;
+    }
+
+    /* Modals (Pause & Submit Confirmation) */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(3px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      max-width: 480px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25);
+    }
+    .modal-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+    .modal-desc {
+      font-size: 14px;
+      color: #475569;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .summary-stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .summary-stat-row {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 8px 12px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    /* Result / Analysis View */
+    .result-wrapper {
+      min-height: 100vh;
+      background: #f1f5f9;
+      padding-bottom: 48px;
+    }
+    .result-container {
+      max-width: 1040px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+    .score-banner {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+    }
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .score-stat-card {
+      padding: 14px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      text-align: center;
+    }
+    .score-stat-card .lbl {
+      font-size: 11.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #64748b;
+    }
+    .score-stat-card .val {
+      font-size: 24px;
+      font-weight: 800;
+      margin-top: 4px;
+    }
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .tab-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #334155;
+      cursor: pointer;
+    }
+    .filter-tab.active-tab {
+      background: #1d4ed8;
+      color: #ffffff;
+      border-color: #1d4ed8;
+    }
+    .review-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+    }
+    .review-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e2e8f0;
+      margin-bottom: 12px;
+    }
+    .badge-incorrect {
+      background: #fef2f2;
+      color: #dc2626;
+      border: 1px solid #fecaca;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 4px;
+    }
+    .badge-unattempted {
+      background: #fffbeb;
+      color: #b45309;
+      border: 1px solid #fde68a;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 4px;
+    }
+    .rev-opt {
+      padding: 9px 12px;
+      border-radius: 5px;
+      border: 1px solid #e2e8f0;
+      margin-bottom: 8px;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+    .rev-opt-correct {
+      background: #f0fdf4;
+      border-color: #86efac;
+      color: #14532d;
+      font-weight: 600;
+    }
+    .rev-opt-wrong {
+      background: #fef2f2;
+      border-color: #fca5a5;
+      color: #7f1d1d;
+      font-weight: 600;
+    }
+    .solution-box {
+      margin-top: 12px;
+      background: #f8fafc;
+      border-left: 4px solid #2563eb;
+      padding: 12px 14px;
+      border-radius: 0 6px 6px 0;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #1e293b;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. INITIAL INTRODUCTORY INTERFACE -->
+  <div id="introView" class="intro-wrapper">
+    <header class="top-brand-bar">
+      <div>
+        <div class="brand-title">Parliament of India Mock Examination</div>
+        <div class="brand-subtitle">Computer Based Test (CBT) Examination Portal</div>
+      </div>
+      <div class="candidate-pill">Candidate: Mock Aspirant</div>
+    </header>
+
+    <main class="intro-container">
+      <div class="intro-card">
+        <div class="intro-card-header">
+          <h2>General Instructions &amp; Examination Guidelines</h2>
+          <span class="exam-tag-badge">Language: English Only</span>
+        </div>
+
+        <div class="intro-body">
+          <div class="meta-grid">
+            <div class="meta-box">
+              <div class="meta-label">Topic / Module</div>
+              <div class="meta-val">Parliament of India (Part V)</div>
+            </div>
+            <div class="meta-box">
+              <div class="meta-label">Total Questions</div>
+              <div class="meta-val">109 MCQs</div>
+            </div>
+            <div class="meta-box">
+              <div class="meta-label">Total Duration</div>
+              <div class="meta-val">109 Minutes</div>
+            </div>
+            <div class="meta-box">
+              <div class="meta-label">Question Order</div>
+              <div class="meta-val">Fixed (Options Shuffled)</div>
+            </div>
+          </div>
+
+          <div class="section-heading">Please read the instructions carefully before starting the test:</div>
+          <ol class="inst-list">
+            <li>Total duration of this mock examination is <strong>109 minutes</strong> (109 questions). The countdown timer in the top-right corner displays the remaining time available for you to complete the examination. When the timer reaches zero, the examination will <strong>submit automatically</strong>.</li>
+            <li>The Question Palette displayed on the right side of the screen (on desktop/tablet) will show the status of each question using one of the following standard symbols:</li>
+          </ol>
+
+          <table class="legend-table">
+            <thead>
+              <tr>
+                <th style="width: 70px;">Symbol</th>
+                <th>Status Meaning</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="status-Swatch st-not-visited">1</span></td>
+                <td>You have <strong>not visited</strong> the question yet.</td>
+              </tr>
+              <tr>
+                <td><span class="status-Swatch st-not-answered">2</span></td>
+                <td>You have visited the question but have <strong>not answered</strong> it.</td>
+              </tr>
+              <tr>
+                <td><span class="status-Swatch st-answered">3</span></td>
+                <td>You have <strong>answered</strong> the question.</td>
+              </tr>
+              <tr>
+                <td><span class="status-Swatch st-review">4</span></td>
+                <td>You have <strong>NOT answered</strong> the question, but have <strong>marked it for review</strong>.</td>
+              </tr>
+              <tr>
+                <td><span class="status-Swatch st-ans-review">5</span></td>
+                <td>You have <strong>answered</strong> the question and <strong>marked it for review</strong> (will be evaluated for scoring).</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="section-heading">Navigating &amp; Answering a Question:</div>
+          <ol class="inst-list" start="3">
+            <li>Click on any option to select your answer. Selecting an option does <strong>not</strong> automatically jump to the next question or reveal the answer during the test.</li>
+            <li>Use <strong>Next</strong> to save your current response and move to the next question, or <strong>Previous</strong> to move to the preceding question.</li>
+            <li>Use <strong>Mark for Review &amp; Next</strong> to flag a question for later review and advance to the next question.</li>
+            <li>Use <strong>Clear</strong> to deselect your chosen option for the current question.</li>
+            <li>The test will automatically enter <strong>Full Screen</strong> mode upon starting. You may exit full screen at any time using the <strong>Exit Fullscreen</strong> button in the top bar, or pause the timer using the <strong>Pause</strong> button.</li>
+            <li>Upon final submission, your score analysis will be displayed along with detailed solutions strictly for <strong>incorrect and un-attempted questions</strong>.</li>
+          </ol>
+
+          <label class="declaration-box" for="agreeCheck">
+            <input type="checkbox" id="agreeCheck" checked />
+            <span>I have read and understood all the instructions. I declare that I am ready to begin the mock examination under timed CBT conditions.</span>
+          </label>
+          <p id="agreeError" class="hidden-view" style="color: #dc2626; font-size: 13px; font-weight: 600; margin-top: 8px;">
+            Please check the declaration box above to proceed to the mock test.
+          </p>
+        </div>
+
+        <div class="intro-footer">
+          <button id="startExamBtn" type="button" class="exam-btn btn-primary" style="padding: 10px 26px; font-size: 15px;">
+            I am ready to begin &rarr;
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- 2. MAIN EXAM INTERFACE (TCS / EDUQUITY STYLE) -->
+  <div id="examView" class="exam-wrapper hidden-view">
+    <!-- Top Header -->
+    <header class="exam-header">
+      <div class="exam-header-left">
+        <span class="exam-title-text">Parliament of India Mock Examination</span>
+        <span class="section-pill">Section: Indian Polity (109 Qs)</span>
+      </div>
+      <div class="exam-header-right">
+        <div class="timer-badge" title="Strict Countdown Timer">
+          <span>Time Left:</span>
+          <span id="timerDisplay" class="timer-value">109:00</span>
+        </div>
+        <button id="pauseBtn" type="button" class="top-ctrl-btn">Pause</button>
+        <button id="exitFsBtn" type="button" class="top-ctrl-btn">Exit Fullscreen</button>
+      </div>
+    </header>
+
+    <!-- Split Workspace -->
+    <div class="exam-main">
+      <!-- Left: Single Question Panel -->
+      <section class="question-column">
+        <div class="question-meta-bar">
+          <div id="questionNumHeader" class="q-number-label">Question No. 1 of 109</div>
+          <span id="examTagBadge" class="exam-tag-badge">TAG</span>
+        </div>
+
+        <div id="questionScrollContainer" class="question-scroll-area">
+          <div id="questionStemText" class="question-stem"></div>
+          <div id="optionsListContainer" class="options-list"></div>
+        </div>
+
+        <!-- Bottom Action Bar (Always visible, never pushed off-screen) -->
+        <footer class="question-action-bar">
+          <div class="action-group-left">
+            <button id="prevBtn" type="button" class="exam-btn btn-secondary">Previous</button>
+            <button id="markReviewBtn" type="button" class="exam-btn btn-review">Mark for Review &amp; Next</button>
+            <button id="clearBtn" type="button" class="exam-btn btn-secondary">Clear</button>
+          </div>
+          <div class="action-group-right">
+            <button id="nextBtn" type="button" class="exam-btn btn-primary">Next</button>
+            <button id="mobileSubmitBtn" type="button" class="exam-btn btn-submit mobile-only-submit">Submit</button>
+          </div>
+        </footer>
+      </section>
+
+      <!-- Right: Small Question Number Palette (Hidden on mobile phone interface, independently scrollable) -->
+      <aside id="rightPalette" class="palette-sidebar">
+        <div class="palette-legend">
+          <div class="legend-item">
+            <span id="countAnswered" class="status-Swatch st-answered">0</span>
+            <span>Answered</span>
+          </div>
+          <div class="legend-item">
+            <span id="countNotAnswered" class="status-Swatch st-not-answered">0</span>
+            <span>Not Answered</span>
+          </div>
+          <div class="legend-item">
+            <span id="countNotVisited" class="status-Swatch st-not-visited">109</span>
+            <span>Not Visited</span>
+          </div>
+          <div class="legend-item">
+            <span id="countReview" class="status-Swatch st-review">0</span>
+            <span>Marked for Review</span>
+          </div>
+          <div class="legend-item full-span">
+            <span id="countAnsReview" class="status-Swatch st-ans-review">0</span>
+            <span>Answered &amp; Marked for Review (Evaluated)</span>
+          </div>
+        </div>
+
+        <div class="palette-title-bar">
+          <span>Question Palette</span>
+          <span style="font-weight: 400; font-size: 11px; color: #cbd5e1;">Scroll to view all</span>
+        </div>
+
+        <div id="paletteGrid" class="palette-grid-container">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <div class="palette-footer">
+          <button id="submitBtn" type="button" class="exam-btn btn-submit">Submit</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- PAUSE MODAL -->
+  <div id="pauseModal" class="modal-backdrop hidden-view">
+    <div class="modal-card">
+      <div class="modal-title">Examination Paused</div>
+      <p class="modal-desc">
+        Your countdown timer has been paused. Questions are hidden while the test is paused. Click <strong>Resume Test</strong> below to continue from where you left off.
+      </p>
+      <div class="modal-actions">
+        <button id="resumeBtn" type="button" class="exam-btn btn-primary">Resume Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBMIT CONFIRMATION MODAL -->
+  <div id="submitModal" class="modal-backdrop hidden-view">
+    <div class="modal-card">
+      <div class="modal-title">Submit Mock Test?</div>
+      <p class="modal-desc">Please review your attempt summary before final submission:</p>
+      <div class="summary-stat-grid">
+        <div class="summary-stat-row">
+          <span>Total Questions</span>
+          <span id="modTotal">109</span>
+        </div>
+        <div class="summary-stat-row" style="color: #15803d;">
+          <span>Answered</span>
+          <span id="modAnswered">0</span>
+        </div>
+        <div class="summary-stat-row" style="color: #dc2626;">
+          <span>Not Answered</span>
+          <span id="modNotAnswered">0</span>
+        </div>
+        <div class="summary-stat-row" style="color: #7e22ce;">
+          <span>Marked for Review</span>
+          <span id="modReview">0</span>
+        </div>
+        <div class="summary-stat-row" style="grid-column: span 2; color: #475569;">
+          <span>Not Visited</span>
+          <span id="modNotVisited">0</span>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button id="cancelSubmitBtn" type="button" class="exam-btn btn-secondary">Return to Test</button>
+        <button id="confirmSubmitBtn" type="button" class="exam-btn btn-submit">Confirm Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. POST-SUBMISSION SCORECARD & SOLUTIONS VIEW -->
+  <div id="resultView" class="result-wrapper hidden-view">
+    <header class="top-brand-bar">
+      <div>
+        <div class="brand-title">Parliament of India Mock Examination — Post-Test Analysis</div>
+        <div class="brand-subtitle">Scorecard &amp; Solutions for Incorrect and Un-attempted Questions</div>
+      </div>
+      <button id="retakeBtn" type="button" class="exam-btn btn-primary" style="background: #ffffff; color: #0f172a;">
+        Retake Mock Test
+      </button>
+    </header>
+
+    <main class="result-container">
+      <section class="score-banner">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <h2 style="font-size: 22px; font-weight: 800; color: #0f172a;">Examination Result &amp; Performance Summary</h2>
+            <p id="autoSubmitNotice" style="font-size: 13.5px; color: #64748b; margin-top: 2px;">Test submitted successfully.</p>
+          </div>
+          <div style="font-size: 14px; font-weight: 700; color: #1e3a8a; background: #eff6ff; border: 1px solid #bfdbfe; padding: 6px 14px; border-radius: 6px;">
+            Time Taken: <span id="resTimeTaken">00:00</span>
+          </div>
+        </div>
+
+        <div class="score-grid">
+          <div class="score-stat-card">
+            <div class="lbl">Final Score</div>
+            <div id="resScore" class="val" style="color: #1d4ed8;">0 / 109</div>
+          </div>
+          <div class="score-stat-card">
+            <div class="lbl">Attempted</div>
+            <div id="resAttempted" class="val" style="color: #0f172a;">0</div>
+          </div>
+          <div class="score-stat-card">
+            <div class="lbl">Correct</div>
+            <div id="resCorrect" class="val" style="color: #16a34a;">0</div>
+          </div>
+          <div class="score-stat-card">
+            <div class="lbl">Incorrect</div>
+            <div id="resIncorrect" class="val" style="color: #dc2626;">0</div>
+          </div>
+          <div class="score-stat-card">
+            <div class="lbl">Un-attempted</div>
+            <div id="resUnattempted" class="val" style="color: #d97706;">0</div>
+          </div>
+          <div class="score-stat-card">
+            <div class="lbl">Accuracy</div>
+            <div id="resAccuracy" class="val" style="color: #7e22ce;">0%</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Solutions Strictly for Incorrect & Un-attempted Questions -->
+      <section>
+        <div class="filter-bar">
+          <div>
+            <h3 style="font-size: 18px; font-weight: 700; color: #0f172a;">
+              Solutions: Incorrect &amp; Un-attempted Questions Only
+            </h3>
+            <p style="font-size: 13px; color: #64748b;">
+              Correctly answered questions are excluded from this review as per examination guidelines.
+            </p>
+          </div>
+          <div class="tab-group">
+            <button id="filterAllBtn" type="button" class="filter-tab active-tab">All Incorrect &amp; Un-attempted</button>
+            <button id="filterWrongBtn" type="button" class="filter-tab">Incorrect Only</button>
+            <button id="filterUnansBtn" type="button" class="filter-tab">Un-attempted Only</button>
+          </div>
+        </div>
+
+        <div id="solutionsContainer"></div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const QUESTION_BANK = [
+  {
+    "id": 1,
+    "q": "The Parliament of India is primarily based on the model of",
+    "o": [
+      "German Parliament",
+      "British Parliament",
+      "American Congress",
+      "French Parliament"
+    ],
+    "a": "British Parliament",
+    "t": "NDA-1-2022",
+    "s": "India adopted the Westminster model of parliamentary government from the British Parliament, characterised by collective responsibility of the executive to the legislature."
+  },
+  {
+    "id": 2,
+    "q": "Which of the following descriptions with regard to Parliamentary Privilege for Members of the Parliament of India is/are correct?\n1. The Speaker is empowered to refer suo moto any question of privilege for investigation\n2. A question of privilege is accorded priority over other items in the List of Business\n3. The privilege extends to freedom from preventive arrest or detention",
+    "o": [
+      "1 only",
+      "2 and 3 only",
+      "1 and 2 only",
+      "1, 2 and 3"
+    ],
+    "a": "1 and 2 only",
+    "t": "CDS-1-2025",
+    "s": "Under Lok Sabha Rules (Rule 227), the Speaker may refer suo moto any question of privilege to the Committee of Privileges, and privilege questions receive priority in business. However, freedom from arrest is limited to civil cases and does NOT extend to criminal offences or preventive detention."
+  },
+  {
+    "id": 3,
+    "q": "Consider the following statements:\nI. On the dissolution of the House of the People, the Speaker shall not vacate his/her office until immediately before the first meeting of the House of the People after the dissolution.\nII. According to the provisions of the Constitution of India, a Member of the House of the People on being elected as Speaker shall resign from his/her political party immediately.\nIII. The Speaker of the House of the People may be removed from his/her office by a resolution of the House of the People passed by a majority of all the then Members of the House, provided that no resolution shall be moved unless at least fourteen days' notice has been given of the intention to move the resolution.\nWhich of the statements given above are correct?",
+    "o": [
+      "I and II only",
+      "II and III only",
+      "I and III only",
+      "I, II and III"
+    ],
+    "a": "I and III only",
+    "t": "CSE-2025",
+    "s": "Under Article 94 (second proviso), the Speaker does not vacate office upon dissolution of the Lok Sabha until immediately before the first meeting of the new House. Under Article 94(c), removal requires a resolution passed by a majority of all the then members (effective majority) after 14 days' notice. The Constitution does not require the Speaker to resign from their political party."
+  },
+  {
+    "id": 4,
+    "q": "Consider the following statements:\nI. If any question arises as to whether a Member of the House of the People has become subject to disqualification under the 10th Schedule, the President's decision in accordance with the opinion of the Council of Union Ministers shall be final.\nII. There is no mention of the word 'political party' in the Constitution of India.\nWhich of the statements given above is/are correct?",
+    "o": [
+      "I only",
+      "II only",
+      "Both I and II",
+      "Neither I nor II"
+    ],
+    "a": "Neither I nor II",
+    "t": "CSE-2025",
+    "s": "Under the Tenth Schedule, questions of disqualification on ground of defection are decided by the Speaker/Chairman (not the President). Moreover, the expression 'political party' explicitly appears in the Tenth Schedule (inserted by the 52nd Amendment Act, 1985)."
+  },
+  {
+    "id": 5,
+    "q": "Which one of the following statements about the Parliament of India is correct?",
+    "o": [
+      "A majority of members of Rajya Sabha are elected by a system of proportional representation by means of single transferable vote",
+      "The Deputy Chairperson of the Rajya Sabha is nominated by the President from among the members of the Rajya Sabha",
+      "The Lok Sabha cannot be dissolved before the completion of its five year term",
+      "The members of Lok Sabha also vote the election of the members of Rajya Sabha"
+    ],
+    "a": "A majority of members of Rajya Sabha are elected by a system of proportional representation by means of single transferable vote",
+    "t": "NDA-1-2025",
+    "s": "Under Article 80(4), the representatives of each State in the Rajya Sabha (who constitute the vast majority of the House, alongside 12 nominated members) are elected by the elected members of the State Legislative Assembly in accordance with proportional representation by means of the single transferable vote."
+  },
+  {
+    "id": 6,
+    "q": "Which one among the following states has the highest number of seats in the Council of States?",
+    "o": [
+      "Andhra Pradesh",
+      "Bihar",
+      "Madhya Pradesh",
+      "Tamil Nadu"
+    ],
+    "a": "Tamil Nadu",
+    "t": "CDS-1-2025",
+    "s": "Among the given options, Tamil Nadu has the highest number of seats in the Rajya Sabha (18 seats), followed by Bihar (16), Madhya Pradesh (11), and Andhra Pradesh (11) under the Fourth Schedule."
+  },
+  {
+    "id": 7,
+    "q": "Which one of the following statements about 'Motions' in the Parliament of India is correct?",
+    "o": [
+      "A Motion of No-Confidence can be admissible against an individual minister in the Council of Ministers.",
+      "A No-Confidence Motion must set out grounds on which it is based.",
+      "Rajya Sabha is not empowered to entertain a motion of No-Confidence.",
+      "A Censure Motion need not be based on specific grounds or charges."
+    ],
+    "a": "Rajya Sabha is not empowered to entertain a motion of No-Confidence.",
+    "t": "CDS-II-2025",
+    "s": "Under Article 75(3), the Council of Ministers is collectively responsible only to the Lok Sabha. Hence, a Motion of No-Confidence can only be moved in the Lok Sabha against the entire Council of Ministers (not an individual minister), need not state specific grounds, and cannot be entertained by the Rajya Sabha."
+  },
+  {
+    "id": 8,
+    "q": "Who among the following was the first pro-tem Speaker to be unanimously elected as the Speaker of the Lok Sabha?",
+    "o": [
+      "Rabi Ray",
+      "Hiren Mukherjee",
+      "Somnath Chatterjee",
+      "P.A. Sangma"
+    ],
+    "a": "Somnath Chatterjee",
+    "t": "CAPF-2023",
+    "s": "In 2004 (14th Lok Sabha), Somnath Chatterjee served as the pro-tem Speaker and was subsequently unanimously elected as the Speaker of the Lok Sabha."
+  },
+  {
+    "id": 9,
+    "q": "Which among the following is/are the function/functions of the Cabinet Secretariat?\n1. To ensure interministerial coordination\n2. Management of major crisis situations in the country",
+    "o": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "a": "Both 1 and 2",
+    "t": "CAPF-2022",
+    "s": "The Cabinet Secretariat functions directly under the Prime Minister and is responsible for ensuring inter-ministerial coordination, assisting decision-making in the Cabinet, and managing major crisis situations through the National Crisis Management Committee (NCMC)."
+  },
+  {
+    "id": 10,
+    "q": "Which one of the following statements is not correct?",
+    "o": [
+      "A censure motion can be moved against a single Minister of the Council of Ministers.",
+      "A motion of no-confidence cannot be moved against the Prime Minister alone.",
+      "A censure motion cannot be moved against the entire Council of Ministers.",
+      "A censure motion can be moved against a group of Ministers."
+    ],
+    "a": "A censure motion cannot be moved against the entire Council of Ministers.",
+    "t": "CAPF-2022",
+    "s": "A Censure Motion can be moved against an individual Minister, a group of Ministers, or the entire Council of Ministers for failure to act or for specific policies, and it must specify the charges/grounds."
+  },
+  {
+    "id": 11,
+    "q": "Who among the following fixes the date of election of the Speaker of the Lok Sabha?",
+    "o": [
+      "The President of India",
+      "The Minister of Parliamentary Affairs",
+      "The Secretary General of the Lok Sabha",
+      "The Deputy Speaker of the Lok Sabha"
+    ],
+    "a": "The President of India",
+    "t": "CAPF-2021",
+    "s": "As per Rule 7 of the Rules of Procedure and Conduct of Business in Lok Sabha, the election of the Speaker is held on such date as the President of India may fix."
+  },
+  {
+    "id": 12,
+    "q": "Which of the following statements is/are correct?\n1. The Parliament of India consists of the President of India, the Lok Sabha and the Rajya Sabha.\n2. The Rajya Sabha was constituted for the first time in 1950.",
+    "o": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "a": "1 only",
+    "t": "CBI-2023",
+    "s": "Under Article 79, the Parliament of India consists of the President, the Council of States (Rajya Sabha), and the House of the People (Lok Sabha). The Rajya Sabha was constituted for the first time on 3 April 1952 (not 1950)."
+  },
+  {
+    "id": 13,
+    "q": "Which among the following is not a function of the Parliament of India?",
+    "o": [
+      "Making laws",
+      "Controlling the executive",
+      "Appointing Judges to the Supreme Court",
+      "Controlling taxation"
+    ],
+    "a": "Appointing Judges to the Supreme Court",
+    "t": "CBI-2023",
+    "s": "Judges of the Supreme Court are appointed by the President of India under Article 124(2), not by the Parliament (though Parliament has the power to remove them through impeachment)."
+  },
+  {
+    "id": 14,
+    "q": "Which among the following systems of representation is adopted for the election of members to the Lok Sabha?",
+    "o": [
+      "Party-list proportional representation",
+      "Instant-runoff system",
+      "First-past-the-post system",
+      "Binomial system"
+    ],
+    "a": "First-past-the-post system",
+    "t": "CBI-2023",
+    "s": "Members of the Lok Sabha are elected directly by the people from territorial constituencies through the First-Past-the-Post (simple plurality) system."
+  },
+  {
+    "id": 15,
+    "q": "Which one among the following Lok Sabhas had the shortest span?",
+    "o": [
+      "2nd Lok Sabha",
+      "5th Lok Sabha",
+      "9th Lok Sabha",
+      "12th Lok Sabha"
+    ],
+    "a": "12th Lok Sabha",
+    "t": "CBI-2023",
+    "s": "The 12th Lok Sabha (constituted in March 1998 and dissolved in April 1999) had the shortest tenure in India's parliamentary history, lasting approximately 13 months."
+  },
+  {
+    "id": 16,
+    "q": "When a Member of the Parliament desires an oral answer from a Ministry, which one of the following types of questions will be suitable?",
+    "o": [
+      "Unstarred question",
+      "Starred question",
+      "Short notice question",
+      "Question to a private member"
+    ],
+    "a": "Starred question",
+    "t": "CBI-2023",
+    "s": "A Starred Question (distinguished by an asterisk) requires an oral answer on the floor of the House by the Minister, and supplementary questions can follow."
+  },
+  {
+    "id": 17,
+    "q": "Match List-I with List-II and select the correct answer:\nList-I (Speaker)\nA. Manohar Gajanan Joshi\nB. Somnath Chatterjee\nC. Meira Kumar\nD. Sumitra Mahajan\nList-II (Tenure)\n1. 14th Lok Sabha\n2. 13th Lok Sabha\n3. 16th Lok Sabha\n4. 15th Lok Sabha",
+    "o": [
+      "A-2, B-1, C-4, D-3",
+      "A-2, B-4, C-1, D-3",
+      "A-3, B-4, C-1, D-2",
+      "A-3, B-1, C-4, D-2"
+    ],
+    "a": "A-2, B-1, C-4, D-3",
+    "t": "CDS-II-2024",
+    "s": "Manohar Joshi served as Speaker of the 13th Lok Sabha (2002–2004); Somnath Chatterjee in the 14th Lok Sabha (2004–2009); Meira Kumar in the 15th Lok Sabha (2009–2014); and Sumitra Mahajan in the 16th Lok Sabha (2014–2019)."
+  },
+  {
+    "id": 18,
+    "q": "Any question pertaining to the disqualification of a member of the Lok Sabha on the ground of defection is decided by:",
+    "o": [
+      "The President of India",
+      "The Speaker of the Lok Sabha",
+      "The Supreme Court of India",
+      "The concerned Political Party"
+    ],
+    "a": "The Speaker of the Lok Sabha",
+    "t": "CDS-II-2023",
+    "s": "Under Paragraph 6 of the Tenth Schedule to the Constitution, any question regarding disqualification of a member of the Lok Sabha on the ground of defection is decided by the Speaker of the Lok Sabha (subject to judicial review as held in Kihoto Hollohan, 1992)."
+  },
+  {
+    "id": 19,
+    "q": "Which one of the following is not a category under which the President of India nominates Members of Parliament?",
+    "o": [
+      "Literature",
+      "Science",
+      "Art",
+      "State Service"
+    ],
+    "a": "State Service",
+    "t": "CDS-II-2022",
+    "s": "Under Article 80(3), the President nominates 12 members to the Rajya Sabha having special knowledge or practical experience in four categories: Literature, Science, Art, and Social Service ('State Service' is not a category)."
+  },
+  {
+    "id": 20,
+    "q": "Which one of the following statements about the Speaker of Lok Sabha is not correct?",
+    "o": [
+      "He shall vacate his office if he ceases to be a member of the House of the People.",
+      "He may, at any time, resign by writing his resignation to the President of India.",
+      "He may be removed from his office by a resolution of the House of the People passed by majority of all the then members of the House.",
+      "While the office of the Speaker is vacant, the duties of the office shall be performed by the Deputy Speaker."
+    ],
+    "a": "He may, at any time, resign by writing his resignation to the President of India.",
+    "t": "CDS-1-2022",
+    "s": "Under Article 94(b), the Speaker of the Lok Sabha may resign at any time by writing under his hand addressed to the Deputy Speaker (not the President of India)."
+  },
+  {
+    "id": 21,
+    "q": "Which among the following is not a condition for the disqualification of a Member of Parliament?",
+    "o": [
+      "Voluntary acquisition of citizenship of a foreign country",
+      "Holding the office of the Chairperson of the National Commission for Women",
+      "The Member abstains from voting in the House without prior permission",
+      "The Member holds the office of the Chairman of the Board of Directors of the National Coal Development Corporation Ltd."
+    ],
+    "a": "Holding the office of the Chairperson of the National Commission for Women",
+    "t": "CDS-II-2021",
+    "s": "Under the Parliament (Prevention of Disqualification) Act, 1959, the office of the Chairperson of the National Commission for Women is explicitly exempted from disqualification on grounds of holding an office of profit."
+  },
+  {
+    "id": 22,
+    "q": "Which of the following statements regarding the 'casting vote' in the Parliament is/are correct?\n1. It is cast by the speaker or a person acting as such.\n2. It is cast in addition to voting in the first instance.\n3. It is cast in the case of equality of votes.\n4. It is always cast to maintain the status quo.",
+    "o": [
+      "1, 2 and 3 only",
+      "1 and 3 only",
+      "2 and 4 only",
+      "3 only"
+    ],
+    "a": "1 and 3 only",
+    "t": "CDS-1-2021",
+    "s": "Under Article 100(1), the Speaker or person acting as such shall not vote in the first instance, but shall have and exercise a casting vote in the case of an equality of votes."
+  },
+  {
+    "id": 23,
+    "q": "Which one of the following statements about the composition of the Parliament is not correct?",
+    "o": [
+      "Representatives of the states in Rajya Sabha are elected directly by the people.",
+      "Representatives from Union Territories in Lok Sabha are chosen by direct elections.",
+      "Rajya Sabha has 12 nominated members.",
+      "Lok Sabha has seats reserved for SCs and STs."
+    ],
+    "a": "Representatives of the states in Rajya Sabha are elected directly by the people.",
+    "t": "CDS-1-2021",
+    "s": "Representatives of the States in the Rajya Sabha are elected indirectly by the elected members of the State Legislative Assemblies (Article 80(4)), not directly by the people."
+  },
+  {
+    "id": 24,
+    "q": "A motion of no-confidence is moved against:",
+    "o": [
+      "an individual Minister.",
+      "the Council of Ministers.",
+      "the Prime Minister.",
+      "a political party."
+    ],
+    "a": "the Council of Ministers.",
+    "t": "CDS-1-2021",
+    "s": "Under Rule 198 of the Lok Sabha Rules and Article 75(3), a Motion of No-Confidence is moved against the entire Council of Ministers, never against an individual minister."
+  },
+  {
+    "id": 25,
+    "q": "Which one among the following political parties came second in terms of seats won in the first Lok Sabha election in India?",
+    "o": [
+      "Kisan Mazdoor Praja Party",
+      "Communist Party of India",
+      "People's Democratic Front",
+      "Socialist Party"
+    ],
+    "a": "Communist Party of India",
+    "t": "CISF AC-2023",
+    "s": "In the first Lok Sabha general elections (1951–52), the Indian National Congress won 364 seats, and the Communist Party of India (CPI) finished second with 16 seats."
+  },
+  {
+    "id": 26,
+    "q": "Which one of the following States has less than two Lok Sabha seats?",
+    "o": [
+      "Arunachal Pradesh",
+      "Goa",
+      "Meghalaya",
+      "Mizoram"
+    ],
+    "a": "Mizoram",
+    "t": "CISF AC-2023",
+    "s": "Mizoram, Nagaland, and Sikkim each have 1 seat in the Lok Sabha, whereas Arunachal Pradesh, Goa, Manipur, Meghalaya, and Tripura have 2 seats each."
+  },
+  {
+    "id": 27,
+    "q": "Which part of independent India had held the first election based on universal adult franchise?",
+    "o": [
+      "Hyderabad",
+      "Manipur",
+      "West Bengal",
+      "Nagaland"
+    ],
+    "a": "Manipur",
+    "t": "GEOSCIENTISTS-2023",
+    "s": "Manipur held elections in June 1948 based on universal adult franchise under the Manipur State Constitution Act, 1947, becoming the first part of independent India to do so."
+  },
+  {
+    "id": 28,
+    "q": "Which of the following statements is not correct with respect to the types of questions asked in the Lok Sabha?",
+    "o": [
+      "A 'Starred Question' is the one to which only a written answer is given.",
+      "A 'Short Notice Question' is the one which relates to a matter of urgent public importance.",
+      "An 'Unstarred Question' is the one to which an oral answer is not given.",
+      "No supplementary question can be asked on an 'Unstarred Question'."
+    ],
+    "a": "A 'Starred Question' is the one to which only a written answer is given.",
+    "t": "GEOSCIENTISTS-2024",
+    "s": "A Starred Question requires an oral answer in the House (and permits supplementary questions), whereas an Unstarred Question receives a written answer."
+  },
+  {
+    "id": 29,
+    "q": "Which of the following statements is/are correct as per the Constitution of India?\n1. The Parliament of India has the power to make provisions with respect to delimitation of constituencies.\n2. The validity of a law made by the Parliament of India with respect to delimitation of constituencies shall not be called in question in a court.",
+    "o": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "a": "Both 1 and 2",
+    "t": "GEOSCIENTIST-2024",
+    "s": "Under Article 327, Parliament is empowered to make provisions with respect to delimitation of constituencies, and under Article 329(a), the validity of any law relating to delimitation under Article 327 shall not be called in question in any court."
+  },
+  {
+    "id": 30,
+    "q": "Which of the following statements is/are not correct about the parliamentary practice of asking Questions in the Parliament of India?\n1. The first hour of every sitting in both the Houses of Parliament is devoted to asking questions, referred to as the Question Hour.\n2. Questions are generally asked by the Members of Parliament from the Ministers.\n3. Half-an-Hour Discussions on matters arising out of questions already answered can be held only in the Lok Sabha.\n4. Questions cannot be addressed to a private member.",
+    "o": [
+      "1 and 2",
+      "2 and 3",
+      "3 and 4",
+      "2 and 4"
+    ],
+    "a": "3 and 4",
+    "t": "GEOSCIENTIST-2024",
+    "s": "Statements 3 and 4 are incorrect: Half-an-Hour Discussions can be held in both the Lok Sabha and the Rajya Sabha, and a question can also be addressed to a Private Member if the subject matter relates to some Bill, resolution, or business for which that member is responsible."
+  },
+  {
+    "id": 31,
+    "q": "How many Delimitation Commissions have been constituted by the Government of India till December 2023?",
+    "o": [
+      "One",
+      "Two",
+      "Three",
+      "Four"
+    ],
+    "a": "Four",
+    "t": "CSE-2024",
+    "s": "Four Delimitation Commissions have been constituted in India up to December 2023: in 1952, 1963, 1973, and 2002 (under the Delimitation Acts of 1952, 1962, 1972, and 2002)."
+  },
+  {
+    "id": 32,
+    "q": "With reference to the Speaker of the Lok Sabha, consider the following statements: While any resolution for the removal of the Speaker of the Lok Sabha is under consideration\n1. He/She shall not preside.\n2. He/She shall not have the right to speak.\n3. He/She shall not be entitled to vote on the resolution in the first instance.\nWhich of the statements given above is/are correct?",
+    "o": [
+      "1 only",
+      "1 and 2 only",
+      "2 and 3 only",
+      "1, 2 and 3"
+    ],
+    "a": "1 only",
+    "t": "CSE-2024",
+    "s": "Under Article 96, while a resolution for the removal of the Speaker is under consideration, the Speaker shall not preside, but has the right to speak and take part in the proceedings of the Lok Sabha and is entitled to vote in the first instance (though not in the case of an equality of votes)."
+  },
+  {
+    "id": 33,
+    "q": "With reference to Union Budget, consider the following statements:\n1. The Union Finance Minister on behalf of the Prime Minister lays the Annual Financial Statement before both the Houses of Parliament.\n2. At the Union level, no demand for a grant can be made except on the recommendation of the President of India.\nWhich of the statements given above is/are correct?",
+    "o": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "a": "2 only",
+    "t": "CSE-2024",
+    "s": "Under Article 112, the President causes the Annual Financial Statement to be laid before both Houses of Parliament (so Statement 1 is incorrect as it is on behalf of the President, not the Prime Minister). Under Article 113(3), no demand for a grant can be made except on the recommendation of the President (Statement 2 is correct)."
+  },
+  {
+    "id": 34,
+    "q": "With reference to the Parliament of India, consider the following statements:\n1. Prorogation of a House by the President of India does not require the advice of the Council of Ministers.\n2. Prorogation of a House is generally done after the House is adjourned sine die but there is no bar to the President of India prorogating the House which is in session.\n3. Dissolution of the Lok Sabha is done by the President of India who, save in exceptional circumstances, does so on the advice of the Council of Ministers.\nWhich of the statements given above is/are correct?",
+    "o": [
+      "1 only",
+      "1 and 2",
+      "2 and 3",
+      "3 only"
+    ],
+    "a": "2 and 3",
+    "t": "CSE-2024",
+    "s": "Prorogation is done by the President on the advice of the Council of Ministers (so Statement 1 is incorrect). The President generally prorogues the House after adjournment sine die, though there is no constitutional bar to proroguing a House in session (Statement 2 is correct), and dissolution is done on the advice of the Council of Ministers save in exceptional circumstances where it loses majority (Statement 3 is correct)."
+  },
+  {
+    "id": 35,
+    "q": "Which of the following is/are the exclusive power(s) of Lok Sabha?\n1. To ratify the declaration of Emergency\n2. To pass a motion of no-confidence against the Council of Ministers\n3. To impeach the President of India",
+    "o": [
+      "1 and 2",
+      "2 only",
+      "1 and 3",
+      "3 only"
+    ],
+    "a": "2 only",
+    "t": "CSE-2022",
+    "s": "Passing a motion of no-confidence against the Council of Ministers (Article 75(3)) is an exclusive power of the Lok Sabha. Ratification of Emergency and impeachment of the President involve both Houses of Parliament."
+  },
+  {
+    "id": 36,
+    "q": "With reference to Deputy Speaker of Lok Sabha consider the following statements:\n1. As per the Rules of Procedure and Conduct of Business in Lok Sabha, the election of Deputy Speaker shall be held on such date as the Speaker may fix.\n2. There is a mandatory provision that the election of a candidate as Deputy Speaker of Lok Sabha shall be from either the principal opposition party or the ruling party.\n3. The Deputy Speaker has the same power as of the Speaker when presiding over the sitting of the House and no appeal lies against his rulings.\n4. The well established parliamentary practice regarding the appointment of Deputy Speaker is that the motion is moved by the Speaker and duly seconded by the Prime Minister.\nWhich of the statements given above are correct?",
+    "o": [
+      "1 and 3 only",
+      "1, 2 and 3",
+      "3 and 4 only",
+      "2 and 4 only"
+    ],
+    "a": "1 and 3 only",
+    "t": "CSE-2022",
+    "s": "Under Rule 8 of the Lok Sabha Rules, the election of the Deputy Speaker is held on such date as the Speaker may fix (Statement 1 is correct). When presiding, the Deputy Speaker exercises the same powers as the Speaker (Statement 3 is correct). Statement 2 is an informal convention (not a mandatory provision), and Statement 4 is incorrect."
+  },
+  {
+    "id": 37,
+    "q": "Which of the following Committees does NOT consist of Members from the Upper House of the Parliament?\n1. Public Accounts Committee\n2. Estimates Committee\n3. Committee on Public Undertakings",
+    "o": [
+      "1 and 2",
+      "1 and 3",
+      "2 only",
+      "3 only"
+    ],
+    "a": "2 only",
+    "t": "NDA-II-2024",
+    "s": "The Estimates Committee consists exclusively of 30 members from the Lok Sabha; the Rajya Sabha has no representation in it. Both the Public Accounts Committee and the Committee on Public Undertakings have 22 members (15 from Lok Sabha and 7 from Rajya Sabha)."
+  },
+  {
+    "id": 38,
+    "q": "Which one of the following is not a power of the Speaker of the Lok Sabha?",
+    "o": [
+      "Speaker shall preside over the House of the People.",
+      "Speaker will cast vote in the first instance in the House.",
+      "Speaker will have power to maintain order within the House of the People.",
+      "Speaker can adjourn the House or suspend the meeting till there is a quorum."
+    ],
+    "a": "Speaker will cast vote in the first instance in the House.",
+    "t": "NDA-I-2021",
+    "s": "Under Article 100(1), the Speaker does not vote in the first instance; the Speaker only exercises a casting vote in the event of a tie."
+  },
+  {
+    "id": 39,
+    "q": "Which one among the following statements about an adjournment motion in the Parliament of India is not correct?",
+    "o": [
+      "Its objective is to draw attention of the House to any recent matter of urgent public importance.",
+      "Adjournment motion is an extraordinary procedure.",
+      "This motion can be invoked on any matter of urgent importance that may even be within the jurisdiction of a State Government.",
+      "The Chair has absolute discretion to refuse consent."
+    ],
+    "a": "This motion can be invoked on any matter of urgent importance that may even be within the jurisdiction of a State Government.",
+    "t": "CDS-1-2025",
+    "s": "An Adjournment Motion cannot be raised on a matter that falls under the ordinary jurisdiction of a State Government unless it involves a grave constitutional emergency or direct central responsibility."
+  },
+  {
+    "id": 40,
+    "q": "Which of the following statements as per the Constitution of India is/are correct?\n1. Provision for the reservation of seats for women in the Lok Sabha and the Rajya Sabha has been made vide 106th Amendment of the Constitution.\n2. There are provisions for the reservation of seats for women in the Legislative Assemblies and Legislative Councils of the States.\n3. There are provisions for the reservation of seats for women in Panchayats.",
+    "o": [
+      "1 and 2",
+      "2 and 3",
+      "1 only",
+      "3 only"
+    ],
+    "a": "3 only",
+    "t": "CDS-II-2025",
+    "s": "The 106th Constitutional Amendment Act, 2023 provides for 33% reservation for women in the Lok Sabha and State Legislative Assemblies, but NOT in the Rajya Sabha or State Legislative Councils. Therefore, only Statement 3 (reservation for women in Panchayats under Article 243D) is correct."
+  },
+  {
+    "id": 41,
+    "q": "Which of the following statements regarding a Government Bill in the Parliament is/are correct?\n1. A Minister has to give seven days notice to introduce the Bill.\n2. The Bill cannot be included in the list of business, if it is not circulated at least three days before its introduction.\n3. The Speaker has the discretion to allow introduction without prior circulation.\n4. A Bill undergoes three readings in each House.",
+    "o": [
+      "1 and 2 only",
+      "1 and 4 only",
+      "2 and 3 only",
+      "1, 3 and 4"
+    ],
+    "a": "1, 3 and 4",
+    "t": "CISF AC-2025",
+    "s": "Under Direction 19A of the Directions by the Speaker, a Minister must give 7 days' notice for leave to introduce a Government Bill (1 is correct). Under Direction 19B, prior circulation is required for 2 days (not 3 days, so 2 is incorrect), though the Speaker has the discretion to allow introduction without prior circulation (3 is correct). Every Bill undergoes three readings in each House (4 is correct)."
+  },
+  {
+    "id": 42,
+    "q": "Which one among the following motions cannot be made while introducing an ordinary Bill in the Parliament?",
+    "o": [
+      "That the Bill be taken into consideration",
+      "That the Bill be circulated for the purpose of eliciting public opinion",
+      "That the Bill be referred to a Select Committee",
+      "That the Bill be referred to a Joint Committee of the House without the concurrence of the other House"
+    ],
+    "a": "That the Bill be referred to a Joint Committee of the House without the concurrence of the other House",
+    "t": "CDS-1-2021",
+    "s": "When a Bill is introduced, the member in charge cannot move for referring it to a Joint Committee of both Houses without obtaining the concurrence of the other House."
+  },
+  {
+    "id": 43,
+    "q": "Which one of the following is not a provision related to a Money Bill?",
+    "o": [
+      "Imposition, abolition, remission, alteration or regulation of any tax",
+      "Appropriation of moneys out of the Consolidated Fund of India",
+      "Imposition of fines by local authority for local purpose",
+      "Custody of the Consolidated Fund of India or the Contingency Fund of India"
+    ],
+    "a": "Imposition of fines by local authority for local purpose",
+    "t": "CDS-1-2022",
+    "s": "Under Article 110(2), a Bill is not deemed to be a Money Bill by reason only that it provides for the imposition of fines or other pecuniary penalties, or for the demand or payment of fees for licences or services, or for the imposition of any tax by any local authority or body for local purposes."
+  },
+  {
+    "id": 44,
+    "q": "Which one of the following statements about a Bill for Amendment of the Constitution of India is not correct?",
+    "o": [
+      "It is governed by Article 368(2) of the Constitution of India.",
+      "Joint sitting can be resorted to for passing a Bill amending the Constitution of India.",
+      "The State Legislatures cannot initiate any Bill or proposal for amendment of the Constitution of India.",
+      "The previous sanction of the President of India is required for introducing any Bill in the Parliament for amendment of the Constitution of India."
+    ],
+    "a": "Joint sitting can be resorted to for passing a Bill amending the Constitution of India.",
+    "t": "CDS-1-2022",
+    "s": "There is no provision for holding a joint sitting of both Houses (Article 108) in case of a deadlock over a Constitutional Amendment Bill under Article 368; each House must pass the Bill separately by a special majority. Also, prior sanction of the President is not required to introduce a Constitutional Amendment Bill."
+  },
+  {
+    "id": 45,
+    "q": "Which among the following is not the strength or chief benefit of Bicameralism?",
+    "o": [
+      "Second chambers check the first chambers and prevent majoritarian rule.",
+      "It checks the powers of the executive.",
+      "The second chambers can act as a constitutional safeguard.",
+      "It often acts a check on democratic rule, particularly when their members are non-elected or indirectly elected."
+    ],
+    "a": "It often acts a check on democratic rule, particularly when their members are non-elected or indirectly elected.",
+    "t": "CDS-II-2022",
+    "s": "Saying that a second chamber 'often acts as a check on democratic rule' is a criticism/weakness of bicameralism rather than its strength or chief benefit."
+  },
+  {
+    "id": 46,
+    "q": "Which one of the following statements about Money Bill is not correct?",
+    "o": [
+      "Money Bill cannot be introduced in the Council of States.",
+      "The Council of States has no power to reject or amend the Money Bill.",
+      "The Speaker of the Lok Sabha has the sole and final power in deciding whether a Bill is a Money Bill or otherwise.",
+      "The Council of States has no power to discuss the Money Bill."
+    ],
+    "a": "The Council of States has no power to discuss the Money Bill.",
+    "t": "CDS-II-2022",
+    "s": "Under Article 109, the Rajya Sabha CAN discuss a Money Bill and make recommendations within 14 days, although it cannot reject or amend the Money Bill directly."
+  },
+  {
+    "id": 47,
+    "q": "The executive is given an advance grant to meet temporary and running requirements of Government of India in the beginning of the new financial year until the demands are voted by the legislature. This is known as:",
+    "o": [
+      "Vote of Credit",
+      "Vote on Account",
+      "Appropriation Bill",
+      "Advance Account"
+    ],
+    "a": "Vote on Account",
+    "t": "CDS-II-2023",
+    "s": "Under Article 116, 'Vote on Account' is an advance grant made by the Lok Sabha to enable the Government to meet running expenditures for a part of the new financial year pending completion of the voting on demands for grants and passage of the Appropriation Bill."
+  },
+  {
+    "id": 48,
+    "q": "In the passing of a Money Bill, the Rajya Sabha has limited powers in that it shall return the Bill, with or without any recommendation, within the stipulated time of",
+    "o": [
+      "12 days",
+      "21 days",
+      "14 days",
+      "30 days"
+    ],
+    "a": "14 days",
+    "t": "NDA-II-2024",
+    "s": "Under Article 109(2), the Rajya Sabha must return a Money Bill passed by the Lok Sabha within 14 days of its receipt, with or without recommendations."
+  },
+  {
+    "id": 49,
+    "q": "Which one of the following best describes the electoral system of India?",
+    "o": [
+      "First-Past-the-Post System",
+      "Proportional Representation",
+      "Mixed System",
+      "General Ticket"
+    ],
+    "a": "First-Past-the-Post System",
+    "t": "NDA-II-2021",
+    "s": "General elections to the Lok Sabha and State Legislative Assemblies in India are conducted using the First-Past-the-Post (FPTP) electoral system."
+  },
+  {
+    "id": 50,
+    "q": "If any question arises as to whether a Member of the Parliament has become subject to any of the disqualifications mentioned in Article 102(1), who among the following is empowered to take the final decision?",
+    "o": [
+      "The President of India",
+      "The Prime Minister of India",
+      "The Speaker of the Lok Sabha",
+      "The Chief Justice of India"
+    ],
+    "a": "The President of India",
+    "t": "CISF AC-2024",
+    "s": "Under Article 103(1), if any question arises as to whether a Member of either House of Parliament has become subject to any of the disqualifications mentioned in Article 102(1), the question shall be referred for the decision of the President and his decision shall be final (acting according to the opinion of the Election Commission)."
+  },
+  {
+    "id": 51,
+    "q": "With reference to the Indian Parliament, consider the following statements:\n1. A bill pending in the Lok Sabha lapses on its dissolution.\n2. A bill passed by the Lok Sabha and pending in the Rajya Sabha lapses on the dissolution of the Lok Sabha.\n3. A bill in regard to which the President of India notified his/her intention to summon the Houses to a joint sitting lapses on the dissolution of the Lok Sabha.\nWhich of the statements given above is/are correct?",
+    "o": [
+      "1 only",
+      "1 and 2",
+      "2 and 3",
+      "3 only"
+    ],
+    "a": "1 and 2",
+    "t": "CSE-2024",
+    "s": "Under Article 107(5), a Bill pending in the Lok Sabha, or passed by the Lok Sabha and pending in the Rajya Sabha, lapses on the dissolution of the Lok Sabha (1 and 2 are correct). However, under Article 108(5), a Bill does NOT lapse on dissolution if the President has prior to dissolution notified his intention to summon a joint sitting (3 is incorrect)."
+  },
+  {
+    "id": 52,
+    "q": "Which of the following parts of the Indian Constitution outlines the powers and procedures of the Parliament?",
+    "o": [
+      "Part IX",
+      "Part V",
+      "Part IV",
+      "Part VII"
+    ],
+    "a": "Part V",
+    "t": "RPF CONSTABLE",
+    "s": "Part V (Articles 52 to 151) of the Constitution deals with 'The Union', and Chapter II of Part V (Articles 79 to 122) specifically outlines the Parliament, its officers, powers, and legislative procedures."
+  },
+  {
+    "id": 53,
+    "q": "According to Article 79 of the Indian Constitution, the Parliament of India consists of:",
+    "o": [
+      "President, Vice President, and Prime Minister",
+      "President, Lok Sabha, and Rajya Sabha",
+      "Prime Minister, Lok Sabha, and Rajya Sabha",
+      "only Lok Sabha and Rajya Sabha"
+    ],
+    "a": "President, Lok Sabha, and Rajya Sabha",
+    "t": "RRB NTPC",
+    "s": "Article 79 of the Indian Constitution states: 'There shall be a Parliament for the Union which shall consist of the President and two Houses to be known respectively as the Council of States and the House of the People.'"
+  },
+  {
+    "id": 54,
+    "q": "What is the total number of houses that make up the Indian Parliament?",
+    "o": [
+      "One",
+      "Two",
+      "Three",
+      "four"
+    ],
+    "a": "Two",
+    "t": "SSC PHASE XIII",
+    "s": "The Indian Parliament is bicameral, consisting of two Houses: the Rajya Sabha (Council of States) and the Lok Sabha (House of the People), along with the President."
+  },
+  {
+    "id": 55,
+    "q": "In India, how many sessions of Parliament are held in a year?",
+    "o": [
+      "One",
+      "Six",
+      "Three",
+      "Two"
+    ],
+    "a": "Three",
+    "t": "RRB NTPC",
+    "s": "By convention, the Indian Parliament meets for three sessions in a year: the Budget Session, the Monsoon Session, and the Winter Session."
+  },
+  {
+    "id": 56,
+    "q": "The maximum strength of the Lok Sabha (House of the People) as originally stipulated by the Constitution (including the two nominated Anglo-Indian members prior to the 104th Amendment) is:",
+    "o": [
+      "530 members",
+      "552 members",
+      "550 members",
+      "545 members"
+    ],
+    "a": "552 members",
+    "t": "SSC STENO",
+    "s": "As originally stipulated under Article 81 (prior to the discontinuation of the 2 Anglo-Indian nominated seats by the 104th Amendment Act, 2019), the maximum strength of the Lok Sabha was 552 (530 from States, 20 from Union Territories, and 2 nominated Anglo-Indians; currently 550 elected seats)."
+  },
+  {
+    "id": 57,
+    "q": "What is the maximum strength of the Rajya Sabha as per the Indian Constitution?",
+    "o": [
+      "250",
+      "225",
+      "200",
+      "238"
+    ],
+    "a": "250",
+    "t": "RPF CONSTABLE",
+    "s": "Under Article 80(1) of the Constitution, the maximum strength of the Rajya Sabha is fixed at 250 members (238 representing the States and Union Territories, and 12 nominated by the President)."
+  },
+  {
+    "id": 58,
+    "q": "According to the Constitution of India, what is the quorum required to constitute a meeting of either House of Parliament?",
+    "o": [
+      "One-third of the total number of members of the House.",
+      "Fifty members in the Lok Sabha and twenty-five members in the Rajya Sabha.",
+      "One-tenth of the total number of members of the House.",
+      "One-fourth of the total number of members of the House"
+    ],
+    "a": "One-tenth of the total number of members of the House.",
+    "t": "SSC STENO",
+    "s": "Under Article 100(3) of the Constitution, the quorum to constitute a meeting of either House of Parliament is one-tenth of the total number of members of the House."
+  },
+  {
+    "id": 59,
+    "q": "What is the role of the Speaker in case of a tied vote in the Lok Sabha?",
+    "o": [
+      "Decides based on personal preference",
+      "Votes to break the tie",
+      "Does not participate",
+      "Refers the decision to the President"
+    ],
+    "a": "Votes to break the tie",
+    "t": "SSC STENO",
+    "s": "Under Article 100(1), the Speaker of the Lok Sabha does not vote in the first instance, but exercises a casting vote to break a tie when there is an equality of votes."
+  },
+  {
+    "id": 60,
+    "q": "Which of the following bodies has the power to create new All-India Services common to both the Union and the States?",
+    "o": [
+      "The President of India by issuing an executive order.",
+      "The Union Cabinet by a simple majority.",
+      "The Prime Minister with the consent of all Chief Ministers.",
+      "The Parliament, provided the Rajya Sabha passes a resolution by a special majority."
+    ],
+    "a": "The Parliament, provided the Rajya Sabha passes a resolution by a special majority.",
+    "t": "SSC STENO",
+    "s": "Under Article 312, if the Rajya Sabha passes a resolution supported by not less than two-thirds of the members present and voting declaring that it is necessary or expedient in the national interest to do so, Parliament may by law create one or more All-India Services."
+  },
+  {
+    "id": 61,
+    "q": "Which body has the power to amend the Union and State power distribution under the Indian Constitution?",
+    "o": [
+      "Supreme Court",
+      "Lok Sabha",
+      "State Legislature",
+      "Parliament"
+    ],
+    "a": "Parliament",
+    "t": "SSC STENO",
+    "s": "Under Article 368, the power to amend the distribution of legislative powers between the Union and the States (Seventh Schedule) vests in the Parliament (requiring a special majority of Parliament plus ratification by at least half of the State Legislatures)."
+  },
+  {
+    "id": 62,
+    "q": "Which Indian state does S. Jaishankar represent in the Rajya Sabha?",
+    "o": [
+      "Maharashtra",
+      "Gujarat",
+      "Uttar Pradesh",
+      "Tamil Nadu"
+    ],
+    "a": "Gujarat",
+    "t": "SSC STENO",
+    "s": "External Affairs Minister Dr. S. Jaishankar represents the state of Gujarat as a Member of Parliament in the Rajya Sabha."
+  },
+  {
+    "id": 63,
+    "q": "The Joint Sitting of the parliament is governed by the rules of ____.",
+    "o": [
+      "Lok Sabha",
+      "Special Rules mentioned by the Cabinet",
+      "Special Rules by the President",
+      "Rajya Sabha"
+    ],
+    "a": "Lok Sabha",
+    "t": "SSC GD",
+    "s": "Under Article 118(4) and the rules made thereunder, a Joint Sitting of both Houses of Parliament is presided over by the Speaker of the Lok Sabha and governed by the Rules of Procedure of the Lok Sabha."
+  },
+  {
+    "id": 64,
+    "q": "Vacation, resignation and removal from the offices of Speaker and Deputy Speaker are addressed in which Article of the Constitution of India?",
+    "o": [
+      "Article 84",
+      "Article 94",
+      "Article 70",
+      "Article 101"
+    ],
+    "a": "Article 94",
+    "t": "SSC GD",
+    "s": "Article 94 of the Constitution deals with the vacation, resignation, and removal from the offices of Speaker and Deputy Speaker of the House of the People."
+  },
+  {
+    "id": 65,
+    "q": "In India, during a National Emergency, who may extend the term of Legislative Assemblies for a period not exceeding one year at a time?",
+    "o": [
+      "Governor",
+      "Chief Minister",
+      "Parliament",
+      "Prime Minister"
+    ],
+    "a": "Parliament",
+    "t": "SSC GD",
+    "s": "Under the proviso to Article 172(1), while a Proclamation of National Emergency is in operation, the five-year term of a State Legislative Assembly may be extended by Parliament by law for a period not exceeding one year at a time."
+  },
+  {
+    "id": 66,
+    "q": "On which of the following dates was the first session of the Rajya Sabha held?",
+    "o": [
+      "13 May 1952",
+      "26 November 1952",
+      "26 November 1951",
+      "3 April 1950"
+    ],
+    "a": "13 May 1952",
+    "t": "RRB NTPC",
+    "s": "The Rajya Sabha was constituted on 3 April 1952, and its first sitting/session was held on 13 May 1952."
+  },
+  {
+    "id": 67,
+    "q": "The Rajya Sabha is to the Union Government as the ____ is to the State Government.",
+    "o": [
+      "Chief Minister's Office",
+      "State Legislative Council",
+      "State Legislative Assembly",
+      "Governor's Office"
+    ],
+    "a": "State Legislative Council",
+    "t": "RPF CONSTABLE",
+    "s": "Just as the Rajya Sabha is the Upper House (Second Chamber) of the Union Parliament, the State Legislative Council (Vidhan Parishad) is the Upper House of a bicameral State Legislature."
+  },
+  {
+    "id": 68,
+    "q": "Under what circumstances can the Parliament legislate on a subject in the State List?",
+    "o": [
+      "When President issues an ordinance",
+      "During Financial Emergency",
+      "When Rajya Sabha passes a resolution",
+      "When Lok Sabha is dissolved"
+    ],
+    "a": "When Rajya Sabha passes a resolution",
+    "t": "SSC PHASE XIII",
+    "s": "Under Article 249, if the Rajya Sabha declares by a resolution supported by not less than two-thirds of the members present and voting that it is necessary in the national interest, Parliament becomes empowered to make laws on any matter enumerated in the State List."
+  },
+  {
+    "id": 69,
+    "q": "If someone becomes a minister or the Prime Minister without being a Member of Parliament, they must get elected to the Parliament within ____ months or they will have to vacate the office.",
+    "o": [
+      "Three",
+      "Six",
+      "nine",
+      "eight"
+    ],
+    "a": "Six",
+    "t": "SSC PHASE XIII",
+    "s": "Under Article 75(5) of the Constitution, a Minister who for any period of six consecutive months is not a member of either House of Parliament shall at the expiration of that period cease to be a Minister."
+  },
+  {
+    "id": 70,
+    "q": "Which of the following sportspersons has been a nominated Rajya Sabha member since 2022?",
+    "o": [
+      "PT Usha",
+      "Mary Kom",
+      "Abhinav Bindra",
+      "Sachin Tendulkar"
+    ],
+    "a": "PT Usha",
+    "t": "SSC PHASE XIII",
+    "s": "Legendary track-and-field athlete P.T. Usha was nominated to the Rajya Sabha by the President of India in July 2022."
+  },
+  {
+    "id": 71,
+    "q": "What is the basis for the allocation of seats to states in the Lok Sabha?",
+    "o": [
+      "Geographical area",
+      "Population",
+      "Economic contribution",
+      "Literacy rate"
+    ],
+    "a": "Population",
+    "t": "SSC PHASE XIII",
+    "s": "Under Article 81(2) of the Constitution, seats in the Lok Sabha are allotted to each State in such manner that the ratio between that number and the population of the State is, so far as practicable, the same for all States."
+  },
+  {
+    "id": 72,
+    "q": "Who acts as the chairperson during a joint meeting of both houses of Parliament?",
+    "o": [
+      "President",
+      "Prime Minister",
+      "Lok Sabha Speaker",
+      "Rajya Sabha Chairperson"
+    ],
+    "a": "Lok Sabha Speaker",
+    "t": "SSC PHASE XIII",
+    "s": "Under Article 118(4), the Speaker of the Lok Sabha presides over a joint sitting of both Houses of Parliament (and in the Speaker's absence, the Deputy Speaker of Lok Sabha, or failing them, the Deputy Chairman of Rajya Sabha)."
+  },
+  {
+    "id": 73,
+    "q": "Who holds the power to dissolve the Lok Sabha prior to the completion of its tenure?",
+    "o": [
+      "Prime Minister",
+      "Rajya Sabha",
+      "Speaker of Lok Sabha",
+      "President"
+    ],
+    "a": "President",
+    "t": "SSC PHASE XIII",
+    "s": "Under Article 85(2)(b) of the Constitution, the President of India holds the power to dissolve the House of the People (Lok Sabha)."
+  },
+  {
+    "id": 74,
+    "q": "How many members are nominated by President of India for the Rajya Sabha?",
+    "o": [
+      "2",
+      "10",
+      "12",
+      "15"
+    ],
+    "a": "12",
+    "t": "SSC PHASE XIII",
+    "s": "Under Article 80(1)(a) of the Constitution, 12 members are nominated by the President of India to the Rajya Sabha from fields of literature, science, art, and social service."
+  },
+  {
+    "id": 75,
+    "q": "What is true about Censure Motion?",
+    "o": [
+      "It is not different from No-confidence motion",
+      "It is different from the No-confidence motion",
+      "It is not mandatory to mention the reasons in this motion",
+      "Permission of the House is not essential to present it"
+    ],
+    "a": "It is different from the No-confidence motion",
+    "t": "BPSC PRE - 2025",
+    "s": "A Censure Motion is distinct from a No-Confidence Motion: a Censure Motion must state the specific reasons for its adoption, can be moved against an individual minister or group of ministers, and its passage does not automatically require the Council of Ministers to resign."
+  },
+  {
+    "id": 76,
+    "q": "The power to recruit the Secretarial staff of the House of the People is vested in:",
+    "o": [
+      "Prime Minister's Office (PMO)",
+      "Union Public Service Commission",
+      "Staff Selection Commission",
+      "President after consultation with the Speaker of the House of the people"
+    ],
+    "a": "President after consultation with the Speaker of the House of the people",
+    "t": "BPSC PRE - 2025",
+    "s": "Under Article 98(3) of the Constitution, until Parliament by law regulates the recruitment and conditions of service, the President may, after consultation with the Speaker of the House of the People (or Chairman of the Council of States), make rules regulating the recruitment and conditions of service of their secretarial staff."
+  },
+  {
+    "id": 77,
+    "q": "The Rajya Sabha is not subject to dissolution, and ____ of its members retire every second year.",
+    "o": [
+      "one-fourth",
+      "half",
+      "one-third",
+      "one-fifth"
+    ],
+    "a": "one-third",
+    "t": "IB SA MTS - 2025",
+    "s": "Under Article 83(1) of the Constitution, the Rajya Sabha is a permanent body not subject to dissolution, with as nearly as possible one-third of its members retiring every second year."
+  },
+  {
+    "id": 78,
+    "q": "Which article of the Indian Constitution deals with the president's authority to address and communicate with houses?",
+    "o": [
+      "Article 85",
+      "Article 84",
+      "Article 86",
+      "Article 83"
+    ],
+    "a": "Article 86",
+    "t": "IB ACIO - II",
+    "s": "Article 86 of the Constitution empowers the President of India to address either House of Parliament or both Houses assembled together, and to send messages to either House."
+  },
+  {
+    "id": 79,
+    "q": "How does the concept of 'Zero Hour' function in parliamentary proceedings?",
+    "o": [
+      "Allocates time for private bills only",
+      "Grants power to dissolve the House",
+      "Allows members to raise urgent matters",
+      "Allows ministers to pass ordinances"
+    ],
+    "a": "Allows members to raise urgent matters",
+    "t": "IB ACIO - II",
+    "s": "Zero Hour is an informal Indian parliamentary innovation (immediately following Question Hour at 12:00 noon) during which Members of Parliament can raise matters of urgent public importance without long prior notice."
+  },
+  {
+    "id": 80,
+    "q": "Who among the following presides over the proceedings of the Lok Sabha?",
+    "o": [
+      "The Prime Minister",
+      "The President of India",
+      "The Vice-President",
+      "The Speaker"
+    ],
+    "a": "The Speaker",
+    "t": "IB ACIO - II",
+    "s": "Under Article 93 and the Rules of Procedure, the Speaker presides over the sittings and proceedings of the Lok Sabha."
+  },
+  {
+    "id": 81,
+    "q": "Which of the following is NOT an instrument of parliamentary control over the executive in India?",
+    "o": [
+      "Approval of government bills (laws) by the Parliament",
+      "Question Hour in the Lok Sabha",
+      "Judicial review of executive actions",
+      "No-confidence motion against the Council of Minister"
+    ],
+    "a": "Judicial review of executive actions",
+    "t": "RRB NTPC",
+    "s": "Judicial review of executive actions is exercised by the Judiciary (Supreme Court and High Courts), whereas Question Hour, approval of bills, and No-Confidence Motions are instruments of parliamentary control over the executive."
+  },
+  {
+    "id": 82,
+    "q": "Which Constitutional Amendment Act abolished the provision for nominating members from the Anglo-Indian community to the State Legislative Assemblies?",
+    "o": [
+      "102nd Amendment Act, 2018",
+      "105th Amendment Act, 2021",
+      "101st Amendment Act, 2016",
+      "104th Amendment Act, 2019"
+    ],
+    "a": "104th Amendment Act, 2019",
+    "t": "RRB NTPC",
+    "s": "The 104th Constitutional Amendment Act, 2019 discontinued the reservation of seats for the Anglo-Indian community by nomination in the Lok Sabha (Article 331) and State Legislative Assemblies (Article 333)."
+  },
+  {
+    "id": 83,
+    "q": "What happens if a no-confidence motion is passed in the Indian Lok Sabha against the union government?",
+    "o": [
+      "The entire Council of Ministers must resign.",
+      "The Prime Minister is given a chance to reorganise the Cabinet.",
+      "Only the dissenting ministers resign.",
+      "A re-election is triggered."
+    ],
+    "a": "The entire Council of Ministers must resign.",
+    "t": "RRB NTPC",
+    "s": "Because the Council of Ministers is collectively responsible to the Lok Sabha under Article 75(3), if a No-Confidence Motion is passed in the Lok Sabha, the entire Council of Ministers including the Prime Minister must resign."
+  },
+  {
+    "id": 84,
+    "q": "What happens if a minister is not a member of the Parliament for six consecutive months?",
+    "o": [
+      "The minister ceases to hold office.",
+      "The minister must be re-elected within three months.",
+      "The Prime Minister can grant an extension.",
+      "The minister can continue with special permission from the President."
+    ],
+    "a": "The minister ceases to hold office.",
+    "t": "RRB NTPC",
+    "s": "Under Article 75(5), a Minister who is not a member of either House of Parliament for any period of six consecutive months ceases to hold office at the expiration of that period."
+  },
+  {
+    "id": 85,
+    "q": "Why does the parliamentary system prevent executive despotism?",
+    "o": [
+      "Because the judiciary can override executive decisions without checks",
+      "Because the Prime Minister has unlimited power",
+      "Because the military can intervene in governance",
+      "Because executive authority is dispersed among a group of ministers accountable to the Parliament"
+    ],
+    "a": "Because executive authority is dispersed among a group of ministers accountable to the Parliament",
+    "t": "RRB NTPC",
+    "s": "In a parliamentary system, executive authority is not concentrated in a single unaccountable individual; instead, it is exercised by a Council of Ministers collectively responsible and accountable to the Parliament."
+  },
+  {
+    "id": 86,
+    "q": "What is one of the key advantages of the parliamentary system in ensuring smooth governance?",
+    "o": [
+      "The executive has absolute power over the legislature.",
+      "The judiciary controls both the legislature and the executive.",
+      "The Prime Minister can dissolve the legislature at will.",
+      "It ensures harmony and cooperation between the legislature and the executive"
+    ],
+    "a": "It ensures harmony and cooperation between the legislature and the executive",
+    "t": "RRB NTPC",
+    "s": "Since the executive (Council of Ministers) is drawn from and remains a part of the legislature, the parliamentary system fosters harmony and cooperation between the legislative and executive organs."
+  },
+  {
+    "id": 87,
+    "q": "How does the parliamentary system ensure a 'responsible government'?",
+    "o": [
+      "By permitting the military to oversee governance",
+      "By making the council of ministers collectively accountable to the Parliament",
+      "By giving the judiciary, the power to review executive decisions",
+      "By allowing the President to dismiss the Prime Minister at any time"
+    ],
+    "a": "By making the council of ministers collectively accountable to the Parliament",
+    "t": "RRB NTPC",
+    "s": "A parliamentary system is called a 'responsible government' because the Council of Ministers is collectively accountable to the Parliament (specifically the Lower House) for all its policies and acts (Article 75(3))."
+  },
+  {
+    "id": 88,
+    "q": "In the 1999 parliamentary elections, a coalition party government of _____ was formed, in which BJP was the largest member of the coalition.",
+    "o": [
+      "People's Democratic Party Alliance",
+      "United Progressive Alliance",
+      "National Democratic Alliance",
+      "Biju Janata Dal Alliance"
+    ],
+    "a": "National Democratic Alliance",
+    "t": "RPF CONSTABLE",
+    "s": "Following the 1999 general elections (13th Lok Sabha), the National Democratic Alliance (NDA), led by the Bharatiya Janata Party (BJP) under Prime Minister Atal Bihari Vajpayee, formed the coalition government."
+  },
+  {
+    "id": 89,
+    "q": "No money bill can be introduced in the State Legislative Assembly without the prior permission of the ________.",
+    "o": [
+      "Chief Minister",
+      "Deputy Chief Minister",
+      "Speaker",
+      "Governor"
+    ],
+    "a": "Governor",
+    "t": "SSC GD",
+    "s": "Under Article 207(1) of the Constitution, a Money Bill or Financial Bill cannot be introduced in a State Legislative Assembly except on the recommendation (prior permission) of the Governor of the State."
+  },
+  {
+    "id": 90,
+    "q": "The parliamentary standing committees have a tenure of _____ years.",
+    "o": [
+      "four",
+      "two",
+      "three",
+      "one"
+    ],
+    "a": "one",
+    "t": "SSC CHSL",
+    "s": "Departmentally Related Standing Committees (DRSCs) of the Parliament are reconstituted every year and have a tenure of one year."
+  },
+  {
+    "id": 91,
+    "q": "When a non-minister proposes a bill, it is called:",
+    "o": [
+      "Money Bill",
+      "Government Bill",
+      "Private Member's Bill",
+      "Non-Money Bill"
+    ],
+    "a": "Private Member's Bill",
+    "t": "Higher Secondary",
+    "s": "Any Member of Parliament who is not a Minister is referred to as a Private Member, and a bill introduced by such a member is called a Private Member's Bill."
+  },
+  {
+    "id": 92,
+    "q": "How many Lok Sabha seats are there for the state of Meghalaya?",
+    "o": [
+      "One",
+      "Two",
+      "Three",
+      "Four"
+    ],
+    "a": "Two",
+    "t": "Higher Secondary",
+    "s": "The State of Meghalaya is allocated two seats in the Lok Sabha (Shillong and Tura parliamentary constituencies)."
+  },
+  {
+    "id": 93,
+    "q": "Who was the first speaker of the Lok Sabha after India's Independence?",
+    "o": [
+      "Ganesh V Mavalankar",
+      "Meira Kumar",
+      "M Ananthasayanam",
+      "MA Ayyangar"
+    ],
+    "a": "Ganesh V Mavalankar",
+    "t": "Higher Secondary",
+    "s": "Ganesh Vasudev (G.V.) Mavalankar was the first Speaker of the Lok Sabha after India's Independence (1952–1956)."
+  },
+  {
+    "id": 94,
+    "q": "The First hour of a sitting of the House allotted for asking and answering of questions is called as__________.",
+    "o": [
+      "Censure motion",
+      "Zero hour",
+      "Privilege motion",
+      "Question hour"
+    ],
+    "a": "Question hour",
+    "t": "SSC Stenographer",
+    "s": "The first hour of every parliamentary sitting (11:00 AM to 12:00 PM) allotted for asking and answering questions is known as the Question Hour."
+  },
+  {
+    "id": 95,
+    "q": "A money bill under Article 111 of the Constitution of India, presented to the President for assent, has to be endorsed by a Certificate of the ________signed by him/her that it is a money bill.",
+    "o": [
+      "Secretary General of the Lok Sabha",
+      "Secretary General of the Rajya Sabha",
+      "Speaker of the Lok Sabha",
+      "Deputy Chairman of the Rajya Sabha"
+    ],
+    "a": "Speaker of the Lok Sabha",
+    "t": "SSC CPO",
+    "s": "Under Article 110(4), there shall be endorsed on every Money Bill when it is transmitted to the Rajya Sabha under Article 109, and when it is presented to the President for assent under Article 111, the certificate of the Speaker of the Lok Sabha signed by him that it is a Money Bill."
+  },
+  {
+    "id": 96,
+    "q": "A Money Bill should be returned to the Lok Sabha within ___ days by Rajya Sabha, either with recommendations or without recommendations.",
+    "o": [
+      "8",
+      "21",
+      "14",
+      "10"
+    ],
+    "a": "14",
+    "t": "SSC MTS",
+    "s": "Under Article 109(2), the Rajya Sabha is required to return a Money Bill to the Lok Sabha within 14 days from the date of its receipt."
+  },
+  {
+    "id": 97,
+    "q": "The Constitution provides for reservation of seats in the Lok Sabha and State Legislative Assemblies for the:",
+    "o": [
+      "scheduled tribes",
+      "other backward classes",
+      "differently abled",
+      "women"
+    ],
+    "a": "scheduled tribes",
+    "t": "SSC CPO",
+    "s": "Under Articles 330 and 332 of the Constitution, seats are reserved in the Lok Sabha and State Legislative Assemblies for the Scheduled Castes (SCs) and Scheduled Tribes (STs)."
+  },
+  {
+    "id": 98,
+    "q": "Which of the following is called 'the temple of the country's democracy'?",
+    "o": [
+      "Raj Ghat",
+      "Supreme Court",
+      "Ashok Pillar",
+      "Parliament"
+    ],
+    "a": "Parliament",
+    "t": "SSC CPO",
+    "s": "The Parliament of India is popularly referred to as the 'temple of the country's democracy' as it embodies the sovereign will of the people through their elected representatives."
+  },
+  {
+    "id": 99,
+    "q": "An alliance formed by political parties after elections when no party has been able to get adequate seats to form a clear majority is called_____.",
+    "o": [
+      "coalition",
+      "allegiance",
+      "appropriation",
+      "prorogation"
+    ],
+    "a": "coalition",
+    "t": "SSC MTS",
+    "s": "A post-poll or pre-poll alliance of multiple political parties formed to secure a majority and form a government when no single party wins a clear majority on its own is called a coalition."
+  },
+  {
+    "id": 100,
+    "q": "Which Article of Indian Constitution states that 'A Money Bill shall not be introduced in the Council of States'?",
+    "o": [
+      "Article 107",
+      "Article 108",
+      "Article 106",
+      "Article 109"
+    ],
+    "a": "Article 109",
+    "t": "IB SA MTS",
+    "s": "Article 109(1) of the Indian Constitution explicitly provides that 'A Money Bill shall not be introduced in the Council of States (Rajya Sabha).'"
+  },
+  {
+    "id": 101,
+    "q": "Which Constitutional Amendment introduced the Tenth Schedule to the Indian Constitution, commonly known as the Anti-Defection Law, to curb political defections by legislators?",
+    "o": [
+      "52nd Amendment Act, 1985",
+      "61st Amendment Act, 1988",
+      "42nd Amendment Act, 1976",
+      "73rd Amendment Act, 1992"
+    ],
+    "a": "52nd Amendment Act, 1985",
+    "t": "IB SA MTS",
+    "s": "The 52nd Constitutional Amendment Act, 1985 added the Tenth Schedule (popularly known as the Anti-Defection Law) to the Constitution to disqualify legislators on grounds of defection."
+  },
+  {
+    "id": 102,
+    "q": "Under what conditions can the Parliament legislate on matters in the State List according to constitutional provisions?",
+    "o": [
+      "If a Governor requests it due to a financial emergency in the state.",
+      "During a national emergency declared under Article 352.",
+      "If the President signs a proclamation without Parliament's involvement.",
+      "When the Lok Sabha passes a resolution by a simple majority."
+    ],
+    "a": "During a national emergency declared under Article 352.",
+    "t": "IB SAB MTS",
+    "s": "Under Article 250 of the Constitution, Parliament is empowered to legislate with respect to any matter in the State List while a Proclamation of National Emergency (under Article 352) is in operation."
+  },
+  {
+    "id": 103,
+    "q": "To pass a Constitutional Amendment Bill in the Lok Sabha, which of the following correctly states the minimum support required?",
+    "o": [
+      "Unanimous vote of all Members of Parliament",
+      "Simple majority of Lok Sabha members and two-thirds of Rajya Sabha members present and voting",
+      "Two-thirds majority of the total membership of the House",
+      "Majority of the total membership and two-thirds of members present and voting"
+    ],
+    "a": "Majority of the total membership and two-thirds of members present and voting",
+    "t": "IB MTS",
+    "s": "Under Article 368(2), a Constitutional Amendment Bill must be passed in each House of Parliament by a special majority—that is, a majority of the total membership of that House AND a majority of not less than two-thirds of the members of that House present and voting."
+  },
+  {
+    "id": 104,
+    "q": "For which of the given bills can the President of India summon a joint sitting of both Houses of Parliament?\n1. Ordinary Bill\n2. Money Bill\n3. Constitutional Amendment Bill",
+    "o": [
+      "1, 2 and 3",
+      "1 and 2 only",
+      "1 only",
+      "2 and 3 only"
+    ],
+    "a": "1 only",
+    "t": "RRB NTPC",
+    "s": "Under Article 108, a joint sitting of both Houses can be summoned by the President only for an Ordinary Bill (or a Financial Bill under Article 117(1)), and never for a Money Bill or a Constitutional Amendment Bill."
+  },
+  {
+    "id": 105,
+    "q": "With reference to the 40 Amendment Act, 1976, which category of maritime zones came under the legislative jurisdiction of the Parliament?",
+    "o": [
+      "Groundwater reserves",
+      "Territorial waters and EEZ",
+      "Inter-state river waters",
+      "Inland rivers and lakes"
+    ],
+    "a": "Territorial waters and EEZ",
+    "t": "RRB NTPC",
+    "s": "The 40th Constitutional Amendment Act, 1976 substituted Article 297 to vest all lands, minerals, and other things of value underlying the ocean within the territorial waters, continental shelf, and Exclusive Economic Zone (EEZ) in the Union and empower Parliament to specify their limits."
+  },
+  {
+    "id": 106,
+    "q": "What power does the President of India hold regarding the Contingency Fund of India?",
+    "o": [
+      "The President delegates the control of the fund to the Finance Commission.",
+      "The President controls the fund to advance money for unforeseen expenses.",
+      "The President approves the annual disbursement of the fund.",
+      "The President can only advise on the use of the fund."
+    ],
+    "a": "The President controls the fund to advance money for unforeseen expenses.",
+    "t": "RRB NTPC",
+    "s": "Under Article 267(1), the Contingency Fund of India is placed at the disposal of the President of India to enable advances to be made by him out of such Fund for the purposes of meeting unforeseen expenditure pending authorisation by Parliament."
+  },
+  {
+    "id": 107,
+    "q": "Which type of legislative bills must be introduced in the Lok Sabha only after obtaining the prior approval of the President of India?",
+    "o": [
+      "Ordinary Bills",
+      "Public Bills",
+      "Private Bills",
+      "Money Bills"
+    ],
+    "a": "Money Bills",
+    "t": "RRB NTPC",
+    "s": "Under Article 117(1) and Article 109, Money Bills can be introduced only in the Lok Sabha and only on the prior recommendation of the President of India."
+  },
+  {
+    "id": 108,
+    "q": "What is a major drawback of the parliamentary system in terms of governance stability?",
+    "o": [
+      "Governments may collapse due to no-confidence motions or coalition disputes.",
+      "The judiciary frequently overrules executive decisions.",
+      "The President can dismiss the Prime Minister at any time.",
+      "Elections are held only once every decade"
+    ],
+    "a": "Governments may collapse due to no-confidence motions or coalition disputes.",
+    "t": "RRB NTPC",
+    "s": "A known drawback of the parliamentary system compared to the presidential system is potential instability of tenure, as governments depend on majority support in the Lower House and may fall due to no-confidence motions or coalition withdrawals."
+  },
+  {
+    "id": 109,
+    "q": "Which of the following committees is responsible for examining the conduct of Members of Parliament?",
+    "o": [
+      "The Committee on Privileges",
+      "The Committee on Public Undertakings",
+      "The Public Accounts Committee",
+      "The Committee on Rules"
+    ],
+    "a": "The Committee on Privileges",
+    "t": "RPF CONSTABLE",
+    "s": "The Committee of Privileges (a standing committee in each House) examines every question of breach of privilege and the conduct of Members referred to it by the House or the Presiding Officer."
+  }
+];
+    const TOTAL_QUESTIONS = QUESTION_BANK.length;
+    const TOTAL_TIME_SECONDS = TOTAL_QUESTIONS * 60; // 1 minute per question
+
+    // State
+    let examQuestions = [];
+    let currentIdx = 0;
+    let remainingSeconds = TOTAL_TIME_SECONDS;
+    let timerInterval = null;
+    let isPaused = false;
+    let isSubmitted = false;
+    let currentFilter = "all"; // "all" | "incorrect" | "unattempted"
+
+    // DOM Elements
+    const introView = document.getElementById("introView");
+    const examView = document.getElementById("examView");
+    const resultView = document.getElementById("resultView");
+
+    const agreeCheck = document.getElementById("agreeCheck");
+    const agreeError = document.getElementById("agreeError");
+    const startExamBtn = document.getElementById("startExamBtn");
+
+    const timerDisplay = document.getElementById("timerDisplay");
+    const pauseBtn = document.getElementById("pauseBtn");
+    const exitFsBtn = document.getElementById("exitFsBtn");
+
+    const questionNumHeader = document.getElementById("questionNumHeader");
+    const examTagBadge = document.getElementById("examTagBadge");
+    const questionScrollContainer = document.getElementById("questionScrollContainer");
+    const questionStemText = document.getElementById("questionStemText");
+    const optionsListContainer = document.getElementById("optionsListContainer");
+
+    const prevBtn = document.getElementById("prevBtn");
+    const markReviewBtn = document.getElementById("markReviewBtn");
+    const clearBtn = document.getElementById("clearBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const submitBtn = document.getElementById("submitBtn");
+    const mobileSubmitBtn = document.getElementById("mobileSubmitBtn");
+
+    const paletteGrid = document.getElementById("paletteGrid");
+    const countAnswered = document.getElementById("countAnswered");
+    const countNotAnswered = document.getElementById("countNotAnswered");
+    const countNotVisited = document.getElementById("countNotVisited");
+    const countReview = document.getElementById("countReview");
+    const countAnsReview = document.getElementById("countAnsReview");
+
+    const pauseModal = document.getElementById("pauseModal");
+    const resumeBtn = document.getElementById("resumeBtn");
+
+    const submitModal = document.getElementById("submitModal");
+    const modAnswered = document.getElementById("modAnswered");
+    const modNotAnswered = document.getElementById("modNotAnswered");
+    const modReview = document.getElementById("modReview");
+    const modNotVisited = document.getElementById("modNotVisited");
+    const cancelSubmitBtn = document.getElementById("cancelSubmitBtn");
+    const confirmSubmitBtn = document.getElementById("confirmSubmitBtn");
+
+    const retakeBtn = document.getElementById("retakeBtn");
+    const filterAllBtn = document.getElementById("filterAllBtn");
+    const filterWrongBtn = document.getElementById("filterWrongBtn");
+    const filterUnansBtn = document.getElementById("filterUnansBtn");
+    const solutionsContainer = document.getElementById("solutionsContainer");
+
+    // Utility: Fisher-Yates shuffle (used ONLY for options, NEVER for questions)
+    function shuffleOptions(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = copy[i];
+        copy[i] = copy[j];
+        copy[j] = tmp;
+      }
+      return copy;
+    }
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      const mm = String(m).padStart(2, "0");
+      const ss = String(s).padStart(2, "0");
+      return `${mm}:${ss}`;
+    }
+
+    // Prepare questions keeping exact question order, randomizing options on each load/refresh
+    function prepareExamState() {
+      examQuestions = QUESTION_BANK.map((item, idx) => ({
+        index: idx,
+        id: item.id,
+        q: item.q,
+        shuffledOptions: shuffleOptions(item.o),
+        correctAnswer: item.a,
+        tag: item.t || "",
+        solution: item.s || "",
+        selectedOption: null,
+        visited: false,
+        markedForReview: false
+      }));
+      currentIdx = 0;
+      remainingSeconds = TOTAL_TIME_SECONDS;
+      isPaused = false;
+      isSubmitted = false;
+      timerDisplay.textContent = formatTime(remainingSeconds);
+      timerDisplay.classList.remove("timer-urgent");
+    }
+
+    function enterFullscreenSafe() {
+      try {
+        const el = document.documentElement;
+        if (!document.fullscreenElement) {
+          if (el.requestFullscreen) {
+            el.requestFullscreen().catch(() => {});
+          } else if (el.webkitRequestFullscreen) {
+            el.webkitRequestFullscreen();
+          }
+        }
+      } catch (e) {
+        // Ignore sandbox iframe fullscreen restrictions
+      }
+    }
+
+    function exitFullscreenSafe() {
+      try {
+        if (document.fullscreenElement) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen().catch(() => {});
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          }
+        }
+      } catch (e) {
+        // Ignore restrictions
+      }
+    }
+
+    function getQuestionStatus(qObj) {
+      if (!qObj.visited) return "not-visited";
+      if (qObj.selectedOption !== null && qObj.markedForReview) return "ans-review";
+      if (qObj.markedForReview) return "review";
+      if (qObj.selectedOption !== null) return "answered";
+      return "not-answered";
+    }
+
+    function getStatusClass(status) {
+      switch (status) {
+        case "answered": return "st-answered";
+        case "not-answered": return "st-not-answered";
+        case "review": return "st-review";
+        case "ans-review": return "st-ans-review";
+        default: return "st-not-visited";
+      }
+    }
+
+    function renderPalette() {
+      paletteGrid.innerHTML = "";
+      let cAns = 0, cNotAns = 0, cNotVis = 0, cRev = 0, cAnsRev = 0;
+
+      examQuestions.forEach((qObj, idx) => {
+        const st = getQuestionStatus(qObj);
+        if (st === "answered") cAns++;
+        else if (st === "not-answered") cNotAns++;
+        else if (st === "review") cRev++;
+        else if (st === "ans-review") cAnsRev++;
+        else cNotVis++;
+
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = `palette-num-btn ${getStatusClass(st)}${idx === currentIdx ? " active-q" : ""}`;
+        btn.textContent = String(idx + 1);
+        btn.setAttribute("aria-label", `Jump to Question ${idx + 1}`);
+        btn.addEventListener("click", () => {
+          jumpToQuestion(idx);
+        });
+        paletteGrid.appendChild(btn);
+      });
+
+      countAnswered.textContent = String(cAns);
+      countNotAnswered.textContent = String(cNotAns);
+      countNotVisited.textContent = String(cNotVis);
+      countReview.textContent = String(cRev);
+      countAnsReview.textContent = String(cAnsRev);
+
+      // Keep active question visible inside palette scroll container without scrolling main window
+      const activeBtn = paletteGrid.children[currentIdx];
+      if (activeBtn) {
+        const containerTop = paletteGrid.scrollTop;
+        const containerBottom = containerTop + paletteGrid.clientHeight;
+        const btnTop = activeBtn.offsetTop - paletteGrid.offsetTop;
+        const btnBottom = btnTop + activeBtn.offsetHeight;
+        if (btnTop < containerTop) {
+          paletteGrid.scrollTop = Math.max(0, btnTop - 8);
+        } else if (btnBottom > containerBottom) {
+          paletteGrid.scrollTop = btnBottom - paletteGrid.clientHeight + 8;
+        }
+      }
+    }
+
+    function renderCurrentQuestion() {
+      const qObj = examQuestions[currentIdx];
+      qObj.visited = true;
+
+      questionNumHeader.textContent = `Question No. ${currentIdx + 1} of ${TOTAL_QUESTIONS}`;
+      if (qObj.tag && qObj.tag.trim() !== "") {
+        examTagBadge.textContent = qObj.tag;
+        examTagBadge.classList.remove("hidden-view");
+      } else {
+        examTagBadge.textContent = "";
+        examTagBadge.classList.add("hidden-view");
+      }
+
+      questionStemText.textContent = qObj.q;
+      optionsListContainer.innerHTML = "";
+
+      const letters = ["A", "B", "C", "D"];
+      qObj.shuffledOptions.forEach((optText, optIdx) => {
+        const isSelected = qObj.selectedOption === optText;
+        const rowBtn = document.createElement("button");
+        rowBtn.type = "button";
+        rowBtn.className = `option-row${isSelected ? " selected" : ""}`;
+
+        const radioCircle = document.createElement("span");
+        radioCircle.className = "radio-circle";
+        const radioDot = document.createElement("span");
+        radioDot.className = "radio-dot";
+        radioCircle.appendChild(radioDot);
+
+        const letterSpan = document.createElement("span");
+        letterSpan.className = "option-letter";
+        letterSpan.textContent = `${letters[optIdx]}.`;
+
+        const textSpan = document.createElement("span");
+        textSpan.className = "option-text";
+        textSpan.textContent = optText;
+
+        rowBtn.appendChild(radioCircle);
+        rowBtn.appendChild(letterSpan);
+        rowBtn.appendChild(textSpan);
+
+        // Selecting an option ONLY updates selection; does NOT mark right/wrong or jump automatically
+        rowBtn.addEventListener("click", () => {
+          if (isPaused || isSubmitted) return;
+          qObj.selectedOption = optText;
+          renderCurrentQuestion();
+        });
+
+        optionsListContainer.appendChild(rowBtn);
+      });
+
+      prevBtn.disabled = currentIdx === 0;
+      nextBtn.textContent = currentIdx === TOTAL_QUESTIONS - 1 ? "Save" : "Next";
+
+      renderPalette();
+    }
+
+    function jumpToQuestion(targetIdx) {
+      if (isPaused || isSubmitted) return;
+      if (targetIdx < 0 || targetIdx >= TOTAL_QUESTIONS) return;
+      currentIdx = targetIdx;
+      questionScrollContainer.scrollTop = 0;
+      renderCurrentQuestion();
+    }
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (isPaused || isSubmitted) return;
+        remainingSeconds--;
+        if (remainingSeconds <= 300) {
+          timerDisplay.classList.add("timer-urgent");
+        }
+        if (remainingSeconds <= 0) {
+          remainingSeconds = 0;
+          timerDisplay.textContent = "00:00";
+          clearInterval(timerInterval);
+          finalizeSubmission(true);
+          return;
+        }
+        timerDisplay.textContent = formatTime(remainingSeconds);
+      }, 1000);
+    }
+
+    function startExam() {
+      if (!agreeCheck.checked) {
+        agreeError.classList.remove("hidden-view");
+        return;
+      }
+      agreeError.classList.add("hidden-view");
+      prepareExamState();
+
+      introView.classList.add("hidden-view");
+      resultView.classList.add("hidden-view");
+      examView.classList.remove("hidden-view");
+
+      enterFullscreenSafe();
+      renderCurrentQuestion();
+      startTimer();
+    }
+
+    function openSubmitModal() {
+      if (isSubmitted) return;
+      let cAns = 0, cNotAns = 0, cNotVis = 0, cRev = 0;
+      examQuestions.forEach((qObj) => {
+        const st = getQuestionStatus(qObj);
+        if (st === "answered" || st === "ans-review") cAns++;
+        else if (st === "not-answered") cNotAns++;
+        else if (st === "review") cRev++;
+        else cNotVis++;
+      });
+      modAnswered.textContent = String(cAns);
+      modNotAnswered.textContent = String(cNotAns);
+      modReview.textContent = String(cRev);
+      modNotVisited.textContent = String(cNotVis);
+      submitModal.classList.remove("hidden-view");
+    }
+
+    function finalizeSubmission(autoByTimer) {
+      if (isSubmitted) return;
+      isSubmitted = true;
+      if (timerInterval) clearInterval(timerInterval);
+      pauseModal.classList.add("hidden-view");
+      submitModal.classList.add("hidden-view");
+      exitFullscreenSafe();
+
+      examView.classList.add("hidden-view");
+      resultView.classList.remove("hidden-view");
+
+      let attempted = 0;
+      let correct = 0;
+      let incorrect = 0;
+      let unattempted = 0;
+
+      examQuestions.forEach((qObj) => {
+        if (qObj.selectedOption === null) {
+          unattempted++;
+        } else {
+          attempted++;
+          if (qObj.selectedOption === qObj.correctAnswer) {
+            correct++;
+          } else {
+            incorrect++;
+          }
+        }
+      });
+
+      const elapsed = TOTAL_TIME_SECONDS - remainingSeconds;
+      const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+
+      document.getElementById("autoSubmitNotice").textContent = autoByTimer
+        ? "Time expired! Your mock examination was submitted automatically."
+        : "You have completed and submitted the mock examination.";
+      document.getElementById("resTimeTaken").textContent = formatTime(elapsed);
+      document.getElementById("resScore").textContent = `${correct} / ${TOTAL_QUESTIONS}`;
+      document.getElementById("resAttempted").textContent = String(attempted);
+      document.getElementById("resCorrect").textContent = String(correct);
+      document.getElementById("resIncorrect").textContent = String(incorrect);
+      document.getElementById("resUnattempted").textContent = String(unattempted);
+      document.getElementById("resAccuracy").textContent = `${accuracy}%`;
+
+      filterAllBtn.textContent = `All Incorrect & Un-attempted (${incorrect + unattempted})`;
+      filterWrongBtn.textContent = `Incorrect Only (${incorrect})`;
+      filterUnansBtn.textContent = `Un-attempted Only (${unattempted})`;
+
+      currentFilter = "all";
+      updateFilterTabs();
+      renderSolutionsList();
+      window.scrollTo(0, 0);
+    }
+
+    function updateFilterTabs() {
+      filterAllBtn.classList.toggle("active-tab", currentFilter === "all");
+      filterWrongBtn.classList.toggle("active-tab", currentFilter === "incorrect");
+      filterUnansBtn.classList.toggle("active-tab", currentFilter === "unattempted");
+    }
+
+    // Strictly render ONLY incorrect and un-attempted questions
+    function renderSolutionsList() {
+      solutionsContainer.innerHTML = "";
+
+      const filtered = examQuestions.filter((qObj) => {
+        const isUnattempted = qObj.selectedOption === null;
+        const isCorrect = !isUnattempted && qObj.selectedOption === qObj.correctAnswer;
+        if (isCorrect) return false; // Never show correct questions here
+        if (currentFilter === "incorrect") return !isUnattempted && !isCorrect;
+        if (currentFilter === "unattempted") return isUnattempted;
+        return true; // "all" -> both incorrect and unattempted
+      });
+
+      if (filtered.length === 0) {
+        const emptyCard = document.createElement("div");
+        emptyCard.className = "review-card";
+        emptyCard.style.textAlign = "center";
+        emptyCard.style.color = "#475569";
+        emptyCard.textContent = "No questions match this filter.";
+        solutionsContainer.appendChild(emptyCard);
+        return;
+      }
+
+      const letters = ["A", "B", "C", "D"];
+      filtered.forEach((qObj) => {
+        const isUnattempted = qObj.selectedOption === null;
+        const card = document.createElement("div");
+        card.className = "review-card";
+
+        const topRow = document.createElement("div");
+        topRow.className = "review-card-top";
+
+        const leftTitle = document.createElement("div");
+        leftTitle.style.display = "flex";
+        leftTitle.style.alignItems = "center";
+        leftTitle.style.gap = "10px";
+
+        const qNum = document.createElement("span");
+        qNum.style.fontWeight = "700";
+        qNum.style.fontSize = "15px";
+        qNum.style.color = "#0f172a";
+        qNum.textContent = `Question ${qObj.index + 1}`;
+        leftTitle.appendChild(qNum);
+
+        const statusBadge = document.createElement("span");
+        statusBadge.className = isUnattempted ? "badge-unattempted" : "badge-incorrect";
+        statusBadge.textContent = isUnattempted ? "Un-attempted" : "Incorrect";
+        leftTitle.appendChild(statusBadge);
+
+        topRow.appendChild(leftTitle);
+
+        if (qObj.tag && qObj.tag.trim() !== "") {
+          const tagSpan = document.createElement("span");
+          tagSpan.className = "exam-tag-badge";
+          tagSpan.textContent = qObj.tag;
+          topRow.appendChild(tagSpan);
+        }
+
+        card.appendChild(topRow);
+
+        const stem = document.createElement("div");
+        stem.className = "question-stem";
+        stem.style.fontSize = "15.5px";
+        stem.style.marginBottom = "14px";
+        stem.textContent = qObj.q;
+        card.appendChild(stem);
+
+        qObj.shuffledOptions.forEach((optText, idx) => {
+          const isCorrectOpt = optText === qObj.correctAnswer;
+          const isUserWrongOpt = !isUnattempted && optText === qObj.selectedOption && !isCorrectOpt;
+
+          const optDiv = document.createElement("div");
+          optDiv.className = `rev-opt${isCorrectOpt ? " rev-opt-correct" : ""}${isUserWrongOpt ? " rev-opt-wrong" : ""}`;
+
+          const leftSpan = document.createElement("span");
+          leftSpan.textContent = `${letters[idx]}. ${optText}`;
+          optDiv.appendChild(leftSpan);
+
+          if (isCorrectOpt) {
+            const tag = document.createElement("span");
+            tag.style.fontSize = "12px";
+            tag.style.whiteSpace = "nowrap";
+            tag.textContent = "✓ Correct Answer";
+            optDiv.appendChild(tag);
+          } else if (isUserWrongOpt) {
+            const tag = document.createElement("span");
+            tag.style.fontSize = "12px";
+            tag.style.whiteSpace = "nowrap";
+            tag.textContent = "✗ Your Answer";
+            optDiv.appendChild(tag);
+          }
+
+          card.appendChild(optDiv);
+        });
+
+        if (qObj.solution) {
+          const solBox = document.createElement("div");
+          solBox.className = "solution-box";
+          const solStrong = document.createElement("strong");
+          solStrong.textContent = "Solution: ";
+          solBox.appendChild(solStrong);
+          solBox.appendChild(document.createTextNode(qObj.solution));
+          card.appendChild(solBox);
+        }
+
+        solutionsContainer.appendChild(card);
+      });
+    }
+
+    // Event Listeners
+    startExamBtn.addEventListener("click", startExam);
+
+    prevBtn.addEventListener("click", () => {
+      if (currentIdx > 0) {
+        jumpToQuestion(currentIdx - 1);
+      }
+    });
+
+    nextBtn.addEventListener("click", () => {
+      if (isPaused || isSubmitted) return;
+      // If marked for review and user clicks Next, keep standard TCS behavior: normal Next marks it as Answered or Not Answered (unmarks review unless Mark for Review & Next is used)
+      examQuestions[currentIdx].markedForReview = false;
+      if (currentIdx < TOTAL_QUESTIONS - 1) {
+        jumpToQuestion(currentIdx + 1);
+      } else {
+        renderCurrentQuestion();
+      }
+    });
+
+    markReviewBtn.addEventListener("click", () => {
+      if (isPaused || isSubmitted) return;
+      examQuestions[currentIdx].markedForReview = true;
+      if (currentIdx < TOTAL_QUESTIONS - 1) {
+        jumpToQuestion(currentIdx + 1);
+      } else {
+        renderCurrentQuestion();
+      }
+    });
+
+    clearBtn.addEventListener("click", () => {
+      if (isPaused || isSubmitted) return;
+      examQuestions[currentIdx].selectedOption = null;
+      examQuestions[currentIdx].markedForReview = false;
+      renderCurrentQuestion();
+    });
+
+    pauseBtn.addEventListener("click", () => {
+      if (isSubmitted) return;
+      isPaused = true;
+      pauseModal.classList.remove("hidden-view");
+    });
+
+    resumeBtn.addEventListener("click", () => {
+      isPaused = false;
+      pauseModal.classList.add("hidden-view");
+    });
+
+    exitFsBtn.addEventListener("click", () => {
+      if (document.fullscreenElement) {
+        exitFullscreenSafe();
+      } else {
+        exitFullscreenSafe();
+      }
+    });
+
+    submitBtn.addEventListener("click", openSubmitModal);
+    mobileSubmitBtn.addEventListener("click", openSubmitModal);
+
+    cancelSubmitBtn.addEventListener("click", () => {
+      submitModal.classList.add("hidden-view");
+    });
+
+    confirmSubmitBtn.addEventListener("click", () => {
+      finalizeSubmission(false);
+    });
+
+    filterAllBtn.addEventListener("click", () => {
+      currentFilter = "all";
+      updateFilterTabs();
+      renderSolutionsList();
+    });
+
+    filterWrongBtn.addEventListener("click", () => {
+      currentFilter = "incorrect";
+      updateFilterTabs();
+      renderSolutionsList();
+    });
+
+    filterUnansBtn.addEventListener("click", () => {
+      currentFilter = "unattempted";
+      updateFilterTabs();
+      renderSolutionsList();
+    });
+
+    retakeBtn.addEventListener("click", () => {
+      if (timerInterval) clearInterval(timerInterval);
+      resultView.classList.add("hidden-view");
+      introView.classList.remove("hidden-view");
+      prepareExamState();
+      window.scrollTo(0, 0);
+    });
+
+    // Initialize on page load
+    prepareExamState();
+  </script>
+</body>
+</html>

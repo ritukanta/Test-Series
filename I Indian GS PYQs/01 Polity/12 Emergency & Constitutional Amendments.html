@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emergency & Constitutional Amendments Mock Test — TCS / Eduquity CBT Mock Interface</title>
+  <style>
+    :root {
+      --tcs-navy: #1b365d;
+      --tcs-blue: #2563eb;
+      --tcs-blue-dark: #1d4ed8;
+      --tcs-header-bg: #1e293b;
+      --tcs-subheader-bg: #334155;
+      --bg-surface: #f1f5f9;
+      --card-bg: #ffffff;
+      --border-color: #cbd5e1;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --ans-green: #16a34a;
+      --not-ans-red: #dc2626;
+      --not-vis-gray: #e2e8f0;
+      --mark-purple: #7c3aed;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* ================= INTRO SCREEN ================= */
+    #intro-screen {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: #f8fafc;
+    }
+
+    .portal-header {
+      background: linear-gradient(90deg, #0f172a 0%, #1e3a8a 100%);
+      color: #ffffff;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid #3b82f6;
+    }
+
+    .portal-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .portal-badge {
+      background-color: #3b82f6;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .portal-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .intro-container {
+      max-width: 960px;
+      width: 100%;
+      margin: 24px auto;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .intro-top-banner {
+      background-color: #eff6ff;
+      border-bottom: 1px solid #bfdbfe;
+      padding: 20px 28px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .intro-test-name {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin-bottom: 4px;
+    }
+
+    .intro-test-sub {
+      font-size: 13px;
+      color: #475569;
+    }
+
+    .intro-metrics {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .metric-pill {
+      background: #ffffff;
+      border: 1px solid #bfdbfe;
+      border-radius: 6px;
+      padding: 8px 14px;
+      text-align: center;
+      min-width: 110px;
+    }
+
+    .metric-pill .val {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1d4ed8;
+      display: block;
+    }
+
+    .metric-pill .lbl {
+      font-size: 11px;
+      color: #64748b;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .intro-body {
+      padding: 24px 28px;
+      line-height: 1.6;
+      font-size: 14px;
+      color: #334155;
+      max-height: 62vh;
+      overflow-y: auto;
+    }
+
+    .intro-body h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 16px 0 8px 0;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .intro-body h3:first-child {
+      margin-top: 0;
+    }
+
+    .intro-body ol, .intro-body ul {
+      padding-left: 20px;
+      margin-bottom: 12px;
+    }
+
+    .intro-body li {
+      margin-bottom: 6px;
+    }
+
+    .legend-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+
+    .legend-table td {
+      padding: 8px 12px;
+      border: 1px solid #e2e8f0;
+      vertical-align: middle;
+    }
+
+    .sym-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 26px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 4px;
+      position: relative;
+    }
+
+    .sym-not-visited {
+      background: #f8fafc;
+      color: #334155;
+      border: 1px solid #94a3b8;
+    }
+
+    .sym-not-answered {
+      background: var(--not-ans-red);
+      color: #ffffff;
+      border-radius: 4px 4px 10px 10px;
+    }
+
+    .sym-answered {
+      background: var(--ans-green);
+      color: #ffffff;
+      border-radius: 10px 10px 4px 4px;
+    }
+
+    .sym-marked {
+      background: var(--mark-purple);
+      color: #ffffff;
+      border-radius: 50%;
+    }
+
+    .sym-ans-marked {
+      background: var(--mark-purple);
+      color: #ffffff;
+      border-radius: 50%;
+    }
+
+    .sym-ans-marked::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 9px;
+      height: 9px;
+      background: #22c55e;
+      border: 1.5px solid #ffffff;
+      border-radius: 50%;
+    }
+
+    .intro-footer {
+      background: #f8fafc;
+      border-top: 1px solid var(--border-color);
+      padding: 16px 28px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .decl-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #1e293b;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .decl-label input {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .btn-start {
+      background-color: var(--tcs-blue);
+      color: #ffffff;
+      border: none;
+      padding: 11px 28px;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.15s;
+    }
+
+    .btn-start:hover:not(:disabled) {
+      background-color: var(--tcs-blue-dark);
+    }
+
+    .btn-start:disabled {
+      background-color: #94a3b8;
+      cursor: not-allowed;
+    }
+
+    /* ================= EXAM INTERFACE ================= */
+    #exam-screen {
+      height: 100vh;
+      max-height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+    }
+
+    /* Exam Top Header */
+    .exam-topbar {
+      background-color: var(--tcs-header-bg);
+      color: #ffffff;
+      height: 50px;
+      min-height: 50px;
+      padding: 0 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #0f172a;
+      flex-shrink: 0;
+    }
+
+    .exam-top-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      overflow: hidden;
+    }
+
+    .exam-title-text {
+      font-size: 15px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .exam-section-pill {
+      background: #334155;
+      color: #e2e8f0;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .exam-top-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .timer-box {
+      background: #0f172a;
+      border: 1px solid #475569;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #f8fafc;
+    }
+
+    .timer-box.low-time {
+      background: #7f1d1d;
+      border-color: #ef4444;
+      color: #fecaca;
+    }
+
+    .top-ctrl-btn {
+      background: #334155;
+      color: #f8fafc;
+      border: 1px solid #64748b;
+      padding: 5px 11px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+
+    .top-ctrl-btn:hover {
+      background: #475569;
+    }
+
+    /* Exam Main Body (Left Question Workspace + Right Palette Sidebar) */
+    .exam-workspace {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    .question-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
+      background: #ffffff;
+    }
+
+    .question-meta-bar {
+      height: 40px;
+      min-height: 40px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border-color);
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .q-number-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .q-exam-tag {
+      font-size: 11px;
+      font-weight: 600;
+      color: #475569;
+      background-color: #e2e8f0;
+      border: 1px solid #cbd5e1;
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.3px;
+    }
+
+    .question-scroll-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 22px 26px;
+    }
+
+    .q-stem {
+      font-size: 16px;
+      line-height: 1.65;
+      color: #0f172a;
+      font-weight: 500;
+      white-space: pre-line;
+      margin-bottom: 22px;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 880px;
+    }
+
+    .option-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: border-color 0.12s, background-color 0.12s;
+      user-select: none;
+    }
+
+    .option-row:hover {
+      background-color: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    .option-row.selected {
+      background-color: #eff6ff;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px #2563eb;
+    }
+
+    .option-radio {
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      accent-color: #2563eb;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .option-text {
+      font-size: 15px;
+      line-height: 1.5;
+      color: #1e293b;
+      flex: 1;
+    }
+
+    /* Fixed Bottom Control Bar */
+    .exam-bottom-bar {
+      min-height: 58px;
+      background: #f1f5f9;
+      border-top: 1px solid var(--border-color);
+      padding: 8px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .bottom-left-btns, .bottom-right-btns {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .exam-btn {
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s;
+    }
+
+    .exam-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-prev {
+      background: #ffffff;
+      color: #1e293b;
+      border-color: #94a3b8;
+    }
+
+    .btn-prev:hover:not(:disabled) {
+      background: #e2e8f0;
+    }
+
+    .btn-mark {
+      background: #7c3aed;
+      color: #ffffff;
+    }
+
+    .btn-mark:hover {
+      background: #6d28d9;
+    }
+
+    .btn-clear {
+      background: #ffffff;
+      color: #334155;
+      border-color: #94a3b8;
+    }
+
+    .btn-clear:hover {
+      background: #e2e8f0;
+    }
+
+    .btn-next {
+      background: #2563eb;
+      color: #ffffff;
+      padding: 8px 22px;
+    }
+
+    .btn-next:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-submit {
+      background: #16a34a;
+      color: #ffffff;
+      padding: 8px 22px;
+    }
+
+    .btn-submit:hover {
+      background: #15803d;
+    }
+
+    /* Right-side Small Question Palette Sidebar */
+    .palette-sidebar {
+      width: 260px;
+      min-width: 260px;
+      background: #f8fafc;
+      border-left: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    /* Hide right-side palette on mobile phones as instructed */
+    @media (max-width: 768px) {
+      .palette-sidebar {
+        display: none !important;
+      }
+      .exam-section-pill {
+        display: none;
+      }
+      .question-scroll-area {
+        padding: 16px;
+      }
+      .exam-bottom-bar {
+        padding: 8px 12px;
+      }
+      .exam-btn {
+        padding: 7px 11px;
+        font-size: 12px;
+      }
+    }
+
+    .palette-candidate-box {
+      padding: 10px 12px;
+      background: #eff6ff;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .candidate-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #1e3a8a;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .candidate-info {
+      font-size: 12px;
+      font-weight: 700;
+      color: #1e293b;
+      line-height: 1.3;
+    }
+
+    .candidate-sub {
+      font-size: 11px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .palette-legend {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border-color);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 8px;
+      font-size: 11px;
+      color: #334155;
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-item.full-width {
+      grid-column: span 2;
+    }
+
+    .legend-count {
+      width: 22px;
+      height: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .palette-title-bar {
+      background: #1e3a8a;
+      color: #ffffff;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    /* Scrollable Question Palette Container */
+    .palette-grid-wrapper {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+      background: #e2e8f0;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      align-content: start;
+    }
+
+    .q-pal-btn {
+      height: 30px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: transform 0.1s;
+      border: 1px solid #94a3b8;
+      background: #f8fafc;
+      color: #334155;
+      border-radius: 4px;
+    }
+
+    .q-pal-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .q-pal-btn.status-not-visited {
+      background: #f8fafc;
+      color: #334155;
+      border: 1px solid #94a3b8;
+    }
+
+    .q-pal-btn.status-not-answered {
+      background: var(--not-ans-red);
+      color: #ffffff;
+      border-color: #b91c1c;
+      border-radius: 4px 4px 10px 10px;
+    }
+
+    .q-pal-btn.status-answered {
+      background: var(--ans-green);
+      color: #ffffff;
+      border-color: #15803d;
+      border-radius: 10px 10px 4px 4px;
+    }
+
+    .q-pal-btn.status-marked {
+      background: var(--mark-purple);
+      color: #ffffff;
+      border-color: #6d28d9;
+      border-radius: 50%;
+    }
+
+    .q-pal-btn.status-ans-marked {
+      background: var(--mark-purple);
+      color: #ffffff;
+      border-color: #6d28d9;
+      border-radius: 50%;
+    }
+
+    .q-pal-btn.status-ans-marked::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 9px;
+      height: 9px;
+      background: #22c55e;
+      border: 1.5px solid #ffffff;
+      border-radius: 50%;
+    }
+
+    .q-pal-btn.current-q {
+      outline: 2px solid #0f172a;
+      outline-offset: 1px;
+      box-shadow: 0 0 0 2px #ffffff;
+    }
+
+    /* ================= MODALS ================= */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.78);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: 8px;
+      max-width: 480px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25);
+      border: 1px solid #cbd5e1;
+      text-align: center;
+    }
+
+    .modal-card h3 {
+      font-size: 19px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 10px;
+    }
+
+    .modal-card p {
+      font-size: 14px;
+      color: #475569;
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .summary-stat {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 10px 12px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    /* ================= RESULT & ANALYSIS SCREEN ================= */
+    #result-screen {
+      min-height: 100vh;
+      background: #f1f5f9;
+      padding-bottom: 48px;
+    }
+
+    .result-container {
+      max-width: 980px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+
+    .score-card-panel {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+    }
+
+    .score-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e2e8f0;
+      margin-bottom: 20px;
+    }
+
+    .score-header h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .score-sub-badge {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .score-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .stat-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .stat-box .s-val {
+      font-size: 24px;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .stat-box .s-lbl {
+      font-size: 12px;
+      color: #64748b;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .val-blue { color: #2563eb; }
+    .val-green { color: #16a34a; }
+    .val-red { color: #dc2626; }
+    .val-amber { color: #d97706; }
+    .val-purple { color: #7c3aed; }
+
+    .review-header-bar {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .review-title-group h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .review-title-group p {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #334155;
+      cursor: pointer;
+    }
+
+    .filter-btn.active {
+      background: #1e3a8a;
+      color: #ffffff;
+      border-color: #1e3a8a;
+    }
+
+    .solutions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .sol-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+    }
+
+    .sol-card-head {
+      background: #f8fafc;
+      padding: 10px 18px;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .sol-q-num {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .sol-meta-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .pill-incorrect {
+      background: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+
+    .pill-unattempted {
+      background: #fef3c7;
+      color: #b45309;
+      border: 1px solid #fde68a;
+    }
+
+    .sol-card-body {
+      padding: 18px;
+    }
+
+    .sol-q-text {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #0f172a;
+      font-weight: 500;
+      white-space: pre-line;
+      margin-bottom: 14px;
+    }
+
+    .sol-opts {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .sol-opt {
+      padding: 9px 12px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      font-size: 14px;
+      background: #f8fafc;
+      color: #334155;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sol-opt.correct-opt {
+      background: #dcfce7;
+      border-color: #22c55e;
+      color: #14532d;
+      font-weight: 600;
+    }
+
+    .sol-opt.wrong-opt {
+      background: #fee2e2;
+      border-color: #ef4444;
+      color: #7f1d1d;
+    }
+
+    .opt-tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .opt-tag.correct-tag {
+      background: #16a34a;
+      color: #ffffff;
+    }
+
+    .opt-tag.wrong-tag {
+      background: #dc2626;
+      color: #ffffff;
+    }
+
+    .sol-answer-box {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #166534;
+      border-radius: 0 4px 4px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= 1. INITIAL INTRODUCTORY INTERFACE ================= -->
+  <div id="intro-screen">
+    <header class="portal-header">
+      <div class="portal-brand">
+        <span class="portal-badge">CBT Portal</span>
+        <span class="portal-title">SSC / Railway Examination System</span>
+      </div>
+      <div style="font-size: 12px; color: #cbd5e1;">TCS / Eduquity Interface</div>
+    </header>
+
+    <div class="intro-container">
+      <div class="intro-top-banner">
+        <div>
+          <div class="intro-test-name">Emergency & Constitutional Amendments Mock Test</div>
+          <div class="intro-test-sub">Section: Indian Polity — Emergency & Amendments</div>
+        </div>
+        <div class="intro-metrics">
+          <div class="metric-pill">
+            <span class="val" id="intro-total-q">50</span>
+            <span class="lbl">Questions</span>
+          </div>
+          <div class="metric-pill">
+            <span class="val" id="intro-total-min">50 Mins</span>
+            <span class="lbl">Duration</span>
+          </div>
+          <div class="metric-pill">
+            <span class="val">MCQ</span>
+            <span class="lbl">4 Options</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="intro-body">
+        <h3>General Instructions</h3>
+        <ol>
+          <li>The total duration of this mock examination is <strong>50 minutes</strong> for <strong>50 questions</strong> (1 minute per question).</li>
+          <li>The countdown timer in the top right corner of the screen displays the remaining time available for you to complete the examination. When the timer reaches zero, the examination will <strong>submit automatically</strong>.</li>
+          <li>One Multiple Choice Question (MCQ) is displayed on the screen at a time with four options. Options are randomized on every load while the question sequence remains fixed.</li>
+          <li>Selecting an option does not lock or reveal the answer during the test and does not automatically jump to the next question.</li>
+          <li>The Question Palette displayed on the right side of the screen (on desktop/tablet) shows the status of each question using the following standard symbols:</li>
+        </ol>
+
+        <table class="legend-table">
+          <tbody>
+            <tr>
+              <td style="width: 50px; text-align: center;"><span class="sym-box sym-not-visited">1</span></td>
+              <td>You have <strong>not visited</strong> the question yet.</td>
+            </tr>
+            <tr>
+              <td style="text-align: center;"><span class="sym-box sym-not-answered">2</span></td>
+              <td>You have <strong>not answered</strong> the question.</td>
+            </tr>
+            <tr>
+              <td style="text-align: center;"><span class="sym-box sym-answered">3</span></td>
+              <td>You have <strong>answered</strong> the question.</td>
+            </tr>
+            <tr>
+              <td style="text-align: center;"><span class="sym-box sym-marked">4</span></td>
+              <td>You have <strong>NOT answered</strong> the question, but have <strong>marked it for review</strong>.</td>
+            </tr>
+            <tr>
+              <td style="text-align: center;"><span class="sym-box sym-ans-marked">5</span></td>
+              <td>You have <strong>answered</strong> the question and <strong>marked it for review</strong> (will be evaluated for scoring).</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Navigating & Answering a Question</h3>
+        <ul>
+          <li>Click on any option to select your response. To deselect your chosen response, click on the <strong>Clear</strong> button.</li>
+          <li>Click on <strong>Next</strong> to save your current response and move to the next question.</li>
+          <li>Click on <strong>Previous</strong> to navigate back to the preceding question.</li>
+          <li>Click on <strong>Mark for Review &amp; Next</strong> to mark the current question for review and proceed to the next question.</li>
+          <li>Use the <strong>Pause</strong> button if you need to pause the countdown timer, <strong>Exit Fullscreen</strong> to leave full-screen mode, and <strong>Submit</strong> to finish the test and view your score and solutions for incorrect and un-attempted questions.</li>
+        </ul>
+      </div>
+
+      <div class="intro-footer">
+        <label class="decl-label">
+          <input type="checkbox" id="decl-checkbox" checked />
+          <span>I have read and understood all the instructions and am ready to begin the mock test.</span>
+        </label>
+        <button type="button" class="btn-start" id="start-test-btn">Start Mock Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 2. MAIN EXAM INTERFACE ================= -->
+  <div id="exam-screen" class="hidden">
+    <!-- Top Header Bar -->
+    <header class="exam-topbar">
+      <div class="exam-top-left">
+        <span class="exam-title-text">Emergency & Constitutional Amendments Mock Test</span>
+        <span class="exam-section-pill">Indian Polity — Emergency & Amendments</span>
+      </div>
+      <div class="exam-top-right">
+        <div class="timer-box" id="timer-box">
+          <span>Time Left:</span>
+          <span id="timer-display">50:00</span>
+        </div>
+        <button type="button" class="top-ctrl-btn" id="pause-btn">Pause</button>
+        <button type="button" class="top-ctrl-btn" id="exit-fs-btn">Exit Fullscreen</button>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <div class="exam-workspace">
+      <!-- Left: Question & Controls -->
+      <div class="question-column">
+        <div class="question-meta-bar">
+          <div class="q-number-label" id="q-number-label">Question No. 1 of 50</div>
+          <span class="q-exam-tag hidden" id="q-exam-tag"></span>
+        </div>
+
+        <div class="question-scroll-area" id="question-scroll-area">
+          <div class="q-stem" id="q-stem"></div>
+          <div class="options-list" id="options-list"></div>
+        </div>
+
+        <div class="exam-bottom-bar">
+          <div class="bottom-left-btns">
+            <button type="button" class="exam-btn btn-prev" id="prev-btn">Previous</button>
+            <button type="button" class="exam-btn btn-mark" id="mark-next-btn">Mark for Review &amp; Next</button>
+            <button type="button" class="exam-btn btn-clear" id="clear-btn">Clear</button>
+          </div>
+          <div class="bottom-right-btns">
+            <button type="button" class="exam-btn btn-next" id="next-btn">Next</button>
+            <button type="button" class="exam-btn btn-submit" id="submit-btn">Submit</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Small Scrollable Question Palette Sidebar -->
+      <aside class="palette-sidebar" id="palette-sidebar">
+        <div class="palette-candidate-box">
+          <div class="candidate-avatar">C</div>
+          <div>
+            <div class="candidate-info">Candidate</div>
+            <div class="candidate-sub">Indian Polity — Emergency & Amendments</div>
+          </div>
+        </div>
+
+        <div class="palette-legend">
+          <div class="legend-item">
+            <span class="legend-count sym-answered" id="count-answered">0</span>
+            <span>Answered</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-count sym-not-answered" id="count-not-answered">1</span>
+            <span>Not Answered</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-count sym-not-visited" id="count-not-visited">0</span>
+            <span>Not Visited</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-count sym-marked" id="count-marked">0</span>
+            <span>Marked</span>
+          </div>
+          <div class="legend-item full-width">
+            <span class="legend-count sym-ans-marked" id="count-ans-marked">0</span>
+            <span>Answered &amp; Marked for Review</span>
+          </div>
+        </div>
+
+        <div class="palette-title-bar">Question Palette</div>
+
+        <div class="palette-grid-wrapper" id="palette-grid-wrapper">
+          <div class="palette-grid" id="palette-grid"></div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Pause Modal -->
+    <div class="modal-overlay hidden" id="pause-modal">
+      <div class="modal-card">
+        <h3>Examination Paused</h3>
+        <p>Your countdown timer is currently paused. Click the button below when you are ready to resume the test.</p>
+        <div class="modal-actions">
+          <button type="button" class="exam-btn btn-next" id="resume-btn">Resume Test</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Confirmation Modal -->
+    <div class="modal-overlay hidden" id="submit-modal">
+      <div class="modal-card">
+        <h3>Submit Mock Test?</h3>
+        <p>Please review your attempt summary before final submission:</p>
+        <div class="summary-grid">
+          <div class="summary-stat">
+            <span>Answered:</span>
+            <span id="modal-ans-count" style="color: #16a34a;">0</span>
+          </div>
+          <div class="summary-stat">
+            <span>Not Answered:</span>
+            <span id="modal-not-ans-count" style="color: #dc2626;">0</span>
+          </div>
+          <div class="summary-stat">
+            <span>Marked for Review:</span>
+            <span id="modal-mark-count" style="color: #7c3aed;">0</span>
+          </div>
+          <div class="summary-stat">
+            <span>Not Visited:</span>
+            <span id="modal-not-vis-count" style="color: #475569;">0</span>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="exam-btn btn-clear" id="cancel-submit-btn">Back to Test</button>
+          <button type="button" class="exam-btn btn-submit" id="confirm-submit-btn">Confirm Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 3. POST-SUBMISSION SCORE & SOLUTIONS SCREEN ================= -->
+  <div id="result-screen" class="hidden">
+    <header class="portal-header">
+      <div class="portal-brand">
+        <span class="portal-badge">Result &amp; Analysis</span>
+        <span class="portal-title">Emergency & Constitutional Amendments Mock Test</span>
+      </div>
+      <button type="button" class="top-ctrl-btn" id="retake-btn">Retake Mock Test</button>
+    </header>
+
+    <div class="result-container">
+      <div class="score-card-panel">
+        <div class="score-header">
+          <h2>Performance Summary</h2>
+          <span class="score-sub-badge" id="submission-mode-badge">Submitted</span>
+        </div>
+
+        <div class="score-stats-grid">
+          <div class="stat-box">
+            <span class="s-val val-blue" id="res-score">0 / 50</span>
+            <span class="s-lbl">Final Score</span>
+          </div>
+          <div class="stat-box">
+            <span class="s-val val-purple" id="res-attempted">0</span>
+            <span class="s-lbl">Attempted</span>
+          </div>
+          <div class="stat-box">
+            <span class="s-val val-green" id="res-correct">0</span>
+            <span class="s-lbl">Correct</span>
+          </div>
+          <div class="stat-box">
+            <span class="s-val val-red" id="res-incorrect">0</span>
+            <span class="s-lbl">Incorrect</span>
+          </div>
+          <div class="stat-box">
+            <span class="s-val val-amber" id="res-unattempted">0</span>
+            <span class="s-lbl">Un-attempted</span>
+          </div>
+          <div class="stat-box">
+            <span class="s-val val-blue" id="res-accuracy">0%</span>
+            <span class="s-lbl">Accuracy</span>
+          </div>
+          <div class="stat-box">
+            <span class="s-val" id="res-time" style="color: #334155;">00:00</span>
+            <span class="s-lbl">Time Taken</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-header-bar">
+        <div class="review-title-group">
+          <h3>Solutions for Incorrect &amp; Un-attempted Questions</h3>
+          <p>As per exam review rules, solutions and answers are displayed exclusively for incorrect and un-attempted questions.</p>
+        </div>
+        <div class="filter-tabs">
+          <button type="button" class="filter-btn active" id="filter-all-btn">All (<span id="f-all-cnt">0</span>)</button>
+          <button type="button" class="filter-btn" id="filter-wrong-btn">Incorrect (<span id="f-wrong-cnt">0</span>)</button>
+          <button type="button" class="filter-btn" id="filter-unatt-btn">Un-attempted (<span id="f-unatt-cnt">0</span>)</button>
+        </div>
+      </div>
+
+      <div class="solutions-list" id="solutions-list"></div>
+    </div>
+  </div>
+
+  <script>
+    const MASTER_QUESTIONS = [{"q": "Under which Part of the Indian Constitution are the Emergency Provisions mentioned?", "options": ["Part XVIII", "Part XX", "Part XI", "Part XVII"], "answer": "Part XVIII", "tag": ""}, {"q": "From which country's constitution were the Emergency Provisions borrowed?", "options": ["Weimar Constitution of Germany", "Constitution of South Africa", "Constitution of Ireland", "Constitution of the USA"], "answer": "Weimar Constitution of Germany", "tag": ""}, {"q": "Which article deals with the proclamation of a National Emergency?", "options": ["Article 352", "Article 356", "Article 360", "Article 355"], "answer": "Article 352", "tag": ""}, {"q": "The term 'Cabinet' was inserted into Article 352 of the Constitution by which Amendment Act?", "options": ["44th Constitutional Amendment Act", "42nd Constitutional Amendment Act", "101st Constitutional Amendment Act", "24th Constitutional Amendment Act"], "answer": "44th Constitutional Amendment Act", "tag": ""}, {"q": "Within what time frame must the Proclamation of National Emergency be approved by both Houses of the Parliament?", "options": ["Within 1 month from the date of its issue", "Within 2 months from the date of its issue", "Within 6 months from the date of its issue", "Within 14 days from the date of its issue"], "answer": "Within 1 month from the date of its issue", "tag": ""}, {"q": "What type of majority is required in Parliament to approve the Proclamation of a National Emergency?", "options": ["Special Majority", "Simple Majority", "Absolute Majority", "Effective Majority"], "answer": "Special Majority", "tag": ""}, {"q": "Which of the following is NOT a ground for proclaiming a National Emergency under Article 352?", "options": ["Internal Disturbance", "War", "External Aggression", "Armed Rebellion"], "answer": "Internal Disturbance", "tag": ""}, {"q": "The term 'Armed Rebellion' replaced 'Internal Disturbance' through which Constitutional Amendment?", "options": ["44th Amendment, 1978", "42nd Amendment, 1976", "24th Amendment, 1971", "104th Amendment, 2020"], "answer": "44th Amendment, 1978", "tag": ""}, {"q": "Who has the authority to revoke a National Emergency at any time without Parliamentary approval?", "options": ["The President", "The Prime Minister", "The Chief Justice of India", "The Union Home Minister"], "answer": "The President", "tag": ""}, {"q": "If the Lok Sabha passes a resolution approving the discontinuation of a National Emergency, what kind of majority is required?", "options": ["Simple Majority", "Special Majority", "Special Majority with State Ratification", "Absolute Majority"], "answer": "Simple Majority", "tag": ""}, {"q": "During a National Emergency, the federal system of India transforms into which nature?", "options": ["Unitary", "Quasi-federal", "Confederal", "Dictatorial"], "answer": "Unitary", "tag": ""}, {"q": "Laws made by Parliament on state list subjects during a National Emergency become inoperative after what duration once the emergency ceases?", "options": ["6 months", "1 year", "3 months", "Immediately"], "answer": "6 months", "tag": ""}, {"q": "During a National Emergency, the life of the Lok Sabha may be extended by how much time at once?", "options": ["1 year at a time", "6 months at a time", "2 years at a time", "Indefinitely"], "answer": "1 year at a time", "tag": ""}, {"q": "Which article deals with the automatic suspension of Fundamental Rights guaranteed by Article 19?", "options": ["Article 358", "Article 359", "Article 356", "Article 355"], "answer": "Article 358", "tag": ""}, {"q": "Article 19 can ONLY be suspended on which of the following grounds?", "options": ["War and external aggression", "Armed rebellion", "Financial instability", "Failure of constitutional machinery"], "answer": "War and external aggression", "tag": ""}, {"q": "Which Fundamental Rights can NEVER be suspended during a National Emergency?", "options": ["Article 20 and 21", "Article 19 and 21", "Article 14 and 19", "Article 25 and 26"], "answer": "Article 20 and 21", "tag": ""}, {"q": "Who was the Prime Minister of India during the 1962 Indo-China War National Emergency?", "options": ["Jawahar Lal Nehru", "Indira Gandhi", "Lal Bahadur Shastri", "Morarji Desai"], "answer": "Jawahar Lal Nehru", "tag": ""}, {"q": "Who was the President of India when the National Emergency due to Internal Disturbances was declared in 1975?", "options": ["Fakhruddin Ali Ahmed", "V.V. Giri", "Zail Singh", "Dr. S. Radhakrishnan"], "answer": "Fakhruddin Ali Ahmed", "tag": ""}, {"q": "What date is associated with 'Samvidhan Hatya Diwas' as mentioned in the notes?", "options": ["25th June", "26th November", "25th December", "26th January"], "answer": "25th June", "tag": ""}, {"q": "Which Article mandates the duty of the Centre to protect every state against external aggression?", "options": ["Article 355", "Article 356", "Article 360", "Article 263"], "answer": "Article 355", "tag": ""}, {"q": "Which of the following describes a ground for imposing President's Rule (Article 356)?", "options": ["Whenever a state fails to comply with any direction from the centre", "Threat to the financial stability of the state", "Armed rebellion within state borders", "Resignation of the state Governor"], "answer": "Whenever a state fails to comply with any direction from the centre", "tag": ""}, {"q": "President's Rule must be approved by both Houses of Parliament within what time frame?", "options": ["Within 2 months", "Within 1 month", "Within 6 months", "Within 14 days"], "answer": "Within 2 months", "tag": ""}, {"q": "What is the maximum period for which President's Rule can be extended?", "options": ["3 years", "1 year", "5 years", "Indefinite period"], "answer": "3 years", "tag": ""}, {"q": "In which state was President's Rule imposed for the very first time in 1951?", "options": ["Punjab", "Manipur", "Uttar Pradesh", "Kerala"], "answer": "Punjab", "tag": ""}, {"q": "According to the notes, which state has undergone President's Rule the most number of times (11)?", "options": ["Manipur", "Uttar Pradesh", "Punjab", "Jammu & Kashmir"], "answer": "Manipur", "tag": ""}, {"q": "What is the effect of President's Rule on Fundamental Rights?", "options": ["There is no effect on FRs", "All FRs are suspended", "Only Article 19 is suspended", "Right to move court is suspended"], "answer": "There is no effect on FRs", "tag": ""}, {"q": "Which Supreme Court case significantly curtailed the misuse of Article 356 and held it subject to Judicial Review?", "options": ["S. R. Bommai Case (1994)", "Kesavananda Bharati Case (1973)", "Minerva Mills Case (1980)", "Golaknath Case (1967)"], "answer": "S. R. Bommai Case (1994)", "tag": ""}, {"q": "Who stated that Article 356 'should be used as a last resort and as a means of final recourse'?", "options": ["B. R. Ambedkar", "Jawahar Lal Nehru", "Rajendra Prasad", "K.C. Wheare"], "answer": "B. R. Ambedkar", "tag": ""}, {"q": "A Financial Emergency (Article 360) must be approved by the Parliament by which majority?", "options": ["Simple Majority", "Special Majority", "Absolute Majority", "Special Majority with State Ratification"], "answer": "Simple Majority", "tag": ""}, {"q": "How many times has a Financial Emergency been imposed in India till now?", "options": ["Zero", "One", "Two", "Three"], "answer": "Zero", "tag": ""}, {"q": "Which commission was set up by the Tamil Nadu government in 1969 to deal with Centre-State relations?", "options": ["Rajamannar Commission", "Sarkaria Commission", "Punchhi Commission", "Kothari Commission"], "answer": "Rajamannar Commission", "tag": ""}, {"q": "Who serves as the Chairman of the Inter-State Council (ISC) established under Article 263?", "options": ["Prime Minister", "Union Home Minister", "President", "Chief Justice of India"], "answer": "Prime Minister", "tag": ""}, {"q": "Zonal Councils are what type of bodies in India?", "options": ["Statutory bodies", "Constitutional bodies", "Extra-constitutional autonomous bodies", "Judicial bodies"], "answer": "Statutory bodies", "tag": ""}, {"q": "Who acts as the Chairman of a Zonal Council?", "options": ["Union Home Minister", "Prime Minister", "President", "Respective Chief Minister by rotation"], "answer": "Union Home Minister", "tag": ""}, {"q": "Under which Part of the Constitution is the procedure for Constitutional Amendment mentioned?", "options": ["Part XX", "Part XVIII", "Part XI", "Part XVII"], "answer": "Part XX", "tag": ""}, {"q": "The procedure for Constitutional Amendment in India was borrowed from which country?", "options": ["South Africa", "Germany", "USA", "Britain"], "answer": "South Africa", "tag": ""}, {"q": "In which case was the 'Basic Structure' of the Constitution born?", "options": ["Kesavananda Bharati Case (1973)", "Minerva Mills Case (1980)", "S. R. Bommai Case (1994)", "Golaknath Case (1967)"], "answer": "Kesavananda Bharati Case (1973)", "tag": ""}, {"q": "Which Constitutional Amendment made it obligatory for the President to give his/her assent to a Constitutional Amendment Bill?", "options": ["24th CA, 1971", "42nd CA, 1976", "44th CA, 1978", "101st CA, 2016"], "answer": "24th CA, 1971", "tag": ""}, {"q": "Can a Constitutional Amendment Bill be introduced in a State Legislature?", "options": ["No, it can be introduced in either house of Parliament (LS/RS) only", "Yes, with prior permission of the Governor", "Yes, but only for matters concerning the state", "No, it must be introduced in the Lok Sabha only"], "answer": "No, it can be introduced in either house of Parliament (LS/RS) only", "tag": ""}, {"q": "Which of the following requires a Special Majority to be amended?", "options": ["Fundamental Rights", "Admission of a new state", "Use of official language", "Quorum in Parliament"], "answer": "Fundamental Rights", "tag": ""}, {"q": "Amending the distribution of Legislative powers between the centre and states requires which type of majority?", "options": ["Special Majority + Ratification of at least 1/2 of the States", "Simple majority of Parliament", "Special majority of Parliament only", "Absolute majority of Parliament"], "answer": "Special Majority + Ratification of at least 1/2 of the States", "tag": ""}, {"q": "Who commented that the amending procedure strikes a good balance between rigidity and flexibility?", "options": ["K.C. Wheare", "Granville Austin", "B.R. Ambedkar", "Ivor Jennings"], "answer": "K.C. Wheare", "tag": ""}, {"q": "Which Amendment is known as the 'Mini Constitution' due to the extensive changes it brought?", "options": ["42nd Amendment", "44th Amendment", "24th Amendment", "101st Amendment"], "answer": "42nd Amendment", "tag": ""}, {"q": "What does the 101st Constitutional Amendment Act, 2016 relate to?", "options": ["GST", "Economically Weaker Section (EWS) reservation", "National Commission for Backward Classes (NCBC)", "India-Bangladesh land boundary agreement"], "answer": "GST", "tag": ""}, {"q": "Which recent amendment reserved 1/3rd of seats in the Lok Sabha and Legislative Assemblies for women?", "options": ["106th CA, 2023", "105th CA, 2021", "104th CA, 2020", "103rd CA, 2019"], "answer": "106th CA, 2023", "tag": ""}, {"q": "Part XI of the Constitution deals with the legislative relations between the Centre and states in which articles?", "options": ["Articles 245 to 255", "Articles 256 to 263", "Articles 268 to 293", "Articles 343 to 351"], "answer": "Articles 245 to 255", "tag": ""}, {"q": "Which Part of the Constitution contains Articles 268 to 293 dealing with Centre-State financial relations?", "options": ["Part XII", "Part XI", "Part XVII", "Part XX"], "answer": "Part XII", "tag": ""}, {"q": "Official Languages are detailed in Part XVII of the Constitution covering which Articles?", "options": ["Article 343-351", "Article 352-360", "Article 245-255", "Article 256-263"], "answer": "Article 343-351", "tag": ""}, {"q": "Which Article deals with the facilities for instruction in the mother tongue at the primary stage?", "options": ["Art. 350 A", "Art. 350 B", "Art. 348", "Art. 351"], "answer": "Art. 350 A", "tag": ""}, {"q": "According to Article 351, what directive is provided?", "options": ["Directive for the development of Hindi Language", "Directive for recognizing regional languages", "Directive for language to be used in courts", "Directive for appointing a Special Officer for Linguistic Minorities"], "answer": "Directive for the development of Hindi Language", "tag": ""}];
+
+    // Exam State
+    let examQuestions = [];
+    let currentIndex = 0;
+    let totalSeconds = MASTER_QUESTIONS.length * 60;
+    let remainingSeconds = totalSeconds;
+    let timerInterval = null;
+    let isPaused = false;
+    let currentFilter = 'all';
+
+    // Fisher-Yates shuffle for option randomization ONLY (question order stays fixed)
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function initExamData() {
+      // Keep questions in exact source order; randomize only the 4 options per question
+      examQuestions = MASTER_QUESTIONS.map((item, idx) => ({
+        index: idx,
+        q: item.q,
+        options: shuffleArray(item.options),
+        answer: item.answer,
+        tag: item.tag || '',
+        selected: null,
+        status: idx === 0 ? 'not-answered' : 'not-visited'
+      }));
+      currentIndex = 0;
+      totalSeconds = MASTER_QUESTIONS.length * 60;
+      remainingSeconds = totalSeconds;
+      isPaused = false;
+    }
+
+    // Fullscreen Helpers
+    function enterFullscreen() {
+      try {
+        const el = document.documentElement;
+        if (el.requestFullscreen) {
+          el.requestFullscreen().catch(() => {});
+        } else if (el.webkitRequestFullscreen) {
+          el.webkitRequestFullscreen();
+        }
+      } catch (e) {}
+    }
+
+    function exitFullscreen() {
+      try {
+        if (document.fullscreenElement && document.exitFullscreen) {
+          document.exitFullscreen().catch(() => {});
+        } else if (document.webkitFullscreenElement && document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      } catch (e) {}
+    }
+
+    // Format seconds as MM:SS
+    function formatTime(secs) {
+      const m = Math.floor(secs / 60);
+      const s = secs % 60;
+      return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    }
+
+    function updateTimerUI() {
+      const disp = document.getElementById('timer-display');
+      const box = document.getElementById('timer-box');
+      disp.textContent = formatTime(remainingSeconds);
+      if (remainingSeconds <= 300) {
+        box.classList.add('low-time');
+      } else {
+        box.classList.remove('low-time');
+      }
+    }
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      updateTimerUI();
+      timerInterval = setInterval(() => {
+        if (isPaused) return;
+        remainingSeconds--;
+        if (remainingSeconds <= 0) {
+          remainingSeconds = 0;
+          updateTimerUI();
+          clearInterval(timerInterval);
+          finalizeSubmission(true);
+        } else {
+          updateTimerUI();
+        }
+      }, 1000);
+    }
+
+    function buildPalette() {
+      const grid = document.getElementById('palette-grid');
+      grid.innerHTML = '';
+      examQuestions.forEach((item, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.id = 'pal-btn-' + idx;
+        btn.className = 'q-pal-btn status-' + item.status + (idx === currentIndex ? ' current-q' : '');
+        btn.textContent = idx + 1;
+        btn.addEventListener('click', () => jumpToQuestion(idx));
+        grid.appendChild(btn);
+      });
+      updatePaletteCounts();
+    }
+
+    function updatePaletteUI() {
+      examQuestions.forEach((item, idx) => {
+        const btn = document.getElementById('pal-btn-' + idx);
+        if (btn) {
+          btn.className = 'q-pal-btn status-' + item.status + (idx === currentIndex ? ' current-q' : '');
+        }
+      });
+      const activeBtn = document.getElementById('pal-btn-' + currentIndex);
+      if (activeBtn) {
+        activeBtn.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
+      updatePaletteCounts();
+    }
+
+    function updatePaletteCounts() {
+      let ans = 0, notAns = 0, notVis = 0, mark = 0, ansMark = 0;
+      examQuestions.forEach(item => {
+        if (item.status === 'answered') ans++;
+        else if (item.status === 'not-answered') notAns++;
+        else if (item.status === 'not-visited') notVis++;
+        else if (item.status === 'marked') mark++;
+        else if (item.status === 'ans-marked') ansMark++;
+      });
+      document.getElementById('count-answered').textContent = ans;
+      document.getElementById('count-not-answered').textContent = notAns;
+      document.getElementById('count-not-visited').textContent = notVis;
+      document.getElementById('count-marked').textContent = mark;
+      document.getElementById('count-ans-marked').textContent = ansMark;
+    }
+
+    function renderCurrentQuestion() {
+      const item = examQuestions[currentIndex];
+      if (item.status === 'not-visited') {
+        item.status = 'not-answered';
+      }
+
+      document.getElementById('q-number-label').textContent =
+        'Question No. ' + (currentIndex + 1) + ' of ' + examQuestions.length;
+
+      const tagEl = document.getElementById('q-exam-tag');
+      if (item.tag) {
+        tagEl.textContent = item.tag;
+        tagEl.classList.remove('hidden');
+      } else {
+        tagEl.textContent = '';
+        tagEl.classList.add('hidden');
+      }
+
+      document.getElementById('q-stem').textContent = item.q;
+
+      const optsList = document.getElementById('options-list');
+      optsList.innerHTML = '';
+
+      const letters = ['A', 'B', 'C', 'D'];
+      item.options.forEach((optText, oIdx) => {
+        const row = document.createElement('div');
+        const isSelected = item.selected === optText;
+        row.className = 'option-row' + (isSelected ? ' selected' : '');
+
+        const radio = document.createElement('input');
+        radio.type = 'radio';
+        radio.name = 'mcq-option';
+        radio.className = 'option-radio';
+        radio.checked = isSelected;
+
+        const txt = document.createElement('div');
+        txt.className = 'option-text';
+        txt.textContent = '(' + letters[oIdx] + ') ' + optText;
+
+        row.appendChild(radio);
+        row.appendChild(txt);
+
+        row.addEventListener('click', () => {
+          item.selected = optText;
+          if (item.status === 'marked' || item.status === 'ans-marked') {
+            item.status = 'ans-marked';
+          } else {
+            item.status = 'answered';
+          }
+          renderCurrentQuestion();
+        });
+
+        optsList.appendChild(row);
+      });
+
+      document.getElementById('prev-btn').disabled = currentIndex === 0;
+      updatePaletteUI();
+    }
+
+    function syncStatusOnLeave() {
+      const item = examQuestions[currentIndex];
+      if (item.status === 'marked' || item.status === 'ans-marked') {
+        item.status = item.selected !== null ? 'ans-marked' : 'marked';
+      } else {
+        item.status = item.selected !== null ? 'answered' : 'not-answered';
+      }
+    }
+
+    function jumpToQuestion(targetIdx) {
+      syncStatusOnLeave();
+      currentIndex = targetIdx;
+      renderCurrentQuestion();
+      document.getElementById('question-scroll-area').scrollTop = 0;
+    }
+
+    function handleNext() {
+      const item = examQuestions[currentIndex];
+      item.status = item.selected !== null ? 'answered' : 'not-answered';
+      if (currentIndex < examQuestions.length - 1) {
+        currentIndex++;
+      }
+      renderCurrentQuestion();
+      document.getElementById('question-scroll-area').scrollTop = 0;
+    }
+
+    function handlePrevious() {
+      if (currentIndex > 0) {
+        syncStatusOnLeave();
+        currentIndex--;
+        renderCurrentQuestion();
+        document.getElementById('question-scroll-area').scrollTop = 0;
+      }
+    }
+
+    function handleMarkAndNext() {
+      const item = examQuestions[currentIndex];
+      item.status = item.selected !== null ? 'ans-marked' : 'marked';
+      if (currentIndex < examQuestions.length - 1) {
+        currentIndex++;
+      }
+      renderCurrentQuestion();
+      document.getElementById('question-scroll-area').scrollTop = 0;
+    }
+
+    function handleClear() {
+      const item = examQuestions[currentIndex];
+      item.selected = null;
+      item.status = 'not-answered';
+      renderCurrentQuestion();
+    }
+
+    function togglePause(pauseState) {
+      isPaused = pauseState;
+      const modal = document.getElementById('pause-modal');
+      if (isPaused) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+
+    function openSubmitModal() {
+      syncStatusOnLeave();
+      updatePaletteUI();
+      let ans = 0, notAns = 0, mark = 0, notVis = 0;
+      examQuestions.forEach(item => {
+        if (item.status === 'answered' || item.status === 'ans-marked') ans++;
+        else if (item.status === 'not-answered') notAns++;
+        else if (item.status === 'marked') mark++;
+        else if (item.status === 'not-visited') notVis++;
+      });
+      document.getElementById('modal-ans-count').textContent = ans;
+      document.getElementById('modal-not-ans-count').textContent = notAns;
+      document.getElementById('modal-mark-count').textContent = mark;
+      document.getElementById('modal-not-vis-count').textContent = notVis;
+      document.getElementById('submit-modal').classList.remove('hidden');
+    }
+
+    function finalizeSubmission(autoSubmitted) {
+      if (timerInterval) clearInterval(timerInterval);
+      document.getElementById('submit-modal').classList.add('hidden');
+      document.getElementById('pause-modal').classList.add('hidden');
+      document.getElementById('exam-screen').classList.add('hidden');
+      document.getElementById('result-screen').classList.remove('hidden');
+      exitFullscreen();
+
+      let attempted = 0, correct = 0, incorrect = 0, unattempted = 0;
+      examQuestions.forEach(item => {
+        if (item.selected !== null) {
+          attempted++;
+          if (item.selected === item.answer) {
+            correct++;
+          } else {
+            incorrect++;
+          }
+        } else {
+          unattempted++;
+        }
+      });
+
+      const total = examQuestions.length;
+      const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+      const timeTaken = totalSeconds - remainingSeconds;
+
+      document.getElementById('submission-mode-badge').textContent =
+        autoSubmitted ? 'Auto-Submitted (Time Expired)' : 'Submitted by Candidate';
+      document.getElementById('res-score').textContent = correct + ' / ' + total;
+      document.getElementById('res-attempted').textContent = attempted;
+      document.getElementById('res-correct').textContent = correct;
+      document.getElementById('res-incorrect').textContent = incorrect;
+      document.getElementById('res-unattempted').textContent = unattempted;
+      document.getElementById('res-accuracy').textContent = accuracy + '%';
+      document.getElementById('res-time').textContent = formatTime(timeTaken);
+
+      document.getElementById('f-all-cnt').textContent = incorrect + unattempted;
+      document.getElementById('f-wrong-cnt').textContent = incorrect;
+      document.getElementById('f-unatt-cnt').textContent = unattempted;
+
+      currentFilter = 'all';
+      updateFilterTabs();
+      renderSolutions();
+      window.scrollTo(0, 0);
+    }
+
+    function updateFilterTabs() {
+      document.getElementById('filter-all-btn').classList.toggle('active', currentFilter === 'all');
+      document.getElementById('filter-wrong-btn').classList.toggle('active', currentFilter === 'wrong');
+      document.getElementById('filter-unatt-btn').classList.toggle('active', currentFilter === 'unattempted');
+    }
+
+    function renderSolutions() {
+      const container = document.getElementById('solutions-list');
+      container.innerHTML = '';
+
+      // Strictly filter ONLY incorrect & un-attempted questions
+      const filtered = examQuestions.filter(item => {
+        const isCorrect = item.selected !== null && item.selected === item.answer;
+        if (isCorrect) return false;
+        const isWrong = item.selected !== null && item.selected !== item.answer;
+        const isUnatt = item.selected === null;
+        if (currentFilter === 'wrong') return isWrong;
+        if (currentFilter === 'unattempted') return isUnatt;
+        return isWrong || isUnatt;
+      });
+
+      if (filtered.length === 0) {
+        const emptyCard = document.createElement('div');
+        emptyCard.className = 'score-card-panel';
+        emptyCard.style.textAlign = 'center';
+        emptyCard.style.color = '#475569';
+        emptyCard.textContent = 'No questions found in this category.';
+        container.appendChild(emptyCard);
+        return;
+      }
+
+      const letters = ['A', 'B', 'C', 'D'];
+      filtered.forEach(item => {
+        const isWrong = item.selected !== null && item.selected !== item.answer;
+        const card = document.createElement('div');
+        card.className = 'sol-card';
+
+        const head = document.createElement('div');
+        head.className = 'sol-card-head';
+
+        const qNum = document.createElement('span');
+        qNum.className = 'sol-q-num';
+        qNum.textContent = 'Question No. ' + (item.index + 1);
+
+        const metaRight = document.createElement('div');
+        metaRight.className = 'sol-meta-right';
+
+        if (item.tag) {
+          const tagSpan = document.createElement('span');
+          tagSpan.className = 'q-exam-tag';
+          tagSpan.textContent = item.tag;
+          metaRight.appendChild(tagSpan);
+        }
+
+        const statusPill = document.createElement('span');
+        statusPill.className = 'status-pill ' + (isWrong ? 'pill-incorrect' : 'pill-unattempted');
+        statusPill.textContent = isWrong ? 'Incorrect' : 'Un-attempted';
+        metaRight.appendChild(statusPill);
+
+        head.appendChild(qNum);
+        head.appendChild(metaRight);
+
+        const body = document.createElement('div');
+        body.className = 'sol-card-body';
+
+        const stem = document.createElement('div');
+        stem.className = 'sol-q-text';
+        stem.textContent = item.q;
+        body.appendChild(stem);
+
+        const optsDiv = document.createElement('div');
+        optsDiv.className = 'sol-opts';
+
+        item.options.forEach((optText, oIdx) => {
+          const optRow = document.createElement('div');
+          const isCorrectOpt = optText === item.answer;
+          const isUserWrongOpt = isWrong && optText === item.selected;
+
+          optRow.className = 'sol-opt' +
+            (isCorrectOpt ? ' correct-opt' : '') +
+            (isUserWrongOpt ? ' wrong-opt' : '');
+
+          const txtSpan = document.createElement('span');
+          txtSpan.textContent = '(' + letters[oIdx] + ') ' + optText;
+          optRow.appendChild(txtSpan);
+
+          if (isCorrectOpt) {
+            const badge = document.createElement('span');
+            badge.className = 'opt-tag correct-tag';
+            badge.textContent = 'Correct Answer';
+            optRow.appendChild(badge);
+          } else if (isUserWrongOpt) {
+            const badge = document.createElement('span');
+            badge.className = 'opt-tag wrong-tag';
+            badge.textContent = 'Your Selection';
+            optRow.appendChild(badge);
+          }
+
+          optsDiv.appendChild(optRow);
+        });
+
+        body.appendChild(optsDiv);
+
+        const solBox = document.createElement('div');
+        solBox.className = 'sol-answer-box';
+        solBox.innerHTML = '<strong>Solution / Correct Option:</strong> ' + item.answer;
+        body.appendChild(solBox);
+
+        card.appendChild(head);
+        card.appendChild(body);
+        container.appendChild(card);
+      });
+    }
+
+    // Event Listeners Setup
+    window.addEventListener('DOMContentLoaded', () => {
+      const declCheckbox = document.getElementById('decl-checkbox');
+      const startBtn = document.getElementById('start-test-btn');
+
+      declCheckbox.addEventListener('change', () => {
+        startBtn.disabled = !declCheckbox.checked;
+      });
+
+      startBtn.addEventListener('click', () => {
+        initExamData();
+        document.getElementById('intro-screen').classList.add('hidden');
+        document.getElementById('result-screen').classList.add('hidden');
+        document.getElementById('exam-screen').classList.remove('hidden');
+        enterFullscreen();
+        buildPalette();
+        renderCurrentQuestion();
+        startTimer();
+      });
+
+      document.getElementById('next-btn').addEventListener('click', handleNext);
+      document.getElementById('prev-btn').addEventListener('click', handlePrevious);
+      document.getElementById('mark-next-btn').addEventListener('click', handleMarkAndNext);
+      document.getElementById('clear-btn').addEventListener('click', handleClear);
+
+      document.getElementById('pause-btn').addEventListener('click', () => togglePause(true));
+      document.getElementById('resume-btn').addEventListener('click', () => togglePause(false));
+      document.getElementById('exit-fs-btn').addEventListener('click', exitFullscreen);
+
+      document.getElementById('submit-btn').addEventListener('click', openSubmitModal);
+      document.getElementById('cancel-submit-btn').addEventListener('click', () => {
+        document.getElementById('submit-modal').classList.add('hidden');
+      });
+      document.getElementById('confirm-submit-btn').addEventListener('click', () => {
+        finalizeSubmission(false);
+      });
+
+      document.getElementById('filter-all-btn').addEventListener('click', () => {
+        currentFilter = 'all';
+        updateFilterTabs();
+        renderSolutions();
+      });
+      document.getElementById('filter-wrong-btn').addEventListener('click', () => {
+        currentFilter = 'wrong';
+        updateFilterTabs();
+        renderSolutions();
+      });
+      document.getElementById('filter-unatt-btn').addEventListener('click', () => {
+        currentFilter = 'unattempted';
+        updateFilterTabs();
+        renderSolutions();
+      });
+
+      document.getElementById('retake-btn').addEventListener('click', () => {
+        document.getElementById('result-screen').classList.add('hidden');
+        document.getElementById('intro-screen').classList.remove('hidden');
+      });
+    });
+  </script>
+</body>
+</html>

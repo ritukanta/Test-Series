@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mock Test - Biology: Diseases (SSC Pattern)</title>
+    <style>
+        :root {
+            --primary-bg: #f4f6f8;
+            --header-bg: #2196f3;
+            --panel-bg: #ffffff;
+            --border-color: #ddd;
+            --btn-blue: #1976d2;
+            --btn-green: #4caf50;
+            --btn-orange: #ff9800;
+            --btn-red: #f44336;
+            --btn-purple: #9c27b0;
+            --text-dark: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-dark);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Start Screen */
+        #start-screen {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #start-screen h1 {
+            margin-bottom: 20px;
+            color: var(--btn-blue);
+        }
+
+        #start-screen p {
+            margin-bottom: 30px;
+            text-align: center;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .primary-btn {
+            background-color: var(--btn-blue);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .primary-btn:hover { background-color: #1565c0; }
+
+        /* Header */
+        header {
+            background-color: var(--header-bg);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .header-controls button {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid white;
+            color: white;
+            padding: 5px 15px;
+            margin-left: 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .header-controls button:hover {
+            background: white;
+            color: var(--header-bg);
+        }
+
+        /* Main Layout */
+        #main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        #left-panel {
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            background: var(--panel-bg);
+            border-right: 2px solid var(--border-color);
+        }
+
+        #right-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #e9ecef;
+            min-width: 250px;
+        }
+
+        /* Question Area */
+        #question-header {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: bold;
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .exam-tag {
+            font-size: 12px;
+            color: #666;
+            font-weight: normal;
+        }
+
+        #question-body {
+            padding: 20px;
+            flex: 1;
+            overflow-y: auto;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .option-container {
+            margin-top: 15px;
+        }
+
+        .option-label {
+            display: block;
+            padding: 10px;
+            margin-bottom: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .option-label:hover {
+            background-color: #f1f1f1;
+        }
+
+        .option-label input {
+            margin-right: 10px;
+        }
+
+        /* Action Buttons */
+        #action-buttons {
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            background: #f9f9f9;
+        }
+
+        .action-btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 3px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .btn-save { background-color: var(--btn-green); }
+        .btn-clear { background-color: #fff; color: #333; border: 1px solid #ccc; }
+        .btn-review { background-color: var(--btn-orange); }
+        .btn-prev { background-color: #757575; }
+
+        /* Palette Area */
+        #palette-header {
+            padding: 15px;
+            background: #d0d7de;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #palette-grid {
+            padding: 15px;
+            flex: 1;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+            gap: 10px;
+            align-content: start;
+        }
+
+        .palette-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            border: 1px solid #aaa;
+            background-color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 14px;
+            position: relative;
+        }
+
+        /* Status Colors */
+        .status-not-visited { background-color: #fff; color: #333; }
+        .status-not-answered { background-color: var(--btn-red); color: white; border-color: var(--btn-red); }
+        .status-answered { background-color: var(--btn-green); color: white; border-color: var(--btn-green); }
+        .status-review { background-color: var(--btn-purple); color: white; border-color: var(--btn-purple); }
+        .status-review-answered { background-color: var(--btn-purple); color: white; border-color: var(--btn-purple); }
+        
+        .status-review-answered::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 8px;
+            height: 8px;
+            background-color: var(--btn-green);
+            border-radius: 50%;
+            border: 1px solid white;
+        }
+
+        #submit-area {
+            padding: 15px;
+            background: #d0d7de;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--btn-blue);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Overlays */
+        .overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        /* Results Screen */
+        #result-screen {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--primary-bg);
+            display: none;
+            flex-direction: column;
+            z-index: 1500;
+            overflow-y: auto;
+        }
+
+        .result-header {
+            background: var(--header-bg);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .score-card {
+            background: white;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .score-card h2 { margin-bottom: 15px; }
+        .score-stats { display: flex; justify-content: space-around; margin-bottom: 20px; }
+        .stat-box { padding: 10px; border: 1px solid #eee; border-radius: 5px; min-width: 100px; }
+
+        .analysis-section {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .analysis-item {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+        .analysis-item:last-child { border-bottom: none; }
+        .analysis-q { font-weight: bold; margin-bottom: 8px; }
+        .analysis-ans { color: var(--btn-green); font-weight: bold; margin-bottom: 5px;}
+        .analysis-user { color: var(--btn-red); margin-bottom: 5px;}
+        .analysis-exp { font-size: 14px; color: #555; background: #f9f9f9; padding: 10px; border-left: 3px solid var(--btn-blue); margin-top: 10px;}
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            #right-panel { display: none; }
+            #left-panel { border-right: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Start Screen -->
+    <div id="start-screen">
+        <h1>Biology Mock Test: Diseases</h1>
+        <p>
+            <strong>SSC/TCS Pattern Interface</strong><br><br>
+            - Total Questions: 52<br>
+            - Time Limit: 60 Minutes<br>
+            - One question at a time.<br>
+            - Solutions for incorrect and un-attempted questions will be provided upon submission.<br>
+            - Ensure you are ready before clicking Start.
+        </p>
+        <button class="primary-btn" onclick="startTest()">I am ready to begin</button>
+    </div>
+
+    <!-- Pause Overlay -->
+    <div id="pause-overlay" class="overlay">
+        <h2>Test Paused</h2>
+        <p style="margin: 20px 0;">Your timer is paused. The test content is hidden.</p>
+        <button class="primary-btn" onclick="resumeTest()">Resume Test</button>
+    </div>
+
+    <!-- Main Test Interface -->
+    <header id="test-header" style="display: none;">
+        <div><strong>Mock Test: Diseases</strong></div>
+        <div>Time Left: <span id="timer">60:00</span></div>
+        <div class="header-controls">
+            <button onclick="pauseTest()">Pause</button>
+            <button onclick="exitFullScreen()">Exit Full Screen</button>
+        </div>
+    </header>
+
+    <div id="main-container" style="display: none;">
+        <div id="left-panel">
+            <div id="question-header">
+                <span>Question No. <span id="q-no">1</span></span>
+                <span class="exam-tag">[Strictly based on Source Material]</span>
+            </div>
+            <div id="question-body">
+                <div id="q-text" style="font-weight: bold; margin-bottom: 20px;"></div>
+                <div id="options-area" class="option-container">
+                    <!-- Options injected here -->
+                </div>
+            </div>
+            <div id="action-buttons">
+                <div>
+                    <button class="action-btn btn-prev" onclick="goToPrev()">Previous Question</button>
+                    <button class="action-btn btn-clear" onclick="clearResponse()">Clear</button>
+                </div>
+                <div>
+                    <button class="action-btn btn-review" onclick="markForReview()">Mark for Review & Next</button>
+                    <button class="action-btn btn-save" onclick="saveAndNext()">Save & Next</button>
+                </div>
+            </div>
+        </div>
+        <div id="right-panel">
+            <div id="palette-header">Question Palette</div>
+            <div id="palette-grid">
+                <!-- Palette buttons injected here -->
+            </div>
+            <div id="submit-area">
+                <button class="btn-submit" onclick="confirmSubmit()">Submit Test</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="result-screen">
+        <div class="result-header">
+            <h1>Test Submitted Successfully</h1>
+        </div>
+        <div class="score-card">
+            <h2>Your Scorecard</h2>
+            <div class="score-stats">
+                <div class="stat-box">
+                    <h3 id="score-total">52</h3>
+                    <p>Total</p>
+                </div>
+                <div class="stat-box">
+                    <h3 id="score-attempted">0</h3>
+                    <p>Attempted</p>
+                </div>
+                <div class="stat-box">
+                    <h3 id="score-correct" style="color: green;">0</h3>
+                    <p>Correct</p>
+                </div>
+                <div class="stat-box">
+                    <h3 id="score-incorrect" style="color: red;">0</h3>
+                    <p>Incorrect</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="analysis-section" id="analysis-content">
+            <h3 style="margin-bottom: 20px; border-bottom: 2px solid #ddd; padding-bottom: 10px;">Analysis (Incorrect & Un-attempted Only)</h3>
+            <div id="analysis-list">
+                <!-- Analysis items injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Question Data (Strictly from Diseases.pdf) ---
+        const rawQuestions = [
+            { q: "According to the provided text, who is known as the Father of Medicine?", o: ["Hippocrates", "Edward Jenner", "Alexander Fleming", "Jonas Salk"], a: "Hippocrates", e: "The text explicitly states: 'Father of Medicine: Hippocrates.'" },
+            { q: "Edward Jenner is highly renowned for his contribution towards the eradication of which disease?", o: ["Smallpox", "Polio", "Tuberculosis", "Cholera"], a: "Smallpox", e: "Edward Jenner is the Father of Immunology, famous for his contribution towards the eradication of smallpox." },
+            { q: "Which of the following best describes an acute disease?", o: ["It lasts for a short period and causes major effects in a short time.", "It lasts for a longer period of time.", "It does not spread from one person to another.", "It is caused by the proliferation of abnormal cells."], a: "It lasts for a short period and causes major effects in a short time.", e: "Acute diseases last for a short period of time and cause major effects on health in a short time (e.g., Fever, cold)." },
+            { q: "Diseases that spread from animals to humans are known as:", o: ["Zoonotic Diseases", "Communicable Diseases", "Non-communicable Diseases", "Endemic Diseases"], a: "Zoonotic Diseases", e: "Zoonotic Diseases spread from animals to humans." },
+            { q: "In viruses, the genetic material is included in a protein envelope known as:", o: ["Capsid", "Nucleoid", "Plasmid", "Cell wall"], a: "Capsid", e: "In virus, the genetic material is included in a protein envelope known as Capsid." },
+            { q: "Why cannot antibiotics be used to treat viral infections?", o: ["Viruses do not have cell walls that can be attacked by antibiotics.", "Viruses are much larger than bacteria.", "Viruses have double-stranded DNA.", "Antibiotics enhance viral replication."], a: "Viruses do not have cell walls that can be attacked by antibiotics.", e: "Antibiotics work against the formation of a cell wall. Viruses lack cell walls and are surrounded by a protective protein coating." },
+            { q: "The genetic material of bacteria, which lacks a true nucleus, is known as:", o: ["Genophore", "Capsid", "Macronucleus", "Plasmid"], a: "Genophore", e: "Bacteria are prokaryotes lacking a true nucleus. Their genetic material is called Genophore (bacterial DNA)." },
+            { q: "Which of the following is NOT a fundamental shape of bacteria mentioned in the text?", o: ["Polyhedral", "Coccus", "Bacillus", "Spirillium"], a: "Polyhedral", e: "Bacterial shapes are Coccus (sphere), Bacillus (rod), and Spirillium (spiral). Polyhedral is a viral shape (e.g., Adenovirus)." },
+            { q: "Amoebiasis and Giardiasis are caused by which type of pathogen?", o: ["Protozoa", "Virus", "Bacteria", "Fungus"], a: "Protozoa", e: "Protozoa are one-celled organisms that cause diseases like intestinal infections, amoebiasis, giardiasis, toxoplasmosis." },
+            { q: "Which type of hepatitis is transmitted primarily through food?", o: ["Hepatitis A", "Hepatitis B", "Hepatitis C", "Hepatitis D"], a: "Hepatitis A", e: "Hepatitis A is transmitted through food. Hepatitis B is sexually transmitted, and Hepatitis C is transmitted via infected blood." },
+            { q: "India's first indigenous Hepatitis-A vaccine is named:", o: ["Havisure", "Covaxin", "Salvarsan", "BCG"], a: "Havisure", e: "The text states: 'India's first indigenous Hepatitis-A vaccine: Havisure'." },
+            { q: "Mumps is a viral disease that primarily affects which part of the body?", o: ["Parotid salivary glands", "Central Nervous System", "Lungs and alveoli", "Liver"], a: "Parotid salivary glands", e: "Mumps is a viral disease that affects the parotid salivary glands (cheek and jaw area)." },
+            { q: "Which virus is responsible for the Common Cold?", o: ["Rhinovirus", "Influenza virus", "Flavivirus", "Lyssavirus"], a: "Rhinovirus", e: "The Common Cold is caused by the Rhinovirus." },
+            { q: "In which year was Polio declared totally eradicated from India?", o: ["2014", "1977", "1995", "1981"], a: "2014", e: "Polio was totally eradicated from India, as declared in 2014." },
+            { q: "Which test is used to detect Cervical Cancer caused by the Human Papillomavirus?", o: ["PAP Smear Test", "ELISA Test", "Widal Test", "Gram Staining"], a: "PAP Smear Test", e: "Cervical Cancer is detected through the PAP Smear Test." },
+            { q: "Chicken Pox is caused by which virus?", o: ["Varicella Zoster Virus", "Variola Virus", "Flavivirus", "Lyssavirus"], a: "Varicella Zoster Virus", e: "Chicken Pox is caused by the Varicella Zoster Virus. Small Pox is caused by Variola Virus." },
+            { q: "Which mosquito is the carrier of the virus responsible for Dengue and Chikungunya?", o: ["Aedes Aegypti", "Female Anopheles", "Sandfly", "Tse Tse fly"], a: "Aedes Aegypti", e: "Aedes Aegypti mosquito is the carrier of the Flavivirus responsible for Dengue and also Chikungunya." },
+            { q: "The rabies virus (Lyssavirus) affects the Central Nervous System leading to which specific symptom?", o: ["Hydrophobia", "Jaundice", "Locked jaw", "Blue death"], a: "Hydrophobia", e: "In rabies, the Central Nervous System is affected which leads to hydrophobia." },
+            { q: "Death due to AIDS is primarily caused by:", o: ["A weak immune system", "Rupture of red blood cells", "Inflammation of the brain", "Fluid pressure in the eye"], a: "A weak immune system", e: "Death in AIDS patients is due to a weak immune system caused by HIV." },
+            { q: "Which of the following viruses causes Swine flu?", o: ["H1N1", "H5N1", "Herpes Simplex", "Flavivirus"], a: "H1N1", e: "Swine flu is caused by H1N1, whereas Bird flu is caused by H5N1." },
+            { q: "The Black Death, which caused 12 million deaths in India between 1897-1906, refers to death caused by:", o: ["Plague", "Cholera", "Tuberculosis", "Smallpox"], a: "Plague", e: "Plague is caused by Yersinia pestis, and death due to it is known as Black Death." },
+            { q: "Hansen's Disease is another name for which bacterial infection?", o: ["Leprosy", "Cholera", "Syphilis", "Diphtheria"], a: "Leprosy", e: "Leprosy (caused by Mycobacterium leprae) affects the skin and is also known as Hansen's Disease." },
+            { q: "Which bacterial disease is known as the 'Blue Death'?", o: ["Cholera", "Plague", "Typhoid", "Pneumonia"], a: "Cholera", e: "Death caused due to cholera (Vibrio cholera) is known as 'Blue Death'." },
+            { q: "Which vaccine is provided against Tuberculosis (TB)?", o: ["BCG (Bacillus Calmette-Guerin)", "Havisure", "Salk vaccine", "Pulse Polio"], a: "BCG (Bacillus Calmette-Guerin)", e: "The vaccine provided against TB is BCG." },
+            { q: "According to the text, Robin Warren and Barry Marshal were awarded the Nobel Prize in 2005 for discovering the cause of:", o: ["Peptic Ulcers", "Syphilis", "Polio", "Tuberculosis"], a: "Peptic Ulcers", e: "They were awarded for the discovery of Helicobacter pylori causing Peptic Ulcers." },
+            { q: "The Widal Test is specifically used to detect which disease?", o: ["Typhoid", "AIDS", "Cervical Cancer", "Malaria"], a: "Typhoid", e: "The test to detect Typhoid (caused by Salmonella typhi) is the Widal Test." },
+            { q: "A 'locked jaw' is a prominent symptom of which bacterial disease?", o: ["Tetanus", "Syphilis", "Diphtheria", "Whooping cough"], a: "Tetanus", e: "Tetanus is caused by Clostridium tetani, and its symptom is a locked jaw." },
+            { q: "Paul Ehrlich received the Nobel Prize in 1908 for discovering Salvarsan, the first successful treatment for:", o: ["Syphilis", "Leprosy", "Typhoid", "Plague"], a: "Syphilis", e: "Salvarsan was the first chemotherapeutic agent and successful treatment for Syphilis." },
+            { q: "In Gram staining, what color do Gram-negative bacteria turn?", o: ["Pink/Red", "Purple", "Blue", "Green"], a: "Pink/Red", e: "Gram-negative bacteria turn pink/red, while Gram-positive bacteria turn purple." },
+            { q: "Which of the following is an example of a Gram-negative bacterium?", o: ["Escherichia", "Staphylococcus", "Streptococcus", "Bacillus"], a: "Escherichia", e: "Examples of Gram-negative bacteria include Escherichia, Salmonella, and Vibrio cholerae." },
+            { q: "Scabies, characterized by intense itching and skin rashes, is caused by:", o: ["Sarcoptes scabiei (a parasitic mite)", "Plasmodium falciparum", "Leishmania", "Trypanosoma"], a: "Sarcoptes scabiei (a parasitic mite)", e: "Scabies is caused by the parasitic mite Sarcoptes scabiei (listed under fungal/skin diseases section)." },
+            { q: "A fungal infection known as tinea capitis causes which condition?", o: ["Baldness (patchy hair loss)", "Athlete's foot", "Asthma", "Ring worm"], a: "Baldness (patchy hair loss)", e: "A fungal infection specifically tinea capitis, also known as scalp ringworm, can cause patchy hair loss (Baldness)." },
+            { q: "Which property of Plasmodium makes malaria a cyclical disease with periodic fever?", o: ["RBC rupture and toxin release every few days", "Enlargement of the spleen and liver", "Its presence inside female Anopheles mosquitoes", "Inflammation of the brain"], a: "RBC rupture and toxin release every few days", e: "RBC rupture and toxin release every few days is the property that makes malaria cyclical." },
+            { q: "Kala Azar is caused by the protozoa Leishmania. What is its carrier?", o: ["Sandfly", "Tse Tse fly", "Female Anopheles mosquito", "Aedes Aegypti mosquito"], a: "Sandfly", e: "The carrier for Kala Azar (Leishmania) is the Sandfly." },
+            { q: "Which of the following is NOT an air-borne disease?", o: ["Cholera", "Influenza", "Tuberculosis", "Measles"], a: "Cholera", e: "Cholera is a water-borne disease. Influenza, TB, and Measles are air-borne." },
+            { q: "Down's syndrome is an autosomal disorder caused by:", o: ["An extra copy of chromosome 21 (Trisomy 21)", "One missing X chromosome", "One extra X chromosome", "Duplication on chromosome 17"], a: "An extra copy of chromosome 21 (Trisomy 21)", e: "Down's syndrome involves an extra copy (or partial copy) of chromosome 21." },
+            { q: "Which sex-linked disorder is characterized by a missing X chromosome in females (XO)?", o: ["Turner's syndrome", "Klinefelter's syndrome", "Haemophilia", "Albinism"], a: "Turner's syndrome", e: "Turner's syndrome occurs when one X chromosome is missing in females (XO)." },
+            { q: "Haemophilia affects the recessive gene located on which chromosome?", o: ["X chromosome", "Y chromosome", "Chromosome 21", "Chromosome 17"], a: "X chromosome", e: "Haemophilia affects the recessive gene located on the X chromosome, causing blood clotting failure." },
+            { q: "Glaucoma damages the eye's optic nerve. It is caused by:", o: ["An increase in eye fluid pressure", "A bacteria called Chlamydia trachomatis", "Abnormal copper accumulation", "Excessive deposition of iron"], a: "An increase in eye fluid pressure", e: "Glaucoma is caused when there is an increase in eye fluid pressure." },
+            { q: "A disease that is constantly present in a population or region with relatively low spread is termed an:", o: ["Endemic", "Epidemic", "Pandemic", "Zoonotic"], a: "Endemic", e: "An Endemic disease is constantly present in a population or region with relatively low spread." },
+            { q: "Mad Hatter Disease refers to neurological symptoms resulting from long-term exposure to which element?", o: ["Mercury", "Copper", "Iron", "Cadmium"], a: "Mercury", e: "Mad Hatter's disease refers to neurological symptoms of mercury poisoning." },
+            { q: "Blue Baby Syndrome is caused due to the deposition of:", o: ["Nitrate", "Cadmium", "Copper", "Iron"], a: "Nitrate", e: "Blue Baby Syndrome is caused due to nitrate deposition." },
+            { q: "Itai Itai disease is caused due to the deposition of which substance?", o: ["Cadmium", "Mercury", "Nitrate", "Iron"], a: "Cadmium", e: "Itai Itai is caused due to cadmium deposition." },
+            { q: "Patau syndrome, a genetic disorder, is also known as:", o: ["Trisomy 13", "Trisomy 21", "Turner's syndrome", "Klinefelter's syndrome"], a: "Trisomy 13", e: "Patau syndrome is also known as trisomy 13." },
+            { q: "In plants, Citrus Canker is caused by which causal organism?", o: ["Bacteria", "Fungus", "Virus", "Protozoa"], a: "Bacteria", e: "Citrus canker affects citrus fruits and is caused by Bacteria." },
+            { q: "Which animal is the natural host of the Nipah virus?", o: ["Fruit Bats", "Sheep", "Cows", "Mosquitoes"], a: "Fruit Bats", e: "The natural host of Nipah virus is Fruit Bats." },
+            { q: "Which disease is characteristically and specifically linked to asbestosis?", o: ["Mesothelioma", "Emphysema", "Asthma", "Bronchitis"], a: "Mesothelioma", e: "Mesothelioma disease is characteristically and specifically linked to asbestosis." },
+            { q: "Which breed of cows is identified in the text as resistant to diseases?", o: ["Red Sindhi", "Bovine spongiform", "Scrapie", "Charcot-Marie"], a: "Red Sindhi", e: "Red Sindhi breeds of cows are resistant to diseases." },
+            { q: "Leukemia is a form of cancer that specifically affects:", o: ["Blood forming tissue, particularly bone marrow", "Epithelial cells", "Connective tissues", "Plasma cells"], a: "Blood forming tissue, particularly bone marrow", e: "Leukemia is cancer of the blood forming tissue, particularly bone marrow." },
+            { q: "Who discovered the first true antibiotic, penicillin, in 1928?", o: ["Alexander Fleming", "Frederick Banting", "Charles Best", "Edward Jenner"], a: "Alexander Fleming", e: "Alexander Fleming discovered the first true antibiotic, penicillin, in 1928." },
+            { q: "Consider the following statements regarding bacteria:\n1. They are prokaryotes lacking a true nucleus.\n2. Antibiotics cannot be used to treat bacterial infections.\nWhich is correct?", o: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"], a: "Only 1", e: "Bacteria are prokaryotes (Statement 1 is correct). Antibiotics CAN be used to treat bacterial infections (Statement 2 is wrong)." },
+            { q: "Consider the following statements regarding Malaria:\n1. It is a cyclical disease caused by protozoa Plasmodium.\n2. Quinine, found in the cinchona tree bark, is a treatment.\nWhich is correct?", o: ["Both 1 and 2", "Only 1", "Only 2", "Neither 1 nor 2"], a: "Both 1 and 2", e: "Both statements are correct. Malaria is caused by Plasmodium, and Quinine from cinchona bark is its treatment." }
+        ];
+
+        let questions = [];
+        let userAnswers = []; // Store selected option texts
+        let qStatus = [];     // 0: Not Visited, 1: Not Answered, 2: Answered, 3: Marked, 4: Answered & Marked
+        let currentIndex = 0;
+        let timerInterval;
+        let timeLeft = 3600; // 60 minutes
+        let isPaused = false;
+
+        // Initialize Test
+        function initTest() {
+            // Randomize options for each question ONCE per test load
+            questions = rawQuestions.map(rq => {
+                let optionsCopy = [...rq.o];
+                // Fisher-Yates shuffle
+                for (let i = optionsCopy.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [optionsCopy[i], optionsCopy[j]] = [optionsCopy[j], optionsCopy[i]];
+                }
+                return {
+                    qText: rq.q,
+                    options: optionsCopy,
+                    ansText: rq.a,
+                    expText: rq.e
+                };
+            });
+
+            userAnswers = new Array(questions.length).fill(null);
+            qStatus = new Array(questions.length).fill(0);
+            qStatus[0] = 1; // First question is visited but not answered initially
+
+            buildPalette();
+            loadQuestion(0);
+        }
+
+        // Full Screen Handlers
+        function startTest() {
+            let elem = document.documentElement;
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen().catch(err => console.log(err));
+            }
+            
+            document.getElementById('start-screen').style.display = 'none';
+            document.getElementById('test-header').style.display = 'flex';
+            document.getElementById('main-container').style.display = 'flex';
+            
+            initTest();
+            startTimer();
+        }
+
+        function exitFullScreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+
+        // Timer Logic
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (!isPaused) {
+                    timeLeft--;
+                    let m = Math.floor(timeLeft / 60);
+                    let s = timeLeft % 60;
+                    document.getElementById('timer').innerText = 
+                        (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+                    
+                    if (timeLeft <= 0) {
+                        clearInterval(timerInterval);
+                        submitTest();
+                    }
+                }
+            }, 1000);
+        }
+
+        function pauseTest() {
+            isPaused = true;
+            document.getElementById('pause-overlay').style.display = 'flex';
+        }
+
+        function resumeTest() {
+            isPaused = false;
+            document.getElementById('pause-overlay').style.display = 'none';
+        }
+
+        // Navigation & Rendering
+        function loadQuestion(index) {
+            currentIndex = index;
+            document.getElementById('q-no').innerText = index + 1;
+            
+            const qData = questions[index];
+            document.getElementById('q-text').innerText = qData.qText;
+            
+            const optionsArea = document.getElementById('options-area');
+            optionsArea.innerHTML = "";
+            
+            qData.options.forEach((opt, i) => {
+                const label = document.createElement('label');
+                label.className = 'option-label';
+                
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.name = 'option';
+                input.value = opt;
+                if (userAnswers[index] === opt) {
+                    input.checked = true;
+                }
+                
+                // Update local storage on click, but don't evaluate right/wrong visually
+                input.onchange = (e) => {
+                    userAnswers[index] = e.target.value;
+                };
+
+                label.appendChild(input);
+                label.appendChild(document.createTextNode(opt));
+                optionsArea.appendChild(label);
+            });
+
+            // Update status if purely not visited
+            if (qStatus[index] === 0) {
+                qStatus[index] = 1; // Not answered
+            }
+            updatePaletteUI();
+        }
+
+        function buildPalette() {
+            const grid = document.getElementById('palette-grid');
+            grid.innerHTML = "";
+            for (let i = 0; i < questions.length; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'palette-btn status-not-visited';
+                btn.innerText = i + 1;
+                btn.id = 'pal-btn-' + i;
+                btn.onclick = () => { saveCurrentStatus(); loadQuestion(i); };
+                grid.appendChild(btn);
+            }
+            updatePaletteUI();
+        }
+
+        function updatePaletteUI() {
+            for (let i = 0; i < questions.length; i++) {
+                const btn = document.getElementById('pal-btn-' + i);
+                if (!btn) continue;
+                
+                btn.className = 'palette-btn'; // reset
+                
+                if (i === currentIndex) {
+                    btn.style.boxShadow = "0 0 0 2px #000 inset";
+                } else {
+                    btn.style.boxShadow = "none";
+                }
+
+                switch (qStatus[i]) {
+                    case 0: btn.classList.add('status-not-visited'); break;
+                    case 1: btn.classList.add('status-not-answered'); break;
+                    case 2: btn.classList.add('status-answered'); break;
+                    case 3: btn.classList.add('status-review'); break;
+                    case 4: btn.classList.add('status-review-answered'); break;
+                }
+            }
+        }
+
+        // Actions
+        function saveCurrentStatus() {
+            const hasAnswer = userAnswers[currentIndex] !== null;
+            if (qStatus[currentIndex] !== 3 && qStatus[currentIndex] !== 4) {
+                qStatus[currentIndex] = hasAnswer ? 2 : 1;
+            } else if (qStatus[currentIndex] === 3 && hasAnswer) {
+                qStatus[currentIndex] = 4;
+            }
+        }
+
+        function saveAndNext() {
+            const hasAnswer = userAnswers[currentIndex] !== null;
+            qStatus[currentIndex] = hasAnswer ? 2 : 1;
+            
+            if (currentIndex < questions.length - 1) {
+                loadQuestion(currentIndex + 1);
+            } else {
+                updatePaletteUI();
+            }
+        }
+
+        function markForReview() {
+            const hasAnswer = userAnswers[currentIndex] !== null;
+            qStatus[currentIndex] = hasAnswer ? 4 : 3;
+            
+            if (currentIndex < questions.length - 1) {
+                loadQuestion(currentIndex + 1);
+            } else {
+                updatePaletteUI();
+            }
+        }
+
+        function clearResponse() {
+            userAnswers[currentIndex] = null;
+            qStatus[currentIndex] = 1;
+            const radios = document.getElementsByName('option');
+            radios.forEach(r => r.checked = false);
+            updatePaletteUI();
+        }
+
+        function goToPrev() {
+            saveCurrentStatus();
+            if (currentIndex > 0) {
+                loadQuestion(currentIndex - 1);
+            }
+        }
+
+        function confirmSubmit() {
+            if (confirm("Are you sure you want to submit the test? You cannot return after submission.")) {
+                submitTest();
+            }
+        }
+
+        function submitTest() {
+            clearInterval(timerInterval);
+            saveCurrentStatus();
+            exitFullScreen();
+
+            document.getElementById('test-header').style.display = 'none';
+            document.getElementById('main-container').style.display = 'none';
+            document.getElementById('result-screen').style.display = 'flex';
+
+            let correct = 0;
+            let incorrect = 0;
+            let attempted = 0;
+
+            const analysisList = document.getElementById('analysis-list');
+            analysisList.innerHTML = "";
+
+            for (let i = 0; i < questions.length; i++) {
+                const uAns = userAnswers[i];
+                const cAns = questions[i].ansText;
+                
+                if (uAns !== null) {
+                    attempted++;
+                    if (uAns === cAns) correct++;
+                    else incorrect++;
+                }
+
+                // Show only Incorrect or Un-attempted
+                if (uAns !== cAns) {
+                    const item = document.createElement('div');
+                    item.className = 'analysis-item';
+                    
+                    item.innerHTML = `
+                        <div class="analysis-q">Q${i+1}. ${questions[i].qText}</div>
+                        <div class="analysis-ans">Correct Answer: ${cAns}</div>
+                        <div class="analysis-user">Your Answer: ${uAns === null ? "Not Attempted" : uAns}</div>
+                        <div class="analysis-exp"><strong>Explanation:</strong> ${questions[i].expText}</div>
+                    `;
+                    analysisList.appendChild(item);
+                }
+            }
+
+            document.getElementById('score-total').innerText = questions.length;
+            document.getElementById('score-attempted').innerText = attempted;
+            document.getElementById('score-correct').innerText = correct;
+            document.getElementById('score-incorrect').innerText = incorrect;
+            
+            if(analysisList.innerHTML === "") {
+                analysisList.innerHTML = "<p style='text-align:center; color:green; font-weight:bold;'>Perfect Score! You answered all questions correctly.</p>";
+            }
+        }
+    </script>
+</body>
+</html>

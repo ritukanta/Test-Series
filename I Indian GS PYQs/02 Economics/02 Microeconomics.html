@@ -1,0 +1,2209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Microeconomics - Mock Test</title>
+  <style>
+    :root {
+      --primary-blue: #1a56db;
+      --primary-dark: #0f2942;
+      --header-bg: #1e3a5f;
+      --subheader-bg: #2b4c7e;
+      --bg-main: #f4f6f9;
+      --surface-bg: #ffffff;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --border-color: #d1d5db;
+      --palette-bg: #eef2f6;
+
+      /* Status Colors (Standard TCS / Eduquity Palette) */
+      --status-answered: #16a34a;
+      --status-not-answered: #dc2626;
+      --status-not-visited: #e5e7eb;
+      --status-not-visited-text: #374151;
+      --status-review: #7c3aed;
+      --status-ans-review: #7c3aed;
+
+      /* Button Colors */
+      --btn-next-bg: #16a34a;
+      --btn-next-hover: #15803d;
+      --btn-review-bg: #7c3aed;
+      --btn-review-hover: #6d28d9;
+      --btn-clear-bg: #ffffff;
+      --btn-clear-text: #374151;
+      --btn-prev-bg: #e5e7eb;
+      --btn-prev-text: #1f2937;
+      --btn-submit-bg: #0284c7;
+      --btn-submit-hover: #0369a1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, Arial, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* ==================== INTRO SCREEN ==================== */
+    .intro-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--bg-main);
+    }
+
+    .top-banner {
+      background-color: var(--header-bg);
+      color: #ffffff;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid #f59e0b;
+    }
+
+    .top-banner-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .top-banner-sub {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    .intro-container {
+      max-width: 960px;
+      width: 100%;
+      margin: 28px auto;
+      background: var(--surface-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .intro-header {
+      background: #f8fafc;
+      padding: 20px 28px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .intro-header h1 {
+      font-size: 1.4rem;
+      color: var(--primary-dark);
+    }
+
+    .meta-pills {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .meta-pill {
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .intro-body {
+      padding: 24px 28px;
+      overflow-y: auto;
+      line-height: 1.65;
+      font-size: 0.95rem;
+      flex: 1;
+    }
+
+    .intro-body h2 {
+      font-size: 1.05rem;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 6px;
+    }
+
+    .instruction-list {
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    .instruction-list li {
+      margin-bottom: 8px;
+    }
+
+    .legend-table {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      margin: 14px 0 22px;
+      background: #f8fafc;
+      padding: 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+    }
+
+    .legend-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+    }
+
+    .p-badge {
+      width: 30px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border-radius: 4px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .p-not-visited {
+      background: var(--status-not-visited);
+      color: var(--status-not-visited-text);
+      border: 1px solid #cbd5e1;
+    }
+
+    .p-not-answered {
+      background: var(--status-not-answered);
+      color: #ffffff;
+      border-radius: 12px 12px 2px 2px;
+    }
+
+    .p-answered {
+      background: var(--status-answered);
+      color: #ffffff;
+      border-radius: 2px 2px 12px 12px;
+    }
+
+    .p-review {
+      background: var(--status-review);
+      color: #ffffff;
+      border-radius: 50%;
+    }
+
+    .p-ans-review {
+      background: var(--status-ans-review);
+      color: #ffffff;
+      border-radius: 50%;
+    }
+
+    .p-ans-review::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 10px;
+      height: 10px;
+      background: #22c55e;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+    }
+
+    .intro-footer {
+      padding: 18px 28px;
+      background: #f8fafc;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .start-btn {
+      background: var(--primary-blue);
+      color: #ffffff;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s;
+      margin-left: auto;
+    }
+
+    .start-btn:hover {
+      background: #1e40af;
+    }
+
+    /* ==================== EXAM INTERFACE ==================== */
+    .exam-wrapper {
+      display: none;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      flex-direction: column;
+      background: var(--surface-bg);
+    }
+
+    .exam-topbar {
+      background: var(--header-bg);
+      color: #ffffff;
+      height: 54px;
+      padding: 0 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      border-bottom: 2px solid #0f2942;
+      gap: 10px;
+    }
+
+    .exam-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .exam-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .section-tab {
+      background: #f59e0b;
+      color: #111827;
+      padding: 3px 10px;
+      border-radius: 3px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .exam-controls-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .timer-box {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #334155;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timer-box.warning {
+      background: #7f1d1d;
+      color: #fecaca;
+      border-color: #ef4444;
+    }
+
+    .top-btn {
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+
+    .top-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Main Split Body */
+    .exam-main {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    .question-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
+      background: var(--surface-bg);
+    }
+
+    .question-header-bar {
+      background: #f1f5f9;
+      padding: 10px 20px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      gap: 12px;
+    }
+
+    .q-number-label {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .q-right-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .exam-tag-small {
+      font-size: 0.74rem;
+      color: #475569;
+      background: #e2e8f0;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+
+    .question-scroll-pane {
+      flex: 1;
+      overflow-y: auto;
+      padding: 22px 24px;
+    }
+
+    .question-stem {
+      font-size: 1.08rem;
+      line-height: 1.65;
+      color: #111827;
+      margin-bottom: 22px;
+      font-weight: 500;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 820px;
+    }
+
+    .option-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: border-color 0.15s, background-color 0.15s;
+      font-size: 0.98rem;
+      line-height: 1.5;
+      color: #1f2937;
+    }
+
+    .option-row:hover {
+      border-color: #93c5fd;
+      background: #f8fafc;
+    }
+
+    .option-row.selected {
+      border-color: var(--primary-blue);
+      background: #eff6ff;
+    }
+
+    .option-radio {
+      margin-top: 3px;
+      width: 17px;
+      height: 17px;
+      accent-color: var(--primary-blue);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .option-label-text {
+      flex: 1;
+    }
+
+    /* Bottom Action Bar */
+    .action-bar {
+      background: #f8fafc;
+      border-top: 1px solid var(--border-color);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .action-left,
+    .action-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .act-btn {
+      padding: 9px 16px;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: opacity 0.15s, background-color 0.15s;
+    }
+
+    .act-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-prev {
+      background: var(--btn-prev-bg);
+      color: var(--btn-prev-text);
+      border-color: #cbd5e1;
+    }
+    .btn-prev:hover:not(:disabled) {
+      background: #d1d5db;
+    }
+
+    .btn-review {
+      background: var(--btn-review-bg);
+      color: #ffffff;
+    }
+    .btn-review:hover {
+      background: var(--btn-review-hover);
+    }
+
+    .btn-clear {
+      background: var(--btn-clear-bg);
+      color: var(--btn-clear-text);
+      border-color: #cbd5e1;
+    }
+    .btn-clear:hover {
+      background: #f1f5f9;
+    }
+
+    .btn-next {
+      background: var(--btn-next-bg);
+      color: #ffffff;
+    }
+    .btn-next:hover {
+      background: var(--btn-next-hover);
+    }
+
+    .btn-submit {
+      background: var(--btn-submit-bg);
+      color: #ffffff;
+    }
+    .btn-submit:hover {
+      background: var(--btn-submit-hover);
+    }
+
+    /* Right Question Palette Sidebar */
+    .palette-sidebar {
+      width: 270px;
+      flex-shrink: 0;
+      background: var(--palette-bg);
+      border-left: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .palette-summary {
+      padding: 12px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      font-size: 0.76rem;
+      flex-shrink: 0;
+    }
+
+    .summary-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #334155;
+      font-weight: 600;
+    }
+
+    .summary-item.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .summary-badge {
+      width: 24px;
+      height: 22px;
+      font-size: 0.72rem;
+    }
+
+    .palette-title-bar {
+      background: var(--subheader-bg);
+      color: #ffffff;
+      padding: 7px 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .palette-grid-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      align-content: start;
+    }
+
+    .palette-num-btn {
+      height: 34px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: transform 0.1s;
+    }
+
+    .palette-num-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .palette-num-btn.current-q {
+      outline: 2px solid #0f172a;
+      outline-offset: 1px;
+    }
+
+    /* Hide right palette on mobile phone interface as required */
+    @media (max-width: 768px) {
+      .palette-sidebar {
+        display: none !important;
+      }
+      .exam-topbar {
+        height: auto;
+        padding: 8px 12px;
+        flex-wrap: wrap;
+      }
+      .question-scroll-pane {
+        padding: 16px;
+      }
+      .action-bar {
+        padding: 10px 12px;
+      }
+      .act-btn {
+        padding: 8px 11px;
+        font-size: 0.8rem;
+      }
+    }
+
+    /* ==================== MODALS ==================== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.72);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: 8px;
+      max-width: 480px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25);
+      text-align: center;
+    }
+
+    .modal-card h3 {
+      font-size: 1.25rem;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+    }
+
+    .modal-card p {
+      font-size: 0.95rem;
+      color: #4b5563;
+      margin-bottom: 20px;
+    }
+
+    .modal-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+      text-align: left;
+      background: #f8fafc;
+      padding: 14px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    /* ==================== RESULTS & SOLUTIONS SCREEN ==================== */
+    .result-wrapper {
+      display: none;
+      min-height: 100vh;
+      flex-direction: column;
+      background: var(--bg-main);
+    }
+
+    .result-container {
+      max-width: 980px;
+      width: 100%;
+      margin: 24px auto;
+      padding: 0 16px 40px;
+    }
+
+    .score-card-box {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .score-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+
+    .score-header h2 {
+      font-size: 1.4rem;
+      color: var(--primary-dark);
+    }
+
+    .stats-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px;
+    }
+
+    .stat-card {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .stat-card .s-val {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .stat-card .s-lbl {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .val-total { color: #1e3a8a; }
+    .val-correct { color: #16a34a; }
+    .val-wrong { color: #dc2626; }
+    .val-unattempted { color: #d97706; }
+    .val-accuracy { color: #7c3aed; }
+
+    .solutions-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .solutions-header-bar h3 {
+      font-size: 1.15rem;
+      color: var(--primary-dark);
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 7px 14px;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      background: #ffffff;
+      color: #374151;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .filter-btn.active {
+      background: var(--primary-blue);
+      color: #ffffff;
+      border-color: var(--primary-blue);
+    }
+
+    .solution-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .sol-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    .sol-card.sol-wrong {
+      border-left: 5px solid #dc2626;
+    }
+
+    .sol-card.sol-unattempted {
+      border-left: 5px solid #f59e0b;
+    }
+
+    .sol-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .sol-qnum {
+      font-weight: 700;
+      color: var(--primary-dark);
+      font-size: 0.95rem;
+    }
+
+    .sol-badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .pill-wrong {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .pill-unattempted {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .sol-qtext {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 14px;
+      color: #111827;
+    }
+
+    .sol-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .sol-opt {
+      padding: 9px 12px;
+      border-radius: 5px;
+      border: 1px solid #e5e7eb;
+      font-size: 0.92rem;
+      background: #f9fafb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sol-opt.correct-opt {
+      background: #dcfce7;
+      border-color: #22c55e;
+      color: #14532d;
+      font-weight: 700;
+    }
+
+    .sol-opt.user-wrong-opt {
+      background: #fee2e2;
+      border-color: #ef4444;
+      color: #7f1d1d;
+    }
+
+    .sol-ans-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+      padding: 10px 14px;
+      border-radius: 5px;
+      font-size: 0.92rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== 1. INTRODUCTORY INTERFACE ==================== -->
+  <div class="intro-wrapper" id="introScreen">
+    <div class="top-banner">
+      <div>
+        <div class="top-banner-title">Microeconomics - Mock Test</div>
+        <div class="top-banner-sub">Computer Based Test (CBT) Examination Portal</div>
+      </div>
+      <div class="top-banner-sub">Subject: Microeconomics</div>
+    </div>
+
+    <div class="intro-container">
+      <div class="intro-header">
+        <h1>General Instructions</h1>
+        <div class="meta-pills">
+          <span class="meta-pill" id="introTotalQ">Total Questions: 0</span>
+          <span class="meta-pill" id="introTotalTime">Duration: 0 Minutes</span>
+        </div>
+      </div>
+
+      <div class="intro-body">
+        <h2>Please read the instructions carefully before starting the test:</h2>
+        <ol class="instruction-list">
+          <li>Total duration of this mock test is <strong id="instDurationText">0 minutes</strong> (1 minute per question).</li>
+          <li>The clock will be set at the server. The countdown timer in the top right corner of the screen will display the remaining time available for you to complete the examination. When the timer reaches zero, the examination will end and submit by itself.</li>
+          <li>The Question Palette displayed on the right side of the screen (on desktop/tablet) will show the status of each question using one of the following symbols:</li>
+        </ol>
+
+        <div class="legend-table">
+          <div class="legend-row">
+            <span class="p-badge p-not-visited">1</span>
+            <span>You have not visited the question yet.</span>
+          </div>
+          <div class="legend-row">
+            <span class="p-badge p-not-answered">2</span>
+            <span>You have not answered the question.</span>
+          </div>
+          <div class="legend-row">
+            <span class="p-badge p-answered">3</span>
+            <span>You have answered the question.</span>
+          </div>
+          <div class="legend-row">
+            <span class="p-badge p-review">4</span>
+            <span>You have NOT answered the question, but have marked it for review.</span>
+          </div>
+          <div class="legend-row">
+            <span class="p-badge p-ans-review">5</span>
+            <span>The question(s) "Answered and Marked for Review" will be considered for evaluation.</span>
+          </div>
+        </div>
+
+        <h2>Navigating & Answering a Question:</h2>
+        <ol class="instruction-list">
+          <li>Click on the question number in the Question Palette at the right of your screen to go to that numbered question directly. Note that using this option does NOT save your answer to the current question unless you have selected an option.</li>
+          <li>Click on <strong>Next</strong> to save your answer for the current question and then go to the next question.</li>
+          <li>Click on <strong>Mark for Review &amp; Next</strong> to mark the current question for review (with or without an answer) and go to the next question.</li>
+          <li>To deselect your chosen answer, click on the <strong>Clear</strong> button.</li>
+          <li>No answer or hint is shown during the test. Upon submission, your score and detailed solutions for <strong>incorrect and un-attempted questions only</strong> will be displayed for analysis.</li>
+        </ol>
+      </div>
+
+      <div class="intro-footer">
+        <span style="font-size: 0.9rem; color: #374151; font-weight: 600;">
+          Click "Start Mock Test" to enter full screen and begin the exam.
+        </span>
+        <button class="start-btn" id="startTestBtn" type="button">Start Mock Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 2. MAIN EXAM INTERFACE ==================== -->
+  <div class="exam-wrapper" id="examScreen">
+    <header class="exam-topbar">
+      <div class="exam-title-group">
+        <div class="exam-title">Microeconomics - Mock Test</div>
+        <span class="section-tab">Microeconomics</span>
+      </div>
+
+      <div class="exam-controls-top">
+        <div class="timer-box" id="timerBox">
+          <span>Time Left:</span>
+          <span id="timerDisplay">00:00</span>
+        </div>
+        <button class="top-btn" id="pauseBtn" type="button">Pause</button>
+        <button class="top-btn" id="exitFullscreenBtn" type="button">Exit Fullscreen</button>
+      </div>
+    </header>
+
+    <div class="exam-main">
+      <!-- Left / Center Question Workspace -->
+      <main class="question-area">
+        <div class="question-header-bar">
+          <div class="q-number-label" id="qNumberHeader">Question No. 1</div>
+          <div class="q-right-meta">
+            <span class="exam-tag-small" id="examTagBadge" style="display: none;"></span>
+          </div>
+        </div>
+
+        <div class="question-scroll-pane" id="questionScrollPane">
+          <div class="question-stem" id="questionStem"></div>
+          <div class="options-list" id="optionsList"></div>
+        </div>
+
+        <footer class="action-bar">
+          <div class="action-left">
+            <button class="act-btn btn-prev" id="prevBtn" type="button">Previous</button>
+            <button class="act-btn btn-review" id="reviewNextBtn" type="button">Mark for Review &amp; Next</button>
+            <button class="act-btn btn-clear" id="clearBtn" type="button">Clear</button>
+          </div>
+          <div class="action-right">
+            <button class="act-btn btn-next" id="nextBtn" type="button">Next</button>
+            <button class="act-btn btn-submit" id="submitBtn" type="button">Submit</button>
+          </div>
+        </footer>
+      </main>
+
+      <!-- Right Side Question Palette (Hidden on Mobile Phones) -->
+      <aside class="palette-sidebar" aria-label="Question Number Palette">
+        <div class="palette-summary">
+          <div class="summary-item">
+            <span class="p-badge p-answered summary-badge" id="countAnswered">0</span>
+            <span>Answered</span>
+          </div>
+          <div class="summary-item">
+            <span class="p-badge p-not-answered summary-badge" id="countNotAnswered">0</span>
+            <span>Not Answered</span>
+          </div>
+          <div class="summary-item">
+            <span class="p-badge p-not-visited summary-badge" id="countNotVisited">0</span>
+            <span>Not Visited</span>
+          </div>
+          <div class="summary-item">
+            <span class="p-badge p-review summary-badge" id="countReview">0</span>
+            <span>Marked</span>
+          </div>
+          <div class="summary-item full-width">
+            <span class="p-badge p-ans-review summary-badge" id="countAnsReview">0</span>
+            <span>Answered &amp; Marked for Review</span>
+          </div>
+        </div>
+
+        <div class="palette-title-bar">Question Palette</div>
+        <div class="palette-grid-scroll" id="paletteGrid"></div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ==================== PAUSE MODAL ==================== -->
+  <div class="modal-overlay" id="pauseModal">
+    <div class="modal-card">
+      <h3>Test Paused</h3>
+      <p>Your countdown timer is paused. Click the button below when you are ready to resume the test.</p>
+      <div class="modal-actions">
+        <button class="act-btn btn-next" id="resumeBtn" type="button">Resume Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SUBMIT CONFIRMATION MODAL ==================== -->
+  <div class="modal-overlay" id="submitModal">
+    <div class="modal-card">
+      <h3>Submit Mock Test?</h3>
+      <p>Are you sure you want to submit the test? Please review your attempt summary below:</p>
+      <div class="modal-stats-grid">
+        <div>Total Questions: <strong id="modTotal">0</strong></div>
+        <div>Answered: <strong id="modAnswered">0</strong></div>
+        <div>Not Answered: <strong id="modNotAnswered">0</strong></div>
+        <div>Marked for Review: <strong id="modReview">0</strong></div>
+        <div style="grid-column: 1 / -1;">Not Visited: <strong id="modNotVisited">0</strong></div>
+      </div>
+      <div class="modal-actions">
+        <button class="act-btn btn-clear" id="cancelSubmitBtn" type="button">Return to Test</button>
+        <button class="act-btn btn-submit" id="confirmSubmitBtn" type="button">Confirm Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 3. SUBMISSION ANALYSIS & SOLUTIONS ==================== -->
+  <div class="result-wrapper" id="resultScreen">
+    <div class="top-banner">
+      <div>
+        <div class="top-banner-title">Microeconomics - Mock Test - Test Analysis &amp; Solutions</div>
+        <div class="top-banner-sub">Post-Submission Score &amp; Review of Incorrect / Un-attempted Questions</div>
+      </div>
+      <button class="top-btn" id="retakeBtn" type="button">Retake Test</button>
+    </div>
+
+    <div class="result-container">
+      <div class="score-card-box">
+        <div class="score-header">
+          <h2>Performance Summary</h2>
+          <div style="font-size: 0.95rem; font-weight: 600; color: #475569;" id="timeTakenLabel">Time Taken: 00:00</div>
+        </div>
+
+        <div class="stats-cards">
+          <div class="stat-card">
+            <div class="s-val val-total" id="resScoreFraction">0 / 0</div>
+            <div class="s-lbl">Final Score</div>
+          </div>
+          <div class="stat-card">
+            <div class="s-val val-correct" id="resCorrect">0</div>
+            <div class="s-lbl">Correct</div>
+          </div>
+          <div class="stat-card">
+            <div class="s-val val-wrong" id="resWrong">0</div>
+            <div class="s-lbl">Incorrect</div>
+          </div>
+          <div class="stat-card">
+            <div class="s-val val-unattempted" id="resUnattempted">0</div>
+            <div class="s-lbl">Un-attempted</div>
+          </div>
+          <div class="stat-card">
+            <div class="s-val val-accuracy" id="resAccuracy">0%</div>
+            <div class="s-lbl">Accuracy</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solutions-header-bar">
+        <h3>Solutions (Incorrect &amp; Un-attempted Questions Only)</h3>
+        <div class="filter-tabs">
+          <button class="filter-btn active" id="filterAllBtn" type="button">All Incorrect &amp; Un-attempted</button>
+          <button class="filter-btn" id="filterWrongBtn" type="button">Incorrect Only</button>
+          <button class="filter-btn" id="filterUnattemptedBtn" type="button">Un-attempted Only</button>
+        </div>
+      </div>
+
+      <div class="solution-list" id="solutionList"></div>
+    </div>
+  </div>
+
+  <script>
+    const RAW_QUESTIONS = [
+  {
+    "q": "Which one among the following pairs of type of firm and feature is not correctly matched?",
+    "tag": "CDS-II-2025",
+    "opts": [
+      "Oligopoly firm : Interdependence in decision-making",
+      "Monopolistic firm : Firm is a price setter",
+      "Monopoly firm : Produces an efficient level of output",
+      "Perfectly competitive firm : Produces socially optimum output"
+    ],
+    "ans": "Monopoly firm : Produces an efficient level of output"
+  },
+  {
+    "q": "Which of the following statements about the relationship between price elasticity of demand and type of firm is/are correct?\n1. Perfectly elastic demand is associated with a competitive firm.\n2. Perfectly inelastic demand is associated with a monopolistically competitive firm.",
+    "tag": "CAPF-2025",
+    "opts": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "ans": "1 only"
+  },
+  {
+    "q": "Which among the following regarding the nature of goods and income elasticity are correctly matched?\n1. Necessity : Between 0 and 1\n2. Luxury : More than 1\n3. Inferior : More than 1",
+    "tag": "CAPF-2025",
+    "opts": [
+      "1 and 3 only",
+      "2 and 3 only",
+      "1 and 2 only",
+      "1, 2 and 3"
+    ],
+    "ans": "1 and 2 only"
+  },
+  {
+    "q": "How is the magnitude of price elasticity for an individual good determined?\n1. By the degree to which the good is a necessity or luxury\n2. By the extent to which substitutes are available\n3. By the rate of income growth in the economy\n4. By the relative importance of the good in the consumer's budget",
+    "tag": "CAPF-2021",
+    "opts": [
+      "1, 2 and 3",
+      "1 only",
+      "1, 2 and 4",
+      "3 and 4"
+    ],
+    "ans": "1, 2 and 4"
+  },
+  {
+    "q": "Suppose there are only two normal goods in the economy, X and Y. If price of good X increases, which would be the correct statement from below?",
+    "tag": "CDS-II-2024",
+    "opts": [
+      "Demand for good X decreases and demand for Y is indeterminate.",
+      "Demand for good X decreases and demand for Y decreases.",
+      "Demand for good X increases and demand for Y is indeterminate.",
+      "Demand for good X increases and demand for Y decreases."
+    ],
+    "ans": "Demand for good X decreases and demand for Y is indeterminate."
+  },
+  {
+    "q": "Other things remaining constant, the market supply for good increases if:\n1. its price increases.\n2. price of its factors of production decreases.\n3. price of other goods decreases.",
+    "tag": "CDS-II-2023",
+    "opts": [
+      "1 and 2 only",
+      "1 and 3 only",
+      "2 and 3 only",
+      "1, 2 and 3"
+    ],
+    "ans": "1 and 2 only"
+  },
+  {
+    "q": "Which one of the following does not influence quantity demanded for a good?",
+    "tag": "CDS-I-2022",
+    "opts": [
+      "Good's own price",
+      "Price of a complementary good",
+      "Price of a substitute good",
+      "Prices of inputs into production of the good"
+    ],
+    "ans": "Prices of inputs into production of the good"
+  },
+  {
+    "q": "Which one of the following may lead to movement along the demand curve of a commodity?",
+    "tag": "CDS-II-2021",
+    "opts": [
+      "Change in its price",
+      "Change in price of the other commodities",
+      "Change in income of the consumer",
+      "Change in tastes and preferences of consumers"
+    ],
+    "ans": "Change in its price"
+  },
+  {
+    "q": "Consider the following statements: Other things remaining unchanged, market demand for a good might increase if\n1. price of its substitute increases\n2. price of its complement increases\n3. the good is an inferior good and income of the consumers increases\n4. its price falls\nWhich of the above statements are correct?",
+    "tag": "CSE-2021",
+    "opts": [
+      "1 and 4 only",
+      "2, 3 and 4",
+      "1, 3 and 4",
+      "1, 2 and 3"
+    ],
+    "ans": "1 and 4 only"
+  },
+  {
+    "q": "In the context of Microeconomics, the graphical representation of the demand function is called the",
+    "tag": "SSC CHSL 2025",
+    "opts": [
+      "demand curve",
+      "goods curve",
+      "supply curve",
+      "seller curve"
+    ],
+    "ans": "demand curve"
+  },
+  {
+    "q": "When is total revenue maximized in relation to elasticity?",
+    "tag": "SSC CPO 2025",
+    "opts": [
+      "When elasticity is greater than one",
+      "When elasticity equals one",
+      "When elasticity is less than one",
+      "When marginal cost equals marginal revenue"
+    ],
+    "ans": "When elasticity equals one"
+  },
+  {
+    "q": "Which of the following explains the fact that 'in the case of necessary goods, the law of demand cannot be operated'?",
+    "tag": "SSC CPO-2025",
+    "opts": [
+      "Leontief paradox",
+      "Paradox of thrift",
+      "Easterlin paradox",
+      "Giffen paradox"
+    ],
+    "ans": "Giffen paradox"
+  },
+  {
+    "q": "What does a higher Distance to Frontier (DTF) score indicate?",
+    "tag": "SSC CPO-2025",
+    "opts": [
+      "Poor regulatory environment",
+      "Better ease of doing business",
+      "Higher unemployment",
+      "High taxes"
+    ],
+    "ans": "Better ease of doing business"
+  },
+  {
+    "q": "Which of the following is the formula for elasticity of supply?",
+    "tag": "SSC CPO-2025",
+    "opts": [
+      "% change in price / % change in quantity supplied",
+      "% change in quantity supplied / % change in price",
+      "Original price / change in price",
+      "Change in quantity supplied / original quantity supplied"
+    ],
+    "ans": "% change in quantity supplied / % change in price"
+  },
+  {
+    "q": "Which of the following attributes is generally present in a perfectly competitive market?",
+    "tag": "SSC CPO-2025",
+    "opts": [
+      "Companies can enter or exit the market freely",
+      "Each company determines its own price based on the cost of production",
+      "A few companies monopolize the supply of products",
+      "Sellers provide slightly varying forms of the same thing"
+    ],
+    "ans": "Companies can enter or exit the market freely"
+  },
+  {
+    "q": "Which of the following best describes the concept of 'opportunity cost' in microeconomics?",
+    "tag": "SSC CPO-2025",
+    "opts": [
+      "The cost of producing goods in the future",
+      "The net gain from an investment",
+      "The value of leisure forgone",
+      "The value of the best alternative forgone"
+    ],
+    "ans": "The value of the best alternative forgone"
+  },
+  {
+    "q": "Why must an Indian buyer convert rupees to dollars when purchasing from the U.S.?",
+    "tag": "SSC CPO-2025",
+    "opts": [
+      "Rupees are not accepted in U.S. Markets",
+      "To calculate shipping cost",
+      "To use foreign exchange for import payment",
+      "To pay international taxes"
+    ],
+    "ans": "Rupees are not accepted in U.S. Markets"
+  },
+  {
+    "q": "What does a firm earn under monopolistic competition in the long run?",
+    "tag": "DP-2025",
+    "opts": [
+      "Produces at minimum average cost",
+      "Experiences constant returns to scale",
+      "Earns zero economic profit",
+      "Earns positive economic profit"
+    ],
+    "ans": "Earns zero economic profit"
+  },
+  {
+    "q": "In the short run, a firm will shut down if:",
+    "tag": "DP-2025",
+    "opts": [
+      "Marginal cost > Average cost",
+      "Price < Average Total Cost",
+      "Price < Average Variable Cost",
+      "Total revenue < Total cost"
+    ],
+    "ans": "Price < Average Variable Cost"
+  },
+  {
+    "q": "Which of the following is not a characteristic of oligopoly?",
+    "tag": "DP-2025",
+    "opts": [
+      "Infinite sellers",
+      "Mutual interdependence",
+      "Homogeneous or differentiated products",
+      "Few large firms"
+    ],
+    "ans": "Infinite sellers"
+  },
+  {
+    "q": "The concept of 'marginal utility' measures:",
+    "tag": "DP-2025",
+    "opts": [
+      "Total benefit from a product",
+      "Satisfaction from one extra unit",
+      "Maximum production possible",
+      "Profit earned"
+    ],
+    "ans": "Satisfaction from one extra unit"
+  },
+  {
+    "q": "What economic indicator does the 'Gini Coefficient' primarily measure?",
+    "tag": "DP-2025",
+    "opts": [
+      "Inflation",
+      "Economic growth (GDP)",
+      "Income Inequality",
+      "Unemployment rate"
+    ],
+    "ans": "Income Inequality"
+  },
+  {
+    "q": "What is measured by the Lorenz Curve?",
+    "tag": "DP-2025",
+    "opts": [
+      "Price elasticity",
+      "Economic growth",
+      "Income inequality",
+      "Unemployment"
+    ],
+    "ans": "Income inequality"
+  },
+  {
+    "q": "What does the concept of 'elasticity of substitution' measure?",
+    "tag": "DP-2025",
+    "opts": [
+      "How easily consumers substitute one good for another",
+      "The rate of diminishing returns",
+      "How responsive quantity demanded is to price",
+      "How responsive quantity supplied is to price"
+    ],
+    "ans": "How easily consumers substitute one good for another"
+  },
+  {
+    "q": "What happens to firms under monopolistic competition in the short run?",
+    "tag": "DP-2025",
+    "opts": [
+      "Always incur losses",
+      "Must produce at minimum average cost",
+      "Can earn profits or losses depending on demand and cost conditions",
+      "Always earn abnormal profits"
+    ],
+    "ans": "Can earn profits or losses depending on demand and cost conditions"
+  },
+  {
+    "q": "What has been a significant result of globalisation in terms of consumer markets?",
+    "tag": "DP-2025",
+    "opts": [
+      "Reduced market competition",
+      "Increased consumer choice",
+      "Diminished product quality",
+      "Lower product availability"
+    ],
+    "ans": "Increased consumer choice"
+  },
+  {
+    "q": "The 'Law of Demand' states that when the price of a good increases, what happens to the quantity demanded?",
+    "tag": "DP-2025",
+    "opts": [
+      "It increases",
+      "It decreases",
+      "It stays the same",
+      "It becomes zero"
+    ],
+    "ans": "It decreases"
+  },
+  {
+    "q": "Which of the following refers to the extent to which demand for a particular commodity decreases because others are also consuming the same commodity?",
+    "tag": "SSC CGL 2025",
+    "opts": [
+      "Snob effect",
+      "Demonstration effect",
+      "Bandwagon effect",
+      "Veblen effect"
+    ],
+    "ans": "Snob effect"
+  },
+  {
+    "q": "If the price of a product goes up by 10% and, as a result, the quantity demanded falls by 20%, how would you classify the demand?",
+    "tag": "SSC CGL 2025",
+    "opts": [
+      "Demand is elastic (elasticity greater than 1)",
+      "Demand is inelastic (elasticity less than 1)",
+      "Demand is unitary elastic (elasticity equals 1)",
+      "Demand is perfectly elastic (elasticity is infinite)"
+    ],
+    "ans": "Demand is elastic (elasticity greater than 1)"
+  },
+  {
+    "q": "Which of the following statements accurately describes the law of demand in microeconomics?",
+    "tag": "SSC CGL 2025",
+    "opts": [
+      "As price increases, demand increases.",
+      "As price decreases, demand decreases",
+      "As price increases, demand decreases, ceteris paribus.",
+      "Price has no effect on demand."
+    ],
+    "ans": "As price increases, demand decreases, ceteris paribus."
+  },
+  {
+    "q": "Which curve shows all combinations of two goods that give a consumer equal satisfaction?",
+    "tag": "SSC CGL 2025",
+    "opts": [
+      "Indifference curve",
+      "Budget constraint",
+      "Isoquant curve",
+      "Marginal cost curve"
+    ],
+    "ans": "Indifference curve"
+  },
+  {
+    "q": "Given below are two statements, one is labelled as Assertion (A) and the other as Reason (R).\nAssertion (A): The value of national currency determined by demand and supply of foreign currency is called flexible exchange rate.\nReason (R): Demand and supply of the foreign currency is being determined by the Central Bank.",
+    "tag": "UPPCS-2024",
+    "opts": [
+      "Both (A) and (R) are true and (R) is the correct explanation of (A).",
+      "(A) is false, but (R) is true.",
+      "Both (A) and (R) are true, but (R) is not the correct explanation of (A).",
+      "(A) is true, but (R) is false."
+    ],
+    "ans": "(A) is true, but (R) is false."
+  },
+  {
+    "q": "Acting as a 'medium of exchange' is an important function of:",
+    "tag": "SSC GD 2025",
+    "opts": [
+      "commodity",
+      "metal",
+      "water",
+      "money"
+    ],
+    "ans": "money"
+  },
+  {
+    "q": "Which of the following is an example of a \"public good\"?",
+    "tag": "DP-2025",
+    "opts": [
+      "Public transport",
+      "Private park",
+      "Police services",
+      "Electricity"
+    ],
+    "ans": "Police services"
+  },
+  {
+    "q": "The Law of Diminishing Marginal Utility states that as a consumer consumes more and more units of a commodity:",
+    "tag": "SSC STENO 2025",
+    "opts": [
+      "Marginal utility derived from each additional unit decreases.",
+      "Total utility increases at an increasing rate.",
+      "Total utility decreases.",
+      "Marginal utility remains constant."
+    ],
+    "ans": "Marginal utility derived from each additional unit decreases."
+  },
+  {
+    "q": "Which curve in microeconomics shows the relationship between price and quantity demanded?",
+    "tag": "SSC PHASE XIII 2025",
+    "opts": [
+      "Supply curve",
+      "Demand curve",
+      "Production curve",
+      "Cost curve"
+    ],
+    "ans": "Demand curve"
+  },
+  {
+    "q": "What is the term for the situation where demand exceeds supply in a market?",
+    "tag": "SSC PHASE XIII 2025",
+    "opts": [
+      "Surplus",
+      "Equilibrium",
+      "Shortage",
+      "Deflation"
+    ],
+    "ans": "Shortage"
+  },
+  {
+    "q": "What does the term 'aggregate demand' refer to in macroeconomics?",
+    "tag": "PHASE XIII 2025",
+    "opts": [
+      "Total demand for a specific product",
+      "Total demand for goods and services in an economy",
+      "Demand for imported goods",
+      "Demand for luxury items"
+    ],
+    "ans": "Total demand for goods and services in an economy"
+  },
+  {
+    "q": "Consider the following statements about market equilibrium:\nStatement I: In equilibrium, the quantity that all firms wish to sell equals the quantity all consumers want to buy.\nStatement II: Excess supply exists when the market demand is greater than the market supply.",
+    "tag": "PHASE XIII 2025",
+    "opts": [
+      "Only Statement I is correct",
+      "Only Statement II is correct",
+      "Both statements are correct",
+      "Neither statement is correct"
+    ],
+    "ans": "Only Statement I is correct"
+  },
+  {
+    "q": "What is the relationship between interest rate and demand for money?",
+    "tag": "SSC CGL 2024",
+    "opts": [
+      "No relationship exists",
+      "Inverse",
+      "Direct",
+      "Proportionate"
+    ],
+    "ans": "Inverse"
+  },
+  {
+    "q": "As compared to monopolistic competition, the demand curve in a monopoly is :",
+    "tag": "SSC CHSL 2024",
+    "opts": [
+      "more elastic",
+      "equally elastic",
+      "infinitely elastic",
+      "less elastic"
+    ],
+    "ans": "less elastic"
+  },
+  {
+    "q": "If there is a fall in the demand of a good, the equilibrium price is expected to:",
+    "tag": "SSC CHSL 2024",
+    "opts": [
+      "first rise, and then fall sharply",
+      "fall",
+      "Rise",
+      "neither fall nor rise"
+    ],
+    "ans": "fall"
+  },
+  {
+    "q": "What happens in case of market equilibrium :\n(A) Market demand = market supply\n(B) There is no excess supply in the market.",
+    "tag": "SSC CHSL 2024",
+    "opts": [
+      "Neither (A) nor (B)",
+      "Only (B)",
+      "Only (A)",
+      "Both (A) and (B)"
+    ],
+    "ans": "Both (A) and (B)"
+  },
+  {
+    "q": "The simultaneous shifts of both the demand curve and the supply curve can happen in which of the following ways ?\nI. Supply curve shifts leftward and demand curve shifts rightward.\nII. Both supply and demand curves shift leftwards.\nIII. Supply curve shifts rightward and demand curve shifts leftward.",
+    "tag": "SSC CHSL 2023",
+    "opts": [
+      "Only I",
+      "I and II",
+      "I, II and III",
+      "II and III"
+    ],
+    "ans": "I, II and III"
+  },
+  {
+    "q": "If the price elasticity of demand is less than one, then the demand for the goods is said to be",
+    "tag": "SSC CHSL 2023",
+    "opts": [
+      "Perfectly inelastic",
+      "Inelastic",
+      "Perfectly elastic",
+      "Unitary-elastic"
+    ],
+    "ans": "Inelastic"
+  }
+];
+
+    // Application State
+    let questions = [];
+    let currentIndex = 0;
+    let totalSeconds = 0;
+    let remainingSeconds = 0;
+    let timerInterval = null;
+    let isPaused = false;
+    let isSubmitted = false;
+    let currentFilter = "all";
+
+    // Question States:
+    // "not-visited" | "not-answered" | "answered" | "review" | "ans-review"
+    let qStates = [];
+    let selectedOptions = [];
+
+    // DOM Elements
+    const introScreen = document.getElementById("introScreen");
+    const examScreen = document.getElementById("examScreen");
+    const resultScreen = document.getElementById("resultScreen");
+
+    const introTotalQ = document.getElementById("introTotalQ");
+    const introTotalTime = document.getElementById("introTotalTime");
+    const instDurationText = document.getElementById("instDurationText");
+    const startTestBtn = document.getElementById("startTestBtn");
+
+    const timerBox = document.getElementById("timerBox");
+    const timerDisplay = document.getElementById("timerDisplay");
+    const pauseBtn = document.getElementById("pauseBtn");
+    const exitFullscreenBtn = document.getElementById("exitFullscreenBtn");
+
+    const qNumberHeader = document.getElementById("qNumberHeader");
+    const examTagBadge = document.getElementById("examTagBadge");
+    const questionStem = document.getElementById("questionStem");
+    const optionsList = document.getElementById("optionsList");
+    const questionScrollPane = document.getElementById("questionScrollPane");
+
+    const prevBtn = document.getElementById("prevBtn");
+    const reviewNextBtn = document.getElementById("reviewNextBtn");
+    const clearBtn = document.getElementById("clearBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const submitBtn = document.getElementById("submitBtn");
+
+    const paletteGrid = document.getElementById("paletteGrid");
+    const countAnswered = document.getElementById("countAnswered");
+    const countNotAnswered = document.getElementById("countNotAnswered");
+    const countNotVisited = document.getElementById("countNotVisited");
+    const countReview = document.getElementById("countReview");
+    const countAnsReview = document.getElementById("countAnsReview");
+
+    const pauseModal = document.getElementById("pauseModal");
+    const resumeBtn = document.getElementById("resumeBtn");
+
+    const submitModal = document.getElementById("submitModal");
+    const cancelSubmitBtn = document.getElementById("cancelSubmitBtn");
+    const confirmSubmitBtn = document.getElementById("confirmSubmitBtn");
+
+    const retakeBtn = document.getElementById("retakeBtn");
+    const filterAllBtn = document.getElementById("filterAllBtn");
+    const filterWrongBtn = document.getElementById("filterWrongBtn");
+    const filterUnattemptedBtn = document.getElementById("filterUnattemptedBtn");
+    const solutionList = document.getElementById("solutionList");
+
+    // Utility: Fisher-Yates shuffle (used ONLY for options, NEVER for questions)
+    function shuffleOptions(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function formatQuestionHtml(text) {
+      if (!text) return "";
+      if (text.includes("<br>")) {
+        return text.replace(/\n/g, "<br>");
+      }
+      return text.replace(/\n/g, "<br>");
+    }
+
+    function formatTime(secs) {
+      const s = Math.max(0, secs);
+      const mins = Math.floor(s / 60);
+      const remSecs = s % 60;
+      const mStr = String(mins).padStart(2, "0");
+      const sStr = String(remSecs).padStart(2, "0");
+      return `${mStr}:${sStr}`;
+    }
+
+    function enterFullscreenSafe() {
+      try {
+        const el = document.documentElement;
+        if (el.requestFullscreen) {
+          el.requestFullscreen().catch(() => {});
+        } else if (el.webkitRequestFullscreen) {
+          el.webkitRequestFullscreen();
+        } else if (el.msRequestFullscreen) {
+          el.msRequestFullscreen();
+        }
+      } catch (e) {}
+    }
+
+    function exitFullscreenSafe() {
+      try {
+        if (document.fullscreenElement || document.webkitFullscreenElement) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen().catch(() => {});
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          }
+        }
+      } catch (e) {}
+    }
+
+    // Initialize Intro Metadata
+    function setupIntro() {
+      const totalQ = RAW_QUESTIONS.length;
+      introTotalQ.textContent = `Total Questions: ${totalQ}`;
+      introTotalTime.textContent = `Duration: ${totalQ} Minutes`;
+      instDurationText.textContent = `${totalQ} minutes`;
+    }
+
+    function prepareTestState() {
+      // Keep questions in exact original order; randomize options on each start/refresh
+      questions = RAW_QUESTIONS.map((item, idx) => ({
+        index: idx + 1,
+        q: item.q,
+        tag: item.tag || "",
+        opts: shuffleOptions(item.opts),
+        ans: item.ans
+      }));
+
+      currentIndex = 0;
+      totalSeconds = questions.length * 60;
+      remainingSeconds = totalSeconds;
+      isPaused = false;
+      isSubmitted = false;
+
+      qStates = new Array(questions.length).fill("not-visited");
+      selectedOptions = new Array(questions.length).fill(null);
+
+      // First question is visited on start
+      qStates[0] = "not-answered";
+    }
+
+    function startTest() {
+      prepareTestState();
+      enterFullscreenSafe();
+
+      introScreen.style.display = "none";
+      resultScreen.style.display = "none";
+      examScreen.style.display = "flex";
+
+      buildPalette();
+      renderCurrentQuestion();
+      updateTimerUI();
+      startTimer();
+    }
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (isPaused || isSubmitted) return;
+        remainingSeconds--;
+        updateTimerUI();
+        if (remainingSeconds <= 0) {
+          clearInterval(timerInterval);
+          finalizeSubmission();
+        }
+      }, 1000);
+    }
+
+    function updateTimerUI() {
+      timerDisplay.textContent = formatTime(remainingSeconds);
+      if (remainingSeconds <= 300) {
+        timerBox.classList.add("warning");
+      } else {
+        timerBox.classList.remove("warning");
+      }
+    }
+
+    function buildPalette() {
+      paletteGrid.innerHTML = "";
+      questions.forEach((q, idx) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "palette-num-btn p-not-visited";
+        btn.id = `pal-btn-${idx}`;
+        btn.textContent = idx + 1;
+        btn.addEventListener("click", () => jumpToQuestion(idx));
+        paletteGrid.appendChild(btn);
+      });
+      updatePaletteUI();
+    }
+
+    function updatePaletteUI() {
+      let cAns = 0, cNotAns = 0, cNotVis = 0, cRev = 0, cAnsRev = 0;
+
+      for (let i = 0; i < questions.length; i++) {
+        const st = qStates[i];
+        if (st === "answered") cAns++;
+        else if (st === "not-answered") cNotAns++;
+        else if (st === "not-visited") cNotVis++;
+        else if (st === "review") cRev++;
+        else if (st === "ans-review") cAnsRev++;
+
+        const btn = document.getElementById(`pal-btn-${i}`);
+        if (btn) {
+          btn.className = `palette-num-btn p-${st}` + (i === currentIndex ? " current-q" : "");
+        }
+      }
+
+      countAnswered.textContent = cAns;
+      countNotAnswered.textContent = cNotAns;
+      countNotVisited.textContent = cNotVis;
+      countReview.textContent = cRev;
+      countAnsReview.textContent = cAnsRev;
+
+      const activeBtn = document.getElementById(`pal-btn-${currentIndex}`);
+      if (activeBtn) {
+        activeBtn.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      }
+    }
+
+    function syncCurrentQuestionStatusOnLeave() {
+      const sel = selectedOptions[currentIndex];
+      const curState = qStates[currentIndex];
+      if (curState === "review" || curState === "ans-review") {
+        qStates[currentIndex] = sel !== null ? "ans-review" : "review";
+      } else {
+        qStates[currentIndex] = sel !== null ? "answered" : "not-answered";
+      }
+    }
+
+    function renderCurrentQuestion() {
+      const qObj = questions[currentIndex];
+      if (qStates[currentIndex] === "not-visited") {
+        qStates[currentIndex] = "not-answered";
+      }
+
+      qNumberHeader.textContent = `Question No. ${currentIndex + 1} of ${questions.length}`;
+
+      if (qObj.tag && qObj.tag.trim() !== "") {
+        examTagBadge.textContent = qObj.tag.trim();
+        examTagBadge.style.display = "inline-block";
+      } else {
+        examTagBadge.style.display = "none";
+      }
+
+      questionStem.innerHTML = formatQuestionHtml(qObj.q);
+      optionsList.innerHTML = "";
+
+      const currentSelection = selectedOptions[currentIndex];
+
+      qObj.opts.forEach((optText, optIdx) => {
+        const row = document.createElement("div");
+        row.className = "option-row" + (currentSelection === optIdx ? " selected" : "");
+
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = "mcqOption";
+        radio.className = "option-radio";
+        radio.checked = currentSelection === optIdx;
+
+        const label = document.createElement("div");
+        label.className = "option-label-text";
+        label.innerHTML = `<strong>(${String.fromCharCode(65 + optIdx)})</strong> ${optText}`;
+
+        row.appendChild(radio);
+        row.appendChild(label);
+
+        row.addEventListener("click", () => {
+          selectedOptions[currentIndex] = optIdx;
+          if (qStates[currentIndex] === "review" || qStates[currentIndex] === "ans-review") {
+            qStates[currentIndex] = "ans-review";
+          } else {
+            qStates[currentIndex] = "answered";
+          }
+          renderCurrentQuestion();
+        });
+
+        optionsList.appendChild(row);
+      });
+
+      prevBtn.disabled = currentIndex === 0;
+      questionScrollPane.scrollTop = 0;
+      updatePaletteUI();
+    }
+
+    function jumpToQuestion(targetIndex) {
+      if (targetIndex < 0 || targetIndex >= questions.length) return;
+      syncCurrentQuestionStatusOnLeave();
+      currentIndex = targetIndex;
+      renderCurrentQuestion();
+    }
+
+    function handleNext() {
+      const sel = selectedOptions[currentIndex];
+      qStates[currentIndex] = sel !== null ? "answered" : "not-answered";
+      if (currentIndex < questions.length - 1) {
+        currentIndex++;
+      }
+      renderCurrentQuestion();
+    }
+
+    function handlePrev() {
+      if (currentIndex > 0) {
+        syncCurrentQuestionStatusOnLeave();
+        currentIndex--;
+        renderCurrentQuestion();
+      }
+    }
+
+    function handleReviewNext() {
+      const sel = selectedOptions[currentIndex];
+      qStates[currentIndex] = sel !== null ? "ans-review" : "review";
+      if (currentIndex < questions.length - 1) {
+        currentIndex++;
+      }
+      renderCurrentQuestion();
+    }
+
+    function handleClear() {
+      selectedOptions[currentIndex] = null;
+      qStates[currentIndex] = "not-answered";
+      renderCurrentQuestion();
+    }
+
+    function openPauseModal() {
+      if (isSubmitted) return;
+      isPaused = true;
+      pauseModal.style.display = "flex";
+    }
+
+    function closePauseModal() {
+      isPaused = false;
+      pauseModal.style.display = "none";
+    }
+
+    function openSubmitModal() {
+      syncCurrentQuestionStatusOnLeave();
+      updatePaletteUI();
+
+      let cAns = 0, cNotAns = 0, cNotVis = 0, cRev = 0;
+      for (let i = 0; i < questions.length; i++) {
+        const st = qStates[i];
+        if (st === "answered" || st === "ans-review") cAns++;
+        else if (st === "not-answered") cNotAns++;
+        else if (st === "not-visited") cNotVis++;
+        if (st === "review" || st === "ans-review") cRev++;
+      }
+
+      document.getElementById("modTotal").textContent = questions.length;
+      document.getElementById("modAnswered").textContent = cAns;
+      document.getElementById("modNotAnswered").textContent = cNotAns;
+      document.getElementById("modReview").textContent = cRev;
+      document.getElementById("modNotVisited").textContent = cNotVis;
+
+      submitModal.style.display = "flex";
+    }
+
+    function closeSubmitModal() {
+      submitModal.style.display = "none";
+    }
+
+    function finalizeSubmission() {
+      if (isSubmitted) return;
+      isSubmitted = true;
+      if (timerInterval) clearInterval(timerInterval);
+      submitModal.style.display = "none";
+      pauseModal.style.display = "none";
+
+      exitFullscreenSafe();
+
+      examScreen.style.display = "none";
+      resultScreen.style.display = "flex";
+
+      let correctCount = 0;
+      let wrongCount = 0;
+      let unattemptedCount = 0;
+
+      questions.forEach((q, idx) => {
+        const selIdx = selectedOptions[idx];
+        if (selIdx === null) {
+          unattemptedCount++;
+        } else {
+          const chosenText = q.opts[selIdx];
+          if (chosenText === q.ans) {
+            correctCount++;
+          } else {
+            wrongCount++;
+          }
+        }
+      });
+
+      const attemptedCount = correctCount + wrongCount;
+      const accuracy = attemptedCount > 0 ? Math.round((correctCount / attemptedCount) * 100) : 0;
+      const timeSpent = totalSeconds - remainingSeconds;
+
+      document.getElementById("resScoreFraction").textContent = `${correctCount} / ${questions.length}`;
+      document.getElementById("resCorrect").textContent = correctCount;
+      document.getElementById("resWrong").textContent = wrongCount;
+      document.getElementById("resUnattempted").textContent = unattemptedCount;
+      document.getElementById("resAccuracy").textContent = `${accuracy}%`;
+      document.getElementById("timeTakenLabel").textContent = `Time Taken: ${formatTime(timeSpent)} / ${formatTime(totalSeconds)}`;
+
+      filterAllBtn.textContent = `All Incorrect & Un-attempted (${wrongCount + unattemptedCount})`;
+      filterWrongBtn.textContent = `Incorrect Only (${wrongCount})`;
+      filterUnattemptedBtn.textContent = `Un-attempted Only (${unattemptedCount})`;
+
+      currentFilter = "all";
+      updateFilterButtons();
+      renderSolutions();
+      window.scrollTo(0, 0);
+    }
+
+    function updateFilterButtons() {
+      filterAllBtn.classList.toggle("active", currentFilter === "all");
+      filterWrongBtn.classList.toggle("active", currentFilter === "wrong");
+      filterUnattemptedBtn.classList.toggle("active", currentFilter === "unattempted");
+    }
+
+    function renderSolutions() {
+      solutionList.innerHTML = "";
+      let shownCount = 0;
+
+      questions.forEach((q, idx) => {
+        const selIdx = selectedOptions[idx];
+        const isUnattempted = selIdx === null;
+        const chosenText = !isUnattempted ? q.opts[selIdx] : null;
+        const isCorrect = !isUnattempted && chosenText === q.ans;
+
+        // STRICT RULE: Show solution/answer ONLY for incorrect & un-attempted questions
+        if (isCorrect) return;
+
+        if (currentFilter === "wrong" && isUnattempted) return;
+        if (currentFilter === "unattempted" && !isUnattempted) return;
+
+        shownCount++;
+
+        const card = document.createElement("div");
+        card.className = "sol-card " + (isUnattempted ? "sol-unattempted" : "sol-wrong");
+
+        const topRow = document.createElement("div");
+        topRow.className = "sol-top";
+
+        const qNumEl = document.createElement("div");
+        qNumEl.className = "sol-qnum";
+        qNumEl.textContent = `Question ${idx + 1}`;
+
+        const badgesEl = document.createElement("div");
+        badgesEl.className = "sol-badges";
+
+        if (q.tag && q.tag.trim() !== "") {
+          const tagSpan = document.createElement("span");
+          tagSpan.className = "exam-tag-small";
+          tagSpan.textContent = q.tag.trim();
+          badgesEl.appendChild(tagSpan);
+        }
+
+        const statusPill = document.createElement("span");
+        statusPill.className = "status-pill " + (isUnattempted ? "pill-unattempted" : "pill-wrong");
+        statusPill.textContent = isUnattempted ? "Un-attempted" : "Incorrect";
+        badgesEl.appendChild(statusPill);
+
+        topRow.appendChild(qNumEl);
+        topRow.appendChild(badgesEl);
+
+        const qTextEl = document.createElement("div");
+        qTextEl.className = "sol-qtext";
+        qTextEl.innerHTML = formatQuestionHtml(q.q);
+
+        const optsBox = document.createElement("div");
+        optsBox.className = "sol-options";
+
+        q.opts.forEach((opt, oIdx) => {
+          const optRow = document.createElement("div");
+          let cls = "sol-opt";
+          let rightTag = "";
+
+          if (opt === q.ans) {
+            cls += " correct-opt";
+            rightTag = "<span>&#10004; Correct Answer</span>";
+          } else if (oIdx === selIdx && !isCorrect) {
+            cls += " user-wrong-opt";
+            rightTag = "<span>&#10008; Your Selection</span>";
+          }
+
+          optRow.className = cls;
+          optRow.innerHTML = `<span><strong>(${String.fromCharCode(65 + oIdx)})</strong> ${opt}</span>${rightTag}`;
+          optsBox.appendChild(optRow);
+        });
+
+        const ansBox = document.createElement("div");
+        ansBox.className = "sol-ans-box";
+        ansBox.innerHTML = `<strong>Correct Answer:</strong> ${q.ans}`;
+
+        card.appendChild(topRow);
+        card.appendChild(qTextEl);
+        card.appendChild(optsBox);
+        card.appendChild(ansBox);
+
+        solutionList.appendChild(card);
+      });
+
+      if (shownCount === 0) {
+        const emptyMsg = document.createElement("div");
+        emptyMsg.className = "score-card-box";
+        emptyMsg.style.textAlign = "center";
+        emptyMsg.style.color = "#16a34a";
+        emptyMsg.style.fontWeight = "700";
+        emptyMsg.textContent = "No questions in this category! All attempted questions here were answered correctly.";
+        solutionList.appendChild(emptyMsg);
+      }
+    }
+
+    // Event Listeners
+    startTestBtn.addEventListener("click", startTest);
+    prevBtn.addEventListener("click", handlePrev);
+    nextBtn.addEventListener("click", handleNext);
+    reviewNextBtn.addEventListener("click", handleReviewNext);
+    clearBtn.addEventListener("click", handleClear);
+
+    pauseBtn.addEventListener("click", openPauseModal);
+    resumeBtn.addEventListener("click", closePauseModal);
+
+    exitFullscreenBtn.addEventListener("click", () => {
+      exitFullscreenSafe();
+    });
+
+    submitBtn.addEventListener("click", openSubmitModal);
+    cancelSubmitBtn.addEventListener("click", closeSubmitModal);
+    confirmSubmitBtn.addEventListener("click", finalizeSubmission);
+
+    retakeBtn.addEventListener("click", () => {
+      resultScreen.style.display = "none";
+      introScreen.style.display = "flex";
+    });
+
+    filterAllBtn.addEventListener("click", () => {
+      currentFilter = "all";
+      updateFilterButtons();
+      renderSolutions();
+    });
+
+    filterWrongBtn.addEventListener("click", () => {
+      currentFilter = "wrong";
+      updateFilterButtons();
+      renderSolutions();
+    });
+
+    filterUnattemptedBtn.addEventListener("click", () => {
+      currentFilter = "unattempted";
+      updateFilterButtons();
+      renderSolutions();
+    });
+
+    // Initialize on load
+    setupIntro();
+  </script>
+</body>
+</html>

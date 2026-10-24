@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Networking Notes Master Guide | SSC CGL & NTPC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Base typography & Light Theme Enforcement */
+        body {
+            font-family: Calibri, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9fafb; /* Light theme background */
+            color: #111827; /* Dark & crisp text for readability and print */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Color Coding for Chapters */
+        .theme-ch1 { border-top: 4px solid #3b82f6; background-color: #eff6ff; }
+        .theme-ch2 { border-top: 4px solid #10b981; background-color: #ecfdf5; }
+        .theme-ch3 { border-top: 4px solid #f59e0b; background-color: #fffbeb; }
+        .theme-ch4 { border-top: 4px solid #ef4444; background-color: #fef2f2; }
+        
+        .header-ch1 { background-color: #dbeafe; color: #1e3a8a; }
+        .header-ch2 { background-color: #d1fae5; color: #065f46; }
+        .header-ch3 { background-color: #fef3c7; color: #92400e; }
+        .header-ch4 { background-color: #fee2e2; color: #991b1b; }
+
+        /* Note standard UI - Book like */
+        .note-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .table-container table { width: 100%; border-collapse: collapse; margin-top: 1rem; margin-bottom: 1rem;}
+        .table-container th, .table-container td { border: 1px solid #d1d5db; padding: 0.5rem 1rem; text-align: left; }
+        .table-container th { background-color: #f3f4f6; font-weight: bold; }
+
+        /* Print Media Queries for Crisp, Uncut Printed Pages */
+        @media print {
+            body { background-color: #ffffff; color: #000000; }
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            .note-card { 
+                box-shadow: none; 
+                border: 1px solid #000; 
+                page-break-inside: avoid; /* Prevent content from being cut */
+                margin-bottom: 1rem;
+            }
+            .page-break-before { page-break-before: always; }
+            h1, h2, h3, h4 { page-break-after: avoid; color: #000 !important; }
+            table, tr, td, th { border: 1px solid #000 !important; page-break-inside: avoid; }
+            /* Expand main container to full width for printing */
+            main { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
+            .chapter-container { padding: 0 !important; }
+        }
+
+        /* Default hide sections */
+        .hidden-section { display: none; }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- MAIN DASHBOARD -->
+    <div id="dashboard" class="flex-grow max-w-5xl mx-auto w-full p-4 sm:p-6 lg:p-8">
+        <header class="mb-10 text-center">
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-2">Networking Master Notes</h1>
+            <p class="text-lg text-gray-600">Comprehensive study material verified for SSC CGL Tier II & Railway NTPC</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Chapter 1 Card -->
+            <button onclick="openChapter('chapter-1')" class="text-left group theme-ch1 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200">
+                <h2 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-blue-600">1. Networking Models</h2>
+                <p class="text-gray-700">TCP/IP Model, OSI 7 Layers, Protocol Data Units, Devices & Addresses.</p>
+            </button>
+            
+            <!-- Chapter 2 Card -->
+            <button onclick="openChapter('chapter-2')" class="text-left group theme-ch2 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200">
+                <h2 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-green-600">2. Networking Types & Topologies</h2>
+                <p class="text-gray-700">LAN, MAN, WAN, PAN, SAN, CAN, Transmission Modes, Media & Topologies.</p>
+            </button>
+
+            <!-- Chapter 3 Card -->
+            <button onclick="openChapter('chapter-3')" class="text-left group theme-ch3 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200">
+                <h2 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-amber-600">3. Networking Devices & Protocols</h2>
+                <p class="text-gray-700">Hub, Switch, Router, Gateway, Modem, Firewall & Port Numbers (FTP, HTTP, etc).</p>
+            </button>
+
+            <!-- Chapter 4 Card -->
+            <button onclick="openChapter('chapter-4')" class="text-left group theme-ch4 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200">
+                <h2 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-red-600">4. IP Address vs. MAC Address</h2>
+                <p class="text-gray-700">IEEE Standards, IPv4/IPv6, MAC details, Subnet Classes & Private IP ranges.</p>
+            </button>
+        </div>
+    </div>
+
+    <!-- CHAPTER 1: Networking Models -->
+    <div id="chapter-1" class="hidden-section max-w-5xl mx-auto w-full p-4 sm:p-6 lg:p-8 chapter-container">
+        <div class="no-print flex justify-between items-center mb-6">
+            <button onclick="showDashboard()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 font-semibold shadow">← Back to Dashboard</button>
+            <button onclick="window.print()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold shadow">Print Notes</button>
+        </div>
+
+        <article class="bg-white p-8 border-t-4 border-blue-500 shadow-sm rounded-lg">
+            <header class="mb-8 border-b-2 border-blue-100 pb-4">
+                <h1 class="text-3xl font-bold text-gray-900">Chapter 1: Networking Models - Notes</h1>
+                <p class="text-sm text-gray-500 mt-2">Verified Content for SSC CGL Tier II & Railway NTPC Exams</p>
+            </header>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4 header-ch1 px-3 py-1 rounded">Networking Model History</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-2">1. TCP/IP Model</h3>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li><strong>Full Form:</strong> Transmission Control Protocol / Internet Protocol</li>
+                            <li>Developed in 1970's by US Department of Defence (DOD).</li>
+                            <li>Adopted as the protocol standard for ARPANET in 1983.</li>
+                            <li><strong>Developers:</strong> Vint Cerf and Bob Kahn.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-2">2. OSI Model</h3>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li><strong>Full Form:</strong> Open Systems Interconnection Model</li>
+                            <li>Introduced in 1984.</li>
+                            <li><strong>Developer:</strong> ISO (International Organization for Standardization) in 1984.</li>
+                            <li><strong>Nature:</strong> It is a Reference Model or Conceptual model. It is not practically implemented.</li>
+                            <li><strong>Purpose:</strong> Used by IT professionals to track the flow of data and understand how data transfers occur in networks.</li>
+                            <li><strong>Structure:</strong> Contains 7 layers. These layers follow a set of rules called Protocols.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4 header-ch1 px-3 py-1 rounded">The 7 Layers of OSI</h2>
+                <div class="space-y-4">
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold">7. Application Layer (Desktop Layer)</h3>
+                        <ul class="list-disc pl-5 mt-2">
+                            <li>Network Virtual Terminal.</li>
+                            <li>FTAM (File Transfer Access and Management).</li>
+                            <li>Mail Services.</li>
+                            <li>Directory Services.</li>
+                            <li>Used by end-user software.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold">6. Presentation Layer</h3>
+                        <ul class="list-disc pl-5 mt-2">
+                            <li>Translation (of data formats).</li>
+                            <li>Encryption (for security).</li>
+                            <li>Decryption.</li>
+                            <li>Compression (to reduce data size).</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold">5. Session Layer</h3>
+                        <ul class="list-disc pl-5 mt-2">
+                            <li>Responsible for Session Management.</li>
+                            <li>Handles Synchronization.</li>
+                            <li>Acts as a Dialog Controller.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card border-l-4 border-blue-500">
+                        <h3 class="text-lg font-bold">4. Transport Layer (Heart of OSI)</h3>
+                        <ul class="list-disc pl-5 mt-2">
+                            <li>Known as the End-to-End Layer.</li>
+                            <li>Establishes connection between source and destination.</li>
+                            <li>Deals with Acknowledgement of data.</li>
+                            <li>Provides Connection Oriented Service.</li>
+                            <li>Provides Connection Less Service.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold">3. Network Layer</h3>
+                        <ul class="list-disc pl-5 mt-2">
+                            <li>Routing and forwarding of packets.</li>
+                            <li>Enables Internetworking.</li>
+                            <li>Handles Logical Addressing (IP).</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold">2. Data Link Layer</h3>
+                        <ul class="list-disc pl-5 mt-2">
+                            <li>Handles MAC Addresses.</li>
+                            <li>Ensures error-free transfer of data frames.</li>
+                            <li>Manages Flow Control.</li>
+                            <li>Manages Error control.</li>
+                            <li><strong>Sub-Layers:</strong> LLC (Logical Link Control) and MAC (Media Access Control).</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold">1. Physical Layer</h3>
+                        <ul class="list-disc pl-5 mt-2">
+                            <li>Maintains physical connections.</li>
+                            <li>Handles Network Topology.</li>
+                            <li>Defines Networking Modes.</li>
+                            <li>Responsible for Bit synchronization.</li>
+                            <li>Controls Bit Rate.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-8 page-break-before">
+                <h2 class="text-2xl font-semibold mb-4 header-ch1 px-3 py-1 rounded">Layer Specifications</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="note-card table-container">
+                        <h3 class="text-lg font-bold mb-2">Protocol Data Units</h3>
+                        <table>
+                            <tr><th>Layer</th><th>Unit</th></tr>
+                            <tr><td>Layers 7, 6, 5</td><td>Data</td></tr>
+                            <tr><td>4. Transport</td><td>Segments</td></tr>
+                            <tr><td>3. Network</td><td>Packets</td></tr>
+                            <tr><td>2. Data Link</td><td>Frames</td></tr>
+                            <tr><td>1. Physical</td><td>Bits</td></tr>
+                        </table>
+                    </div>
+                    <div class="note-card table-container">
+                        <h3 class="text-lg font-bold mb-2">Devices by Layer</h3>
+                        <table>
+                            <tr><th>Layer</th><th>Devices</th></tr>
+                            <tr><td>Layers 7, 6, 5, 4</td><td>Gateway</td></tr>
+                            <tr><td>3. Network</td><td>Router</td></tr>
+                            <tr><td>2. Data Link</td><td>Switch, Bridge</td></tr>
+                            <tr><td>1. Physical</td><td>Hub, Repeater, Modem, Cables</td></tr>
+                        </table>
+                    </div>
+                    <div class="note-card table-container">
+                        <h3 class="text-lg font-bold mb-2">Addresses by Layer</h3>
+                        <table>
+                            <tr><th>Layer</th><th>Address Type</th></tr>
+                            <tr><td>4. Transport</td><td>Port Address</td></tr>
+                            <tr><td>3. Network</td><td>IP / Logical Address</td></tr>
+                            <tr><td>2. Data Link</td><td>MAC / Physical Address</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4 header-ch1 px-3 py-1 rounded">Protocols by Layer</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="note-card">
+                        <h4 class="font-bold border-b pb-1 mb-2">1. Physical Layer</h4>
+                        <ul class="list-disc pl-5 text-sm">
+                            <li>Digital Subscriber Line (DSL)</li>
+                            <li>Integrated Services Digital Network (ISDN)</li>
+                            <li>Universal Serial Bus (USB)</li>
+                            <li>Bluetooth</li>
+                            <li>Ethernet (IEEE 802.3)</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h4 class="font-bold border-b pb-1 mb-2">2. Data Link Layer</h4>
+                        <ul class="list-disc pl-5 text-sm">
+                            <li>Point-to-Point Protocol (PPP)</li>
+                            <li>Network Control Protocol (NCP)</li>
+                            <li>Serial Line Interface Protocol (SLIP)</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h4 class="font-bold border-b pb-1 mb-2">3. Network Layer</h4>
+                        <ul class="list-disc pl-5 text-sm">
+                            <li>Address Resolution Protocol (ARP) - Find MAC Address</li>
+                            <li>Reverse Address Resolution Protocol (RARP) - Find IP Address</li>
+                            <li>Internet Control Message Protocol (ICMP)</li>
+                            <li>Internet Group Messaging Protocol (IGMP)</li>
+                            <li>IP - Internet Protocol</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h4 class="font-bold border-b pb-1 mb-2">4. Transport Layer</h4>
+                        <ul class="list-disc pl-5 text-sm">
+                            <li>TCP - Transmission Control Protocol</li>
+                            <li>UDP - User Datagram Protocol</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h4 class="font-bold border-b pb-1 mb-2">5. Session Layer</h4>
+                        <ul class="list-disc pl-5 text-sm">
+                            <li>Point-to-Point Tunneling Protocol (PPTP)</li>
+                            <li>Password Authentication Protocol (PAP)</li>
+                            <li>Network Basic Input Output System (NetBIOS)</li>
+                            <li>AppleTalk Session Protocol (ASP)</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h4 class="font-bold border-b pb-1 mb-2">6. Presentation Layer</h4>
+                        <ul class="list-disc pl-5 text-sm">
+                            <li>Transport Layer Security (TLS)</li>
+                            <li>Secure Sockets Layer (SSL)</li>
+                            <li>Multipurpose Internet Mail Extensions (MIME)</li>
+                            <li>NetWare Core Protocol (NCP)</li>
+                        </ul>
+                    </div>
+                    <div class="note-card sm:col-span-2">
+                        <h4 class="font-bold border-b pb-1 mb-2">7. Application Layer</h4>
+                        <ul class="list-disc pl-5 text-sm grid grid-cols-2">
+                            <li>Hyper Text Transfer Protocol (HTTP)</li>
+                            <li>Post Office Protocol (POP)</li>
+                            <li>File Transfer Protocol (FTP)</li>
+                            <li>SMTP (Simple Mail Transfer Protocol)</li>
+                            <li>Domain Name System (DNS)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4 header-ch1 px-3 py-1 rounded">TCP/IP Network Model</h2>
+                <div class="note-card">
+                    <ul class="list-disc pl-5 mb-4">
+                        <li><strong>TCP:</strong> Transmission Control Protocol and is Connection Oriented.</li>
+                        <li><strong>IP:</strong> Internet Protocol and is connectionless.</li>
+                        <li>Developed in 1970's. Standardized in 1983.</li>
+                        <li>Developed by US Department of Defence.</li>
+                        <li>Developers: Vint Cerf and Bob Kahn.</li>
+                        <li><strong>Layers:</strong> 5 (Updated). Session Layer and Presentation Layer are not present.</li>
+                    </ul>
+                    <div class="grid grid-cols-2 gap-4 table-container">
+                        <div>
+                            <h4 class="font-bold text-center bg-gray-200 p-2">ORIGINAL (4 Layers)</h4>
+                            <ol class="list-decimal pl-8 py-2">
+                                <li>Link Layer</li>
+                                <li>Internet Layer</li>
+                                <li>Transport Layer</li>
+                                <li>Application Layer</li>
+                            </ol>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-center bg-gray-200 p-2">UPDATED (5 Layers)</h4>
+                            <ol class="list-decimal pl-8 py-2">
+                                <li>Physical Layer</li>
+                                <li>Data Link Layer</li>
+                                <li>Network Layer</li>
+                                <li>Transport Layer</li>
+                                <li>Application Layer</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-8 page-break-before">
+                <h2 class="text-2xl font-semibold mb-4 header-ch1 px-3 py-1 rounded">OSI & TCP/IP Model Questions Bank</h2>
+                <div class="note-card bg-gray-50">
+                    <ul class="space-y-3">
+                        <li><strong>1. OSI Model was developed in which year?</strong> 1984</li>
+                        <li><strong>2. Which type of Model is OSI?</strong> Conceptual</li>
+                        <li><strong>3. Physical layer is concerned with movement of over the physical medium?</strong> Bits</li>
+                        <li><strong>4. When a host on Network A sends a message to a host on Network B, which address does the router look at?</strong> Logical (IP)</li>
+                        <li><strong>5. Ethernet uses physical address that is imprinted on the network interface card (NIC)?</strong> MAC Address</li>
+                        <li><strong>6. The layer responsible for delivering data units from one station to the next without errors?</strong> Data Link</li>
+                        <li><strong>7. The layer responsible for Source to Destination Delivery of a packet across multiple network links?</strong> Transport Layer</li>
+                        <li><strong>8. The layer establishes, maintains and synchronizes the interactions between communicating devices?</strong> Session Layer</li>
+                        <li><strong>9. The address identifies a process on a host?</strong> Port Address</li>
+                        <li><strong>10. The address also known as Link address, is the address of a node as defined by its LAN or WAN.</strong> Physical Address</li>
+                        <li><strong>11. The layer enables the users to access the network.</strong> Application Layer</li>
+                        <li><strong>12. TCP/IP Network Model came in which year?</strong> 1970</li>
+                        <li><strong>13. Among these which is not a Layer of TCP/IP model?</strong> Session Layer</li>
+                        <li><strong>14. TCP/IP protocol was designed by?</strong> Vint Cerf and Bob Kahn</li>
+                        <li><strong>15. Which waves are used for short range communication such as those between a PC and a peripheral device?</strong> Infrared waves</li>
+                        <li><strong>16. Connection-Less protocols are?</strong> UDP and IP</li>
+                        <li><strong>17. Connection-oriented protocol is?</strong> TCP</li>
+                        <li><strong>18. What is the main advantage of UDP?</strong> It is fast</li>
+                        <li><strong>19. Port number of HTTP is?</strong> 80</li>
+                        <li><strong>20. Port number of FTP is?</strong> 21</li>
+                        <li><strong>21. Port number of DHCP server is?</strong> 67</li>
+                        <li><strong>22. Which protocol is used for remote terminal connection service?</strong> TELNET</li>
+                        <li><strong>23. The application layer of OSI model is?</strong> 7th Layer</li>
+                        <li><strong>24. Bridge works in?</strong> Data Link Layer</li>
+                        <li><strong>25. Which is a reference tool for understanding data communication between any two network systems?</strong> OSI Model</li>
+                        <li><strong>26. Router operates in which layer of OSI?</strong> Network Layer</li>
+                        <li><strong>27. How many layers are in TCP/IP Model?</strong> 5 Layers</li>
+                        <li><strong>28. Repeater operates in which layer of OSI?</strong> Physical Layer</li>
+                        <li><strong>29. MAC Address is the example of?</strong> Data Link Layer</li>
+                        <li><strong>30. Switch is also known as?</strong> Multiport Bridge</li>
+                        <li><strong>31. Which of the following protocols is/are defined in Transport Layer?</strong> UDP</li>
+                        <li><strong>32. Which is NOT an application Layer protocol?</strong> TCP</li>
+                        <li><strong>33. In the OSI Model, encryption and decryption are function of which layer?</strong> Presentation</li>
+                        <li><strong>34. Who developed the standard for the OSI reference model?</strong> ISO</li>
+                        <li><strong>35. Which layer of the OSI Model employs Error Detection?</strong> Data Link Layer</li>
+                        <li><strong>36. In OSI model, dialogue control and token management are the responsibilities of?</strong> Session Layer</li>
+                        <li><strong>37. Gateway operates in all layers of OSI?</strong> Yes (Layers 7, 6, 5, 4)</li>
+                        <li><strong>38. The functionalities of the presentation layer include?</strong> Data Compression, Data Encryption, Data Decryption</li>
+                        <li><strong>39. In Transport Layer, data travels in the form of?</strong> Segments</li>
+                        <li><strong>40. Topology comes under which layer of OSI Model?</strong> Physical Layer</li>
+                        <li><strong>41. Transport Layer deals with which type of Address?</strong> Port Address</li>
+                        <li><strong>42. Which layer specifies voltage, wire speed, and cables and moves bits between devices?</strong> Physical Layer</li>
+                        <li><strong>43. The process to process delivery of the entire message is the responsibility of the layer?</strong> Transport Layer</li>
+                        <li><strong>44. The layer is the closest to the transmission medium?</strong> Physical Layer</li>
+                        <li><strong>45. The layer lies between Network Layer and Session Layer?</strong> Transport Layer</li>
+                        <li><strong>46. Which layer of OSI model is also called end-to-end layer?</strong> Transport Layer</li>
+                        <li><strong>47. CSMA/CA operates in which layer of OSI?</strong> Data Link Layer (* CSMA/CA - Carrier-Sense Multiple Access with Collision Avoidance.)</li>
+                        <li><strong>48. Node-to-Node delivery of data units is the responsibility of which layer of OSI model?</strong> Data Link Layer</li>
+                        <li><strong>49. TCP/IP suite was created by?</strong> DOD (Department of Defense)</li>
+                        <li><strong>50. TCP/IP is related to?</strong> ARPANET</li>
+                        <li><strong>51. TCP/IP model has how many layers?</strong> 5</li>
+                        <li><strong>52. TCP/IP Model adopted as the protocol standard for ARPANET in which year?</strong> 1983</li>
+                        <li><strong>53. TCP/IP model was developed the OSI model.</strong> prior to</li>
+                        <li><strong>54. Name the first layer of TCP/IP Model?</strong> Physical Layer</li>
+                        <li><strong>55. TCP/IP Network Layer was designed by?</strong> DARPA Scientists (Vint Cerf and Bob Kahn)</li>
+                        <li><strong>56. TCP packet is called?</strong> Segment</li>
+                        <li><strong>57. UDP packet is called?</strong> User Datagram</li>
+                    </ul>
+                </div>
+            </section>
+        </article>
+    </div>
+
+    <!-- CHAPTER 2: Networking Types & Topologies -->
+    <div id="chapter-2" class="hidden-section max-w-5xl mx-auto w-full p-4 sm:p-6 lg:p-8 chapter-container">
+        <div class="no-print flex justify-between items-center mb-6">
+            <button onclick="showDashboard()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 font-semibold shadow">← Back to Dashboard</button>
+            <button onclick="window.print()" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold shadow">Print Notes</button>
+        </div>
+
+        <article class="bg-white p-8 border-t-4 border-green-500 shadow-sm rounded-lg">
+            <header class="mb-8 border-b-2 border-green-100 pb-4">
+                <h1 class="text-3xl font-bold text-gray-900">Chapter 2: Networking Types & Topologies</h1>
+                <p class="text-sm text-gray-500 mt-2">Verified Content for SSC CGL Tier II & Railway NTPC Exams</p>
+            </header>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4 header-ch2 px-3 py-1 rounded">Network Types</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-2">1. Local Area Network (LAN)</h3>
+                        <ul class="list-disc pl-5">
+                            <li>Private Network. Small Geographical Area.</li>
+                            <li>Share Resources.</li>
+                            <li>Data transfer Speed: 10 MBPS to 1 GBPS.</li>
+                            <li>Devices: Hub/Switch.</li>
+                            <li>High Security. Range: 100 metres to 2 KM.</li>
+                            <li>Cable: Twisted pair Cable/Co-axial Cable.</li>
+                            <li>IEEE developed specifications for LAN.</li>
+                            <li><strong>Types:</strong> Wired LAN: Cables (Ethernet 802.3). Wireless LAN: WiFi (802.11).</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-2">2. Metropolitan Area Network (MAN)</h3>
+                        <ul class="list-disc pl-5">
+                            <li>Covers a city.</li>
+                            <li>Interconnects 2 LANs (LAN-MAN-LAN).</li>
+                            <li>Cable: Optic Fibre.</li>
+                            <li>Example: TV Networks cables.</li>
+                            <li>Devices: Hub/Switch, Routers/Bridge.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-2">3. Wide Area Network (WAN)</h3>
+                        <ul class="list-disc pl-5">
+                            <li>Is a Telecommunication Network.</li>
+                            <li>Covers Countries (Large geographical Area).</li>
+                            <li>Internet is largest in WAN.</li>
+                            <li>Transmission Medium: Satellite.</li>
+                            <li>Devices: Routers. Firewall is required.</li>
+                            <li>e.g. Internet.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-2">4. Personal Area Network (PAN)</h3>
+                        <ul class="list-disc pl-5">
+                            <li>Range: 10 metres.</li>
+                            <li>Bluetooth enabled devices. Infrared-enable devices.</li>
+                            <li>Hot spot.</li>
+                            <li>Wireless keyboard and Mouse. Bluetooth enabled Headphones. Wireless printers, Remotes.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-2">5. Storage Area Network (SAN)</h3>
+                        <ul class="list-disc pl-5">
+                            <li>e.g. Cloud computing.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-2">6. Campus Area Network (CAN)</h3>
+                        <ul class="list-disc pl-5">
+                            <li>Also known as Corporate Area Network (CAN).</li>
+                            <li>Group of interconnected LANs.</li>
+                            <li>Range: 1 to 5 KM.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4 header-ch2 px-3 py-1 rounded">Internet vs. Intranet vs. Extranet</h2>
+                <div class="note-card grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <h3 class="font-bold border-b border-gray-300 pb-1">Internet</h3>
+                        <ul class="list-disc pl-5 mt-2 text-sm">
+                            <li>Public access.</li>
+                            <li>Unrestricted and lowest level of security.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold border-b border-gray-300 pb-1">Intranet</h3>
+                        <ul class="list-disc pl-5 mt-2 text-sm">
+                            <li>Restricted strictly to one organization.</li>
+                            <li>Employees only.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold border-b border-gray-300 pb-1">Extranet</h3>
+                        <ul class="list-disc pl-5 mt-2 text-sm">
+                            <li>Allows authorised outsiders to access a private network.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-8 page-break-before">
+                <h2 class="text-2xl font-semibold mb-4 header-ch2 px-3 py-1 rounded">Transmission Modes & Media</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-2">Transmission Modes</h3>
+                        <ul class="space-y-3">
+                            <li><strong>Simplex:</strong> Unidirectional (One-way). Low performance. e.g. Keyboard, Monitor.</li>
+                            <li><strong>Half Duplex:</strong> Bidirectional (Two-way, but one at a time). Medium performance. e.g. Walkie-Talkie.</li>
+                            <li><strong>Full Duplex:</strong> Bidirectional (Two-way, simultaneous). High performance. e.g. Telephone/Mobile.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-2">Transmission Media</h3>
+                        <div class="mb-3">
+                            <strong>Guided Media (Cables)</strong>
+                            <ul class="list-disc pl-5 text-sm">
+                                <li>Twisted pair Cable: Shielded (STP - used in factory), Unshielded (UTP - LAN Connection).</li>
+                                <li>Co-axial Cable: e.g. TV Cable.</li>
+                                <li>Fibre optic cable: Set under Sea. Fastest. Broadband Connection.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <strong>Un-Guided Media (Waves)</strong>
+                            <ul class="list-disc pl-5 text-sm">
+                                <li>Radio waves</li>
+                                <li>Microwaves</li>
+                                <li>Infrared waves</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4 header-ch2 px-3 py-1 rounded">Network Topology</h2>
+                <p class="mb-4 bg-gray-50 p-3 rounded border text-sm">Topology refers to the geometric arrangement of a computer system. It describes the physical or logical layout of a network. It defines how different nodes (computer nodes, printers) are connected to each other and how they communicate.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-1">Bus Topology</h3>
+                        <p class="text-sm font-semibold text-gray-500 mb-2">Multipoint Connection</p>
+                        <ul class="list-disc pl-5 text-sm space-y-1">
+                            <li>All devices connect to a single central cable.</li>
+                            <li>LAN Usage: Commonly used in Small LAN due to simple wiring.</li>
+                            <li>Fault Tolerance: Difficult to isolate faults. If the main Cable breaks, the entire network goes down.</li>
+                            <li>Protocols: Uses CSMA/CD and CSMA/CA to manage data traffic and prevent collisions.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-1">Star Topology</h3>
+                        <p class="text-sm font-semibold text-gray-500 mb-2">Hub/Switch Central</p>
+                        <ul class="list-disc pl-5 text-sm space-y-1">
+                            <li>All nodes connect individually to a central device (Hub or Switch).</li>
+                            <li>The most popular topology for Modern LAN.</li>
+                            <li>Devices are usually configured in a Primary-Secondary relationship.</li>
+                            <li>Used for large networks. Requires a central controller or hub.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-1">Ring Topology</h3>
+                        <p class="text-sm font-semibold text-gray-500 mb-2">Token Passing</p>
+                        <ul class="list-disc pl-5 text-sm space-y-1">
+                            <li>Data travels in a circle.</li>
+                            <li>A "token" is passed around; only the node holding the token can send data.</li>
+                            <li>Often used in FDDI (Fiber Distributed Data Interface) networks for high-speed transmission.</li>
+                            <li>Flow of data is Uni-directional.</li>
+                            <li>Devices usually configured in a Peer-to-peer relationship.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-1">Tree Topology</h3>
+                        <p class="text-sm font-semibold text-gray-500 mb-2">Star of Stars</p>
+                        <ul class="list-disc pl-5 text-sm space-y-1">
+                            <li>Known as a "star of stars".</li>
+                            <li>It has a root node and connects multiple star networks.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card md:col-span-2 border-l-4 border-green-500">
+                        <h3 class="text-lg font-bold mb-1">Mesh Topology</h3>
+                        <p class="text-sm font-semibold text-gray-500 mb-2">Most Robust</p>
+                        <ul class="list-disc pl-5 text-sm space-y-1">
+                            <li>Every device has a dedicated connection to every other device.</li>
+                            <li>If one connection fails, data finds another path. Bi-directional flow is possible.</li>
+                            <li>Uses Routers. Highest reliability. Covers Security, robust and eliminating the traffic factor.</li>
+                            <li>Devices connected via Point-to-point Link.</li>
+                            <li><strong>Drawbacks:</strong> Wiring is complex and expensive. Requires routers/switches with many ports. Requires the most amount of wiring.</li>
+                            <li><strong>Use Case:</strong> Home automation and critical infrastructure where connection failure isn't an option.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-1">Hybrid Topology</h3>
+                        <ul class="list-disc pl-5 text-sm space-y-1">
+                            <li>Mix of two or different topologies.</li>
+                            <li>Has 2 or more combinations.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-1">Mobile Ad-hoc Networks (MANET)</h3>
+                        <ul class="list-disc pl-5 text-sm space-y-1">
+                            <li>Type of network where topology changes from time to time.</li>
+                            <li>Changes locations and configures itself.</li>
+                            <li>Lack of centralized control. Varying network topology. e.g. Bluetooth.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-8 page-break-before">
+                <h2 class="text-2xl font-semibold mb-4 header-ch2 px-3 py-1 rounded">Review & Key Takeaways</h2>
+                <div class="note-card bg-gray-50">
+                    <ul class="space-y-3">
+                        <li><strong>Flow:</strong> Flow of Data in a computer ring network topology is Uni-directional.</li>
+                        <li><strong>Terminators:</strong> Used in BUS topology.</li>
+                        <li><strong>Topology Definition:</strong> Physical or logical arrangement of networks is Topology.</li>
+                        <li><strong>Central Controller:</strong> Star topology requires a central controller or hub.</li>
+                        <li><strong>Multipoint:</strong> BUS topology requires a multi-point connection.</li>
+                        <li><strong>Point-to-Point:</strong> Mesh topology has devices connected via Point-to-point Link.</li>
+                        <li><strong>Common LAN Topologies:</strong> Bus, Ring, Star.</li>
+                        <li><strong>Reliability:</strong> Mesh topology has the highest reliability.</li>
+                        <li><strong>Nodes:</strong> Participating computers in a network topology are referred to as Nodes.</li>
+                        <li><strong>Tokens:</strong> Tokens are involved in a Ring topology. Source computer sends information along with Token. Short message that travels around communication medium is Token.</li>
+                        <li><strong>Security:</strong> Security and privacy are less in Bus topology. Mesh topology covers Security, robust and eliminating the traffic factor.</li>
+                        <li><strong>Bi-directional Links:</strong> Mesh topology has bi-directional links between each possible Node.</li>
+                        <li><strong>Wiring & Faults:</strong> Mesh requires the most amount of wiring. Bus has the toughest fault identification.</li>
+                        <li><strong>Acronyms:</strong> CSMA/CD (Carrier-Sense Multiple Access with Collision Detection), CSMA/CA (Carrier-Sense Multiple Access with Collision Avoidance), FDDI (Fiber Distributed Data Interface).</li>
+                    </ul>
+                </div>
+            </section>
+        </article>
+    </div>
+
+    <!-- CHAPTER 3: Networking Devices & Protocols -->
+    <div id="chapter-3" class="hidden-section max-w-5xl mx-auto w-full p-4 sm:p-6 lg:p-8 chapter-container">
+        <div class="no-print flex justify-between items-center mb-6">
+            <button onclick="showDashboard()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 font-semibold shadow">← Back to Dashboard</button>
+            <button onclick="window.print()" class="px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 font-semibold shadow">Print Notes</button>
+        </div>
+
+        <article class="bg-white p-8 border-t-4 border-amber-500 shadow-sm rounded-lg">
+            <header class="mb-8 border-b-2 border-amber-100 pb-4">
+                <h1 class="text-3xl font-bold text-gray-900">Chapter 3: Networking Devices & Protocols</h1>
+                <p class="text-sm text-gray-500 mt-2">Verified Content for SSC CGL Tier II & Railway NTPC Exams</p>
+            </header>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4 header-ch3 px-3 py-1 rounded">Networking Devices</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-2 text-amber-900">HUB (Physical Layer)</h3>
+                        <ul class="list-disc pl-5">
+                            <li>Known as Dumb Device.</li>
+                            <li>Broadcasts message in network.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-2 text-amber-900">Repeater (Physical Layer)</h3>
+                        <ul class="list-disc pl-5">
+                            <li>Re-generates signals.</li>
+                            <li>Considered an Active Hub.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-2 text-amber-900">Bridge (Data Link Layer)</h3>
+                        <ul class="list-disc pl-5">
+                            <li>Connects LANs in which protocols and MAC Address are same.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-2 text-amber-900">Router (Network Layer)</h3>
+                        <ul class="list-disc pl-5">
+                            <li>Connects IP Addresses. Used in WAN & LAN. Connects LANs.</li>
+                            <li>Regulates Traffic. Fastest Device.</li>
+                            <li>Internetworking device. Data forwards in packets. Uses Routing Table.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-2 text-amber-900">Gateway</h3>
+                        <ul class="list-disc pl-5">
+                            <li>Connects different topologies, protocols.</li>
+                            <li>Works on all 7 Layers of OSI Model.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-2 text-amber-900">Modem</h3>
+                        <ul class="list-disc pl-5">
+                            <li>Used in DSL (Digital Subscriber Line).</li>
+                            <li>Modulator (Digital to Analog) + Demodulator (Analog to Digital).</li>
+                            <li>Used in Telephone lines / dial up connections. Slowest networking device.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card md:col-span-2">
+                        <h3 class="text-lg font-bold mb-2 text-amber-900">Firewall</h3>
+                        <ul class="list-disc pl-5">
+                            <li>Can be Hardware or Software.</li>
+                            <li>Revokes unauthorized access to a computer.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-8 page-break-before">
+                <h2 class="text-2xl font-semibold mb-4 header-ch3 px-3 py-1 rounded">Devices on Layers of Reference Models (OSI)</h2>
+                <div class="note-card table-container">
+                    <table>
+                        <tr><th>Device</th><th>Layer</th></tr>
+                        <tr><td>Hub</td><td>Physical Layer</td></tr>
+                        <tr><td>Repeater</td><td>Physical Layer</td></tr>
+                        <tr><td>Switch</td><td>Data Link Layer</td></tr>
+                        <tr><td>Bridge</td><td>Data Link Layer</td></tr>
+                        <tr><td>Router</td><td>Network Layer</td></tr>
+                        <tr><td>Gateway</td><td>All 7 Layers</td></tr>
+                        <tr><td>Modem</td><td>Physical / Data Link Layer</td></tr>
+                        <tr><td>Firewall</td><td>Network Layer</td></tr>
+                    </table>
+                </div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4 header-ch3 px-3 py-1 rounded">Devices Questions</h2>
+                <div class="note-card bg-gray-50">
+                    <ul class="space-y-3">
+                        <li><strong>1. Router is used to transfer Packets from one device to another device through a network?</strong> Yes</li>
+                        <li><strong>2. Which of the following is an Inter-Networking device?</strong> Router</li>
+                        <li><strong>3. The layer of OSI Model responsible for packet forwarding including routing through intermediate routers?</strong> Network Layer</li>
+                        <li><strong>4. Which utility is used, if you want to find the number of routers between a source and destination?</strong> Trace route</li>
+                        <li><strong>5. Router is a hardware device which is used to receive, analyze and forward the incoming packets to another network?</strong> Yes</li>
+                        <li><strong>6. Repeater device which is used to boost the signals between two cable segments or wireless access points is?</strong> Repeater</li>
+                        <li><strong>7. A device that provides a central connection point for cable is?</strong> Hub</li>
+                        <li><strong>8. It is a type of computer network device that provides interconnection with other networks that use the same protocol?</strong> Bridge</li>
+                        <li><strong>9. A device that helps prevent congestion and data collisions?</strong> Switch</li>
+                        <li><strong>10. Port used to connect a number of LANs is?</strong> Router</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="mb-8 page-break-before">
+                <h2 class="text-2xl font-semibold mb-4 header-ch3 px-3 py-1 rounded">Protocols and Port Numbers</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div class="note-card">
+                        <h3 class="text-lg font-bold mb-1">Definitions</h3>
+                        <ul class="list-disc pl-5 text-sm space-y-2">
+                            <li><strong>Port:</strong> Used to identify the senders and receivers of messages in computer. Ports deal in 4th Layer (Transport Layer) of OSI. Each Host can have 65,535 ports per IP Address.</li>
+                            <li><strong>Protocol:</strong> Set of rules that governs data Communication.</li>
+                            <li><strong>Port Number:</strong> A 16-bit number identifying a specific process to which an internet or other network Message is to be forwarded when it arrives at a server. Range: 0 to 65535.</li>
+                        </ul>
+                    </div>
+                    <div class="note-card table-container">
+                        <h3 class="text-lg font-bold mb-2">Key Categories</h3>
+                        <table>
+                            <tr><td>Well-known ports</td><td>0 to 1023</td></tr>
+                            <tr><td>Registered Ports</td><td>1024 to 49151</td></tr>
+                            <tr><td>Dynamic/Private ports</td><td>49152 to 65535</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="note-card table-container">
+                    <h3 class="text-lg font-bold mb-2">Important Protocols & Ports Mapping</h3>
+                    <table>
+                        <tr><th>Protocol</th><th>Full Name</th><th>Layer Type</th><th>Port Number</th></tr>
+                        <tr class="bg-gray-100"><td colspan="4" class="font-bold">FILE TRANSFER / REMOTE</td></tr>
+                        <tr><td>FTP (Data)</td><td>File Transfer Protocol-Data</td><td>TCP</td><td>Port 20</td></tr>
+                        <tr><td>FTP (Control)</td><td>File Transfer Protocol-Control</td><td>TCP</td><td>Port 21</td></tr>
+                        <tr><td>SSH/SFTP</td><td>Secure Shell</td><td>TCP</td><td>Port 22</td></tr>
+                        <tr><td>Telnet</td><td>Teletype Network</td><td>TCP</td><td>Port 23</td></tr>
+                        <tr><td>TFTP</td><td>Trivial File Transfer Protocol</td><td>UDP</td><td>Port 69</td></tr>
+                        <tr class="bg-gray-100"><td colspan="4" class="font-bold">EMAIL PROTOCOLS</td></tr>
+                        <tr><td>SMTP</td><td>Simple Mail Transfer Protocol</td><td>TCP</td><td>Port 25</td></tr>
+                        <tr><td>POP3</td><td>Post Office Protocol v3</td><td>TCP</td><td>Port 110</td></tr>
+                        <tr><td>IMAP</td><td>Internet Message Access Protocol</td><td>TCP</td><td>Port 143</td></tr>
+                        <tr class="bg-gray-100"><td colspan="4" class="font-bold">WEB & NAME</td></tr>
+                        <tr><td>DNS</td><td>Domain Name System</td><td>TCP/UDP</td><td>Port 53</td></tr>
+                        <tr><td>HTTP</td><td>Hyper Text Transfer Protocol</td><td>TCP</td><td>Port 80</td></tr>
+                        <tr><td>HTTPS</td><td>HTTP Secure</td><td>TCP</td><td>Port 443</td></tr>
+                        <tr class="bg-gray-100"><td colspan="4" class="font-bold">NETWORK MANAGEMENT & OTHER</td></tr>
+                        <tr><td>DHCP</td><td>Dynamic Host Configuration</td><td>UDP</td><td>67 (Server) / 68 (Client)</td></tr>
+                        <tr><td>SNMP</td><td>Simple Network Management</td><td>UDP</td><td>161 / 162</td></tr>
+                        <tr><td>RDP</td><td>Remote Desktop Protocol</td><td>TCP</td><td>Port 3389</td></tr>
+                    </table>
+                </div>
+            </section>
+        </article>
+    </div>
+
+    <!-- CHAPTER 4: IP Address vs. MAC Address -->
+    <div id="chapter-4" class="hidden-section max-w-5xl mx-auto w-full p-4 sm:p-6 lg:p-8 chapter-container">
+        <div class="no-print flex justify-between items-center mb-6">
+            <button onclick="showDashboard()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 font-semibold shadow">← Back to Dashboard</button>
+            <button onclick="window.print()" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-semibold shadow">Print Notes</button>
+        </div>
+
+        <article class="bg-white p-8 border-t-4 border-red-500 shadow-sm rounded-lg">
+            <header class="mb-8 border-b-2 border-red-100 pb-4">
+                <h1 class="text-3xl font-bold text-gray-900">Chapter 4: IP Address vs. MAC Address</h1>
+                <p class="text-sm text-gray-500 mt-2">Verified Content for SSC CGL Tier II & Railway NTPC Exams</p>
+            </header>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4 header-ch4 px-3 py-1 rounded">IEEE Standards</h2>
+                <p class="mb-4 bg-gray-50 p-3 rounded border text-sm">IEEE (Institute of Electrical and Electronics Engineers) core purpose is to foster technological innovation and excellence for the benefit of humanity.</p>
+                <div class="note-card table-container">
+                    <table>
+                        <tr><th>Standard</th><th>Description</th></tr>
+                        <tr><td>IEEE 802.1</td><td>LAN Protocol</td></tr>
+                        <tr><td>IEEE 802.2</td><td>Logical Link Control</td></tr>
+                        <tr><td>IEEE 802.3</td><td>Ethernet</td></tr>
+                        <tr><td>IEEE 802.4</td><td>Token Bus</td></tr>
+                        <tr><td>IEEE 802.5</td><td>Token Ring</td></tr>
+                        <tr><td>IEEE 802.6</td><td>MAN (Metropolitan Area Network)</td></tr>
+                        <tr><td>IEEE 802.11</td><td>WLAN (WI-FI)</td></tr>
+                        <tr><td>IEEE 802.14</td><td>Cable Modems</td></tr>
+                        <tr><td>IEEE 802.15</td><td>PAN (Personal Area Network)</td></tr>
+                        <tr><td>IEEE 802.15.1</td><td>Bluetooth</td></tr>
+                        <tr><td>IEEE 802.16</td><td>WIMAX (Worldwide Interoperability for Microwave Access)</td></tr>
+                    </table>
+                </div>
+            </section>
+
+            <section class="mb-8 page-break-before">
+                <h2 class="text-2xl font-semibold mb-4 header-ch4 px-3 py-1 rounded">IP Address vs MAC Address</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="note-card border-l-4 border-blue-400">
+                        <h3 class="text-xl font-bold mb-3 text-blue-900">IP Address (Internet Protocol Address)</h3>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li><strong>Definition:</strong> Identifies device on Internet / Logical Address.</li>
+                            <li><strong>Changeability:</strong> It can Change (Temporary).</li>
+                            <li><strong>Versions:</strong> IPv4: 32 Bit/4 Byte (Decimal Notation). IPv6: 128 Bit/16 Byte (Hexadecimal Notation).</li>
+                            <li><strong>Layer:</strong> OSI Layer 3 (Network Layer).</li>
+                            <li><strong>Developer:</strong> IPv4 (DARPA), IPv6 (IETF).</li>
+                            <li><strong>Command:</strong> <code>ipconfig</code></li>
+                            <li><strong>Management:</strong> IANA (Global), APNIC (Asia Pacific).</li>
+                        </ul>
+                    </div>
+                    <div class="note-card border-l-4 border-red-400">
+                        <h3 class="text-xl font-bold mb-3 text-red-900">MAC Address (Media Access Control Address)</h3>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li><strong>Definition:</strong> Address of Networking Device / Physical / Hardware / Burned-in Address.</li>
+                            <li><strong>Changeability:</strong> Permanent (Can't Change).</li>
+                            <li><strong>Size:</strong> 48 Bit / 6 Byte (12 digit Hexadecimal Number).</li>
+                            <li><strong>Layer:</strong> OSI Layer 2 (Data Link Layer).</li>
+                            <li><strong>Developer:</strong> Xerox PARC.</li>
+                            <li><strong>Command:</strong> <code>getmac</code></li>
+                            <li><strong>Structure:</strong> First 6 hex digits (OUI - Manufacturer), Last 6 hex digits (NIC Specific).</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4 header-ch4 px-3 py-1 rounded">IP Address Classes & Ranges</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div class="note-card table-container">
+                        <h3 class="text-lg font-bold mb-2">Classful Addressing</h3>
+                        <table>
+                            <tr><th>Class</th><th>Range</th><th>Structure</th></tr>
+                            <tr><td>Class A</td><td>1 to 126</td><td>Network.Host.Host.Host</td></tr>
+                            <tr><td>Class B</td><td>128 to 191</td><td>Network.Network.Host.Host</td></tr>
+                            <tr><td>Class C</td><td>192 to 223</td><td>Network.Network.Network.Host</td></tr>
+                            <tr><td>Class D</td><td>224 to 239</td><td>Reserved for Multicasting</td></tr>
+                            <tr><td>Class E</td><td>240 to 254</td><td>Experimental / Research</td></tr>
+                        </table>
+                        <p class="mt-2 text-sm text-gray-600">* 127.0.0.1 is Reserved (Loop Back)</p>
+                    </div>
+                    <div class="note-card table-container">
+                        <h3 class="text-lg font-bold mb-2">Private IP Address Ranges (Reserved by IANA)</h3>
+                        <table>
+                            <tr><th>Range Start</th><th>Range End</th></tr>
+                            <tr><td>10.0.0.0</td><td>10.255.255.255</td></tr>
+                            <tr><td>172.16.0.0</td><td>172.31.255.255</td></tr>
+                            <tr><td>192.168.0.0</td><td>192.168.255.255</td></tr>
+                            <tr><td>100.64.0.0</td><td>100.127.255.255</td></tr>
+                        </table>
+                        <h3 class="text-lg font-bold mt-4 mb-2">Important Protocols</h3>
+                        <ul class="list-disc pl-5 text-sm">
+                            <li><strong>ARP:</strong> Find MAC from IP (Address Resolution Protocol)</li>
+                            <li><strong>RARP:</strong> Find IP from MAC (Reverse ARP)</li>
+                            <li><strong>DNS:</strong> Domain Name System (Domain to IP)</li>
+                            <li><strong>DHCP:</strong> Dynamic Host Configuration Protocol</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-8 page-break-before">
+                <h2 class="text-2xl font-semibold mb-4 header-ch4 px-3 py-1 rounded">Concept Check (MCQs)</h2>
+                <div class="note-card bg-gray-50 text-sm">
+                    <ul class="space-y-3 columns-1 md:columns-2 gap-8">
+                        <li><strong>Q1. Which organization oversees the allocation of public IP addresses?</strong> IANA</li>
+                        <li><strong>Q2. Which of the following is an invalid IPv4 address?</strong> 192.168.1.270 (Range 0-255)</li>
+                        <li><strong>Q3. Which IPv4 address series is reserved by IANA for private use?</strong> 192.168.0.0 to 192.168.255.255</li>
+                        <li><strong>Q4. Which of the following address belongs to Class A?</strong> 121.12.12.248</li>
+                        <li><strong>Q5. Which of the following IP addresses can be used as loop-back addresses?</strong> 127.0.0.1</li>
+                        <li><strong>Q6. Loopback address is also called as?</strong> Local Host</li>
+                        <li><strong>Q7. What is the format of IP address?</strong> 32 bit</li>
+                        <li><strong>Q8. Version 6 of IP address has how many bits?</strong> 128 bits</li>
+                        <li><strong>Q9. An IPV-4 address consist of 2 parts?</strong> Network, Host</li>
+                        <li><strong>Q10. Which of the following does not have a Net ID and Host ID?</strong> Class D (Multicast)</li>
+                        <li><strong>Q11. Which Class is reserved for future use?</strong> Class E</li>
+                        <li><strong>Q12. Default network mask for CLASS B is?</strong> 255.255.0.0</li>
+                        <li><strong>Q13. Which of the following is valid IP address?</strong> 192.168.56.115</li>
+                        <li><strong>Q14. What range of addresses can be used in the first octet of a Class C address?</strong> 192-223</li>
+                        <li><strong>Q15. Who is responsible for assigning IP address?</strong> IANA</li>
+                        <li><strong>Q16. Many desktops and operating systems include which protocol?</strong> IPv4 protocol</li>
+                        <li><strong>Q17. Which class of IP Address is reserved for Unicasting?</strong> All of these (Classes A, B, C)</li>
+                        <li><strong>Q18. Which of the following IP address can be used in WAN?</strong> 15.1.5.6 (Public IP)</li>
+                        <li><strong>Q19. DNS converts?</strong> Domain name to IP Address</li>
+                        <li><strong>Q20. Which of the following IP Address can be used in WAN?</strong> 15.1.5.6</li>
+                        <li><strong>Q21. IP address works on which layer of OSI model?</strong> Layer 3</li>
+                        <li><strong>Q22. What is the correct range of IP Address?</strong> 0-255</li>
+                        <li><strong>Q23. Who developed IPV-4?</strong> DARPA</li>
+                        <li><strong>Q24. Who developed IPV-6?</strong> IETF</li>
+                        <li><strong>Q25. Loopback address is used for?</strong> Self Testing</li>
+                        <li><strong>Q26. Which protocol is used to find MAC address, when IP address is known?</strong> ARP</li>
+                        <li><strong>Q27. Which protocol is used to find IP address, when MAC address is known?</strong> RARP</li>
+                        <li><strong>Q28. Physical address is also called as?</strong> MAC Address</li>
+                        <li><strong>Q29. How many bits are there in the Ethernet address?</strong> 48 bits</li>
+                        <li><strong>Q30. Hardware address is known as?</strong> MAC address</li>
+                        <li><strong>Q31. MAC address works on which layer of OSI model?</strong> Layer 2</li>
+                        <li><strong>Q32. This address never changes & it is fixed in nature?</strong> MAC Address</li>
+                        <li><strong>Q33. MAC Address is digit number?</strong> 12 (Hex digits)</li>
+                        <li><strong>Q34. First 6 digit of MAC address denotes?</strong> Organizational Unique Identifier</li>
+                        <li><strong>Q35. Last 6 digit of MAC address denotes?</strong> Network Interface Controller (Specific)</li>
+                        <li><strong>Q36. How many types of MAC address are there?</strong> All of these (Unicast, Multicast, Broadcast)</li>
+                        <li><strong>Q37. Which of the following is a MAC address?</strong> 01:A5:BB:A7:FF:60</li>
+                        <li><strong>Q38. Who created Media Access Control addresses?</strong> Xerox PARC</li>
+                        <li><strong>Q39. The process of masking a MAC address is known as?</strong> MAC spoofing</li>
+                        <li><strong>Q40. MAC Address is a 12-digit hexadecimal number, which is mostly represented by?</strong> Hexadecimal notation</li>
+                        <li><strong>Q41. Which one is Broadcast MAC Address?</strong> FF:FF:FF:FF:FF:FF</li>
+                    </ul>
+                </div>
+            </section>
+        </article>
+    </div>
+
+    <script>
+        function hideAllSections() {
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('chapter-1').style.display = 'none';
+            document.getElementById('chapter-2').style.display = 'none';
+            document.getElementById('chapter-3').style.display = 'none';
+            document.getElementById('chapter-4').style.display = 'none';
+        }
+
+        function showDashboard() {
+            hideAllSections();
+            document.getElementById('dashboard').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function openChapter(chapterId) {
+            hideAllSections();
+            document.getElementById(chapterId).style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+        
+        // Initialize dashboard state
+        showDashboard();
+    </script>
+</body>
+</html>

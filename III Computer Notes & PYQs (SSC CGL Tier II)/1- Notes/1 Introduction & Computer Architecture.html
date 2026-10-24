@@ -1,0 +1,2277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Computer Awareness Notes — 5 Chapters (SSC CGL Tier II &amp; Railway NTPC)</title>
+  <style>
+    /* ==========================================================================
+       CORE TYPOGRAPHY & LIGHT-THEME BOOK STYLING (CALIBRI FONT, PRINT-READY)
+       ========================================================================== */
+    :root {
+      --bg-page: #f4f6f9;
+      --bg-paper: #ffffff;
+      --text-primary: #0f172a;
+      --text-secondary: #1e293b;
+      --text-muted: #334155;
+      --border-strong: #94a3b8;
+      --border-soft: #cbd5e1;
+
+      /* Chapter Color Coding */
+      --ch1-primary: #1d4ed8;
+      --ch1-light: #eff6ff;
+      --ch1-border: #93c5fd;
+
+      --ch2-primary: #047857;
+      --ch2-light: #ecfdf5;
+      --ch2-border: #6ee7b7;
+
+      --ch3-primary: #6d28d9;
+      --ch3-light: #f5f3ff;
+      --ch3-border: #c4b5fd;
+
+      --ch4-primary: #be123c;
+      --ch4-light: #fff1f2;
+      --ch4-border: #fda4af;
+
+      --ch5-primary: #0369a1;
+      --ch5-light: #f0f9ff;
+      --ch5-border: #7dd3fc;
+
+      /* Semantic Highlights */
+      --exam-bg: #fffbeb;
+      --exam-border: #f59e0b;
+      --exam-text: #78350f;
+
+      --verify-bg: #f0fdf4;
+      --verify-border: #16a34a;
+      --verify-text: #14532d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      font-family: Calibri, Candara, "Segoe UI", Optima, Arial, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-size: 16.5px;
+      line-height: 1.58;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Main Wrapper */
+    .app-container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px 18px 56px 18px;
+    }
+
+    /* Top Action Bar (Screen Only) */
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--bg-paper);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 10px;
+      padding: 12px 18px;
+      margin-bottom: 22px;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-badge {
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: #dbeafe;
+      color: #1e40af;
+      border: 1px solid #93c5fd;
+      padding: 2px 9px;
+      border-radius: 999px;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .btn {
+      font-family: Calibri, Candara, "Segoe UI", Arial, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border-strong);
+      background: #ffffff;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn:hover {
+      background: #f1f5f9;
+      border-color: #475569;
+    }
+
+    .btn-primary {
+      background: #1e3a8a;
+      color: #ffffff;
+      border-color: #1e3a8a;
+    }
+
+    .btn-primary:hover {
+      background: #172554;
+      border-color: #172554;
+    }
+
+    /* Views Management */
+    .view-section {
+      display: none;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    /* ==========================================================================
+       DASHBOARD STYLING
+       ========================================================================== */
+    .dashboard-hero {
+      background: var(--bg-paper);
+      border: 2px solid #cbd5e1;
+      border-top: 6px solid #1e3a8a;
+      border-radius: 12px;
+      padding: 28px 26px;
+      margin-bottom: 24px;
+      box-shadow: 0 3px 10px rgba(15, 23, 42, 0.05);
+    }
+
+    .dashboard-hero h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .dashboard-hero p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .hero-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .hero-meta-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.94rem;
+      color: var(--text-primary);
+    }
+
+    .hero-meta-box strong {
+      display: block;
+      color: #0f172a;
+      font-size: 0.98rem;
+      margin-bottom: 2px;
+    }
+
+    .chapter-list-heading {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 14px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #cbd5e1;
+    }
+
+    .dashboard-chapters-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .chapter-card-item {
+      background: var(--bg-paper);
+      border: 1.5px solid #cbd5e1;
+      border-left: 7px solid #1d4ed8;
+      border-radius: 10px;
+      padding: 18px 22px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .chapter-card-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.08);
+    }
+
+    .chapter-card-item.ch-1 { border-left-color: var(--ch1-primary); }
+    .chapter-card-item.ch-2 { border-left-color: var(--ch2-primary); }
+    .chapter-card-item.ch-3 { border-left-color: var(--ch3-primary); }
+    .chapter-card-item.ch-4 { border-left-color: var(--ch4-primary); }
+    .chapter-card-item.ch-5 { border-left-color: var(--ch5-primary); }
+
+    .chapter-card-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .chapter-number-badge {
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .ch-1 .chapter-number-badge { background: var(--ch1-light); color: var(--ch1-primary); border: 1px solid var(--ch1-border); }
+    .ch-2 .chapter-number-badge { background: var(--ch2-light); color: var(--ch2-primary); border: 1px solid var(--ch2-border); }
+    .ch-3 .chapter-number-badge { background: var(--ch3-light); color: var(--ch3-primary); border: 1px solid var(--ch3-border); }
+    .ch-4 .chapter-number-badge { background: var(--ch4-light); color: var(--ch4-primary); border: 1px solid var(--ch4-border); }
+    .ch-5 .chapter-number-badge { background: var(--ch5-light); color: var(--ch5-primary); border: 1px solid var(--ch5-border); }
+
+    .chapter-card-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .chapter-card-desc {
+      font-size: 1rem;
+      color: var(--text-secondary);
+    }
+
+    .chapter-topics-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .topic-pill {
+      font-size: 0.86rem;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      color: #1e293b;
+      padding: 2px 10px;
+      border-radius: 5px;
+      font-weight: 600;
+    }
+
+    .chapter-card-actions {
+      display: flex;
+      justify-content: flex-end;
+      padding-top: 6px;
+    }
+
+    /* ==========================================================================
+       BOOK-STYLE CHAPTER PAGE STYLING
+       ========================================================================== */
+    .book-sheet {
+      background: var(--bg-paper);
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 32px 30px;
+      box-shadow: 0 3px 12px rgba(15, 23, 42, 0.05);
+    }
+
+    .chapter-banner {
+      border-bottom: 3px solid #1e293b;
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+
+    .chapter-banner.ch1-banner { border-bottom-color: var(--ch1-primary); }
+    .chapter-banner.ch2-banner { border-bottom-color: var(--ch2-primary); }
+    .chapter-banner.ch3-banner { border-bottom-color: var(--ch3-primary); }
+    .chapter-banner.ch4-banner { border-bottom-color: var(--ch4-primary); }
+    .chapter-banner.ch5-banner { border-bottom-color: var(--ch5-primary); }
+
+    .chapter-kicker {
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .ch1-banner .chapter-kicker { color: var(--ch1-primary); }
+    .ch2-banner .chapter-kicker { color: var(--ch2-primary); }
+    .ch3-banner .chapter-kicker { color: var(--ch3-primary); }
+    .ch4-banner .chapter-kicker { color: var(--ch4-primary); }
+    .ch5-banner .chapter-kicker { color: var(--ch5-primary); }
+
+    .chapter-main-heading {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+
+    .chapter-subtitle {
+      font-size: 1.02rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* Section Cards inside Chapter Notes */
+    .note-section {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin-bottom: 20px;
+    }
+
+    .note-section-title {
+      font-size: 1.32rem;
+      font-weight: 700;
+      color: #0f172a;
+      padding-bottom: 8px;
+      margin-bottom: 14px;
+      border-bottom: 2px solid #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .ch1-sec .note-section-title { border-bottom-color: var(--ch1-primary); color: #1e3a8a; }
+    .ch2-sec .note-section-title { border-bottom-color: var(--ch2-primary); color: #065f46; }
+    .ch3-sec .note-section-title { border-bottom-color: var(--ch3-primary); color: #4c1d95; }
+    .ch4-sec .note-section-title { border-bottom-color: var(--ch4-primary); color: #881337; }
+    .ch5-sec .note-section-title { border-bottom-color: var(--ch5-primary); color: #0c4a6e; }
+
+    .sub-heading {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 14px 0 8px 0;
+      padding-left: 10px;
+      border-left: 4px solid #334155;
+    }
+
+    .ch1-sec .sub-heading { border-left-color: var(--ch1-primary); }
+    .ch2-sec .sub-heading { border-left-color: var(--ch2-primary); }
+    .ch3-sec .sub-heading { border-left-color: var(--ch3-primary); }
+    .ch4-sec .sub-heading { border-left-color: var(--ch4-primary); }
+    .ch5-sec .sub-heading { border-left-color: var(--ch5-primary); }
+
+    /* Crisp Book-Style Bullet Lists */
+    ul.note-list {
+      list-style-type: disc;
+      padding-left: 22px;
+      margin: 6px 0;
+    }
+
+    ul.note-list li {
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+
+    ul.note-list ul {
+      list-style-type: circle;
+      padding-left: 22px;
+      margin-top: 5px;
+    }
+
+    ul.note-list ul li {
+      margin-bottom: 5px;
+    }
+
+    /* Colour-coded Grids & Inner Cards */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .inner-card {
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-top: 4px solid #334155;
+      border-radius: 7px;
+      padding: 14px 16px;
+    }
+
+    .inner-card.blue { border-top-color: #1d4ed8; background: #f8faff; }
+    .inner-card.green { border-top-color: #047857; background: #f4fdf9; }
+    .inner-card.amber { border-top-color: #d97706; background: #fffdf5; }
+    .inner-card.rose { border-top-color: #be123c; background: #fff8f9; }
+    .inner-card.purple { border-top-color: #6d28d9; background: #faf8ff; }
+    .inner-card.cyan { border-top-color: #0369a1; background: #f5fbff; }
+
+    .inner-card h4 {
+      font-size: 1.06rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .base-badge {
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1.5px solid #0f172a;
+      color: #0f172a;
+    }
+
+    /* Callout Boxes for Factual Verification & Exam Boosters */
+    .callout-box {
+      border-radius: 7px;
+      padding: 12px 15px;
+      margin-top: 12px;
+      font-size: 0.96rem;
+    }
+
+    .callout-verify {
+      background: var(--verify-bg);
+      border: 1.5px solid var(--verify-border);
+      border-left: 5px solid var(--verify-border);
+      color: var(--verify-text);
+    }
+
+    .callout-exam {
+      background: var(--exam-bg);
+      border: 1.5px solid var(--exam-border);
+      border-left: 5px solid var(--exam-border);
+      color: var(--exam-text);
+    }
+
+    .callout-title {
+      font-weight: 700;
+      display: block;
+      margin-bottom: 4px;
+      color: #0f172a;
+    }
+
+    /* Math & Conversion Box Styling */
+    .math-rule-box {
+      background: #eff6ff;
+      border: 1.5px solid #60a5fa;
+      border-left: 6px solid #1d4ed8;
+      border-radius: 7px;
+      padding: 12px 16px;
+      margin-bottom: 14px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .calc-steps {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin: 8px 0;
+      font-family: Calibri, Candara, "Segoe UI", Arial, sans-serif;
+    }
+
+    .ans-badge {
+      display: inline-block;
+      margin-top: 6px;
+      background: #dcfce7;
+      border: 1.5px solid #16a34a;
+      color: #064e3b;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 5px;
+    }
+
+    /* Crisp Book Tables */
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 10px;
+    }
+
+    table.book-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.98rem;
+      background: #ffffff;
+    }
+
+    table.book-table th,
+    table.book-table td {
+      border: 1.5px solid #64748b;
+      padding: 8px 12px;
+      text-align: left;
+      color: #0f172a;
+    }
+
+    table.book-table th {
+      background: #e2e8f0;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.88rem;
+      letter-spacing: 0.02em;
+    }
+
+    table.book-table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    /* Bottom Chapter Navigation Footer */
+    .chapter-footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 26px;
+      padding-top: 16px;
+      border-top: 2px solid #cbd5e1;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 860px) {
+      .grid-3, .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .book-sheet {
+        padding: 22px 18px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+      }
+      .chapter-main-heading {
+        font-size: 1.55rem;
+      }
+      .dashboard-hero h1 {
+        font-size: 1.55rem;
+      }
+    }
+
+    /* ==========================================================================
+       PRINT-READY MEDIA QUERIES (CRISP BLACK TEXT, ZERO CLIPPING OR CUTOFFS)
+       ========================================================================== */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 12mm 12mm 12mm 12mm;
+      }
+
+      html, body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 11.5pt !important;
+        line-height: 1.45 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+
+      .app-container {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .book-sheet {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+      }
+
+      .note-section,
+      .inner-card,
+      .callout-box,
+      .math-rule-box,
+      .calc-steps,
+      table.book-table,
+      table.book-table tr {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+
+      .note-section {
+        border: 1pt solid #475569 !important;
+        margin-bottom: 12pt !important;
+        padding: 11pt 13pt !important;
+      }
+
+      .inner-card {
+        border: 1pt solid #64748b !important;
+        border-top-width: 3pt !important;
+        padding: 9pt 11pt !important;
+      }
+
+      h1, h2, h3, h4, .note-section-title, .sub-heading {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+        color: #000000 !important;
+      }
+
+      ul.note-list li {
+        color: #000000 !important;
+      }
+
+      /* Support printing all 5 chapters when triggered from Dashboard */
+      body.print-all-mode #view-dashboard {
+        display: none !important;
+      }
+
+      body.print-all-mode .chapter-view {
+        display: block !important;
+        page-break-before: always !important;
+        break-before: page !important;
+      }
+
+      body.print-all-mode #view-ch1 {
+        page-break-before: avoid !important;
+        break-before: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Top Application Bar (Hidden on Print) -->
+    <header class="top-bar no-print">
+      <div class="brand-title">
+        <span>📘 Computer Awareness Master Notes</span>
+        <span class="brand-badge">SSC CGL Tier II &amp; Railway NTPC</span>
+      </div>
+      <div class="btn-group">
+        <button type="button" class="btn" id="btn-home" style="display: none;">← Main Dashboard (5 Chapters)</button>
+        <button type="button" class="btn" id="btn-print-current" style="display: none;">🖨️ Print This Chapter</button>
+        <button type="button" class="btn btn-primary" id="btn-print-all">🖨️ Print All 5 Chapters</button>
+      </div>
+    </header>
+
+    <!-- ========================================================================
+         MAIN DASHBOARD VIEW (LIST OF THE 5 SEPARATE CHAPTER NOTES)
+         ======================================================================== -->
+    <main id="view-dashboard" class="view-section active">
+      <section class="dashboard-hero">
+        <h1>Computer Awareness — Chapters Dashboard</h1>
+        <p style="margin-bottom: 0;">
+          Select any chapter below to open its complete standalone study notes for <strong>SSC CGL Tier II</strong> &amp; <strong>Railway NTPC</strong>.
+        </p>
+      </section>
+
+      <h2 class="chapter-list-heading">Chapters</h2>
+
+      <div class="dashboard-chapters-grid">
+        <!-- Chapter 1 Card -->
+        <article class="chapter-card-item ch-1">
+          <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+            <span class="chapter-number-badge">Chapter 1</span>
+            <h3 class="chapter-card-title">1 Computer Fundamentals &amp; Hardware</h3>
+          </div>
+          <div class="chapter-card-actions" style="padding-top: 0;">
+            <button type="button" class="btn btn-primary open-chapter-btn" data-target="view-ch1">Open Chapter 1 Notes →</button>
+          </div>
+        </article>
+
+        <!-- Chapter 2 Card -->
+        <article class="chapter-card-item ch-2">
+          <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+            <span class="chapter-number-badge">Chapter 2</span>
+            <h3 class="chapter-card-title">2 Types of Computer</h3>
+          </div>
+          <div class="chapter-card-actions" style="padding-top: 0;">
+            <button type="button" class="btn btn-primary open-chapter-btn" data-target="view-ch2">Open Chapter 2 Notes →</button>
+          </div>
+        </article>
+
+        <!-- Chapter 3 Card -->
+        <article class="chapter-card-item ch-3">
+          <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+            <span class="chapter-number-badge">Chapter 3</span>
+            <h3 class="chapter-card-title">3 Computer Generations</h3>
+          </div>
+          <div class="chapter-card-actions" style="padding-top: 0;">
+            <button type="button" class="btn btn-primary open-chapter-btn" data-target="view-ch3">Open Chapter 3 Notes →</button>
+          </div>
+        </article>
+
+        <!-- Chapter 4 Card -->
+        <article class="chapter-card-item ch-4">
+          <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+            <span class="chapter-number-badge">Chapter 4</span>
+            <h3 class="chapter-card-title">4 CPU &amp; Processing</h3>
+          </div>
+          <div class="chapter-card-actions" style="padding-top: 0;">
+            <button type="button" class="btn btn-primary open-chapter-btn" data-target="view-ch4">Open Chapter 4 Notes →</button>
+          </div>
+        </article>
+
+        <!-- Chapter 5 Card -->
+        <article class="chapter-card-item ch-5">
+          <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+            <span class="chapter-number-badge">Chapter 5</span>
+            <h3 class="chapter-card-title">5 Number System</h3>
+          </div>
+          <div class="chapter-card-actions" style="padding-top: 0;">
+            <button type="button" class="btn btn-primary open-chapter-btn" data-target="view-ch5">Open Chapter 5 Notes →</button>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <!-- ========================================================================
+         CHAPTER 1: 1 COMPUTER FUNDAMENTALS & HARDWARE
+         ======================================================================== -->
+    <article id="view-ch1" class="view-section chapter-view ch1-sec">
+      <div class="book-sheet">
+        <header class="chapter-banner ch1-banner">
+          <div class="chapter-kicker">Chapter 1 • Dedicated Study Note</div>
+          <h1 class="chapter-main-heading">1 Computer Fundamentals &amp; Hardware</h1>
+          <div class="chapter-subtitle">Comprehensive Notes Extracted 100% from Source Material with Factual Verification for SSC CGL Tier II &amp; Railway NTPC</div>
+        </header>
+
+        <!-- Section 1: Introduction & Basics -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>1. Introduction &amp; Basics</span>
+          </h2>
+          <ul class="note-list">
+            <li><strong>ABACUS:</strong> Consists of a rectangular wooden frame with a set of beads sliding on wires/rods. Developed in <strong>China</strong> (c. 2400–3000 BC). Used for basic <strong>Mathematical / Arithmetic operations</strong> (addition, subtraction, counting). <em>(Exam Pointer: Recognized as the world's first mechanical calculating device; also expanded as <strong>A</strong>bundant <strong>B</strong>eads, <strong>A</strong>ddition and <strong>C</strong>alculation <strong>U</strong>tility <strong>S</strong>ystem).</em></li>
+            <li><strong>Computer:</strong> The term originated from the <strong>Latin language</strong> word <em>"Computare"</em> (and English verb <em>"Compute"</em>), which literally means <strong>"to calculate"</strong> or <strong>"to reckon"</strong>.</li>
+            <li><strong>Computer System:</strong> Complete functional combination of <strong>Hardware + Software + Peripheral devices</strong> (operated by <em>Liveware / Humanware / User</em>).</li>
+            <li><strong>Work Station:</strong> A high-performance <strong>single-user computer</strong> with superior processing power, high-capacity RAM, and advanced graphics capabilities (used for CAD/CAM, 3D animation, scientific modeling, and software development).</li>
+            <li><strong>Digital / Smart Watch:</strong> Operates on an <strong>Embedded System</strong> (a dedicated microcontroller/microprocessor-based system integrated within a larger mechanical or electrical device to perform specific real-time functions).</li>
+            <li><strong>Smallest Computer:</strong> <strong>Note Book</strong> (among standard portable consumer laptops/computers).
+              <ul>
+                <li><em>Factual Verification &amp; Exam Context:</em> In standard hierarchy questions (Desktop → Laptop/Notebook → Subnotebook/Netbook → Palmtop/PDA), <strong>Notebook / Palmtop / Handheld PC</strong> represents the smallest portable personal computer class. At the microscopic chip scale, the <strong>IBM 1 mm × 1 mm computer</strong> and <strong>Michigan Micro Mote (M³)</strong> are the world's smallest computing devices.</li>
+              </ul>
+            </li>
+            <li><strong>GIGO:</strong> Stands for <strong>Garbage In, Garbage Out</strong>. It signifies that the quality of output is determined by the quality of input (if incorrect or nonsensical data is entered into a computer, it will produce incorrect output; directly relates to the <strong>Accuracy</strong> characteristic of computers).</li>
+          </ul>
+        </section>
+
+        <!-- Section 2: Processing & Technology -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>2. Processing &amp; Technology</span>
+          </h2>
+          <ul class="note-list">
+            <li><strong>CPU Components (Central Processing Unit):</strong>
+              <ul>
+                <li><strong>CU (Control Unit):</strong> Directs, coordinates, and controls all operations of the computer using timing and control signals without executing data processing itself.</li>
+                <li><strong>ALU (Arithmetic Logic Unit):</strong> Executes all arithmetic calculations (<code>+</code>, <code>-</code>, <code>×</code>, <code>÷</code>) and logical comparisons (<code>&lt;</code>, <code>&gt;</code>, <code>=</code>, <code>AND</code>, <code>OR</code>, <code>NOT</code>).</li>
+                <li><strong>MU (Memory Unit):</strong> Also known as <strong>Registers</strong> (ultra-fast, small-capacity temporary storage locations inside the CPU chip that hold active instructions, addresses, and intermediate data).</li>
+              </ul>
+            </li>
+            <li><strong>Logic Gates:</strong> Fundamental building-block electronic circuits of digital systems that operate on binary inputs (<code>0</code> and <code>1</code>).
+              <ul>
+                <li><strong>Types of Logic Gate Circuits (from Source):</strong> <strong>OR, NOR, AND, NAND, XOR, XNOR, NOT</strong>.</li>
+                <li><em>Exam Classification:</em> <strong>Basic Gates:</strong> <code>AND</code>, <code>OR</code>, <code>NOT</code> (Inverter) | <strong>Universal Gates:</strong> <code>NAND</code>, <code>NOR</code> (can construct any other gate) | <strong>Exclusive / Derived Gates:</strong> <code>XOR</code> (Exclusive-OR), <code>XNOR</code> (Exclusive-NOR).</li>
+              </ul>
+            </li>
+            <li><strong>Flash Concept (Flash Memory):</strong> Based on <strong>ROM — specifically EEPROM (Electrically Erasable Programmable Read-Only Memory)</strong>. It is a non-volatile solid-state memory technology (invented by Dr. Fujio Masuoka at Toshiba in 1980) that can be electrically erased and reprogrammed in blocks (used in USB Pen Drives, SD Cards, SSDs, and BIOS chips).</li>
+            <li><strong>CD (Compact Disc):</strong> <strong>Burning</strong> = The process of writing/recording data onto an optical disc (CD-R, CD-RW, DVD) using a laser beam to etch microscopic pits onto the dye/recording layer.</li>
+            <li><strong>ADF (Automatic Document Feeder):</strong> A scanner and multifunction printer (MFP) technology that holds a stack of pages and automatically feeds one page at a time into the scanner, allowing fast multi-page scanning without manual placement of each sheet.</li>
+            <li><strong>CAPTCHA:</strong> Stands for <strong>C</strong>ompletely <strong>A</strong>utomated <strong>P</strong>ublic <strong>T</strong>uring test to tell <strong>C</strong>omputers and <strong>H</strong>umans <strong>A</strong>part. Used as a challenge-response security test on websites to block automated spam bots.</li>
+          </ul>
+        </section>
+
+        <!-- Section 3: Connectivity & Software -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>3. Connectivity &amp; Software</span>
+          </h2>
+          <ul class="note-list">
+            <li><strong>FireWire Port (IEEE 1394):</strong> High-speed isochronous serial bus interface port (developed by Apple, also called <em>Sony i.LINK</em> or <em>Lynx</em>) used to connect computers with high-speed digital peripherals (such as digital camcorders and external hard drives) to transmit large files and real-time audio/video data (FireWire 400 = 400 Mbps; FireWire 800 = 800 Mbps).</li>
+            <li><strong>OneDrive:</strong> <strong>Microsoft's Cloud Storage / Cloud Platform service</strong> (formerly known as <em>SkyDrive</em>, launched in 2007; integrated into Windows 10/11 and Microsoft 365, providing 5 GB of free base storage).</li>
+            <li><strong>Cloud Services (Cloud Computing Service Models):</strong>
+              <ul>
+                <li><strong>IaaS — Infrastructure as a Service:</strong> Provides virtualized computing hardware, servers, networking, and storage over the cloud (e.g., Amazon EC2, Microsoft Azure VMs, Google Compute Engine).</li>
+                <li><strong>PaaS — Platform as a Service:</strong> Provides a cloud runtime environment, OS, database, and development tools for building and deploying applications (e.g., Google App Engine, Heroku, AWS Elastic Beanstalk).</li>
+                <li><strong>SaaS — Software as a Service:</strong> Delivers ready-to-use application software over the internet via a browser or app (e.g., Google Workspace, Microsoft 365, Salesforce, Dropbox).</li>
+              </ul>
+            </li>
+            <li><strong>Adobe Products:</strong> Industry-standard application software suite developed by Adobe Inc., including <strong>Photoshop</strong> (raster image editing), <strong>InDesign</strong> (desktop publishing &amp; page layout), <strong>Illustrator</strong> (vector graphics design), <strong>Acrobat Pro</strong> (PDF creation, viewing &amp; editing), Premiere Pro (video editing), etc.</li>
+          </ul>
+        </section>
+
+        <!-- Section 4: Hardware Categorization -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>4. Hardware Categorization</span>
+          </h2>
+          <p style="margin-bottom: 10px;">
+            <strong>Hardware Definition:</strong> All physical, tangible components of a computer system categorized into <strong>Input + Output + Processing + Storage</strong> <em>(Source reference: 2005 exam standard)</em>.
+          </p>
+          <div class="grid-2">
+            <div class="inner-card green">
+              <h4>Input Devices</h4>
+              <p><strong>Mouse, Keyboard, OCR, BCR, MICR, OMR, Stylus, Scanner, Joystick, Webcam, Lightpen, Trackball, Touchpad, Mic (Microphone), Touchscreen, QR Code Reader</strong>, etc.</p>
+            </div>
+            <div class="inner-card amber">
+              <h4>Processing</h4>
+              <p><strong>CPU</strong> (Central Processing Unit), <strong>GPU</strong> (Graphics Processing Unit), <strong>Motherboard</strong> (hosts the chipset, sockets, and system buses).</p>
+            </div>
+            <div class="inner-card rose">
+              <h4>Output Devices</h4>
+              <p><strong>Monitor (VDU), Printer, Speaker, Plotter, Projector</strong>.</p>
+            </div>
+            <div class="inner-card purple">
+              <h4>Storage (Secondary / Auxiliary)</h4>
+              <p><strong>Hard Disc (HDD/SSD), Optical Disc (CD, DVD, Blu-Ray), Pen Drive (USB Flash Drive), Zip Drive, Tape Drive (Magnetic Tape), Memory/SD Card, Floppy Disc</strong>.</p>
+            </div>
+          </div>
+          <div class="callout-box callout-exam">
+            <span class="callout-title">📌 SSC CGL Tier II &amp; Railway NTPC Quick Storage Capacities:</span>
+            <strong>Floppy Disk (3.5-inch):</strong> 1.44 MB (5.25-inch = 1.2 MB; 8-inch = 80 KB–242 KB) • <strong>CD-ROM:</strong> ~700 MB (650–700 MB) • <strong>DVD:</strong> 4.7 GB (Single-Layer, Single-Sided) to 17 GB (Dual-Layer, Double-Sided) • <strong>Blu-Ray Disc (BD):</strong> 25 GB (Single-Layer) / 50 GB (Dual-Layer).
+          </div>
+        </section>
+
+        <!-- Section 5: Mouse & Pointing Devices -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>5. Mouse &amp; Pointing Devices</span>
+          </h2>
+          <ul class="note-list">
+            <li><strong>Mouse:</strong> A handheld <strong>pointing and drawing input device</strong> that controls the movement of the cursor/pointer on a Graphical User Interface (GUI). Invented by <strong>Dr. Douglas Engelbart</strong> in <strong>1964</strong> (at Stanford Research Institute with Bill English; the first prototype was made of wood with two metal wheels).</li>
+            <li><strong>Components:</strong> Standard mouse has <strong>3 Buttons / Controls</strong>:
+              <ul>
+                <li><strong>Left Click:</strong> Primary button used to select items, click links, drag objects, and double-click to open files/programs.</li>
+                <li><strong>Right Click:</strong> Secondary button used to open the <strong>Context Menu</strong> (shortcut/properties menu) for the selected item.</li>
+                <li><strong>Scroll Wheel (Center):</strong> Rotates up and down to scroll through pages/documents and can be pressed as a middle button.</li>
+              </ul>
+            </li>
+            <li><strong>Types of Mouse:</strong>
+              <ul>
+                <li><strong>Optical Mouse:</strong> Uses an <strong>LED (Light Emitting Diode)</strong> (usually red light) or Laser diode and an optoelectronic sensor (photodiode/CMOS camera) to detect movement relative to the underlying surface.</li>
+                <li><strong>Mechanical Mouse:</strong> Uses a heavy <strong>Metal or Rubber ball</strong> on the underside that turns two orthogonal rollers/shafts as the mouse moves across a mat.</li>
+              </ul>
+            </li>
+            <li><strong>Alternatives to a Mouse:</strong> <strong>Trackball</strong> (Direct input substitute of Mouse), <strong>Joystick</strong>, <strong>Touchpad</strong> (Trackpad built into laptops), <strong>Light Pen</strong>, <strong>Stylus</strong>.</li>
+            <li><strong>Trackball:</strong> A stationary pointing device similar to an inverted mechanical mouse. The housing remains fixed on the desk while the user rotates an exposed socketed ball directly with their <strong>fingers, thumb, or palm</strong> to move the cursor on the screen.</li>
+          </ul>
+        </section>
+
+        <!-- Section 6: Keyboard -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>6. Keyboard</span>
+          </h2>
+          <ul class="note-list">
+            <li><strong>Founder / Inventor:</strong> <strong>Christopher Latham Sholes</strong> (invented the first practical commercial typewriter in 1868 and designed the <strong>QWERTY</strong> layout).</li>
+            <li><strong>Keys Count (Standard PC Keyboard):</strong>
+              <ul>
+                <li><strong>Total Keys:</strong> <strong>104</strong> (Standard US ANSI Windows Keyboard) or <strong>105</strong> (International ISO Keyboard).</li>
+                <li><strong>Function Keys:</strong> <strong>12</strong> (<code>F1</code> to <code>F12</code> along the top row; <strong>13</strong> or more on extended Apple Magic Keyboards or specialized terminals).</li>
+                <li><strong>Numeric Keypad Keys:</strong> <strong>~17 keys</strong> (<code>0–9</code>, <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>.</code>, <code>Enter</code>, <code>Num Lock</code>).</li>
+                <li><strong>Arrow / Cursor Control Keys:</strong> <strong>4 keys</strong> (<code>↑ Up</code>, <code>↓ Down</code>, <code>← Left</code>, <code>→ Right</code>).</li>
+              </ul>
+            </li>
+            <li><strong>Special Keys &amp; Categories:</strong>
+              <ul>
+                <li><strong>F2:</strong> <strong>Rename</strong> a selected file, folder, or desktop icon in Windows; edits the active cell content in <strong>MS Excel</strong>.</li>
+                <li><strong>F5:</strong> <strong>Refresh</strong> the active window or web browser page; starts the <strong>Slide Show</strong> from the first slide in <strong>MS PowerPoint</strong> (<code>Shift + F5</code> starts from the current slide).</li>
+                <li><strong>Modifier Keys (Combinational Keys):</strong> <strong>Shift, Ctrl (Control), Alt (Alternate), Windows Key (Win), Fn (Function)</strong> — keys that perform no action by themselves (except Win menu) but modify the function of another key when pressed together.</li>
+                <li><strong>Toggle Keys:</strong> <strong>Caps Lock, Num Lock, Scroll Lock, Insert</strong> — keys that switch (toggle) a specific input mode between ON and OFF states each time they are pressed.</li>
+              </ul>
+            </li>
+            <li><strong>Forward Slash (<code>/</code>):</strong> Used for <strong>URL Addresses</strong> (web paths such as <code>https://example.com/page</code>), Unix/Linux file paths, and division. <em>(Exam Note: Backslash <code>\</code> is used for Windows local directory paths such as <code>C:\Windows\System32</code>).</em></li>
+            <li><strong>Keyboard Layouts:</strong>
+              <ul>
+                <li><strong>QWERTY:</strong> Named after the first 6 letters on the top alphabetic row. Originally designed by Sholes to <strong>prevent mechanical jamming of typewriter keys</strong> (typebars) by separating frequently paired letter combinations.</li>
+                <li><strong>Dvorak:</strong> An ergonomic keyboard layout patented by Dr. August Dvorak and William Dealey (1936), designed specifically for <strong>speed typing</strong>, higher comfort, and reduced finger travel by placing all vowels and the most common consonants on the home row.</li>
+                <li><strong>OSK:</strong> Stands for <strong>On-Screen Keyboard</strong> — a <strong>Virtual / Visual keyboard</strong> displayed on the monitor screen that allows users to type using a mouse, touchscreen, or assistive pointing device.</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Section 7: Scanning & Recognition Technology -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>7. Scanning &amp; Recognition Technology</span>
+          </h2>
+          <div class="grid-2" style="margin-bottom: 14px;">
+            <div class="inner-card blue">
+              <h4>OCR (Optical Character Recognition)</h4>
+              <p>Also known as <strong>Optical Character Reader</strong>. Scans printed, typewritten, or handwritten text on paper and converts the scanned bitmap images into <strong>machine-encoded, computer-readable, and editable text format</strong> (ASCII/Unicode).</p>
+            </div>
+            <div class="inner-card green">
+              <h4>BCR (Bar Code Reader)</h4>
+              <p>Also known as a <strong>POS (Point of Sale) scanner</strong>. Reads universal product barcodes using a laser or LED beam. A <strong>barcode</strong> is a pattern of vertical parallel lines (bars and spaces) of different widths/sizes representing product data.</p>
+            </div>
+            <div class="inner-card purple">
+              <h4>OMR (Optical Mark Recognition)</h4>
+              <p>Also called <strong>Optical Mark Reader</strong>. Process of capturing <strong>human-marked data</strong> (darkened bubbles/circles or boxes marked with pencil/pen) from structured document forms such as <strong>competitive exam answer sheets, surveys, and tests</strong>.</p>
+            </div>
+            <div class="inner-card amber">
+              <h4>MICR (Magnetic Ink Character Recognition)</h4>
+              <p>Used extensively in the <strong>banking and financial/insurance industry</strong> to verify the legitimacy and speed up the clearing of paper <strong>cheques</strong>. Translates magnetic ink characters (printed with iron-oxide ink) located at the <strong>bottom of a cheque</strong> into digital characters.</p>
+              <p style="margin-top: 6px;"><strong>MICR Code Structure (9-Digit Code):</strong></p>
+              <ul class="note-list" style="margin-bottom: 0;">
+                <li><strong>(1) First 3 digits:</strong> <strong>City Code</strong> (matches the first 3 digits of the city's PIN code)</li>
+                <li><strong>(2) Next 3 digits:</strong> <strong>Bank Code</strong> (unique code for the bank)</li>
+                <li><strong>(3) Last 3 digits:</strong> <strong>Branch Code</strong> (identifies the specific bank branch)</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3 class="sub-heading">Scanners (Converts Hard Copy into Soft Copy)</h3>
+          <ul class="note-list">
+            <li><strong>Scanner Speed &amp; Quality Units:</strong> Scanning throughput speed is measured in <strong>PPM (Pages Per Minute)</strong> (or IPM — Images Per Minute), while optical image sharpness/resolution is measured in <strong>DPI (Dots Per Inch)</strong>.</li>
+            <li><strong>Flatbed Scanner:</strong> An optical scanner featuring a stationary flat glass platen (bed). It scans any flat document, photo, or book page placed face-down against the glass bed using a moving CCD (Charge-Coupled Device) or CIS (Contact Image Sensor) array beneath the glass.</li>
+            <li><strong>Sheet-Fed Scanner:</strong> Scans loose, unattached single sheets of paper that are pulled past a stationary scan head by motorized rollers. Commonly uses an <strong>ADF (Automatic Document Feeder)</strong>; cannot scan bound thick books.</li>
+            <li><strong>Handheld Scanner:</strong> A compact, portable scanner moved manually across the document surface by hand (e.g., retail Barcode wand/gun scanner, portable pen scanner). <strong>Primary functioning sensing part:</strong> <strong>Detector Array</strong> (CCD / CMOS photodiode sensor array).</li>
+            <li><strong>Drum Scanner:</strong> High-end commercial publishing scanner that delivers ultra-high resolution. Uses a <strong>Photomultiplier Tube (PMT)</strong> (vacuum tube light sensor far more sensitive than standard CCDs). Capable of scanning original photographs and transparencies at extreme detail to enlarge them into <strong>posters or wall-sized images</strong>.</li>
+            <li><strong>Medical Scanners:</strong> Specialized diagnostic imaging scanners including <strong>MRI (Magnetic Resonance Imaging)</strong> and <strong>CT / CAT Scan (Computed Tomography / Computerized Axial Tomography)</strong>.</li>
+          </ul>
+        </section>
+
+        <!-- Section 8: Multimedia & Interaction -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>8. Multimedia &amp; Interaction</span>
+          </h2>
+          <ul class="note-list">
+            <li><strong>Joystick:</strong> A lever-based pointing and control device that pivots on a base and reports its angle/direction to the computer. Includes buttons called <strong>Triggers</strong>. Mostly used for <strong>Computer Games</strong> and flight simulators; occasionally used for <strong>CAD (Computer-Aided Design) / CAM (Computer-Aided Manufacturing)</strong>, motorized wheelchairs, and industrial cranes.</li>
+            <li><strong>Webcam:</strong> A digital video camera that feeds or streams images in real time to or through a computer over a network. Used for <strong>video conferencing, live streaming, and security</strong>. <em>(Related abbreviation: <strong>CCTV — Closed-Circuit Television</strong>, used for dedicated video surveillance).</em></li>
+            <li><strong>Digital Camera:</strong> Captures still photographs and video digitally on an electronic image sensor (CCD/CMOS) and stores them on a memory card. Considered as <strong>both an Input and Output device</strong> in hybrid contexts (inputs captured photos/video to a computer, and outputs preview images/audio on its built-in LCD screen). Used for professional photography and surveillance.</li>
+            <li><strong>Light Pen:</strong> A handheld, light-sensitive (<strong>photosensitive</strong>) wand connected to a computer terminal (historically CRT monitors). Allows the user to point directly at onscreen objects or draw on the screen with high positional accuracy by detecting the CRT electron beam scan.</li>
+            <li><strong>Stylus:</strong> A small pen-shaped instrument without internal electronics (passive) or with pressure/tilt sensors (active pen) used to navigate, write, or draw directly on <strong>Touch screens</strong> (Smartphones, Tablets, iPads, Graphics Tablets).</li>
+          </ul>
+        </section>
+
+        <!-- Section 9: Advanced Tech & Biometrics -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>9. Advanced Tech &amp; Biometrics</span>
+          </h2>
+          <ul class="note-list">
+            <li><strong>Touch Screen:</strong> Acts as <strong>both an Input and Output device</strong> simultaneously (displays visual GUI output while receiving direct touch coordinate input). Developed by <strong>Dr. George Samuel Hurst</strong> (who patented the resistive touchscreen in 1971/1975; E.A. Johnson developed the first finger-driven capacitive touchscreen in 1965).
+              <ul>
+                <li><strong>Resistive Touch Screen:</strong> Operates via mechanical <strong>pressure</strong> (<em>Source note: Relative pressure</em>). Made of multiple flexible transparent layers (coated with resistive material) separated by a thin gap; when pressed with a finger, stylus, or gloved hand, the layers touch and register coordinates. Used in <strong>ATMs, Public Kiosks, Industrial Controls, and Medical Devices</strong>.</li>
+                <li><strong>Capacitive Touch Screen:</strong> Operates via the natural <strong>electrical capacitance / conductivity of the human body</strong>. Made of an <strong>Insulator</strong> (such as glass) coated with a transparent <strong>Conductor</strong> (such as Indium Tin Oxide — ITO). Touching the screen distorts the electrostatic field. Supports smooth multi-touch gestures and is used in modern <strong>Smartphones, iPads, and Tablets</strong>.</li>
+              </ul>
+            </li>
+            <li><strong>Biometrics:</strong> Automated recognition and security authentication schemes based on unique physiological or behavioral human characteristics: <strong>Face recognition, Fingerprint scanning, Hand geometry, Retina scan, Iris scan, Signature dynamics, Voice recognition</strong>, etc.</li>
+            <li><strong>Microphone:</strong> An acoustic-to-electric transducer (input device) that captures audio data by converting <strong>sound waves into electrical audio signals</strong>. Practical carbon button microphone / transmitter invented by <strong>Emile Berliner</strong> (1877; alongside David Edward Hughes). Abbreviated as <strong>MIC</strong>.</li>
+            <li><strong>QR Code:</strong> Stands for <strong>Quick Response Code</strong>. It is a <strong>2-Dimensional (2D) matrix barcode</strong> consisting of black squares arranged on a white grid, capable of storing web addresses/URLs, text, and payment coordinates (read both horizontally and vertically). Invented in <strong>1994</strong> by <strong>Denso Wave</strong> (a Japanese <strong>Toyota subsidiary</strong>, led by engineer Masahiro Hara).</li>
+          </ul>
+        </section>
+
+        <!-- Section 10: Internal Processing Components -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>10. Internal Processing Components</span>
+          </h2>
+          <div class="grid-3">
+            <div class="inner-card amber">
+              <h4>CPU (Central Processing Unit)</h4>
+              <ul class="note-list">
+                <li><strong>Role:</strong> Known as the <strong>Brain of the Computer / Main Processor</strong>.</li>
+                <li><strong>Components:</strong> <strong>CU</strong> (Control Unit), <strong>ALU</strong> (Arithmetic Logic Unit), <strong>MU</strong> (Memory Unit / Registers).</li>
+                <li><strong>Clock Rate / Speed:</strong> Base unit is <strong>Hertz (Hz)</strong>. Modern CPU speed is measured in <strong>Gigahertz (GHz)</strong>.</li>
+                <li><strong>First CPU (Microprocessor):</strong> <strong>Intel 4004</strong> (4-bit chip released in 1971).</li>
+                <li><strong>Microprocessor Era:</strong> Introduced in the <strong>4th Generation</strong> of computers.</li>
+                <li><strong>Instruction Set Architecture:</strong>
+                  <ul>
+                    <li><strong>RISC:</strong> Reduced Instruction Set Computer</li>
+                    <li><strong>CISC:</strong> Complex Instruction Set Computer</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+            <div class="inner-card green">
+              <h4>Motherboard / PCB</h4>
+              <ul class="note-list">
+                <li><strong>PCB:</strong> <strong>Printed Circuit Board</strong>. The central backbone circuit board where every internal component and external port connects.</li>
+                <li><strong>First PC Motherboard:</strong> Invented by <strong>IBM</strong> (called the <em>"Planar"</em> board in the 1981 IBM PC).</li>
+                <li><strong>Security Fact:</strong> A software <strong>VIRUS cannot physically damage or affect passive Motherboard hardware directly</strong> (though firmware malware can corrupt the BIOS chip).</li>
+                <li><strong>System Buses (Pathways):</strong>
+                  <ul>
+                    <li><strong>Data Bus:</strong> Carries actual data to be processed/stored. <strong>Bidirectional</strong> (two-way).</li>
+                    <li><strong>Address Bus:</strong> Carries memory location/address from CPU to Memory/I/O. <strong>Uni-directional</strong> (one-way).</li>
+                    <li><strong>Control Bus:</strong> Carries CPU timing &amp; command communication signals. <strong>Bidirectional</strong>.</li>
+                    <li><strong>Bus Speed:</strong> Measured in <strong>Megahertz (MHz)</strong>.</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+            <div class="inner-card rose">
+              <h4>GPU (Graphics Processing Unit)</h4>
+              <ul class="note-list">
+                <li><strong>Primary Role:</strong> Specialized processor dedicated to <strong>rendering graphics in gaming, video editing, and 3D modeling</strong> (as well as modern AI/machine learning acceleration).</li>
+                <li><strong>Processing Technique Used:</strong> <strong>Parallel Processing</strong> (uses thousands of smaller cores working simultaneously on massive visual/matrix datasets).</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 11: Ports & BIOS -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>11. Ports &amp; BIOS</span>
+          </h2>
+          <div class="grid-2">
+            <div class="inner-card purple">
+              <h4>Types of Hardware Ports</h4>
+              <ul class="note-list">
+                <li><strong>Serial Ports (COM / RS-232 Ports):</strong> Transmits data <strong>"one bit at a time"</strong> sequentially over a single communication line. Typically uses a <strong>Male gender connector (9-pin DB-9 or 25-pin DB-25)</strong> on the computer. Historically used to connect <strong>Serial Mouse, External Modem, and PDA</strong>.</li>
+                <li><strong>Parallel Ports (LPT Ports):</strong> Transmits <strong>"Many bits at once"</strong> (8 bits / 1 byte simultaneously across parallel wires). Uses a <strong>25-pin Female connector (DB-25)</strong> on the PC side. Used for <strong>Printers, Scanners, Joysticks, and External Drives</strong>. Often called the <strong>Centronics Interface</strong> (named after the 36-pin Centronics printer connector).</li>
+                <li><em>Note:</em> Legacy Parallel and Serial ports have been replaced by <strong>USB (Universal Serial Bus)</strong> ports in modern computers.</li>
+              </ul>
+            </div>
+
+            <div class="inner-card blue">
+              <h4>BIOS (Basic Input Output System)</h4>
+              <ul class="note-list">
+                <li><strong>First Software to Run:</strong> BIOS is the very first software program to execute when the computer is powered on.</li>
+                <li><strong>POST (Power-On Self-Test):</strong> Diagnostic testing sequence performed by the BIOS immediately at boot to ensure essential hardware components (<strong>CPU, RAM, Keyboard, Storage drives</strong>) are functioning correctly before loading the Operating System.</li>
+                <li><strong>Firmware:</strong> BIOS code (and modern <strong>UEFI</strong>) is called <strong>Firmware</strong> (software permanently embedded into hardware).</li>
+                <li><strong>Storage Chip:</strong> Permanently stored in a non-volatile <strong>EEPROM chip / Flash Memory</strong> on the motherboard <em>(while real-time user settings &amp; system clock are maintained by the battery-backed <strong>CMOS</strong> chip)</em>.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 12: Output Devices Classification -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>12. Output Devices Classification</span>
+          </h2>
+          <div class="grid-2">
+            <div class="inner-card cyan">
+              <h4>Soft Copy Output Devices (Intangible Digital / Visual / Audio Output)</h4>
+              <ul class="note-list">
+                <li><strong>Monitor</strong> (Visual Display Unit — CRT, LCD, LED, OLED, Plasma)</li>
+                <li><strong>Projector</strong> (Projects visual display onto a large screen/surface)</li>
+                <li><strong>Speaker</strong> (Converts digital audio signals into audible sound waves)</li>
+              </ul>
+            </div>
+
+            <div class="inner-card green">
+              <h4>Hard Copy Output Devices (Tangible Physical Output on Paper / Vinyl)</h4>
+              <ul class="note-list">
+                <li><strong>Printer</strong> (Produces text/graphics on paper; Impact: Dot Matrix, Daisy Wheel; Non-Impact: Laser, Inkjet, Thermal)</li>
+                <li><strong>Plotter</strong> (Produces high-precision large vector drawings, engineering blueprints, maps, and architectural plans)</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <footer class="chapter-footer-nav no-print">
+          <button type="button" class="btn open-chapter-btn" data-target="view-dashboard">← Back to Main Dashboard</button>
+          <button type="button" class="btn btn-primary open-chapter-btn" data-target="view-ch2">Next: 2 Types of Computer →</button>
+        </footer>
+      </div>
+    </article>
+
+    <!-- ========================================================================
+         CHAPTER 2: 2 TYPES OF COMPUTER
+         ======================================================================== -->
+    <article id="view-ch2" class="view-section chapter-view ch2-sec">
+      <div class="book-sheet">
+        <header class="chapter-banner ch2-banner">
+          <div class="chapter-kicker">Chapter 2 • Dedicated Study Note</div>
+          <h1 class="chapter-main-heading">2 Types of Computer</h1>
+          <div class="chapter-subtitle">Complete Classification, Detailed Notes &amp; All Source Question Bank Items Converted into Verified Bullet Points</div>
+        </header>
+
+        <!-- Top Classification Cards -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>Classification of Computers</span>
+          </h2>
+          <div class="grid-3">
+            <div class="inner-card blue">
+              <h4>By Type (Working Principle)</h4>
+              <ul class="note-list">
+                <li><strong>1. Analog Computer:</strong> Operates on continuous physical quantities (temperature, pressure, voltage, speed; e.g., Speedometer, Thermometer, Seismograph).</li>
+                <li><strong>2. Digital Computer:</strong> Operates on discrete binary digits (<code>0</code> and <code>1</code>; e.g., PCs, Laptops, Smartphones).</li>
+                <li><strong>3. Hybrid Computer:</strong> Combines Analog measurement speed with Digital accuracy/logic (e.g., Hospital ICU ECG Monitors, Petrol Pump Dispensers, Radar Systems).</li>
+              </ul>
+            </div>
+
+            <div class="inner-card green">
+              <h4>By Size (Smallest to Largest)</h4>
+              <ul class="note-list">
+                <li><strong>1. Micro Computer</strong> (Smallest, single-user PC)</li>
+                <li><strong>2. Mini Computer</strong> (Mid-range multi-user server)</li>
+                <li><strong>3. Mainframe Computer</strong> (Large enterprise transaction processor)</li>
+                <li><strong>4. Super Computer</strong> (Largest, fastest scientific parallel computer)</li>
+              </ul>
+            </div>
+
+            <div class="inner-card rose">
+              <h4>By Purpose</h4>
+              <ul class="note-list">
+                <li><strong>1. General-Purpose Computer:</strong> Designed to perform a wide range of everyday tasks (word processing, browsing, accounting, gaming; e.g., Desktop PC, Laptop).</li>
+                <li><strong>2. Special-Purpose Computer:</strong> Dedicated to executing a single specific task efficiently (e.g., ATM machines, Traffic light controllers, Aircraft navigation systems).</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- 1. Micro-Computer -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>1. Micro-Computer</span>
+          </h2>
+          <h3 class="sub-heading">Core Concepts &amp; Specifications</h3>
+          <ul class="note-list">
+            <li>Also called a <strong>Personal Computer (PC)</strong>.</li>
+            <li>Holds a single-chip <strong>Microprocessor</strong> as its Central Processing Unit (CPU).</li>
+            <li><strong>First Microcomputer (Non-kit / Pre-assembled):</strong> <strong>Micral (Micral N)</strong>, developed by <strong>André Truong Trong Thi</strong> and <strong>François Gernelle</strong> in <strong>1973</strong> in France (based on the Intel 8008 microprocessor).</li>
+            <li><strong>First Successful Commercial Microcomputer or PC:</strong> <strong>The Altair 8800</strong> (designed by Ed Roberts at MITS in 1974–1975 using the Intel 8080 microprocessor).</li>
+            <li><strong>User Type:</strong> <strong>One user at a time</strong> (Single-user system).</li>
+            <li><strong>Relative Size:</strong> Smaller in physical size, storage, and multi-user capacity than both a Mainframe and a Minicomputer.</li>
+            <li><strong>Examples:</strong> <em>Desktop Computers, Video Game Consoles, Laptops (Notebooks), Tablets, Mobile phones (Smartphones), Pocket calculators, Industrial Embedded systems.</em></li>
+          </ul>
+
+          <h3 class="sub-heading">Key Exam Pointers</h3>
+          <ul class="note-list">
+            <li><strong>Current Microprocessor Speed Measurement:</strong> Measured in <strong>Gigahertz (GHz)</strong> (10<sup>9</sup> cycles per second).</li>
+            <li><strong>General Speed Unit of a Processor Chip:</strong> Measured in <strong>Megahertz (MHz)</strong> (10<sup>6</sup> Hz) or <strong>Gigahertz (GHz)</strong>.</li>
+            <li><strong>The First Microcomputer:</strong> <strong>Altair 8800</strong> (First commercial microcomputer; <strong>Micral N</strong> in 1973 was the earliest non-kit microprocessor computer).</li>
+            <li><strong>Processing Capacity of a Typical Early Microcomputer per Second:</strong> <strong>One Lac (1,00,000 or 10<sup>5</sup>) operations per second</strong>.</li>
+            <li><strong>Class of Computers That Cannot Support Multiple Users Simultaneously:</strong> <strong>Micro Computers</strong> (designed for a single user at a time).</li>
+            <li><strong>Desktop, Laptops, and PCs are Collectively Referred to as:</strong> <strong>Micro Computers</strong>.</li>
+          </ul>
+        </section>
+
+        <!-- 2. Mini Computers -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>2. Mini Computers</span>
+          </h2>
+          <h3 class="sub-heading">Core Concepts &amp; Specifications</h3>
+          <ul class="note-list">
+            <li>Also called <strong>Mid-range Servers / Mid-range Computers</strong>.</li>
+            <li><strong>Purpose:</strong> Designed for <strong>scientific and engineering computations</strong>, university laboratories, departmental database servers, and industrial process control.</li>
+            <li><strong>First Mini Computer:</strong> <strong>PDP-1</strong>, designed in <strong>1958–1959</strong> (delivered by Digital Equipment Corporation — <strong>DEC</strong>, led by Benjamin Curley; <em>PDP-8 in 1965 became the first mass-produced commercial minicomputer</em>).</li>
+            <li><strong>PDP Full Form:</strong> <strong>Programmed Data Processor</strong>.</li>
+            <li><strong>Capabilities:</strong> Supports both <strong>Multitasking</strong> (running multiple programs concurrently) and <strong>Multiprocessing</strong> (using two or more CPUs simultaneously for multiple users).</li>
+            <li><strong>Position in Hierarchy:</strong> <strong>Intermediate</strong> in size, cost, storage, and computing power between <strong>Microcomputers</strong> and <strong>Mainframe Computers</strong>.</li>
+            <li><strong>Speed:</strong> <strong>10 to 30 MIPS</strong> (<em>Million Instructions Per Second</em>).</li>
+            <li><strong>Examples:</strong> <em>PDP-1, PDP-8, PDP-11, IBM AS/400e, Honeywell 200, TI-990 (Texas Instruments), microNOVA.</em></li>
+          </ul>
+
+          <h3 class="sub-heading">Key Exam Pointers</h3>
+          <ul class="note-list">
+            <li><strong>Alternative Name for Mini Computers:</strong> <strong>Mid-range computers</strong> (or Mid-range servers).</li>
+            <li><strong>Simultaneous User Capacity of a Minicomputer:</strong> A minicomputer is a midsize multiprocessing system capable of supporting up to <strong>250 users simultaneously</strong> (typically 4 to 250 concurrent users).</li>
+            <li><strong>Computers Lower than Mainframe Computers in Terms of Speed and Storage Capacity (but above Microcomputers):</strong> <strong>Mini Computers</strong>.</li>
+            <li><strong>Name of the First Mini Computer:</strong> <strong>PDP-1</strong> (<em>Programmed Data Processor-1</em>).</li>
+          </ul>
+        </section>
+
+        <!-- 3. Mainframe Computers -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>3. Mainframe Computers</span>
+          </h2>
+          <h3 class="sub-heading">Core Concepts &amp; Specifications</h3>
+          <ul class="note-list">
+            <li>Also colloquially known as <strong>"Big Iron"</strong>.</li>
+            <li><strong>Used in Bulk Data Processing such as:</strong> <strong>Census</strong> operations, <strong>Industry and Consumer Statistics</strong>, <strong>Enterprise Resource Planning (ERP)</strong>, and <strong>Large-scale Transaction Processing</strong> (banking, railways, airlines, telecom).</li>
+            <li><strong>First Mainframe Computer (Electro-Mechanical Precursor):</strong> <strong>Harvard Mark I</strong> (officially <em>IBM Automatic Sequence Controlled Calculator — ASCC</em>), conceived by <strong>Howard Aiken</strong> in the late <strong>1930s (1937)</strong> and completed with IBM in <strong>1944</strong>. <em>(UNIVAC I in 1951 and IBM 701 in 1952 were the first commercial electronic mainframes).</em></li>
+            <li><strong>First Company to Unveil Commercial Mainframe Computer Systems:</strong> <strong>IBM</strong> (<em>International Business Machines</em>).</li>
+            <li><strong>Technological Shift:</strong> The widespread adoption of <strong>Client-Server computing</strong> and <strong>Cloud computing</strong> replaced or reduced traditional Mainframe installations across many organizations.</li>
+            <li><strong>Speed:</strong> <strong>Up to 100 MIPS</strong> (in classic mainframes; modern IBM Z mainframes scale to tens of thousands of MIPS).</li>
+            <li><strong>Examples:</strong> <em>Mark I, IBM z15, IBM z14, IBM System z/3, IBM Enterprise System, IBM System z10, IBM System z9, Hitachi's Z800.</em></li>
+          </ul>
+
+          <h3 class="sub-heading">Key Exam Pointers</h3>
+          <ul class="note-list">
+            <li><strong>Computers Used in Large Organizations such as Insurance Companies and Banks (to process millions of centralized transactions):</strong> <strong>Mainframe Computers</strong>.</li>
+            <li><strong>Device Through Which Each User Accesses a Mainframe's Resources in a Traditional Mainframe Environment:</strong> <strong>Terminal</strong>.</li>
+            <li><strong>Dumb Terminal:</strong> A terminal that <strong>does not process data locally</strong> and functions strictly as a simple input/output device (keyboard and display screen) acting as a window into a central computer located elsewhere.</li>
+            <li><strong>Intelligent Terminal (Smart Terminal):</strong> A terminal that <strong>performs some local processing operations</strong> (via an onboard processor) <strong>but does not have any local disk storage</strong>.</li>
+            <li><strong>Class of Computers That Uses the 8-Bit Character Encoding Called EBCDIC (Extended Binary-Coded Decimal Interchange Code):</strong> <strong>Mainframe Computers</strong> (specifically IBM Mainframes).</li>
+            <li><strong>An Early Electronic Mainframe Computer:</strong> <strong>ENIAC (Electronic Numerical Integrator and Computer)</strong> (and UNIVAC I).</li>
+            <li><strong>Major Sectors Utilizing Mainframe Computers:</strong> <strong>Banking, Government, and Health / Insurance sectors</strong>.</li>
+          </ul>
+        </section>
+
+        <!-- 4. Super Computers -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>4. Super Computers</span>
+          </h2>
+          <h3 class="sub-heading">Core Concepts &amp; Specifications</h3>
+          <ul class="note-list">
+            <li><strong>Mainly Used For:</strong> <strong>Weather Forecasting</strong>, climate modeling, nuclear research, aerospace simulations, and molecular/genomic modeling.</li>
+            <li><strong>Speed Measured In:</strong> <strong>FLOPS (Floating-Point Operations Per Second)</strong> (PetaFLOPS = 10<sup>15</sup> FLOPS; ExaFLOPS = 10<sup>18</sup> FLOPS).</li>
+            <li><strong>First Supercomputer in the World:</strong> <strong>CDC 6600</strong>, released in <strong>1964</strong> (designed by Seymour Cray at Control Data Corporation).</li>
+            <li><strong>First Most Successful Supercomputer:</strong> <strong>Cray-1</strong> (released in <strong>1976</strong> by Cray Research).</li>
+            <li><strong>Father of Supercomputers (World):</strong> <strong>Seymour Cray</strong>.</li>
+            <li><strong>Father of Indian Super Computer:</strong> <strong>Dr. Vijay Pandurang Bhatkar</strong>.</li>
+            <li><strong>India's First Super Computer:</strong> <strong>PARAM 8000</strong>, unveiled in <strong>1991</strong> (developed by C-DAC).</li>
+            <li><strong>India's Fastest Super Computer (Source &amp; Current TOP500 Context):</strong>
+              <ul>
+                <li><em>Source Pointer:</em> <strong>PARAM Siddhi-AI</strong> (<strong>5.267 PetaFLOPS</strong> peak speed), located at <strong>C-DAC, Pune, India</strong>.</li>
+                <li><em>Factual Verification &amp; Latest Exam Update:</em> In the global TOP500 list (2023–2026), <strong>AIRAWAT-PSAI</strong> at <strong>C-DAC, Pune</strong> (<strong>13.17 PetaFLOPS</strong> peak / 8.5 PetaFLOPS Rmax) ranks as India's fastest TOP500 supercomputer, alongside India's high-performance meteorology systems <strong>Arka</strong> (IITM Pune) and <strong>Arunika</strong> (NCMRWF Noida) launched in 2024.</li>
+              </ul>
+            </li>
+            <li><strong>C-DAC Full Form:</strong> <strong>Centre for Development of Advanced Computing</strong> (Headquartered in <strong>Pune</strong>, established in 1988).</li>
+            <li><strong>India's Newest Super Computer (National Supercomputing Mission — NSM):</strong>
+              <ul>
+                <li><em>Source Pointer:</em> <strong>PARAM Ananta</strong>, manufactured and assembled under <em>'Make in India'</em> under the <strong>National Supercomputing Mission (NSM)</strong> (commissioned at IIT Gandhinagar), with a speed of <strong>838 TeraFLOPS (0.838 PetaFLOPS)</strong> <em>[Factual Verification: Source notes "838 peta FLOPS" — verified as <strong>838 TeraFLOPS</strong>; keep the number <strong>838</strong> and name <strong>PARAM Ananta</strong> in mind for exams, along with recent NSM deployments like <strong>PARAM Rudra</strong> (2024), <strong>PARAM Kamrupa</strong> (IIT Guwahati), <strong>PARAM Pravega</strong> (IISc Bengaluru, 3.3 PetaFLOPS), and <strong>PARAM Ganga</strong> (IIT Roorkee)].</em></li>
+              </ul>
+            </li>
+            <li><strong>Meaning of 'PARAM':</strong> Sanskrit word that literally means <strong>"Supreme" / "First"</strong> (also stands for <strong>PARAllel Machine</strong>).</li>
+            <li><strong>World's Fastest Supercomputer (Source &amp; Latest TOP500 Update):</strong>
+              <ul>
+                <li><em>Source Pointer:</em> <strong>Frontier (USA)</strong> (at Oak Ridge National Laboratory) with a benchmark speed of <strong>1.102 ExaFLOPS</strong> (the world's <strong>first Exascale supercomputer</strong>, 2022–2024).</li>
+                <li><em>Latest TOP500 Update (2024–2026):</em> <strong>El Capitan (USA)</strong> at Lawrence Livermore National Laboratory (~1.742 ExaFLOPS) overtook Frontier in November 2024, followed by <strong>LineShine (China)</strong> in June 2026. <em>(In SSC/Railway exams, <strong>Frontier (USA)</strong> is the standard answer for the 1.102 ExaFLOPS milestone, and <strong>El Capitan (USA)</strong> for the 2024–2025 TOP500 #1 ranking).</em></li>
+              </ul>
+            </li>
+          </ul>
+
+          <h3 class="sub-heading">Key Exam Pointers</h3>
+          <ul class="note-list">
+            <li><strong>Largest, Fastest, and Most Expensive Computer Used Mainly for Weather Forecasting:</strong> <strong>Super Computer</strong>.</li>
+            <li><strong>Performance Speed of a Supercomputer is Measured In:</strong> <strong>FLOPS</strong>.</li>
+            <li><strong>Full Form of FLOPS:</strong> <strong>Floating-Point Operations Per Second</strong>.</li>
+            <li><strong>Major Scientific Uses of Supercomputing:</strong> Used to <strong>combat cancer, identify next-generation materials, and understand the pattern of a disease</strong> (along with weather forecasting, climate research, and nuclear simulations).</li>
+            <li><strong>Supercomputers are Sometimes Also Called:</strong> <strong>Parallel Computers</strong> (because they execute thousands of operations simultaneously via massive parallel processing).</li>
+            <li><strong>Operating System (OS) Used in Most Supercomputers (100% of Modern TOP500 Systems):</strong> <strong>Linux</strong>.</li>
+            <li><strong>Name of India's First Super Computer:</strong> <strong>PARAM 8000</strong>.</li>
+            <li><strong>Supercomputer That Became the World's First Exascale / Fastest Supercomputer (in Source):</strong> <strong>Frontier (USA)</strong> <em>(and <strong>El Capitan (USA)</strong> in 2024–2025 TOP500)</em>.</li>
+            <li><strong>Name of the World's First Supercomputer:</strong> <strong>CDC 6600</strong> (1964).</li>
+            <li><strong>Father of Super Computers (World):</strong> <strong>Seymour Cray</strong>.</li>
+            <li><strong>Where India's First Super Computer PARAM 8000 Was Installed in 1991:</strong> <strong>Indian Statistical Institute (ISI), Calcutta</strong> <em>(Developed by C-DAC, Pune; ISI Calcutta also hosted India's first installed electronic computer HEC-2M in 1955/56).</em></li>
+            <li><strong>Word Length Range for Supercomputers:</strong> Up to <strong>64 bits</strong> (or 64 bits and higher).</li>
+          </ul>
+        </section>
+
+        <footer class="chapter-footer-nav no-print">
+          <button type="button" class="btn open-chapter-btn" data-target="view-ch1">← Prev: 1 Computer Fundamentals &amp; Hardware</button>
+          <button type="button" class="btn open-chapter-btn" data-target="view-dashboard">Main Dashboard</button>
+          <button type="button" class="btn btn-primary open-chapter-btn" data-target="view-ch3">Next: 3 Computer Generations →</button>
+        </footer>
+      </div>
+    </article>
+
+    <!-- ========================================================================
+         CHAPTER 3: 3 COMPUTER GENERATIONS
+         ======================================================================== -->
+    <article id="view-ch3" class="view-section chapter-view ch3-sec">
+      <div class="book-sheet">
+        <header class="chapter-banner ch3-banner">
+          <div class="chapter-kicker">Chapter 3 • Dedicated Study Note</div>
+          <h1 class="chapter-main-heading">3 Computer Generations</h1>
+          <div class="chapter-subtitle">Complete Notes, Generation Comparison, Historical Firsts &amp; Question Bank Pointers for SSC CGL Tier II &amp; Railway NTPC</div>
+        </header>
+
+        <!-- Section 1: Timeline -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>1. Generation Timeline</span>
+          </h2>
+          <div class="grid-3">
+            <div class="inner-card purple">
+              <h4>1st Generation</h4>
+              <p><strong>1940 – 1956</strong> <em>(Standard NCERT/Exam range also cited as 1942–1955 or 1946–1959)</em></p>
+            </div>
+            <div class="inner-card blue">
+              <h4>2nd Generation</h4>
+              <p><strong>1957 – 1963</strong> <em>(Also cited as 1956–1963 / 1959–1965)</em></p>
+            </div>
+            <div class="inner-card green">
+              <h4>3rd Generation</h4>
+              <p><strong>1964 – 1971</strong></p>
+            </div>
+            <div class="inner-card amber">
+              <h4>4th Generation</h4>
+              <p><strong>1972 – 1979</strong> <em>(Started with Intel 4004 in 1971; extends through 1980s/present for VLSI PCs)</em></p>
+            </div>
+            <div class="inner-card rose">
+              <h4>5th Generation</h4>
+              <p><strong>1980 – Present (and Beyond)</strong></p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: Technologies Used -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>2. Core Technologies Used by Generation</span>
+          </h2>
+          <div class="grid-2">
+            <div class="inner-card purple">
+              <h4>1st Generation</h4>
+              <p><strong>Vacuum Tubes (Thermionic Valves)</strong></p>
+              <p style="font-size: 0.92rem; color: var(--text-muted); margin-top: 4px;">Invented by John Ambrose Fleming (1904 diode) &amp; Lee De Forest (1906 triode). Bulky, consumed massive electricity, and generated intense heat.</p>
+            </div>
+            <div class="inner-card blue">
+              <h4>2nd Generation</h4>
+              <p><strong>Transistors</strong></p>
+              <p style="font-size: 0.92rem; color: var(--text-muted); margin-top: 4px;">Invented in 1947 at Bell Labs by <strong>John Bardeen, Walter Brattain, and William Shockley</strong>. Smaller, faster, cooler, and more reliable than vacuum tubes.</p>
+            </div>
+            <div class="inner-card green">
+              <h4>3rd Generation</h4>
+              <p><strong>Integrated Circuits (IC)</strong></p>
+              <p style="font-size: 0.92rem; color: var(--text-muted); margin-top: 4px;">Invented by <strong>Jack Kilby</strong> (1958) and <strong>Robert Noyce</strong> (1959). Used SSI (Small Scale Integration) and MSI (Medium Scale Integration) on Silicon chips.</p>
+            </div>
+            <div class="inner-card amber">
+              <h4>4th Generation</h4>
+              <p><strong>VLSI / Microprocessor</strong></p>
+              <p style="font-size: 0.92rem; color: var(--text-muted); margin-top: 4px;"><strong>Very Large Scale Integration (VLSI)</strong> and LSI (Large Scale Integration), integrating thousands to hundreds of thousands of transistors onto a single microchip.</p>
+            </div>
+            <div class="inner-card rose">
+              <h4>5th Generation</h4>
+              <p><strong>ULSI / AI, Robots / KBS</strong></p>
+              <p style="font-size: 0.92rem; color: var(--text-muted); margin-top: 4px;"><strong>Ultra Large Scale Integration (ULSI)</strong> (millions/billions of transistors), <strong>Artificial Intelligence (AI)</strong>, Robotics, and <strong>Knowledge-Based Systems (KBS)</strong>.</p>
+            </div>
+            <div class="inner-card cyan">
+              <h4>6th Generation (Future / Emerging)</h4>
+              <p><strong>Quantum Computing, Nanotechnology, IoT, Parallel Processing, UULSI</strong></p>
+              <p style="font-size: 0.92rem; color: var(--text-muted); margin-top: 4px;">Advancement in Parallel Processing, <strong>UULSI (Ultra-Ultra Large Scale Integration)</strong>, Quantum bits (Qubits), and Neuromorphic/AI computing.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Memory & Storage -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>3. Memory &amp; Storage by Generation</span>
+          </h2>
+          <ul class="note-list">
+            <li><strong>1st &amp; 2nd Generation:</strong>
+              <ul>
+                <li><strong>Primary Memory:</strong> <strong>Magnetic Core Memory</strong> <em>(and Magnetic Drum / Electrostatic tubes in earliest 1st Gen machines)</em>.</li>
+                <li><strong>Secondary Storage:</strong> <strong>Magnetic Drum, Magnetic Tape</strong> (and Punched Cards / Paper Tape).</li>
+              </ul>
+            </li>
+            <li><strong>3rd Generation:</strong>
+              <ul>
+                <li><strong>Primary Memory:</strong> <strong>Semiconductor Memory</strong> (RAM/ROM integrated circuits, replacing large magnetic cores).</li>
+                <li><strong>Secondary Storage:</strong> <strong>Magnetic Tape, Magnetic Disc</strong> (Hard Disks &amp; Floppy Disks).</li>
+              </ul>
+            </li>
+            <li><strong>4th Generation:</strong>
+              <ul>
+                <li><strong>Primary Memory:</strong> <strong>Semiconductor Memory</strong> (High-speed DRAM &amp; SRAM).</li>
+                <li><strong>Secondary Storage:</strong> <strong>Magnetic Tape, Magnetic Disc, Optical Disc</strong> (<strong>CD:</strong> Compact Disc, <strong>DVD:</strong> Digital Versatile/Video Disc, <strong>HVD:</strong> Holographic Versatile Disc), and <strong>Flash Memory</strong>.</li>
+              </ul>
+            </li>
+            <li><strong>5th Generation:</strong>
+              <ul>
+                <li><strong>Primary Memory:</strong> <strong>Semiconductor Memory</strong> (High-density DDR4/DDR5 RAM, Multi-level Cache).</li>
+                <li><strong>Secondary Storage:</strong> <strong>Solid State Drive (SSD)</strong> (NVMe Flash, Cloud Storage, High-capacity Optical/Magnetic drives).</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Section 4: Computers by Generation -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>4. Representative Computers by Generation</span>
+          </h2>
+          <div class="grid-3">
+            <div class="inner-card purple">
+              <h4>1st Gen Examples</h4>
+              <p><strong>Mark-I (Harvard Mark I), ENIAC, EDSAC, EDVAC, UNIVAC (UNIVAC-I), IBM 701, IBM 650</strong>.</p>
+            </div>
+            <div class="inner-card blue">
+              <h4>2nd Gen Examples</h4>
+              <p><strong>IBM 1620, IBM 7094, CDC 1604, CDC 3600, IBM 1400 (IBM 1401)</strong>, UNIVAC 1108.</p>
+            </div>
+            <div class="inner-card green">
+              <h4>3rd Gen Examples</h4>
+              <p><strong>IBM 360 (System/360), Honeywell 6000, PDP (PDP-8, PDP-11), IBM 370, TDC 316, ICL 2900</strong>.</p>
+            </div>
+            <div class="inner-card amber">
+              <h4>4th Gen Examples</h4>
+              <p><strong>Apple II (Apple 2), STAR 1000, Cray-X-MP</strong> (and Cray-1, IBM PC, Altair 8800, DEC 10).</p>
+            </div>
+            <div class="inner-card rose">
+              <h4>5th Gen Examples</h4>
+              <p><strong>Intel P4 (Pentium 4), AMD Athlon, Intel Core i3 – i9, Desktops, Laptops, Tablets, Smartphones</strong>, PARAM series, IBM Watson.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: Languages & Speed -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>5. Languages, Speed &amp; Operating Systems by Generation</span>
+          </h2>
+          <div class="grid-3">
+            <div class="inner-card purple">
+              <h4>1st Generation</h4>
+              <ul class="note-list">
+                <li><strong>Language (1GL):</strong> <strong>Low-Level (Machine / Binary Language — 0s &amp; 1s)</strong></li>
+                <li><strong>Speed:</strong> <strong>Milliseconds (10<sup>&minus;3</sup> s)</strong></li>
+                <li><strong>OS:</strong> <strong>Batch Processing</strong> (manual operator job loading)</li>
+              </ul>
+            </div>
+
+            <div class="inner-card blue">
+              <h4>2nd Generation</h4>
+              <ul class="note-list">
+                <li><strong>Language (2GL + Early 3GL):</strong> <strong>Low-Level (Assembly Language / Mnemonics)</strong> <em>(Exam Note: Early High-Level languages <strong>FORTRAN [1957]</strong> &amp; <strong>COBOL [1959]</strong> also began in 2nd Gen)</em></li>
+                <li><strong>Speed:</strong> <strong>Microseconds (10<sup>&minus;6</sup> s)</strong></li>
+                <li><strong>OS:</strong> <strong>NA</strong> in source <em>(Batch Processing &amp; early Multiprogramming monitors used)</em></li>
+              </ul>
+            </div>
+
+            <div class="inner-card green">
+              <h4>3rd Generation</h4>
+              <ul class="note-list">
+                <li><strong>Language (3GL):</strong> <strong>High-Level Languages</strong> — Source lists: <strong>C, C++, Java, Visual Basic, JS</strong> <em>(Historical Verification: FORTRAN-II/IV, COBOL, PASCAL, BASIC, ALGOL-68, and C [1972] were 3rd Gen; C++, VB, Java, and JS emerged later as advanced High-Level languages)</em></li>
+                <li><strong>Speed:</strong> <strong>Nanoseconds (10<sup>&minus;9</sup> s)</strong></li>
+                <li><strong>OS:</strong> <strong>Formal OS development started</strong> (Time-Sharing, Multiprogramming, Real-Time OS; UNIX began in 1969)</li>
+              </ul>
+            </div>
+
+            <div class="inner-card amber">
+              <h4>4th Generation</h4>
+              <ul class="note-list">
+                <li><strong>Language (4GL &amp; Scripting):</strong> <strong>Scripting &amp; Database Languages (Perl, Python, Ruby, SQL, MATLAB)</strong>, dBASE</li>
+                <li><strong>Speed:</strong> <strong>Picoseconds (10<sup>&minus;12</sup> s)</strong></li>
+                <li><strong>OS:</strong> <strong>Time-sharing, Real-time, Networks, Distributed &amp; GUI OS</strong> (MS-DOS, Windows, MacOS)</li>
+              </ul>
+            </div>
+
+            <div class="inner-card rose">
+              <h4>5th Generation</h4>
+              <ul class="note-list">
+                <li><strong>Language (5GL):</strong> <strong>AI &amp; Logic Languages (PROLOG, LISP, Mercury, KL1, OPS5)</strong></li>
+                <li><strong>Speed:</strong> <strong>Femtoseconds (10<sup>&minus;15</sup> s)</strong></li>
+                <li><strong>OS:</strong> <strong>AI, Windows, Linux, Mobile OS (Android, iOS)</strong></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 6: Input / Output Devices -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>6. Input / Output Devices by Generation</span>
+          </h2>
+          <ul class="note-list">
+            <li><strong>1st &amp; 2nd Generation:</strong> <strong>Input:</strong> Punched Card (and Paper Tape) | <strong>Output:</strong> Printer (Printouts).</li>
+            <li><strong>3rd Generation:</strong> <strong>Input:</strong> Keyboard | <strong>Output:</strong> Monitor (first generation to replace punched cards and printouts with direct keyboard and CRT monitor interaction).</li>
+            <li><strong>4th Generation:</strong> <strong>Input:</strong> Mouse, Touch Screen, Scanner, Keyboard | <strong>Output:</strong> LCD, LED Monitor, Color Printer, Plotter.</li>
+            <li><strong>5th Generation:</strong> <strong>KIPS (Knowledge-based Information Processing System)</strong> — Natural Language Speech/Voice Input, Biometrics, Gesture/Touch &amp; AI Vision sensors.</li>
+          </ul>
+        </section>
+
+        <!-- Section 7: The Firsts & Facts -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>7. The Firsts &amp; Historical Facts</span>
+          </h2>
+          <div class="grid-2">
+            <div class="inner-card blue">
+              <h4>ENIAC</h4>
+              <p><strong>First General-Purpose Electronic Digital Computer</strong> (<em>Electronic Numerical Integrator and Computer</em>, 1945/1946). <strong>Founders:</strong> <strong>John Mauchly</strong> and <strong>J. Presper Eckert</strong>. Built at the <strong>University of Pennsylvania, USA</strong>.</p>
+            </div>
+            <div class="inner-card green">
+              <h4>ABC (Atanasoff-Berry Computer)</h4>
+              <p><strong>First Automatic Electronic Digital Computer</strong> (special-purpose, non-programmable electronic computer built by <strong>John Vincent Atanasoff</strong> and <strong>Clifford Berry</strong> at Iowa State College, 1937–1942).</p>
+            </div>
+            <div class="inner-card purple">
+              <h4>Charles Babbage</h4>
+              <p>Known as the <strong>Father of the Computer</strong>. Designed the mechanical <strong>Difference Engine</strong> (1822) and the programmable <strong>Analytical Engine</strong> (1837).</p>
+            </div>
+            <div class="inner-card rose">
+              <h4>Ada Lovelace</h4>
+              <p>Known as the <strong>Mother of Computer Science</strong> and the <strong>World's First Computer Programmer</strong> (wrote the first algorithm for Babbage's Analytical Engine).</p>
+            </div>
+            <div class="inner-card amber">
+              <h4>TIFRAC</h4>
+              <p><strong>First Indigenously Built Indian Computer</strong> (<em>Tata Institute of Fundamental Research Automatic Calculator</em>, developed in Mumbai, 1956–1960). <em>(Exam Note: First imported computer installed in India was <strong>HEC-2M</strong> at ISI Kolkata in 1955/56).</em></p>
+            </div>
+            <div class="inner-card cyan">
+              <h4>EDSAC</h4>
+              <p><strong>First Practical Computer to Use the Stored Program Concept</strong> (<em>Electronic Delay Storage Automatic Calculator</em>, built by <strong>Maurice Wilkes</strong> at Cambridge University in <strong>1949</strong>; Stored Program concept was proposed by <strong>John von Neumann</strong>).</p>
+            </div>
+            <div class="inner-card blue">
+              <h4>UNIVAC (UNIVAC I)</h4>
+              <p><strong>First Commercial Electronic Computer</strong> (<em>Universal Automatic Computer</em>), built by Eckert and Mauchly and delivered in <strong>1951</strong>.</p>
+            </div>
+            <div class="inner-card green">
+              <h4>CDC 6600</h4>
+              <p><strong>First Super Computer</strong> in the world (designed by Seymour Cray in <strong>1964</strong>).</p>
+            </div>
+            <div class="inner-card purple">
+              <h4>PARAM 8000</h4>
+              <p><strong>First Indian Super Computer</strong> (developed by C-DAC in <strong>1991</strong> under Dr. Vijay Pandurang Bhatkar).</p>
+            </div>
+            <div class="inner-card rose">
+              <h4>Micral (Micral N)</h4>
+              <p><strong>First Microcomputer</strong> (non-kit, built in 1973 in France; <strong>Altair 8800</strong> in 1974/75 was the first commercially successful personal microcomputer kit).</p>
+            </div>
+            <div class="inner-card amber">
+              <h4>PDP-1</h4>
+              <p><strong>First Mini Computer</strong> (<em>Programmed Data Processor-1</em>, introduced by DEC in 1959/1960).</p>
+            </div>
+            <div class="inner-card cyan">
+              <h4>Harvard Mark I</h4>
+              <p><strong>First Electro-Mechanical Mainframe Computer</strong> (developed by Howard Aiken and IBM, 1944).</p>
+            </div>
+            <div class="inner-card blue">
+              <h4>Pascaline</h4>
+              <p><strong>First Mechanical Arithmetic / Adding Machine</strong> (invented by French mathematician <strong>Blaise Pascal</strong> in <strong>1642</strong>).</p>
+            </div>
+            <div class="inner-card rose">
+              <h4>Creeper &amp; Reaper</h4>
+              <p><strong>First Computer Virus (ARPANET Worm):</strong> <strong>Creeper</strong> (created by Bob Thomas in 1971) | <strong>First Antivirus:</strong> <strong>Reaper</strong> (created by Ray Tomlinson in 1972 to delete Creeper).</p>
+            </div>
+            <div class="inner-card green">
+              <h4>Spacewar!</h4>
+              <p><strong>First Digital Computer Video Game</strong> (developed in <strong>1962</strong> by <strong>Steve Russell</strong> and team on the DEC PDP-1 minicomputer at MIT).</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 8: Important Questions (Converted to Bullet Points) -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>8. Important Exam Pointers</span>
+          </h2>
+          <ul class="note-list">
+            <li><strong>Generation of Computers in Which Microprocessors Were First Introduced:</strong> <strong>4th Generation</strong> (starting with Intel 4004 in 1971).</li>
+            <li><strong>Major Key Point / Technology in Fifth Generation Computers:</strong> <strong>ULSI (Ultra Large Scale Integration) / AI (Artificial Intelligence)</strong>.</li>
+            <li><strong>Microchip Technology Used by a Typical Modern Computer:</strong> <strong>LSI / VLSI chips</strong> (and ULSI chips).</li>
+            <li><strong>Manner in Which Instructions are Executed in Latest Generation Computers:</strong> <strong>Both in sequence (sequential) and parallel</strong>.</li>
+            <li><strong>5th Generation Computers are Also Known As:</strong> <strong>KIPS</strong> (<em>Knowledge-based Information Processing Systems</em>).</li>
+            <li><strong>Inventors of Integrated Circuits (IC):</strong> <strong>Jack Kilby and Robert Noyce</strong> (1958–1959).</li>
+            <li><strong>Semiconductor Material from Which Integrated Circuits (ICs) are Generally Made:</strong> <strong>Silicon</strong> (Si).</li>
+            <li><strong>First Operational Computer to Use the Stored Program Concept:</strong> <strong>EDSAC</strong> (<em>Electronic Delay Storage Automatic Calculator</em>, 1949).</li>
+            <li><strong>Generation in Which the Operating System (OS) Was Formally Used for the First Time:</strong> <strong>3rd Generation</strong> (introducing multiprogramming and time-sharing OS).</li>
+            <li><strong>Inventor / Engineer Who Designed and Built the First Apple Computer (Apple I &amp; Apple II) in the 1970s:</strong> <strong>Steve Wozniak</strong> (co-founded Apple with Steve Jobs in 1976).</li>
+            <li><strong>Approximate Number of Vacuum Tubes Used in the 1st Generation Computer ENIAC:</strong> <strong>18,000</strong> (specifically 17,468 vacuum tubes).</li>
+            <li><strong>Inventor of the Data-Processing Punched Card (Tabulating Machine):</strong> <strong>Herman Hollerith</strong> (1889/1890 US Census).</li>
+            <li><strong>Component Used in First Generation Computers for Storage:</strong> <strong>Magnetic Drum</strong>.</li>
+          </ul>
+        </section>
+
+        <footer class="chapter-footer-nav no-print">
+          <button type="button" class="btn open-chapter-btn" data-target="view-ch2">← Prev: 2 Types of Computer</button>
+          <button type="button" class="btn open-chapter-btn" data-target="view-dashboard">Main Dashboard</button>
+          <button type="button" class="btn btn-primary open-chapter-btn" data-target="view-ch4">Next: 4 CPU &amp; Processing →</button>
+        </footer>
+      </div>
+    </article>
+
+    <!-- ========================================================================
+         CHAPTER 4: 4 CPU & PROCESSING
+         ======================================================================== -->
+    <article id="view-ch4" class="view-section chapter-view ch4-sec">
+      <div class="book-sheet">
+        <header class="chapter-banner ch4-banner">
+          <div class="chapter-kicker">Chapter 4 • Dedicated Study Note</div>
+          <h1 class="chapter-main-heading">4 CPU &amp; Processing</h1>
+          <div class="chapter-subtitle">Computer Organization Theory, CPU Architecture &amp; All 36 Source MCQs Converted into Verified Bullet Points</div>
+        </header>
+
+        <!-- Section 1: Computer Organization Theory -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>1. Computer Organization Theory</span>
+          </h2>
+          <div class="grid-2">
+            <div class="inner-card rose">
+              <h4>Fundamental Parts of Computer Organization</h4>
+              <p style="margin-bottom: 6px;">Parts of a Computer Organization:</p>
+              <ul class="note-list">
+                <li><strong>1. CPU</strong> (Central Processing Unit)</li>
+                <li><strong>2. Memory</strong> (Primary / Main &amp; Secondary / Auxiliary)</li>
+                <li><strong>3. Input Devices</strong></li>
+                <li><strong>4. Output Devices</strong></li>
+              </ul>
+            </div>
+
+            <div class="inner-card blue">
+              <h4>CPU Definition</h4>
+              <ul class="note-list">
+                <li>Also called the <strong>Processor</strong> (or Microprocessor).</li>
+                <li>Directly understands only <strong>Machine or Binary language</strong> (<code>0</code>s and <code>1</code>s).</li>
+                <li>Known as the <strong>Brain of the computer</strong>.</li>
+                <li><strong>First-ever Commercial Microprocessor:</strong> <strong>Intel 4004 (1971)</strong> (4-bit processor designed by Federico Faggin, Ted Hoff, Masatoshi Shima, and Stanley Mazor).</li>
+                <li><strong>Famous CPU Companies:</strong> <strong>Intel</strong> (<em>Integrated Electronics</em>) and <strong>AMD</strong> (<em>Advanced Micro Devices</em>).</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: Performance & Components -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>2. Performance &amp; Components</span>
+          </h2>
+          <div class="grid-3">
+            <div class="inner-card amber">
+              <h4>Speed Measurement</h4>
+              <p style="margin-bottom: 6px;">Speed of CPU is measured in:</p>
+              <ul class="note-list">
+                <li><strong>Hertz (Hz)</strong> (Basic cycle unit)</li>
+                <li><strong>GHz (Gigahertz)</strong> (10<sup>9</sup> Hz)</li>
+                <li><strong>MHz (Megahertz)</strong> (10<sup>6</sup> Hz)</li>
+                <li><strong>MIPS (Million Instructions per Second)</strong></li>
+                <li><strong>KIPS (Kilo Instructions per Second)</strong></li>
+              </ul>
+              <p style="margin-top: 8px; padding-top: 6px; border-top: 1px dashed #cbd5e1;">
+                <strong>CPU Speed of older PCs:</strong> <strong>100 KIPS</strong>
+              </p>
+            </div>
+
+            <div class="inner-card green">
+              <h4>CPU Composition</h4>
+              <p style="margin-bottom: 6px;">The CPU comprises of 3 core functional units:</p>
+              <ul class="note-list">
+                <li><strong>1. CU (Control Unit)</strong></li>
+                <li><strong>2. ALU (Arithmetic Logic Unit)</strong></li>
+                <li><strong>3. MU (Memory Unit / Registers)</strong></li>
+              </ul>
+            </div>
+
+            <div class="inner-card purple">
+              <h4>Functions &amp; CPU Cycle</h4>
+              <ul class="note-list">
+                <li><strong>CU:</strong> Decodes instructions, controls I/O devices, and manages temporary execution &amp; data transfer signals.</li>
+                <li><strong>ALU:</strong> Performs arithmetic &amp; logical operations. Fundamental building block of the CPU. Stores intermediate results in the <strong>Accumulator</strong>.</li>
+                <li><strong>MU (Registers):</strong> <strong>Fastest Memory</strong> in the computer hierarchy.</li>
+                <li><strong>CPU Cycle (Instruction Cycle):</strong> <strong>Fetch → Decode → Execute</strong> <em>(→ Store)</em>.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Architecture & Types -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>3. Architecture &amp; Types</span>
+          </h2>
+          <div class="grid-3">
+            <div class="inner-card blue">
+              <h4>Architecture Types</h4>
+              <ul class="note-list">
+                <li><strong>CISC:</strong> <strong>Complex Instruction Set Computer</strong> (Complex multi-cycle hardware instructions; e.g., Intel x86, AMD64).</li>
+                <li><strong>RISC:</strong> <strong>Reduced Instruction Set Computer</strong> (Simple, fixed-length single-cycle instructions; e.g., ARM, Apple Silicon, RISC-V).</li>
+              </ul>
+            </div>
+
+            <div class="inner-card rose">
+              <h4>Types of CPU (By Cores)</h4>
+              <ul class="note-list">
+                <li><strong>Single-Core CPU (Core 1)</strong> (e.g., Intel 4004)</li>
+                <li><strong>Dual-Core CPU (Core 2)</strong></li>
+                <li><strong>Quad-Core CPU (Core 4)</strong></li>
+                <li><strong>Hexa-Core CPU (Core 6)</strong></li>
+                <li><strong>Octa-Core CPU (Core 8)</strong></li>
+                <li><strong>Deca-Core CPU (Core 10)</strong></li>
+              </ul>
+            </div>
+
+            <div class="inner-card green">
+              <h4>GPU (Graphics Processing Unit)</h4>
+              <ul class="note-list">
+                <li>Also known as a <strong>"Graphics Card"</strong>.</li>
+                <li>Used for <strong>visual renderings and Gaming</strong> (plus 3D CAD, video editing, and AI matrix computing).</li>
+                <li>Uses <strong>Parallel processing</strong>.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: CPU Processor Key Pointers -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>4. CPU Processor Key Pointers</span>
+          </h2>
+          <ul class="note-list">
+            <li><strong>1. Measurement of a CPU's Clock Speed:</strong> Measured in <strong>Gigahertz (GHz) and Megahertz (MHz)</strong>.</li>
+            <li><strong>2. Fundamental Unit of CPU Speed Representing a CPU Cycle:</strong> <strong>Hertz (Hz)</strong>.</li>
+            <li><strong>3. Speed of a Processor Chip is Measured In:</strong> <strong>MHz (Megahertz)</strong>.</li>
+            <li><strong>4. Measurement of a CPU's Instruction Processing Power:</strong> <strong>MIPS (Million Instructions Per Second)</strong>.</li>
+            <li><strong>5. Unit for Measuring the Clock Rate of a Processor:</strong> <strong>Megahertz (MHz) or Gigahertz (GHz)</strong>.</li>
+            <li><strong>6. Factor Determining the Speed / Synchronization of the Processor:</strong> <strong>Regular clock cycles</strong>.</li>
+            <li><strong>7. Language Directly Understood by the CPU:</strong> <strong>Machine Language (Binary Language)</strong>.</li>
+            <li><strong>8. CPU Speed of an Early / Standard Personal Computer:</strong> <strong>100 KIPS (Kilo Instructions Per Second)</strong>.</li>
+            <li><strong>9. Component That is NOT an Internal Component of the CPU:</strong> <strong>Storage unit</strong> (External/Secondary storage lies outside the CPU).</li>
+            <li><strong>10. The CPU is an Example Of:</strong> <strong>Hardware</strong>.</li>
+            <li><strong>11. Part of the Computer System Where Actual Execution of Instructions Takes Place During Processing Operations:</strong> <strong>ALU (Arithmetic Logic Unit)</strong>.</li>
+            <li><strong>12. Unit of the CPU That Performs Arithmetic Operations (Addition, Subtraction, Multiplication, Division):</strong> <strong>ALU (Arithmetic Logic Unit)</strong>.</li>
+            <li><strong>13. Primary Function of the Control Unit (CU) in the CPU:</strong> <strong>To decode program instructions</strong> (and direct the flow of control signals).</li>
+            <li><strong>14. Function of the Logical Unit in the CPU of a Computer:</strong> <strong>To generate a result and to compare data</strong>.</li>
+            <li><strong>15. Special Register Used by the ALU to Store Intermediate Results:</strong> <strong>Accumulator (AC)</strong>.</li>
+            <li><strong>16. Digital Circuit Classification of a CPU "Register":</strong> <strong>Sequential circuit</strong> (built from Flip-Flops).</li>
+            <li><strong>17. Component Used to Overcome the Difference in Data Transfer Speeds of Various Devices:</strong> <strong>Buffer register</strong>.</li>
+            <li><strong>18. Operation That Does NOT Involve CPU Clock Cycles:</strong> <strong>Installation of a device</strong> (whereas Fetch, Decode, and Execute involve CPU clock cycles).</li>
+            <li><strong>19. Processor Architecture Which is Complex and Expensive to Produce:</strong> <strong>CISC (Complex Instruction Set Computer)</strong>.</li>
+            <li><strong>20. Internal Components Comprising the CPU Itself:</strong> <strong>CU (Control Unit), ALU (Arithmetic Logic Unit), and MU (Memory Unit)</strong>.</li>
+            <li><strong>21. Subsections Comprising the ALU (Arithmetic Logic Unit):</strong> <strong>Arithmetic Section &amp; Logic Section</strong>.</li>
+            <li><strong>22. Core Features of the CPU:</strong> <strong>Considered the brain of the computer, performs all types of data processing operations, and stores data, intermediate results, and instructions</strong>.</li>
+            <li><strong>23. Section of the ALU That Performs Logic Operations Such as Comparing, Selecting, Matching, and Merging of Data:</strong> <strong>Logic Section</strong>.</li>
+            <li><strong>24. Address Size (Address Bus Width) of the Intel 8086 Microprocessor:</strong> <strong>20-Bit</strong> (addresses up to 2<sup>20</sup> = 1 MB of memory).</li>
+            <li><strong>25. Systems for Which ARM (Advanced RISC Machine) Processors Were Basically Designed:</strong> <strong>Mobile Systems</strong>.</li>
+            <li><strong>26. Term for the Outer Rectangular Box Standing Beside the Computer Monitor:</strong> <strong>CPU Cabinet</strong> (System Unit).</li>
+            <li><strong>27. Term for a Device Which is NOT Connected to the CPU:</strong> <strong>Offline device</strong>.</li>
+            <li><strong>28. Component Inside the Computer That Delivers Power Supply to All Components at Appropriate Voltages:</strong> <strong>SMPS (Switch Mode Power Supply)</strong>.</li>
+            <li><strong>29. Operations Performed by the ALU:</strong> <strong>Data manipulation, Exponential, and Square root operations</strong> (along with basic arithmetic and logical operations).</li>
+            <li><strong>30. Memory Unit That Communicates Directly With the CPU:</strong> <strong>Main memory (Primary Memory)</strong>.</li>
+            <li><strong>31. Term for a Computer System That Has Only One Processor:</strong> <strong>Uniprocessor</strong>.</li>
+            <li><strong>32. Fastest Means of Memory Access for the CPU:</strong> <strong>Registers</strong> (followed by Cache, Main Memory, and Secondary Memory).</li>
+            <li><strong>33. Register Used to Hold the Memory Address When Fetching Data/Instructions from Memory:</strong> <strong>MAR (Memory Address Register)</strong> <em>(Note: Program Counter [PC] holds the address of the next instruction; Instruction Register [IR] holds the current instruction being decoded; Memory Buffer Register [MBR] holds the data/instruction read from or written to memory)</em>.</li>
+            <li><strong>34. The World's First Commercial Microprocessor:</strong> <strong>Intel 4004</strong> (1971).</li>
+            <li><strong>35. Bus That is NOT a Standard Microprocessor System Bus:</strong> <strong>Cache bus</strong> (Standard microprocessor buses are the <strong>Address bus, Data bus, and Control bus</strong>).</li>
+            <li><strong>36. The Oldest Type of Central Processing Unit (By Core Count):</strong> <strong>Single Core</strong>.</li>
+          </ul>
+        </section>
+
+        <footer class="chapter-footer-nav no-print">
+          <button type="button" class="btn open-chapter-btn" data-target="view-ch3">← Prev: 3 Computer Generations</button>
+          <button type="button" class="btn open-chapter-btn" data-target="view-dashboard">Main Dashboard</button>
+          <button type="button" class="btn btn-primary open-chapter-btn" data-target="view-ch5">Next: 5 Number System →</button>
+        </footer>
+      </div>
+    </article>
+
+    <!-- ========================================================================
+         CHAPTER 5: 5 NUMBER SYSTEM
+         ======================================================================== -->
+    <article id="view-ch5" class="view-section chapter-view ch5-sec">
+      <div class="book-sheet">
+        <header class="chapter-banner ch5-banner">
+          <div class="chapter-kicker">Chapter 5 • Dedicated Study Note</div>
+          <h1 class="chapter-main-heading">5 Number System</h1>
+          <div class="chapter-subtitle">Binary, Decimal, Octal, Hexadecimal, All Step-by-Step Conversions &amp; Reference Table in One Shot</div>
+        </header>
+
+        <!-- Section 1: Introduction to Number Systems -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>1. Introduction to Number Systems</span>
+          </h2>
+          <div class="grid-2">
+            <div class="inner-card blue">
+              <h4>
+                <span>Decimal Number System</span>
+                <span class="base-badge">Base 10</span>
+              </h4>
+              <ul class="note-list">
+                <li><strong>Digits used:</strong> <code>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</code> (10 digits)</li>
+                <li><strong>Description:</strong> The standard positional number system for denoting integer and non-integer numbers in everyday life.</li>
+                <li><strong>Examples:</strong>
+                  <ol style="padding-left: 20px; margin-top: 4px;">
+                    <li>(145)<sub>10</sub></li>
+                    <li>(902)<sub>10</sub></li>
+                  </ol>
+                </li>
+              </ul>
+            </div>
+
+            <div class="inner-card green">
+              <h4>
+                <span>Binary Number System</span>
+                <span class="base-badge">Base 2</span>
+              </h4>
+              <ul class="note-list">
+                <li><strong>Digits used:</strong> <code>0, 1</code> (2 digits, called <strong>Bits</strong>)</li>
+                <li><strong>Description:</strong> The foundation of all computing systems and digital electronics.</li>
+                <li><strong>Examples:</strong>
+                  <ol style="padding-left: 20px; margin-top: 4px;">
+                    <li>(1011)<sub>2</sub></li>
+                    <li>(11001)<sub>2</sub></li>
+                  </ol>
+                </li>
+              </ul>
+            </div>
+
+            <div class="inner-card purple">
+              <h4>
+                <span>Octal Number System</span>
+                <span class="base-badge">Base 8</span>
+              </h4>
+              <ul class="note-list">
+                <li><strong>Digits used:</strong> <code>0, 1, 2, 3, 4, 5, 6, 7</code> (8 digits; digits 8 and 9 never appear in Octal)</li>
+                <li><strong>Description:</strong> Used in computing as a shorter representation of binary numbers (<strong>groups of 3 bits</strong>, since 2<sup>3</sup> = 8).</li>
+                <li><strong>Examples:</strong>
+                  <ol style="padding-left: 20px; margin-top: 4px;">
+                    <li>(45)<sub>8</sub></li>
+                    <li>(172)<sub>8</sub></li>
+                  </ol>
+                </li>
+              </ul>
+            </div>
+
+            <div class="inner-card amber">
+              <h4>
+                <span>Hexadecimal Number System</span>
+                <span class="base-badge">Base 16</span>
+              </h4>
+              <ul class="note-list">
+                <li><strong>Digits used:</strong> <code>0–9, A, B, C, D, E, F</code> (16 alphanumeric symbols)</li>
+                <li><strong>Description:</strong> Represents <strong>groups of 4 bits</strong> (1 Nibble, since 2<sup>4</sup> = 16). Letters <code>A–F</code> represent decimal values <code>10–15</code> respectively (<code>A=10, B=11, C=12, D=13, E=14, F=15</code>).</li>
+                <li><strong>Examples:</strong>
+                  <ol style="padding-left: 20px; margin-top: 4px;">
+                    <li>(1A)<sub>16</sub></li>
+                    <li>(F4C)<sub>16</sub></li>
+                  </ol>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: Decimal to Other Systems -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>2. Decimal to Other Systems</span>
+          </h2>
+          <div class="math-rule-box">
+            Rule: Divide the decimal number repeatedly by the target base (2, 8, or 16). Record the remainders in reverse order (from bottom to top — MSB to LSB).
+          </div>
+
+          <!-- Decimal to Binary -->
+          <h3 class="sub-heading">Decimal to Binary (Divide by 2)</h3>
+          <div class="grid-2">
+            <div class="inner-card blue">
+              <h4>Example 1: Convert (13)<sub>10</sub> to Binary</h4>
+              <ul class="note-list">
+                <li>13 / 2 = 6, Remainder: <strong>1</strong> <em>(LSB — Bottom-most read last)</em></li>
+                <li>6 / 2 = 3, Remainder: <strong>0</strong></li>
+                <li>3 / 2 = 1, Remainder: <strong>1</strong></li>
+                <li>1 / 2 = 0, Remainder: <strong>1</strong> <em>(MSB — Read first)</em></li>
+              </ul>
+              <span class="ans-badge">Answer: (1101)<sub>2</sub></span>
+            </div>
+
+            <div class="inner-card blue">
+              <h4>Example 2: Convert (25)<sub>10</sub> to Binary</h4>
+              <ul class="note-list">
+                <li>25 / 2 = 12, R: <strong>1</strong></li>
+                <li>12 / 2 = 6, R: <strong>0</strong></li>
+                <li>6 / 2 = 3, R: <strong>0</strong></li>
+                <li>3 / 2 = 1, R: <strong>1</strong></li>
+                <li>1 / 2 = 0, R: <strong>1</strong></li>
+              </ul>
+              <span class="ans-badge">Answer: (11001)<sub>2</sub></span>
+            </div>
+          </div>
+
+          <!-- Decimal to Octal -->
+          <h3 class="sub-heading">Decimal to Octal (Divide by 8)</h3>
+          <div class="grid-2">
+            <div class="inner-card purple">
+              <h4>Example 1: Convert (45)<sub>10</sub> to Octal</h4>
+              <ul class="note-list">
+                <li>45 / 8 = 5, Remainder: <strong>5</strong></li>
+                <li>5 / 8 = 0, Remainder: <strong>5</strong></li>
+              </ul>
+              <span class="ans-badge">Answer: (55)<sub>8</sub></span>
+            </div>
+
+            <div class="inner-card purple">
+              <h4>Example 2: Convert (120)<sub>10</sub> to Octal</h4>
+              <ul class="note-list">
+                <li>120 / 8 = 15, R: <strong>0</strong></li>
+                <li>15 / 8 = 1, R: <strong>7</strong></li>
+                <li>1 / 8 = 0, R: <strong>1</strong></li>
+              </ul>
+              <span class="ans-badge">Answer: (170)<sub>8</sub></span>
+            </div>
+          </div>
+
+          <!-- Decimal to Hex -->
+          <h3 class="sub-heading">Decimal to Hex (Divide by 16)</h3>
+          <div class="grid-2">
+            <div class="inner-card amber">
+              <h4>Example 1: Convert (45)<sub>10</sub> to Hex</h4>
+              <ul class="note-list">
+                <li>45 / 16 = 2, Remainder: <strong>13 (D)</strong></li>
+                <li>2 / 16 = 0, Remainder: <strong>2</strong></li>
+              </ul>
+              <span class="ans-badge">Answer: (2D)<sub>16</sub></span>
+            </div>
+
+            <div class="inner-card amber">
+              <h4>Example 2: Convert (254)<sub>10</sub> to Hex</h4>
+              <ul class="note-list">
+                <li>254 / 16 = 15, R: <strong>14 (E)</strong></li>
+                <li>15 / 16 = 0, R: <strong>15 (F)</strong></li>
+              </ul>
+              <span class="ans-badge">Answer: (FE)<sub>16</sub></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Other Systems to Decimal -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>3. Other Systems to Decimal</span>
+          </h2>
+          <div class="math-rule-box">
+            Rule: Multiply each digit by the base number (2, 8, or 16) raised to the power of its position. Start positioning from right to left, beginning with power 0 (b<sup>0</sup>, b<sup>1</sup>, b<sup>2</sup>, &hellip;).
+          </div>
+
+          <!-- Binary to Decimal -->
+          <h3 class="sub-heading">Binary to Decimal</h3>
+          <div class="grid-2">
+            <div class="inner-card green">
+              <h4>Example 1: (1010)<sub>2</sub> to Decimal</h4>
+              <div class="calc-steps">
+                = (1 &times; 2<sup>3</sup>) + (0 &times; 2<sup>2</sup>) + (1 &times; 2<sup>1</sup>) + (0 &times; 2<sup>0</sup>)<br />
+                = (1 &times; 8) + (0 &times; 4) + (1 &times; 2) + (0 &times; 1)<br />
+                = 8 + 0 + 2 + 0 = <strong>10</strong>
+              </div>
+              <span class="ans-badge">Answer: (10)<sub>10</sub></span>
+            </div>
+
+            <div class="inner-card green">
+              <h4>Example 2: (11011)<sub>2</sub> to Decimal</h4>
+              <div class="calc-steps">
+                = (1 &times; 2<sup>4</sup>) + (1 &times; 2<sup>3</sup>) + (0 &times; 2<sup>2</sup>) + (1 &times; 2<sup>1</sup>) + (1 &times; 2<sup>0</sup>)<br />
+                = 16 + 8 + 0 + 2 + 1 = <strong>27</strong>
+              </div>
+              <span class="ans-badge">Answer: (27)<sub>10</sub></span>
+            </div>
+          </div>
+
+          <!-- Octal to Decimal -->
+          <h3 class="sub-heading">Octal to Decimal</h3>
+          <div class="grid-2">
+            <div class="inner-card purple">
+              <h4>Example 1: (45)<sub>8</sub> to Decimal</h4>
+              <div class="calc-steps">
+                = (4 &times; 8<sup>1</sup>) + (5 &times; 8<sup>0</sup>)<br />
+                = (4 &times; 8) + (5 &times; 1)<br />
+                = 32 + 5 = <strong>37</strong>
+              </div>
+              <span class="ans-badge">Answer: (37)<sub>10</sub></span>
+            </div>
+
+            <div class="inner-card purple">
+              <h4>Example 2: (124)<sub>8</sub> to Decimal</h4>
+              <div class="calc-steps">
+                = (1 &times; 8<sup>2</sup>) + (2 &times; 8<sup>1</sup>) + (4 &times; 8<sup>0</sup>)<br />
+                = (1 &times; 64) + (2 &times; 8) + (4 &times; 1)<br />
+                = 64 + 16 + 4 = <strong>84</strong>
+              </div>
+              <span class="ans-badge">Answer: (84)<sub>10</sub></span>
+            </div>
+          </div>
+
+          <!-- Hex to Decimal -->
+          <h3 class="sub-heading">Hex to Decimal</h3>
+          <div class="grid-2">
+            <div class="inner-card amber">
+              <h4>Example 1: (2A)<sub>16</sub> to Decimal</h4>
+              <div class="calc-steps">
+                A = 10<br />
+                = (2 &times; 16<sup>1</sup>) + (10 &times; 16<sup>0</sup>)<br />
+                = 32 + 10 = <strong>42</strong>
+              </div>
+              <span class="ans-badge">Answer: (42)<sub>10</sub></span>
+            </div>
+
+            <div class="inner-card amber">
+              <h4>Example 2: (1B3)<sub>16</sub> to Decimal</h4>
+              <div class="calc-steps">
+                B = 11<br />
+                = (1 &times; 16<sup>2</sup>) + (11 &times; 16<sup>1</sup>) + (3 &times; 16<sup>0</sup>)<br />
+                = (1 &times; 256) + (11 &times; 16) + (3 &times; 1)<br />
+                = 256 + 176 + 3 = <strong>435</strong>
+              </div>
+              <span class="ans-badge">Answer: (435)<sub>10</sub></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: Binary, Octal & Hex Inter-Conversions -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>4. Binary, Octal &amp; Hex Inter-Conversions</span>
+          </h2>
+          <div class="math-rule-box">
+            Key Concept:<br />
+            • Octal correlates to 3-bit Binary groupings (2<sup>3</sup> = 8, weights 4–2–1; e.g., 7 is <code>111</code>).<br />
+            • Hexadecimal correlates to 4-bit Binary groupings (2<sup>4</sup> = 16, weights 8–4–2–1; e.g., F is <code>1111</code>).
+          </div>
+
+          <!-- Binary <-> Octal -->
+          <h3 class="sub-heading">Binary ↔ Octal (3-Bit Rule)</h3>
+          <div class="grid-2">
+            <div class="inner-card cyan">
+              <h4>Binary to Octal</h4>
+              <p style="margin-bottom: 6px;"><strong>Rule:</strong> Group binary bits into sets of <strong>3</strong>, starting from the right. Pad the leftmost group with <code>0</code>s if needed. Convert each group to its octal equivalent.</p>
+              <ul class="note-list">
+                <li><strong>Ex 1:</strong> (110101)<sub>2</sub> &rarr; Group:  110 | 101 &rarr; (6)(5) = <strong>(65)<sub>8</strong></sub></li>
+                <li><strong>Ex 2:</strong> (10111)<sub>2</sub> &rarr; Pad left:  010 | 111 &rarr; (2)(7) = <strong>(27)<sub>8</strong></sub></li>
+              </ul>
+            </div>
+
+            <div class="inner-card cyan">
+              <h4>Octal to Binary</h4>
+              <p style="margin-bottom: 6px;"><strong>Rule:</strong> Convert each octal digit directly into its <strong>3-bit binary equivalent</strong>.</p>
+              <ul class="note-list">
+                <li><strong>Ex 1:</strong> (74)<sub>8</sub> &rarr; 7 = 111,  4 = 100 &rarr; <strong>(111100)<sub>2</strong></sub></li>
+                <li><strong>Ex 2:</strong> (30)<sub>8</sub> &rarr; 3 = 011,  0 = 000 &rarr; <strong>(011000)<sub>2</strong></sub> <em>(or (11000)<sub>2</sub>)</em></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Binary <-> Hexadecimal -->
+          <h3 class="sub-heading">Binary ↔ Hexadecimal (4-Bit Rule)</h3>
+          <div class="grid-2">
+            <div class="inner-card purple">
+              <h4>Binary to Hexadecimal</h4>
+              <p style="margin-bottom: 6px;"><strong>Rule:</strong> Group binary bits into sets of <strong>4</strong>, starting from the right. Pad the leftmost group with <code>0</code>s if needed. Convert each group to hex.</p>
+              <ul class="note-list">
+                <li><strong>Ex 1:</strong> (11011010)<sub>2</sub> &rarr; Group:  1101 | 1010 &rarr; (13)(10) = <strong>(DA)<sub>16</strong></sub></li>
+                <li><strong>Ex 2:</strong> (11111)<sub>2</sub> &rarr; Pad left:  0001 | 1111 &rarr; (1)(15) = <strong>(1F)<sub>16</strong></sub></li>
+              </ul>
+            </div>
+
+            <div class="inner-card purple">
+              <h4>Hexadecimal to Binary</h4>
+              <p style="margin-bottom: 6px;"><strong>Rule:</strong> Convert each hexadecimal digit directly into its <strong>4-bit binary equivalent</strong>.</p>
+              <ul class="note-list">
+                <li><strong>Ex 1:</strong> (9C)<sub>16</sub> &rarr; 9 = 1001,  C(12) = 1100 &rarr; <strong>(10011100)<sub>2</strong></sub></li>
+                <li><strong>Ex 2:</strong> (2F)<sub>16</sub> &rarr; 2 = 0010,  F(15) = 1111 &rarr; <strong>(00101111)<sub>2</strong></sub></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Octal <-> Hexadecimal -->
+          <h3 class="sub-heading">Octal ↔ Hexadecimal Conversions (Binary Bridge Method)</h3>
+          <div class="math-rule-box" style="margin-top: 8px;">
+            Rule: You cannot convert Octal and Hexadecimal directly. You MUST use Binary as a bridge:<br />
+            (Octal &rarr; Binary [3-bit] &rarr; Hexadecimal [4-bit]) OR (Hexadecimal &rarr; Binary [4-bit] &rarr; Octal [3-bit]).
+          </div>
+
+          <div class="grid-2">
+            <div class="inner-card green">
+              <h4>Octal to Hexadecimal — Example 1: (65)<sub>8</sub> to Hex</h4>
+              <ul class="note-list">
+                <li><strong>1. To Binary (3-bits):</strong> 6 = 110,  5 = 101 &rarr; 110101</li>
+                <li><strong>2. Group in 4-bits (from right):</strong> 0011 | 0101</li>
+                <li><strong>3. To Hex:</strong> 3 | 5</li>
+              </ul>
+              <span class="ans-badge">Answer: (35)<sub>16</sub></span>
+            </div>
+
+            <div class="inner-card green">
+              <h4>Octal to Hexadecimal — Example 2: (127)<sub>8</sub> to Hex</h4>
+              <ul class="note-list">
+                <li><strong>1. To Binary (3-bits):</strong> 1 = 001,  2 = 010,  7 = 111 &rarr; 001010111</li>
+                <li><strong>2. Group in 4-bits (from right):</strong> 0101 | 0111</li>
+                <li><strong>3. To Hex:</strong> 5 | 7</li>
+              </ul>
+              <span class="ans-badge">Answer: (57)<sub>16</sub></span>
+            </div>
+
+            <div class="inner-card amber">
+              <h4>Hexadecimal to Octal — Example 1: (2B)<sub>16</sub> to Octal</h4>
+              <ul class="note-list">
+                <li><strong>1. To Binary (4-bits):</strong> 2 = 0010,  B(11) = 1011 &rarr; 00101011</li>
+                <li><strong>2. Group in 3-bits (from right):</strong> 000 | 101 | 011</li>
+                <li><strong>3. To Octal:</strong> 0 | 5 | 3</li>
+              </ul>
+              <span class="ans-badge">Answer: (53)<sub>8</sub></span>
+            </div>
+
+            <div class="inner-card amber">
+              <h4>Hexadecimal to Octal — Example 2: (A4)<sub>16</sub> to Octal</h4>
+              <ul class="note-list">
+                <li><strong>1. To Binary (4-bits):</strong> A(10) = 1010,  4 = 0100 &rarr; 10100100</li>
+                <li><strong>2. Group in 3-bits (from right):</strong> 010 | 100 | 100</li>
+                <li><strong>3. To Octal:</strong> 2 | 4 | 4</li>
+              </ul>
+              <span class="ans-badge">Answer: (244)<sub>8</sub></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: Conversion Reference Table -->
+        <section class="note-section">
+          <h2 class="note-section-title">
+            <span>5. Conversion Reference Table (0 to 15)</span>
+          </h2>
+          <div class="table-wrap">
+            <table class="book-table">
+              <thead>
+                <tr>
+                  <th>DECIMAL (BASE 10)</th>
+                  <th>BINARY (BASE 2)</th>
+                  <th>OCTAL (BASE 8)</th>
+                  <th>HEXADECIMAL (BASE 16)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>0</strong></td><td><code>0000</code></td><td>0</td><td>0</td></tr>
+                <tr><td><strong>1</strong></td><td><code>0001</code></td><td>1</td><td>1</td></tr>
+                <tr><td><strong>2</strong></td><td><code>0010</code></td><td>2</td><td>2</td></tr>
+                <tr><td><strong>3</strong></td><td><code>0011</code></td><td>3</td><td>3</td></tr>
+                <tr><td><strong>4</strong></td><td><code>0100</code></td><td>4</td><td>4</td></tr>
+                <tr><td><strong>5</strong></td><td><code>0101</code></td><td>5</td><td>5</td></tr>
+                <tr><td><strong>6</strong></td><td><code>0110</code></td><td>6</td><td>6</td></tr>
+                <tr><td><strong>7</strong></td><td><code>0111</code></td><td>7</td><td>7</td></tr>
+                <tr><td><strong>8</strong></td><td><code>1000</code></td><td>10</td><td>8</td></tr>
+                <tr><td><strong>9</strong></td><td><code>1001</code></td><td>11</td><td>9</td></tr>
+                <tr><td><strong>10</strong></td><td><code>1010</code></td><td>12</td><td><strong>A</strong></td></tr>
+                <tr><td><strong>11</strong></td><td><code>1011</code></td><td>13</td><td><strong>B</strong></td></tr>
+                <tr><td><strong>12</strong></td><td><code>1100</code></td><td>14</td><td><strong>C</strong></td></tr>
+                <tr><td><strong>13</strong></td><td><code>1101</code></td><td>15</td><td><strong>D</strong></td></tr>
+                <tr><td><strong>14</strong></td><td><code>1110</code></td><td>16</td><td><strong>E</strong></td></tr>
+                <tr><td><strong>15</strong></td><td><code>1111</code></td><td>17</td><td><strong>F</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- High-Yield Exam Booster for SSC CGL Tier II & Railway NTPC -->
+          <div class="callout-box callout-exam" style="margin-top: 16px;">
+            <span class="callout-title">📌 High-Yield SSC CGL Tier II &amp; Railway NTPC Number System Pointers:</span>
+            <ul class="note-list" style="margin-bottom: 0;">
+              <li><strong>Fractional Conversions:</strong>
+                <ul>
+                  <li><strong>Decimal Fraction to Binary:</strong> Multiply the fractional part repeatedly by <code>2</code> and record the integer carries from <strong>Top to Bottom</strong> (e.g., (0.625)<sub>10</sub> &rarr; 0.625 &times; 2 = <strong>1</strong>.25; 0.25 &times; 2 = <strong>0</strong>.50; 0.50 &times; 2 = <strong>1</strong>.00 &rarr; <strong>(0.101)<sub>2</sub></strong>).</li>
+                  <li><strong>Binary Fraction to Decimal:</strong> Multiply bits after the point by negative powers of 2 from left to right (2<sup>&minus;1</sup> = 0.5, 2<sup>&minus;2</sup> = 0.25, 2<sup>&minus;3</sup> = 0.125).</li>
+                </ul>
+              </li>
+              <li><strong>1's Complement &amp; 2's Complement (Used for Signed Negative Binary Numbers):</strong>
+                <ul>
+                  <li><strong>1's Complement:</strong> Invert every bit (change all <code>0</code>s to <code>1</code>s and all <code>1</code>s to <code>0</code>s). Example: 1's complement of <code>1010</code> is <code>0101</code>.</li>
+                  <li><strong>2's Complement:</strong> Add <code>1</code> to the Least Significant Bit (LSB) of the 1's Complement (2's Complement = 1's Complement + 1). Example: 2's complement of <code>1010</code> is 0101 + 1 = <strong>0110</strong>.</li>
+                </ul>
+              </li>
+              <li><strong>Binary Coding Schemes Frequently Asked in SSC &amp; Railway Exams:</strong>
+                <ul>
+                  <li><strong>BCD (Binary Coded Decimal):</strong> <strong>4-bit code</strong> (represents decimal digits <code>0–9</code> as <code>0000</code> to <code>1001</code>; bit combinations <code>1010</code> to <code>1111</code> are invalid in BCD).</li>
+                  <li><strong>ASCII (American Standard Code for Information Interchange):</strong> Standard <strong>7-bit code</strong> (2<sup>7</sup> = 128 characters) and Extended <strong>8-bit ASCII</strong> (2<sup>8</sup> = 256 characters). Note: ASCII value of <code>'A' = 65</code>, <code>'Z' = 90</code>, <code>'a' = 97</code>, <code>'z' = 122</code>, <code>'0' = 48</code>.</li>
+                  <li><strong>EBCDIC (Extended Binary Coded Decimal Interchange Code):</strong> <strong>8-bit code</strong> (2<sup>8</sup> = 256 characters) used in IBM Mainframe computers.</li>
+                  <li><strong>ISCII (Indian Script Code for Information Interchange):</strong> <strong>8-bit code</strong> supporting Indian languages.</li>
+                  <li><strong>Unicode (UTF-8 / UTF-16 / UTF-32):</strong> Universal encoding standard (commonly 16-bit / 32-bit) capable of representing characters of all global languages.</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <footer class="chapter-footer-nav no-print">
+          <button type="button" class="btn open-chapter-btn" data-target="view-ch4">← Prev: 4 CPU &amp; Processing</button>
+          <button type="button" class="btn btn-primary open-chapter-btn" data-target="view-dashboard">✓ Return to Main Dashboard</button>
+        </footer>
+      </div>
+    </article>
+  </div>
+
+  <script>
+    (function () {
+      var views = document.querySelectorAll('.view-section');
+      var btnHome = document.getElementById('btn-home');
+      var btnPrintCurrent = document.getElementById('btn-print-current');
+      var btnPrintAll = document.getElementById('btn-print-all');
+      var navButtons = document.querySelectorAll('.open-chapter-btn');
+
+      function showView(targetId) {
+        for (var i = 0; i < views.length; i++) {
+          if (views[i].id === targetId) {
+            views[i].classList.add('active');
+          } else {
+            views[i].classList.remove('active');
+          }
+        }
+        var isDashboard = (targetId === 'view-dashboard');
+        btnHome.style.display = isDashboard ? 'none' : 'inline-flex';
+        btnPrintCurrent.style.display = isDashboard ? 'none' : 'inline-flex';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      for (var j = 0; j < navButtons.length; j++) {
+        navButtons[j].addEventListener('click', function () {
+          var target = this.getAttribute('data-target');
+          if (target) {
+            showView(target);
+          }
+        });
+      }
+
+      btnHome.addEventListener('click', function () {
+        showView('view-dashboard');
+      });
+
+      btnPrintCurrent.addEventListener('click', function () {
+        document.body.classList.remove('print-all-mode');
+        window.print();
+      });
+
+      btnPrintAll.addEventListener('click', function () {
+        document.body.classList.add('print-all-mode');
+        window.print();
+      });
+
+      window.addEventListener('afterprint', function () {
+        document.body.classList.remove('print-all-mode');
+      });
+    })();
+  </script>
+</body>
+</html>

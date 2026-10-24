@@ -1,0 +1,2858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Five-Year Plans & NITI Aayog - Mock Test</title>
+  <style>
+    :root {
+      --primary-blue: #1a56db;
+      --primary-dark: #0f2942;
+      --header-bg: #1e3a5f;
+      --subheader-bg: #2b4c7e;
+      --bg-main: #f4f6f9;
+      --surface-bg: #ffffff;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --border-color: #d1d5db;
+      --palette-bg: #eef2f6;
+
+      /* Status Colors (Standard TCS / Eduquity Palette) */
+      --status-answered: #16a34a;
+      --status-not-answered: #dc2626;
+      --status-not-visited: #e5e7eb;
+      --status-not-visited-text: #374151;
+      --status-review: #7c3aed;
+      --status-ans-review: #7c3aed;
+
+      /* Button Colors */
+      --btn-next-bg: #16a34a;
+      --btn-next-hover: #15803d;
+      --btn-review-bg: #7c3aed;
+      --btn-review-hover: #6d28d9;
+      --btn-clear-bg: #ffffff;
+      --btn-clear-text: #374151;
+      --btn-prev-bg: #e5e7eb;
+      --btn-prev-text: #1f2937;
+      --btn-submit-bg: #0284c7;
+      --btn-submit-hover: #0369a1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, Arial, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* ==================== INTRO SCREEN ==================== */
+    .intro-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--bg-main);
+    }
+
+    .top-banner {
+      background-color: var(--header-bg);
+      color: #ffffff;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid #f59e0b;
+    }
+
+    .top-banner-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .top-banner-sub {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    .intro-container {
+      max-width: 960px;
+      width: 100%;
+      margin: 28px auto;
+      background: var(--surface-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .intro-header {
+      background: #f8fafc;
+      padding: 20px 28px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .intro-header h1 {
+      font-size: 1.4rem;
+      color: var(--primary-dark);
+    }
+
+    .meta-pills {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .meta-pill {
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .intro-body {
+      padding: 24px 28px;
+      overflow-y: auto;
+      line-height: 1.65;
+      font-size: 0.95rem;
+      flex: 1;
+    }
+
+    .intro-body h2 {
+      font-size: 1.05rem;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 6px;
+    }
+
+    .instruction-list {
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    .instruction-list li {
+      margin-bottom: 8px;
+    }
+
+    .legend-table {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      margin: 14px 0 22px;
+      background: #f8fafc;
+      padding: 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+    }
+
+    .legend-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+    }
+
+    .p-badge {
+      width: 30px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border-radius: 4px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .p-not-visited {
+      background: var(--status-not-visited);
+      color: var(--status-not-visited-text);
+      border: 1px solid #cbd5e1;
+    }
+
+    .p-not-answered {
+      background: var(--status-not-answered);
+      color: #ffffff;
+      border-radius: 12px 12px 2px 2px;
+    }
+
+    .p-answered {
+      background: var(--status-answered);
+      color: #ffffff;
+      border-radius: 2px 2px 12px 12px;
+    }
+
+    .p-review {
+      background: var(--status-review);
+      color: #ffffff;
+      border-radius: 50%;
+    }
+
+    .p-ans-review {
+      background: var(--status-ans-review);
+      color: #ffffff;
+      border-radius: 50%;
+    }
+
+    .p-ans-review::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 10px;
+      height: 10px;
+      background: #22c55e;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+    }
+
+    .intro-footer {
+      padding: 18px 28px;
+      background: #f8fafc;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .start-btn {
+      background: var(--primary-blue);
+      color: #ffffff;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s;
+      margin-left: auto;
+    }
+
+    .start-btn:hover {
+      background: #1e40af;
+    }
+
+    /* ==================== EXAM INTERFACE ==================== */
+    .exam-wrapper {
+      display: none;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      flex-direction: column;
+      background: var(--surface-bg);
+    }
+
+    .exam-topbar {
+      background: var(--header-bg);
+      color: #ffffff;
+      height: 54px;
+      padding: 0 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      border-bottom: 2px solid #0f2942;
+      gap: 10px;
+    }
+
+    .exam-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .exam-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .section-tab {
+      background: #f59e0b;
+      color: #111827;
+      padding: 3px 10px;
+      border-radius: 3px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .exam-controls-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .timer-box {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #334155;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timer-box.warning {
+      background: #7f1d1d;
+      color: #fecaca;
+      border-color: #ef4444;
+    }
+
+    .top-btn {
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+
+    .top-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Main Split Body */
+    .exam-main {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    .question-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
+      background: var(--surface-bg);
+    }
+
+    .question-header-bar {
+      background: #f1f5f9;
+      padding: 10px 20px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      gap: 12px;
+    }
+
+    .q-number-label {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .q-right-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .exam-tag-small {
+      font-size: 0.74rem;
+      color: #475569;
+      background: #e2e8f0;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+
+    .question-scroll-pane {
+      flex: 1;
+      overflow-y: auto;
+      padding: 22px 24px;
+    }
+
+    .question-stem {
+      font-size: 1.08rem;
+      line-height: 1.65;
+      color: #111827;
+      margin-bottom: 22px;
+      font-weight: 500;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 820px;
+    }
+
+    .option-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: border-color 0.15s, background-color 0.15s;
+      font-size: 0.98rem;
+      line-height: 1.5;
+      color: #1f2937;
+    }
+
+    .option-row:hover {
+      border-color: #93c5fd;
+      background: #f8fafc;
+    }
+
+    .option-row.selected {
+      border-color: var(--primary-blue);
+      background: #eff6ff;
+    }
+
+    .option-radio {
+      margin-top: 3px;
+      width: 17px;
+      height: 17px;
+      accent-color: var(--primary-blue);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .option-label-text {
+      flex: 1;
+    }
+
+    /* Bottom Action Bar */
+    .action-bar {
+      background: #f8fafc;
+      border-top: 1px solid var(--border-color);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .action-left,
+    .action-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .act-btn {
+      padding: 9px 16px;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: opacity 0.15s, background-color 0.15s;
+    }
+
+    .act-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-prev {
+      background: var(--btn-prev-bg);
+      color: var(--btn-prev-text);
+      border-color: #cbd5e1;
+    }
+    .btn-prev:hover:not(:disabled) {
+      background: #d1d5db;
+    }
+
+    .btn-review {
+      background: var(--btn-review-bg);
+      color: #ffffff;
+    }
+    .btn-review:hover {
+      background: var(--btn-review-hover);
+    }
+
+    .btn-clear {
+      background: var(--btn-clear-bg);
+      color: var(--btn-clear-text);
+      border-color: #cbd5e1;
+    }
+    .btn-clear:hover {
+      background: #f1f5f9;
+    }
+
+    .btn-next {
+      background: var(--btn-next-bg);
+      color: #ffffff;
+    }
+    .btn-next:hover {
+      background: var(--btn-next-hover);
+    }
+
+    .btn-submit {
+      background: var(--btn-submit-bg);
+      color: #ffffff;
+    }
+    .btn-submit:hover {
+      background: var(--btn-submit-hover);
+    }
+
+    /* Right Question Palette Sidebar */
+    .palette-sidebar {
+      width: 270px;
+      flex-shrink: 0;
+      background: var(--palette-bg);
+      border-left: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .palette-summary {
+      padding: 12px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      font-size: 0.76rem;
+      flex-shrink: 0;
+    }
+
+    .summary-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #334155;
+      font-weight: 600;
+    }
+
+    .summary-item.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .summary-badge {
+      width: 24px;
+      height: 22px;
+      font-size: 0.72rem;
+    }
+
+    .palette-title-bar {
+      background: var(--subheader-bg);
+      color: #ffffff;
+      padding: 7px 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .palette-grid-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      align-content: start;
+    }
+
+    .palette-num-btn {
+      height: 34px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: transform 0.1s;
+    }
+
+    .palette-num-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .palette-num-btn.current-q {
+      outline: 2px solid #0f172a;
+      outline-offset: 1px;
+    }
+
+    /* Hide right palette on mobile phone interface as required */
+    @media (max-width: 768px) {
+      .palette-sidebar {
+        display: none !important;
+      }
+      .exam-topbar {
+        height: auto;
+        padding: 8px 12px;
+        flex-wrap: wrap;
+      }
+      .question-scroll-pane {
+        padding: 16px;
+      }
+      .action-bar {
+        padding: 10px 12px;
+      }
+      .act-btn {
+        padding: 8px 11px;
+        font-size: 0.8rem;
+      }
+    }
+
+    /* ==================== MODALS ==================== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.72);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: 8px;
+      max-width: 480px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25);
+      text-align: center;
+    }
+
+    .modal-card h3 {
+      font-size: 1.25rem;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+    }
+
+    .modal-card p {
+      font-size: 0.95rem;
+      color: #4b5563;
+      margin-bottom: 20px;
+    }
+
+    .modal-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+      text-align: left;
+      background: #f8fafc;
+      padding: 14px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    /* ==================== RESULTS & SOLUTIONS SCREEN ==================== */
+    .result-wrapper {
+      display: none;
+      min-height: 100vh;
+      flex-direction: column;
+      background: var(--bg-main);
+    }
+
+    .result-container {
+      max-width: 980px;
+      width: 100%;
+      margin: 24px auto;
+      padding: 0 16px 40px;
+    }
+
+    .score-card-box {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .score-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+
+    .score-header h2 {
+      font-size: 1.4rem;
+      color: var(--primary-dark);
+    }
+
+    .stats-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px;
+    }
+
+    .stat-card {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .stat-card .s-val {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .stat-card .s-lbl {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .val-total { color: #1e3a8a; }
+    .val-correct { color: #16a34a; }
+    .val-wrong { color: #dc2626; }
+    .val-unattempted { color: #d97706; }
+    .val-accuracy { color: #7c3aed; }
+
+    .solutions-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .solutions-header-bar h3 {
+      font-size: 1.15rem;
+      color: var(--primary-dark);
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 7px 14px;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      background: #ffffff;
+      color: #374151;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .filter-btn.active {
+      background: var(--primary-blue);
+      color: #ffffff;
+      border-color: var(--primary-blue);
+    }
+
+    .solution-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .sol-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    .sol-card.sol-wrong {
+      border-left: 5px solid #dc2626;
+    }
+
+    .sol-card.sol-unattempted {
+      border-left: 5px solid #f59e0b;
+    }
+
+    .sol-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .sol-qnum {
+      font-weight: 700;
+      color: var(--primary-dark);
+      font-size: 0.95rem;
+    }
+
+    .sol-badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .pill-wrong {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .pill-unattempted {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .sol-qtext {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 14px;
+      color: #111827;
+    }
+
+    .sol-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .sol-opt {
+      padding: 9px 12px;
+      border-radius: 5px;
+      border: 1px solid #e5e7eb;
+      font-size: 0.92rem;
+      background: #f9fafb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sol-opt.correct-opt {
+      background: #dcfce7;
+      border-color: #22c55e;
+      color: #14532d;
+      font-weight: 700;
+    }
+
+    .sol-opt.user-wrong-opt {
+      background: #fee2e2;
+      border-color: #ef4444;
+      color: #7f1d1d;
+    }
+
+    .sol-ans-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+      padding: 10px 14px;
+      border-radius: 5px;
+      font-size: 0.92rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== 1. INTRODUCTORY INTERFACE ==================== -->
+  <div class="intro-wrapper" id="introScreen">
+    <div class="top-banner">
+      <div>
+        <div class="top-banner-title">Five-Year Plans & NITI Aayog - Mock Test</div>
+        <div class="top-banner-sub">Computer Based Test (CBT) Examination Portal</div>
+      </div>
+      <div class="top-banner-sub">Subject: Five-Year Plans & NITI Aayog</div>
+    </div>
+
+    <div class="intro-container">
+      <div class="intro-header">
+        <h1>General Instructions</h1>
+        <div class="meta-pills">
+          <span class="meta-pill" id="introTotalQ">Total Questions: 0</span>
+          <span class="meta-pill" id="introTotalTime">Duration: 0 Minutes</span>
+        </div>
+      </div>
+
+      <div class="intro-body">
+        <h2>Please read the instructions carefully before starting the test:</h2>
+        <ol class="instruction-list">
+          <li>Total duration of this mock test is <strong id="instDurationText">0 minutes</strong> (1 minute per question).</li>
+          <li>The clock will be set at the server. The countdown timer in the top right corner of the screen will display the remaining time available for you to complete the examination. When the timer reaches zero, the examination will end and submit by itself.</li>
+          <li>The Question Palette displayed on the right side of the screen (on desktop/tablet) will show the status of each question using one of the following symbols:</li>
+        </ol>
+
+        <div class="legend-table">
+          <div class="legend-row">
+            <span class="p-badge p-not-visited">1</span>
+            <span>You have not visited the question yet.</span>
+          </div>
+          <div class="legend-row">
+            <span class="p-badge p-not-answered">2</span>
+            <span>You have not answered the question.</span>
+          </div>
+          <div class="legend-row">
+            <span class="p-badge p-answered">3</span>
+            <span>You have answered the question.</span>
+          </div>
+          <div class="legend-row">
+            <span class="p-badge p-review">4</span>
+            <span>You have NOT answered the question, but have marked it for review.</span>
+          </div>
+          <div class="legend-row">
+            <span class="p-badge p-ans-review">5</span>
+            <span>The question(s) "Answered and Marked for Review" will be considered for evaluation.</span>
+          </div>
+        </div>
+
+        <h2>Navigating & Answering a Question:</h2>
+        <ol class="instruction-list">
+          <li>Click on the question number in the Question Palette at the right of your screen to go to that numbered question directly. Note that using this option does NOT save your answer to the current question unless you have selected an option.</li>
+          <li>Click on <strong>Next</strong> to save your answer for the current question and then go to the next question.</li>
+          <li>Click on <strong>Mark for Review &amp; Next</strong> to mark the current question for review (with or without an answer) and go to the next question.</li>
+          <li>To deselect your chosen answer, click on the <strong>Clear</strong> button.</li>
+          <li>No answer or hint is shown during the test. Upon submission, your score and detailed solutions for <strong>incorrect and un-attempted questions only</strong> will be displayed for analysis.</li>
+        </ol>
+      </div>
+
+      <div class="intro-footer">
+        <span style="font-size: 0.9rem; color: #374151; font-weight: 600;">
+          Click "Start Mock Test" to enter full screen and begin the exam.
+        </span>
+        <button class="start-btn" id="startTestBtn" type="button">Start Mock Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 2. MAIN EXAM INTERFACE ==================== -->
+  <div class="exam-wrapper" id="examScreen">
+    <header class="exam-topbar">
+      <div class="exam-title-group">
+        <div class="exam-title">Five-Year Plans & NITI Aayog - Mock Test</div>
+        <span class="section-tab">Five-Year Plans & NITI Aayog</span>
+      </div>
+
+      <div class="exam-controls-top">
+        <div class="timer-box" id="timerBox">
+          <span>Time Left:</span>
+          <span id="timerDisplay">00:00</span>
+        </div>
+        <button class="top-btn" id="pauseBtn" type="button">Pause</button>
+        <button class="top-btn" id="exitFullscreenBtn" type="button">Exit Fullscreen</button>
+      </div>
+    </header>
+
+    <div class="exam-main">
+      <!-- Left / Center Question Workspace -->
+      <main class="question-area">
+        <div class="question-header-bar">
+          <div class="q-number-label" id="qNumberHeader">Question No. 1</div>
+          <div class="q-right-meta">
+            <span class="exam-tag-small" id="examTagBadge" style="display: none;"></span>
+          </div>
+        </div>
+
+        <div class="question-scroll-pane" id="questionScrollPane">
+          <div class="question-stem" id="questionStem"></div>
+          <div class="options-list" id="optionsList"></div>
+        </div>
+
+        <footer class="action-bar">
+          <div class="action-left">
+            <button class="act-btn btn-prev" id="prevBtn" type="button">Previous</button>
+            <button class="act-btn btn-review" id="reviewNextBtn" type="button">Mark for Review &amp; Next</button>
+            <button class="act-btn btn-clear" id="clearBtn" type="button">Clear</button>
+          </div>
+          <div class="action-right">
+            <button class="act-btn btn-next" id="nextBtn" type="button">Next</button>
+            <button class="act-btn btn-submit" id="submitBtn" type="button">Submit</button>
+          </div>
+        </footer>
+      </main>
+
+      <!-- Right Side Question Palette (Hidden on Mobile Phones) -->
+      <aside class="palette-sidebar" aria-label="Question Number Palette">
+        <div class="palette-summary">
+          <div class="summary-item">
+            <span class="p-badge p-answered summary-badge" id="countAnswered">0</span>
+            <span>Answered</span>
+          </div>
+          <div class="summary-item">
+            <span class="p-badge p-not-answered summary-badge" id="countNotAnswered">0</span>
+            <span>Not Answered</span>
+          </div>
+          <div class="summary-item">
+            <span class="p-badge p-not-visited summary-badge" id="countNotVisited">0</span>
+            <span>Not Visited</span>
+          </div>
+          <div class="summary-item">
+            <span class="p-badge p-review summary-badge" id="countReview">0</span>
+            <span>Marked</span>
+          </div>
+          <div class="summary-item full-width">
+            <span class="p-badge p-ans-review summary-badge" id="countAnsReview">0</span>
+            <span>Answered &amp; Marked for Review</span>
+          </div>
+        </div>
+
+        <div class="palette-title-bar">Question Palette</div>
+        <div class="palette-grid-scroll" id="paletteGrid"></div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ==================== PAUSE MODAL ==================== -->
+  <div class="modal-overlay" id="pauseModal">
+    <div class="modal-card">
+      <h3>Test Paused</h3>
+      <p>Your countdown timer is paused. Click the button below when you are ready to resume the test.</p>
+      <div class="modal-actions">
+        <button class="act-btn btn-next" id="resumeBtn" type="button">Resume Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SUBMIT CONFIRMATION MODAL ==================== -->
+  <div class="modal-overlay" id="submitModal">
+    <div class="modal-card">
+      <h3>Submit Mock Test?</h3>
+      <p>Are you sure you want to submit the test? Please review your attempt summary below:</p>
+      <div class="modal-stats-grid">
+        <div>Total Questions: <strong id="modTotal">0</strong></div>
+        <div>Answered: <strong id="modAnswered">0</strong></div>
+        <div>Not Answered: <strong id="modNotAnswered">0</strong></div>
+        <div>Marked for Review: <strong id="modReview">0</strong></div>
+        <div style="grid-column: 1 / -1;">Not Visited: <strong id="modNotVisited">0</strong></div>
+      </div>
+      <div class="modal-actions">
+        <button class="act-btn btn-clear" id="cancelSubmitBtn" type="button">Return to Test</button>
+        <button class="act-btn btn-submit" id="confirmSubmitBtn" type="button">Confirm Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 3. SUBMISSION ANALYSIS & SOLUTIONS ==================== -->
+  <div class="result-wrapper" id="resultScreen">
+    <div class="top-banner">
+      <div>
+        <div class="top-banner-title">Five-Year Plans & NITI Aayog - Mock Test - Test Analysis &amp; Solutions</div>
+        <div class="top-banner-sub">Post-Submission Score &amp; Review of Incorrect / Un-attempted Questions</div>
+      </div>
+      <button class="top-btn" id="retakeBtn" type="button">Retake Test</button>
+    </div>
+
+    <div class="result-container">
+      <div class="score-card-box">
+        <div class="score-header">
+          <h2>Performance Summary</h2>
+          <div style="font-size: 0.95rem; font-weight: 600; color: #475569;" id="timeTakenLabel">Time Taken: 00:00</div>
+        </div>
+
+        <div class="stats-cards">
+          <div class="stat-card">
+            <div class="s-val val-total" id="resScoreFraction">0 / 0</div>
+            <div class="s-lbl">Final Score</div>
+          </div>
+          <div class="stat-card">
+            <div class="s-val val-correct" id="resCorrect">0</div>
+            <div class="s-lbl">Correct</div>
+          </div>
+          <div class="stat-card">
+            <div class="s-val val-wrong" id="resWrong">0</div>
+            <div class="s-lbl">Incorrect</div>
+          </div>
+          <div class="stat-card">
+            <div class="s-val val-unattempted" id="resUnattempted">0</div>
+            <div class="s-lbl">Un-attempted</div>
+          </div>
+          <div class="stat-card">
+            <div class="s-val val-accuracy" id="resAccuracy">0%</div>
+            <div class="s-lbl">Accuracy</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solutions-header-bar">
+        <h3>Solutions (Incorrect &amp; Un-attempted Questions Only)</h3>
+        <div class="filter-tabs">
+          <button class="filter-btn active" id="filterAllBtn" type="button">All Incorrect &amp; Un-attempted</button>
+          <button class="filter-btn" id="filterWrongBtn" type="button">Incorrect Only</button>
+          <button class="filter-btn" id="filterUnattemptedBtn" type="button">Un-attempted Only</button>
+        </div>
+      </div>
+
+      <div class="solution-list" id="solutionList"></div>
+    </div>
+  </div>
+
+  <script>
+    const RAW_QUESTIONS = [
+  {
+    "q": "Consider the following statements about the development plans in India:<br>1. The concept of Five-Year Plan is inspired by the USSR.<br>2. The Planning Commission was established in the year 1950.<br>3. The Five-Year Plans were supposed to provide the basis for the Perspective Plans.<br>Which of the statements given above is/are correct?",
+    "tag": "GEOSCIENTIST 2025",
+    "opts": [
+      "1 and 2 only",
+      "2 and 3 only",
+      "1, 2 and 3",
+      "1 only"
+    ],
+    "ans": "1, 2 and 3"
+  },
+  {
+    "q": "Match List I with List II:<br>List I:<br>A. Fifth Five Year Plan<br>B. Seventh Five Year Plan<br>C. Ninth Five Year Plan<br>D. Eleventh Five Year Plan<br>List II:<br>1. Towards Faster and More Inclusive Growth<br>2. Garibi Hatao (Removal of Poverty)<br>3. Food, Work and Productivity<br>4. Growth with Social Justice and Equality",
+    "tag": "NDA-I-2025",
+    "opts": [
+      "A-1, B-4, C-2, D-3",
+      "A-2, B-3, C-4, D-1",
+      "A-2, B-4, C-3, D-1",
+      "A-1, B-3, C-4, D-2"
+    ],
+    "ans": "A-2, B-3, C-4, D-1"
+  },
+  {
+    "q": "Which one among the following plans is also known as Mahalanobis Plan?",
+    "tag": "NDA-II-2025 / NDA-III-2025",
+    "opts": [
+      "First Five Year Plan",
+      "Second Five Year Plan",
+      "Third Five Year Plan",
+      "Sixth Five Year Plan"
+    ],
+    "ans": "Second Five Year Plan"
+  },
+  {
+    "q": "Which of the following were the years of Annual Plans?",
+    "tag": "NDA - II - 2025",
+    "opts": [
+      "1956-1957",
+      "1966-1969",
+      "1975-1976",
+      "1992-1993"
+    ],
+    "ans": "1966-1969"
+  },
+  {
+    "q": "Consider the following events:<br>1. Establishment of the Planning Commission<br>2. Formation of the National Development Council (NDC)<br>3. Approval of the First Five-Year Plan by the NDC<br>4. Constitution of the National Planning Committee<br>Which one of the following is the correct sequence of the above events?",
+    "tag": "NDA - II - 2022",
+    "opts": [
+      "1-2-3-4",
+      "2-1-3-4",
+      "4-1-2-3",
+      "1-4-2-3"
+    ],
+    "ans": "4-1-2-3"
+  },
+  {
+    "q": "The idea of Planning in Independent India was drawn from",
+    "tag": "NDA-I-2022",
+    "opts": [
+      "the Bombay Plan",
+      "the demand made by peasants",
+      "the demand made by workers' unions",
+      "the Gandhian vision of India's future"
+    ],
+    "ans": "the Bombay Plan"
+  },
+  {
+    "q": "Who among the following is known as the architect of Indian planning?",
+    "tag": "NDA-II-2023",
+    "opts": [
+      "V.K.R.V. Rao",
+      "Sukhamoy Chakravarty",
+      "P.C. Mahalanobis",
+      "John Mathai"
+    ],
+    "ans": "P.C. Mahalanobis"
+  },
+  {
+    "q": "The focus of the Second Five Year Plan was:",
+    "tag": "CAPF-2023",
+    "opts": [
+      "establishment of a self-reliant and self-generating economy with emphasis on agriculture.",
+      "rapid industrialization with emphasis on the development of basic and heavy industries.",
+      "removal of poverty and attainment of self-reliance.",
+      "acceleration of food-grain production and increase in employment opportunities and overall productivity."
+    ],
+    "ans": "rapid industrialization with emphasis on the development of basic and heavy industries."
+  },
+  {
+    "q": "Plan allocation in agriculture and irrigation as percentage of total plan outlay was highest in:",
+    "tag": "NDA-I-2023",
+    "opts": [
+      "Seventh Five-Year Plan",
+      "Third Five-Year Plan",
+      "First Five-Year Plan",
+      "Second Five-Year Plan"
+    ],
+    "ans": "First Five-Year Plan"
+  },
+  {
+    "q": "Which one of the following statements regarding the objectives of the Second Five-Year Plan is not correct?",
+    "tag": "NDA-I-2024",
+    "opts": [
+      "Development of the basic and heavy industry sector",
+      "Increase in national income to raise living standards",
+      "Expansion of the consumer goods sector",
+      "Expansion of employment opportunities"
+    ],
+    "ans": "Expansion of the consumer goods sector"
+  },
+  {
+    "q": "Which among the following is/are the objective(s) of setting up of Planning Commission in the 1950s in India?<br>1. To increase production and offering opportunities to all for employment<br>2. To make assessment of all resources of the country",
+    "tag": "NDA-II-2024",
+    "opts": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "ans": "Both 1 and 2"
+  },
+  {
+    "q": "Which among the following statements with regard to Five Year Plans in India is/are correct?<br>1. The First and Ninth five year plans accorded high priority to agriculture<br>2. The Third Plan was based on the Harrod-Domar Model<br>3. Seventh Plan focused on food, work and productivity<br>4. The Ninth five year plan emphasized on massive investments in public sector",
+    "tag": "NDA - II - 2024",
+    "opts": [
+      "1 only",
+      "1 and 3",
+      "3 and 4",
+      "1, 2 and 4"
+    ],
+    "ans": "1 and 3"
+  },
+  {
+    "q": "Before the inception of the First Five year Plan, which among the following Plans were initiated in India?<br>1. Bombay Plan<br>2. Peoples Plan<br>3. Sarvodaya Plan<br>4. Gandhian Plan",
+    "tag": "NDA - II - 2024",
+    "opts": [
+      "1 and 2 only",
+      "1 and 3 only",
+      "3 and 4 only",
+      "1, 2, 3 and 4"
+    ],
+    "ans": "1, 2, 3 and 4"
+  },
+  {
+    "q": "Which one among the following was the focus of the Twelfth Five-Year Plan?",
+    "tag": "CDS-II-2024",
+    "opts": [
+      "Sustainable and Inclusive Growth",
+      "Social Justice and Equality",
+      "Food, Work and Productivity",
+      "Attainment of Self-reliance"
+    ],
+    "ans": "Sustainable and Inclusive Growth"
+  },
+  {
+    "q": "Which Five-Year Plan introduced the concept of poverty alleviation programs in India?",
+    "tag": "DP-2025",
+    "opts": [
+      "First Five-Year Plan",
+      "Third Five-Year Plan",
+      "Fifth Five-Year Plan",
+      "Seventh Five-Year Plan"
+    ],
+    "ans": "Fifth Five-Year Plan"
+  },
+  {
+    "q": "The Second Five Year Plan (1956-1961), often associated with the Mahalanobis Model, marked a significant shift in India's development strategy. What was the primary focus of this plan?",
+    "tag": "SSC CGL MAINS - 2026",
+    "opts": [
+      "Achieving immediate self-sufficiency in food grain production through the Green Revolution.",
+      "Establishing an export-oriented economy to integrate rapidly with global trade markets.",
+      "Maximizing the role of the private sector in the 'commanding heights' of the economy.",
+      "Rapid industrialization with a particular emphasis on the development of basic and heavy industries."
+    ],
+    "ans": "Rapid industrialization with a particular emphasis on the development of basic and heavy industries."
+  },
+  {
+    "q": "What was one of the challenges faced by the Second Five-Year Plan (1956-61)?",
+    "tag": "DP - 2025",
+    "opts": [
+      "Excessive foreign exchange reserves",
+      "Acute shortage of foreign exchange",
+      "Rapid industrial growth",
+      "Decline in inflation"
+    ],
+    "ans": "Acute shortage of foreign exchange"
+  },
+  {
+    "q": "What was the main focus of the Third Five-Year Plan (1961-1966) in India?",
+    "tag": "DP - 2025",
+    "opts": [
+      "Poverty alleviation",
+      "Growth of heavy industries",
+      "Improvement of agriculture",
+      "Foreign trade expansion"
+    ],
+    "ans": "Improvement of agriculture"
+  },
+  {
+    "q": "What does the term \"plan holiday\" (1966-69) indicate?",
+    "tag": "DP - 2025",
+    "opts": [
+      "Suspension of economic planning",
+      "Shift to zero-based budgeting",
+      "First time plan documents not publicly released",
+      "Adoption of Rolling Plan"
+    ],
+    "ans": "Suspension of economic planning"
+  },
+  {
+    "q": "With reference to the India's Five-Year Plans, how many of the following statements given below are correct?<br>1. The Second Five-Year Plan focused on rapid industrialization through heavy and basic industries.<br>2. The largest contributor to investment in independent India's early growth experience was 'Domestic Savings'.<br>3. The main objectives of the Fourth Five-Year Plan were the removal of poverty and the attainment of self-reliance.<br>4. The Eighth Five-Year Plan was implemented after the economic liberalisation in India.<br>5. The Tenth Five-Year Plan marked a shift in the planning paradigm by stating in its preface that \"The Plan is indicative in nature\".",
+    "tag": "PPCS 2025",
+    "opts": [
+      "Only two",
+      "Only three",
+      "Only four",
+      "All five"
+    ],
+    "ans": "Only three"
+  },
+  {
+    "q": "Why was the Sixth Five-Year Plan (1980-85) considered successful despite challenges?",
+    "tag": "DP-2025",
+    "opts": [
+      "The economy faced no challenges and grew as expected.",
+      "Most targets were met, except agricultural output due to famine.",
+      "Industrial growth exceeded expectations.",
+      "The plan's focus was entirely on urban development."
+    ],
+    "ans": "Most targets were met, except agricultural output due to famine."
+  },
+  {
+    "q": "The \"rolling plan\" system was first introduced during:",
+    "tag": "DP - 2025",
+    "opts": [
+      "First Plan",
+      "Fourth Plan",
+      "Fifth Plan",
+      "Sixth Plan"
+    ],
+    "ans": "Fifth Plan"
+  },
+  {
+    "q": "Which of the following best describes the outcome of the Seventh Five-Year Plan (1985-90)?",
+    "tag": "DP-2025",
+    "opts": [
+      "The economy recorded a growth of 5%.",
+      "The plan faced economic stagnation and low growth.",
+      "The economy recorded a 6% growth rate, surpassing the target.",
+      "The focus shifted solely to agricultural development."
+    ],
+    "ans": "The economy recorded a 6% growth rate, surpassing the target."
+  },
+  {
+    "q": "What was the key focus of the Rolling Plan (1978-80) put forward by the Janta Government?",
+    "tag": "DP - 2025",
+    "opts": [
+      "Industrialization and privatization",
+      "Employment generation",
+      "Trade liberalization",
+      "Foreign investment attraction"
+    ],
+    "ans": "Employment generation"
+  },
+  {
+    "q": "The 'Bombay Plan', proposed in 1944, was a development plan created by?",
+    "tag": "DP - 2025",
+    "opts": [
+      "The British Government",
+      "The Planning Commission",
+      "A group of Indian Industrialists",
+      "The Communist Party"
+    ],
+    "ans": "A group of Indian Industrialists"
+  },
+  {
+    "q": "What is the primary goal of the import substitution strategy adopted by India in the first seven \"five-year plans\"?",
+    "tag": "DP - 2025",
+    "opts": [
+      "To encourage more imports and less domestic production.",
+      "To replace imports with domestic production.",
+      "To increase the import of luxury goods.",
+      "To remove tariffs and quotas on imported goods."
+    ],
+    "ans": "To replace imports with domestic production."
+  },
+  {
+    "q": "What was the core argument of the Mahalanobis model?",
+    "tag": "DP - 2025",
+    "opts": [
+      "Investment in capital goods raises future productive capacity more than investment in consumer goods",
+      "Agricultural output is independent of industrial growth",
+      "Capital stock growth is limited by labour supply.",
+      "Consumption goods determine long-term growth"
+    ],
+    "ans": "Investment in capital goods raises future productive capacity more than investment in consumer goods"
+  },
+  {
+    "q": "What was a major goal of the Seventh Five-Year Plan (1985-90)?",
+    "tag": "DP - 2025",
+    "opts": [
+      "Reducing foreign debt and imports.",
+      "Increasing food production, employment, and productivity.",
+      "Focusing on heavy industries and nuclear power.",
+      "Expanding the service sector and urbanization."
+    ],
+    "ans": "Increasing food production, employment, and productivity."
+  },
+  {
+    "q": "Which of the following sectors received the maximum allocation of investment in the Second Five-Year Plan?",
+    "tag": "DP - 2025",
+    "opts": [
+      "Heavy industry",
+      "Agriculture",
+      "Transport",
+      "Consumer goods industry"
+    ],
+    "ans": "Transport"
+  },
+  {
+    "q": "What is meant by the 'Plan Holiday' period (1966-69) in India's planning history?",
+    "tag": "DP-2025",
+    "opts": [
+      "A period when all government employees went on vacation",
+      "A period of three Annual Plans instead of a Five-Year Plan",
+      "A period when the Planning Commission was dissolved",
+      "A national holiday to celebrate the success of planning"
+    ],
+    "ans": "A period of three Annual Plans instead of a Five-Year Plan"
+  },
+  {
+    "q": "The model used as a basis for industrialization strategy in India's Second Five-Year Plan is:",
+    "tag": "DP-2025",
+    "opts": [
+      "Mahalanobis model",
+      "Lewis model",
+      "Solow growth model",
+      "Harrod-Domar model"
+    ],
+    "ans": "Mahalanobis model"
+  },
+  {
+    "q": "To which state-sponsored program the First Five-Year Plan allocated the largest share of its resources?",
+    "tag": "DP - 2025",
+    "opts": [
+      "Irrigation and power",
+      "Consumer goods industries",
+      "Transport infrastructure",
+      "Steel development"
+    ],
+    "ans": "Irrigation and power"
+  },
+  {
+    "q": "The famous slogan 'Garibi Hatao' (Remove Poverty) was associated with which Five-Year Plan?",
+    "tag": "DP - 2025",
+    "opts": [
+      "Third Plan",
+      "Fourth Plan",
+      "Fifth Plan",
+      "Sixth Plan"
+    ],
+    "ans": "Fifth Plan"
+  },
+  {
+    "q": "The steel plants at Bhilai, Durgapur, and Rourkela were set up during which Five-Year Plan?",
+    "tag": "DP - 2025",
+    "opts": [
+      "First Plan",
+      "Second Plan",
+      "Third Plan",
+      "Fourth Plan"
+    ],
+    "ans": "Second Plan"
+  },
+  {
+    "q": "Which of the following was one of the key schemes introduced during the Sixth Five-Year Plan (1980-85) to reduce poverty and unemployment?",
+    "tag": "DP - 2025",
+    "opts": [
+      "Training of Rural Youth for Self-Employment",
+      "Pradhan Mantri Awas Yojana",
+      "Make in India",
+      "Atmanirbhar Bharat"
+    ],
+    "ans": "Training of Rural Youth for Self-Employment"
+  },
+  {
+    "q": "The 'Seventh Five-Year Plan' (1985-1990) was the last plan before what major event?",
+    "tag": "DP-2025",
+    "opts": [
+      "The Green Revolution",
+      "The bank nationalization",
+      "The 1991 Economic Reforms",
+      "The creation of NITI Aayog"
+    ],
+    "ans": "The 1991 Economic Reforms"
+  },
+  {
+    "q": "What was the main agricultural strategy during the Three Annual Plans (1966-69)?",
+    "tag": "DP-2025",
+    "opts": [
+      "Promotion of urban industries",
+      "Distribution of high-yielding seeds and fertilizers",
+      "Expansion of heavy industries",
+      "Increase in agricultural imports"
+    ],
+    "ans": "Distribution of high-yielding seeds and fertilizers"
+  },
+  {
+    "q": "Why were the Three Annual Plans (1966-69) introduced instead of the Fourth Five-Year Plan?",
+    "tag": "DP - 2025",
+    "opts": [
+      "Successful agricultural growth",
+      "Failure of the Third Plan and rupee devaluation",
+      "High foreign investment in the economy",
+      "Large surplus in food production"
+    ],
+    "ans": "Failure of the Third Plan and rupee devaluation"
+  },
+  {
+    "q": "What were the two main objectives proposed in the Fifth Five-Year Plan (1974-79)?",
+    "tag": "DP-2025",
+    "opts": [
+      "Industrialization and privatization",
+      "Removal of poverty and attainment of self-reliance",
+      "High-tech infrastructure and trade expansion",
+      "Agriculture-focused growth and foreign investment"
+    ],
+    "ans": "Removal of poverty and attainment of self-reliance"
+  },
+  {
+    "q": "Which two major events disrupted the implementation of the 'Third Five-Year Plan' (1961-66)?",
+    "tag": "DP - 2025",
+    "opts": [
+      "Economic reforms and bank nationalization",
+      "Indo-China War (1962) and Indo-Pak War (1965)",
+      "Green Revolution and White Revolution",
+      "A major famine and a cyclone"
+    ],
+    "ans": "Indo-China War (1962) and Indo-Pak War (1965)"
+  },
+  {
+    "q": "Which body was set up in 1952 to approve the Five-Year Plans?",
+    "tag": "DP - 2025",
+    "opts": [
+      "The Cabinet",
+      "The Parliament",
+      "The National Development Council (NDC)",
+      "The Finance Commission"
+    ],
+    "ans": "The National Development Council (NDC)"
+  },
+  {
+    "q": "Who among the following was the deputy chairman of Planning Commission under the tenth five year plan?",
+    "tag": "SSC CHSL 2025",
+    "opts": [
+      "Shankarrao Chavan",
+      "K.C. Pant",
+      "Yaswant Sinha",
+      "P. Shiv Shankar"
+    ],
+    "ans": "K.C. Pant"
+  },
+  {
+    "q": "Which of the following five year plan of India commenced at a time when the global economy was going through a second financial crisis?",
+    "tag": "SSC CHSL 2025",
+    "opts": [
+      "First",
+      "Third",
+      "Fourth",
+      "Twelfth"
+    ],
+    "ans": "Twelfth"
+  },
+  {
+    "q": "The inward looking trade strategy followed by Indian in the few initial five year plans is also known as",
+    "tag": "SSC CHSL 2025",
+    "opts": [
+      "Export enhancement",
+      "Free trade expansion",
+      "Import substitution",
+      "Foreign investment expansion"
+    ],
+    "ans": "Import substitution"
+  },
+  {
+    "q": "Who among the following was the chairman of Planning Commission under the tenth five year plan?",
+    "tag": "SSC CHSL 2025",
+    "opts": [
+      "Atal Bihari Vajpayee",
+      "I. K. Gujral",
+      "H. D. Deve Gowda",
+      "P. V. Narasimha Rao"
+    ],
+    "ans": "Atal Bihari Vajpayee"
+  },
+  {
+    "q": "What was the growth target for twelfth five year plan in India?",
+    "tag": "SSC CHSL 2025",
+    "opts": [
+      "2%",
+      "5%",
+      "8%",
+      "13%"
+    ],
+    "ans": "8%"
+  },
+  {
+    "q": "Which of the following was the key issue during launch of eighth five year plan of India?<br>I. Worsening balance of payment position.<br>II. Rising debt burden.",
+    "tag": "SSC CHSL 2025",
+    "opts": [
+      "Only I",
+      "Only II",
+      "Both I and II",
+      "Neither I nor II"
+    ],
+    "ans": "Both I and II"
+  },
+  {
+    "q": "What was the reason for the disruption in Third five year Plan?<br>I. Indo-Pakistan Conflict.<br>II. Two successive years of drought.",
+    "tag": "SSC CHSL 2025",
+    "opts": [
+      "Only I",
+      "Only II",
+      "Both I and II",
+      "Neither I nor II"
+    ],
+    "ans": "Both I and II"
+  },
+  {
+    "q": "Who among the following was the chairman of the planning commission under fourth five year plan?",
+    "tag": "SSC CHSL 2025",
+    "opts": [
+      "Indira Gandhi",
+      "Pitambar Pant",
+      "Gulzarilal Nanda",
+      "Morarji Desai"
+    ],
+    "ans": "Indira Gandhi"
+  },
+  {
+    "q": "On whose ideas was the second five year plan based?",
+    "tag": "SSC CHSL 2025",
+    "opts": [
+      "Chaudhari Charan Singh",
+      "Sardar Vallabh Bhai Patel",
+      "K Kamraj",
+      "Prasanta Chandra Mahalanobis"
+    ],
+    "ans": "Prasanta Chandra Mahalanobis"
+  },
+  {
+    "q": "Which of the following was NOT the goal of five year plans in India?",
+    "tag": "SSC CHSL 2025",
+    "opts": [
+      "Growth",
+      "Dependency on foreign aid",
+      "Modernisation",
+      "Equity"
+    ],
+    "ans": "Dependency on foreign aid"
+  },
+  {
+    "q": "Which of the following was the focus of the Industrial Policy Statement, 1977?<br>I. Decentralisation of industries<br>II. Priority to small scale Industries",
+    "tag": "SSC CHSL 2025",
+    "opts": [
+      "Only I",
+      "Only II",
+      "Both I and II",
+      "Neither I nor II"
+    ],
+    "ans": "Both I and II"
+  },
+  {
+    "q": "Following the Industrial Policy of India the government has set up a special board known as Foreign Investment Promotion Board.",
+    "tag": "SSC CHSL 2025",
+    "opts": [
+      "1948",
+      "1956",
+      "1977",
+      "1991"
+    ],
+    "ans": "1991"
+  },
+  {
+    "q": "Which of the following was the focus of the Industrial Policy Statement, 1991?<br>I. Allowing foreign investment by lowering controls and regulations<br>II. Exit policy for the sick units in private sector for a smooth exit without affecting welfare of labour",
+    "tag": "SSC CHSL 2025",
+    "opts": [
+      "Only I",
+      "Only II",
+      "Both I and II",
+      "Neither I nor II"
+    ],
+    "ans": "Both I and II"
+  },
+  {
+    "q": "As per the Industrial policy resolution 1956 of India, industries were divided into how many category?",
+    "tag": "SSC CHSL 2025",
+    "opts": [
+      "Two",
+      "Three",
+      "Eight",
+      "Ten"
+    ],
+    "ans": "Three"
+  },
+  {
+    "q": "Which of the following was a defining feature of India's mixed economy model during the Five Year Plan period?",
+    "tag": "SSC CPO 2025",
+    "opts": [
+      "No role for private enterprises",
+      "Only cooperative farming allowed",
+      "Coexistence of public sector with regulated private sector",
+      "Free market-driven liberal economy"
+    ],
+    "ans": "Coexistence of public sector with regulated private sector"
+  },
+  {
+    "q": "Read the following Assertion (A) and Reason (R) carefully and choose the correct option.<br>Assertion (A): The Third Five Year Plan failed to meet its targets.<br>Reason (R): The failure was mainly due to external shocks like war and drought.",
+    "tag": "SSC CPO 2025",
+    "opts": [
+      "Both A and R are true and R is the correct explanation of A",
+      "Both A and R are true but R is not the correct explanation of A",
+      "A is true but R is false.",
+      "A is false but R is true."
+    ],
+    "ans": "Both A and R are true and R is the correct explanation of A"
+  },
+  {
+    "q": "Read the following Assertion (A) and Reason (R) carefully and choose the correct option.<br>Assertion (A). The Fourth Five Year Plan aimed at growth with stability and self-reliance.<br>Reason (R): It was launched after the shocks of war and droughts during the previous plan period.",
+    "tag": "SSC CPO -2025",
+    "opts": [
+      "Both A and R are true and R is the correct explanation of A",
+      "Both A and R are true but R is not the correct explanation of A.",
+      "A is true but R is false.",
+      "A is false but R is true."
+    ],
+    "ans": "Both A and R are true and R is the correct explanation of A"
+  },
+  {
+    "q": "Which of the following policies was revised in 1956 to align with the objective of the Five-Year Plan?",
+    "tag": "SSC CPO - 2025",
+    "opts": [
+      "Trade Policy Reform",
+      "Industrial Policy Resolution",
+      "Green Revolution Strategy",
+      "New Economic Reforms"
+    ],
+    "ans": "Industrial Policy Resolution"
+  },
+  {
+    "q": "During which Five Year Plan did India shift its focus towards the liberalisation and globalisation of its economy, marking a significant policy change?",
+    "tag": "IB ACIO - II - 2025",
+    "opts": [
+      "Seventh Five Year Plan",
+      "Sixth Five Year Plan",
+      "Eighth Five Year Plan",
+      "Tenth Five Year Plan"
+    ],
+    "ans": "Eighth Five Year Plan"
+  },
+  {
+    "q": "Which plan gave prominence to the Industrial Policy Resolution of 1956, emphasizing the 'commanding heights' doctrine?",
+    "tag": "SSC CGL 2025",
+    "opts": [
+      "First Five Year Plan",
+      "Second Five Year Plan",
+      "Third Five Year Plan",
+      "Fourth Five Year Plan"
+    ],
+    "ans": "Second Five Year Plan"
+  },
+  {
+    "q": "What was the main rationale for the policy of import substitution during the first seven Five Year Plans?",
+    "tag": "SSC CGL 2025",
+    "opts": [
+      "To expand international trade",
+      "To attract foreign investors",
+      "To protect infant domestic industries",
+      "To create export dependency"
+    ],
+    "ans": "To protect infant domestic industries"
+  },
+  {
+    "q": "What was the central theme of the Industrial Policy Resolution of 1956?",
+    "tag": "SSC CGL 2025",
+    "opts": [
+      "Full privatisation of industry",
+      "Import-led growth strategy",
+      "State control of commanding heights of the economy",
+      "Promoting consumer goods industry"
+    ],
+    "ans": "State control of commanding heights of the economy"
+  },
+  {
+    "q": "Which of the following played a key role in financing industrial projects during the Fifth Five-Year Plan in 1974-1978?",
+    "tag": "PHASE XIII 2025",
+    "opts": [
+      "Reserve Bank of India (RBI)",
+      "Industrial Development Bank of India (IDBI)",
+      "State Bank of India (SBI)",
+      "Export-Import Bank of India (EXIM Bank)"
+    ],
+    "ans": "Industrial Development Bank of India (IDBI)"
+  },
+  {
+    "q": "The focus areas of the first and second five-year plans were:",
+    "tag": "SSC GD 2025",
+    "opts": [
+      "Agriculture and Service Sectors",
+      "Industry and Service Sectors",
+      "Agriculture and Industry sectors",
+      "Agriculture and Foreign Sectors"
+    ],
+    "ans": "Agriculture and Industry sectors"
+  },
+  {
+    "q": "Which of the following was an objective of the Five-Year Plans in India?",
+    "tag": "SSC GD 2025",
+    "opts": [
+      "Self-achievable",
+      "Self-reliance",
+      "Self-confidence",
+      "Self-motivation"
+    ],
+    "ans": "Self-reliance"
+  },
+  {
+    "q": "In what reference was 'Growth' the goal of all the five-year plans?",
+    "tag": "SSC GD 2025",
+    "opts": [
+      "Growth of country's capacity to produce goods and services",
+      "Growth in foreign investment in the country",
+      "Growth in the import of goods and services in the country",
+      "Growth of population"
+    ],
+    "ans": "Growth of country's capacity to produce goods and services"
+  },
+  {
+    "q": "India initiated its First Five Year Plan in 1951, influenced by the socialist ideals of",
+    "tag": "SSC GD 2025",
+    "opts": [
+      "Bhim Rao Ambedkar",
+      "Rajendra Prasad",
+      "Jawaharlal Nehru",
+      "Lal Bahadur Shastri"
+    ],
+    "ans": "Jawaharlal Nehru"
+  },
+  {
+    "q": "In an economy, the modernisation goal of a five-year plan is concerned with:",
+    "tag": "SSC GD 2025",
+    "opts": [
+      "Old Technology",
+      "Rural Technology",
+      "New Technology",
+      "Traditional Technology"
+    ],
+    "ans": "New Technology"
+  },
+  {
+    "q": "Which of the following is the subtitle for the Twelfth Five-year Plan?",
+    "tag": "SSC GD 2025",
+    "opts": [
+      "Food, Work and Productivity",
+      "Growth with Social Justice and Equality",
+      "Faster, More Inclusive and Sustainable Growth",
+      "Attainment of Self-reliance"
+    ],
+    "ans": "Faster, More Inclusive and Sustainable Growth"
+  },
+  {
+    "q": "How many five-year plans were covered during 1951-1990?",
+    "tag": "SSC GD 2025",
+    "opts": [
+      "9",
+      "8",
+      "6",
+      "7"
+    ],
+    "ans": "7"
+  },
+  {
+    "q": "What was the impact of the global oil crisis of 1973 on the Fifth Five Year Plan (1974-1979)?",
+    "tag": "SSC GD 2025",
+    "opts": [
+      "Accelerated the plan's industrialisation objectives",
+      "Caused economic disruptions and re-prioritisation",
+      "It had no significant impact on the plan.",
+      "Led to a reduction in agricultural focus"
+    ],
+    "ans": "Caused economic disruptions and re-prioritisation"
+  },
+  {
+    "q": "Which Five-Year Plan was the first to be terminated before its completion, and why?",
+    "tag": "SSC GD 2025",
+    "opts": [
+      "Seventh Plan, due to political conflicts",
+      "Third Plan, due to natural disasters",
+      "Fifth Plan, due to a change in government",
+      "Second Plan, due to economic instability"
+    ],
+    "ans": "Fifth Plan, due to a change in government"
+  },
+  {
+    "q": "During which Five-Year Plan did India face the challenge of the influx of Bangladeshi refugees?",
+    "tag": "SSC GD 2025",
+    "opts": [
+      "Sixth Plan",
+      "Fifth Plan",
+      "Second Plan",
+      "Fourth Plan"
+    ],
+    "ans": "Fourth Plan"
+  },
+  {
+    "q": "Which Five-Year Plan's implementation was shifted to focus on the Prime Minister's 20-Point Programme during the Emergency?",
+    "tag": "SSC GD 2025",
+    "opts": [
+      "Fifth Plan",
+      "Fourth Plan",
+      "Sixth Plan",
+      "Third Plan"
+    ],
+    "ans": "Fifth Plan"
+  },
+  {
+    "q": "Dr. PC Mahalnobis is also known as",
+    "tag": "SSC GD 2025",
+    "opts": [
+      "Founder of RBI",
+      "Father of Green Revolution",
+      "Father of Indian Statistics",
+      "Father of New Economic Policy"
+    ],
+    "ans": "Father of Indian Statistics"
+  },
+  {
+    "q": "What were the main objectives of the Rolling Plan introduced between the Fifth and Sixth Five-Year Plans?",
+    "tag": "SSC GD 2025",
+    "opts": [
+      "Growth with social justice and economic stability",
+      "Employment generation and regional balance",
+      "Agricultural expansion and industrial growth",
+      "Focus on economic crisis management and policy adjustments"
+    ],
+    "ans": "Employment generation and regional balance"
+  },
+  {
+    "q": "Gadgil formula is concerned with:",
+    "tag": "SSC GD 2025",
+    "opts": [
+      "distribution of natural resources to the states",
+      "distribution of Central Assistance among the state",
+      "distribution of subsidies",
+      "distribution of foreign investments"
+    ],
+    "ans": "distribution of Central Assistance among the state"
+  },
+  {
+    "q": "Which of the following was the theme of the Ninth Five-year Plan?",
+    "tag": "SSC GD 2025",
+    "opts": [
+      "Removal of poverty and attainment of self-reliance",
+      "Promote inclusive growth and equitable development",
+      "Growth with social justice and equality",
+      "Development of the public sector and rapid Industrialisation"
+    ],
+    "ans": "Growth with social justice and equality"
+  },
+  {
+    "q": "All the five-year plans were not given equal importance due to:",
+    "tag": "SSC GD 2025",
+    "opts": [
+      "limitation of resources",
+      "private ownership of resources",
+      "equality of available resources",
+      "availability of resources"
+    ],
+    "ans": "limitation of resources"
+  },
+  {
+    "q": "Consider the following statements:<br>Statement I: The objective of 'Growth with Social Justice & Equality' was introduced in the 10th Five-Year Plan.<br>Statement II: The first Five-Year Plan was based on the 'Harrod-Domar model'.<br>Which of the above statements is/are correct?",
+    "tag": "SSC STENO 2025",
+    "opts": [
+      "Statement I is incorrect, Statement II is correct",
+      "Both statements I and II are correct",
+      "Both statements I and II are incorrect",
+      "Statement I is correct, Statement II is incorrect"
+    ],
+    "ans": "Statement I is incorrect, Statement II is correct"
+  },
+  {
+    "q": "In 1950, a small-scale industrial unit in India was defined as one with a maximum investment of ________.",
+    "tag": "DP - 2025",
+    "opts": [
+      "Rs 1 crore",
+      "Rs 5 lakh",
+      "Rs 50 lakh",
+      "Rs 10 lakh"
+    ],
+    "ans": "Rs 5 lakh"
+  },
+  {
+    "q": "Which industry was not reserved for the 'Public Sector' under the IPR 1956?",
+    "tag": "DP-2025",
+    "opts": [
+      "Atomic Energy",
+      "Arms and Ammunition",
+      "Railways",
+      "Textile Industry"
+    ],
+    "ans": "Textile Industry"
+  },
+  {
+    "q": "What is meant by \"Reservation for Small-Scale Sector\" in the context of industrial policy before 1990?",
+    "tag": "DP - 2025",
+    "opts": [
+      "Only small firms could participate in foreign trade",
+      "Small enterprises received tax-free status permanently",
+      "Certain products could only be produced by small enterprises",
+      "All raw materials were subsidized for small enterprises"
+    ],
+    "ans": "Certain products could only be produced by small enterprises"
+  },
+  {
+    "q": "Which industries was explicitly reserved for the public sector by the Industrial Policy Resolution of 1956?",
+    "tag": "DP - 2025",
+    "opts": [
+      "Cotton textiles",
+      "Cement manufacturing",
+      "Defense and atomic energy",
+      "Sugar refining"
+    ],
+    "ans": "Defense and atomic energy"
+  },
+  {
+    "q": "Which Industrial Policy Resolution (IPR) is often called the 'Economic Constitution' of India?",
+    "tag": "DP - 2025",
+    "opts": [
+      "IPR 1948",
+      "IPR 1956",
+      "IPR 1977",
+      "IPR 1991"
+    ],
+    "ans": "IPR 1956"
+  },
+  {
+    "q": "What does 'SSI' stand for in the context of Indian industry (1947-90)?",
+    "tag": "DP - 2025",
+    "opts": [
+      "Small-Scale Industries",
+      "State-Sponsored Industries",
+      "Social Service Industries",
+      "Strategic Sector Industries"
+    ],
+    "ans": "Small-Scale Industries"
+  },
+  {
+    "q": "What was India's pre-1991 policy of trying to produce all goods domestically instead of importing them called?",
+    "tag": "DP - 2025",
+    "opts": [
+      "Export Promotion",
+      "Import Substitution",
+      "Globalization",
+      "Privatization"
+    ],
+    "ans": "Import Substitution"
+  },
+  {
+    "q": "What was the aim of introducing the Monopolies and Restrictive Trade Practices (MRTP) Act, 1969?",
+    "tag": "DP - 2025",
+    "opts": [
+      "Liberalize Foreign Direct Investment limits",
+      "Encourage public-sector disinvestment",
+      "Promote private monopolies",
+      "Prevent concentration of economic power"
+    ],
+    "ans": "Prevent concentration of economic power"
+  },
+  {
+    "q": "Which of the following was removed by the reform policies introduced after 1991 in India?",
+    "tag": "DP-2025",
+    "opts": [
+      "Control over all prices in the market.",
+      "Industrial licensing for most sectors.",
+      "Restrictions on foreign ownership in private firms.",
+      "Government regulation of small-scale industries."
+    ],
+    "ans": "Industrial licensing for most sectors."
+  },
+  {
+    "q": "Which institution was not primarily affected by the financial sector reforms post-1991?",
+    "tag": "DP-2025",
+    "opts": [
+      "Public sector banks",
+      "State Electricity Boards",
+      "Reserve Bank of India",
+      "National Bank for Agriculture and Rural Development"
+    ],
+    "ans": "State Electricity Boards"
+  },
+  {
+    "q": "What is one of the main reasons for the slowdown in industrial growth in India after 1991?",
+    "tag": "DP - 2025",
+    "opts": [
+      "Increasing demand for industrial products",
+      "Reduced industrial product demand from cheaper imports.",
+      "Increased domestic investment in infrastructure",
+      "Improved power supply and infrastructure"
+    ],
+    "ans": "Reduced industrial product demand from cheaper imports."
+  },
+  {
+    "q": "Which industry stayed under government control after the 1991 deregulation?",
+    "tag": "DP - 2025",
+    "opts": [
+      "Retail and textiles",
+      "Atomic energy and railway transport",
+      "Electronics and pharmaceuticals",
+      "Small-scale manufacturing"
+    ],
+    "ans": "Atomic energy and railway transport"
+  },
+  {
+    "q": "What was emphasized in the Industrial Policy Resolution of 1956?",
+    "tag": "DP - 2025",
+    "opts": [
+      "Private sector monopoly",
+      "Promotion of foreign multinational corporations",
+      "Complete nationalization of all industries",
+      "Mixed economy with a large role for the public sector in heavy industries"
+    ],
+    "ans": "Mixed economy with a large role for the public sector in heavy industries"
+  },
+  {
+    "q": "Which of the following is correct regarding the New Industrial Policy announced in July 1991?",
+    "tag": "IB ACIO - II 2025",
+    "opts": [
+      "It banned FDI in manufacturing and core industries.",
+      "It expanded the scope of licensing for all industries.",
+      "It introduced a five-year industrial licensing review mechanism.",
+      "It de-reserved several industries previously earmarked for the public sector."
+    ],
+    "ans": "It de-reserved several industries previously earmarked for the public sector."
+  },
+  {
+    "q": "Which of the following policy reforms in 1991 significantly reduced the industrial licensing requirements, leading to increased industrial output?",
+    "tag": "IB ACIO - II - 2025",
+    "opts": [
+      "New Industrial Policy",
+      "Green Revolution",
+      "Special Economic Zones Policy",
+      "Make in India Initiative"
+    ],
+    "ans": "New Industrial Policy"
+  },
+  {
+    "q": "What was the main objective of the Industrial Policy of 1956?",
+    "tag": "SSC CGL 2025",
+    "opts": [
+      "Profit Maximization",
+      "Growth with equity",
+      "Laissez-faire policy",
+      "Open market reforms"
+    ],
+    "ans": "Growth with equity"
+  },
+  {
+    "q": "What was a key feature of the Industrial Policy Resolution of 1956?",
+    "tag": "SSC CGL 2025",
+    "opts": [
+      "Full privatization",
+      "Abolition of licensing",
+      "Emphasis on small-scale industry",
+      "Expansion of public sector"
+    ],
+    "ans": "Expansion of public sector"
+  },
+  {
+    "q": "The regulatory framework adopted by India between 1947 and 1990, often referred to as the 'License Raj,' aimed to direct economic activity. While it had certain intended benefits, what was a significant unintended negative consequence often associated with this system?",
+    "tag": "SSC STENO 2025",
+    "opts": [
+      "The creation of barriers to entry for new businesses potentially stifling innovation and leading to inefficiencies.",
+      "A rapid increase in the quality and global competitiveness of Indian-made goods due to stringent quality control measures.",
+      "The fostering of a highly competitive market environment with numerous players in each industry.",
+      "A significant reduction in corruption and bureaucratic delays in obtaining necessary approvals for economic activities."
+    ],
+    "ans": "The creation of barriers to entry for new businesses potentially stifling innovation and leading to inefficiencies."
+  },
+  {
+    "q": "The Industrial Policy Resolution of 1948 aimed at:",
+    "tag": "SSC STENO 2025",
+    "opts": [
+      "Privatizing industries",
+      "Developing rural areas",
+      "Opening up foreign trade",
+      "Promoting public sector"
+    ],
+    "ans": "Promoting public sector"
+  },
+  {
+    "q": "Consider the following statements:<br>Statement I: The Industrial Policy Resolution of 1956 aimed to promote private sector dominance in all key industries.<br>Statement II: The Industrial Policy Resolution 1956 classified industries into three categories: fully government owned, mixed sector with government lead, and private sector.<br>Which of the above statements is/are correct?",
+    "tag": "SSC STENO 2025",
+    "opts": [
+      "Both statements I and II are incorrect",
+      "Statement I is incorrect, Statement II is correct",
+      "Statement I is correct, Statement II is incorrect",
+      "Both statements I and II are correct"
+    ],
+    "ans": "Statement I is incorrect, Statement II is correct"
+  },
+  {
+    "q": "Which key reform in 1991 specifically addressed the inefficiency of public sector enterprises and promoted competition in industrial production?",
+    "tag": "SSC STENO 2025",
+    "opts": [
+      "Privatization of profit-making PSUs",
+      "Fiscal Responsibility Act",
+      "Complex Industrial Licensing process",
+      "Public Distribution System Reform"
+    ],
+    "ans": "Privatization of profit-making PSUs"
+  },
+  {
+    "q": "The Industrial Policy Resolution 1956 played a significant role in shaping India's industrial development strategy. What was a key feature of this resolution?",
+    "tag": "SSC STENO 2025",
+    "opts": [
+      "It strongly advocated for the dominance of the private sector in all industrial activities.",
+      "It promoted a completely open and competitive industrial environment with minimal government intervention.",
+      "It categorized industries into three schedules, with the public sector leading in strategic and heavy industries.",
+      "It emphasized the development of small-scale and cottage industries while discouraging large-scale enterprises."
+    ],
+    "ans": "It categorized industries into three schedules, with the public sector leading in strategic and heavy industries."
+  },
+  {
+    "q": "Which of the following was a major criticism of the industrial policy followed in India during 1950-1990?",
+    "tag": "SSC STENO 2025",
+    "opts": [
+      "Too much emphasis on exports.",
+      "Creation of a protected market leading to inefficiency and lack of innovation.",
+      "Excessive competition among domestic industries.",
+      "Neglect of the public sector."
+    ],
+    "ans": "Creation of a protected market leading to inefficiency and lack of innovation."
+  }
+];
+
+    // Application State
+    let questions = [];
+    let currentIndex = 0;
+    let totalSeconds = 0;
+    let remainingSeconds = 0;
+    let timerInterval = null;
+    let isPaused = false;
+    let isSubmitted = false;
+    let currentFilter = "all";
+
+    // Question States:
+    // "not-visited" | "not-answered" | "answered" | "review" | "ans-review"
+    let qStates = [];
+    let selectedOptions = [];
+
+    // DOM Elements
+    const introScreen = document.getElementById("introScreen");
+    const examScreen = document.getElementById("examScreen");
+    const resultScreen = document.getElementById("resultScreen");
+
+    const introTotalQ = document.getElementById("introTotalQ");
+    const introTotalTime = document.getElementById("introTotalTime");
+    const instDurationText = document.getElementById("instDurationText");
+    const startTestBtn = document.getElementById("startTestBtn");
+
+    const timerBox = document.getElementById("timerBox");
+    const timerDisplay = document.getElementById("timerDisplay");
+    const pauseBtn = document.getElementById("pauseBtn");
+    const exitFullscreenBtn = document.getElementById("exitFullscreenBtn");
+
+    const qNumberHeader = document.getElementById("qNumberHeader");
+    const examTagBadge = document.getElementById("examTagBadge");
+    const questionStem = document.getElementById("questionStem");
+    const optionsList = document.getElementById("optionsList");
+    const questionScrollPane = document.getElementById("questionScrollPane");
+
+    const prevBtn = document.getElementById("prevBtn");
+    const reviewNextBtn = document.getElementById("reviewNextBtn");
+    const clearBtn = document.getElementById("clearBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const submitBtn = document.getElementById("submitBtn");
+
+    const paletteGrid = document.getElementById("paletteGrid");
+    const countAnswered = document.getElementById("countAnswered");
+    const countNotAnswered = document.getElementById("countNotAnswered");
+    const countNotVisited = document.getElementById("countNotVisited");
+    const countReview = document.getElementById("countReview");
+    const countAnsReview = document.getElementById("countAnsReview");
+
+    const pauseModal = document.getElementById("pauseModal");
+    const resumeBtn = document.getElementById("resumeBtn");
+
+    const submitModal = document.getElementById("submitModal");
+    const cancelSubmitBtn = document.getElementById("cancelSubmitBtn");
+    const confirmSubmitBtn = document.getElementById("confirmSubmitBtn");
+
+    const retakeBtn = document.getElementById("retakeBtn");
+    const filterAllBtn = document.getElementById("filterAllBtn");
+    const filterWrongBtn = document.getElementById("filterWrongBtn");
+    const filterUnattemptedBtn = document.getElementById("filterUnattemptedBtn");
+    const solutionList = document.getElementById("solutionList");
+
+    // Utility: Fisher-Yates shuffle (used ONLY for options, NEVER for questions)
+    function shuffleOptions(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function formatQuestionHtml(text) {
+      if (!text) return "";
+      if (text.includes("<br>")) {
+        return text.replace(/\n/g, "<br>");
+      }
+      return text.replace(/\n/g, "<br>");
+    }
+
+    function formatTime(secs) {
+      const s = Math.max(0, secs);
+      const mins = Math.floor(s / 60);
+      const remSecs = s % 60;
+      const mStr = String(mins).padStart(2, "0");
+      const sStr = String(remSecs).padStart(2, "0");
+      return `${mStr}:${sStr}`;
+    }
+
+    function enterFullscreenSafe() {
+      try {
+        const el = document.documentElement;
+        if (el.requestFullscreen) {
+          el.requestFullscreen().catch(() => {});
+        } else if (el.webkitRequestFullscreen) {
+          el.webkitRequestFullscreen();
+        } else if (el.msRequestFullscreen) {
+          el.msRequestFullscreen();
+        }
+      } catch (e) {}
+    }
+
+    function exitFullscreenSafe() {
+      try {
+        if (document.fullscreenElement || document.webkitFullscreenElement) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen().catch(() => {});
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          }
+        }
+      } catch (e) {}
+    }
+
+    // Initialize Intro Metadata
+    function setupIntro() {
+      const totalQ = RAW_QUESTIONS.length;
+      introTotalQ.textContent = `Total Questions: ${totalQ}`;
+      introTotalTime.textContent = `Duration: ${totalQ} Minutes`;
+      instDurationText.textContent = `${totalQ} minutes`;
+    }
+
+    function prepareTestState() {
+      // Keep questions in exact original order; randomize options on each start/refresh
+      questions = RAW_QUESTIONS.map((item, idx) => ({
+        index: idx + 1,
+        q: item.q,
+        tag: item.tag || "",
+        opts: shuffleOptions(item.opts),
+        ans: item.ans
+      }));
+
+      currentIndex = 0;
+      totalSeconds = questions.length * 60;
+      remainingSeconds = totalSeconds;
+      isPaused = false;
+      isSubmitted = false;
+
+      qStates = new Array(questions.length).fill("not-visited");
+      selectedOptions = new Array(questions.length).fill(null);
+
+      // First question is visited on start
+      qStates[0] = "not-answered";
+    }
+
+    function startTest() {
+      prepareTestState();
+      enterFullscreenSafe();
+
+      introScreen.style.display = "none";
+      resultScreen.style.display = "none";
+      examScreen.style.display = "flex";
+
+      buildPalette();
+      renderCurrentQuestion();
+      updateTimerUI();
+      startTimer();
+    }
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (isPaused || isSubmitted) return;
+        remainingSeconds--;
+        updateTimerUI();
+        if (remainingSeconds <= 0) {
+          clearInterval(timerInterval);
+          finalizeSubmission();
+        }
+      }, 1000);
+    }
+
+    function updateTimerUI() {
+      timerDisplay.textContent = formatTime(remainingSeconds);
+      if (remainingSeconds <= 300) {
+        timerBox.classList.add("warning");
+      } else {
+        timerBox.classList.remove("warning");
+      }
+    }
+
+    function buildPalette() {
+      paletteGrid.innerHTML = "";
+      questions.forEach((q, idx) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "palette-num-btn p-not-visited";
+        btn.id = `pal-btn-${idx}`;
+        btn.textContent = idx + 1;
+        btn.addEventListener("click", () => jumpToQuestion(idx));
+        paletteGrid.appendChild(btn);
+      });
+      updatePaletteUI();
+    }
+
+    function updatePaletteUI() {
+      let cAns = 0, cNotAns = 0, cNotVis = 0, cRev = 0, cAnsRev = 0;
+
+      for (let i = 0; i < questions.length; i++) {
+        const st = qStates[i];
+        if (st === "answered") cAns++;
+        else if (st === "not-answered") cNotAns++;
+        else if (st === "not-visited") cNotVis++;
+        else if (st === "review") cRev++;
+        else if (st === "ans-review") cAnsRev++;
+
+        const btn = document.getElementById(`pal-btn-${i}`);
+        if (btn) {
+          btn.className = `palette-num-btn p-${st}` + (i === currentIndex ? " current-q" : "");
+        }
+      }
+
+      countAnswered.textContent = cAns;
+      countNotAnswered.textContent = cNotAns;
+      countNotVisited.textContent = cNotVis;
+      countReview.textContent = cRev;
+      countAnsReview.textContent = cAnsRev;
+
+      const activeBtn = document.getElementById(`pal-btn-${currentIndex}`);
+      if (activeBtn) {
+        activeBtn.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      }
+    }
+
+    function syncCurrentQuestionStatusOnLeave() {
+      const sel = selectedOptions[currentIndex];
+      const curState = qStates[currentIndex];
+      if (curState === "review" || curState === "ans-review") {
+        qStates[currentIndex] = sel !== null ? "ans-review" : "review";
+      } else {
+        qStates[currentIndex] = sel !== null ? "answered" : "not-answered";
+      }
+    }
+
+    function renderCurrentQuestion() {
+      const qObj = questions[currentIndex];
+      if (qStates[currentIndex] === "not-visited") {
+        qStates[currentIndex] = "not-answered";
+      }
+
+      qNumberHeader.textContent = `Question No. ${currentIndex + 1} of ${questions.length}`;
+
+      if (qObj.tag && qObj.tag.trim() !== "") {
+        examTagBadge.textContent = qObj.tag.trim();
+        examTagBadge.style.display = "inline-block";
+      } else {
+        examTagBadge.style.display = "none";
+      }
+
+      questionStem.innerHTML = formatQuestionHtml(qObj.q);
+      optionsList.innerHTML = "";
+
+      const currentSelection = selectedOptions[currentIndex];
+
+      qObj.opts.forEach((optText, optIdx) => {
+        const row = document.createElement("div");
+        row.className = "option-row" + (currentSelection === optIdx ? " selected" : "");
+
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = "mcqOption";
+        radio.className = "option-radio";
+        radio.checked = currentSelection === optIdx;
+
+        const label = document.createElement("div");
+        label.className = "option-label-text";
+        label.innerHTML = `<strong>(${String.fromCharCode(65 + optIdx)})</strong> ${optText}`;
+
+        row.appendChild(radio);
+        row.appendChild(label);
+
+        row.addEventListener("click", () => {
+          selectedOptions[currentIndex] = optIdx;
+          if (qStates[currentIndex] === "review" || qStates[currentIndex] === "ans-review") {
+            qStates[currentIndex] = "ans-review";
+          } else {
+            qStates[currentIndex] = "answered";
+          }
+          renderCurrentQuestion();
+        });
+
+        optionsList.appendChild(row);
+      });
+
+      prevBtn.disabled = currentIndex === 0;
+      questionScrollPane.scrollTop = 0;
+      updatePaletteUI();
+    }
+
+    function jumpToQuestion(targetIndex) {
+      if (targetIndex < 0 || targetIndex >= questions.length) return;
+      syncCurrentQuestionStatusOnLeave();
+      currentIndex = targetIndex;
+      renderCurrentQuestion();
+    }
+
+    function handleNext() {
+      const sel = selectedOptions[currentIndex];
+      qStates[currentIndex] = sel !== null ? "answered" : "not-answered";
+      if (currentIndex < questions.length - 1) {
+        currentIndex++;
+      }
+      renderCurrentQuestion();
+    }
+
+    function handlePrev() {
+      if (currentIndex > 0) {
+        syncCurrentQuestionStatusOnLeave();
+        currentIndex--;
+        renderCurrentQuestion();
+      }
+    }
+
+    function handleReviewNext() {
+      const sel = selectedOptions[currentIndex];
+      qStates[currentIndex] = sel !== null ? "ans-review" : "review";
+      if (currentIndex < questions.length - 1) {
+        currentIndex++;
+      }
+      renderCurrentQuestion();
+    }
+
+    function handleClear() {
+      selectedOptions[currentIndex] = null;
+      qStates[currentIndex] = "not-answered";
+      renderCurrentQuestion();
+    }
+
+    function openPauseModal() {
+      if (isSubmitted) return;
+      isPaused = true;
+      pauseModal.style.display = "flex";
+    }
+
+    function closePauseModal() {
+      isPaused = false;
+      pauseModal.style.display = "none";
+    }
+
+    function openSubmitModal() {
+      syncCurrentQuestionStatusOnLeave();
+      updatePaletteUI();
+
+      let cAns = 0, cNotAns = 0, cNotVis = 0, cRev = 0;
+      for (let i = 0; i < questions.length; i++) {
+        const st = qStates[i];
+        if (st === "answered" || st === "ans-review") cAns++;
+        else if (st === "not-answered") cNotAns++;
+        else if (st === "not-visited") cNotVis++;
+        if (st === "review" || st === "ans-review") cRev++;
+      }
+
+      document.getElementById("modTotal").textContent = questions.length;
+      document.getElementById("modAnswered").textContent = cAns;
+      document.getElementById("modNotAnswered").textContent = cNotAns;
+      document.getElementById("modReview").textContent = cRev;
+      document.getElementById("modNotVisited").textContent = cNotVis;
+
+      submitModal.style.display = "flex";
+    }
+
+    function closeSubmitModal() {
+      submitModal.style.display = "none";
+    }
+
+    function finalizeSubmission() {
+      if (isSubmitted) return;
+      isSubmitted = true;
+      if (timerInterval) clearInterval(timerInterval);
+      submitModal.style.display = "none";
+      pauseModal.style.display = "none";
+
+      exitFullscreenSafe();
+
+      examScreen.style.display = "none";
+      resultScreen.style.display = "flex";
+
+      let correctCount = 0;
+      let wrongCount = 0;
+      let unattemptedCount = 0;
+
+      questions.forEach((q, idx) => {
+        const selIdx = selectedOptions[idx];
+        if (selIdx === null) {
+          unattemptedCount++;
+        } else {
+          const chosenText = q.opts[selIdx];
+          if (chosenText === q.ans) {
+            correctCount++;
+          } else {
+            wrongCount++;
+          }
+        }
+      });
+
+      const attemptedCount = correctCount + wrongCount;
+      const accuracy = attemptedCount > 0 ? Math.round((correctCount / attemptedCount) * 100) : 0;
+      const timeSpent = totalSeconds - remainingSeconds;
+
+      document.getElementById("resScoreFraction").textContent = `${correctCount} / ${questions.length}`;
+      document.getElementById("resCorrect").textContent = correctCount;
+      document.getElementById("resWrong").textContent = wrongCount;
+      document.getElementById("resUnattempted").textContent = unattemptedCount;
+      document.getElementById("resAccuracy").textContent = `${accuracy}%`;
+      document.getElementById("timeTakenLabel").textContent = `Time Taken: ${formatTime(timeSpent)} / ${formatTime(totalSeconds)}`;
+
+      filterAllBtn.textContent = `All Incorrect & Un-attempted (${wrongCount + unattemptedCount})`;
+      filterWrongBtn.textContent = `Incorrect Only (${wrongCount})`;
+      filterUnattemptedBtn.textContent = `Un-attempted Only (${unattemptedCount})`;
+
+      currentFilter = "all";
+      updateFilterButtons();
+      renderSolutions();
+      window.scrollTo(0, 0);
+    }
+
+    function updateFilterButtons() {
+      filterAllBtn.classList.toggle("active", currentFilter === "all");
+      filterWrongBtn.classList.toggle("active", currentFilter === "wrong");
+      filterUnattemptedBtn.classList.toggle("active", currentFilter === "unattempted");
+    }
+
+    function renderSolutions() {
+      solutionList.innerHTML = "";
+      let shownCount = 0;
+
+      questions.forEach((q, idx) => {
+        const selIdx = selectedOptions[idx];
+        const isUnattempted = selIdx === null;
+        const chosenText = !isUnattempted ? q.opts[selIdx] : null;
+        const isCorrect = !isUnattempted && chosenText === q.ans;
+
+        // STRICT RULE: Show solution/answer ONLY for incorrect & un-attempted questions
+        if (isCorrect) return;
+
+        if (currentFilter === "wrong" && isUnattempted) return;
+        if (currentFilter === "unattempted" && !isUnattempted) return;
+
+        shownCount++;
+
+        const card = document.createElement("div");
+        card.className = "sol-card " + (isUnattempted ? "sol-unattempted" : "sol-wrong");
+
+        const topRow = document.createElement("div");
+        topRow.className = "sol-top";
+
+        const qNumEl = document.createElement("div");
+        qNumEl.className = "sol-qnum";
+        qNumEl.textContent = `Question ${idx + 1}`;
+
+        const badgesEl = document.createElement("div");
+        badgesEl.className = "sol-badges";
+
+        if (q.tag && q.tag.trim() !== "") {
+          const tagSpan = document.createElement("span");
+          tagSpan.className = "exam-tag-small";
+          tagSpan.textContent = q.tag.trim();
+          badgesEl.appendChild(tagSpan);
+        }
+
+        const statusPill = document.createElement("span");
+        statusPill.className = "status-pill " + (isUnattempted ? "pill-unattempted" : "pill-wrong");
+        statusPill.textContent = isUnattempted ? "Un-attempted" : "Incorrect";
+        badgesEl.appendChild(statusPill);
+
+        topRow.appendChild(qNumEl);
+        topRow.appendChild(badgesEl);
+
+        const qTextEl = document.createElement("div");
+        qTextEl.className = "sol-qtext";
+        qTextEl.innerHTML = formatQuestionHtml(q.q);
+
+        const optsBox = document.createElement("div");
+        optsBox.className = "sol-options";
+
+        q.opts.forEach((opt, oIdx) => {
+          const optRow = document.createElement("div");
+          let cls = "sol-opt";
+          let rightTag = "";
+
+          if (opt === q.ans) {
+            cls += " correct-opt";
+            rightTag = "<span>&#10004; Correct Answer</span>";
+          } else if (oIdx === selIdx && !isCorrect) {
+            cls += " user-wrong-opt";
+            rightTag = "<span>&#10008; Your Selection</span>";
+          }
+
+          optRow.className = cls;
+          optRow.innerHTML = `<span><strong>(${String.fromCharCode(65 + oIdx)})</strong> ${opt}</span>${rightTag}`;
+          optsBox.appendChild(optRow);
+        });
+
+        const ansBox = document.createElement("div");
+        ansBox.className = "sol-ans-box";
+        ansBox.innerHTML = `<strong>Correct Answer:</strong> ${q.ans}`;
+
+        card.appendChild(topRow);
+        card.appendChild(qTextEl);
+        card.appendChild(optsBox);
+        card.appendChild(ansBox);
+
+        solutionList.appendChild(card);
+      });
+
+      if (shownCount === 0) {
+        const emptyMsg = document.createElement("div");
+        emptyMsg.className = "score-card-box";
+        emptyMsg.style.textAlign = "center";
+        emptyMsg.style.color = "#16a34a";
+        emptyMsg.style.fontWeight = "700";
+        emptyMsg.textContent = "No questions in this category! All attempted questions here were answered correctly.";
+        solutionList.appendChild(emptyMsg);
+      }
+    }
+
+    // Event Listeners
+    startTestBtn.addEventListener("click", startTest);
+    prevBtn.addEventListener("click", handlePrev);
+    nextBtn.addEventListener("click", handleNext);
+    reviewNextBtn.addEventListener("click", handleReviewNext);
+    clearBtn.addEventListener("click", handleClear);
+
+    pauseBtn.addEventListener("click", openPauseModal);
+    resumeBtn.addEventListener("click", closePauseModal);
+
+    exitFullscreenBtn.addEventListener("click", () => {
+      exitFullscreenSafe();
+    });
+
+    submitBtn.addEventListener("click", openSubmitModal);
+    cancelSubmitBtn.addEventListener("click", closeSubmitModal);
+    confirmSubmitBtn.addEventListener("click", finalizeSubmission);
+
+    retakeBtn.addEventListener("click", () => {
+      resultScreen.style.display = "none";
+      introScreen.style.display = "flex";
+    });
+
+    filterAllBtn.addEventListener("click", () => {
+      currentFilter = "all";
+      updateFilterButtons();
+      renderSolutions();
+    });
+
+    filterWrongBtn.addEventListener("click", () => {
+      currentFilter = "wrong";
+      updateFilterButtons();
+      renderSolutions();
+    });
+
+    filterUnattemptedBtn.addEventListener("click", () => {
+      currentFilter = "unattempted";
+      updateFilterButtons();
+      renderSolutions();
+    });
+
+    // Initialize on load
+    setupIntro();
+  </script>
+</body>
+</html>

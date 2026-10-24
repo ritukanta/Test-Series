@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSC CGL & Railway NTPC Study Notes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        
+        body {
+            font-family: 'Calibri', 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .note-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            margin-bottom: 1.5rem;
+        }
+
+        .chapter-title {
+            color: #1e3a8a;
+            border-bottom: 2px solid #93c5fd;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .sub-heading {
+            color: #0369a1;
+            margin-top: 1.25rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        ul.custom-bullets {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        ul.custom-bullets li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Print Specific Styles */
+        @media print {
+            body {
+                background-color: #ffffff;
+                color: #000000;
+                font-size: 12pt;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .note-card {
+                box-shadow: none;
+                border: 1px solid #000;
+                page-break-inside: avoid;
+                margin-bottom: 1rem;
+            }
+            .chapter-title, .sub-heading {
+                color: #000000 !important;
+                border-bottom: 1px solid #000;
+            }
+            .grid {
+                display: block; /* Fallback for better print flow if grid fails */
+            }
+            .print-grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 1rem;
+            }
+            @page {
+                margin: 1.5cm;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue-200">
+
+    <div id="dashboard" class="max-w-5xl mx-auto p-6 min-h-screen flex flex-col justify-center">
+        <div class="text-center mb-10">
+            <h1 class="text-4xl font-bold text-slate-800 mb-3">Master Study Portal</h1>
+            <p class="text-slate-600 text-lg">Comprehensive Notes for SSC CGL Tier II & Railway NTPC Exams</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Chapter Cards -->
+            <button onclick="showChapter('chapter1')" class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow text-left group">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-2xl font-bold text-slate-800 group-hover:text-blue-700">1. Internet & Browsers</h2>
+                    <span class="text-blue-500 text-2xl">&rarr;</span>
+                </div>
+                <p class="text-slate-500 mt-2">Web Browsers, Search Engines, Protocols, and History.</p>
+            </button>
+
+            <button onclick="showChapter('chapter2')" class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow text-left group">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-2xl font-bold text-slate-800 group-hover:text-blue-700">2. E-mail</h2>
+                    <span class="text-blue-500 text-2xl">&rarr;</span>
+                </div>
+                <p class="text-slate-500 mt-2">Evolution, Mechanics, Protocols, and Email Management.</p>
+            </button>
+
+            <button onclick="showChapter('chapter3')" class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow text-left group">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-2xl font-bold text-slate-800 group-hover:text-blue-700">3. E-Banking</h2>
+                    <span class="text-blue-500 text-2xl">&rarr;</span>
+                </div>
+                <p class="text-slate-500 mt-2">Fund-Transfer Systems, Important Terms, Advantages & Risks.</p>
+            </button>
+
+            <button onclick="showChapter('chapter4')" class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow text-left group">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-2xl font-bold text-slate-800 group-hover:text-blue-700">4. Cybersecurity</h2>
+                    <span class="text-blue-500 text-2xl">&rarr;</span>
+                </div>
+                <p class="text-slate-500 mt-2">Virus, Malware, Attack Techniques, and Security Essentials.</p>
+            </button>
+        </div>
+    </div>
+
+    <div id="notes-container" class="hidden max-w-5xl mx-auto p-6 bg-white min-h-screen">
+        <button onclick="showDashboard()" class="no-print mb-6 inline-flex items-center px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-md font-semibold transition-colors">
+            &larr; Back to Dashboard
+        </button>
+
+        <button onclick="window.print()" class="no-print mb-6 ml-4 inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md font-semibold transition-colors">
+            Print Notes
+        </button>
+
+        <!-- ========================================== -->
+        <!-- CHAPTER 1: INTERNET & BROWSERS             -->
+        <!-- ========================================== -->
+        <div id="chapter1" class="chapter-content hidden">
+            <h1 class="text-3xl font-bold chapter-title">Chapter 1: Internet & Browsers</h1>
+            
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">Web Browsers</h2>
+                <ul class="custom-bullets">
+                    <li>To use the internet, an Internet Browser is required.</li>
+                    <li>Any web browser is categorized as an Application Software.</li>
+                    <li>A Web Browser connects to the World Wide Web (WWW).</li>
+                    <li><strong>Open Source Browsers:</strong> Firefox (Mozilla) and Chromium (Google).</li>
+                </ul>
+            </div>
+
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">Timeline of Browsers</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 print-grid">
+                    <div>
+                        <ul class="custom-bullets">
+                            <li><strong>1990:</strong> World Wide Web (First ever browser by Tim Berners-Lee, later renamed to Nexus).</li>
+                            <li><strong>1992:</strong> Lynx (First Text-Based Browser).</li>
+                            <li><strong>1993:</strong> Mosaic (First Graphical Browser by Marc Andreessen).</li>
+                            <li><strong>1994:</strong> Netscape Navigator (By Netscape Communications Corporation).</li>
+                            <li><strong>1995:</strong> Internet Explorer (IE) (By Microsoft. Last version IE 11. Support ended June 15, 2022).</li>
+                            <li><strong>1995:</strong> Opera (By Opera).</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="custom-bullets">
+                            <li><strong>1997:</strong> Yandex (By Russian Technology Corp).</li>
+                            <li><strong>1998:</strong> Firefox (By Mozilla Corp).</li>
+                            <li><strong>2003:</strong> Safari (By Apple).</li>
+                            <li><strong>2008/09:</strong> Chrome/Chromium (By Google).</li>
+                            <li><strong>2013:</strong> Epic (By Hidden Reflex - Indian Browser).</li>
+                            <li><strong>2015:</strong> Edge (By Microsoft, released April 29, 2015).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">Shortcuts & Special Browsers</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 print-grid">
+                    <div>
+                        <h3 class="font-semibold mb-2">Special Browsers</h3>
+                        <ul class="custom-bullets">
+                            <li><strong>TOR (The Onion Router):</strong> Famous for Anonymous or Dark Web browsing (released 2006).</li>
+                            <li><strong>Baidu:</strong> Browser of China (released 2011).</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold mb-2">Chrome Shortcuts</h3>
+                        <ul class="custom-bullets">
+                            <li><strong>Incognito Mode:</strong> Ctrl + Shift + N</li>
+                            <li><strong>Open New Tab:</strong> Ctrl + T</li>
+                            <li><strong>Close a Tab:</strong> Ctrl + W</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">Browser Plugins</h2>
+                <p class="mb-2">A plugin is a software add-on installed on a program (browser) to enhance its capabilities. Also known as ActiveX Controls (developed by Microsoft).</p>
+                <ul class="custom-bullets font-semibold flex flex-wrap gap-x-6">
+                    <li>Adobe Acrobat</li>
+                    <li>Adobe Flash</li>
+                    <li>Java</li>
+                    <li>Quick Time</li>
+                    <li>Real Player</li>
+                    <li>Shockwave</li>
+                    <li>Silverlight</li>
+                </ul>
+            </div>
+
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">Search Engines</h2>
+                <ul class="custom-bullets">
+                    <li><strong>Archie (1990):</strong> First ever Search Engine by Alan Emtage.</li>
+                    <li><strong>Gopher (1991)</strong></li>
+                    <li><strong>Yahoo (1994):</strong> By Jerry Yang and David Filo.</li>
+                    <li><strong>Lycos (1994)</strong></li>
+                    <li><strong>Altavista (1995):</strong> Purchased by Yahoo in 2003.</li>
+                    <li><strong>Ask.com (1996)</strong></li>
+                    <li><strong>Yandex (1997):</strong> Russia Tech Corp.</li>
+                    <li><strong>Google (1998):</strong> By Larry Page and Sergey Brin.</li>
+                    <li><strong>AOL (1999):</strong> America Online.</li>
+                    <li><strong>Baidu (2000):</strong> China.</li>
+                    <li><strong>YouTube (2005):</strong> By Steve Chen, Chad Hurley, Jawed Karim (Launched Feb 14).</li>
+                    <li><strong>DuckDuckGo (2009):</strong> Gabriel Weinberg.</li>
+                    <li><strong>Bing (2009):</strong> By MSN, purchased by Microsoft.</li>
+                    <li><strong>Wolfram Alpha (2009)</strong></li>
+                </ul>
+
+                <h3 class="font-semibold mt-4 text-slate-800">Search Engine Facts & Components</h3>
+                <ul class="custom-bullets">
+                    <li><strong>Web Crawler/Spider:</strong> Indexes web content for search results.</li>
+                    <li><strong>SERP:</strong> Search Engine Results Page.</li>
+                    <li><strong>SEO:</strong> Search Engine Optimization.</li>
+                    <li><strong>SEM:</strong> Search Engine Marketing.</li>
+                    <li><strong>Core Components:</strong> 1. Web Crawler | 2. Database | 3. Search Interfaces.</li>
+                </ul>
+            </div>
+
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">World Wide Web (WWW)</h2>
+                <ul class="custom-bullets">
+                    <li>Also known as Web or W3. It is a system of accessing webpages through the internet.</li>
+                    <li><strong>Founder:</strong> Tim Berners-Lee (at CERN).</li>
+                    <li><strong>Invented:</strong> 1989.</li>
+                    <li><strong>Standard Org:</strong> W3C (World Wide Web Consortium).</li>
+                    <li><strong>CERN:</strong> European Organization for Nuclear Research.</li>
+                    <li><strong>First Website Address:</strong> http://info.cern.ch/hypertext/www/TheProject.html</li>
+                    <li><strong>First web page went live:</strong> August 6, 1991 on a NeXT Computer (IBM).</li>
+                </ul>
+            </div>
+
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">Network Types</h2>
+                <ol class="list-decimal pl-5 font-semibold text-slate-800">
+                    <li class="mb-2">Internet: <span class="font-normal text-slate-700">Global Interconnections of computer systems (Public Network).</span></li>
+                    <li class="mb-2">Intranet: <span class="font-normal text-slate-700">Mainly used within businesses and organizations (Private Network).</span></li>
+                    <li class="mb-2">Extranet: <span class="font-normal text-slate-700">Allows authorized users from outside to access the intranet of an organization.</span></li>
+                </ol>
+            </div>
+
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">Surface, Deep & Dark Web</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 print-grid">
+                    <div>
+                        <h3 class="font-semibold border-b pb-1 mb-2">Surface Web</h3>
+                        <ul class="custom-bullets">
+                            <li>Everything visible on the surface.</li>
+                            <li>Comprises just 4% of the entire internet.</li>
+                            <li>Examples: Google, Bing, Facebook, YouTube, Wikipedia, Blogs.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold border-b pb-1 mb-2">Deep Web</h3>
+                        <ul class="custom-bullets">
+                            <li>Parts not fully accessible through standard search engines.</li>
+                            <li>Includes non-indexed pages.</li>
+                            <li>Fee-for-service (OTT platforms).</li>
+                            <li>Private Databases (Dropbox, PayPal).</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold border-b pb-1 mb-2">Dark Web</h3>
+                        <ul class="custom-bullets">
+                            <li>Encrypted content not indexed by conventional search engines.</li>
+                            <li>Requires specific tools like TOR Browser.</li>
+                            <li>Associated with Ransomware, Bitcoin Services, Financing Frauds, and Illegal activities.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">Protocol & URL Structure</h2>
+                <p class="font-bold mb-2">URL: Uniform Resource Locator</p>
+                <div class="bg-slate-100 p-3 rounded text-center font-mono mb-3">
+                    http://www.google.com
+                </div>
+                <ul class="custom-bullets">
+                    <li><strong>Protocol Identifier:</strong> e.g., http</li>
+                    <li><strong>Subdomain:</strong> e.g., www</li>
+                    <li><strong>Domain Name:</strong> e.g., google</li>
+                    <li><strong>Top Level Domain (TLD):</strong> e.g., .com</li>
+                </ul>
+                <div class="mt-4 p-3 border rounded bg-blue-50">
+                    <p class="font-bold">The Equation: URI = URL + URN</p>
+                    <ul class="custom-bullets mb-0 mt-2">
+                        <li><strong>URI:</strong> Uniform Resource Identifier</li>
+                        <li><strong>URN:</strong> Uniform Resource Name</li>
+                        <li>Example: https://ritukanta.github.io#Contact</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">ISP, Cookies, Netiquette & VoIP</h2>
+                <ul class="custom-bullets">
+                    <li><strong>ISP (Internet Service Provider):</strong>
+                        <ul class="list-disc pl-5 mt-1 mb-2">
+                            <li>First Worldwide ISP: Telenet.</li>
+                            <li>First in India: VSNL (Videsh Sanchar Nigam Limited) - launched 14th Aug 1995.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Cookies:</strong> Small text files stored in the Browser/Client, sent by the Server. Used to remember user preferences and online habits. Sent back to the server on new page requests.</li>
+                    <li><strong>Netiquette:</strong> Internet Etiquette. A compilation of rules of online behavior applying to all netizens.</li>
+                    <li><strong>VoIP (Voice Over Internet Protocol):</strong> Also called IP Telephony. Converts Analog Voice Signals into Digital Data. Example: WhatsApp Calling.</li>
+                </ul>
+                
+                <h3 class="font-semibold mt-4 mb-2">Virtual Assistants Timeline</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-2 print-grid text-sm">
+                    <div>&bull; Apple: Siri (2011)</div>
+                    <div>&bull; Google Now (2012)</div>
+                    <div>&bull; Blackberry Assistant (2013)</div>
+                    <div>&bull; Amazon: Alexa (2014)</div>
+                    <div>&bull; Microsoft: Cortana (2014)*</div>
+                    <div>&bull; Facebook: M (2015)</div>
+                    <div>&bull; Google Assistant (2016)</div>
+                    <div>&bull; Samsung: Bixby (2017)</div>
+                </div>
+                <p class="text-xs text-slate-500 mt-2">* Cortana support ended March 31, 2021. Home AI: Jarvis (Mark Zuckerberg).</p>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- CHAPTER 2: E-MAIL                          -->
+        <!-- ========================================== -->
+        <div id="chapter2" class="chapter-content hidden">
+            <h1 class="text-3xl font-bold chapter-title">Chapter 2: E-mail</h1>
+            
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">Foundations & History</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 print-grid">
+                    <div>
+                        <ul class="custom-bullets">
+                            <li><strong>Founder:</strong> Ray Tomlinson. Credited with sending the first email in 1971.</li>
+                            <li><strong>First Message:</strong> "QWERTYUIOP" - A test string using the top row of the keyboard.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold">Structure</h3>
+                        <ul class="custom-bullets">
+                            <li><strong>Syntax Separator:</strong> @ symbol</li>
+                            <li><strong>Format:</strong> username @ domain</li>
+                            <li><strong>Storage location:</strong> Mailbox</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">Google Mail (Gmail) Ecosystem</h2>
+                <p class="mb-2"><strong>Founder:</strong> Paul Buchheit. <strong>Launch Date:</strong> April 1, 2004.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 print-grid">
+                    <div class="bg-slate-50 p-3 rounded border">
+                        <h3 class="font-bold text-slate-700">Operational Limits</h3>
+                        <ul class="custom-bullets text-sm mt-2">
+                            <li><strong>Regular Limit:</strong> 500 emails / 24 hours</li>
+                            <li><strong>Paid Workspace:</strong> 2000+ emails / 24 hours</li>
+                            <li><strong>Recipients (To):</strong> Max 1500 per message</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded border">
+                        <h3 class="font-bold text-slate-700">Storage & Files</h3>
+                        <ul class="custom-bullets text-sm mt-2">
+                            <li><strong>Attachment Size:</strong> 25 MB Maximum size</li>
+                            <li><strong>Free Storage:</strong> 15 GB</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded border">
+                        <h3 class="font-bold text-slate-700">Features & Management</h3>
+                        <ul class="custom-bullets text-sm mt-2">
+                            <li><strong>Starred:</strong> Marks email as important/priority.</li>
+                            <li><strong>Snooze:</strong> Temporarily removes email from inbox until a set time.</li>
+                            <li><strong>Trash/Bin:</strong> Retains deleted items for 30 days.</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="font-semibold">Google Meet (Basic): 100 participants, 60 mins time limit.</p>
+            </div>
+
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">Protocols, Infrastructure & Security</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 print-grid">
+                    <div>
+                        <h3 class="font-bold border-b pb-1 mb-2">Mail Protocols</h3>
+                        <ul class="custom-bullets">
+                            <li><strong>SMTP (Simple Mail Transfer Protocol):</strong> Port 25. Used for SENDING emails.</li>
+                            <li><strong>POP3 (Post Office Protocol):</strong> Port 110. Used to DOWNLOAD emails from the server to a local device.</li>
+                            <li><strong>IMAP (Internet Message Access Protocol):</strong> Port 143. Used to SYNC emails across multiple devices.</li>
+                            <li><strong>MIME (Multipurpose Internet Mail Extension):</strong> Handles Multimedia (Audio/Video/Non-text) attachments.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold border-b pb-1 mb-2">Security Suite</h3>
+                        <ul class="custom-bullets">
+                            <li><strong>PGP:</strong> Pretty Good Privacy</li>
+                            <li><strong>SSL:</strong> Secure Sockets Layer</li>
+                            <li><strong>TLS:</strong> Transport Layer Security</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">Global Service Providers & Extended Data</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 print-grid">
+                    <div>
+                        <ul class="custom-bullets">
+                            <li><strong>Yahoo! Mail:</strong> Founded in 1994 by Jerry Yang & David Filo. Mail launched in 1997.</li>
+                            <li><strong>MS Outlook:</strong> Previously "Hotmail" (Founded by Sabeer Bhatia). Bought by Microsoft in 1997. Known as a PIM (Personal Information Manager).</li>
+                            <li><strong>AOL Mail:</strong> America Online. Founded in 1983 by Steve Case. Currently owned by Verizon.</li>
+                            <li><strong>Yandex Mail:</strong> Russian provider. Launched June 26, 2000.</li>
+                            <li><strong>iCloud:</strong> Launched Oct 12, 2011.</li>
+                            <li><strong>Zoho Mail:</strong> Another known service provider.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-2">Terminology & Folders</h3>
+                        <ul class="custom-bullets">
+                            <li><strong>CC vs BCC:</strong> CC (Carbon Copy) makes recipients visible to all. BCC (Blind Carbon Copy) hides recipients from each other.</li>
+                            <li><strong>Spam:</strong> Unwanted/Junk mail.</li>
+                            <li><strong>Spoofing:</strong> Forging a sender address.</li>
+                            <li><strong>Drafts:</strong> Stored unsent messages.</li>
+                            <li><strong>Outbox:</strong> Temporary storage before delivery.</li>
+                            <li><strong>Gmail Tabs:</strong> Primary, Social, Promotions.</li>
+                            <li><strong>Signature:</strong> Typically placed at the bottom of the email.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- CHAPTER 3: E-BANKING                       -->
+        <!-- ========================================== -->
+        <div id="chapter3" class="chapter-content hidden">
+            <h1 class="text-3xl font-bold chapter-title">Chapter 3: E-Banking</h1>
+            
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">Meaning and Concept of E-Banking</h2>
+                <ul class="custom-bullets">
+                    <li>Electronic banking (e-banking) provides banking information, facilities, and transactions through electronic channels, eliminating the need to visit physical branches for every service.</li>
+                    <li><strong>Channels include:</strong> Internet, mobile apps, ATMs, payment cards, telephone services, and electronic payment networks.</li>
+                    <li><strong>Digital Banking:</strong> A broader term overlapping with e-banking but may include wider end-to-end digital services.</li>
+                    <li><strong>Common Features:</strong> Remote access, electronic processing, reduced dependence on physical cash/cheques, digital receipts, and mandatory authentication (PIN, OTP, biometrics).</li>
+                    <li><strong>Important Distinction:</strong> E-banking is an umbrella term. Systems like NEFT, RTGS, IMPS, and UPI are underlying transfer systems accessed via e-banking channels.</li>
+                </ul>
+            </div>
+
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">Types and Channels of E-Banking</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 print-grid">
+                    <ul class="custom-bullets">
+                        <li><strong>Internet/Online Banking:</strong> Accessed via bank's official website using a browser. Requires secure login.</li>
+                        <li><strong>Mobile Banking:</strong> Accessed via official mobile apps for fund transfers, bill payments, and card controls.</li>
+                        <li><strong>ATM (Automated Teller Machine):</strong> Self-service terminal for cash withdrawal, deposits, and inquiries using a card and PIN.</li>
+                        <li><strong>Debit Card:</strong> Payment card linked directly to a deposit account. Funds are deducted immediately.</li>
+                        <li><strong>Credit Card:</strong> Payment card spending against an issuer-provided credit line, subject to repayment and billing terms.</li>
+                        <li><strong>Telephone/Phone Banking:</strong> Calling a bank's official customer service for basic operations.</li>
+                    </ul>
+                    <ul class="custom-bullets">
+                        <li><strong>SMS Banking/Alerts:</strong> Notifications or specific requests delivered via text message. (Do not treat incoming SMS as concrete proof of payment).</li>
+                        <li><strong>EFT (Electronic Funds Transfer):</strong> General term for electronically moving funds between accounts.</li>
+                        <li><strong>POS (Point of Sale):</strong> Terminal used by merchants to accept debit/credit cards or contactless payments.</li>
+                        <li><strong>PPIs (Prepaid Payment Instruments):</strong> Value stored in advance (e.g., wallets, prepaid cards).</li>
+                        <li><strong>QR-Code Payments:</strong> Quick Response codes scanned via supported payment apps.</li>
+                        <li><strong>Assisted Digital Banking:</strong> Utilizes Business Correspondents (BCs) and micro-ATMs for basic transactions.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">Important Electronic Fund-Transfer Systems in India</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 print-grid">
+                    <div class="border rounded p-3 bg-slate-50">
+                        <h3 class="font-bold text-slate-800">NEFT (National Electronic Funds Transfer)</h3>
+                        <ul class="custom-bullets mt-2 text-sm">
+                            <li>Nationwide centralized system operated by RBI.</li>
+                            <li>Transactions processed through <strong>batches</strong> (not real-time individual settlement).</li>
+                            <li>Available 24x7 throughout the year.</li>
+                            <li>No universal upper cap or minimum imposed by the system.</li>
+                        </ul>
+                    </div>
+                    <div class="border rounded p-3 bg-slate-50">
+                        <h3 class="font-bold text-slate-800">RTGS (Real Time Gross Settlement)</h3>
+                        <ul class="custom-bullets mt-2 text-sm">
+                            <li>Operated by RBI, primarily designed for large-value transfers.</li>
+                            <li>Processes continuously in <strong>real time</strong> on a transaction-by-transaction (gross) basis.</li>
+                            <li>Minimum transfer: ₹2,00,000. No RBI-set maximum ceiling.</li>
+                            <li>Available 24x7 throughout the year.</li>
+                        </ul>
+                    </div>
+                    <div class="border rounded p-3 bg-slate-50">
+                        <h3 class="font-bold text-slate-800">IMPS & UPI</h3>
+                        <ul class="custom-bullets mt-2 text-sm">
+                            <li><strong>IMPS (Immediate Payment Service):</strong> Instant electronic transfer offered through NPCI. Available 24x7.</li>
+                            <li><strong>UPI (Unified Payments Interface):</strong> NPCI system linking multiple bank accounts to one app. Uses a Virtual Payment Address (VPA/UPI ID). Requires UPI PIN only for sending money, not receiving.</li>
+                        </ul>
+                    </div>
+                    <div class="border rounded p-3 bg-slate-50">
+                        <h3 class="font-bold text-slate-800">Other Systems</h3>
+                        <ul class="custom-bullets mt-2 text-sm">
+                            <li><strong>AEPS:</strong> Aadhaar Enabled Payment System for basic services using biometric authentication.</li>
+                            <li><strong>USSD:</strong> Unstructured Supplementary Service Data (e.g., *99#) operating without mobile internet.</li>
+                            <li><strong>NACH/ECS:</strong> National Automated Clearing House / Electronic Clearing Service for bulk or repetitive recurring payments.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">Core Banking and Important Terms</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 print-grid text-sm">
+                    <ul class="custom-bullets">
+                        <li><strong>CBS (Core Banking Solution):</strong> Centralized system connecting branches to support "anywhere banking".</li>
+                        <li><strong>IFSC (Indian Financial System Code):</strong> 11-character alphanumeric code for branch identification (4 bank chars, 1 zero, 6 branch chars).</li>
+                        <li><strong>MICR (Magnetic Ink Character Recognition):</strong> 9-digit code historically used for automated cheque processing.</li>
+                        <li><strong>SWIFT/BIC:</strong> Global financial messaging network for international instructions. BIC identifies the business party.</li>
+                        <li><strong>OTP (One-Time Password):</strong> Short-lived authentication code. Never share it.</li>
+                    </ul>
+                    <ul class="custom-bullets">
+                        <li><strong>PIN (Personal Identification Number):</strong> Secret number for authentication.</li>
+                        <li><strong>CVV/CVC:</strong> Card Verification Value/Code used for card-not-present transactions.</li>
+                        <li><strong>VPA / UPI ID:</strong> Virtual Payment Address for UPI routing without sharing bank details.</li>
+                        <li><strong>UTR (Unique Transaction Reference):</strong> 22-character reference used to trace RTGS payments.</li>
+                        <li><strong>BBPS:</strong> Bharat Bill Payment System for interoperable bill payments.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">Risks, Frauds & Safe Practices</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 print-grid">
+                    <div>
+                        <h3 class="font-bold border-b pb-1 mb-2">Common Fraud Terms</h3>
+                        <ul class="custom-bullets text-sm">
+                            <li><strong>Phishing:</strong> Fraudulent messages/websites tricking users to reveal credentials.</li>
+                            <li><strong>Vishing:</strong> Voice-call fraud (impersonation).</li>
+                            <li><strong>Smishing:</strong> Phishing carried out through SMS/text messages.</li>
+                            <li><strong>Skimming:</strong> Illicit capture of card data using compromised physical devices at ATMs or POS.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold border-b pb-1 mb-2">Security Checklist</h3>
+                        <ul class="custom-bullets text-sm">
+                            <li>Use official bank apps or manually enter genuine URLs.</li>
+                            <li>Never disclose PIN, Password, OTP, CVV, or UPI PIN.</li>
+                            <li>You DO NOT need to enter a UPI PIN to receive money.</li>
+                            <li>Verify payee details before authorizing any transaction.</li>
+                            <li>Avoid remote-access screen sharing apps on unknown requests.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- CHAPTER 4: CYBERSECURITY                   -->
+        <!-- ========================================== -->
+        <div id="chapter4" class="chapter-content hidden">
+            <h1 class="text-3xl font-bold chapter-title">Chapter 4: Cybersecurity</h1>
+            
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">General Concepts & Definitions</h2>
+                <ul class="custom-bullets">
+                    <li><strong>VIRUS:</strong> Stands for <strong>Vital Information Resources Under Siege</strong>. It is a man-made computer program that can copy itself and infect a computer without permission or knowledge of the owner.</li>
+                    <li><strong>Malware:</strong> A broad term for Malicious Software.</li>
+                    <li><strong>Retrovirus:</strong> A virus specifically designed to delete or disable anti-virus software.</li>
+                    <li><strong>Macrovirus:</strong> A virus that targets and harms application software (e.g., Microsoft Word, Excel).</li>
+                    <li><strong>WORM:</strong> Malware that self-replicates and sends itself to other computers across a network. Does not need to attach to a host file.</li>
+                    <li><strong>Trojan Horse:</strong> Software that pretends to be useful or legitimate but actually contains malicious code. It does not self-replicate.</li>
+                    <li><strong>Anti-Virus Software Examples:</strong> Avira, Avast, Panda, McAfee, Norton, AVG, Quick Heal, Kaspersky (Russian provider headquartered in Moscow).</li>
+                </ul>
+            </div>
+
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">Historical Firsts</h2>
+                <ul class="custom-bullets">
+                    <li><strong>First Computer Virus:</strong> Creeper (Created by Bob Thomas, 1971).</li>
+                    <li><strong>First Computer Worm:</strong> The Morris Worm.</li>
+                    <li><strong>First Boot-Sector Virus:</strong> Brain (1986, created by Basit & Amjad Farooq Alvi, Pakistan).</li>
+                    <li><strong>First Ransomware:</strong> AIDS Trojan, also known as PC Cyborg (1989, by Joseph L. Popp).</li>
+                    <li><strong>First Microcomputer Virus:</strong> Elk Cloner.</li>
+                    <li><strong>ILOVEYOU Virus:</strong> Also known as Love Bug (Created by Onel De Guzman in 2000), widely spread through emails.</li>
+                </ul>
+            </div>
+
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">Cyber Attack Techniques</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 print-grid">
+                    <div>
+                        <h3 class="font-bold border-b pb-1 mb-2">Phishing & Deception</h3>
+                        <ul class="custom-bullets text-sm">
+                            <li><strong>Phishing:</strong> Attempting to get sensitive information (cards, passwords) via digital deception (impersonation).</li>
+                            <li><strong>Smishing:</strong> Phishing specifically executed via SMS or text messages (often imitating Banks).</li>
+                            <li><strong>Vishing:</strong> Phishing carried out via Voice Calls or VoIP.</li>
+                            <li><strong>Pharming / Spoofing:</strong> Faking identity (Email, IP, DNS) or installing malicious code to redirect users to fake websites.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold border-b pb-1 mb-2">System Exploits & Networks</h3>
+                        <ul class="custom-bullets text-sm">
+                            <li><strong>Sniffing (Eavesdropping):</strong> Capturing small data packets flowing over a network.</li>
+                            <li><strong>Skimming:</strong> Hardware method of copying magnetic stripe card data during physical transactions.</li>
+                            <li><strong>Trap Door:</strong> A security hole intentionally or accidentally left in software by a designer.</li>
+                            <li><strong>Logic Bomb:</strong> Code that triggers a malicious action upon a specific event.</li>
+                            <li><strong>Time Bomb:</strong> Code that activates on a specific date or time.</li>
+                            <li><strong>Botnet:</strong> A "robot network" of infected automated computers. The infected systems are called <strong>Zombies</strong>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="note-card">
+                <h2 class="text-xl sub-heading mt-0">Essential Cybersecurity Facts & Concepts (From Q&A)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1 print-grid text-sm">
+                    <ul class="custom-bullets">
+                        <li>Recent spyware famous for entering smartphones (hijacking camera/mic) is <strong>Pegasus</strong>.</li>
+                        <li>Pegasus enters all major mobile OS platforms (Android, iOS, Blackberry).</li>
+                        <li>Pegasus was developed by <strong>NSO</strong>, an Israeli firm. It was discovered in <strong>2016</strong>.</li>
+                        <li>An Unethical Hacker or Security Cracker is known as a <strong>Black Hat Hacker</strong>.</li>
+                        <li>Ethical Hackers or Penetration Testers are known as <strong>White Hat Hackers</strong>.</li>
+                        <li>Those who hack systems without permission but cause no damage are <strong>Grey Hat Hackers</strong>.</li>
+                        <li>A <strong>Key logger</strong> is categorized as Spyware; it records keys struck on the keyboard.</li>
+                        <li><strong>Firewalls</strong> provide protection from computer hackers and unauthorized access.</li>
+                        <li>Altering data so it is not usable (unless undone/decrypted) is known as <strong>Encryption</strong>.</li>
+                        <li>Stealing ideas or creations of others is called <strong>Plagiarism</strong>.</li>
+                        <li>Software tracking habits and sending unwanted popups is <strong>Adware</strong>.</li>
+                        <li>Malware designed specifically to gain administrative access is known as <strong>Rootkits</strong>.</li>
+                        <li>Secret words or numbers used for digital protection are <strong>Passwords</strong>.</li>
+                        <li>Repeatedly harassing someone by following or writing online is <strong>Stalking</strong>.</li>
+                        <li><strong>WPA2</strong> is a standard used for security in Wi-Fi networks.</li>
+                        <li><strong>PGP (Pretty Good Privacy)</strong> is heavily used in Email Security.</li>
+                        <li>The Information Technology (IT) Act in India was notified in <strong>2000</strong> and amended in <strong>2008</strong>.</li>
+                        <li><strong>CFAA</strong> stands for Computer Fraud and Abuse Act.</li>
+                    </ul>
+                    <ul class="custom-bullets">
+                        <li>An automated software program is generically called a <strong>Bot</strong>.</li>
+                        <li><strong>DDoS</strong> stands for Distributed Denial of Service (overloading resources to block access).</li>
+                        <li>Analyzing information for legal/science disciplines is known as <strong>Cyber Forensics</strong>.</li>
+                        <li>Transferring illegal money to hide its source digitally is <strong>Cyber Laundering</strong>.</li>
+                        <li>A virus capable of changing its type and signature to evade detection is <strong>Polymorphic</strong>.</li>
+                        <li>Viruses executing when a computer boots up are <strong>Boot Sector</strong> viruses.</li>
+                        <li>A virus that deploys and stays active in RAM is a <strong>Resident Virus</strong>, while one that deploys in RAM but doesn't stay is a <strong>Non-Resident Virus</strong>.</li>
+                        <li>Unsolicited commercial emails are universally referred to as <strong>Spam</strong>.</li>
+                        <li>Spyware that monitors user activity and transmits data is acting as a <strong>Sniffer</strong>.</li>
+                        <li>Common targets of Injection Vulnerabilities (attacking data applications) are <strong>SQL</strong> databases.</li>
+                        <li>Malware taking data hostage (encrypting it) for a fee is <strong>Ransomware</strong> (also known as Crypto-Virus).</li>
+                        <li>The <strong>Code Red</strong> worm famously attacked IIS servers on July 15, 2001.</li>
+                        <li>The practice of protecting systems from attacks is the core definition of <strong>Cybersecurity</strong>.</li>
+                        <li>A dangerous Android banking Trojan known for holding systems for ransom and being hard to uninstall is <strong>SOVA</strong>.</li>
+                        <li>Trying multiple login combinations aggressively is a <strong>Brute Force attack</strong>.</li>
+                        <li>Software using excessive system resources without matching utility is <strong>Bloatware</strong>.</li>
+                        <li>A commonly used ATM security standard is <strong>TDES</strong> (Triple Data Encryption Standard).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function showChapter(chapterId) {
+            // Hide dashboard
+            document.getElementById('dashboard').classList.add('hidden');
+            
+            // Show notes container
+            document.getElementById('notes-container').classList.remove('hidden');
+            
+            // Hide all chapters
+            const chapters = document.querySelectorAll('.chapter-content');
+            chapters.forEach(ch => ch.classList.add('hidden'));
+            
+            // Show the specific chapter
+            document.getElementById(chapterId).classList.remove('hidden');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function showDashboard() {
+            // Hide notes container
+            document.getElementById('notes-container').classList.add('hidden');
+            
+            // Hide all chapters to be safe
+            const chapters = document.querySelectorAll('.chapter-content');
+            chapters.forEach(ch => ch.classList.add('hidden'));
+            
+            // Show dashboard
+            document.getElementById('dashboard').classList.remove('hidden');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>

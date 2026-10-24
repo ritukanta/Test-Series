@@ -1,0 +1,2458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Computer Knowledge CBT Mock Test Portal — TCS / Eduquity Interface</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --tcs-navy: #1b365d;
+      --tcs-blue: #2563eb;
+      --tcs-header-bg: #1e3a8a;
+      --tcs-subbar-bg: #eef2f6;
+      --bg-light: #f4f6f9;
+      --surface-white: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #cbd5e1;
+      --border-soft: #e2e8f0;
+      --ans-green: #16a34a;
+      --not-ans-red: #dc2626;
+      --review-purple: #7c3aed;
+      --not-visited-gray: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* ================= VIEW 1: MAIN DASHBOARD & INTRO LOBBY ================= */
+    .portal-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--bg-light);
+    }
+
+    .portal-topbar {
+      background: linear-gradient(90deg, #1b365d 0%, #1e40af 100%);
+      color: #ffffff;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12);
+    }
+
+    .portal-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .portal-logo-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 6px;
+      background: #ffffff;
+      color: #1b365d;
+      font-weight: 700;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: -0.5px;
+      flex-shrink: 0;
+    }
+
+    .portal-title-group h1 {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+    }
+
+    .portal-title-group p {
+      font-size: 12px;
+      color: #dbeafe;
+      margin-top: 2px;
+    }
+
+    .portal-candidate-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .portal-container {
+      max-width: 1140px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 28px 20px 48px;
+      flex: 1;
+    }
+
+    .dashboard-intro-banner {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-left: 5px solid #1e40af;
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .dashboard-intro-text h2 {
+      font-size: 19px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+
+    .dashboard-intro-text p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      max-width: 760px;
+    }
+
+    .dashboard-stats-strip {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .stat-chip {
+      background: #f8fafc;
+      border: 1px solid var(--border-soft);
+      border-radius: 6px;
+      padding: 10px 16px;
+      text-align: center;
+      min-width: 110px;
+    }
+
+    .stat-chip .stat-val {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1e3a8a;
+    }
+
+    .stat-chip .stat-lbl {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-top: 2px;
+    }
+
+    .mock-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .mock-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+    }
+
+    .mock-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+      border-color: #93c5fd;
+    }
+
+    .mock-card-top {
+      padding: 20px 20px 16px;
+    }
+
+    .mock-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      gap: 8px;
+    }
+
+    .mock-num-badge {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .mock-status-tag {
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+
+    .mock-status-tag.unattempted {
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .mock-status-tag.completed {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .mock-card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+
+    .mock-card-sub {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.45;
+      min-height: 36px;
+    }
+
+    .mock-meta-list {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--border-soft);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .mock-meta-item {
+      background: #f8fafc;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid #f1f5f9;
+    }
+
+    .mock-meta-item span {
+      display: block;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .mock-meta-item strong {
+      font-size: 13.5px;
+      color: #1e293b;
+      font-weight: 600;
+    }
+
+    .mock-last-score {
+      margin-top: 12px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .mock-card-footer {
+      padding: 14px 20px;
+      background: #f8fafc;
+      border-top: 1px solid var(--border-soft);
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-primary-cbt {
+      flex: 1;
+      background: #1e40af;
+      color: #ffffff;
+      border: 1px solid #1e3a8a;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 13.5px;
+      font-weight: 600;
+      transition: background 0.15s;
+      text-align: center;
+    }
+
+    .btn-primary-cbt:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-secondary-cbt {
+      background: #ffffff;
+      color: #1e293b;
+      border: 1px solid var(--border-color);
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background 0.15s;
+    }
+
+    .btn-secondary-cbt:hover {
+      background: #f1f5f9;
+    }
+
+    /* ================= VIEW 2: INTRODUCTORY INSTRUCTIONS SCREEN ================= */
+    .instructions-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+    }
+
+    .instructions-header {
+      background: #f1f5f9;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .instructions-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .instructions-body {
+      padding: 24px;
+      max-height: 64vh;
+      overflow-y: auto;
+      line-height: 1.6;
+      font-size: 14px;
+      color: #334155;
+    }
+
+    .instructions-summary-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+    }
+
+    .instructions-summary-item span {
+      font-size: 11.5px;
+      color: #475569;
+      display: block;
+    }
+
+    .instructions-summary-item strong {
+      font-size: 15px;
+      color: #1e3a8a;
+      font-weight: 700;
+    }
+
+    .instructions-body h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 16px 0 8px;
+    }
+
+    .instructions-body ol, .instructions-body ul {
+      padding-left: 22px;
+      margin-bottom: 14px;
+    }
+
+    .instructions-body li {
+      margin-bottom: 6px;
+    }
+
+    .palette-legend-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 18px;
+      font-size: 13.5px;
+    }
+
+    .palette-legend-table th, .palette-legend-table td {
+      border: 1px solid var(--border-soft);
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    .palette-legend-table th {
+      background: #f8fafc;
+      font-weight: 600;
+    }
+
+    .legend-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 28px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 4px;
+    }
+
+    .legend-not-visited {
+      background: #f1f5f9;
+      color: #334155;
+      border: 1px solid #94a3b8;
+    }
+
+    .legend-not-answered {
+      background: var(--not-ans-red);
+      color: #ffffff;
+      border-radius: 12px 12px 2px 2px;
+    }
+
+    .legend-answered {
+      background: var(--ans-green);
+      color: #ffffff;
+      border-radius: 2px 2px 12px 12px;
+    }
+
+    .legend-review {
+      background: var(--review-purple);
+      color: #ffffff;
+      border-radius: 50%;
+    }
+
+    .legend-ans-review {
+      background: var(--review-purple);
+      color: #ffffff;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .legend-ans-review::after {
+      content: "";
+      position: absolute;
+      bottom: 1px;
+      right: 1px;
+      width: 9px;
+      height: 9px;
+      background: #22c55e;
+      border: 1.5px solid #ffffff;
+      border-radius: 50%;
+    }
+
+    .instructions-footer {
+      padding: 16px 24px;
+      background: #f8fafc;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .declaration-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13.5px;
+      color: #1e293b;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .declaration-label input[type="checkbox"] {
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      accent-color: #1e40af;
+      cursor: pointer;
+    }
+
+    .instructions-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* ================= VIEW 3: TCS / EDUQUITY EXAM INTERFACE ================= */
+    .exam-screen {
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+    }
+
+    /* Top Header of Exam */
+    .exam-topbar {
+      background: #1b365d;
+      color: #ffffff;
+      height: 54px;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      border-bottom: 2px solid #0f2342;
+    }
+
+    .exam-topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .exam-system-tag {
+      background: #facc15;
+      color: #0f172a;
+      font-weight: 700;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .exam-test-name {
+      font-size: 16px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .exam-topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .exam-timer-box {
+      background: #0f172a;
+      border: 1px solid #475569;
+      padding: 5px 12px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .exam-timer-value {
+      font-variant-numeric: tabular-nums;
+      font-size: 15px;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    .exam-timer-value.warning {
+      color: #f87171;
+    }
+
+    .btn-top-util {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      padding: 6px 11px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-top-util:hover {
+      background: rgba(255, 255, 255, 0.24);
+    }
+
+    /* Exam Main Body: Left Question Pane + Right Palette Sidebar */
+    .exam-body {
+      flex: 1;
+      display: flex;
+      min-height: 0;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .exam-main-pane {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+      border-right: 1px solid var(--border-color);
+      background: #ffffff;
+    }
+
+    .question-meta-bar {
+      height: 42px;
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--border-color);
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .question-num-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .question-marks-pill {
+      font-size: 12px;
+      color: #475569;
+      font-weight: 600;
+      background: #e2e8f0;
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+
+    /* Scrollable Question Content Area */
+    .question-content-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 22px 26px;
+    }
+
+    .question-stem-text {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #0f172a;
+      font-weight: 500;
+      white-space: pre-line;
+      margin-bottom: 10px;
+    }
+
+    .exam-tag-badge {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: #64748b;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+
+    .question-data-table {
+      width: 100%;
+      max-width: 580px;
+      border-collapse: collapse;
+      margin: 12px 0 18px;
+      font-size: 14px;
+    }
+
+    .question-data-table th,
+    .question-data-table td {
+      border: 1px solid #94a3b8;
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    .question-data-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .options-container {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 820px;
+    }
+
+    .option-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: background 0.12s ease, border-color 0.12s ease;
+      user-select: none;
+    }
+
+    .option-row:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    .option-row.selected {
+      background: #eff6ff;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px #2563eb;
+    }
+
+    .option-row input[type="radio"] {
+      margin-top: 3px;
+      width: 17px;
+      height: 17px;
+      accent-color: #2563eb;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .option-letter {
+      font-weight: 600;
+      color: #334155;
+      font-size: 14.5px;
+      flex-shrink: 0;
+    }
+
+    .option-text {
+      font-size: 15px;
+      color: #0f172a;
+      line-height: 1.45;
+    }
+
+    /* Fixed Bottom Action Bar inside Main Question Pane */
+    .exam-action-bar {
+      background: #f8fafc;
+      border-top: 1px solid var(--border-color);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .action-group-left,
+    .action-group-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-exam-ctrl {
+      padding: 8px 15px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #1e293b;
+      transition: all 0.12s;
+    }
+
+    .btn-exam-ctrl:hover:not(:disabled) {
+      background: #e2e8f0;
+    }
+
+    .btn-exam-ctrl:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-exam-review {
+      background: #7c3aed;
+      color: #ffffff;
+      border-color: #6d28d9;
+    }
+
+    .btn-exam-review:hover:not(:disabled) {
+      background: #6d28d9;
+    }
+
+    .btn-exam-next {
+      background: #16a34a;
+      color: #ffffff;
+      border-color: #15803d;
+    }
+
+    .btn-exam-next:hover:not(:disabled) {
+      background: #15803d;
+    }
+
+    .btn-exam-submit {
+      background: #1e40af;
+      color: #ffffff;
+      border-color: #1e3a8a;
+      padding: 8px 18px;
+    }
+
+    .btn-exam-submit:hover:not(:disabled) {
+      background: #1d4ed8;
+    }
+
+    /* Right-Side Question Number Palette (Hidden on mobile phone interface) */
+    .exam-palette-sidebar {
+      width: 285px;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      min-height: 0;
+      height: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .exam-palette-sidebar {
+        display: none !important;
+      }
+      .exam-test-name {
+        font-size: 13.5px;
+      }
+      .question-content-scroll {
+        padding: 16px;
+      }
+      .exam-action-bar {
+        padding: 10px 12px;
+      }
+      .btn-exam-ctrl {
+        padding: 7px 10px;
+        font-size: 12px;
+      }
+    }
+
+    .palette-candidate-box {
+      padding: 10px 14px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .candidate-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #dbeafe;
+      color: #1e40af;
+      font-weight: 700;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #93c5fd;
+      flex-shrink: 0;
+    }
+
+    .candidate-details {
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .candidate-details strong {
+      display: block;
+      color: #0f172a;
+      font-size: 12.5px;
+    }
+
+    .candidate-details span {
+      color: var(--text-muted);
+    }
+
+    .palette-summary-legend {
+      padding: 10px 12px;
+      background: #eef2f6;
+      border-bottom: 1px solid var(--border-color);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px 8px;
+      font-size: 11px;
+      color: #334155;
+      flex-shrink: 0;
+    }
+
+    .palette-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .palette-legend-item.full-span {
+      grid-column: 1 / -1;
+    }
+
+    .mini-badge {
+      width: 22px;
+      height: 20px;
+      font-size: 10.5px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .palette-header-strip {
+      background: #1e3a8a;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 7px 12px;
+      flex-shrink: 0;
+    }
+
+    /* Scrollable Question Number Grid */
+    .palette-grid-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      align-content: start;
+      background: #f1f5f9;
+    }
+
+    .q-palette-btn {
+      height: 32px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid #94a3b8;
+      background: #ffffff;
+      color: #1e293b;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: transform 0.1s;
+    }
+
+    .q-palette-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .q-palette-btn.current-q {
+      outline: 2.5px solid #0f172a;
+      outline-offset: 1px;
+    }
+
+    .q-palette-btn.st-not-visited {
+      background: #ffffff;
+      color: #334155;
+      border-color: #94a3b8;
+    }
+
+    .q-palette-btn.st-not-answered {
+      background: var(--not-ans-red);
+      color: #ffffff;
+      border-color: #b91c1c;
+      border-radius: 12px 12px 2px 2px;
+    }
+
+    .q-palette-btn.st-answered {
+      background: var(--ans-green);
+      color: #ffffff;
+      border-color: #15803d;
+      border-radius: 2px 2px 12px 12px;
+    }
+
+    .q-palette-btn.st-review {
+      background: var(--review-purple);
+      color: #ffffff;
+      border-color: #6d28d9;
+      border-radius: 50%;
+    }
+
+    .q-palette-btn.st-ans-review {
+      background: var(--review-purple);
+      color: #ffffff;
+      border-color: #6d28d9;
+      border-radius: 50%;
+    }
+
+    .q-palette-btn.st-ans-review::after {
+      content: "";
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+      width: 9px;
+      height: 9px;
+      background: #22c55e;
+      border: 1.5px solid #ffffff;
+      border-radius: 50%;
+    }
+
+    .palette-footer {
+      padding: 10px 12px;
+      background: #ffffff;
+      border-top: 1px solid var(--border-color);
+      flex-shrink: 0;
+    }
+
+    .palette-footer button {
+      width: 100%;
+    }
+
+    /* ================= VIEW 4: POST-SUBMISSION SCORE & SOLUTIONS ================= */
+    .results-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.05);
+    }
+
+    .results-top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border-soft);
+      margin-bottom: 20px;
+    }
+
+    .results-top-header h2 {
+      font-size: 21px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .results-top-header p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .score-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+      gap: 14px;
+    }
+
+    .score-kpi-box {
+      padding: 14px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border-soft);
+      background: #f8fafc;
+    }
+
+    .score-kpi-box.highlight-score {
+      background: #eff6ff;
+      border-color: #93c5fd;
+    }
+
+    .score-kpi-box.kpi-correct {
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+    }
+
+    .score-kpi-box.kpi-wrong {
+      background: #fef2f2;
+      border-color: #fecaca;
+    }
+
+    .score-kpi-box.kpi-unattempted {
+      background: #fffbeb;
+      border-color: #fde68a;
+    }
+
+    .score-kpi-box span {
+      display: block;
+      font-size: 11.5px;
+      color: #475569;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .score-kpi-box strong {
+      display: block;
+      font-size: 22px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 4px;
+    }
+
+    .solutions-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .solutions-header-bar h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab-btn {
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 600;
+      border: 1px solid var(--border-color);
+      background: #ffffff;
+      color: #334155;
+    }
+
+    .filter-tab-btn.active {
+      background: #1e40af;
+      color: #ffffff;
+      border-color: #1e3a8a;
+    }
+
+    .solution-item-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 14px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+    }
+
+    .solution-item-card.sol-incorrect {
+      border-left: 4px solid #dc2626;
+    }
+
+    .solution-item-card.sol-unattempted {
+      border-left: 4px solid #d97706;
+    }
+
+    .sol-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .sol-q-num {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .sol-status-pill {
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+
+    .sol-status-pill.pill-incorrect {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .sol-status-pill.pill-unattempted {
+      background: #fef3c7;
+      color: #b45309;
+    }
+
+    .sol-question-text {
+      font-size: 15px;
+      font-weight: 500;
+      color: #0f172a;
+      line-height: 1.55;
+      white-space: pre-line;
+      margin-bottom: 8px;
+    }
+
+    .sol-ans-comparison {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    .sol-ans-box {
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-size: 13.5px;
+    }
+
+    .sol-ans-box.user-wrong {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+    }
+
+    .sol-ans-box.user-skipped {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      color: #92400e;
+    }
+
+    .sol-ans-box.correct-ans {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+    }
+
+    .sol-ans-box span {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 3px;
+      opacity: 0.85;
+    }
+
+    .sol-explanation-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-size: 13.5px;
+      color: #334155;
+      line-height: 1.55;
+      margin-top: 10px;
+    }
+
+    .sol-explanation-box strong {
+      color: #0f172a;
+    }
+
+    /* ================= MODALS (PAUSE / SUBMIT / FULLSCREEN NOTICE) ================= */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 16px;
+    }
+
+    .modal-dialog {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      max-width: 480px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.22);
+    }
+
+    .modal-dialog h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    .modal-dialog p {
+      font-size: 13.5px;
+      color: #475569;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .submit-summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .submit-summary-cell {
+      background: #f8fafc;
+      border: 1px solid var(--border-soft);
+      padding: 10px 12px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .submit-summary-cell strong {
+      font-size: 15px;
+      color: #0f172a;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .toast-banner {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0f172a;
+      color: #ffffff;
+      padding: 9px 18px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      z-index: 10000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== VIEW 1 & 2 & 4 WRAPPER ==================== -->
+  <div id="portal-wrapper" class="portal-wrapper">
+    <header class="portal-topbar">
+      <div class="portal-brand">
+        <div class="portal-logo-badge">CBT</div>
+        <div class="portal-title-group">
+          <h1>Computer Knowledge Mock Examination Portal</h1>
+          <p>TCS iON / Eduquity Standard Computer-Based Test (SSC CGL Tier II &amp; RRB NTPC)</p>
+        </div>
+      </div>
+      <div class="portal-candidate-pill">
+        <span>Candidate Mode: <strong>Standard CBT (Light Theme)</strong></span>
+      </div>
+    </header>
+
+    <main class="portal-container">
+      <!-- ==================== VIEW 1: MAIN DASHBOARD ==================== -->
+      <section id="view-dashboard">
+        <div class="dashboard-intro-banner">
+          <div class="dashboard-intro-text">
+            <h2>Main Examination Dashboard — Select a Chapter Mock Test</h2>
+            <p>
+              Each mock test below is built strictly as an independent Computer-Based Test (CBT) module in the exact order specified.
+              All data has been fact-checked for 100% accuracy. Options are randomized on every fresh attempt while question order remains fixed.
+              Select any mock test below to view its introductory instructions before beginning the timed examination.
+            </p>
+          </div>
+          <div class="dashboard-stats-strip">
+            <div class="stat-chip">
+              <div class="stat-val">4</div>
+              <div class="stat-lbl">Mock Tests</div>
+            </div>
+            <div class="stat-chip">
+              <div class="stat-val">108</div>
+              <div class="stat-lbl">Total Questions</div>
+            </div>
+            <div class="stat-chip">
+              <div class="stat-val">108 Min</div>
+              <div class="stat-lbl">Total Duration</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="mock-cards-container" class="mock-grid"></div>
+      </section>
+
+      <!-- ==================== VIEW 2: INTRODUCTORY INSTRUCTIONS INTERFACE ==================== -->
+      <section id="view-intro" class="hidden">
+        <div class="instructions-card">
+          <div class="instructions-header">
+            <div>
+              <h2 id="intro-test-title">General Instructions</h2>
+              <p id="intro-test-subtitle" style="font-size: 12.5px; color: #475569; margin-top: 2px;"></p>
+            </div>
+            <button type="button" id="btn-intro-back" class="btn-secondary-cbt">← Back to Main Dashboard</button>
+          </div>
+
+          <div class="instructions-body">
+            <div class="instructions-summary-box">
+              <div class="instructions-summary-item">
+                <span>Mock Test Name</span>
+                <strong id="intro-stat-name">—</strong>
+              </div>
+              <div class="instructions-summary-item">
+                <span>Total Questions</span>
+                <strong id="intro-stat-questions">—</strong>
+              </div>
+              <div class="instructions-summary-item">
+                <span>Strict Timer Duration</span>
+                <strong id="intro-stat-duration">—</strong>
+              </div>
+              <div class="instructions-summary-item">
+                <span>Question Format</span>
+                <strong>4-Option MCQ (Randomized Options)</strong>
+              </div>
+            </div>
+
+            <h3>Please read the following instructions carefully before starting the examination:</h3>
+            <ol>
+              <li>The clock will be set at the server. The countdown timer in the top right corner of the screen will display the remaining time available for you to complete the examination. Move through the questions steadily; <strong>when the timer reaches zero, the examination will end and submit by itself automatically</strong>.</li>
+              <li>The Question Palette displayed on the right side of the screen (on desktop/tablet viewports) will show the status of each question using one of the following standard TCS / Eduquity symbols:</li>
+            </ol>
+
+            <table class="palette-legend-table">
+              <thead>
+                <tr>
+                  <th style="width: 70px;">Symbol</th>
+                  <th>Status Meaning</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="legend-icon legend-not-visited">1</span></td>
+                  <td>You have <strong>NOT visited</strong> the question yet.</td>
+                </tr>
+                <tr>
+                  <td><span class="legend-icon legend-not-answered">2</span></td>
+                  <td>You have <strong>NOT answered</strong> the question.</td>
+                </tr>
+                <tr>
+                  <td><span class="legend-icon legend-answered">3</span></td>
+                  <td>You have <strong>Answered</strong> the question.</td>
+                </tr>
+                <tr>
+                  <td><span class="legend-icon legend-review">4</span></td>
+                  <td>You have <strong>NOT answered</strong> the question, but have marked the question for review.</td>
+                </tr>
+                <tr>
+                  <td><span class="legend-icon legend-ans-review">5</span></td>
+                  <td>The question(s) <strong>"Answered and Marked for Review"</strong> will be considered for evaluation.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>Navigating &amp; Answering a Question:</h3>
+            <ul>
+              <li>Click on the question number in the Question Palette at the right of your screen to go to that numbered question directly. Note that using this option does NOT save your answer to the current question unless you have selected an option.</li>
+              <li>To select your answer, click on one of the four option rows. Clicking an option does <strong>not</strong> automatically jump to the next question and does not display any hints or answer validation during the exam.</li>
+              <li>Click on <strong>Next</strong> to save your current selection and move to the next question, or <strong>Previous</strong> to move to the preceding question.</li>
+              <li>Click on <strong>Clear</strong> to deselect your chosen answer for the current question.</li>
+              <li>Click on <strong>Mark for Review &amp; Next</strong> to mark the current question for review and advance to the next question.</li>
+              <li>Upon clicking <strong>Start Mock Test</strong>, the interface will automatically enter Fullscreen Mode. You can exit fullscreen at any time using the <strong>Exit Fullscreen</strong> button on the top bar, or pause the timer using the <strong>Pause</strong> button.</li>
+              <li>Upon final submission, your score analysis will be displayed along with detailed solutions strictly for <strong>incorrect and un-attempted questions</strong>.</li>
+            </ul>
+          </div>
+
+          <div class="instructions-footer">
+            <label class="declaration-label">
+              <input type="checkbox" id="chk-declaration" />
+              <span>I have read and understood the instructions. I declare that I am not in possession of any prohibited gadget or material and I agree that in case of non-adherence to the instructions, I shall be liable to be debarred from this test.</span>
+            </label>
+            <div class="instructions-actions">
+              <button type="button" id="btn-intro-cancel" class="btn-secondary-cbt">Return to Dashboard</button>
+              <button type="button" id="btn-begin-exam" class="btn-primary-cbt" style="max-width: 280px;">I am ready to begin (Start Test) →</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== VIEW 4: POST-SUBMISSION ANALYSIS & SOLUTIONS ==================== -->
+      <section id="view-result" class="hidden">
+        <div class="results-card">
+          <div class="results-top-header">
+            <div>
+              <h2 id="res-test-title">Mock Test Result &amp; Analysis</h2>
+              <p id="res-test-subtitle">Detailed Score Summary &amp; Solutions for Incorrect and Un-attempted Questions</p>
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button type="button" id="btn-retake-test" class="btn-secondary-cbt">↻ Retake Mock Test</button>
+              <button type="button" id="btn-result-dashboard" class="btn-primary-cbt">← Back to Main Dashboard</button>
+            </div>
+          </div>
+
+          <div class="score-kpi-grid">
+            <div class="score-kpi-box highlight-score">
+              <span>Final Score</span>
+              <strong id="res-kpi-score">0 / 0</strong>
+            </div>
+            <div class="score-kpi-box">
+              <span>Accuracy</span>
+              <strong id="res-kpi-accuracy">0%</strong>
+            </div>
+            <div class="score-kpi-box kpi-correct">
+              <span>Correct Answers</span>
+              <strong id="res-kpi-correct">0</strong>
+            </div>
+            <div class="score-kpi-box kpi-wrong">
+              <span>Incorrect Answers</span>
+              <strong id="res-kpi-wrong">0</strong>
+            </div>
+            <div class="score-kpi-box kpi-unattempted">
+              <span>Un-attempted</span>
+              <strong id="res-kpi-unattempted">0</strong>
+            </div>
+            <div class="score-kpi-box">
+              <span>Time Taken</span>
+              <strong id="res-kpi-time">00:00</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="solutions-header-bar">
+          <div>
+            <h3>Solutions &amp; Explanations (Incorrect &amp; Un-attempted Questions Only)</h3>
+            <p style="font-size: 12.5px; color: #64748b; margin-top: 2px;">
+              As per examination rules, solutions are displayed exclusively for questions that were answered incorrectly or left un-attempted.
+            </p>
+          </div>
+          <div class="filter-tabs">
+            <button type="button" id="tab-filter-all" class="filter-tab-btn active">All Incorrect &amp; Un-attempted (<span id="count-filter-all">0</span>)</button>
+            <button type="button" id="tab-filter-wrong" class="filter-tab-btn">Incorrect Only (<span id="count-filter-wrong">0</span>)</button>
+            <button type="button" id="tab-filter-unattempted" class="filter-tab-btn">Un-attempted Only (<span id="count-filter-unattempted">0</span>)</button>
+          </div>
+        </div>
+
+        <div id="solutions-list-container"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ==================== VIEW 3: ACTIVE EXAM INTERFACE (FULL VIEWPORT) ==================== -->
+  <div id="view-exam" class="exam-screen hidden">
+    <header class="exam-topbar">
+      <div class="exam-topbar-left">
+        <span class="exam-system-tag">TCS / Eduquity CBT</span>
+        <span id="exam-header-title" class="exam-test-name">1. Memory</span>
+      </div>
+      <div class="exam-topbar-right">
+        <div class="exam-timer-box" title="Strict Countdown Timer">
+          <span>Time Left:</span>
+          <span id="exam-timer-display" class="exam-timer-value">00:00</span>
+        </div>
+        <button type="button" id="btn-pause-exam" class="btn-top-util">Pause</button>
+        <button type="button" id="btn-exit-fullscreen" class="btn-top-util">Exit Fullscreen</button>
+      </div>
+    </header>
+
+    <div class="exam-body">
+      <!-- Left Main Question Pane -->
+      <div class="exam-main-pane">
+        <div class="question-meta-bar">
+          <div id="exam-q-number-label" class="question-num-label">Question No. 1 of 62</div>
+          <div class="question-marks-pill">Single Choice MCQ</div>
+        </div>
+
+        <div id="exam-question-scroll" class="question-content-scroll">
+          <div id="exam-q-text" class="question-stem-text"></div>
+          <div id="exam-q-tag-wrap"></div>
+          <div id="exam-q-table-wrap"></div>
+          <div id="exam-options-list" class="options-container"></div>
+        </div>
+
+        <div class="exam-action-bar">
+          <div class="action-group-left">
+            <button type="button" id="btn-q-prev" class="btn-exam-ctrl">Previous</button>
+            <button type="button" id="btn-q-review-next" class="btn-exam-ctrl btn-exam-review">Mark for Review &amp; Next</button>
+            <button type="button" id="btn-q-clear" class="btn-exam-ctrl">Clear</button>
+          </div>
+          <div class="action-group-right">
+            <button type="button" id="btn-q-next" class="btn-exam-ctrl btn-exam-next">Next</button>
+            <button type="button" id="btn-q-submit-bottom" class="btn-exam-ctrl btn-exam-submit">Submit</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right-Side Question Palette (Hidden on mobile phone interface) -->
+      <aside class="exam-palette-sidebar">
+        <div class="palette-candidate-box">
+          <div class="candidate-avatar">CA</div>
+          <div class="candidate-details">
+            <strong>Candidate</strong>
+            <span id="palette-test-name">1. Memory</span>
+          </div>
+        </div>
+
+        <div class="palette-summary-legend">
+          <div class="palette-legend-item">
+            <span id="cnt-answered" class="mini-badge legend-answered">0</span>
+            <span>Answered</span>
+          </div>
+          <div class="palette-legend-item">
+            <span id="cnt-not-answered" class="mini-badge legend-not-answered">0</span>
+            <span>Not Answered</span>
+          </div>
+          <div class="palette-legend-item">
+            <span id="cnt-not-visited" class="mini-badge legend-not-visited">0</span>
+            <span>Not Visited</span>
+          </div>
+          <div class="palette-legend-item">
+            <span id="cnt-review" class="mini-badge legend-review">0</span>
+            <span>Marked for Review</span>
+          </div>
+          <div class="palette-legend-item full-span">
+            <span id="cnt-ans-review" class="mini-badge legend-ans-review">0</span>
+            <span>Answered &amp; Marked for Review</span>
+          </div>
+        </div>
+
+        <div class="palette-header-strip">Question Palette</div>
+
+        <div id="exam-palette-grid" class="palette-grid-scroll"></div>
+
+        <div class="palette-footer">
+          <button type="button" id="btn-q-submit-sidebar" class="btn-exam-ctrl btn-exam-submit">Submit</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 1: PAUSE OVERLAY ==================== -->
+  <div id="modal-pause" class="modal-backdrop hidden">
+    <div class="modal-dialog">
+      <h3>Examination Paused</h3>
+      <p>The countdown timer has been paused. Question content is hidden while the test is paused. Click <strong>Resume Examination</strong> below to continue from where you left off.</p>
+      <div class="modal-actions">
+        <button type="button" id="btn-abort-to-dashboard" class="btn-secondary-cbt">Exit to Dashboard</button>
+        <button type="button" id="btn-resume-exam" class="btn-primary-cbt">Resume Examination</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 2: SUBMIT CONFIRMATION ==================== -->
+  <div id="modal-submit" class="modal-backdrop hidden">
+    <div class="modal-dialog">
+      <h3>Submit Mock Test Confirmation</h3>
+      <p>Are you sure you want to submit this mock test? Please verify your attempt summary below before final submission:</p>
+      <div class="submit-summary-grid">
+        <div class="submit-summary-cell">
+          <span>Total Questions</span>
+          <strong id="sub-sum-total">0</strong>
+        </div>
+        <div class="submit-summary-cell">
+          <span>Answered</span>
+          <strong id="sub-sum-answered" style="color: #16a34a;">0</strong>
+        </div>
+        <div class="submit-summary-cell">
+          <span>Not Answered</span>
+          <strong id="sub-sum-not-answered" style="color: #dc2626;">0</strong>
+        </div>
+        <div class="submit-summary-cell">
+          <span>Marked for Review</span>
+          <strong id="sub-sum-review" style="color: #7c3aed;">0</strong>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" id="btn-cancel-submit" class="btn-secondary-cbt">Return to Test</button>
+        <button type="button" id="btn-confirm-submit" class="btn-primary-cbt">Confirm &amp; Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TOAST NOTIFICATION ==================== -->
+  <div id="toast-banner" class="toast-banner hidden"></div>
+
+  <script>
+    const MOCK_TESTS = [{"id": "memory", "order": 1, "title": "1. Memory", "shortTitle": "Memory", "subtitle": "Primary & Secondary Memory — TCS Previous Years Questions", "questionCount": 62, "durationMinutes": 62, "sourceType": "TCS Based PYQs", "questions": [{"id": 1, "q": "What is the role of ROM (Read-Only Memory) in a computer system?", "tag": "SSC CHSL Tier II 10/01/2024", "options": ["Managing network connection.", "Storing user-generated files and documents.", "Storing the computer's firmware and startup instructions.", "Providing temporary storage for running applications."], "answer": "Storing the computer's firmware and startup instructions.", "explanation": "ROM (Read-Only Memory) is a non-volatile storage medium that permanently stores the computer's firmware (such as BIOS/UEFI) and startup instructions needed to boot the system. Its main types are MROM (Masked ROM), PROM (Programmable ROM), EPROM (Erasable Programmable ROM), and EEPROM (Electrically Erasable Programmable ROM)."}, {"id": 2, "q": "In computer system, the memory is fundamentally divided into ________ memory.", "tag": "Selection Post Phase VI 24/11/2023", "options": ["subjective and objective", "computational and operational", "logical and conceptual", "primary and secondary"], "answer": "primary and secondary", "explanation": "Computer memory is fundamentally divided into Primary (Internal) Memory and Secondary (External) Memory. Primary memory (RAM, ROM, Cache, CPU registers) is directly accessible by the processor, whereas Secondary memory (HDD, SSD, Optical Disks, Magnetic Tape) is accessed via I/O modules for long-term storage."}, {"id": 3, "q": "The CPU interacts directly with the _________ memory to perform read or write operation.", "tag": "SSC CHSL Tier II 02/11/2023", "options": ["register", "primary", "secondary", "cache"], "answer": "primary", "explanation": "The CPU interacts directly with Primary Memory (main memory, comprising RAM and ROM) to perform read or write operations. Secondary memory devices (SSD, HDD, Optical Discs, Magnetic Tapes) are accessed indirectly through I/O controllers."}, {"id": 4, "q": "In computer memory __________ bus is used to transfer addresses between CPU and the main memory.", "tag": "SSC CHSL Tier II 02/11/2023", "options": ["status", "control", "data", "address"], "answer": "address", "explanation": "The address bus is a unidirectional set of conductors used to transfer memory addresses from the CPU to main memory or I/O devices. The data bus transfers actual data, while the control bus carries control and timing signals."}, {"id": 5, "q": "In computer memory, the width of the _______ bus specifies the maximum possible memory supported by a system.", "tag": "SSC CHSL Tier II 02/11/2023", "options": ["control", "I/O", "data", "address"], "answer": "address", "explanation": "The width of the address bus determines the maximum addressable memory capacity of a system (for example, an n-bit address bus can address 2^n unique memory locations). Each distinct memory location has its own exclusive address, a concept known as addressability."}, {"id": 6, "q": "What is the primary purpose of RAM (Random Access Memory) in a computer?", "tag": "SSC CGL Tier II 26/10/2023", "options": ["Storing permanent data and files", "Providing long-term storage for programs", "Providing temporary storage for data that the CPU is currently processing", "Managing peripheral devices"], "answer": "Providing temporary storage for data that the CPU is currently processing", "explanation": "RAM (Random Access Memory) serves as the computer's short-term working memory, providing temporary read/write storage for active programs and data currently being processed by the CPU. Because RAM is volatile, its contents are lost when power is turned off."}, {"id": 7, "q": "What is the function of the cache memory in a computer's memory hierarchy?", "tag": "SSC CGL Tier II 26/10/2023", "options": ["To provide permanent storage for data and files.", "To store frequently used data for faster access by the CPU.", "To control the flow of data between the CPU and memory.", "To manage the allocation of memory resources to different programs."], "answer": "To store frequently used data for faster access by the CPU.", "explanation": "Cache memory is an extremely fast chip-based memory that acts as a high-speed buffer between main memory (RAM) and the CPU. It stores frequently requested instructions and data so they are immediately available to the CPU, reducing average memory access time."}, {"id": 8, "q": "Which of the following is the correct classification of volatile semiconductor memory on the basis of data retention capacity?", "tag": "SSC CHSL Tier II 26/06/2023", "options": ["SRAM and ROM", "DRAM and ROM", "SRAM and DRAM", "RAM and ROM"], "answer": "SRAM and DRAM", "explanation": "Volatile semiconductor memory (RAM) is classified into Static RAM (SRAM) and Dynamic RAM (DRAM). SRAM uses flip-flop transistors and retains data as long as power is supplied without needing refresh cycles, whereas DRAM stores data in capacitors that gradually discharge and require periodic refreshing."}, {"id": 9, "q": "An Erasable Programmable Read-Only Memory (EPROM) retains its content until it is exposed to the _________.", "tag": "SSC CHSL Tier II 26/06/2023", "options": ["electrical signals", "magnetic signals", "ultraviolet light", "radio signals"], "answer": "ultraviolet light", "explanation": "EPROM (Erasable Programmable Read-Only Memory) is a non-volatile ROM chip that retains its data when power is off and can be erased by exposing its quartz window to strong ultraviolet (UV) light, allowing it to be reprogrammed."}, {"id": 10, "q": "What is used for holding program instructions that can't be changed throughout the life of the computer?", "tag": "SSC CHSL 09/03/2023 (Shift 2)", "options": ["ROM", "Register", "RAM", "Cache"], "answer": "ROM", "explanation": "ROM (Read-Only Memory) permanently stores critical program instructions (firmware) that do not change throughout the normal operation of the computer. It is non-volatile memory, unlike RAM, Cache, and CPU Registers."}, {"id": 11, "q": "What is the full form of EPROM?", "tag": "SSC CHSL 21/03/2023 (Shift 3)", "options": ["Erasable Permanent Read Only Memory", "Entire Programmable Read Only Memory", "Erasable Programmable Read Only Memory", "Entire Permanent Read Only Memory"], "answer": "Erasable Programmable Read Only Memory", "explanation": "EPROM stands for Erasable Programmable Read Only Memory. It is a non-volatile memory chip that retains its data when power is switched off and can be erased using UV light and reprogrammed."}, {"id": 12, "q": "Which among the following statements is incorrect?", "tag": "SSC CGL Tier II 02/03/2023", "options": ["Cache memory keeps the programs that can be run in a short amount of time.", "Cache memory stores data in permanent use.", "Cache memory is faster than main memory.", "The size of the cache is usually small."], "answer": "Cache memory stores data in permanent use.", "explanation": "Cache memory is a volatile, temporary high-speed memory buffer between RAM and the CPU that holds frequently used instructions and data for rapid processing. It does NOT store data permanently."}, {"id": 13, "q": "_______ memory is sometimes used to increase the speed of processing by making current programs and data available to the CPU at a rapid rate.", "tag": "SSC CGL Tier II 03/03/2023", "options": ["Backup", "Auxiliary", "Main", "Cache"], "answer": "Cache", "explanation": "Cache memory is used to increase processing speed by making active programs and frequently accessed data available to the CPU at a rapid rate, bridging the speed gap between main memory (RAM) and the processor."}, {"id": 14, "q": "Which among the following is incorrect about cache memory?", "tag": "SSC CGL Tier II 06/03/2023", "options": ["It is slower than the main memory.", "It keeps the programs that can be run in a short amount of time.", "It acts as a high speed buffer between CPU and main memory.", "It stores data in temporary use."], "answer": "It is slower than the main memory.", "explanation": "Cache memory is significantly faster than main memory (RAM). It acts as a small, temporary high-speed buffer between the CPU and main memory to speed up instruction and data retrieval."}, {"id": 15, "q": "Which of the following types of read only memory can be erased by exposing it to an electrical charge and can be reprogrammed?", "tag": "RRB NTPC CBT II 12/06/2022 (Afternoon)", "options": ["EEPROM", "PROM", "EPROM", "ROM"], "answer": "EEPROM", "explanation": "EEPROM (Electrically Erasable Programmable Read-Only Memory) can be erased by exposing it to an electrical charge and reprogrammed electrically in-circuit without removing it from the computer."}, {"id": 16, "q": "Which of the following statements is true?", "tag": "RRB NTPC CBT II 13/06/2022 (Afternoon)", "options": ["Both SRAM and DRAM are random access memory.", "SRAM is a non-volatile memory.", "DRAM is faster than SRAM.", "SRAM requires periodic refreshing."], "answer": "Both SRAM and DRAM are random access memory.", "explanation": "Both SRAM (Static RAM) and DRAM (Dynamic RAM) are types of volatile Random Access Memory. SRAM uses transistors (flip-flops), is faster than DRAM, and does not require periodic refreshing, whereas DRAM uses capacitors and requires periodic refreshing."}, {"id": 17, "q": "Which of the following is an example of non-volatile memory?", "tag": "RRB NTPC 21/01/2021 (Morning)", "options": ["LSI", "RAM", "ROM", "VLSI"], "answer": "ROM", "explanation": "ROM (Read-Only Memory) is non-volatile memory because it retains stored data even when power is turned off. RAM is volatile memory, while LSI (Large Scale Integration) and VLSI (Very Large Scale Integration) refer to IC chip integration levels."}, {"id": 18, "q": "In Computer terminology, what is the full form of EPROM?", "tag": "RRB NTPC 29/01/2021 (Evening)", "options": ["Erasable Programmable Read-Only Memory", "Electronic Programmable Retrieve Only Memory", "Executable Programme Revise Only Memory", "Extended Programme Rewritable Only Memory"], "answer": "Erasable Programmable Read-Only Memory", "explanation": "In computer terminology, EPROM stands for Erasable Programmable Read-Only Memory. It retains data when power is switched off and can be erased using ultraviolet light."}, {"id": 19, "q": "Which of the following is NOT a property of ROM (Read only Memory)?", "tag": "RRB NTPC 30/01/2021 (Evening)", "options": ["It stores information permanently.", "It holds system software such as Boot Loader.", "It is known as volatile memory.", "Information is not lost even if the computer is switched off."], "answer": "It is known as volatile memory.", "explanation": "ROM is non-volatile memory, meaning information is permanently stored and is not lost when the computer is switched off. It holds startup firmware such as the BIOS/Boot Loader. Being volatile is a property of RAM, not ROM."}, {"id": 20, "q": "What is the location of RAM in computers?", "tag": "RRB NTPC 31/01/2021 (Morning)", "options": ["Output device", "Motherboard", "External memory", "Input device"], "answer": "Motherboard", "explanation": "RAM (Random Access Memory) modules (DIMMs/SO-DIMMs) are installed directly into dedicated memory slots on the computer's motherboard."}, {"id": 21, "q": "Which is the primary memory of a computer?", "tag": "RRB NTPC 03/03/2021 (Morning)", "options": ["RAM", "DVD", "USB", "CD"], "answer": "RAM", "explanation": "RAM (Random Access Memory) is the primary memory of a computer, directly accessible by the processor to hold running applications and active data. DVD, USB drives, and CDs are secondary/external storage media."}, {"id": 22, "q": "What is the short form of programmable read-only memory?", "tag": "RRB NTPC 05/03/2021 (Morning)", "options": ["RAM", "PPROM", "ROM", "PROM"], "answer": "PROM", "explanation": "PROM is the abbreviation for Programmable Read-Only Memory, a form of digital non-volatile memory where each bit is locked by a fuse or anti-fuse and can be programmed once after manufacturing."}, {"id": 23, "q": "ROM is composed of:", "tag": "RRB NTPC 07/04/2021 (Evening)", "options": ["semiconductors", "Photoelectric cells", "integrated circuits", "magnetic tapes"], "answer": "integrated circuits", "explanation": "Read-Only Memory (ROM) is composed of solid-state integrated circuits (ICs) pre-programmed with firmware instructions and data."}, {"id": 24, "q": "Which of the following is a volatile memory?", "tag": "RRB NTPC 25/01/2021 (Morning)", "options": ["RAM", "EPROM", "ROM", "PROM"], "answer": "RAM", "explanation": "RAM (Random Access Memory) is volatile memory because it requires continuous electrical power to maintain stored information. ROM, PROM, and EPROM are all non-volatile memories."}, {"id": 25, "q": "Non-volatile memory is a type of computer memory that can retain stored information even when the computer is:", "tag": "RRB NTPC 25/01/2021 (Morning)", "options": ["not powered", "not processed", "intermittently powered", "powered"], "answer": "not powered", "explanation": "Non-volatile memory retains its stored data even when the computer is not powered (switched off). Examples include ROM, flash memory, hard disks, magnetic tapes, and optical discs."}, {"id": 26, "q": "The process of taking out stored results out of physical memory of Computers is known as:", "tag": "RRB NTPC 28/12/2020 (Evening)", "options": ["input process", "processing", "programming", "output process"], "answer": "output process", "explanation": "The process of retrieving and presenting stored results out of the physical memory of a computer to the user or an output device is known as the output process."}, {"id": 27, "q": "Which of the following is NOT a part of auxiliary memories in a Computer system?", "tag": "RRB NTPC 28/12/2020 (Evening)", "options": ["Floppy", "Magnetic tapes", "PROM", "CD-ROM"], "answer": "PROM", "explanation": "PROM (Programmable Read-Only Memory) is a part of primary (internal) memory, not auxiliary (secondary) memory. Floppy disks, magnetic tapes, and CD-ROMs are auxiliary storage media."}, {"id": 28, "q": "What is the full form of PROM?", "tag": "SSC CHSL 13/10/2020 (Morning)", "options": ["Program read-only memory", "Primary read-only memory", "Programmable read-only memory", "Program read-output memory"], "answer": "Programmable read-only memory", "explanation": "PROM stands for Programmable Read-Only Memory. It is a memory chip that can be programmed once by the user after manufacturing, after which the written data is permanent."}, {"id": 29, "q": "Which of the following is a type of memory and is similar to RAM? It is used by computers to move data between the RAM and the CPU.", "tag": "SSC CHSL 15/10/2020 (Morning)", "options": ["Hypertext Link", "ROM", "Cache", "I Beam"], "answer": "Cache", "explanation": "Cache memory (typically built using high-speed SRAM) is an ultra-fast volatile memory that acts as a buffer between RAM and the CPU, holding frequently requested data and instructions."}, {"id": 30, "q": "______ is the fastest to read from and write to than the other kinds of storage in a computer.", "tag": "SSC CHSL 15/10/2020 (Evening)", "options": ["CD ROM", "Floppy Disk", "RAM", "Hard Disk"], "answer": "RAM", "explanation": "Among the given options, RAM (Random Access Memory) is the fastest to read from and write to because it is electronic primary memory accessed directly by the CPU in nanoseconds, unlike mechanical/optical secondary storage (Hard Disk, CD-ROM, Floppy Disk)."}, {"id": 31, "q": "In IT, associative memory is called as:", "tag": "SSC CGL 04/09/2016 (Morning)", "options": ["Virtual memory", "Cache memory", "Content addressable memory", "Main memory"], "answer": "Content addressable memory", "explanation": "Associative memory is also known as Content Addressable Memory (CAM). It is a special high-speed memory unit in which stored data is searched and accessed by the content of the data itself rather than by a specific memory address."}, {"id": 32, "q": "In a computer, what is the name of the high speed memory used to reduce the average time to access data from the Main memory?", "tag": "RRB NTPC 11/04/2016 (Morning)", "options": ["Cache", "RAM", "BIOS", "Hard Disk"], "answer": "Cache", "explanation": "Cache memory is the high-speed memory placed between the CPU and main memory (RAM) to reduce the average time required to access data and instructions from main memory."}, {"id": 33, "q": "In hard disk, which part is a pie-shaped wedge on the track?", "tag": "Selection Post Phase VI 24/11/2023", "options": ["Sectors", "Platter", "Spindle", "Sensor"], "answer": "Sectors", "explanation": "A sector is a pie-shaped wedge subdivision of a circular track on a hard disk platter. It is the smallest physical storage unit on a disk, traditionally storing 512 bytes (or 4096 bytes in Advanced Format drives)."}, {"id": 34, "q": "Which of the following computer disk allows the user to write data permanently on to the disk and it cannot be erased?", "tag": "Selection Post Phase VI 24/11/2023", "options": ["CD - Recordable", "CD - ReWritable", "DVD - RW", "Magneto - Optical Disk"], "answer": "CD - Recordable", "explanation": "CD-Recordable (CD-R) is a Write Once, Read Many (WORM) optical disc that allows the user to write data permanently onto the disc once; it cannot be erased. CD-RW, DVD-RW, and Magneto-Optical disks are rewritable."}, {"id": 35, "q": "Which backup solution offers a good balance between portability and storage capacity, making it suitable for backing up important files and carrying them on the go?", "tag": "Selection Post Phase VI 24/11/2023", "options": ["Floppy disk", "External SSD", "Magnetic tape", "Graphics card"], "answer": "External SSD", "explanation": "An External SSD (Solid-State Drive) combines high storage capacity, fast transfer speeds, shock resistance, and compact portability, making it ideal for backing up important files and carrying them on the go."}, {"id": 36, "q": "What is the purpose of virtual memory in a computer system?", "tag": "Selection Post Phase VI 24/11/2023", "options": ["To run software in a virtualised environment.", "To store files and documents in the cloud.", "To provide additional storage space for large applications.", "To increase capacity of the physical RAM of a computer."], "answer": "To increase capacity of the physical RAM of a computer.", "explanation": "Virtual memory is a memory management technique where secondary storage (hard disk/SSD) is addressed as though it were part of main memory, effectively extending the usable capacity of the computer's physical RAM."}, {"id": 37, "q": "Which backup device provides a convenient way to create system images and complete backups, but may require a lengthy restoration process?", "tag": "SSC CGL Tier II 26/10/2023", "options": ["Tape drive", "Network-attached storage (NAS)", "Solid-state drive (SSD)", "DVD-RW disc"], "answer": "Tape drive", "explanation": "A tape drive stores computer data sequentially on magnetic tape cartridges. While cost-effective and convenient for large system images and archival backups, sequential access makes locating and restoring data a lengthy process."}, {"id": 38, "q": "Which of the following is a magnetic disk?", "tag": "SSC CHSL 14/03/2023 (Shift 4)", "options": ["Winchester", "DVD", "CD - RW", "CD - R"], "answer": "Winchester", "explanation": "A Winchester disk is an early IBM hard disk drive technology and is a magnetic disk. DVD, CD-RW, and CD-R are optical discs that use laser technology."}, {"id": 39, "q": "Which among the following statements about secondary memory is incorrect?", "tag": "SSC CHSL 16/03/2023 (Shift 2)", "options": ["It is known as a backup memory.", "It is used for storing data.", "It is a volatile memory.", "These are magnetic and optical memories."], "answer": "It is a volatile memory.", "explanation": "Secondary memory is non-volatile and persistent in nature, meaning it retains stored data even when electrical power is switched off. Therefore, stating that it is a volatile memory is incorrect."}, {"id": 40, "q": "________ is also known as an electronic disk.", "tag": "SSC CGL Tier II 02/03/2023", "options": ["USB Sticks", "Network Storage Servers", "Solid - State Drive", "USB Hard Drives"], "answer": "Solid - State Drive", "explanation": "A Solid-State Drive (SSD) is also known as an electronic disk because it stores persistent data electronically on solid-state NAND flash memory chips with no moving mechanical parts."}, {"id": 41, "q": "Which among the following statements is incorrect about secondary memory?", "tag": "SSC CGL Tier II 03/03/2023", "options": ["It is known as the backup memory.", "Data is permanently stored even if power is switched OFF.", "Computers may run without the secondary memory.", "It is a volatile memory."], "answer": "It is a volatile memory.", "explanation": "Secondary memory is non-volatile storage (data remains intact when power is turned off). It serves as backup/auxiliary storage, and diskless systems can boot and run using only primary memory (ROM/RAM) or network boot."}, {"id": 42, "q": "________ is a type of dedicated file storage device that provides local-area network (LAN) users with centralized, consolidated disk storage through a standard Ethernet connection.", "tag": "SSC CGL Tier II 03/03/2023", "options": ["Solid - State Drive (SSD)", "USB Hard Drives", "USB Sticks", "Network Attached Storage (NAS)"], "answer": "Network Attached Storage (NAS)", "explanation": "Network Attached Storage (NAS) is a dedicated file-level storage server connected to a Local Area Network (LAN) via Ethernet, providing centralized shared disk storage to multiple network users."}, {"id": 43, "q": "Which of the following is also known as a flash drive?", "tag": "SSC CGL Tier II 06/03/2023", "options": ["Disk Array", "HDD", "SSD", "Pen drive"], "answer": "Pen drive", "explanation": "A pen drive (or thumb drive) is commonly called a USB flash drive. It is a compact, portable storage device combining NAND flash memory with an integrated USB interface."}, {"id": 44, "q": "Which among the following is not a magnetic storage?", "tag": "SSC CGL Tier II 07/03/2023", "options": ["Winchester disk", "Floppy Drive", "Memory Card", "Magnetic Tape"], "answer": "Memory Card", "explanation": "A Memory Card is a solid-state flash memory storage device, not magnetic storage. Winchester disks, floppy disks, and magnetic tapes all store data on magnetized media."}, {"id": 45, "q": "Which among the following statements about magnetic tape is incorrect?", "tag": "SSC CGL Tier II 07/03/2023", "options": ["A magnetic tape consists of vertical columns called frames.", "Magnetic tape consists of horizontal rows called channels or tracks.", "Magnetic tape drives are suitable for storage of data that need to be accessed randomly.", "There is no addressing in the magnetic tapes."], "answer": "Magnetic tape drives are suitable for storage of data that need to be accessed randomly.", "explanation": "Magnetic tape is a sequential-access storage medium, meaning the tape must be wound sequentially to reach a specific record. Therefore, magnetic tape drives are NOT suitable for data that requires fast random access."}, {"id": 46, "q": "Which type of storage device is a hard disk?", "tag": "SSC CHSL 05/08/2021 (Evening)", "options": ["Secondary", "Tertiary", "Off - line", "Primary"], "answer": "Secondary", "explanation": "A hard disk drive (HDD) is the standard non-volatile secondary storage device in a computer system, connected to the motherboard via interfaces such as SATA or SAS."}, {"id": 47, "q": "Which of the following is a primary storage device in a personal computer?", "tag": "SSC CHSL 09/08/2021 (Morning)", "options": ["Hard disk", "Compact disk", "Pen drive", "Random - access memory"], "answer": "Random - access memory", "explanation": "Random-Access Memory (RAM) is a primary storage device directly accessed by the CPU. Hard disks, compact discs (CDs), and pen drives are secondary storage devices."}, {"id": 48, "q": "Which of the following is NOT an example of an optical disk?", "tag": "SSC CHSL 12/08/2021 (Evening)", "options": ["Blue Ray Disk", "PROM", "CD ROM", "DVD"], "answer": "PROM", "explanation": "PROM (Programmable Read-Only Memory) is a semiconductor primary memory chip, not an optical disc. Blu-ray Disc, CD-ROM, and DVD are all optical storage media read and written using lasers."}, {"id": 49, "q": "In the context of computers, the time taken to receive data from a storage device or to obtain data from a peripheral unit is known as ___________.", "tag": "RRB NTPC 11/01/2021 (Morning)", "options": ["Downtime", "Time sharing", "Access time", "Time slicing"], "answer": "Access time", "explanation": "Access time is the total time elapsed between initiating a request for data from a storage device (or peripheral unit) and the completion of the data delivery."}, {"id": 50, "q": "Which type of storage device is a Hard disc?", "tag": "RRB NTPC 19/01/2021 (Morning)", "options": ["Primary storage", "Tertiary storage", "Secondary storage", "Off - line storage"], "answer": "Secondary storage", "explanation": "A hard disk is a magnetic secondary storage device used for persistent, non-volatile storage of files and operating system software."}, {"id": 51, "q": "A hard disk is an example of which type of data storage device?", "tag": "RRB NTPC 23/01/2021 (Evening)", "options": ["Tertiary storage", "Primary storage", "Secondary storage", "Offline storage"], "answer": "Secondary storage", "explanation": "Hard disk drives (HDDs) are classic examples of secondary storage devices. Primary storage consists of RAM and ROM, whereas tertiary storage involves robotic tape libraries or optical jukeboxes."}, {"id": 52, "q": "The capacity of a 3.5 - inch floppy disk is:", "tag": "RRB NTPC 04/03/2021 (Morning)", "options": ["1.40 MB", "1.44 MB", "1 GB", "2.44 MB"], "answer": "1.44 MB", "explanation": "A standard high-density 3.5-inch microfloppy disk has a formatted storage capacity of 1.44 MB."}, {"id": 53, "q": "What kind of storage is RAM?", "tag": "RRB NTPC 08/03/2021 (Evening)", "options": ["Tertiary", "Secondary", "Primary", "Offline"], "answer": "Primary", "explanation": "RAM (Random Access Memory) is volatile primary storage that communicates directly with the CPU."}, {"id": 54, "q": "Which of the following is an example of a Primary Storage Device?", "tag": "RRB NTPC 05/04/2021 (Evening)", "options": ["Magnetic Tape", "Random Access Memory", "Hard Disk", "Optical Disc"], "answer": "Random Access Memory", "explanation": "Random Access Memory (RAM) is a primary storage device. Magnetic tape, hard disks, and optical discs are secondary storage media."}, {"id": 55, "q": "A hard disk is an example of which type of data storage device?", "tag": "SSC CHSL 18/03/2020 (Morning)", "options": ["Primary Storage", "Secondary Storage", "Offline Storage", "Tertiary Storage"], "answer": "Secondary Storage", "explanation": "A hard disk is a non-volatile secondary storage device that operates alongside the computer's primary storage (RAM and ROM) to hold large volumes of data permanently."}, {"id": 56, "q": "______ is a small, portable flash memory card that plugs into a computer's USB port and functions as a portable hard drive.", "tag": "SSC CHSL 15/10/2020 (Evening)", "options": ["Flash drive", "CD - RW", "DVD - ROM", "CD - ROM"], "answer": "Flash drive", "explanation": "A USB flash drive (thumb drive or pen drive) is a plug-and-play portable storage device that uses solid-state flash memory and plugs into a computer's USB port."}, {"id": 57, "q": "In the field of information and communication technology, what is the full form of FDD?", "tag": "SSC CHSL 10/07/2019 (Morning)", "options": ["Folder Disk Drive", "Floppy Disk Drive", "Folder Data Drive", "Floppy Data Drive"], "answer": "Floppy Disk Drive", "explanation": "In ICT, FDD stands for Floppy Disk Drive, a magnetic disk storage drive that reads and writes data on thin, flexible magnetic disks sealed in a protective plastic carrier."}, {"id": 58, "q": "CD - ROM is a ______.", "tag": "RRB NTPC CBT II 17/01/2017 (Afternoon)", "options": ["MP3 file", "Microprocessor", "Magnetic Disk", "Storage medium"], "answer": "Storage medium", "explanation": "A CD-ROM (Compact Disc Read-Only Memory) is an optical storage medium used to store digital data, audio, and software applications."}, {"id": 59, "q": "A DVD is an example of -", "tag": "RRB NTPC CBT II 19/01/2017 (Evening)", "options": ["Solid state storage device", "Output device", "Hard disk", "Optical disk"], "answer": "Optical disk", "explanation": "A DVD (Digital Versatile Disc / Digital Video Disc) is an optical disc storage medium that uses a focused red laser beam to read and write data."}, {"id": 60, "q": "Which is not an external storage device?", "tag": "SSC CGL 29/08/2016 (Evening)", "options": ["CD - ROM", "DVD - ROM", "Pen Drive", "RAM"], "answer": "RAM", "explanation": "RAM (Random Access Memory) is internal primary memory mounted on the motherboard, whereas CD-ROM, DVD-ROM, and Pen Drives are external/removable secondary storage devices."}, {"id": 61, "q": "Which of the storage devices of computers has now become obsolete?", "tag": "RRB NTPC 22/04/2016 (Afternoon)", "options": ["Floppy", "CD ROM", "Pen drive", "Hard disk"], "answer": "Floppy", "explanation": "The floppy disk has become obsolete due to its very small storage capacity (1.44 MB) and slow transfer speed, having been replaced by USB flash drives, SSDs, and cloud storage."}, {"id": 62, "q": "Which of the following is not a storage device?", "tag": "RRB NTPC 26/04/2016 (Afternoon)", "options": ["Hard Disk", "CD ROM", "Flash Drive", "Modem"], "answer": "Modem", "explanation": "A Modem (Modulator-Demodulator) is a networking/communication hardware device that converts digital signals to analog signals and vice versa for transmission over communication lines; it is not a storage device."}]}, {"id": "backup", "order": 2, "title": "2. Backup Devices & Protocols", "shortTitle": "Backup Devices & Protocols", "subtitle": "Ports, Storage Diagnostics, RAID & Cloud Backup Protocols (Notes)", "questionCount": 15, "durationMinutes": 15, "sourceType": "Notes Based MCQs", "questions": [{"id": 1, "q": "Which of the following backup methods stores only the data that has changed since the last FULL backup, requiring only the full backup and the latest backup file for restoration?", "tag": "", "options": ["Differential Backup", "Incremental Backup", "Continuous Data Protection (CDP)", "Mirror Backup"], "answer": "Differential Backup", "explanation": "A Differential Backup copies all data that has changed since the last FULL backup. While it grows in size each day until the next full backup, it offers faster restoration than an incremental backup because restoration requires only the last Full Backup plus the latest Differential Backup."}, {"id": 2, "q": "Consider the following statements regarding Incremental Backup and Differential Backup:\nStatement I: An Incremental Backup copies only the files that have changed since the last incremental or full backup, taking less time daily.\nStatement II: Restoring from an Incremental Backup requires the last Full Backup plus every sequential Incremental Backup in exact chronological order.\nWhich of the above statements is/are correct?", "tag": "", "options": ["Both Statement I and Statement II are correct", "Only Statement I is correct", "Only Statement II is correct", "Neither Statement I nor Statement II is correct"], "answer": "Both Statement I and Statement II are correct", "explanation": "Both statements are correct. Incremental backup copies only data modified since the most recent backup (full or incremental), minimizing daily backup time and storage, but restoration requires the base Full Backup plus every subsequent Incremental Backup in exact order."}, {"id": 3, "q": "In RAID architecture, what does RAID-5 refer to and what is the minimum number of drives required for its implementation?", "tag": "", "options": ["Striping with distributed parity; requires a minimum of 3 drives", "Block-level striping without parity; requires a minimum of 2 drives", "Disk mirroring for redundancy; requires a minimum of 2 drives", "Striping with double parity; requires a minimum of 4 drives"], "answer": "Striping with distributed parity; requires a minimum of 3 drives", "explanation": "RAID-5 utilizes block-level striping with distributed parity across drives. It requires a minimum of 3 drives and can survive the failure of one drive without any data loss."}, {"id": 4, "q": "Evaluate the following statements regarding RAID-0 and RAID-1 configurations:\n1. RAID-0 divides data into blocks and distributes them across drives (striping) to increase read/write performance, but offers zero redundancy if a drive fails.\n2. RAID-1 provides disk mirroring by writing identical data simultaneously to at least 2 drives, allowing seamless operation if one drive fails.\nWhich of the statements given above is/are correct?", "tag": "", "options": ["Both 1 and 2", "Only 1", "Only 2", "Neither 1 nor 2"], "answer": "Both 1 and 2", "explanation": "Both statements are correct. RAID-0 (Striping) maximizes speed across multiple controllers with zero fault tolerance, whereas RAID-1 (Mirroring) duplicates data identically across at least two drives for high redundancy."}, {"id": 5, "q": "Which backup system performs real-time synchronization by capturing every version saved and allowing restoration to any specific point in time without scheduling backup windows?", "tag": "", "options": ["Continuous Data Protection (CDP)", "Data Deduplication", "Cold Data Archival Storage", "Tape Library Archiving"], "answer": "Continuous Data Protection (CDP)", "explanation": "Continuous Data Protection (CDP) performs real-time backup synchronization by capturing every change or version saved to storage, enabling recovery to any specific point in time without scheduled batch backup windows."}, {"id": 6, "q": "What is the primary function of 'Data Deduplication' in modern enterprise backup systems?", "tag": "", "options": ["Removal of duplicate data blocks by replacing identical files or blocks with tiny reference pointers", "Encrypting both commands and data over an SSH file transfer channel", "Replicating active data across multiple continents to survive natural disasters", "Dividing data into blocks across multiple disks without parity"], "answer": "Removal of duplicate data blocks by replacing identical files or blocks with tiny reference pointers", "explanation": "Data Deduplication eliminates redundant copies of repeating data blocks by replacing identical files or blocks with small reference pointers, saving vast amounts of backup storage space."}, {"id": 7, "q": "Which of the following statements accurately distinguishes 'Archiving' from 'Backup'?", "tag": "", "options": ["Backup is a copy of active data for operational recovery, whereas Archiving moves inactive or stagnant data off primary storage for long-term compliance and space-saving.", "Archiving is used exclusively for real-time disaster recovery of active databases, whereas Backup permanently deletes active files.", "Backup removes stagnant data from primary storage, whereas Archiving only stores data changed since the last incremental backup.", "Archiving requires RAID-0 striping, whereas Backup requires optical jukeboxes."], "answer": "Backup is a copy of active data for operational recovery, whereas Archiving moves inactive or stagnant data off primary storage for long-term compliance and space-saving.", "explanation": "Backing up creates a duplicate operational copy of active data to recover quickly from corruption or ransomware. Archiving relocates inactive, stagnant data off primary storage for long-term retention, regulatory compliance, and primary space optimization."}, {"id": 8, "q": "In cloud infrastructure, what does Amazon Web Services (AWS) 'Glacier' refer to?", "tag": "", "options": ["Cold Data Archival Storage with extremely low storage costs for long-term, rarely accessed data", "High-speed NVMe caching storage for real-time transaction processing", "An unencrypted HTTP port 80 file transfer service", "A local hardware interface for connecting daisy-chained FireWire scanners"], "answer": "Cold Data Archival Storage with extremely low storage costs for long-term, rarely accessed data", "explanation": "AWS Glacier refers to Cold Data Archival Storage designed for long-term, rarely accessed archival data at extremely low storage cost, though data retrieval takes longer than warm/hot storage."}, {"id": 9, "q": "Which network protocol is specifically used for secure file transfer in cloud backup by encrypting both commands and data, and how do cloud backup systems ensure survival against localized natural disasters?", "tag": "", "options": ["SFTP (SSH File Transfer Protocol); via Geo-replication across data centers", "HTTP over Port 80; via local RAID-0 striping", "SMB/NFS; via single-zone magnetic tape winding", "IEEE 1284; via optical disc rot protection"], "answer": "SFTP (SSH File Transfer Protocol); via Geo-replication across data centers", "explanation": "SFTP (SSH File Transfer Protocol) secures cloud backup transfers by encrypting both commands and data. Cloud backup platforms ensure high data availability and disaster survival through geo-replication across multiple physical zones or continents."}, {"id": 10, "q": "Consider the following statements regarding enterprise storage hardware:\n1. Automated Tape Libraries utilize robotic arms to manage LTO magnetic tape cartridges, offering Petabytes of storage at low cost for enterprise data centers.\n2. Optical Jukebox systems use robotic arms to automatically load and unload hundreds or thousands of high-capacity optical discs.\n3. NAS (Network Attached Storage) operates as an independent file server on a network using LAN/WAN protocols (such as SMB/NFS) via an RJ-45 Ethernet connection.\nWhich of the statements given above are correct?", "tag": "", "options": ["1, 2 and 3", "Only 1 and 2", "Only 2 and 3", "Only 1 and 3"], "answer": "1, 2 and 3", "explanation": "All three statements are factually correct based on the diagnostic storage hardware notes: Tape Libraries use robotic arms with LTO cartridges; Optical Jukeboxes use robotic arms to handle optical discs; and NAS systems act as independent network file servers accessed over Ethernet (RJ-45) via SMB/NFS protocols."}, {"id": 11, "q": "Which of the following statements correctly compares Tape Drives, Magnetic Hard Disks, and Solid-State Drives (SSDs) as backup devices?", "tag": "", "options": ["Tape drives use sequential access; magnetic hard disks use direct (random) access via mechanical read/write heads; SSDs use NAND flash memory with the highest data transfer rate.", "Tape drives use direct access; magnetic hard disks use sequential access; SSDs use spinning magnetic platters.", "SSDs require physical winding of a magnetic ribbon; tape drives have no moving mechanical parts.", "Magnetic hard disks have higher transfer rates than PCIe/NVMe SSDs because they use mechanical arms."], "answer": "Tape drives use sequential access; magnetic hard disks use direct (random) access via mechanical read/write heads; SSDs use NAND flash memory with the highest data transfer rate.", "explanation": "Tape drives rely on sequential access (winding magnetic ribbon), making restoration slow despite great archival cost-efficiency. Magnetic hard drives use direct (random) access on spinning platters. SSDs use solid-state NAND flash memory with no moving parts, achieving the highest transfer rates (modern PCIe/NVMe SSDs exceed 7,000 MB/s)."}, {"id": 12, "q": "Which laser wavelengths/types are matched correctly with Optical Disc formats (CD, DVD, and Blu-ray) used for reading microscopic pits and lands etched into a polycarbonate layer?", "tag": "", "options": ["CD: Infrared laser | DVD: Red laser | Blu-ray: Blue-violet laser", "CD: Blue-violet laser | DVD: Infrared laser | Blu-ray: Red laser", "CD: Red laser | DVD: Blue-violet laser | Blu-ray: Ultraviolet laser", "CD: Green laser | DVD: Red laser | Blu-ray: Infrared laser"], "answer": "CD: Infrared laser | DVD: Red laser | Blu-ray: Blue-violet laser", "explanation": "Optical discs use focused lasers to read microscopic pits and lands on a polycarbonate layer: CDs use Infrared laser light (~780 nm), DVDs use Red laser light (~650 nm), and Blu-ray discs use Blue-violet laser light (405 nm). They are immune to electromagnetic pulses (EMPs) but susceptible to physical degradation (disc rot)."}, {"id": 13, "q": "Which interface was historically favored by Apple for connecting scanners and external drives due to high sustained transfer rates and daisy-chaining capabilities, and what is its IEEE standard designation?", "tag": "", "options": ["FireWire (IEEE-1394)", "Parallel Port (IEEE-1284)", "Serial Port (RS-232)", "PS/2 (6-pin mini-DIN)"], "answer": "FireWire (IEEE-1394)", "explanation": "FireWire (standardized as IEEE-1394) was favored by Apple for connecting external drives, scanners, and video editing equipment due to its high sustained data transfer rates and support for daisy-chaining devices."}, {"id": 14, "q": "Consider the following statements regarding external storage and peripheral interfaces:\n1. USB 3.0 introduced SuperSpeed transfer with a maximum theoretical speed of 5 Gbps, outperforming USB 2.0's 480 Mbps.\n2. Through 'Alternate Modes', a single 24-pin USB Type-C cable can support Data (up to 40 Gbps), Power (up to 240W USB-PD), and Video (DisplayPort/HDMI).\n3. The eSATA port was designed to provide native internal SATA speeds to external storage devices before USB 3.0 rendered it largely obsolete.\nWhich of the statements given above are correct?", "tag": "", "options": ["1, 2 and 3", "Only 1 and 2", "Only 1 and 3", "Only 2 and 3"], "answer": "1, 2 and 3", "explanation": "All three statements are accurate: USB 3.0 offers a 5 Gbps theoretical maximum speed (vs. 480 Mbps for USB 2.0); a 24-pin USB Type-C connector supports Data + Power + Video via Alternate Modes; and eSATA provided native SATA speeds to external drives prior to the widespread adoption of USB 3.0."}, {"id": 15, "q": "Match the following computer ports/protocols from the system diagnostics notes with their correct technical specifications:\nI. Parallel Port (Line Printer Port) — A. 6-pin mini-DIN connector (green for mouse, purple for keyboard)\nII. Serial Port (RS-232) — B. IEEE 1284 standard utilizing a 25-pin DB-25 connector\nIII. PS/2 Port — C. 9-pin (DE-9) and 25-pin (DB-25) versions transmitting 1 bit at a time\nIV. HTTP & HTTPS Ports — D. Port 80 (unencrypted HTTP) and Port 443 (secure HTTPS)", "tag": "", "options": ["I - B, II - C, III - A, IV - D", "I - C, II - B, III - A, IV - D", "I - B, II - A, III - C, IV - D", "I - D, II - C, III - B, IV - A"], "answer": "I - B, II - C, III - A, IV - D", "explanation": "Parallel (Line Printer Port / LPT) follows the IEEE 1284 standard with a 25-pin DB-25 connector; Serial (RS-232) comes in 9-pin DE-9 and 25-pin DB-25 versions transmitting 1 bit sequentially; PS/2 (introduced by IBM in 1987) is a 6-pin mini-DIN connector; HTTP uses Port 80 while HTTPS uses Port 443."}]}, {"id": "printers", "order": 3, "title": "3. Printers", "shortTitle": "Printers", "subtitle": "Impact & Non-Impact Printers, Mechanisms & Components (Notes)", "questionCount": 20, "durationMinutes": 20, "sourceType": "Notes Based MCQs", "questions": [{"id": 1, "q": "Who is credited with inventing the movable-type printing press in 1440, and where was the printing press first introduced in India via Francis Xavier?", "tag": "", "options": ["Johannes Gutenberg; Goa", "Robert Howard; Mumbai", "Gary Starkweather; Kolkata", "Andrew Gabor; Chennai"], "answer": "Johannes Gutenberg; Goa", "explanation": "Johannes Gutenberg is the founder of the movable-type printing press (1440), and the printing press first arrived in India in Goa via Francis Xavier."}, {"id": 2, "q": "What is the primary function of a computer printer, and in what unit are both its resolution and output quality measured?", "tag": "", "options": ["Converts soft copy (digital) into hard copy (physical); measured in DPI (Dots Per Inch)", "Converts hard copy (physical) into soft copy (digital); measured in PPM (Pixels Per Millimeter)", "Converts analog audio into digital signals; measured in CPS (Characters Per Second)", "Stores digital files on magnetic platters; measured in LPM (Lines Per Minute)"], "answer": "Converts soft copy (digital) into hard copy (physical); measured in DPI (Dots Per Inch)", "explanation": "The primary function of a printer is to convert a digital soft copy into a physical hard copy. Both printer resolution and output quality are measured in DPI (Dots Per Inch)."}, {"id": 3, "q": "Which milestone device, released by Epson (Japan), is recognized as the world's first electronic printer?", "tag": "", "options": ["EP-101", "IBM 1403", "HP LaserJet I", "Xerox 9700"], "answer": "EP-101", "explanation": "The EP-101 (Electronic Printer-101) developed by Epson in Japan was the world's first compact electronic printer."}, {"id": 4, "q": "Consider the following statements regarding printer connectivity:\nStatement I: Printers historically connected to personal computers via the Parallel Port and use the USB Port or Ethernet in modern systems.\nStatement II: A Parallel Port can also be directly used to connect computer video monitors.\nWhich of the above statements is/are correct?", "tag": "", "options": ["Only Statement I is correct", "Only Statement II is correct", "Both Statement I and Statement II are correct", "Neither Statement I nor Statement II is correct"], "answer": "Only Statement I is correct", "explanation": "Statement I is correct: printers historically used the Parallel Port (LPT) and now use USB or Ethernet ports. Statement II is incorrect because a Parallel Port cannot connect monitors."}, {"id": 5, "q": "Which fundamental mechanism distinguishes an 'Impact Printer' from a 'Non-Impact Printer'?", "tag": "", "options": ["Impact printers involve direct physical contact (striking) between the print head and paper, whereas Non-Impact printers use heat, laser, or spray with no direct physical strike.", "Impact printers use laser beams and electrostatic drums, whereas Non-Impact printers strike an inked ribbon with metal pins.", "Impact printers are completely silent and print at 100+ PPM, whereas Non-Impact printers can produce carbon copies.", "Impact printers use Bisphenol thermo-chromic paper, whereas Non-Impact printers use golf-ball wheels."], "answer": "Impact printers involve direct physical contact (striking) between the print head and paper, whereas Non-Impact printers use heat, laser, or spray with no direct physical strike.", "explanation": "In an Impact Printer, the print head and paper are forced together via direct physical contact against an ink ribbon. Non-Impact Printers form characters and images using heat, laser, or ink spray without striking the paper."}, {"id": 6, "q": "Which printer is recognized as the first impact printer, uses a fixed number of pins or wires to strike an ink ribbon, and is classified as a Character Printer?", "tag": "", "options": ["Dot Matrix Printer", "Thermal Printer", "Laser Printer", "Inkjet Printer"], "answer": "Dot Matrix Printer", "explanation": "The Dot Matrix Printer (associated with Robert Howard / IBM, 1957) is a character impact printer that uses a fixed number of pins/wires to strike an ink ribbon against paper."}, {"id": 7, "q": "What is the main operational advantage of a Dot Matrix Printer over non-impact printers like Laser printers, and in what unit is its printing speed measured?", "tag": "", "options": ["Creating carbon copies; speed is measured in CPS (Characters Per Second)", "Printing high-resolution color photographs silently; speed is measured in PPM (Pages Per Minute)", "Printing large architectural blueprints; speed is measured in DPI (Dots Per Inch)", "Bonding dry toner powder with heat; speed is measured in LPM (Lines Per Minute)"], "answer": "Creating carbon copies; speed is measured in CPS (Characters Per Second)", "explanation": "Because a Dot Matrix Printer physically strikes the ribbon and paper, its main advantage is the ability to produce multi-part carbon copies. As a character printer, its speed is measured in CPS (Characters Per Second)."}, {"id": 8, "q": "Which impact printer, invented by Andrew Gabor in 1970, is popularly known as the 'Golf Ball Printer' and operates like a typewriter using a preformed character wheel?", "tag": "", "options": ["Daisy Wheel Printer", "Chain Printer", "Drum Printer", "Thermal Printer"], "answer": "Daisy Wheel Printer", "explanation": "The Daisy Wheel Printer (invented by Andrew Gabor in 1970) is known as the 'Golf Ball Printer'. It operates like a typewriter using a petal/wheel mechanism, is slow and noisy, and cannot print graphics."}, {"id": 9, "q": "Consider the following statements regarding Daisy Wheel Printers:\n1. They are impact character printers that operate silently at over 100 pages per minute.\n2. They are slow, noisy in operation, and cannot print graphics.\nWhich of the statements given above is/are correct?", "tag": "", "options": ["Only 2", "Only 1", "Both 1 and 2", "Neither 1 nor 2"], "answer": "Only 2", "explanation": "Daisy Wheel Printers are impact printers that are slow, noisy (NOT silent in operation), and restricted to preformed characters on the wheel, meaning they cannot print graphics."}, {"id": 10, "q": "Chain Printers and Drum Printers are classified under which category of impact printers, and how is their printing speed measured?", "tag": "", "options": ["Line Printers; speed is measured in LPM (Lines Per Minute)", "Page Printers; speed is measured in PPM (Pages Per Minute)", "Non-Impact Printers; speed is measured in CPS (Characters Per Second)", "Thermal Printers; speed is measured in DPI (Dots Per Inch)"], "answer": "Line Printers; speed is measured in LPM (Lines Per Minute)", "explanation": "Chain Printers (using a moving chain of characters, monochrome impact) and Drum Printers are known as Line Printers, and their speed is measured in LPM (Lines Per Minute)."}, {"id": 11, "q": "Who invented the Thermal Printer in 1965, and what special type of paper does it use to produce output without ink?", "tag": "", "options": ["Jack Kilby; special Thermo-chromic paper (Bisphenol paper that blackens on heat)", "Gary Starkweather; standard bond paper coated with dry toner powder", "Andrew Gabor; multi-part carbon copy paper", "Robert Howard; electrostatically charged organic photoconductor paper"], "answer": "Jack Kilby; special Thermo-chromic paper (Bisphenol paper that blackens on heat)", "explanation": "Invented by Jack Kilby in 1965, the Thermal Printer is an 'Inkless Printer' that uses heat and special thermo-chromic (Bisphenol-coated) paper that blackens when heated."}, {"id": 12, "q": "Which non-impact 'Inkless Printer' is most widely used in ATMs, Point of Sale (POS) devices, banking terminals, grocery receipt machines, and older fax machines?", "tag": "", "options": ["Thermal Printer", "Daisy Wheel Printer", "Chain Printer", "Dot Matrix Printer"], "answer": "Thermal Printer", "explanation": "Thermal printers require no ink or ribbon ('Inkless Printer') and are quiet, compact, and fast, making them the standard choice for ATMs, POS terminals, banking, grocery receipts, and fax machines."}, {"id": 13, "q": "Consider the following statements regarding Inkjet Printers:\n1. Inkjet printers were developed by HP (Hewlett-Packard) in 1976.\n2. They use ink cartridges and form images by spray-painting microscopic droplets of ink through tiny nozzles.\n3. They are non-impact printers and are particularly well-suited for printing photos and graphics.\nWhich of the statements given above are correct?", "tag": "", "options": ["1, 2 and 3", "Only 1 and 2", "Only 2 and 3", "Only 1 and 3"], "answer": "1, 2 and 3", "explanation": "All three statements are correct: Inkjet printers were developed by HP in 1976, use liquid ink cartridges sprayed as microscopic droplets through nozzles, and are ideal for high-quality photos and graphics."}, {"id": 14, "q": "Who invented the Laser Printer at Xerox in 1969, and what type of coloring agent does it use?", "tag": "", "options": ["Gary Starkweather; Toner (Dry Ink Powder)", "Jack Kilby; Liquid Ink Cartridges", "Robert Howard; Fabric Ink Ribbon", "Andrew Gabor; Thermo-chromic Bisphenol Wax"], "answer": "Gary Starkweather; Toner (Dry Ink Powder)", "explanation": "The Laser Printer was invented by Gary Starkweather at Xerox in 1969. It combines photocopy technology with a laser beam and uses Toner (dry ink powder)."}, {"id": 15, "q": "In a Laser Printer, what does the abbreviation 'OPC' stand for in the context of its electrostatically charged drum mechanism, and how is its printing speed rated?", "tag": "", "options": ["Organic Photo Conductor; fastest among printers (100+ PPM - Pages Per Minute)", "Optical Pin Cartridge; measured in CPS (Characters Per Second)", "Output Paper Controller; measured in LPM (Lines Per Minute)", "Oscillating Print Cylinder; measured in DPI (Dots Per Inch)"], "answer": "Organic Photo Conductor; fastest among printers (100+ PPM - Pages Per Minute)", "explanation": "Laser printers use an electrostatically charged drum coated with an Organic Photo Conductor (OPC). They are the fastest category of printers (capable of 100+ Pages Per Minute in high-end models) and are best for business and desktop publishing."}, {"id": 16, "q": "Which of the following components is NOT used in a Laser Printer?", "tag": "", "options": ["Print Head", "Electrostatically Charged Drum (OPC)", "Fuser Assembly", "Toner (Dry Ink Powder)"], "answer": "Print Head", "explanation": "A Laser Printer does NOT use a moving Print Head; instead, it uses a laser beam, mirrors, an electrostatically charged OPC drum, toner powder, and a fuser assembly."}, {"id": 17, "q": "In a Laser Printer, what is the specific function of the 'Fuser Assembly' and the 'Solenoid'?", "tag": "", "options": ["Fuser Assembly bonds toner permanently to the paper using heat and pressure; Solenoid controls the paper feed mechanism.", "Fuser Assembly sprays liquid ink droplets; Solenoid assigns the network IP address.", "Fuser Assembly strikes the ink ribbon; Solenoid melts dry toner onto the OPC drum.", "Fuser Assembly flips the paper for two-sided printing; Solenoid measures resolution in DPI."], "answer": "Fuser Assembly bonds toner permanently to the paper using heat and pressure; Solenoid controls the paper feed mechanism.", "explanation": "In a laser printer, the Fuser Assembly uses heated rollers and pressure to permanently bond dry toner powder to the paper fibers, while the Solenoid is an electromechanical component used to control the paper feed."}, {"id": 18, "q": "Which specialized printer component enables automatic printing on both sides of a sheet of paper, and what does 'ECU' stand for in advanced printer architecture?", "tag": "", "options": ["Duplexer; Engine Control Unit", "Fuser Assembly; Electronic Cartridge Unit", "Solenoid; External Connection Unit", "OPC Drum; Electrostatic Charging Unit"], "answer": "Duplexer; Engine Control Unit", "explanation": "A Duplexer is the hardware mechanism that enables automatic double-sided (both sides) printing. In printer architecture, ECU stands for Engine Control Unit."}, {"id": 19, "q": "When connecting a network printer over an Ethernet port, which network protocol is responsible for automatic IP address assignment to the printer?", "tag": "", "options": ["DHCP (Dynamic Host Configuration Protocol)", "SNMP (Simple Network Management Protocol)", "SMTP (Simple Mail Transfer Protocol)", "POP3 (Post Office Protocol 3)"], "answer": "DHCP (Dynamic Host Configuration Protocol)", "explanation": "Network printers connect via an Ethernet port and use DHCP (Dynamic Host Configuration Protocol) to automatically obtain an IP address on the local network."}, {"id": 20, "q": "Which advanced output device is specifically best suited for printing large-format engineering charts, architectural blueprints, and maps, and when should a laser printer's toner cartridge be replaced?", "tag": "", "options": ["Plotter; when the toner is empty (Empty Toner)", "Daisy Wheel Printer; when the ink ribbon dries", "Thermal Printer; when Bisphenol paper turns black", "Chain Printer; when the solenoid overheats"], "answer": "Plotter; when the toner is empty (Empty Toner)", "explanation": "A Plotter is an advanced output device best suited for printing large-scale vector graphics, big charts, architectural blueprints, and maps. In a laser printer, the toner cartridge is replaced when there is an Empty Toner condition."}]}, {"id": "ports", "order": 4, "title": "4. Computer Ports", "shortTitle": "Computer Ports", "subtitle": "Hardware Ports, Connectors & I/O Addresses — TCS Previous Years Questions", "questionCount": 11, "durationMinutes": 11, "sourceType": "TCS Based PYQs", "questions": [{"id": 1, "q": "What is the purpose of using a USB port on a computer?", "tag": "Selection Post Phase VI 24/11/2023", "options": ["To connect to the Internet.", "To display video output.", "To connect external storage devices and peripherals.", "To power the computer."], "answer": "To connect external storage devices and peripherals.", "explanation": "A USB (Universal Serial Bus) port is a standard cable connection interface used on personal computers and consumer electronics to connect external storage devices (flash drives, external HDDs/SSDs) and peripherals (keyboards, mice, printers, scanners)."}, {"id": 2, "q": "Match the following input/output port addresses for personal computers with its device.", "table": {"headers": ["I/O address range (hexadecimal)", "Device"], "rows": [["I. 200 - 20F", "1. Serial port (primary)"], ["II. 2F8 - 2FF", "2. Game control (secondary)"], ["III. 3F8 - 3FF", "3. Serial port (Secondary)"]]}, "tag": "Selection Post Phase VI 24/11/2023", "options": ["I - 1, II - 3, III - 2", "I - 2, II - 3, III - 1", "I - 3, II - 2, III - 1", "I - 1, II - 2, III - 3"], "answer": "I - 2, II - 3, III - 1", "explanation": "In standard PC x86 I/O port address mapping: 0x200–0x20F is assigned to the Game port / joystick controller (I - 2); 0x2F8–0x2FF is assigned to the secondary serial port COM2 (II - 3); and 0x3F8–0x3FF is assigned to the primary serial port COM1 (III - 1)."}, {"id": 3, "q": "Which of the following is a mini-DIN connector used to connect a keyboard and mouse to a PC compatible computer?", "tag": "SSC CHSL TIER II 26/06/2023", "options": ["Ethernet port", "RS232 port", "VGA port", "PS/2 port"], "answer": "PS/2 port", "explanation": "The PS/2 (Personal System/2) port is a 6-pin mini-DIN connector introduced by IBM in 1987 for connecting a keyboard (purple) and mouse (green) to a PC-compatible computer."}, {"id": 4, "q": "Video Graphics Array connectors are those which connect the monitor to a computer's video card and has ______ holes.", "tag": "SSC CGL TIER II 02/03/2023", "options": ["10", "12", "18", "15"], "answer": "15", "explanation": "A standard Video Graphics Array (VGA) connector (DE-15 / HD-15) arranged in 3 rows has 15 pins/holes and is used to transmit analog RGB video signals from a computer's video card to a monitor."}, {"id": 5, "q": "Which among the following ports is also known as Line Printer Port?", "tag": "SSC CGL TIER II 03/03/2023", "options": ["Parallel", "Video Graphic Array", "High Definition Media Interface", "Display"], "answer": "Parallel", "explanation": "The Parallel port (standardized as IEEE 1284 using a 25-pin DB-25 connector) is also known as the Line Printer Port (LPT) because it was designed to connect printers and other high-bandwidth parallel peripherals to a PC."}, {"id": 6, "q": "A ________ port transmits one bit of a byte at a time as a single stream of bits. It is meant for transmitting slow data over long distances.", "tag": "SSC CGL TIER II 06/03/2023", "options": ["Parallel", "Universal Serial Bus", "Serial", "Display"], "answer": "Serial", "explanation": "A Serial port (RS-232, available in 9-pin DE-9 and 25-pin DB-25 models) transmits data sequentially one bit at a time over a single communication line, avoiding crosstalk issues over long cable distances."}, {"id": 7, "q": "Which among the following ports is also called a mouse port?", "tag": "SSC CGL TIER II 07/03/2023", "options": ["Video Graphic Array", "High Definition Media Interface", "Firewire", "PS/2"], "answer": "PS/2", "explanation": "The PS/2 port is a 6-pin mini-DIN connector used for connecting mice and keyboards to a PC-compatible computer system and is popularly called a mouse port."}, {"id": 8, "q": "Which of the following ports is used to connect a computer to a wired network?", "tag": "SSC CHSL 10/08/2021 (Evening)", "options": ["Universal serial bus port", "Ethernet port", "Parallel port", "Super-video port"], "answer": "Ethernet port", "explanation": "An Ethernet port (RJ-45 LAN socket) is used to connect a computer to a wired Local Area Network (LAN), Metropolitan Area Network (MAN), or Wide Area Network (WAN) via an Ethernet cable."}, {"id": 9, "q": "How many output ports are there in peripheral I/O?", "tag": "RRB NTPC 07/01/2021 (Morning)", "options": ["256", "24", "264", "512"], "answer": "256", "explanation": "In standard 8-bit peripheral-mapped I/O architecture (such as Intel 8085/x86 IN and OUT instructions using an 8-bit port address), there are 2^8 = 256 input ports and 256 output ports."}, {"id": 10, "q": "The port that is a protocol for transferring data to and from digital devices is known as:", "tag": "RRB NTPC 10/01/2021 (Morning)", "options": ["Parallel port", "USB port", "PS/2 ports", "VGA monitor port"], "answer": "USB port", "explanation": "The USB (Universal Serial Bus) port serves as both a physical hardware interface and a communication protocol for transferring data and power to and from digital devices."}, {"id": 11, "q": "A serial port can:", "tag": "RRB NTPC CBT 1 27/04/2016 (Afternoon)", "options": ["Only transfer information from a hard drive.", "Only transfer information to a hard drive.", "Transfer information both to and from a hard drive.", "Neither transfer information from nor to a hard drive."], "answer": "Transfer information both to and from a hard drive.", "explanation": "A serial port is a bidirectional (full-duplex) communication interface that allows a PC to both transmit and receive data one bit at a time (transferring information both to and from connected storage or peripheral devices)."}]}];
+
+    // Application State
+    const appState = {
+      activeTestId: null,
+      activeTest: null,
+      questions: [], // Fixed question order, options randomized per attempt
+      currentIndex: 0,
+      remainingSeconds: 0,
+      elapsedSeconds: 0,
+      timerInterval: null,
+      isPaused: false,
+      solutionFilter: 'all', // 'all' | 'wrong' | 'unattempted'
+      completedTests: {} // keyed by testId -> { score, total, accuracy, correct, wrong, unattempted, timeTaken, questionsSnapshot }
+    };
+
+    // Load saved summary from localStorage if available
+    try {
+      const saved = localStorage.getItem('cbt_mock_dashboard_results_v1');
+      if (saved) {
+        appState.completedTests = JSON.parse(saved) || {};
+      }
+    } catch (e) {
+      // Ignore storage block in sandboxed iframe
+    }
+
+    function saveCompletedState() {
+      try {
+        localStorage.setItem('cbt_mock_dashboard_results_v1', JSON.stringify(appState.completedTests));
+      } catch (e) {
+        // Ignore storage block in sandboxed iframe
+      }
+    }
+
+    // Fisher-Yates shuffle for randomizing the 4 options of each question
+    function shuffleArray(arr) {
+      const copy = arr.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = copy[i];
+        copy[i] = copy[j];
+        copy[j] = temp;
+      }
+      return copy;
+    }
+
+    function formatTime(totalSec) {
+      const s = Math.max(0, Math.floor(totalSec));
+      const mins = Math.floor(s / 60);
+      const secs = s % 60;
+      return String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+    }
+
+    let toastTimeout = null;
+    function showToast(msg) {
+      const el = document.getElementById('toast-banner');
+      el.textContent = msg;
+      el.classList.remove('hidden');
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        el.classList.add('hidden');
+      }, 2800);
+    }
+
+    // Escape HTML helper
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    // ==================== VIEW SWITCHING ====================
+    function showView(viewName) {
+      const portalWrapper = document.getElementById('portal-wrapper');
+      const viewDashboard = document.getElementById('view-dashboard');
+      const viewIntro = document.getElementById('view-intro');
+      const viewResult = document.getElementById('view-result');
+      const viewExam = document.getElementById('view-exam');
+
+      viewDashboard.classList.add('hidden');
+      viewIntro.classList.add('hidden');
+      viewResult.classList.add('hidden');
+      viewExam.classList.add('hidden');
+
+      if (viewName === 'exam') {
+        portalWrapper.classList.add('hidden');
+        viewExam.classList.remove('hidden');
+      } else {
+        portalWrapper.classList.remove('hidden');
+        if (viewName === 'dashboard') viewDashboard.classList.remove('hidden');
+        if (viewName === 'intro') viewIntro.classList.remove('hidden');
+        if (viewName === 'result') viewResult.classList.remove('hidden');
+      }
+    }
+
+    // ==================== RENDER MAIN DASHBOARD ====================
+    function renderDashboard() {
+      const container = document.getElementById('mock-cards-container');
+      container.innerHTML = '';
+
+      MOCK_TESTS.forEach((test) => {
+        const prevResult = appState.completedTests[test.id];
+        const card = document.createElement('div');
+        card.className = 'mock-card';
+
+        const statusBadgeHtml = prevResult
+          ? '<span class="mock-status-tag completed">Completed</span>'
+          : '<span class="mock-status-tag unattempted">Ready to Start</span>';
+
+        const lastScoreHtml = prevResult
+          ? `<div class="mock-last-score">
+               <span>Last Score: <strong>${prevResult.score} / ${prevResult.total}</strong> (${prevResult.accuracy}%)</span>
+               <span>Time: ${formatTime(prevResult.timeTaken)}</span>
+             </div>`
+          : '';
+
+        const reviewBtnHtml = prevResult
+          ? `<button type="button" class="btn-secondary-cbt" data-action="review" data-id="${test.id}">Analysis</button>`
+          : '';
+
+        card.innerHTML = `
+          <div class="mock-card-top">
+            <div class="mock-card-header">
+              <span class="mock-num-badge">Mock Test 0${test.order}</span>
+              ${statusBadgeHtml}
+            </div>
+            <div class="mock-card-title">${escapeHtml(test.title)}</div>
+            <div class="mock-card-sub">${escapeHtml(test.subtitle)}</div>
+            <div class="mock-meta-list">
+              <div class="mock-meta-item">
+                <span>Questions</span>
+                <strong>${test.questionCount} MCQs</strong>
+              </div>
+              <div class="mock-meta-item">
+                <span>Strict Timer</span>
+                <strong>${test.durationMinutes} Minutes</strong>
+              </div>
+              <div class="mock-meta-item">
+                <span>Source Basis</span>
+                <strong>${escapeHtml(test.sourceType)}</strong>
+              </div>
+              <div class="mock-meta-item">
+                <span>Option Order</span>
+                <strong>Randomized</strong>
+              </div>
+            </div>
+            ${lastScoreHtml}
+          </div>
+          <div class="mock-card-footer">
+            <button type="button" class="btn-primary-cbt" data-action="start-intro" data-id="${test.id}">
+              ${prevResult ? 'Retake Mock Test →' : 'Start Mock Test →'}
+            </button>
+            ${reviewBtnHtml}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      // Attach listeners to cards
+      container.querySelectorAll('button[data-action="start-intro"]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          openIntroInstructions(btn.getAttribute('data-id'));
+        });
+      });
+
+      container.querySelectorAll('button[data-action="review"]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          openSavedResult(btn.getAttribute('data-id'));
+        });
+      });
+    }
+
+    // ==================== OPEN INTRODUCTORY INSTRUCTIONS ====================
+    function openIntroInstructions(testId) {
+      const test = MOCK_TESTS.find((t) => t.id === testId);
+      if (!test) return;
+
+      appState.activeTestId = test.id;
+      appState.activeTest = test;
+
+      document.getElementById('intro-test-title').textContent = test.title + ' — Introductory Instructions';
+      document.getElementById('intro-test-subtitle').textContent = test.subtitle;
+      document.getElementById('intro-stat-name').textContent = test.title;
+      document.getElementById('intro-stat-questions').textContent = test.questionCount + ' Questions';
+      document.getElementById('intro-stat-duration').textContent = test.durationMinutes + ' Minutes (' + test.durationMinutes + ':00)';
+
+      const chk = document.getElementById('chk-declaration');
+      chk.checked = true; // Pre-checked for convenience while still allowing toggle
+
+      showView('intro');
+      window.scrollTo(0, 0);
+    }
+
+    // ==================== INITIALIZE & START EXAM ====================
+    function startExamSession() {
+      const chk = document.getElementById('chk-declaration');
+      if (!chk.checked) {
+        showToast('Please accept the candidate declaration checkbox before starting the test.');
+        return;
+      }
+
+      const test = appState.activeTest;
+      if (!test) return;
+
+      // Request fullscreen automatically upon the beginning of the test
+      requestExamFullscreen();
+
+      // Keep question sequence strictly fixed, randomize the 4 options on each fresh attempt
+      appState.questions = test.questions.map((q, idx) => ({
+        id: q.id,
+        number: idx + 1,
+        q: q.q,
+        tag: q.tag || '',
+        table: q.table || null,
+        shuffledOptions: shuffleArray(q.options),
+        answer: q.answer,
+        explanation: q.explanation,
+        selectedOption: null,
+        markedForReview: false,
+        visited: idx === 0
+      }));
+
+      appState.currentIndex = 0;
+      appState.remainingSeconds = test.durationMinutes * 60;
+      appState.elapsedSeconds = 0;
+      appState.isPaused = false;
+
+      document.getElementById('exam-header-title').textContent = test.title;
+      document.getElementById('palette-test-name').textContent = test.title;
+
+      showView('exam');
+      renderCurrentQuestion();
+      renderQuestionPalette();
+      startCountdownTimer();
+    }
+
+    // ==================== FULLSCREEN CONTROLS ====================
+    function requestExamFullscreen() {
+      const elem = document.documentElement;
+      try {
+        if (!document.fullscreenElement && elem.requestFullscreen) {
+          elem.requestFullscreen().catch(() => {
+            // In sandboxed iframe where fullscreen permission may be restricted, continue smoothly
+          });
+        }
+      } catch (e) {
+        // Ignore fullscreen API error in restricted containers
+      }
+      updateFullscreenButtonLabel();
+    }
+
+    function handleExitFullscreenClick() {
+      try {
+        if (document.fullscreenElement && document.exitFullscreen) {
+          document.exitFullscreen().then(() => {
+            showToast('Exited fullscreen mode.');
+            updateFullscreenButtonLabel();
+          }).catch(() => {
+            showToast('Exited fullscreen view.');
+          });
+        } else {
+          showToast('Fullscreen exited (Standard Window Mode active).');
+        }
+      } catch (e) {
+        showToast('Standard Window Mode active.');
+      }
+      updateFullscreenButtonLabel();
+    }
+
+    function updateFullscreenButtonLabel() {
+      const btn = document.getElementById('btn-exit-fullscreen');
+      if (!btn) return;
+      btn.textContent = 'Exit Fullscreen';
+    }
+
+    document.addEventListener('fullscreenchange', updateFullscreenButtonLabel);
+
+    // ==================== STRICT COUNTDOWN TIMER ====================
+    function startCountdownTimer() {
+      if (appState.timerInterval) {
+        clearInterval(appState.timerInterval);
+      }
+      updateTimerDisplay();
+
+      appState.timerInterval = setInterval(() => {
+        if (appState.isPaused) return;
+
+        appState.remainingSeconds -= 1;
+        appState.elapsedSeconds += 1;
+        updateTimerDisplay();
+
+        if (appState.remainingSeconds <= 0) {
+          clearInterval(appState.timerInterval);
+          appState.remainingSeconds = 0;
+          showToast('Time is up! Submitting your mock test automatically...');
+          finalizeTestSubmission();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const el = document.getElementById('exam-timer-display');
+      el.textContent = formatTime(appState.remainingSeconds);
+      if (appState.remainingSeconds <= 60) {
+        el.classList.add('warning');
+      } else {
+        el.classList.remove('warning');
+      }
+    }
+
+    // ==================== RENDER CURRENT QUESTION ====================
+    function renderCurrentQuestion() {
+      const qObj = appState.questions[appState.currentIndex];
+      if (!qObj) return;
+
+      qObj.visited = true;
+
+      const total = appState.questions.length;
+      document.getElementById('exam-q-number-label').textContent = `Question No. ${qObj.number} of ${total}`;
+      document.getElementById('exam-q-text').textContent = qObj.q;
+
+      // Render Exam Tag in smaller text ONLY if any exists
+      const tagWrap = document.getElementById('exam-q-tag-wrap');
+      if (qObj.tag && qObj.tag.trim() !== '') {
+        tagWrap.innerHTML = `<span class="exam-tag-badge">${escapeHtml(qObj.tag)}</span>`;
+      } else {
+        tagWrap.innerHTML = '';
+      }
+
+      // Render Table if question includes structured table (e.g., Ports Q.2)
+      const tableWrap = document.getElementById('exam-q-table-wrap');
+      if (qObj.table && qObj.table.headers && qObj.table.rows) {
+        let ths = qObj.table.headers.map((h) => `<th>${escapeHtml(h)}</th>`).join('');
+        let trs = qObj.table.rows.map((r) => `<tr>${r.map((c) => `<td>${escapeHtml(c)}</td>`).join('')}</tr>`).join('');
+        tableWrap.innerHTML = `<table class="question-data-table"><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table>`;
+      } else {
+        tableWrap.innerHTML = '';
+      }
+
+      // Render 4 randomized options without marking right/wrong or jumping automatically
+      const optLetters = ['(a)', '(b)', '(c)', '(d)'];
+      const optList = document.getElementById('exam-options-list');
+      optList.innerHTML = '';
+
+      qObj.shuffledOptions.forEach((optText, idx) => {
+        const isSelected = qObj.selectedOption === optText;
+        const row = document.createElement('label');
+        row.className = 'option-row' + (isSelected ? ' selected' : '');
+        row.innerHTML = `
+          <input type="radio" name="mcq-option" value="${ idx }" ${isSelected ? 'checked' : ''} />
+          <span class="option-letter">${optLetters[idx]}</span>
+          <span class="option-text">${escapeHtml(optText)}</span>
+        `;
+
+        row.addEventListener('click', (e) => {
+          e.preventDefault();
+          qObj.selectedOption = optText;
+          renderCurrentQuestion();
+          renderQuestionPalette();
+        });
+
+        optList.appendChild(row);
+      });
+
+      // Update Previous / Next button states
+      document.getElementById('btn-q-prev').disabled = appState.currentIndex === 0;
+      document.getElementById('btn-q-next').textContent =
+        appState.currentIndex === total - 1 ? 'Save' : 'Next';
+    }
+
+    // ==================== RENDER RIGHT-SIDE QUESTION PALETTE ====================
+    function getQuestionStatusClass(qObj) {
+      if (!qObj.visited) return 'st-not-visited';
+      if (qObj.selectedOption !== null && qObj.markedForReview) return 'st-ans-review';
+      if (qObj.markedForReview) return 'st-review';
+      if (qObj.selectedOption !== null) return 'st-answered';
+      return 'st-not-answered';
+    }
+
+    function renderQuestionPalette() {
+      const grid = document.getElementById('exam-palette-grid');
+      grid.innerHTML = '';
+
+      let cntAnswered = 0;
+      let cntNotAnswered = 0;
+      let cntNotVisited = 0;
+      let cntReview = 0;
+      let cntAnsReview = 0;
+
+      appState.questions.forEach((qObj, idx) => {
+        const stClass = getQuestionStatusClass(qObj);
+        if (stClass === 'st-not-visited') cntNotVisited++;
+        else if (stClass === 'st-not-answered') cntNotAnswered++;
+        else if (stClass === 'st-answered') cntAnswered++;
+        else if (stClass === 'st-review') cntReview++;
+        else if (stClass === 'st-ans-review') cntAnsReview++;
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = `q-palette-btn ${stClass}` + (idx === appState.currentIndex ? ' current-q' : '');
+        btn.textContent = qObj.number;
+        btn.title = `Question ${qObj.number}`;
+        btn.addEventListener('click', () => {
+          appState.currentIndex = idx;
+          renderCurrentQuestion();
+          renderQuestionPalette();
+          document.getElementById('exam-question-scroll').scrollTop = 0;
+        });
+
+        grid.appendChild(btn);
+      });
+
+      document.getElementById('cnt-answered').textContent = cntAnswered;
+      document.getElementById('cnt-not-answered').textContent = cntNotAnswered;
+      document.getElementById('cnt-not-visited').textContent = cntNotVisited;
+      document.getElementById('cnt-review').textContent = cntReview;
+      document.getElementById('cnt-ans-review').textContent = cntAnsReview;
+    }
+
+    // ==================== EXAM NAVIGATION & BUTTON HANDLERS ====================
+    function goToNextQuestion() {
+      const qObj = appState.questions[appState.currentIndex];
+      if (qObj) {
+        // Visiting and moving next with Next button clears pure review flag if user saves normally
+        qObj.visited = true;
+      }
+      if (appState.currentIndex < appState.questions.length - 1) {
+        appState.currentIndex += 1;
+        renderCurrentQuestion();
+        renderQuestionPalette();
+        document.getElementById('exam-question-scroll').scrollTop = 0;
+      } else {
+        renderCurrentQuestion();
+        renderQuestionPalette();
+        showToast('You are on the last question of this mock test.');
+      }
+    }
+
+    function goToPrevQuestion() {
+      if (appState.currentIndex > 0) {
+        appState.currentIndex -= 1;
+        renderCurrentQuestion();
+        renderQuestionPalette();
+        document.getElementById('exam-question-scroll').scrollTop = 0;
+      }
+    }
+
+    function clearCurrentResponse() {
+      const qObj = appState.questions[appState.currentIndex];
+      if (!qObj) return;
+      qObj.selectedOption = null;
+      qObj.markedForReview = false;
+      renderCurrentQuestion();
+      renderQuestionPalette();
+    }
+
+    function markForReviewAndNext() {
+      const qObj = appState.questions[appState.currentIndex];
+      if (!qObj) return;
+      qObj.markedForReview = true;
+      if (appState.currentIndex < appState.questions.length - 1) {
+        appState.currentIndex += 1;
+      }
+      renderCurrentQuestion();
+      renderQuestionPalette();
+      document.getElementById('exam-question-scroll').scrollTop = 0;
+    }
+
+    // ==================== PAUSE & SUBMIT MODALS ====================
+    function openPauseModal() {
+      appState.isPaused = true;
+      document.getElementById('modal-pause').classList.remove('hidden');
+    }
+
+    function closePauseModal() {
+      appState.isPaused = false;
+      document.getElementById('modal-pause').classList.add('hidden');
+    }
+
+    function openSubmitModal() {
+      const total = appState.questions.length;
+      const answered = appState.questions.filter((q) => q.selectedOption !== null).length;
+      const notAnswered = total - answered;
+      const marked = appState.questions.filter((q) => q.markedForReview).length;
+
+      document.getElementById('sub-sum-total').textContent = total;
+      document.getElementById('sub-sum-answered').textContent = answered;
+      document.getElementById('sub-sum-not-answered').textContent = notAnswered;
+      document.getElementById('sub-sum-review').textContent = marked;
+
+      document.getElementById('modal-submit').classList.remove('hidden');
+    }
+
+    function closeSubmitModal() {
+      document.getElementById('modal-submit').classList.add('hidden');
+    }
+
+    // ==================== FINALIZE SUBMISSION & SCORE ANALYSIS ====================
+    function finalizeTestSubmission() {
+      if (appState.timerInterval) {
+        clearInterval(appState.timerInterval);
+        appState.timerInterval = null;
+      }
+      closeSubmitModal();
+      closePauseModal();
+
+      // Exit fullscreen gracefully if active
+      try {
+        if (document.fullscreenElement && document.exitFullscreen) {
+          document.exitFullscreen().catch(() => {});
+        }
+      } catch (e) {}
+
+      const test = appState.activeTest;
+      const total = appState.questions.length;
+      let correct = 0;
+      let wrong = 0;
+      let unattempted = 0;
+
+      appState.questions.forEach((q) => {
+        if (q.selectedOption === null) {
+          unattempted++;
+        } else if (q.selectedOption === q.answer) {
+          correct++;
+        } else {
+          wrong++;
+        }
+      });
+
+      const attempted = correct + wrong;
+      const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+
+      const resultRecord = {
+        testId: test.id,
+        title: test.title,
+        subtitle: test.subtitle,
+        score: correct,
+        total: total,
+        accuracy: accuracy,
+        correct: correct,
+        wrong: wrong,
+        unattempted: unattempted,
+        timeTaken: appState.elapsedSeconds,
+        questionsSnapshot: appState.questions.map((q) => ({
+          number: q.number,
+          q: q.q,
+          tag: q.tag,
+          table: q.table,
+          selectedOption: q.selectedOption,
+          answer: q.answer,
+          explanation: q.explanation
+        }))
+      };
+
+      appState.completedTests[test.id] = resultRecord;
+      saveCompletedState();
+
+      renderResultView(resultRecord);
+    }
+
+    function openSavedResult(testId) {
+      const record = appState.completedTests[testId];
+      if (!record) return;
+      appState.activeTestId = testId;
+      appState.activeTest = MOCK_TESTS.find((t) => t.id === testId) || null;
+      renderResultView(record);
+    }
+
+    function renderResultView(record) {
+      document.getElementById('res-test-title').textContent = record.title + ' — Score & Performance Analysis';
+      document.getElementById('res-test-subtitle').textContent = record.subtitle;
+      document.getElementById('res-kpi-score').textContent = `${record.score} / ${record.total}`;
+      document.getElementById('res-kpi-accuracy').textContent = `${record.accuracy}%`;
+      document.getElementById('res-kpi-correct').textContent = record.correct;
+      document.getElementById('res-kpi-wrong').textContent = record.wrong;
+      document.getElementById('res-kpi-unattempted').textContent = record.unattempted;
+      document.getElementById('res-kpi-time').textContent = formatTime(record.timeTaken);
+
+      appState.solutionFilter = 'all';
+      updateSolutionFilterTabs(record);
+      renderFilteredSolutions(record);
+
+      showView('result');
+      window.scrollTo(0, 0);
+    }
+
+    function updateSolutionFilterTabs(record) {
+      const allNonCorrect = record.questionsSnapshot.filter((q) => q.selectedOption !== q.answer);
+      const wrongList = record.questionsSnapshot.filter((q) => q.selectedOption !== null && q.selectedOption !== q.answer);
+      const unattemptedList = record.questionsSnapshot.filter((q) => q.selectedOption === null);
+
+      document.getElementById('count-filter-all').textContent = allNonCorrect.length;
+      document.getElementById('count-filter-wrong').textContent = wrongList.length;
+      document.getElementById('count-filter-unattempted').textContent = unattemptedList.length;
+
+      document.getElementById('tab-filter-all').classList.toggle('active', appState.solutionFilter === 'all');
+      document.getElementById('tab-filter-wrong').classList.toggle('active', appState.solutionFilter === 'wrong');
+      document.getElementById('tab-filter-unattempted').classList.toggle('active', appState.solutionFilter === 'unattempted');
+    }
+
+    function renderFilteredSolutions(record) {
+      const container = document.getElementById('solutions-list-container');
+      container.innerHTML = '';
+
+      // Strictly filter ONLY incorrect and un-attempted questions
+      let items = record.questionsSnapshot.filter((q) => q.selectedOption !== q.answer);
+      if (appState.solutionFilter === 'wrong') {
+        items = items.filter((q) => q.selectedOption !== null);
+      } else if (appState.solutionFilter === 'unattempted') {
+        items = items.filter((q) => q.selectedOption === null);
+      }
+
+      if (items.length === 0) {
+        container.innerHTML = `
+          <div class="solution-item-card" style="text-align: center; padding: 32px 20px;">
+            <h4 style="font-size: 16px; color: #15803d; margin-bottom: 6px;">No Questions in This Category</h4>
+            <p style="font-size: 13.5px; color: #64748b;">
+              ${record.correct === record.total
+                ? 'Outstanding! You answered all questions correctly, so there are no incorrect or un-attempted questions to display.'
+                : 'No questions match the selected filter tab.'}
+            </p>
+          </div>
+        `;
+        return;
+      }
+
+      items.forEach((q) => {
+        const isUnattempted = q.selectedOption === null;
+        const card = document.createElement('div');
+        card.className = 'solution-item-card ' + (isUnattempted ? 'sol-unattempted' : 'sol-incorrect');
+
+        const tagHtml = q.tag && q.tag.trim() !== ''
+          ? `<div style="margin-bottom: 10px;"><span class="exam-tag-badge" style="margin-bottom:0;">${escapeHtml(q.tag)}</span></div>`
+          : '';
+
+        let tableHtml = '';
+        if (q.table && q.table.headers && q.table.rows) {
+          let ths = q.table.headers.map((h) => `<th>${escapeHtml(h)}</th>`).join('');
+          let trs = q.table.rows.map((r) => `<tr>${r.map((c) => `<td>${escapeHtml(c)}</td>`).join('')}</tr>`).join('');
+          tableHtml = `<table class="question-data-table"><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table>`;
+        }
+
+        const userBoxHtml = isUnattempted
+          ? `<div class="sol-ans-box user-skipped">
+               <span>Your Response</span>
+               <strong>Not Attempted (Skipped)</strong>
+             </div>`
+          : `<div class="sol-ans-box user-wrong">
+               <span>Your Selected Answer (Incorrect)</span>
+               <strong>${escapeHtml(q.selectedOption)}</strong>
+             </div>`;
+
+        card.innerHTML = `
+          <div class="sol-card-top">
+            <span class="sol-q-num">Question No. ${q.number}</span>
+            <span class="sol-status-pill ${isUnattempted ? 'pill-unattempted' : 'pill-incorrect'}">
+              ${isUnattempted ? 'Un-attempted' : 'Incorrect'}
+            </span>
+          </div>
+          <div class="sol-question-text">${escapeHtml(q.q)}</div>
+          ${tagHtml}
+          ${tableHtml}
+          <div class="sol-ans-comparison">
+            ${userBoxHtml}
+            <div class="sol-ans-box correct-ans">
+              <span>Correct Answer</span>
+              <strong>${escapeHtml(q.answer)}</strong>
+            </div>
+          </div>
+          <div class="sol-explanation-box">
+            <strong>Solution / Explanation:</strong> ${escapeHtml(q.explanation)}
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    // ==================== WIRE UP STATIC EVENT LISTENERS ====================
+    window.addEventListener('DOMContentLoaded', () => {
+      renderDashboard();
+
+      // Intro Screen Buttons
+      document.getElementById('btn-intro-back').addEventListener('click', () => {
+        showView('dashboard');
+        renderDashboard();
+      });
+      document.getElementById('btn-intro-cancel').addEventListener('click', () => {
+        showView('dashboard');
+        renderDashboard();
+      });
+      document.getElementById('btn-begin-exam').addEventListener('click', startExamSession);
+
+      // Exam Control Buttons
+      document.getElementById('btn-q-prev').addEventListener('click', goToPrevQuestion);
+      document.getElementById('btn-q-next').addEventListener('click', goToNextQuestion);
+      document.getElementById('btn-q-clear').addEventListener('click', clearCurrentResponse);
+      document.getElementById('btn-q-review-next').addEventListener('click', markForReviewAndNext);
+
+      document.getElementById('btn-pause-exam').addEventListener('click', openPauseModal);
+      document.getElementById('btn-exit-fullscreen').addEventListener('click', handleExitFullscreenClick);
+
+      document.getElementById('btn-q-submit-bottom').addEventListener('click', openSubmitModal);
+      document.getElementById('btn-q-submit-sidebar').addEventListener('click', openSubmitModal);
+
+      // Pause Modal Buttons
+      document.getElementById('btn-resume-exam').addEventListener('click', closePauseModal);
+      document.getElementById('btn-abort-to-dashboard').addEventListener('click', () => {
+        if (appState.timerInterval) {
+          clearInterval(appState.timerInterval);
+          appState.timerInterval = null;
+        }
+        closePauseModal();
+        try {
+          if (document.fullscreenElement && document.exitFullscreen) {
+            document.exitFullscreen().catch(() => {});
+          }
+        } catch (e) {}
+        showView('dashboard');
+        renderDashboard();
+      });
+
+      // Submit Modal Buttons
+      document.getElementById('btn-cancel-submit').addEventListener('click', closeSubmitModal);
+      document.getElementById('btn-confirm-submit').addEventListener('click', finalizeTestSubmission);
+
+      // Result Screen Buttons & Filter Tabs
+      document.getElementById('btn-result-dashboard').addEventListener('click', () => {
+        showView('dashboard');
+        renderDashboard();
+      });
+      document.getElementById('btn-retake-test').addEventListener('click', () => {
+        if (appState.activeTestId) {
+          openIntroInstructions(appState.activeTestId);
+        }
+      });
+
+      document.getElementById('tab-filter-all').addEventListener('click', () => {
+        const record = appState.completedTests[appState.activeTestId];
+        if (!record) return;
+        appState.solutionFilter = 'all';
+        updateSolutionFilterTabs(record);
+        renderFilteredSolutions(record);
+      });
+      document.getElementById('tab-filter-wrong').addEventListener('click', () => {
+        const record = appState.completedTests[appState.activeTestId];
+        if (!record) return;
+        appState.solutionFilter = 'wrong';
+        updateSolutionFilterTabs(record);
+        renderFilteredSolutions(record);
+      });
+      document.getElementById('tab-filter-unattempted').addEventListener('click', () => {
+        const record = appState.completedTests[appState.activeTestId];
+        if (!record) return;
+        appState.solutionFilter = 'unattempted';
+        updateSolutionFilterTabs(record);
+        renderFilteredSolutions(record);
+      });
+    });
+  </script>
+</body>
+</html>

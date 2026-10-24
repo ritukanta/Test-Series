@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Missions & ISRO Mock Test - TCS Interface</title>
+    <style>
+        /* CSS Reset & Variables */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        :root {
+            --bg-main: #f0f4f7;
+            --bg-panel: #ffffff;
+            --tcs-blue: #0f4a8a;
+            --tcs-light-blue: #e8f0fe;
+            --text-main: #333333;
+            --border-color: #cccccc;
+            
+            /* Palette Colors */
+            --color-not-visited: #f0f0f0;
+            --color-not-answered: #e74c3c;
+            --color-answered: #2ecc71;
+            --color-marked: #9b59b6;
+        }
+
+        body { background-color: var(--bg-main); color: var(--text-main); font-size: 14px; overflow: hidden; }
+
+        /* Intro Screen */
+        #intro-screen {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            height: 100vh; background: var(--bg-panel); text-align: center; padding: 20px;
+        }
+        #intro-screen h1 { color: var(--tcs-blue); margin-bottom: 20px; }
+        #intro-screen p { font-size: 16px; margin-bottom: 30px; max-width: 600px; line-height: 1.5; }
+        .start-btn {
+            background-color: var(--tcs-blue); color: white; border: none; padding: 15px 30px;
+            font-size: 18px; cursor: pointer; border-radius: 4px; font-weight: bold;
+        }
+        .start-btn:hover { background-color: #0b3665; }
+
+        /* Main App Container */
+        #app-container { display: none; height: 100vh; flex-direction: column; }
+
+        /* Header */
+        header {
+            background-color: var(--tcs-blue); color: white; padding: 10px 20px;
+            display: flex; justify-content: space-between; align-items: center; height: 50px;
+        }
+        .header-title { font-size: 18px; font-weight: bold; }
+        .header-controls { display: flex; align-items: center; gap: 15px; }
+        .timer { font-size: 18px; font-weight: bold; background: #000; padding: 5px 10px; border-radius: 3px; letter-spacing: 1px;}
+        .ctrl-btn { background: white; color: var(--tcs-blue); border: none; padding: 5px 10px; cursor: pointer; font-size: 12px; font-weight: bold; border-radius: 3px;}
+        
+        /* Layout */
+        .main-layout { display: flex; flex: 1; overflow: hidden; }
+        
+        /* Left Panel - Questions */
+        .left-panel { flex: 1; display: flex; flex-direction: column; background: var(--bg-panel); position: relative; }
+        .question-header {
+            padding: 15px 20px; border-bottom: 1px solid var(--border-color);
+            display: flex; justify-content: space-between; align-items: center; background: #fafafa;
+        }
+        .q-number { font-size: 18px; font-weight: bold; color: var(--tcs-blue); }
+        .q-tag { background: #ffe0b2; color: #e65100; padding: 4px 8px; border-radius: 3px; font-size: 12px; font-weight: bold; }
+        
+        .question-content { padding: 20px; flex: 1; overflow-y: auto; font-size: 16px; line-height: 1.6; }
+        .question-text { margin-bottom: 25px; font-weight: 600; }
+        .options-container { display: flex; flex-direction: column; gap: 12px; }
+        .option-label {
+            display: flex; align-items: center; padding: 10px; border: 1px solid var(--border-color);
+            border-radius: 4px; cursor: pointer; transition: background 0.2s;
+        }
+        .option-label:hover { background: var(--tcs-light-blue); }
+        .option-label input { margin-right: 15px; transform: scale(1.2); }
+
+        /* Action Bar */
+        .action-bar {
+            padding: 15px 20px; border-top: 1px solid var(--border-color); background: #fafafa;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .action-left { display: flex; gap: 10px; }
+        .action-right { display: flex; gap: 10px; }
+        .action-btn {
+            padding: 8px 15px; border: 1px solid var(--border-color); background: white;
+            cursor: pointer; border-radius: 3px; font-weight: bold;
+        }
+        .action-btn:hover { background: #f0f0f0; }
+        .btn-primary { background: var(--tcs-blue); color: white; border: none; }
+        .btn-primary:hover { background: #0b3665; }
+
+        /* Right Panel - Palette */
+        .right-panel {
+            width: 320px; border-left: 1px solid var(--border-color); display: flex; flex-direction: column;
+            background: #e9ecef;
+        }
+        .candidate-info { padding: 15px; background: white; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap:10px;}
+        .candidate-img { width: 60px; height: 60px; background: #ccc; border-radius: 50%; }
+        
+        .legend-box { padding: 10px; background: white; border-bottom: 1px solid var(--border-color); font-size: 12px; }
+        .legend-row { display: flex; justify-content: space-between; margin-bottom: 5px; }
+        .legend-item { display: flex; align-items: center; width: 48%; }
+        .legend-icon { width: 22px; height: 20px; margin-right: 8px; border-radius: 3px; display: inline-block; border: 1px solid #aaa; color: white; text-align: center; line-height: 20px; font-size: 11px;}
+        
+        .palette-container { padding: 15px; flex: 1; overflow-y: auto; background: var(--tcs-light-blue); }
+        .palette-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+        .pal-btn {
+            width: 38px; height: 32px; border: 1px solid #aaa; border-radius: 3px; cursor: pointer;
+            font-weight: bold; color: black; background: var(--color-not-visited); display: flex;
+            align-items: center; justify-content: center; position: relative;
+        }
+        .pal-btn.not-answered { background: var(--color-not-answered); color: white; border-color: var(--color-not-answered); border-radius: 16px 16px 0 0; }
+        .pal-btn.answered { background: var(--color-answered); color: white; border-color: var(--color-answered); border-radius: 16px 16px 0 0; }
+        .pal-btn.marked { background: var(--color-marked); color: white; border-color: var(--color-marked); border-radius: 50%; }
+        .pal-btn.marked-answered { background: var(--color-marked); color: white; border-color: var(--color-marked); border-radius: 50%; }
+        .pal-btn.marked-answered::after { content: ''; position: absolute; bottom: 2px; right: 2px; width: 8px; height: 8px; background: var(--color-answered); border-radius: 50%; border: 1px solid white;}
+        
+        .submit-container { padding: 15px; background: white; text-align: center; border-top: 1px solid var(--border-color); }
+        .btn-submit { width: 100%; padding: 10px; background: #27ae60; color: white; border: none; font-weight: bold; font-size: 16px; cursor: pointer; border-radius: 3px; }
+        .btn-submit:hover { background: #219653; }
+
+        /* Overlay */
+        .overlay { display: none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 100; align-items: center; justify-content: center; flex-direction: column; color: white; }
+        .overlay h2 { font-size: 30px; margin-bottom: 20px; }
+
+        /* Result Screen */
+        #result-screen { display: none; flex-direction: column; height: 100vh; overflow-y: auto; background: var(--bg-main); padding: 30px; }
+        .result-header { text-align: center; margin-bottom: 30px; }
+        .result-header h1 { color: var(--tcs-blue); font-size: 32px; }
+        .score-box { background: white; padding: 20px; border-radius: 8px; display: inline-block; font-size: 24px; font-weight: bold; color: var(--tcs-blue); border: 2px solid var(--tcs-blue); margin-top: 10px; }
+        
+        .analysis-container { max-width: 900px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .analysis-title { font-size: 20px; border-bottom: 2px solid var(--tcs-blue); padding-bottom: 10px; margin-bottom: 20px; }
+        
+        .review-item { border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
+        .review-q { font-weight: bold; margin-bottom: 10px; font-size: 15px;}
+        .review-correct { color: #27ae60; font-weight: bold; background: #e9f7ef; padding: 8px; border-radius: 4px; margin-bottom: 5px;}
+        .review-wrong { color: #c0392b; font-weight: bold; background: #fdedec; padding: 8px; border-radius: 4px;}
+        .review-unattempted { color: #f39c12; font-weight: bold; font-size: 13px; margin-bottom: 5px; }
+
+        @media (max-width: 768px) {
+            .right-panel { display: none; }
+            .action-bar { flex-direction: column; gap: 10px; }
+            .action-left, .action-right { width: 100%; justify-content: space-between; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Intro Screen -->
+    <div id="intro-screen">
+        <h1>Space Missions & ISRO Mock Test</h1>
+        <p>This test contains 167 meticulously curated questions covering India's space endeavors and global space missions.<br><br><b>Instructions:</b><br>1. Total time: 167 Minutes.<br>2. Do not refresh or exit the page during the test.<br>3. Submit the test manually, or it will auto-submit when the timer ends.<br>4. The interface requires Fullscreen mode to function properly.</p>
+        <button class="start-btn" onclick="startTest()">Start Test</button>
+    </div>
+
+    <!-- Main Exam Interface -->
+    <div id="app-container">
+        <header>
+            <div class="header-title">Mock Test: SSC / Railway (Space Tech)</div>
+            <div class="header-controls">
+                <button class="ctrl-btn" onclick="togglePause()">Pause</button>
+                <button class="ctrl-btn" onclick="exitFullscreenUI()">Exit Fullscreen</button>
+                <div class="timer" id="timer-display">167:00</div>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            <div class="left-panel">
+                <div class="question-header">
+                    <div class="q-number" id="q-no-display">Question 1</div>
+                    <div class="q-tag" id="q-tag-display">SSC Exam</div>
+                </div>
+                
+                <div class="question-content">
+                    <div class="question-text" id="q-text-display">Loading...</div>
+                    <div class="options-container" id="options-display">
+                        <!-- Options injected here -->
+                    </div>
+                </div>
+
+                <div class="action-bar">
+                    <div class="action-left">
+                        <button class="action-btn" onclick="markForReview()">Mark for Review & Next</button>
+                        <button class="action-btn" onclick="clearResponse()">Clear Response</button>
+                    </div>
+                    <div class="action-right">
+                        <button class="action-btn" onclick="prevQuestion()">Previous</button>
+                        <button class="action-btn btn-primary" onclick="nextQuestion()">Next</button>
+                    </div>
+                </div>
+
+                <!-- Pause Overlay -->
+                <div class="overlay" id="pause-overlay">
+                    <h2>Test Paused</h2>
+                    <button class="start-btn" onclick="togglePause()">Resume Test</button>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div class="candidate-info">
+                    <div class="candidate-img"></div>
+                    <div>
+                        <strong>Candidate:</strong> John Doe<br>
+                        <strong>Total Qs:</strong> 167
+                    </div>
+                </div>
+                <div class="legend-box">
+                    <div class="legend-row">
+                        <div class="legend-item"><span class="legend-icon" style="background:var(--color-not-visited); color:black;">0</span> Not Visited</div>
+                        <div class="legend-item"><span class="legend-icon" style="background:var(--color-not-answered); border-radius: 8px 8px 0 0;">0</span> Not Answered</div>
+                    </div>
+                    <div class="legend-row">
+                        <div class="legend-item"><span class="legend-icon" style="background:var(--color-answered); border-radius: 8px 8px 0 0;">0</span> Answered</div>
+                        <div class="legend-item"><span class="legend-icon" style="background:var(--color-marked); border-radius: 50%;">0</span> Marked</div>
+                    </div>
+                    <div class="legend-row">
+                        <div class="legend-item" style="width:100%;"><span class="legend-icon" style="background:var(--color-marked); border-radius: 50%; position:relative;"><span style="position:absolute; bottom:1px; right:1px; width:4px; height:4px; background:var(--color-answered); border-radius:50%;"></span>0</span> Answered & Marked for Review</div>
+                    </div>
+                </div>
+                <div class="palette-container">
+                    <div class="palette-grid" id="palette-grid">
+                        <!-- Palette Buttons injected here -->
+                    </div>
+                </div>
+                <div class="submit-container">
+                    <button class="btn-submit" onclick="confirmSubmit()">Submit Test</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result Screen -->
+    <div id="result-screen">
+        <div class="result-header">
+            <h1>Test Submitted Successfully</h1>
+            <div class="score-box">Your Score: <span id="final-score">0</span> / 167</div>
+        </div>
+        <div class="analysis-container">
+            <div class="analysis-title">Error Analysis & Solutions</div>
+            <p style="margin-bottom: 20px; font-style: italic; color: #555;">Note: Only incorrect and unattempted questions are shown below.</p>
+            <div id="review-list">
+                <!-- Review items injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA COMPILATION (167 Questions) ---
+        // 1-50, 51-100, 101-167 strictly combined and formatted uniformly.
+        const rawData = [
+            // 1-50
+            {id:1, tag:"SSC GD Exam 2025-26", q:"The first successful Indian Polar satellite launch vehicle PSLV-D2 was a ________ stage rocket.", opts:[{t:"2",c:0},{t:"3",c:0},{t:"4",c:1},{t:"6",c:0}]},
+            {id:2, tag:"SSC GD Exam 2025-26", q:"What is the lift off weight of ISRO's Small Satellite Launch Vehicle (SSLV)?", opts:[{t:"420 tonnes",c:0},{t:"120 tonnes",c:1},{t:"840 tonnes",c:0},{t:"1020 tonnes",c:0}]},
+            {id:3, tag:"SSC GD Exam 2025-26", q:"In the context of launch vehicle of India, the GSLV Mk-III can carry weight up to ________ kg into Geosynchronous Transfer Orbits.", opts:[{t:"4000",c:1},{t:"8500",c:0},{t:"9000",c:0},{t:"10000",c:0}]},
+            {id:4, tag:"SSC GD Exam 2025-26", q:"In the context of Indian satellite launch vehicle, how many stages did the ASLV have?", opts:[{t:"2",c:0},{t:"3",c:0},{t:"4",c:0},{t:"5",c:1}]},
+            {id:5, tag:"SSC GD Exam 2025-26", q:"The first successful Indian Polar Satellite Launch Vehicle was ________.", opts:[{t:"PSLV-D2",c:1},{t:"PSLV-C5",c:0},{t:"PSLV-C7",c:0},{t:"PSLV-C15",c:0}]},
+            {id:6, tag:"SSC GD Exam 2025-26", q:"The indigenous launch vehicle used in 1980's Indian satellite launching was ________.", opts:[{t:"SLV-3",c:1},{t:"PSLV",c:0},{t:"ASLV",c:0},{t:"GSLV",c:0}]},
+            {id:7, tag:"SSC GD Exam 2025-26", q:"The SLV-3 rocket used for India's first satellite launch was a ________ stage rocket.", opts:[{t:"2",c:0},{t:"3",c:0},{t:"4",c:1},{t:"5",c:0}]},
+            {id:8, tag:"SSC GD Exam 2025-26", q:"What is the gross weight of ISRO's PSLV-XL Configuration?", opts:[{t:"120 tonnes",c:0},{t:"1040 tonnes",c:0},{t:"320 tonnes",c:1},{t:"560 tonnes",c:0}]},
+            {id:9, tag:"SSC GD Exam 2025-26", q:"Which Indian rocket is called 'Fat Boy'?", opts:[{t:"PSLV",c:0},{t:"GSLV MK III",c:1},{t:"SSLV",c:0},{t:"ASLV",c:0}]},
+            {id:10, tag:"Delhi Police Constable 2025", q:"What is the approximate lift-off mass of the PSLV-C61 launch vehicle?", opts:[{t:"158 tonnes",c:0},{t:"321 tonnes",c:1},{t:"451 tonnes",c:0},{t:"533 tonnes",c:0}]},
+            {id:11, tag:"Delhi Police Constable 2025", q:"The PSLV is mainly used to place the satellites in ________ orbits.", opts:[{t:"Geostationary",c:0},{t:"Polar",c:1},{t:"Lunar",c:0},{t:"Elliptical",c:0}]},
+            {id:12, tag:"SSC CPO Pre 2025", q:"Which of the following statements correctly describe the RLV-LEX-02 landing experiment conducted by ISRO?<br>1. The Pushpak vehicle was released from 4.5 km altitude at 4 km distance...<br>2. The winged body...<br>3. The mission validated...", opts:[{t:"Only Statements 1 and 2 are correct",c:0},{t:"Only Statements 2 and 3 are correct",c:0},{t:"Only Statements 1 and 3 are correct",c:0},{t:"1, 2 and 3 all statements are correct",c:1}]},
+            {id:13, tag:"SSC CPO Pre 2025", q:"Evaluate the following statements related to reusable launch vehicles (RLVs):<br>Statement 1: RLVs are being explored primarily to enhance launch efficiency...<br>Statement 2: The development of RLVs increases operational complexity...", opts:[{t:"Only Statement 1 is correct",c:1},{t:"Only Statement 2 is correct",c:0},{t:"Both 1 and 2 are correct",c:0},{t:"Neither 1 nor 2 are correct",c:0}]},
+            {id:14, tag:"SSC CPO Pre 2025", q:"Assertion (A): Liquid Oxygen-Methane (LOX-Meth) has been chosen as the preferred propellant...<br>Reason (R): LOX-Meth offers advantages such as cleaner combustion...", opts:[{t:"Both A and R are true, and R is the correct explanation of A",c:1},{t:"Both A and R are true, but R is not the correct explanation of A",c:0},{t:"A is true, but R is false",c:0},{t:"A is false, but R is true",c:0}]},
+            {id:15, tag:"SSC CPO Pre 2025", q:"Assertion (A): Spark Torch Igniters are being increasingly incorporated...<br>Reason (R): They provide superior multi-restart capability...", opts:[{t:"Both A and R are true, and R is the correct explanation of A",c:1},{t:"Both A and R are true, but R is not the correct explanation of A",c:0},{t:"A is true, but R is false",c:0},{t:"A is false, but R is true",c:0}]},
+            {id:16, tag:"SSC SP Level 2025", q:"Assertion (A): The Reusable Launch Vehicle - Technology Demonstrator (RLV-TD) program...<br>Reason (R): RLV-TD missions are specifically designed to test crucial technologies...", opts:[{t:"Both A and R are true, and R is the correct explanation of A",c:1},{t:"Both A and R are true, but R is not the correct explanation of A",c:0},{t:"A is true, but R is false",c:0},{t:"A is false, but R is true",c:0}]},
+            {id:17, tag:"SSC CHSL Tier-01 2025", q:"In the context of Indian satellite launch vehicle, what does 'G' stand for in GSLV?", opts:[{t:"Geosynchronous",c:1},{t:"Gladiator",c:0},{t:"Gentle",c:0},{t:"Generation",c:0}]},
+            {id:18, tag:"SSC CHSL Tier-01 2025", q:"In the context of launch vehicles of India, which of the following launch vehicle is also known as GSLV MK-III?", opts:[{t:"ASLV",c:0},{t:"SLV-3",c:0},{t:"LVM3",c:1},{t:"PSLV",c:0}]},
+            {id:19, tag:"SSC CHSL Tier-01 2025", q:"In the context of Indian satellite launch vehicle, how many stages did GSLV-D1 have?", opts:[{t:"Two",c:0},{t:"Three",c:1},{t:"Five",c:0},{t:"Six",c:0}]},
+            {id:20, tag:"SSC CHSL Tier-01 2025", q:"Why is hydrogen used as fuel in a cryogenic engine?", opts:[{t:"Because it is easy to store at room temperature.",c:0},{t:"Because it is non-flammable.",c:0},{t:"Because it has the highest energy output per kilogram.",c:1},{t:"Because it is very cheap in comparison to other fuels.",c:0}]},
+            {id:21, tag:"SSC CGL 2025 Tier-01", q:"What makes the SSLV (Small Satellite Launch Vehicle) distinct from PSLV and GSLV?", opts:[{t:"It uses a hybrid liquid-solid engine",c:0},{t:"It is designed for on-demand, low-cost launches",c:1},{t:"It operates from a sea-based platform",c:0},{t:"It can only launch foreign satellites",c:0}]},
+            {id:22, tag:"SSC CGL 2025 Tier-01", q:"What does the 'PSLV' rocket stand for?", opts:[{t:"Polar Satellite Launch Vehicle",c:1},{t:"Public Space Launch Vehicle",c:0},{t:"Planetary Satellite Launch Vehicle",c:0},{t:"Private Satellite Launch Vehicle",c:0}]},
+            {id:23, tag:"SSC CGL 2025 Tier-01", q:"Assertion (A): Generative Design Software is increasingly used by ISRO...<br>Reason (R): Generative design tools are specifically developed for modeling cryogenic fuel tanks...", opts:[{t:"Both A and R are true, and R is the correct explanation of A",c:0},{t:"Both A and R are true, but R is not the correct explanation of A",c:0},{t:"A is true, but R is false",c:1},{t:"A is false, but R is true",c:0}]},
+            {id:24, tag:"SSC CGL 2025 Tier-01", q:"Why is generative-design software used in launch vehicle (LV) structural engineering?", opts:[{t:"To increase the mass of structural components",c:0},{t:"To reduce structural weight while maintaining performance",c:1},{t:"To simplify 2D CAD drafting in mission drawings",c:0},{t:"To boost overall mission cost through advanced algorithms",c:0}]},
+            {id:25, tag:"SSC CGL 2025 Tier-01", q:"Assertion (A): The development of Spark Torch Igniters is essential...<br>Reason (R): Spark Torch Igniters provide highly reliable and repeatable ignition capability...", opts:[{t:"Both A and R are true, and R is the correct explanation of A",c:1},{t:"Both A and R are true, but R is not the correct explanation of A",c:0},{t:"A is true, but R is false",c:0},{t:"A is false, but R is true",c:0}]},
+            {id:26, tag:"SSC CGL 2025 Tier-01", q:"Examine the following statements about the SSLV-D2 mission:<br>Statement 1: SSLV-D2 inserted EOS-07... powered entirely by liquid propulsion.<br>Statement 2: The SSLV-D2 mission showcased rapid deployment capability...", opts:[{t:"Only Statement 1 is correct",c:0},{t:"Only Statement 2 is correct",c:1},{t:"1 and 2 are correct",c:0},{t:"Neither 1 nor 2 are correct",c:0}]},
+            {id:27, tag:"SSC CGL 2025 Tier-01", q:"Assertion (A): The Polar Satellite Launch Vehicle (PSLV) is widely recognized...<br>Reason (R): PSLV is highly versatile, capable of launching a diverse range of payloads...", opts:[{t:"Both A and R are true, and R is the correct explanation of A",c:1},{t:"Both A and R are true, but R is not the correct explanation of A",c:0},{t:"A is true, but R is false",c:0},{t:"A is false, but R is true",c:0}]},
+            {id:28, tag:"SSC CGL 2025 Tier-01", q:"Which of the following best reflects the fundamental objective of applying generative design in aerospace systems engineering?", opts:[{t:"Facilitating seamless integration of multi-payload platforms",c:0},{t:"Optimizing mechanical configurations for minimum mass and maximum structural resilience",c:1},{t:"Enhancing life-support redundancies",c:0},{t:"Designing adaptive thrust mechanisms",c:0}]},
+            {id:29, tag:"SSC STENO Exam 2025", q:"What advanced technology is being tested in ISRO's new 'Next Generation Launch Vehicle' (NGLV) project?", opts:[{t:"Reusable booster stage with semi-cryogenic engine",c:1},{t:"Quantum entanglement-based control",c:0},{t:"Ramjet propulsion",c:0},{t:"Multiple orbital drop pods",c:0}]},
+            {id:30, tag:"SSC STENO Exam 2025", q:"1. Ramjets operate efficiently at hypersonic speeds.<br>2. Dual Mode Ramjets can work in both subsonic and supersonic modes.", opts:[{t:"2 only",c:0},{t:"Neither 1 nor 2",c:1},{t:"Both 1 and 2",c:0},{t:"1 only",c:0}]},
+            {id:31, tag:"SSC STENO Exam 2025", q:"What is the name of India's first reusable hybrid rocket launched by a Tamil Nadu-based startup?", opts:[{t:"AGNI-V",c:0},{t:"RAKSHA-1",c:0},{t:"VAYU-1",c:0},{t:"RHUMI-1",c:1}]},
+            {id:32, tag:"SSC STENO Exam 2025", q:"Which Indian space mission marked the successful launch of 104 satellites in a single mission?", opts:[{t:"Astrosat",c:0},{t:"GSLV Mk III",c:0},{t:"Chandrayaan-2",c:0},{t:"PSLV-C37",c:1}]},
+            {id:33, tag:"SSC GD Exam 2025-26", q:"Which nation landed the first rover on the far side of the Moon?", opts:[{t:"USA",c:0},{t:"China",c:1},{t:"India",c:0},{t:"Russia",c:0}]},
+            {id:34, tag:"SSC GD Exam 2025-26", q:"Chandrayaan-1 mission was concluded after the communication with the spacecraft was lost in ________.", opts:[{t:"2009",c:1},{t:"2013",c:0},{t:"2017",c:0},{t:"2014",c:0}]},
+            {id:35, tag:"SSC GD Exam 2025-26", q:"What was significant about the Chandrayaan-2 mission despite its lander's failure?", opts:[{t:"It studied Venus",c:0},{t:"Its orbiter continues to send data",c:1},{t:"It carried astronauts",c:0},{t:"It was India's first Mars mission",c:0}]},
+            {id:36, tag:"SSC MTS Exam 2025", q:"Which of the following space mission of India was credited for reviving interest about presence of water on Moon?", opts:[{t:"Chandrayaan-I",c:1},{t:"Chandrayaan-II",c:0},{t:"Chandrayaan-III",c:0},{t:"Aditya L-1",c:0}]},
+            {id:37, tag:"SSC MTS Exam 2025", q:"In the context of Chandrayaan-III mission, the SHAPE payload was used to ________.", opts:[{t:"detect moonquakes",c:0},{t:"study Earth's spectral and polarimetric properties from lunar orbit",c:1},{t:"measure thermal conductivity from lunar surface",c:0},{t:"study the plasma density on lunar surface",c:0}]},
+            {id:38, tag:"SSC CPO Pre 2025", q:"RAMBHA-LP onboard Chandrayaan-3 is designed to probe lunar ________.", opts:[{t:"Plasma",c:1},{t:"Gravity",c:0},{t:"Photons",c:0},{t:"Neutrons",c:0}]},
+            {id:39, tag:"SSC CPO Pre 2025", q:"The depth of the buried crater discovered by Chandrayaan-3 is approximately ________.", opts:[{t:"2.2 km",c:0},{t:"4.4 km",c:0},{t:"6.6 km",c:0},{t:"1.1 km",c:1}]},
+            {id:40, tag:"SSC CHSL Tier-01 2025", q:"The 'Chandrayaan-2' mission was launched by, which of the following launching vehicle?", opts:[{t:"SLV-3",c:0},{t:"ASLV",c:0},{t:"GSLV",c:1},{t:"PSLV",c:0}]},
+            {id:41, tag:"SSC CHSL Tier-01 2025", q:"The Chandrayaan-2 mission consisted of an orbiter, a lander named ________ and a rover named ________.", opts:[{t:"Pragyan, Vikram",c:0},{t:"Vikram, Pragyan",c:1},{t:"Bheem, Shakti",c:0},{t:"Aditya, Surya",c:0}]},
+            {id:42, tag:"SSC CHSL Tier-01 2025", q:"I. It was the first lunar mission of India.<br>II. It confirmed the presence of water on the Moon.", opts:[{t:"Only I",c:0},{t:"Only II",c:0},{t:"Both I and II",c:1},{t:"Neither I nor II",c:0}]},
+            {id:43, tag:"SSC CGL 2025 Tier-01", q:"The Chandrayaan-3 lander, Vikram, used which advanced technology for hazard detection and avoidance during landing?", opts:[{t:"Lander Hazard Detection and Avoidance Camera and Processing Algorithm",c:1},{t:"Synthetic Aperture Radar (SAR)",c:0},{t:"Laser Doppler Imaging",c:0},{t:"Laser Doppler Velocimeter",c:0}]},
+            {id:44, tag:"SSC CGL 2025 Tier-01", q:"Which ISRO mission first discovered lunar hydration?", opts:[{t:"Chandrayaan-1",c:1},{t:"Chandrayaan-2",c:0},{t:"Chandrayaan-3",c:0},{t:"Chandrayaan-4",c:0}]},
+            {id:45, tag:"SSC CGL 2025 Tier-01", q:"The Laser Retroreflector Array (LRA) onboard Chandrayaan-3 was supplied by which space agency?", opts:[{t:"ESA",c:0},{t:"JAXA",c:0},{t:"NASA",c:1},{t:"ROSCOSMOS",c:0}]},
+            {id:46, tag:"SSC STENO Exam 2025", q:"What was the key scientific objective of Chandrayaan-3?", opts:[{t:"To demonstrate a safe lunar landing and rover operation",c:1},{t:"To study Mars atmosphere",c:0},{t:"To measure gravitational waves",c:0},{t:"To orbit the Moon",c:0}]},
+            {id:47, tag:"SSC STENO Exam 2025", q:"The primary objective of the LUPEX Mission (a collaboration between ISRO and JAXA) is to:", opts:[{t:"Study the Martian atmosphere",c:0},{t:"Deploy a communication satellite in lunar orbit",c:0},{t:"Investigate the quantity and quality of water on the Moon and explore its dark side",c:1},{t:"Observe solar flares",c:0}]},
+            {id:48, tag:"SSC GD Exam 2025-26", q:"I. The detection of ultraviolet emissions emanating from remote galaxies.<br>II. The polarisation of X-rays in proximate supernova remnants.", opts:[{t:"Only I",c:0},{t:"Only II",c:0},{t:"Both I and II",c:1},{t:"Neither I nor II",c:0}]},
+            {id:49, tag:"SSC GD Exam 2025-26", q:"Which telescope provided the first direct image of a black hole?", opts:[{t:"Hubble",c:0},{t:"Event Horizon Telescope",c:1},{t:"Spitzer",c:0},{t:"Kepler",c:0}]},
+            {id:50, tag:"Delhi Police Constable 2025", q:"Which payload is NOT included on Aditya-L1, although it is part of another ISRO mission for X-ray studies?", opts:[{t:"SUIT (Solar UV Imaging Telescope)",c:0},{t:"VELC (Visible Emission Line Coronagraph)",c:0},{t:"POLIX (X-ray polarimeter)",c:1},{t:"SOLEXS (Soft X-ray Spectrometer)",c:0}]},
+            
+            // 51-100
+            {id:51, tag:"DELHI POLICE CONSTABLE 2025", q:"Which mission marks India's first dedicated solar observatory launched by ISRO?", opts:[{t:"Aditya-L1",c:1},{t:"Chandrayaan-3",c:0},{t:"Gaganyaan",c:0},{t:"AstroSat-2",c:0}]},
+            {id:52, tag:"SSC CHSL TIER-01 2025", q:"The Aditya L-1 mission of ISRO was launched in which of the following year?", opts:[{t:"2023",c:1},{t:"2024",c:0},{t:"2022",c:0},{t:"2021",c:0}]},
+            {id:53, tag:"SSC CPO PRE 2025", q:"What is the primary function of the Solar Wind Ion Spectrometer (SWIS), included in the ASPEX payload on Aditya-L1?", opts:[{t:"Detects directional flow of solar wind protons and alpha particles",c:1},{t:"Captures high-resolution images of the solar corona",c:0},{t:"Measures the solar magnetic field variations",c:0},{t:"Studies the high-energy X-ray emissions",c:0}]},
+            {id:54, tag:"SSC CHSL TIER-01 2025", q:"The Parker Solar Probe, launched to study the Sun by moving in a solar orbit, is a mission of which space agency?", opts:[{t:"NASA",c:1},{t:"ESA",c:0},{t:"ISRO",c:0},{t:"Roscosmos",c:0}]},
+            {id:55, tag:"SSC CGL 2025 TIER-01", q:"Aditya-L1 took how many days to reach L1?", opts:[{t:"127",c:1},{t:"104",c:0},{t:"150",c:0},{t:"95",c:0}]},
+            {id:56, tag:"SSC SP LEVEL 2025", q:"Match the Aditya-L1 mission payloads:<br>1. VELC<br>2. SUIT<br>3. SOLEXS<br>4. ASPEX", opts:[{t:"1 → Corona imaging, 2 → UV imaging, 3 → X-rays, 4 → Solar wind",c:1},{t:"1 → UV imaging, 2 → Corona imaging, 3 → Solar wind, 4 → X-rays",c:0},{t:"1 → Solar wind, 2 → UV imaging, 3 → Corona imaging, 4 → X-rays",c:0},{t:"1 → X-rays, 2 → Solar wind, 3 → UV imaging, 4 → Corona imaging",c:0}]},
+            {id:57, tag:"SSC CGL 2025 TIER-01", q:"What distinguishes ISRO's Aditya-L1 mission from other solar observatories?", opts:[{t:"It will study the solar corona from Lagrange Point 1",c:1},{t:"It will land on the surface of the sun",c:0},{t:"It orbits the Earth in a Low Earth Orbit",c:0},{t:"It is the first satellite exclusively dedicated to detecting solar neutrinos",c:0}]},
+            {id:58, tag:"SSC CGL 2025 TIER-01", q:"1. It observes in the near-infrared and mid-infrared spectrum.<br>2. It is positioned at the Sun-Earth Lagrange Point L2.<br>3. It carries a coronagraph for exoplanet detection.", opts:[{t:"All 1, 2 and 3",c:1},{t:"Only 1 and 2",c:0},{t:"Only 2 and 3",c:0},{t:"Only 1",c:0}]},
+            {id:59, tag:"SSC CGL 2025 TIER-01", q:"Aditya-L1 is placed in a halo orbit around which type of gravitationally balanced point in space?", opts:[{t:"Lagrangian",c:1},{t:"Keplerian",c:0},{t:"Newtonian",c:0},{t:"Galilean",c:0}]},
+            {id:60, tag:"SSC CGL 2025 TIER-01", q:"Which instrument description on XPoSat is correct?", opts:[{t:"POLIX measures X-ray polarization (8-30 keV) to study black holes.",c:1},{t:"XSPECT measures solar wind particles",c:0},{t:"POLIX measures gamma-ray bursts",c:0},{t:"XSPECT functions primarily as a UV radiation detector.",c:0}]},
+            {id:61, tag:"SSC CGL 2025 TIER-01", q:"Which of the following is NOT a consequence of space weather events like solar flares and CMEs?", opts:[{t:"Alteration of ocean currents",c:1},{t:"Disruption of GPS signals",c:0},{t:"Damage to power transmission systems",c:0},{t:"Interruption of high-frequency radio communications",c:0}]},
+            {id:62, tag:"SSC CGL 2025 TIER-01", q:"Which payload monitors solar wind at L1?", opts:[{t:"ASPEX",c:1},{t:"PAPA",c:0},{t:"SUIT",c:0},{t:"VELC",c:0}]},
+            {id:63, tag:"SSC CGL 2025 TIER-01", q:"Aditya-L1 spacecraft primarily studies which part of the Sun?", opts:[{t:"Corona",c:1},{t:"Core",c:0},{t:"Radiative Zone",c:0},{t:"Convective Zone",c:0}]},
+            {id:64, tag:"SSC STENO EXAM 2025", q:"What is a unique feature of the AstroSat mission operated by ISRO?", opts:[{t:"Simultaneous multi-wavelength observations",c:1},{t:"It is the first satellite to land on an asteroid",c:0},{t:"It is dedicated solely to infrared astronomy",c:0},{t:"It relies completely on a nuclear reactor for power",c:0}]},
+            {id:65, tag:"SSC STENO EXAM 2025", q:"What is one of the major future impacts of ISRO's Aditya-L1 mission?", opts:[{t:"Improved space weather forecasting to protect satellites and power systems",c:1},{t:"Finding habitable exoplanets",c:0},{t:"Deflecting near-Earth asteroids",c:0},{t:"Mining solar energy",c:0}]},
+            {id:66, tag:"SSC STENO EXAM 2025", q:"1. The Aditya-L1 mission was launched to replace the INSAT series.<br>2. Aditya-L1 successfully entered a Halo orbit around the Lagrange Point 1 (L1).", opts:[{t:"2 only",c:1},{t:"1 only",c:0},{t:"Both 1 and 2",c:0},{t:"Neither 1 nor 2",c:0}]},
+            {id:67, tag:"SSC STENO EXAM 2025", q:"Which of the following statements regarding the Square Kilometer Array (SKA) is correct?", opts:[{t:"It aims to explore cosmic magnetism and dark matter.",c:1},{t:"It is a single massive dish located in Earth's orbit.",c:0},{t:"It is designed to physically capture dark matter particles.",c:0},{t:"It studies exclusively the planets within our solar system.",c:0}]},
+            {id:68, tag:"SSC STENO EXAM 2025", q:"Which recent mission by ISRO aims to study the Sun from the Lagrange point L1?", opts:[{t:"Aditya-L1",c:1},{t:"Bhaskara-II",c:0},{t:"Astrosat-2",c:0},{t:"Pragyan",c:0}]},
+            {id:69, tag:"SSC STENO EXAM 2025", q:"Which of the following systems can be affected by a solar storm?<br>1. GPS signal accuracy<br>2. Power transmission systems<br>3. Submarine communication cables<br>4. Pipeline infrastructure", opts:[{t:"1, 2, 3, and 4 all of these",c:1},{t:"1 and 2 only",c:0},{t:"2, 3, and 4 only",c:0},{t:"1, 2, and 3 only",c:0}]},
+            {id:70, tag:"SSC STENO EXAM 2025", q:"1. The SUIT payload on Aditya-L1 is designed to image the solar disk...<br>2. The SOLEXS instrument is a high-resolution X-ray spectrometer...", opts:[{t:"Both 1 and 2",c:1},{t:"1 only",c:0},{t:"2 only",c:0},{t:"Neither 1 nor 2",c:0}]},
+            {id:71, tag:"SSC CHSL TIER-01 2025", q:"Which of the following is the India's first interplanetary mission?", opts:[{t:"Mangalyaan",c:1},{t:"Chandrayaan-1",c:0},{t:"Aditya-L1",c:0},{t:"AstroSat",c:0}]},
+            {id:72, tag:"SSC CHSL TIER-01 2025", q:"According to NASA's research, which planet's rings are disappearing at a worst-case-scenario rate?", opts:[{t:"Saturn",c:1},{t:"Jupiter",c:0},{t:"Uranus",c:0},{t:"Neptune",c:0}]},
+            {id:73, tag:"SSC CHSL TIER-01 2025", q:"India wants to explore Venus's thick atmosphere and greenhouse effect. Which mission is planned?", opts:[{t:"Shukrayaan (Venus Orbiter)",c:1},{t:"Mangalyaan-2",c:0},{t:"Gaganyaan",c:0},{t:"Vyommitra",c:0}]},
+            {id:74, tag:"SSC MTS EXAM 2025", q:"The 'EnVision' mission of the European Space Agency is aimed at exploring which planet?", opts:[{t:"Venus",c:1},{t:"Mars",c:0},{t:"Jupiter",c:0},{t:"Saturn",c:0}]},
+            {id:75, tag:"SSC CHSL TIER-01 2025", q:"Europa Clipper is the first mission designed to conduct a detailed study of _______ moon Europa.", opts:[{t:"Jupiter",c:1},{t:"Saturn",c:0},{t:"Mars",c:0},{t:"Uranus",c:0}]},
+            {id:76, tag:"SSC CHSL TIER-01 2025", q:"The 'Mangalyaan' mission of India was launched by which of the following launch vehicle?", opts:[{t:"PSLV",c:1},{t:"GSLV",c:0},{t:"LVM3",c:0},{t:"SSLV",c:0}]},
+            {id:77, tag:"SSC GD EXAM 2025-26", q:"Which mission of NASA will explore Jupiter's moon Europa?", opts:[{t:"Europa Clipper",c:1},{t:"Juno",c:0},{t:"Galileo",c:0},{t:"Cassini",c:0}]},
+            {id:78, tag:"SSC GD EXAM 2025-26", q:"Which Indian mission made India the first country to successfully reach Mars orbit in its maiden attempt?", opts:[{t:"Mangalyaan (Mars Orbiter Mission)",c:1},{t:"Chandrayaan-1",c:0},{t:"Aditya-L1",c:0},{t:"Gaganyaan",c:0}]},
+            {id:79, tag:"SSC GD EXAM 2025-26", q:"The Mars Orbiter Mission of India was launched in _______.", opts:[{t:"2013",c:1},{t:"2014",c:0},{t:"2012",c:0},{t:"2015",c:0}]},
+            {id:80, tag:"SSC CGL 2025 TIER-01", q:"Which payload on the Mars Orbiter Mission (MOM) captured full-disk colour images of Mars?", opts:[{t:"MCC (Mars Colour Camera)",c:1},{t:"TIS (Thermal Infrared Spectrometer)",c:0},{t:"MSM (Methane Sensor for Mars)",c:0},{t:"LAP (Lyman Alpha Photometer)",c:0}]},
+            {id:81, tag:"SSC CGL 2025 TIER-01", q:"Which of the following is a main goal of the proposed Shukrayaan-1 mission by ISRO?", opts:[{t:"Investigate Venus' surface and atmosphere",c:1},{t:"Land a rover on the surface of Venus",c:0},{t:"Bring back soil samples from Venus",c:0},{t:"Study the multiple moons of Venus",c:0}]},
+            {id:82, tag:"SSC CGL 2025 TIER-01", q:"India's first interplanetary mission is:", opts:[{t:"Mangalyaan (Mars Orbiter Mission)",c:1},{t:"Chandrayaan-1",c:0},{t:"Aditya-L1",c:0},{t:"Astrosat",c:0}]},
+            {id:83, tag:"SSC GD EXAM 2025-26", q:"What is the purpose of ISRO's NaviC system?", opts:[{t:"Regional navigation",c:1},{t:"Global weather forecasting",c:0},{t:"Deep space communication network",c:0},{t:"Military spy surveillance operations",c:0}]},
+            {id:84, tag:"SSC GD EXAM 2025-26", q:"The Indian agency responsible for managing satellite remote sensing for environmental studies is:", opts:[{t:"ISRO - Indian Space Research Organisation",c:1},{t:"DRDO - Defence Research",c:0},{t:"BARC - Bhabha Atomic",c:0},{t:"IMD - India Meteorological Department",c:0}]},
+            {id:85, tag:"SSC GD EXAM 2025-26", q:"Which Indian satellite helped in monitoring cyclones like Hudhud and Phailin?", opts:[{t:"INSAT-3D",c:1},{t:"Cartosat-2",c:0},{t:"GSAT-7",c:0},{t:"RISAT-1",c:0}]},
+            {id:86, tag:"SSC GD EXAM 2025-26", q:"An engineer is assigned to monitor Earth's surface changes using radar, even through clouds and at night. Which mission provides this capability?", opts:[{t:"NISAR",c:1},{t:"EOS-04",c:0},{t:"Cartosat-3",c:0},{t:"Oceansat-3",c:0}]},
+            {id:87, tag:"DELHI POLICE CONSTABLE 2025", q:"Into which orbit was ISRO's CMS-03 satellite placed after its launch?", opts:[{t:"Geosynchronous Transfer Orbit",c:1},{t:"Low Earth Orbit",c:0},{t:"Sun Synchronous Polar Orbit",c:0},{t:"Medium Earth Orbit",c:0}]},
+            {id:88, tag:"DELHI POLICE CONSTABLE 2025", q:"Which satellite was carried as the primary payload by GSLV-F15, designed for enhancing India's navigation capabilities?", opts:[{t:"NVS-02",c:1},{t:"NVS-01",c:0},{t:"IRNSS-1G",c:0},{t:"GSAT-24",c:0}]},
+            {id:89, tag:"DELHI POLICE CONSTABLE 2025", q:"Which option accurately describes the imaging payload used in the NISAR mission?", opts:[{t:"Dual-frequency (L&S) SAR with 12m reflector",c:1},{t:"X-band SAR with 5m deployable reflector",c:0},{t:"Optical multi-spectral imager",c:0},{t:"C-band synthetic aperture radar with an 8m antenna",c:0}]},
+            {id:90, tag:"DELHI POLICE CONSTABLE 2025", q:"What is the approximate launch mass of ISRO's CMS-03 communication satellite?", opts:[{t:"4400 kg",c:1},{t:"2200 kg",c:0},{t:"3500 kg",c:0},{t:"1500 kg",c:0}]},
+            {id:91, tag:"DELHI POLICE CONSTABLE 2025", q:"What is the primary purpose of ISRO's CMS-03 satellite?", opts:[{t:"Communication services",c:1},{t:"Earth observation",c:0},{t:"Navigation",c:0},{t:"Deep space exploration",c:0}]},
+            {id:92, tag:"DELHI POLICE CONSTABLE 2025", q:"Which mission did the LVM3 vehicle carry out before launching the CMS-03 satellite?", opts:[{t:"Chandrayaan-3",c:1},{t:"Gaganyaan Test Flight",c:0},{t:"Aditya-L1",c:0},{t:"Mangalyaan-2",c:0}]},
+            {id:93, tag:"DELHI POLICE CONSTABLE 2025", q:"What scientific advantage does NISAR's dual-frequency radar (L+S band) provide?", opts:[{t:"Ability to penetrate vegetation/soil and detect very small ground movements (deformation)",c:1},{t:"Measure exact atmospheric temperature profiles",c:0},{t:"Detect deep ocean currents",c:0},{t:"Identify atmospheric trace gases",c:0}]},
+            {id:94, tag:"DELHI POLICE CONSTABLE 2025", q:"What is the approximate launch mass of the EOS-09 satellite?", opts:[{t:"1696 kg",c:1},{t:"1200 kg",c:0},{t:"2500 kg",c:0},{t:"950 kg",c:0}]},
+            {id:95, tag:"DELHI POLICE CONSTABLE 2025", q:"Which launch vehicle successfully launched the CMS-03 communication satellite?", opts:[{t:"LVM3-M5",c:1},{t:"PSLV-C55",c:0},{t:"GSLV-F12",c:0},{t:"SSLV-D2",c:0}]},
+            {id:96, tag:"DELHI POLICE CONSTABLE 2025", q:"Why is GSLV-F16 significant in ISRO's launch history, particularly regarding Earth observation satellite deployment?", opts:[{t:"It launched NISAR into sun-synchronous orbit",c:1},{t:"It was the first flight with a fully indigenous semi-cryogenic engine",c:0},{t:"It launched India's first permanent space station module",c:0},{t:"It failed to place its satellite in orbit",c:0}]},
+            {id:97, tag:"DELHI POLICE CONSTABLE 2025", q:"What type of orbit was EOS-09 designed to operate in?", opts:[{t:"Sun Synchronous Polar Orbit",c:1},{t:"Geostationary Orbit",c:0},{t:"Low Earth Equatorial Orbit",c:0},{t:"Molniya Orbit",c:0}]},
+            {id:98, tag:"DELHI POLICE CONSTABLE 2025", q:"What is the size of the boom that hoists the 12-meter reflector on NISAR?", opts:[{t:"9 m",c:1},{t:"12 m",c:0},{t:"6 m",c:0},{t:"15 m",c:0}]},
+            {id:99, tag:"DELHI POLICE CONSTABLE 2025", q:"When did the NISAR mission enter its Science Phase?", opts:[{t:"July 26, 2025 to November 28, 2025",c:1},{t:"January 1, 2025 to March 31, 2025",c:0},{t:"September 1, 2024 to December 31, 2024",c:0},{t:"August 15, 2026 to November 30, 2026",c:0}]},
+            {id:100, tag:"DELHI POLICE CONSTABLE 2025", q:"Which scientist proposed the Indian Calendar Reform Committee report, aiming to standardize Indian calendars and align them with scientific observations of solar and lunar cycles?", opts:[{t:"Meghnad Saha",c:1},{t:"Homi J. Bhabha",c:0},{t:"Vikram Sarabhai",c:0},{t:"C. V. Raman",c:0}]},
+
+            // 101-167
+            {id:101, tag:"DELHI POLICE CONSTABLE 2025", q:"What is the specified orbit altitude of the NISAR spacecraft?", opts:[{t:"747 km",c:1},{t:"400 km",c:0},{t:"1000 km",c:0},{t:"36000 km",c:0}]},
+            {id:102, tag:"DELHI POLICE CONSTABLE 2025", q:"Which ISRO launch vehicle successfully delivered the NISAR satellite to orbit?", opts:[{t:"GSLV-F16",c:1},{t:"PSLV-C55",c:0},{t:"LVM3-M4",c:0},{t:"SSLV-D2",c:0}]},
+            {id:103, tag:"DELHI POLICE CONSTABLE 2025", q:"When did NISAR begin its commissioning phase?", opts:[{t:"After ~90 days post-launch",c:1},{t:"Immediately upon launch",c:0},{t:"After 1 year in orbit",c:0},{t:"After 7 days post-launch",c:0}]},
+            {id:104, tag:"SSC CPO PRE 2025", q:"What is the benefit of the NavIC system?", opts:[{t:"Offers regional navigation and positioning services",c:1},{t:"Provides global interplanetary communication",c:0},{t:"Used solely for deep space imaging",c:0},{t:"Tracks real-time weather globally",c:0}]},
+            {id:105, tag:"SSC CPO PRE 2025", q:"The NISAR satellite mission is primarily related to which type of imaging?", opts:[{t:"Radar imaging",c:1},{t:"Optical imaging",c:0},{t:"Thermal imaging",c:0},{t:"X-ray imaging",c:0}]},
+            {id:106, tag:"SSC CPO PRE 2025", q:"What is the main purpose of developing ISRO's MiniSAR (Miniaturized Synthetic Aperture Radar) at X-Band?", opts:[{t:"To provide high-resolution X-Band radar imagery using compact airborne systems",c:1},{t:"To provide low-resolution L-Band data",c:0},{t:"To perform optical photography of Mars",c:0},{t:"To map infrared heat signatures globally",c:0}]},
+            {id:107, tag:"SSC CHSL TIER-01 2025", q:"Fill in the Blanks: NISAR satellite carries dual-frequency radar bands ___ and ___.", opts:[{t:"L & S",c:1},{t:"Ku & Ka",c:0},{t:"X & C",c:0},{t:"UHF & VHF",c:0}]},
+            {id:108, tag:"SSC CHSL TIER-01 2025", q:"In the context of Indian satellite, the INSAT is used for which of the following purpose?<br>I. Television broadcasting<br>II. Weather Forecasting", opts:[{t:"Both I and II",c:1},{t:"Only I",c:0},{t:"Only II",c:0},{t:"Neither I nor II",c:0}]},
+            {id:109, tag:"SSC CHSL TIER-01 2025", q:"Which space agency operates the CryoSat satellite, designed to study polar ice thickness and monitor climate change?", opts:[{t:"ESA",c:1},{t:"NASA",c:0},{t:"ISRO",c:0},{t:"Roscosmos",c:0}]},
+            {id:110, tag:"SSC CHSL TIER-01 2025", q:"Which of the following is a purpose of remote sensing satellites?<br>I. Draught assessment<br>II. Estimation of yield of various crops", opts:[{t:"Both I and II",c:1},{t:"Only I",c:0},{t:"Only II",c:0},{t:"Neither I nor II",c:0}]},
+            {id:111, tag:"SSC CHSL TIER-01 2025", q:"Which type of satellite is mainly used for weather monitoring and forecasting?", opts:[{t:"Geo-stationary satellite",c:1},{t:"Low Earth Orbit (LEO) satellite",c:0},{t:"Sun-synchronous satellite",c:0},{t:"Polar satellite",c:0}]},
+            {id:112, tag:"SSC CHSL TIER-01 2025", q:"The first Indian meteorological rocket launched in 1963 had a diameter of ___ mm.", opts:[{t:"75",c:1},{t:"50",c:0},{t:"100",c:0},{t:"120",c:0}]},
+            {id:113, tag:"SSC SP LEVEL 2025", q:"The ISRO satellite series, used mainly for meteorological and weather forecasting purposes, is:", opts:[{t:"INSAT",c:1},{t:"IRS",c:0},{t:"CARTOSAT",c:0},{t:"RISAT",c:0}]},
+            {id:114, tag:"SSC CHSL TIER-01 2025", q:"Geostationary orbit satellites travel at about ___ km per second.", opts:[{t:"3",c:1},{t:"8",c:0},{t:"11",c:0},{t:"28",c:0}]},
+            {id:115, tag:"SSC CHSL TIER-01 2025", q:"India started working in space research with the launch of a meteorological rocket in which year?", opts:[{t:"1963",c:1},{t:"1957",c:0},{t:"1969",c:0},{t:"1975",c:0}]},
+            {id:116, tag:"SSC CHSL TIER-01 2025", q:"Why can a geo-stationary satellite monitor the movement of clouds accurately?", opts:[{t:"Because it is stationary relative to any place on Earth.",c:1},{t:"Because it moves faster than the Earth's rotation.",c:0},{t:"Because it orbits exclusively over the polar regions.",c:0},{t:"Because it travels in a retrograde orbit.",c:0}]},
+            {id:117, tag:"SSC CGL 2025 TIER-01", q:"What is the primary function of the NVS-02 satellite launched aboard GSLV-F15?", opts:[{t:"It boosts India's navigation system by offering precise position and timing data.",c:1},{t:"It is used strictly for military surveillance.",c:0},{t:"It provides broadband internet to rural areas.",c:0},{t:"It is designed for weather forecasting.",c:0}]},
+            {id:118, tag:"SSC CGL 2025 TIER-01", q:"Identify the incorrect match of satellite type and application:", opts:[{t:"Navigation satellite - Forest fire monitoring",c:1},{t:"Communication satellite - DTH Services",c:0},{t:"Remote Sensing satellite - Agriculture",c:0},{t:"Meteorological satellite - Cyclone tracking",c:0}]},
+            {id:119, tag:"SSC CGL 2025 TIER-01", q:"Fill in the Blanks: NISAR maps the global surface every ___.", opts:[{t:"12 days",c:1},{t:"24 hours",c:0},{t:"30 days",c:0},{t:"6 months",c:0}]},
+            {id:120, tag:"SSC CGL 2025 TIER-01", q:"What is the orbital regime of the NISAR (NASA-ISRO Synthetic Aperture Radar) satellite?", opts:[{t:"LEO (Low Earth Orbit)",c:1},{t:"GEO (Geostationary Orbit)",c:0},{t:"MEO (Medium Earth Orbit)",c:0},{t:"HEO (Highly Elliptical Orbit)",c:0}]},
+            {id:121, tag:"SSC CGL 2025 TIER-01", q:"Why is the NISAR (NASA-ISRO Synthetic Aperture Radar) mission designed to revisit the same location every 12 days?", opts:[{t:"To achieve temporal resolution for global coverage and land deformation monitoring",c:1},{t:"To save onboard maneuvering fuel",c:0},{t:"To avoid colliding with space debris",c:0},{t:"To maintain a continuous communication link",c:0}]},
+            {id:122, tag:"SSC CGL 2025 TIER-01", q:"NISAR's orbit regime is?", opts:[{t:"Polar sun-sync",c:1},{t:"Geostationary",c:0},{t:"Equatorial",c:0},{t:"Highly elliptical",c:0}]},
+            {id:123, tag:"SSC CGL 2025 TIER-01", q:"Which Indian satellite is used for weather forecasting?", opts:[{t:"INSAT-3D",c:1},{t:"GSAT-7",c:0},{t:"Astrosat",c:0},{t:"Cartosat-3",c:0}]},
+            {id:124, tag:"SSC CGL 2025 TIER-01", q:"Which ISRO center is primarily responsible for the development of satellite technology?", opts:[{t:"U. R. Rao Satellite Centre (URSC)",c:1},{t:"Vikram Sarabhai Space Centre (VSSC)",c:0},{t:"Satish Dhawan Space Centre (SDSC)",c:0},{t:"Space Applications Centre (SAC)",c:0}]},
+            {id:125, tag:"SSC STENO EXAM 2025", q:"Earth remote sensing satellites (EOS) are primarily designed to:", opts:[{t:"Monitor weather, land use, and environmental changes on Earth",c:1},{t:"Provide global GPS and navigation data",c:0},{t:"Facilitate interplanetary exploration",c:0},{t:"Conduct deep space astronomy",c:0}]},
+            {id:126, tag:"SSC STENO EXAM 2025", q:"In collaboration with which country is ISRO developing the Trishna satellite for high-resolution thermal infrared imaging of Earth?", opts:[{t:"France",c:1},{t:"USA",c:0},{t:"Russia",c:0},{t:"Japan",c:0}]},
+            {id:127, tag:"SSC STENO EXAM 2025", q:"How can NISAR provide valuable information for understanding the relationship between fluid injection and earthquake?", opts:[{t:"By tracking changes in ground surface elevation associated with pumping and injection",c:1},{t:"By monitoring atmospheric temperature changes",c:0},{t:"By analyzing deep ocean currents",c:0},{t:"By measuring variations in solar radiation",c:0}]},
+            {id:128, tag:"SSC STENO EXAM 2025", q:"Which of the following best describes the main objective of the Indo-French Megha-Tropiques satellite mission?", opts:[{t:"Understanding convective systems and the water cycle in tropical regions",c:1},{t:"High-resolution lunar surface mapping",c:0},{t:"Studying the Mars atmosphere",c:0},{t:"Asteroid mining exploration",c:0}]},
+            {id:129, tag:"SSC GD EXAM 2025-26", q:"The Gaganyaan mission is a ___ day mission of human spaceflight capability by launching a crew into orbit and bringing them back safely to earth.", opts:[{t:"3",c:1},{t:"1",c:0},{t:"7",c:0},{t:"14",c:0}]},
+            {id:130, tag:"SSC GD EXAM 2025-26", q:"What capability does Project NETRA provide to ISRO?", opts:[{t:"Space debris tracking and situational awareness",c:1},{t:"Lunar rover deployment systems",c:0},{t:"Commercial satellite launching capabilities",c:0},{t:"Broadband internet services",c:0}]},
+            {id:131, tag:"SSC MTS EXAM 2025", q:"The International Space Station is a large space station in low earth orbit at about ___ Km from the Earth surface.", opts:[{t:"400",c:1},{t:"36000",c:0},{t:"1000",c:0},{t:"20000",c:0}]},
+            {id:132, tag:"SSC MTS EXAM 2025", q:"The International Space Station travels from west to east on an orbital inclination of ___ degrees.", opts:[{t:"51.6",c:1},{t:"90.0",c:0},{t:"0.0",c:0},{t:"23.5",c:0}]},
+            {id:133, tag:"SSC CPO PRE 2025", q:"What is the major benefit of the Indian Data Relay Satellite System (IDRSS)?", opts:[{t:"Real-time communication with low Earth orbit satellites and astronauts",c:1},{t:"Accurate global weather forecasting",c:0},{t:"Direct broadcasting television services",c:0},{t:"High-resolution agricultural mapping",c:0}]},
+            {id:134, tag:"SSC SP LEVEL 2025", q:"Which of the following is the CORRECT objective of ISRO's Gaganyaan mission scheduled for launch in 2025?", opts:[{t:"Sending Indian astronauts into low-Earth orbit",c:1},{t:"Landing a rover on the South Pole of Mars",c:0},{t:"Sending a probe to study the Sun's corona",c:0},{t:"Mining precious resources from asteroids",c:0}]},
+            {id:135, tag:"SSC CHSL TIER-01 2025", q:"What is Spadex, launched by ISRO in December 2024?", opts:[{t:"A docking experiment",c:1},{t:"A new space telescope",c:0},{t:"A lunar rover mission",c:0},{t:"A deep-space communication satellite",c:0}]},
+            {id:136, tag:"SSC CHSL TIER-01 2025", q:"The uncrewed Gaganyaan-G1 mission, scheduled for December 2025, will carry a female-looking half-humanoid robot to test human functions and onboard systems. What is the name of this robot?", opts:[{t:"Vyommitra",c:1},{t:"Pragyan",c:0},{t:"Daksh",c:0},{t:"Rustom",c:0}]},
+            {id:137, tag:"SSC CHSL TIER-01 2025", q:"The International Space Station circles Earth roughly ___ times a day.", opts:[{t:"16",c:1},{t:"24",c:0},{t:"1",c:0},{t:"8",c:0}]},
+            {id:138, tag:"SSC CGL 2025 TIER-01", q:"Why is the 'Space Situational Awareness (SSA)' program by ISRO important?", opts:[{t:"Monitors space debris and protects Indian space assets",c:1},{t:"Studies black holes and distant galaxies",c:0},{t:"Maps exoplanets in neighboring star systems",c:0},{t:"Generates solar power for terrestrial use",c:0}]},
+            {id:139, tag:"SSC CGL 2025 TIER-01", q:"Which of the following is NOT a benefit of the Gaganyaan mission?", opts:[{t:"Reduction in Earth's temperature",c:1},{t:"Inspiring the youth of the nation",c:0},{t:"Driving technological advancements",c:0},{t:"Fostering international collaboration",c:0}]},
+            {id:140, tag:"SSC CGL 2025 TIER-01", q:"Gaganyaan is planned to orbit Earth at approximately what altitude?", opts:[{t:"400 km",c:1},{t:"36000 km",c:0},{t:"100 km",c:0},{t:"2000 km",c:0}]},
+            {id:141, tag:"SSC CGL 2025 TIER-01", q:"What does the designation HLVM3 stand for in the Gaganyaan mission context?", opts:[{t:"Human LVM3",c:1},{t:"Heavy LVM3",c:0},{t:"Hybrid LVM3",c:0},{t:"High-thrust LVM3",c:0}]},
+            {id:142, tag:"SSC CGL 2025 TIER-01", q:"When did India successfully complete the SpaDeX docking operation?", opts:[{t:"30th December 2024",c:1},{t:"15th August 2024",c:0},{t:"1st January 2025",c:0},{t:"26th January 2024",c:0}]},
+            {id:143, tag:"SSC GD EXAM 2025-26", q:"In which of the following year, India entered space age, when first Indian satellite was launched?", opts:[{t:"1975",c:1},{t:"1969",c:0},{t:"1980",c:0},{t:"1984",c:0}]},
+            {id:144, tag:"SSC GD EXAM 2025-26", q:"If the star is similar to the Sun, what can be inferred about the exoplanet's surface temperature compared to Earth?", opts:[{t:"Similar temperature",c:1},{t:"Extremely hot",c:0},{t:"Freezing cold",c:0},{t:"Constantly fluctuating",c:0}]},
+            {id:145, tag:"SSC MTS EXAM 2025", q:"What is the name of the two spacecrafts involved in the Proba-3 mission?", opts:[{t:"Coronagraph and Occulter",c:1},{t:"Orbiter and Lander",c:0},{t:"Rover and Helicopter",c:0},{t:"Telescope and Spectrometer",c:0}]},
+            {id:146, tag:"DELHI POLICE CONSTABLE 2025", q:"Which was the first artificial satellite to orbit Earth, marking the beginning of the space age in 1957?", opts:[{t:"Sputnik 1",c:1},{t:"Explorer 1",c:0},{t:"Vostok 1",c:0},{t:"Apollo 11",c:0}]},
+            {id:147, tag:"DELHI POLICE CONSTABLE 2025", q:"Who is known as the 'Agni Putri' for her contributions to the Agni missile program?", opts:[{t:"Dr. Tessy Thomas",c:1},{t:"Dr. Ritu Karidhal",c:0},{t:"Kalpana Chawla",c:0},{t:"Sunita Williams",c:0}]},
+            {id:148, tag:"SSC CPO PRE 2025", q:"Why has ISRO proposed the development of a third launch pad beyond the existing facilities at Sriharikota?", opts:[{t:"To handle increasing launch frequency and capacity for missions involving SSLV, Gaganyaan, and commercial payloads",c:1},{t:"To act solely as a backup during extreme weather events",c:0},{t:"To test advanced ground-based nuclear weapons",c:0},{t:"To secretly launch foreign military satellites",c:0}]},
+            {id:149, tag:"SSC SP LEVEL 2025", q:"Match the ISRO mission with its primary objective:<br>1. Chandrayaan-2<br>2. Aditya-L1<br>3. Mangalyaan", opts:[{t:"1 → Lunar Orbiter, 2 → Sun Study, 3 → Mars Orbit",c:1},{t:"1 → Mars Orbit, 2 → Sun Study, 3 → Lunar Orbiter",c:0},{t:"1 → Sun Study, 2 → Lunar Orbiter, 3 → Mars Orbit",c:0},{t:"1 → Lunar Orbiter, 2 → Mars Orbit, 3 → Sun Study",c:0}]},
+            {id:150, tag:"SSC SP LEVEL 2025", q:"What is the purpose of DISHA satellites being developed by ISRO?", opts:[{t:"Studying the Earth's upper atmosphere and space weather",c:1},{t:"Enabling deep space communication arrays",c:0},{t:"Providing commercial satellite internet",c:0},{t:"Conducting military reconnaissance operations",c:0}]},
+            {id:151, tag:"SSC SP LEVEL 2025", q:"Which is the first private company to launch a rocket into space in India?", opts:[{t:"Skyroot Aerospace",c:1},{t:"Agnikul Cosmos",c:0},{t:"Bellatrix Aerospace",c:0},{t:"Pixxel",c:0}]},
+            {id:152, tag:"SSC SP LEVEL 2025", q:"How does India's space technology contribute to national development goals such as disaster management and agriculture?", opts:[{t:"By using satellite data for weather forecasting, crop monitoring, and resource mapping",c:1},{t:"By planning human missions to Mars",c:0},{t:"By building large-scale international space stations",c:0},{t:"By performing extensive asteroid mining operations",c:0}]},
+            {id:153, tag:"SSC SP LEVEL 2025", q:"Which technology is increasingly being used for real-time Air Quality Index (AQI) monitoring in urban areas?", opts:[{t:"Remote sensing and satellite data",c:1},{t:"Traditional weather balloons",c:0},{t:"Ground-based analog thermometers",c:0},{t:"Deep sea submersible sensors",c:0}]},
+            {id:154, tag:"SSC CHSL TIER-01 2025", q:"Which of the following is correct regarding medium earth orbit (MEO)?<br>I. Satellites in MEO do not need to follow specific paths around Earth.<br>II. MEO is very commonly used by navigation satellites.", opts:[{t:"Only II",c:1},{t:"Only I",c:0},{t:"Both I and II",c:0},{t:"Neither I nor II",c:0}]},
+            {id:155, tag:"SSC CHSL TIER-01 2025", q:"Within ___ years from the Big Bang, temperature dropped to 4500K (Kelvin) and gave rise to atomic matter. The universe became transparent.", opts:[{t:"300000",c:1},{t:"1000",c:0},{t:"14 billion",c:0},{t:"1 million",c:0}]},
+            {id:156, tag:"SSC CHSL TIER-01 2025", q:"Which of the following is an example of artificial satellites?<br>I. Sputnik-1<br>II. GSAT-I", opts:[{t:"Both I and II",c:1},{t:"Only I",c:0},{t:"Only II",c:0},{t:"Neither I nor II",c:0}]},
+            {id:157, tag:"SSC CHSL TIER-01 2025", q:"In the context of space research in India, what does 'N' stands for in INCOSPAR?", opts:[{t:"National",c:1},{t:"Navigation",c:0},{t:"Network",c:0},{t:"Natural",c:0}]},
+            {id:158, tag:"SSC CHSL TIER-01 2025", q:"The Satish Dhawan Space Centre is located in ___.", opts:[{t:"Sriharikota",c:1},{t:"Bengaluru",c:0},{t:"Thiruvananthapuram",c:0},{t:"Ahmedabad",c:0}]},
+            {id:159, tag:"SSC CGL 2025 TIER-01", q:"Assertion (A): The Satish Dhawan Space Centre (SDSC-SHAR) is ISRO's main spaceport for launching satellites and rockets.<br>Reason (R): SDSC-SHAR currently houses multiple operational launch pads...", opts:[{t:"Both A and R are true, and R is the correct explanation of A",c:1},{t:"A is true, but R is false",c:0},{t:"A is false, but R is true",c:0},{t:"Both A and R are true, but R is not the correct explanation of A",c:0}]},
+            {id:160, tag:"SSC CGL 2025 TIER-01", q:"What is the contribution of Vikram Sarabhai Space Centre (VSSC) to India's space program?", opts:[{t:"Designs and builds launch vehicles",c:1},{t:"Manages satellite communication networks",c:0},{t:"Tracks national space debris",c:0},{t:"Trains future astronauts",c:0}]},
+            {id:161, tag:"SSC CGL 2025 TIER-01", q:"Evaluate the following statements and select the option that is accurate:<br>Statement 1: Sun-synchronous orbits allow satellites to maintain consistent local solar time over a specific region.<br>Statement 2: This orbital feature is ideal for continuous solar-powered communication satellites in geostationary orbit.", opts:[{t:"Only Statement 1 is correct",c:1},{t:"Only Statement 2 is correct",c:0},{t:"Both statements are correct",c:0},{t:"Neither statement is correct",c:0}]},
+            {id:162, tag:"SSC CGL 2025 TIER-01", q:"Assertion (A): India is actively developing a Third Launch Pad (TLP) at the Satish Dhawan Space Centre (SDSC-SHAR).<br>Reason (R): The Third Launch Pad is specifically designed to significantly boost India's space launch frequency...", opts:[{t:"Both A and R are true, and R is the correct explanation of A",c:1},{t:"A is true, but R is false",c:0},{t:"A is false, but R is true",c:0},{t:"Both A and R are true, but R is not the correct explanation of A",c:0}]},
+            {id:163, tag:"SSC CGL 2025 TIER-01", q:"What astronomical observation is most severely hampered by increasing levels of urban light pollution?", opts:[{t:"Deep-sky objects",c:1},{t:"Solar eclipses",c:0},{t:"Lunar phases",c:0},{t:"Planetary transits",c:0}]},
+            {id:164, tag:"SSC CGL 2025 TIER-01", q:"Assertion (A): The PSLV-C59 mission, launched in October 2024, achieved a notable milestone for international space cooperation.<br>Reason (R): This mission successfully deployed the Proba-3 satellites...", opts:[{t:"Both A and R are true, and R is the correct explanation of A",c:1},{t:"A is true, but R is false",c:0},{t:"A is false, but R is true",c:0},{t:"Both A and R are true, but R is not the correct explanation of A",c:0}]},
+            {id:165, tag:"SSC STENO EXAM 2025", q:"India's support for which of the following missions aligns most closely with IMEC's purpose?", opts:[{t:"One Sun One World One Grid initiative",c:1},{t:"Gaganyaan",c:0},{t:"Chandrayaan",c:0},{t:"Mangalyaan",c:0}]},
+            {id:166, tag:"SSC STENO EXAM 2025", q:"Which of the following ISRO initiatives, launched with the vision of 'Catch them young', aims to introduce school students to space science and technology?", opts:[{t:"YUVIKA - Young Scientist Programme",c:1},{t:"NAVIK - Navigation Initiative",c:0},{t:"VYOM - Space Scholar",c:0},{t:"SPARK - Science Promotion",c:0}]},
+            {id:167, tag:"SSC STENO EXAM 2025", q:"Which ISRO centers participate in International Geosphere-Biosphere programme?", opts:[{t:"Physical Research Laboratory, Space Applications Centre, Indian Institute of Remote Sensing, ISRO Satellite Centre (or combination thereof based on NRSC/SPL)",c:1},{t:"VSSC, LPSC, IPRC, SDSC",c:0},{t:"NRSC, IIRS, IN-SPACe, NSIL",c:0},{t:"Only Space Applications Centre",c:0}]}
+        ];
+
+        // --- APP STATE ---
+        const TOTAL_QS = rawData.length;
+        const STATE = { NOT_VISITED:0, NOT_ANSWERED:1, ANSWERED:2, MARKED:3, MARKED_ANSWERED:4 };
+        let userAnswers = new Array(TOTAL_QS).fill(null);
+        let qStates = new Array(TOTAL_QS).fill(STATE.NOT_VISITED);
+        let currentQIndex = 0;
+        let isPaused = false;
+        let timerSeconds = TOTAL_QS * 60; // 1 min per question
+        let timerInterval;
+
+        // Shuffle options once initially
+        rawData.forEach(q => {
+            for (let i = q.opts.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [q.opts[i], q.opts[j]] = [q.opts[j], q.opts[i]];
+            }
+        });
+
+        // --- INITIALIZATION ---
+        function startTest() {
+            document.documentElement.requestFullscreen().catch(err => {
+                console.log("Fullscreen not supported or blocked by user.", err);
+            });
+            document.getElementById('intro-screen').style.display = 'none';
+            document.getElementById('app-container').style.display = 'flex';
+            
+            buildPalette();
+            qStates[0] = STATE.NOT_ANSWERED; // First q visited
+            loadQuestion(0);
+            startTimer();
+        }
+
+        function buildPalette() {
+            const grid = document.getElementById('palette-grid');
+            grid.innerHTML = '';
+            for(let i=0; i<TOTAL_QS; i++){
+                const btn = document.createElement('div');
+                btn.className = 'pal-btn';
+                btn.innerText = (i+1);
+                btn.id = 'pal-' + i;
+                btn.onclick = () => jumpToQuestion(i);
+                grid.appendChild(btn);
+            }
+            updatePaletteUI();
+        }
+
+        // --- TIMER LOGIC ---
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if(!isPaused) {
+                    timerSeconds--;
+                    updateTimerDisplay();
+                    if(timerSeconds <= 0) {
+                        clearInterval(timerInterval);
+                        confirmSubmit(true);
+                    }
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const min = Math.floor(timerSeconds / 60);
+            const sec = timerSeconds % 60;
+            document.getElementById('timer-display').innerText = 
+                (min < 10 ? '0'+min : min) + ':' + (sec < 10 ? '0'+sec : sec);
+        }
+
+        function togglePause() {
+            isPaused = !isPaused;
+            document.getElementById('pause-overlay').style.display = isPaused ? 'flex' : 'none';
+        }
+
+        function exitFullscreenUI() {
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            }
+        }
+
+        // --- QUESTION LOGIC ---
+        function loadQuestion(index) {
+            currentQIndex = index;
+            const q = rawData[index];
+            document.getElementById('q-no-display').innerText = "Question " + (index + 1);
+            document.getElementById('q-tag-display').innerText = q.tag;
+            document.getElementById('q-text-display').innerHTML = q.q;
+
+            const optsContainer = document.getElementById('options-display');
+            optsContainer.innerHTML = '';
+            
+            q.opts.forEach((opt, optIndex) => {
+                const label = document.createElement('label');
+                label.className = 'option-label';
+                
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = 'q_option';
+                radio.value = optIndex;
+                if(userAnswers[index] === optIndex) radio.checked = true;
+                
+                radio.onchange = () => { userAnswers[index] = optIndex; };
+                
+                label.appendChild(radio);
+                label.appendChild(document.createTextNode(opt.t));
+                optsContainer.appendChild(label);
+            });
+            
+            updatePaletteUI();
+        }
+
+        function updateCurrentState(isMarked) {
+            const hasAnswer = userAnswers[currentQIndex] !== null;
+            if(hasAnswer && isMarked) qStates[currentQIndex] = STATE.MARKED_ANSWERED;
+            else if(hasAnswer && !isMarked) qStates[currentQIndex] = STATE.ANSWERED;
+            else if(!hasAnswer && isMarked) qStates[currentQIndex] = STATE.MARKED;
+            else qStates[currentQIndex] = STATE.NOT_ANSWERED;
+        }
+
+        function updatePaletteUI() {
+            let counts = [0,0,0,0,0];
+            for(let i=0; i<TOTAL_QS; i++){
+                const btn = document.getElementById('pal-'+i);
+                btn.className = 'pal-btn';
+                if(qStates[i] === STATE.NOT_ANSWERED) { btn.classList.add('not-answered'); counts[1]++; }
+                else if(qStates[i] === STATE.ANSWERED) { btn.classList.add('answered'); counts[2]++; }
+                else if(qStates[i] === STATE.MARKED) { btn.classList.add('marked'); counts[3]++; }
+                else if(qStates[i] === STATE.MARKED_ANSWERED) { btn.classList.add('marked-answered'); counts[4]++; }
+                else { counts[0]++; }
+            }
+            
+            const legends = document.querySelectorAll('.legend-icon');
+            legends[0].innerText = counts[0];
+            legends[1].innerText = counts[1];
+            legends[2].innerText = counts[2];
+            legends[3].innerText = counts[3];
+            legends[4].innerText = counts[4];
+        }
+
+        function nextQuestion() {
+            updateCurrentState(false);
+            if(currentQIndex < TOTAL_QS - 1) {
+                if(qStates[currentQIndex + 1] === STATE.NOT_VISITED) qStates[currentQIndex + 1] = STATE.NOT_ANSWERED;
+                loadQuestion(currentQIndex + 1);
+            } else {
+                updatePaletteUI();
+            }
+        }
+
+        function prevQuestion() {
+            updateCurrentState(false);
+            if(currentQIndex > 0) loadQuestion(currentQIndex - 1);
+        }
+
+        function markForReview() {
+            updateCurrentState(true);
+            if(currentQIndex < TOTAL_QS - 1) {
+                if(qStates[currentQIndex + 1] === STATE.NOT_VISITED) qStates[currentQIndex + 1] = STATE.NOT_ANSWERED;
+                loadQuestion(currentQIndex + 1);
+            } else {
+                updatePaletteUI();
+            }
+        }
+
+        function clearResponse() {
+            userAnswers[currentQIndex] = null;
+            const radios = document.getElementsByName('q_option');
+            radios.forEach(r => r.checked = false);
+        }
+
+        function jumpToQuestion(index) {
+            updateCurrentState(false);
+            if(qStates[index] === STATE.NOT_VISITED) qStates[index] = STATE.NOT_ANSWERED;
+            loadQuestion(index);
+        }
+
+        // --- SUBMISSION & ANALYSIS ---
+        function confirmSubmit(auto = false) {
+            if(auto || confirm("Are you sure you want to submit the test?")) {
+                clearInterval(timerInterval);
+                exitFullscreenUI();
+                generateResults();
+            }
+        }
+
+        function generateResults() {
+            document.getElementById('app-container').style.display = 'none';
+            document.getElementById('result-screen').style.display = 'flex';
+            
+            let score = 0;
+            let reviewHTML = '';
+            
+            rawData.forEach((q, idx) => {
+                const uAnsIdx = userAnswers[idx];
+                const correctOpt = q.opts.find(o => o.c === 1);
+                
+                let isCorrect = false;
+                if(uAnsIdx !== null) {
+                    if(q.opts[uAnsIdx].c === 1) isCorrect = true;
+                }
+                
+                if(isCorrect) {
+                    score++;
+                } else {
+                    let uText = uAnsIdx !== null ? q.opts[uAnsIdx].t : "Not Attempted";
+                    reviewHTML += `
+                        <div class="review-item">
+                            <div class="review-q">Q${idx+1}. ${q.q} <span style="font-size:12px; font-weight:normal; background:#eee; padding:2px 5px; border-radius:3px; margin-left:5px;">${q.tag}</span></div>
+                            ${uAnsIdx === null 
+                                ? `<div class="review-unattempted">Status: Not Attempted</div>` 
+                                : `<div class="review-wrong">Your Answer: ${uText}</div>`
+                            }
+                            <div class="review-correct">Correct Answer: ${correctOpt.t}</div>
+                        </div>
+                    `;
+                }
+            });
+            
+            document.getElementById('final-score').innerText = score;
+            if(reviewHTML === '') reviewHTML = '<div style="color:green; font-weight:bold; font-size:18px;">Perfect Score! No incorrect or unattempted questions.</div>';
+            document.getElementById('review-list').innerHTML = reviewHTML;
+        }
+
+    </script>
+</body>
+</html>
+```eof
+
+### Key Features Implemented
+*   **True TCS/Eduquity Replication**: Clean structure with the light-themed UI (Header, Question pane on left, Navigation bar, and exact color coding for the status palette on the right).
+*   **Fully Formatted Data**: Compiled and reformatted all 167 questions into a single structured array seamlessly to support randomized MCQs without breaking exam tags or text rendering.
+*   **Post-Test Assessment:** Adhering to the condition where answers are *only* shown for incorrect or unattempted questions during the submission analysis pane. The user is forced to think rather than click to reveal answers during the test.
+*   **100% Responsiveness:** The question palette automatically hides for mobile screens to free up reading space, matching the typical requirements of mobile-ready portals. Fullscreen mode ensures strict focus.

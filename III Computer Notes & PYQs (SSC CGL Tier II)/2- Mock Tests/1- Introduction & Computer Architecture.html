@@ -1,0 +1,2370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Computer Knowledge TCS PYQ Mock Test Portal</title>
+
+  <style>
+    :root {
+      --tcs-blue: #0b4d8c;
+      --tcs-blue-dark: #083b6b;
+      --tcs-blue-light: #e6f0fa;
+      --tcs-header-bg: #154c79;
+      --tcs-subheader-bg: #eef3f8;
+      --bg-main: #f4f6f9;
+      --surface: #ffffff;
+      --border-color: #d1d5db;
+      --border-light: #e5e7eb;
+      --text-primary: #111827;
+      --text-secondary: #4b5563;
+      --text-muted: #6b7280;
+      --ans-green: #16a34a;
+      --ans-green-bg: #dcfce7;
+      --not-ans-red: #dc2626;
+      --not-ans-red-bg: #fee2e2;
+      --review-purple: #7c3aed;
+      --review-purple-bg: #ede9fe;
+      --not-visited-bg: #f3f4f6;
+      --not-visited-border: #9ca3af;
+      --btn-primary: #0b4d8c;
+      --btn-primary-hover: #083b6b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      height: 100%;
+      width: 100%;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* =====================================================================
+       VIEW 1: MAIN DASHBOARD & INTRODUCTORY PORTAL
+       ===================================================================== */
+    .portal-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--bg-main);
+    }
+
+    .portal-header {
+      background: linear-gradient(90deg, #0b4d8c 0%, #155e95 100%);
+      color: #ffffff;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    }
+
+    .portal-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .portal-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 6px;
+      background: #ffffff;
+      color: var(--tcs-blue);
+      font-weight: 800;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: -0.5px;
+      flex-shrink: 0;
+    }
+
+    .portal-title-group h1 {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+    }
+
+    .portal-title-group p {
+      font-size: 12px;
+      color: #dbeafe;
+      margin-top: 2px;
+    }
+
+    .portal-badge {
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #ffffff;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .portal-container {
+      max-width: 1120px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 20px 48px;
+      flex: 1;
+    }
+
+    .dashboard-intro-banner {
+      background: var(--surface);
+      border: 1px solid var(--border-color);
+      border-left: 5px solid var(--tcs-blue);
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .dashboard-intro-text h2 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--tcs-blue);
+      margin-bottom: 6px;
+    }
+
+    .dashboard-intro-text p {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .dashboard-stats-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      background: var(--tcs-subheader-bg);
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px 14px;
+      text-align: center;
+      min-width: 110px;
+    }
+
+    .stat-pill .stat-val {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--tcs-blue);
+      display: block;
+    }
+
+    .stat-pill .stat-lbl {
+      font-size: 11px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      font-weight: 600;
+    }
+
+    .section-heading {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mock-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .mock-card {
+      background: var(--surface);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    }
+
+    .mock-card:hover {
+      border-color: var(--tcs-blue);
+      box-shadow: 0 4px 12px rgba(11, 77, 140, 0.08);
+    }
+
+    .mock-card-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex: 1;
+    }
+
+    .mock-index-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 6px;
+      background: var(--tcs-blue-light);
+      color: var(--tcs-blue);
+      font-weight: 700;
+      font-size: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #bfdbfe;
+      flex-shrink: 0;
+    }
+
+    .mock-info h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .mock-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .mock-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 3px 9px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .mock-status-badge {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 4px;
+    }
+
+    .status-completed {
+      background: var(--ans-green-bg);
+      color: #166534;
+      border: 1px solid #86efac;
+    }
+
+    .status-unattempted {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+    }
+
+    .mock-card-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      padding: 9px 16px;
+      border-radius: 4px;
+      font-size: 13.5px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background-color: var(--btn-primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--btn-primary-hover);
+    }
+
+    .btn-outline {
+      background-color: #ffffff;
+      color: var(--tcs-blue);
+      border-color: var(--tcs-blue);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--tcs-blue-light);
+    }
+
+    .btn-secondary {
+      background-color: #ffffff;
+      color: #374151;
+      border-color: #cbd5e1;
+    }
+
+    .btn-secondary:hover {
+      background-color: #f3f4f6;
+    }
+
+    .btn-danger {
+      background-color: #dc2626;
+      color: #ffffff;
+    }
+
+    .btn-danger:hover {
+      background-color: #b91c1c;
+    }
+
+    .btn-success {
+      background-color: #16a34a;
+      color: #ffffff;
+    }
+
+    .btn-success:hover {
+      background-color: #15803d;
+    }
+
+    /* =====================================================================
+       VIEW 2: INITIAL INTRODUCTORY / INSTRUCTIONS INTERFACE OF MOCK
+       ===================================================================== */
+    .intro-card {
+      background: var(--surface);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+    }
+
+    .intro-card-header {
+      background: var(--tcs-subheader-bg);
+      border-bottom: 1px solid var(--border-color);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .intro-card-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--tcs-blue);
+    }
+
+    .intro-card-body {
+      padding: 24px;
+      max-height: calc(100vh - 260px);
+      overflow-y: auto;
+      line-height: 1.6;
+      font-size: 14px;
+      color: var(--text-primary);
+    }
+
+    .intro-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .intro-summary-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 5px;
+      padding: 12px 16px;
+    }
+
+    .intro-summary-box .lbl {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .intro-summary-box .val {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--tcs-blue);
+      margin-top: 4px;
+    }
+
+    .instructions-list {
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    .instructions-list li {
+      margin-bottom: 8px;
+      color: #374151;
+    }
+
+    .palette-legend-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 20px;
+      font-size: 13.5px;
+    }
+
+    .palette-legend-table th,
+    .palette-legend-table td {
+      border: 1px solid var(--border-color);
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    .palette-legend-table th {
+      background: #f1f5f9;
+      font-weight: 600;
+    }
+
+    .intro-card-footer {
+      background: #f8fafc;
+      border-top: 1px solid var(--border-color);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .declaration-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-primary);
+      cursor: pointer;
+    }
+
+    .declaration-label input {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--tcs-blue);
+      cursor: pointer;
+    }
+
+    /* =====================================================================
+       VIEW 3: TCS / EDUQUITY EXAM INTERFACE (LIGHT THEME, FIXED VIEWPORT)
+       ===================================================================== */
+    .exam-viewport {
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background-color: #ffffff;
+    }
+
+    /* Top bar */
+    .exam-topbar {
+      background-color: var(--tcs-header-bg);
+      color: #ffffff;
+      height: 54px;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-shrink: 0;
+      border-bottom: 1px solid #0c3556;
+    }
+
+    .exam-topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .exam-system-tag {
+      background: #ffffff;
+      color: var(--tcs-header-bg);
+      font-weight: 800;
+      font-size: 12px;
+      padding: 3px 8px;
+      border-radius: 3px;
+      letter-spacing: 0.3px;
+      flex-shrink: 0;
+    }
+
+    .exam-test-name {
+      font-size: 15px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .exam-topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .timer-badge {
+      background: #ffffff;
+      color: #111827;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 13.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #cbd5e1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timer-badge.timer-warning {
+      background: #fef2f2;
+      color: #dc2626;
+      border-color: #f87171;
+    }
+
+    .top-ctrl-btn {
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 6px 11px;
+      border-radius: 4px;
+      font-size: 12.5px;
+      font-weight: 600;
+      transition: background 0.15s;
+    }
+
+    .top-ctrl-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Main Workspace (Left Question Area + Right Palette) */
+    .exam-body {
+      flex: 1;
+      display: flex;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .exam-main-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+      background: #ffffff;
+      border-right: 1px solid var(--border-color);
+    }
+
+    .question-Status-strip {
+      background: var(--tcs-subheader-bg);
+      border-bottom: 1px solid var(--border-color);
+      padding: 9px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .q-number-label {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--tcs-blue);
+    }
+
+    .q-type-info {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    /* Scrollable Question Content Area */
+    .question-scroll-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 22px 26px;
+    }
+
+    .question-stem {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.6;
+      color: #111827;
+      white-space: pre-line;
+      margin-bottom: 6px;
+    }
+
+    .question-exam-tag {
+      font-size: 11.5px;
+      font-weight: 500;
+      color: #64748b;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-top: 12px;
+      max-width: 820px;
+    }
+
+    .option-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 15px;
+      border: 1px solid #d1d5db;
+      border-radius: 5px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: border-color 0.12s, background-color 0.12s;
+      user-select: none;
+    }
+
+    .option-row:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    .option-row.selected {
+      background: #eff6ff;
+      border-color: #2563eb;
+    }
+
+    .option-row input[type="radio"] {
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      accent-color: var(--tcs-blue);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .option-prefix {
+      font-weight: 600;
+      font-size: 14.5px;
+      color: #374151;
+      min-width: 24px;
+    }
+
+    .option-text {
+      font-size: 14.5px;
+      line-height: 1.45;
+      color: #111827;
+      flex: 1;
+    }
+
+    /* Bottom Action Controls Bar - Always Pinned & Visible */
+    .exam-bottom-bar {
+      background: #f8fafc;
+      border-top: 1px solid var(--border-color);
+      padding: 11px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .bottom-left-btns,
+    .bottom-right-btns {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .exam-btn {
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 4px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #1f2937;
+      transition: all 0.12s;
+    }
+
+    .exam-btn:hover:not(:disabled) {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
+    .exam-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .exam-btn-review {
+      background: #f5f3ff;
+      color: #5b21b6;
+      border-color: #c4b5fd;
+    }
+
+    .exam-btn-review:hover {
+      background: #ede9fe !important;
+    }
+
+    .exam-btn-next {
+      background: var(--tcs-blue);
+      color: #ffffff;
+      border-color: var(--tcs-blue);
+      padding: 8px 20px;
+    }
+
+    .exam-btn-next:hover {
+      background: var(--tcs-blue-dark) !important;
+      color: #ffffff;
+    }
+
+    .exam-btn-submit-inline {
+      background: #16a34a;
+      color: #ffffff;
+      border-color: #16a34a;
+      padding: 8px 18px;
+    }
+
+    .exam-btn-submit-inline:hover {
+      background: #15803d !important;
+      color: #ffffff;
+    }
+
+    /* Right-side Small-Sized Question Palette */
+    .exam-palette-col {
+      width: 270px;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      min-height: 0;
+      height: 100%;
+    }
+
+    .palette-candidate-box {
+      padding: 10px 12px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .candidate-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--tcs-blue-light);
+      color: var(--tcs-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .candidate-meta {
+      font-size: 12px;
+      line-height: 1.3;
+    }
+
+    .candidate-meta strong {
+      display: block;
+      color: #111827;
+    }
+
+    .candidate-meta span {
+      color: #6b7280;
+    }
+
+    .palette-legend-compact {
+      padding: 10px 12px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 8px;
+      font-size: 11px;
+      color: #374151;
+      flex-shrink: 0;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-item.full-span {
+      grid-column: 1 / -1;
+    }
+
+    .pal-badge {
+      width: 22px;
+      height: 20px;
+      font-size: 10.5px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .pal-not-visited {
+      background: #ffffff;
+      color: #374151;
+      border: 1px solid #9ca3af;
+    }
+
+    .pal-not-answered {
+      background: #dc2626;
+      color: #ffffff;
+      border: 1px solid #b91c1c;
+      border-radius: 8px 8px 2px 2px;
+    }
+
+    .pal-answered {
+      background: #16a34a;
+      color: #ffffff;
+      border: 1px solid #15803d;
+      border-radius: 2px 2px 8px 8px;
+    }
+
+    .pal-review {
+      background: #7c3aed;
+      color: #ffffff;
+      border: 1px solid #6d28d9;
+      border-radius: 50%;
+    }
+
+    .pal-ans-review {
+      background: #7c3aed;
+      color: #ffffff;
+      border: 1px solid #6d28d9;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .pal-ans-review::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border: 1px solid #ffffff;
+      border-radius: 50%;
+    }
+
+    .palette-header-bar {
+      background: var(--tcs-blue);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      flex-shrink: 0;
+    }
+
+    /* Scrollable Question Number Grid */
+    .palette-grid-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+      background: #eef3f8;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+    }
+
+    .q-pal-btn {
+      height: 30px;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.08s, box-shadow 0.08s;
+      position: relative;
+    }
+
+    .q-pal-btn.current-q {
+      outline: 2px solid #0b4d8c;
+      outline-offset: 1px;
+      font-weight: 800;
+    }
+
+    .palette-footer {
+      padding: 10px 12px;
+      background: #ffffff;
+      border-top: 1px solid var(--border-color);
+      flex-shrink: 0;
+    }
+
+    .palette-footer button {
+      width: 100%;
+    }
+
+    /* Hide right-side question palette on mobile phones as explicitly requested */
+    @media (max-width: 768px) {
+      .exam-palette-col {
+        display: none !important;
+      }
+      .exam-topbar {
+        height: auto;
+        padding: 8px 12px;
+        flex-wrap: wrap;
+      }
+      .question-scroll-area {
+        padding: 16px;
+      }
+      .exam-bottom-bar {
+        padding: 10px 12px;
+      }
+      .exam-btn {
+        padding: 7px 10px;
+        font-size: 12px;
+      }
+      .mock-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .mock-card-actions {
+        width: 100%;
+        justify-content: flex-end;
+      }
+    }
+
+    /* =====================================================================
+       VIEW 4: SUBMISSION RESULT, SCORE & SOLUTION ANALYSIS
+       ===================================================================== */
+    .result-banner {
+      background: var(--surface);
+      border: 1px solid var(--border-color);
+      border-top: 4px solid var(--tcs-blue);
+      border-radius: 6px;
+      padding: 22px 24px;
+      margin-bottom: 22px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .result-banner-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .result-banner-top h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--tcs-blue);
+    }
+
+    .result-score-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+    }
+
+    .score-card {
+      padding: 14px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background: #f8fafc;
+      text-align: center;
+    }
+
+    .score-card .s-val {
+      font-size: 22px;
+      font-weight: 800;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .score-card .s-lbl {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+    }
+
+    .score-card.sc-primary {
+      background: var(--tcs-blue-light);
+      border-color: #93c5fd;
+      color: var(--tcs-blue);
+    }
+
+    .score-card.sc-correct {
+      background: #f0fdf4;
+      border-color: #86efac;
+      color: #15803d;
+    }
+
+    .score-card.sc-incorrect {
+      background: #fef2f2;
+      border-color: #fca5a5;
+      color: #b91c1c;
+    }
+
+    .score-card.sc-unattempted {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      color: #475569;
+    }
+
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab {
+      padding: 7px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      background: #ffffff;
+      color: var(--text-secondary);
+    }
+
+    .filter-tab.active {
+      background: var(--tcs-blue);
+      color: #ffffff;
+      border-color: var(--tcs-blue);
+    }
+
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .review-card {
+      background: var(--surface);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 18px 22px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    }
+
+    .review-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .review-q-num {
+      font-weight: 700;
+      font-size: 14.5px;
+      color: var(--tcs-blue);
+    }
+
+    .review-status-pill {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+
+    .pill-incorrect {
+      background: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fca5a5;
+    }
+
+    .pill-unattempted {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+    }
+
+    .review-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 12px 0 14px;
+    }
+
+    .review-opt {
+      padding: 9px 12px;
+      border-radius: 4px;
+      border: 1px solid #e5e7eb;
+      font-size: 13.5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .review-opt.opt-correct {
+      background: #dcfce7;
+      border-color: #22c55e;
+      color: #14532d;
+      font-weight: 600;
+    }
+
+    .review-opt.opt-user-wrong {
+      background: #fee2e2;
+      border-color: #ef4444;
+      color: #7f1d1d;
+      font-weight: 600;
+    }
+
+    .solution-box {
+      background: #f8fafc;
+      border-left: 4px solid var(--tcs-blue);
+      padding: 12px 15px;
+      border-radius: 0 4px 4px 0;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #1f2937;
+    }
+
+    .solution-box strong {
+      color: var(--tcs-blue);
+    }
+
+    /* =====================================================================
+       IN-PAGE MODALS (PAUSE, SUBMIT CONFIRMATION, NOTIFICATION)
+       ===================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 24, 39, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 16px;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      max-width: 480px;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header {
+      background: var(--tcs-header-bg);
+      color: #ffffff;
+      padding: 14px 20px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .modal-body {
+      padding: 20px;
+      font-size: 14px;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+
+    .modal-summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 13.5px;
+    }
+
+    .modal-summary-table th,
+    .modal-summary-table td {
+      border: 1px solid var(--border-color);
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    .modal-summary-table th {
+      background: #f1f5f9;
+    }
+
+    .modal-footer {
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .toast-banner {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1f2937;
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      z-index: 1100;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =====================================================================
+       VIEW 1: MAIN DASHBOARD
+       ===================================================================== -->
+  <div id="view-dashboard" class="portal-wrapper">
+    <header class="portal-header">
+      <div class="portal-brand">
+        <div class="portal-logo">TCS</div>
+        <div class="portal-title-group">
+          <h1>Computer Knowledge PYQ Mock Test Dashboard</h1>
+          <p>SSC / Railway (TCS &amp; Eduquity Pattern) Computer-Based Test Series</p>
+        </div>
+      </div>
+      <div class="portal-badge">Light Theme CBT Interface</div>
+    </header>
+
+    <main class="portal-container">
+      <div class="dashboard-intro-banner">
+        <div class="dashboard-intro-text">
+          <h2>Welcome to the Computer Knowledge Mock Test Portal</h2>
+          <p>Select any of the 5 chapter-wise TCS Previous Year Question (PYQ) mock tests below to view the test instructions and begin. Options are randomized on every attempt while preserving question order.</p>
+        </div>
+        <div class="dashboard-stats-row">
+          <div class="stat-pill">
+            <span class="stat-val">5</span>
+            <span class="stat-lbl">Mock Tests</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-val">205</span>
+            <span class="stat-lbl">Total PYQs</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-val">205 Min</span>
+            <span class="stat-lbl">Total Time</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <span>Available Mock Tests (In Chapter Order)</span>
+        <span id="dashboard-completed-summary" style="font-size: 12.5px; color: #4b5563; font-weight: 600;">0 of 5 Completed</span>
+      </div>
+
+      <div id="mock-cards-container" class="mock-list"></div>
+    </main>
+  </div>
+
+  <!-- =====================================================================
+       VIEW 2: INITIAL INTRODUCTORY / INSTRUCTIONS SCREEN
+       ===================================================================== -->
+  <div id="view-intro" class="portal-wrapper hidden">
+    <header class="portal-header">
+      <div class="portal-brand">
+        <div class="portal-logo">CBT</div>
+        <div class="portal-title-group">
+          <h1 id="intro-header-title">Mock Test Instructions</h1>
+          <p>Please read the instructions carefully before starting the examination</p>
+        </div>
+      </div>
+      <button id="btn-intro-back-top" class="top-ctrl-btn" type="button">← Back to Main Dashboard</button>
+    </header>
+
+    <main class="portal-container">
+      <div class="intro-card">
+        <div class="intro-card-header">
+          <h2 id="intro-test-name">1. Computer Fundamentals &amp; Hardware</h2>
+          <span class="mock-status-badge status-unattempted">TCS / Eduquity Exam Pattern</span>
+        </div>
+
+        <div class="intro-card-body">
+          <div class="intro-summary-grid">
+            <div class="intro-summary-box">
+              <div class="lbl">Total Questions</div>
+              <div class="val" id="intro-q-count">113 MCQs</div>
+            </div>
+            <div class="intro-summary-box">
+              <div class="lbl">Strict Time Limit</div>
+              <div class="val" id="intro-duration">113 Minutes</div>
+            </div>
+            <div class="intro-summary-box">
+              <div class="lbl">Question Order</div>
+              <div class="val">Sequential (Fixed)</div>
+            </div>
+            <div class="intro-summary-box">
+              <div class="lbl">Option Order</div>
+              <div class="val">Randomized</div>
+            </div>
+          </div>
+
+          <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 10px; color: #0b4d8c;">General Exam Instructions:</h3>
+          <ol class="instructions-list">
+            <li>The clock has been set at the server and the countdown timer at the top right corner of your screen will display the time remaining for you to complete the exam. Each question carries <strong>1 minute</strong> of time allocation.</li>
+            <li>When the countdown timer reaches zero, the examination will <strong>submit automatically</strong> without requiring you to click the Submit button.</li>
+            <li>The test will automatically enter <strong>Full Screen Mode</strong> when you begin. You can exit full screen anytime using the <strong>Exit Fullscreen</strong> button on the top bar.</li>
+            <li>One Multiple Choice Question (MCQ) with four options is displayed at a time. Selecting an option does <strong>not</strong> automatically jump to the next question or reveal the answer during the test.</li>
+            <li>Use the <strong>Next</strong>, <strong>Previous</strong>, <strong>Clear</strong>, and <strong>Mark for Review &amp; Next</strong> buttons at the bottom of the screen to navigate and manage your responses.</li>
+            <li>On submission, your score analysis will be displayed along with detailed solutions strictly for <strong>incorrect and un-attempted questions</strong>.</li>
+          </ol>
+
+          <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 8px; color: #0b4d8c;">Question Palette Symbols (Right Panel on Desktop):</h3>
+          <table class="palette-legend-table">
+            <thead>
+              <tr>
+                <th style="width: 70px;">Symbol</th>
+                <th>Meaning</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pal-badge pal-not-visited">1</span></td>
+                <td>You have not visited the question yet.</td>
+              </tr>
+              <tr>
+                <td><span class="pal-badge pal-not-answered">2</span></td>
+                <td>You have visited the question but have not answered it.</td>
+              </tr>
+              <tr>
+                <td><span class="pal-badge pal-answered">3</span></td>
+                <td>You have answered the question.</td>
+              </tr>
+              <tr>
+                <td><span class="pal-badge pal-review">4</span></td>
+                <td>You have NOT answered the question, but have marked it for review.</td>
+              </tr>
+              <tr>
+                <td><span class="pal-badge pal-ans-review">5</span></td>
+                <td>You have answered the question AND marked it for review (will be evaluated on submission).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="intro-card-footer">
+          <label class="declaration-label" for="intro-declaration-chk">
+            <input type="checkbox" id="intro-declaration-chk" checked />
+            <span>I have read and understood all the instructions and am ready to begin the mock test.</span>
+          </label>
+          <div style="display: flex; gap: 10px;">
+            <button id="btn-intro-back" class="btn btn-secondary" type="button">Back to Dashboard</button>
+            <button id="btn-start-exam" class="btn btn-primary" type="button">Start Mock Test →</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- =====================================================================
+       VIEW 3: EXAM INTERFACE (TCS / EDUQUITY LIGHT THEME)
+       ===================================================================== -->
+  <div id="view-exam" class="exam-viewport hidden">
+    <header class="exam-topbar">
+      <div class="exam-topbar-left">
+        <span class="exam-system-tag">CBT EXAM</span>
+        <span id="exam-header-title" class="exam-test-name">1. Computer Fundamentals &amp; Hardware</span>
+      </div>
+      <div class="exam-topbar-right">
+        <div id="exam-timer-box" class="timer-badge">
+          <span>Time Left:</span>
+          <span id="exam-timer-text">113:00</span>
+        </div>
+        <button id="btn-pause-exam" class="top-ctrl-btn" type="button">Pause</button>
+        <button id="btn-exit-fullscreen" class="top-ctrl-btn" type="button">Exit Fullscreen</button>
+        <button id="btn-top-submit" class="btn exam-btn-submit-inline" type="button" style="padding: 6px 13px; font-size: 12.5px;">Submit</button>
+      </div>
+    </header>
+
+    <div class="exam-body">
+      <!-- Left/Main Question Column -->
+      <div class="exam-main-col">
+        <div class="question-Status-strip">
+          <div id="exam-q-num" class="q-number-label">Question No. 1 of 113</div>
+          <div class="q-type-info">Multiple Choice Question | Marks: +1.0</div>
+        </div>
+
+        <div id="exam-question-scroll" class="question-scroll-area">
+          <div id="exam-q-text" class="question-stem"></div>
+          <div id="exam-q-tag" class="question-exam-tag"></div>
+          <div id="exam-options-list" class="options-container"></div>
+        </div>
+
+        <div class="exam-bottom-bar">
+          <div class="bottom-left-btns">
+            <button id="btn-prev-q" class="exam-btn" type="button">Previous</button>
+            <button id="btn-mark-review" class="exam-btn exam-btn-review" type="button">Mark for Review &amp; Next</button>
+            <button id="btn-clear-q" class="exam-btn" type="button">Clear</button>
+          </div>
+          <div class="bottom-right-btns">
+            <button id="btn-next-q" class="exam-btn exam-btn-next" type="button">Next</button>
+            <button id="btn-bottom-submit" class="exam-btn exam-btn-submit-inline" type="button">Submit</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right-Side Small Question Number Palette (Hidden on Mobile) -->
+      <aside class="exam-palette-col">
+        <div class="palette-candidate-box">
+          <div class="candidate-avatar">C</div>
+          <div class="candidate-meta">
+            <strong>Candidate</strong>
+            <span id="palette-test-sub">Computer Knowledge PYQ</span>
+          </div>
+        </div>
+
+        <div class="palette-legend-compact">
+          <div class="legend-item">
+            <span id="cnt-answered" class="pal-badge pal-answered">0</span>
+            <span>Answered</span>
+          </div>
+          <div class="legend-item">
+            <span id="cnt-not-answered" class="pal-badge pal-not-answered">0</span>
+            <span>Not Answered</span>
+          </div>
+          <div class="legend-item">
+            <span id="cnt-not-visited" class="pal-badge pal-not-visited">0</span>
+            <span>Not Visited</span>
+          </div>
+          <div class="legend-item">
+            <span id="cnt-review" class="pal-badge pal-review">0</span>
+            <span>Marked</span>
+          </div>
+          <div class="legend-item full-span">
+            <span id="cnt-ans-review" class="pal-badge pal-ans-review">0</span>
+            <span>Answered &amp; Marked for Review</span>
+          </div>
+        </div>
+
+        <div class="palette-header-bar">Question Palette</div>
+
+        <div class="palette-grid-scroll">
+          <div id="palette-buttons-grid" class="palette-grid"></div>
+        </div>
+
+        <div class="palette-footer">
+          <button id="btn-palette-submit" class="btn btn-success" type="button">Submit</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       VIEW 4: SUBMISSION SCORE & SOLUTION ANALYSIS
+       ===================================================================== -->
+  <div id="view-result" class="portal-wrapper hidden">
+    <header class="portal-header">
+      <div class="portal-brand">
+        <div class="portal-logo">RES</div>
+        <div class="portal-title-group">
+          <h1 id="result-header-title">Mock Test Result &amp; Solution Analysis</h1>
+          <p>Score Summary &amp; Solutions for Incorrect and Un-attempted Questions</p>
+        </div>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button id="btn-result-retake" class="top-ctrl-btn" type="button">Retake Test</button>
+        <button id="btn-result-dashboard" class="btn btn-secondary" type="button" style="padding: 6px 12px; font-size: 12.5px;">← Main Dashboard</button>
+      </div>
+    </header>
+
+    <main class="portal-container">
+      <div class="result-banner">
+        <div class="result-banner-top">
+          <div>
+            <h2 id="result-test-name">1. Computer Fundamentals &amp; Hardware</h2>
+            <p id="result-submit-reason" style="font-size: 13px; color: #4b5563; margin-top: 2px;">Test submitted successfully.</p>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button id="btn-result-retake-2" class="btn btn-outline" type="button">Retake This Mock</button>
+            <button id="btn-result-dashboard-2" class="btn btn-primary" type="button">Back to Main Dashboard</button>
+          </div>
+        </div>
+
+        <div class="result-score-grid">
+          <div class="score-card sc-primary">
+            <span id="res-score-val" class="s-val">0 / 113</span>
+            <span class="s-lbl">Final Score</span>
+          </div>
+          <div class="score-card sc-correct">
+            <span id="res-correct-val" class="s-val">0</span>
+            <span class="s-lbl">Correct Answers</span>
+          </div>
+          <div class="score-card sc-incorrect">
+            <span id="res-incorrect-val" class="s-val">0</span>
+            <span class="s-lbl">Incorrect Answers</span>
+          </div>
+          <div class="score-card sc-unattempted">
+            <span id="res-unattempted-val" class="s-val">0</span>
+            <span class="s-lbl">Un-attempted</span>
+          </div>
+          <div class="score-card">
+            <span id="res-accuracy-val" class="s-val">0%</span>
+            <span class="s-lbl">Accuracy</span>
+          </div>
+          <div class="score-card">
+            <span id="res-time-val" class="s-val">00:00</span>
+            <span class="s-lbl">Time Taken</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <div class="section-heading" style="margin-bottom: 0;">
+          <span>Solutions (Incorrect &amp; Un-attempted Questions Only)</span>
+        </div>
+        <div class="filter-tabs">
+          <button id="tab-filter-all" class="filter-tab active" type="button">All Incorrect &amp; Un-attempted (<span id="flt-cnt-all">0</span>)</button>
+          <button id="tab-filter-incorrect" class="filter-tab" type="button">Incorrect Only (<span id="flt-cnt-inc">0</span>)</button>
+          <button id="tab-filter-unattempted" class="filter-tab" type="button">Un-attempted Only (<span id="flt-cnt-un">0</span>)</button>
+        </div>
+      </div>
+
+      <div id="review-questions-container" class="review-list"></div>
+    </main>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 1: PAUSE MODAL
+       ===================================================================== -->
+  <div id="modal-pause" class="modal-backdrop hidden">
+    <div class="modal-box">
+      <div class="modal-header">Mock Test Paused</div>
+      <div class="modal-body">
+        <p>Your countdown timer has been paused. Click <strong>Resume Test</strong> when you are ready to continue.</p>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-pause-quit" class="btn btn-secondary" type="button">Exit to Dashboard</button>
+        <button id="btn-pause-resume" class="btn btn-primary" type="button">Resume Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 2: SUBMIT CONFIRMATION MODAL
+       ===================================================================== -->
+  <div id="modal-submit" class="modal-backdrop hidden">
+    <div class="modal-box">
+      <div class="modal-header">Confirm Test Submission</div>
+      <div class="modal-body">
+        <p>Are you sure you want to submit your mock test? Here is a summary of your responses:</p>
+        <table class="modal-summary-table">
+          <tbody>
+            <tr>
+              <th>Total Questions</th>
+              <td id="sub-mdl-total">0</td>
+            </tr>
+            <tr>
+              <th>Answered</th>
+              <td id="sub-mdl-ans" style="color: #16a34a; font-weight: 700;">0</td>
+            </tr>
+            <tr>
+              <th>Not Answered</th>
+              <td id="sub-mdl-not-ans" style="color: #dc2626; font-weight: 700;">0</td>
+            </tr>
+            <tr>
+              <th>Marked for Review (Unanswered)</th>
+              <td id="sub-mdl-rev" style="color: #7c3aed; font-weight: 700;">0</td>
+            </tr>
+            <tr>
+              <th>Answered &amp; Marked for Review</th>
+              <td id="sub-mdl-ans-rev" style="color: #7c3aed; font-weight: 700;">0</td>
+            </tr>
+            <tr>
+              <th>Not Visited</th>
+              <td id="sub-mdl-not-vis">0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-submit-cancel" class="btn btn-secondary" type="button">Return to Test</button>
+        <button id="btn-submit-confirm" class="btn btn-success" type="button">Yes, Submit Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast-msg" class="toast-banner hidden"></div>
+
+  <script>
+    // Embedded Dataset of all 5 Mock Tests (205 Verified TCS PYQs)
+    const MOCK_TESTS = [{"id": 1, "title": "1. Computer Fundamentals & Hardware", "shortTitle": "Computer Fundamentals & Hardware", "durationMinutes": 113, "totalQuestions": 113, "questions": [{"q": "What is the primary function of a scanner?", "tag": "Selection Post Phase VI 24/11/2023", "options": ["To input graphical images and text into a computer.", "To project images on a screen.", "To produce audio output.", "To create printed copies of documents."], "ans": 0, "sol": "A scanner is an input device that captures images from photographic prints, posters, magazine pages, and documents for computer editing and display. Scanned documents can be saved in formats such as PDF, JPEG, TIFF, and PNG."}, {"q": "Which of the following is an example of the input device in a computer?", "tag": "SSC CGL Tier II 26/10/2023", "options": ["Monitor", "Touchscreen", "Printer", "Speaker"], "ans": 1, "sol": "A touchscreen acts as an input device (via its touch panel) as well as an output display, whereas Monitor, Printer, and Speaker are strictly output devices. Other input devices include Keyboard, Mouse, Scanner, Microphone, Webcam, MICR, Gamepad, Touchpad, Light Pen, Joystick, and Barcode Reader."}, {"q": "Rishu wants to input data to the computer by pressing keys. Which input device should he use?", "tag": "SSC CHSL 14/03/2023 (Shift 2)", "options": ["Keyboard", "Scanner", "Joystick", "Light Pen"], "ans": 0, "sol": "A computer keyboard is an input device used to enter characters, text, numbers, and commands into the computer system by pressing buttons or keys."}, {"q": "Neeti wants to use an input device that works by sensing the user's finger movement and downward pressure. Which among the following should she use?", "tag": "SSC CHSL 10/03/2023 (Shift 2)", "options": ["Scanner", "Touchpad", "Light pen", "Keyboard"], "ans": 1, "sol": "A touchpad (or trackpad) is a flat pointing input device commonly integrated into laptops that works by sensing the user's finger movement and downward pressure to control the cursor."}, {"q": "Which among the following statements is incorrect for input devices?", "tag": "SSC CGL Tier II 07/03/2023", "options": ["Input devices are also called as peripheral device.", "Input devices accept user data.", "Input devices help computers in receiving data.", "Optical Mark Reader is an input device."], "ans": 0, "sol": "Peripheral devices encompass all auxiliary hardware (including input, output, and external storage devices), so 'peripheral device' is not an exclusive synonym for input devices alone. Input devices specifically accept user data and help computers receive data and control signals (e.g., Keyboard, Mouse, OMR, OCR, MICR, Scanner)."}, {"q": "Which of the following is a pointing device used to move an object on the screen of a computer in any direction?", "tag": "SSC CHSL 13/04/2021 (Afternoon)", "options": ["Modem", "Joystick", "Floptical", "Server"], "ans": 1, "sol": "A joystick is a handheld pointing input device consisting of a stick that pivots on a base and is used to move an object or cursor on a computer screen in any direction. A modem modulates and demodulates signals for transmission, Floptical is a magnetic-optical floppy drive, and a server provides network services to clients."}, {"q": "Which of the following is an input device?", "tag": "SSC CHSL 19/04/2021 (Evening)", "options": ["Speaker", "Scanner", "Projector", "Monitor"], "ans": 1, "sol": "A scanner is an input device used to capture physical documents and images into digital format for a computer. Speaker, Projector, and Monitor are output devices."}, {"q": "Where in a computer would you use a 'joystick' for computer games and assistive technology?", "tag": "SSC CHSL 11/08/2021 (Morning)", "options": ["Mail merge", "Cursor control", "Increase memory", "Storage space"], "ans": 1, "sol": "A joystick is used for cursor control (or pointer/object movement control) in computer games, flight simulators, and assistive technologies."}, {"q": "Which of the following is an input device used to verify the legitimacy or originality of paper documents, especially cheques?", "tag": "SSC CHSL 11/08/2021 (Afternoon)", "options": ["Non-impact printer", "Optical mark reader", "Electronic card reader", "Magnetic ink character recognition"], "ans": 3, "sol": "Magnetic Ink Character Recognition (MICR) is an input technology used primarily by banks to verify the legitimacy or originality of paper documents, especially cheques, by reading the 9-digit magnetic ink code printed at the bottom."}, {"q": "Which of the following is an input device?", "tag": "RRB NTPC 16/01/2021 (Morning)", "options": ["Inkjet printer", "Optical character reader", "Headphones", "Projector"], "ans": 1, "sol": "Optical Character Reader (OCR) is an input device that scans printed or handwritten text and converts it into machine-readable digital text. Inkjet printer, Headphones, and Projector are output devices."}, {"q": "Which of the following is a hardware input device in a computer?", "tag": "RRB NTPC 12/02/2021 (Morning)", "options": ["VDU", "Speech synthesiser", "Scanners", "Plotters"], "ans": 2, "sol": "Scanners are hardware input devices that capture images from photographic prints, posters, and documents for computer editing and display. VDU, Speech synthesiser, and Plotters are output devices."}, {"q": "Mouse and ________ are also examples of input devices.", "tag": "RRB NTPC 15/03/2021 (Morning)", "options": ["Speakers", "Monitor", "Printer", "Scanner"], "ans": 3, "sol": "Mouse and Scanner are examples of input devices. Other input devices include keyboard, joystick, light pen, trackball, graphics tablet, microphone, and barcode reader."}, {"q": "‘Track Ball’ falls into which of the following categories?", "tag": "RRB NTPC 01/04/2021 (Evening)", "options": ["Input Device", "Storage Device", "Processing Device", "Output Device"], "ans": 0, "sol": "A Track Ball is a pointing input device comprising an exposed ball held in a socket with sensors that detect the ball's rotation to control the cursor."}, {"q": "A typewriter-like tool, which is used to send data or commands to the computer is called:", "tag": "RRB NTPC 08/04/2021 (Evening)", "options": ["Joystick", "Optical Character Reader (OCR)", "Mouse", "Keyboard"], "ans": 3, "sol": "A typewriter-like tool used to send data or commands to the computer by pressing keys is called a Keyboard."}, {"q": "In the context of computing, which of the following is NOT an input device?", "tag": "RRB NTPC 24/07/2021 (Evening)", "options": ["Mouse", "Scanner", "Barcode reader", "Projector"], "ans": 3, "sol": "A Projector is an output device that projects computer-generated images or video onto a screen or wall. Mouse, Scanner, and Barcode reader are input devices."}, {"q": "In the context of computers, tracker balls is a/an ______ device.", "tag": "RRB NTPC 30/12/2020 (Morning)", "options": ["storage", "processing", "input", "output"], "ans": 2, "sol": "In the context of computers, a tracker ball (trackball) is an input device used to control the pointer/cursor."}, {"q": "Which of the following is an input device that utilizes a light-sensitive detector to select objects on a display screen?", "tag": "SSC CHSL 18/03/2020 (Afternoon)", "options": ["Light pen", "Barcode reader", "Optical mark recognition (OMR)", "Magnetic ink character recognition"], "ans": 0, "sol": "A light pen is a computer input device in the form of a light-sensitive wand used in conjunction with a computer display (especially CRT monitors) to point to or select objects on the screen."}, {"q": "Which of the following is a lever that can be moved in several directions to control the movement of an image on a computer monitor or similar display screen?", "tag": "SSC CHSL 14/10/2020 (Morning)", "options": ["MIDI Devices", "Optical Mark Reader", "Joystick", "Visual Display Unit"], "ans": 2, "sol": "A joystick is an input device consisting of a handheld lever that pivots on a base and can be moved in several directions to control the movement of an image or pointer on a monitor."}, {"q": "Which of the following converts analogue information into digital form?", "tag": "SSC CHSL 14/10/2020 (Morning)", "options": ["Optical Mark Reading", "Barcode reader", "Digitizer", "Gamepad"], "ans": 2, "sol": "A digitizer is an input machine/device that converts analog information (such as physical drawings, images, or signals) into a digital (computer-readable) format."}, {"q": "Which of the following consists of an electronic writing area and a special ‘pen’ that works with it?", "tag": "SSC CHSL 15/10/2020 (Afternoon)", "options": ["Trackball", "Plotters", "Abacus", "Graphics Tablet"], "ans": 3, "sol": "A graphics tablet (or digitizer tablet) is a computer input device consisting of a flat, pressure-sensitive electronic writing pad and a special pen-like stylus used to hand-draw images and graphics."}, {"q": "Which of the following is an input device of a computer?", "tag": "SSC CHSL 19/10/2020 (Evening)", "options": ["Speaker", "Printer", "Scanner", "Monitor"], "ans": 2, "sol": "Scanner is an input device. Speaker, Printer, and Monitor are output devices."}, {"q": "Trackball is which of the following devices?", "tag": "SSC CHSL 21/10/2020 (Afternoon)", "options": ["Input device", "Touchpad", "Output device", "Barcode reader"], "ans": 0, "sol": "A trackball is a pointing input device consisting of a ball held by a socket containing sensors to detect rotation of the ball about two axes."}, {"q": "Which of the following is an input device used to enter motion data in computers or other electronic devices?", "tag": "SSC CHSL 14/10/2020 (Evening)", "options": ["Monitor", "Trackball", "Plotter", "Joystick"], "ans": 1, "sol": "A trackball is a pointing input device used to enter two-axis motion data into computers or other electronic devices by rolling the ball with the thumb, fingers, or palm."}, {"q": "Match the following:\na) Input Device — p) ROM\nb) Processing Device — q) Touch Screen\nc) Storage Device — r) Printer\nd) Output Device — s) Flash Memory", "tag": "RRB NTPC 11/04/2016 (Evening)", "options": ["a - q, b - s, c - r, d - p", "a - q, b - p, c - s, d - r", "a - r, b - p, c - s, d - q", "a - p, b - q, c - r, d - s"], "ans": 1, "sol": "Matching the categories with the given items: Input Device -> Touch Screen (a - q); Processing/Internal System Device -> ROM (b - p); Storage Device -> Flash Memory (c - s); Output Device -> Printer (d - r)."}, {"q": "Which of the following is an example of an output device?", "tag": "SSC CHSL Tier II 10/01/2024", "options": ["Printer", "Microphone", "Scanner", "Mouse"], "ans": 0, "sol": "A printer is an output device that produces hard copies of electronic documents. Microphone, Scanner, and Mouse are input devices."}, {"q": "Which of the following is a type of the output device of a computer system?", "tag": "Selection Post Phase VI 24/11/2023", "options": ["Mouse", "Keyboard", "Card readers", "Monitor"], "ans": 3, "sol": "A monitor is an electronic output device, also known as a Video Display Terminal (VDT) or Video Display Unit (VDU). Mouse, Keyboard, and Card readers are input devices."}, {"q": "Which of the following is an example of the output device in a computer?", "tag": "Selection Post Phase VI 24/11/2023", "options": ["Mouse", "Keyboard", "Scanner", "Projector"], "ans": 3, "sol": "A projector is an output device that takes images generated by a computer and reproduces them by projection onto a screen, wall, or another surface."}, {"q": "Which of following output device of computer has two types, 'Drum' and 'Flatbed'?", "tag": "Selection Post Phase VI 24/11/2023", "options": ["Plotter", "Monitor", "Speaker", "Visual Display Terminal"], "ans": 0, "sol": "A plotter is an output device that interprets commands from a computer to make vector line drawings on paper with automated pens. Its two main types are Drum plotters (which roll paper over a cylinder) and Flatbed plotters (which hold paper flat while the pen moves)."}, {"q": "Which of the following is NOT an output device?", "tag": "SSC CHSL 09/03/2023 (Shift 3)", "options": ["Plotter", "Monitor", "Dot matrix printer", "Barcode reader"], "ans": 3, "sol": "A barcode reader (or barcode scanner) is an optical input device that reads printed barcodes and sends the decoded data to a computer. Plotter, Monitor, and Dot matrix printer are output devices."}, {"q": "Which of the following is an output device?", "tag": "SSC CHSL 15/03/2023 (Shift 3)", "options": ["Scanner", "Projector", "MICR (Magnetic Ink Character Recognition)", "OCR device"], "ans": 1, "sol": "Projector is an output device that projects visual output onto a screen. Scanner, MICR, and OCR devices are input devices."}, {"q": "Neel wants to use a Character Printer. Which among the following should he pick?", "tag": "SSC CHSL 16/03/2023 (Shift 4)", "options": ["Chain Printer", "Laser Printer", "Drum Printer", "Dot Matrix Printer"], "ans": 3, "sol": "A Dot Matrix Printer is an impact character printer that prints one character at a time using a fixed number of pins. Chain printers and Drum printers are line printers, while Laser printers are page printers."}, {"q": "What is an output device that transforms the signal from the computer's sound card into audio?", "tag": "SSC CHSL 17/03/2023 (Shift 1)", "options": ["Speaker", "Plotter", "Graphics card", "Monitor"], "ans": 0, "sol": "Computer speakers (or headphones) are output transducers that transform the analog audio signal from the computer's sound card into audible sound."}, {"q": "Speed of _______ printer is measured in characters per second (CPS).", "tag": "SSC CHSL 20/03/2023 (Shift 3)", "options": ["Dot Matrix", "Line", "Ink - Jet", "Laser"], "ans": 0, "sol": "The printing speed of a Dot Matrix printer (a character printer) is measured in Characters Per Second (CPS). Line printers are measured in Lines Per Minute (LPM), and Inkjet/Laser printers are measured in Pages Per Minute (PPM)."}, {"q": "Which among the following is incorrect about Laser Printers?", "tag": "SSC CGL Tier II 02/03/2023", "options": ["Uses laser lights for producing dots to form characters on a page", "Can print multiple copies at a time", "Fast speed", "Supports multiple fonts and sizes"], "ans": 1, "sol": "Laser printers are non-impact page printers and cannot print multiple carbon copies simultaneously in a single pass (unlike impact printers such as dot-matrix printers, which physically strike the ribbon and paper). They print one page copy at a time at high speed."}, {"q": "Which among the following devices is also known as Visual Display Unit (VDU)?", "tag": "SSC CGL Tier II 03/03/2023", "options": ["Printer", "Scanner", "Track Ball", "Monitor"], "ans": 3, "sol": "A computer Monitor is also known as a Visual Display Unit (VDU) or Video Display Terminal (VDT); it displays images, text, and video on a screen."}, {"q": "______ is a reading device that reads printed text by scanning it character by character.", "tag": "SSC CGL Tier II 06/03/2023", "options": ["Track Ball", "Digitizer", "Magnetic Ink Card Reader (MICR)", "Optical Character Reader (OCR)"], "ans": 3, "sol": "An Optical Character Reader (OCR) is an input reading device that reads printed or handwritten text by scanning it character by character and converting it into machine-readable text."}, {"q": "Which of the following is the output device of a computer?", "tag": "SSC CHSL 12/04/2021 (Evening)", "options": ["Plotter", "Pen drive", "Joystick", "Scanner"], "ans": 0, "sol": "A Plotter is an output device used to print vector graphics and engineering drawings. Pen drive is a storage device, while Joystick and Scanner are input devices."}, {"q": "LCD is a basic type of monitor. What is the full form of LCD?", "tag": "SSC CHSL 15/04/2021 (Morning)", "options": ["Laser Crystal Display", "Liquid Crystal Diode", "Light Component Device", "Liquid Crystal Display"], "ans": 3, "sol": "The full form of LCD is Liquid Crystal Display. It is a flat-panel display technology that uses the light-modulating properties of liquid crystals combined with polarizers."}, {"q": "Which of the following devices accepts the results produced by the computer in a machine-readable form?", "tag": "SSC CHSL 04/08/2021 (Evening)", "options": ["Microphone", "Printer", "Graphics tablet", "Mouse"], "ans": 1, "sol": "An output device such as a Printer accepts the results produced by the computer in machine-readable form and converts them into human-readable hard copy on paper. Microphone, Graphics tablet, and Mouse are input devices."}, {"q": "Which of the following is NOT an output device?", "tag": "RRB NTPC 02/02/2021 (Morning)", "options": ["Monitor", "Speaker", "Scanner", "Printer"], "ans": 2, "sol": "A scanner is an input device used to scan documents and images into a computer. Monitor, Speaker, and Printer are output devices."}, {"q": "Which of the following is NOT an internal part of the computer?", "tag": "RRB NTPC 27/02/2021 (Evening)", "options": ["RAM", "Flash drive", "Video card", "Motherboard"], "ans": 1, "sol": "A USB flash drive (pen drive) is an external plug-and-play data storage device, whereas RAM, Video card, and Motherboard are internal components housed inside the computer cabinet."}, {"q": "Which among the following is an output device in the context of a computer system?", "tag": "RRB NTPC 01/03/2021 (Morning)", "options": ["Track ball", "Plotter", "Light pen", "Magnetic scanner"], "ans": 1, "sol": "A Plotter is an output device used to print vector graphics and line drawings. Track ball, Light pen, and Magnetic scanner are input devices."}, {"q": "Which of the following is NOT an output device for a computer?", "tag": "RRB NTPC 04/03/2021 (Morning)", "options": ["Printer", "Scanner", "Projector", "Monitor"], "ans": 1, "sol": "Scanner is an input device, whereas Printer, Projector, and Monitor are output devices."}, {"q": "Which of the following devices is used in applications such as Computer Aided Design (CAD)?", "tag": "RRB NTPC 11/03/2021 (Evening)", "options": ["Scanners", "Plotters", "Speaker", "Pantographs"], "ans": 1, "sol": "Plotters are widely used in Computer Aided Design (CAD) and Computer Aided Engineering (CAE) applications because they produce high-precision continuous vector line drawings on large sheets."}, {"q": "Which of the following groups consists of only output devices?", "tag": "RRB NTPC 12/03/2021 (Evening)", "options": ["Scanner, printer and monitor", "Keyboard, printer and monitor", "Mouse, printer and monitor", "Plotter, printer and monitor"], "ans": 3, "sol": "Plotter, printer, and monitor are all output devices. Scanner, keyboard, and mouse are input devices."}, {"q": "Which of the following is an output device?", "tag": "RRB NTPC 01/04/2021 (Evening)", "options": ["Keyboard", "Monitor", "Joysticks", "Scanner"], "ans": 1, "sol": "Monitor is an output device that displays visual output. Keyboard, Joysticks, and Scanner are input devices."}, {"q": "Which of the following is an output device?", "tag": "RRB NTPC 06/04/2021 (Evening)", "options": ["MICR", "Mouse", "Printer", "OCR"], "ans": 2, "sol": "Printer is an output device. MICR, Mouse, and OCR are input devices."}, {"q": "A computer monitor is also known by the name:", "tag": "RRB NTPC 03/02/2021 (Evening)", "options": ["CCTV", "LED", "CPU", "VDU"], "ans": 3, "sol": "A computer monitor is also known as VDU (Visual Display Unit)."}, {"q": "How many colours are available in a computer monitor with 16 bits per pixel depth?", "tag": "RRB NTPC 21/03/2021 (Evening)", "options": ["65536", "256", "16777216", "16"], "ans": 0, "sol": "With a color depth of 16 bits per pixel (High Color), a computer monitor can display 2^16 = 65,536 distinct colors."}, {"q": "What is a Visual Display Unit (VDU)?", "tag": "RRB NTPC 05/04/2021 (Morning)", "options": ["Storage Unit", "Monitor", "Server", "System memory"], "ans": 1, "sol": "A Visual Display Unit (VDU) is a computer Monitor (or display screen/projector) that presents visual information from a computer."}, {"q": "A pixel is:", "tag": "RRB NTPC 31/07/2021 (Evening)", "options": ["a computer program", "a programming language", "the smallest resolvable part of a picture", "a picture stored in secondary memory"], "ans": 2, "sol": "A pixel (short for 'picture element') is the smallest resolvable part of a digital image or display screen and represents the basic unit of programmable color."}, {"q": "Which among the following units is used to count the speed of modern Printers?", "tag": "RRB NTPC 02/02/2021 (Morning)", "options": ["LPM", "BIT", "CPM", "PPM"], "ans": 3, "sol": "PPM (Pages Per Minute) is the standard unit used to measure the printing speed of modern page printers such as Laser and Inkjet printers."}, {"q": "The line, daisy wheel, laser and drum are of the following types:", "tag": "RRB NTPC 07/04/2021 (Morning)", "options": ["Printers", "Scanners", "Photocopiers", "Plotters"], "ans": 0, "sol": "Line, Daisy wheel, Laser, and Drum are all types of computer Printers."}, {"q": "Sir Tim Berners-Lee, a British computer scientist, invented the revolutionary World Wide Web in _______.", "tag": "SSC CHSL 21/03/2023 (Shift 1)", "options": ["1982", "1995", "1990", "1985"], "ans": 2, "sol": "Tim Berners-Lee proposed the World Wide Web at CERN in 1989 and implemented the first working WorldWideWeb browser, server, HTTP, and HTML by the end of 1990."}, {"q": "The development of the World Wide Web began in which of the following year?", "tag": "Delhi Police 19/10/2022 (Afternoon)", "options": ["1979", "1969", "1959", "1989"], "ans": 3, "sol": "The development of the World Wide Web (WWW) began in 1989 when British scientist Sir Tim Berners-Lee submitted his proposal at CERN."}, {"q": "Chad Hurley and Steve Chen are computer innovators credited with co-founding ______.", "tag": "SSC CHSL 15/04/2021 (Morning)", "options": ["Instagram", "Facebook", "WhatsApp", "YouTube"], "ans": 3, "sol": "Steve Chen, Chad Hurley, and Jawed Karim co-founded YouTube in February 2005. In October 2006, YouTube was acquired by Google."}, {"q": "Who created FORTRAN — the first high-level computer programming language?", "tag": "SSC CHSL 11/08/2021 (Evening)", "options": ["Dan Bricklin", "Marc Andreessen", "Larry Ellison", "John Backus"], "ans": 3, "sol": "John Backus led the team at IBM that created FORTRAN (Formula Translation) in 1957, the first widely used high-level general-purpose programming language."}, {"q": "In which year was Microsoft Word 1.0 launched?", "tag": "SSC CHSL 16/04/2021 (Morning)", "options": ["1985", "1996", "1992", "1983"], "ans": 3, "sol": "The first version of Microsoft Word, Word 1.0, was released in October 1983 for Xenix and MS-DOS."}, {"q": "The first barcode system was developed by:", "tag": "SSC CHSL 16/04/2021 (Evening)", "options": ["Norman Joseph Woodland", "John McCarthy", "John Barger", "David Bradley"], "ans": 0, "sol": "Norman Joseph Woodland (along with Bernard Silver) developed the first barcode system and received a US patent for it in 1952."}, {"q": "Video Graphics Array (VGA) is a system for displaying color graphics. It was developed by?", "tag": "RRB NTPC 09/01/2021 (Evening)", "options": ["IBM", "Macintosh", "Microsoft", "Apple"], "ans": 0, "sol": "Video Graphics Array (VGA) is a display standard and graphics system developed and introduced by IBM in 1987 with the IBM PS/2 line of computers."}, {"q": "Inventor of Bluetooth is _________.", "tag": "RRB NTPC 04/01/2021 (Evening)", "options": ["Charles Simonyi", "Bill Gates", "Paul Allen", "Jaap Haartsen"], "ans": 3, "sol": "Dr. Jaap Haartsen invented Bluetooth wireless technology in 1994 while working at Ericsson."}, {"q": "From the given options, select the developer of ‘PARAM 10000’ a supercomputer of Indian origin.", "tag": "RRB NTPC 08/02/2021 (Evening)", "options": ["TATA", "C-DAC, Pune", "IIT Kanpur", "IIT Kharagpur"], "ans": 1, "sol": "C-DAC (Centre for Development of Advanced Computing), Pune developed the PARAM 10000 supercomputer in 1998 under the leadership of Dr. Vijay P. Bhatkar."}, {"q": "Which of the following universities designed and built the first electronic computer (ENIAC)?", "tag": "RRB NTPC 09/02/2021 (Morning)", "options": ["University of Oxford", "University of Harvard", "University of Pennsylvania", "University of Stanford"], "ans": 2, "sol": "ENIAC (Electronic Numerical Integrator and Computer) was designed and built by John Mauchly and J. Presper Eckert at the Moore School of Electrical Engineering, University of Pennsylvania, completed in 1945 and dedicated in February 1946."}, {"q": "Who among the following is known as the ‘father of Indian Supercomputers’?", "tag": "RRB NTPC 22/02/2021 (Morning)", "options": ["RA Mashelkar", "Nandan Nilekani", "Jayant Narlikar", "Vijay Bhatkar"], "ans": 3, "sol": "Dr. Vijay P. Bhatkar is known as the 'Father of Indian Supercomputers'. He led the development of India's first indigenous supercomputer, PARAM 8000, in 1991 and PARAM 10000 in 1998 at C-DAC."}, {"q": "Who designed the ‘first’ small computer for home use?", "tag": "RRB NTPC 19/03/2021 (Evening)", "options": ["Steve Wozniak", "Chuck Peddle", "Steve Leininger", "John Blankenbaker"], "ans": 3, "sol": "John Blankenbaker designed the Kenbak-1 (released in early 1971), which is recognized by the Computer History Museum as the world's first personal/small computer for home and educational use."}, {"q": "The name of the 1st electronic digital computer of the world is:", "tag": "RRB NTPC 01/04/2021 (Morning)", "options": ["PARAM", "PROLOG", "UNIVAC", "ENIAC"], "ans": 3, "sol": "ENIAC (Electronic Numerical Integrator and Computer) was the world's first programmable general-purpose electronic digital computer, built during World War II by John Mauchly and J. Presper Eckert."}, {"q": "What was the first computer created by JW Mauchly and J Presper Eckert with NO mechanical parts?", "tag": "RRB NTPC 06/04/2021 (Morning)", "options": ["Mark II", "EDVAC", "Mark I", "ENIAC"], "ans": 3, "sol": "ENIAC was the first general-purpose electronic computer created by John Mauchly and J. Presper Eckert without mechanical computing parts (using vacuum tubes for computation)."}, {"q": "Which of the following devices/interfaces did Douglas Engelbart invent?", "tag": "RRB NTPC 23/07/2021 (Morning)", "options": ["Compact disc", "USB port", "Floppy disk", "Computer mouse"], "ans": 3, "sol": "Douglas Engelbart invented the computer mouse in the 1960s at Stanford Research Institute (SRI). USB was developed by a team led by Ajay Bhatt, the floppy disk by Alan Shugart at IBM, and the Compact Disc by James Russell / Philips & Sony."}, {"q": "The ‘Pen Drive’ was invented by IBM in the year ______.", "tag": "RRB NTPC 23/07/2021 (Evening)", "options": ["2003", "1988", "1990", "1998"], "ans": 3, "sol": "The USB flash drive ('Pen Drive') concept was developed in 1998–1999 (by IBM / M-Systems to replace floppy drives in IBM ThinkPad laptops) and commercially launched in 2000."}, {"q": "If Bill Gates had his way, by what name was Windows OS planned to be released?", "tag": "RRB NTPC 10/01/2021 (Evening)", "options": ["Clipboard Viewer", "Interface Manager", "Calculator", "Control panel"], "ans": 1, "sol": "Microsoft originally codenamed and planned to release Windows 1.0 under the name 'Interface Manager' before marketing head Rowland Hanson convinced Bill Gates to name it 'Windows'."}, {"q": "Who is the co-founder of Apple Computers?", "tag": "RRB NTPC 11/01/2021 (Evening)", "options": ["Bill Gates", "Paul Allen", "Charles Flint", "Steve Jobs"], "ans": 3, "sol": "Steve Jobs (along with Steve Wozniak and Ronald Wayne) co-founded Apple Computer in April 1976."}, {"q": "Who among the following is one of the founders of Google?", "tag": "RRB NTPC 17/01/2021 (Evening)", "options": ["Jon Koum", "Larry Page", "Jerry Yang", "Mark Zuckerberg"], "ans": 1, "sol": "Larry Page and Sergey Brin founded Google on September 4, 1998. Mark Zuckerberg co-founded Facebook, Jerry Yang co-founded Yahoo!, and Jon Koum co-founded WhatsApp."}, {"q": "Who was one of the founders of the American computer company Sun Microsystems, later acquired by Oracle?", "tag": "RRB NTPC 20/01/2021 (Evening)", "options": ["Vinod Khosla", "Satya Nadella", "Sundar Pichai", "Sabeer Bhatia"], "ans": 0, "sol": "Vinod Khosla, along with Scott McNealy, Andy Bechtolsheim, and Bill Joy, co-founded Sun Microsystems in February 1982."}, {"q": "The first mechanical computer designed by Charles Babbage was called:", "tag": "RRB NTPC 21/01/2021 (Evening)", "options": ["Abacus", "Analytical Engine", "Calculator", "Processor"], "ans": 1, "sol": "The Analytical Engine, first described by Charles Babbage in 1837 as the successor to his Difference Engine, was the first design for a general-purpose mechanical computer."}, {"q": "Which of the following is NOT a Google product?", "tag": "RRB NTPC 28/01/2021 (Morning)", "options": ["Gmail", "iTunes", "Blogger", "YouTube"], "ans": 1, "sol": "iTunes is a media player and library application developed by Apple Inc., whereas Gmail, Blogger, and YouTube are Google products."}, {"q": "______ along with Paul Allen founded Microsoft in the year 1975.", "tag": "RRB NTPC 03/04/2021 (Evening)", "options": ["Bill Gates", "Larry Wall", "Mark Zuckerberg", "Stephen Hawking"], "ans": 0, "sol": "Bill Gates along with Paul Allen founded Microsoft on April 4, 1975."}, {"q": "The Microsoft Corporation was founded at ________ in 1975.", "tag": "RRB NTPC 23/07/2021 (Evening)", "options": ["Albuquerque, New Mexico, United States.", "Nihonbashi, Tokyo, Japan", "Cupertino, California, United States.", "Bellevue, Washington, United States."], "ans": 0, "sol": "Microsoft Corporation was founded by Bill Gates and Paul Allen on April 4, 1975, in Albuquerque, New Mexico, United States."}, {"q": "The C++ programming language was developed at AT & T Bell Laboratories in the early __________ by Bjarne Stroustrup.", "tag": "RRB NTPC 13/01/2021 (Morning)", "options": ["1960s", "1970s", "1980s", "1990s"], "ans": 2, "sol": "The C++ programming language was developed by Bjarne Stroustrup at AT&T Bell Laboratories in the early 1980s (beginning as 'C with Classes' in 1979 and named C++ in 1983)."}, {"q": "Who is credited with developing the \"C\" language?", "tag": "RRB NTPC 20/01/2021 (Morning)", "options": ["Yashwant Kanetkar", "Bill Gates", "Steve Rogers", "Dennis Ritchie"], "ans": 3, "sol": "Dennis Ritchie developed the C programming language in the early 1970s at Bell Labs."}, {"q": "Who is considered to be the Father of Modern Computers?", "tag": "RRB NTPC 01/02/2021 (Morning)", "options": ["Charles Babbage", "Alan Turing", "James Gosling", "Gordon E Moore"], "ans": 1, "sol": "Alan Turing is considered the Father of Modern Computers (and modern computer science/theoretical computer science) for formalizing the concepts of algorithm and computation with the Turing machine."}, {"q": "Who among the following pioneered binary logic and arithmetic in computer programming?", "tag": "RRB NTPC 12/03/2021 (Morning)", "options": ["Leslie Lamport", "Noam Chomsky", "Claude Shannon", "John Backus"], "ans": 2, "sol": "Claude Shannon pioneered the application of Boolean algebra (binary logic and arithmetic) to electronic switching circuits and computer programming, and is known as the 'Father of Information Theory'."}, {"q": "Who coined the word “Artificial Intelligence”?", "tag": "RRB NTPC 07/01/2021 (Evening)", "options": ["John Berger", "Charles Bachman", "John McCarthy", "David Bradley"], "ans": 2, "sol": "John McCarthy coined the term 'Artificial Intelligence' in 1955–1956 for the Dartmouth Summer Research Project on Artificial Intelligence."}, {"q": "Who invented ‘www’?", "tag": "RRB NTPC 08/01/2021 (Morning)", "options": ["Robert E. Kahn", "Charles Babbage", "Vint Cerf", "Tim Berners-Lee"], "ans": 3, "sol": "The World Wide Web (WWW) was invented by British computer scientist Sir Tim Berners-Lee in 1989."}, {"q": "Who is considered the father of computers?", "tag": "RRB NTPC 08/01/2021 (Evening)", "options": ["Charles Babbage", "Charles Bachman", "Alan Turing", "John Atanasoff"], "ans": 0, "sol": "Charles Babbage is considered the 'Father of Computers' for designing the Difference Engine and the Analytical Engine."}, {"q": "What was the first domain name ever registered on the World Wide Web?", "tag": "RRB NTPC 10/01/2021 (Evening)", "options": ["www.computer.com", "www.linux.com", "www.symbolics.com", "www.server.com"], "ans": 2, "sol": "symbolics.com (www.symbolics.com) was the first commercial (.com) domain name ever registered on the Internet (on March 15, 1985, by Symbolics Inc.)."}, {"q": "Who invented HTML in 1990?", "tag": "RRB NTPC 22/01/2021 (Morning)", "options": ["Tim Berners-Lee", "David Noble", "Kane Kramer", "Niklaus Wirth"], "ans": 0, "sol": "Tim Berners-Lee invented HTML (HyperText Markup Language) in 1990 while developing the World Wide Web at CERN."}, {"q": "Who among the following is considered the father of the World Wide Web?", "tag": "RRB NTPC 05/02/2021 (Morning)", "options": ["Robert Cailliau", "Sir Timothy John Berners-Lee", "James H. Clark", "Pei-Yuan Wei"], "ans": 1, "sol": "Sir Timothy John Berners-Lee is considered the father of the World Wide Web (WWW), which he invented in 1989 while working at CERN."}, {"q": "In which year was the World Wide Web invented?", "tag": "RRB NTPC 14/03/2021 (Evening)", "options": ["1986", "1989", "1987", "1988"], "ans": 1, "sol": "English scientist Tim Berners-Lee invented the World Wide Web in 1989 while working at CERN."}, {"q": "The term ‘byte’ was coined by:", "tag": "RRB NTPC 15/03/2021 (Evening)", "options": ["Vint Cerf", "Steve Jobs", "Werner Buchholz", "Larry Page"], "ans": 2, "sol": "The term 'byte' was coined by Werner Buchholz in June 1956 during the early design phase for the IBM Stretch computer."}, {"q": "Who was the inventor of the World Wide Web (www)?", "tag": "Delhi Police 01/12/2020 (Afternoon)", "options": ["Steve Jobs", "Tim Berners-Lee", "Alan Turing", "Bill Gates"], "ans": 1, "sol": "Tim Berners-Lee was the inventor of the World Wide Web (WWW)."}, {"q": "The development of the World Wide Web began in:", "tag": "Delhi Police 14/12/2020 (Afternoon)", "options": ["1989", "1979", "1969", "1959"], "ans": 0, "sol": "The development of the World Wide Web began in 1989 when Tim Berners-Lee proposed an information management system at CERN."}, {"q": "Who has developed the Automatically Programmable Tool (APT)?", "tag": "SSC CHSL 20/10/2020 (Evening)", "options": ["Gary Kildall", "Douglas T Ross", "Ralph H Baer", "Jonathan Fletcher"], "ans": 1, "sol": "Automatically Programmable Tool (APT), a high-level computer programming language used to generate instructions for numerically controlled (NC) machine tools, was developed by Douglas T. Ross at MIT."}, {"q": "In which of the following countries was the first Electronic Numerical Integrator and Computer, the first programmable general-purpose electronic digital computer, developed?", "tag": "SSC CHSL 21/10/2020 (Morning)", "options": ["United Kingdom", "China", "Japan", "United States of America"], "ans": 3, "sol": "ENIAC was developed in the United States of America at the University of Pennsylvania for the US Army's Ballistic Research Laboratory."}, {"q": "In which year was Google incorporated as a private company?", "tag": "SSC CHSL 02/07/2019 (Morning)", "options": ["2000", "2005", "2002", "1998"], "ans": 3, "sol": "Google was incorporated as a privately held company on September 4, 1998, by founders Larry Page and Sergey Brin."}, {"q": "Who among the following invented the Computer language, COBOL?", "tag": "SSC CHSL 03/07/2019 (Evening)", "options": ["Grace Murray Hopper", "John McCarthy", "Guido van Rossum", "Brendan Eich"], "ans": 0, "sol": "COBOL (Common Business-Oriented Language) was designed in 1959 by CODASYL and was heavily based on the FLOW-MATIC language created by Rear Admiral Dr. Grace Murray Hopper."}, {"q": "Who among the following pioneered Binary Logic and Arithmetic in Computers Programming?", "tag": "SSC CHSL 04/07/2019 (Morning)", "options": ["Noam Chomsky", "Leslie Lamport", "John Backus", "Claude Shannon"], "ans": 3, "sol": "Claude Shannon pioneered the use of binary logic (Boolean algebra) and arithmetic in digital circuits and computer programming."}, {"q": "What are hardware devices that retrieves data from a computer system and further translates the received data into a form understandable to humans?", "tag": "SSC CHSL 16/03/2023 (Shift 3)", "options": ["Processor", "Input Devices", "Storage Devices", "Output Devices"], "ans": 3, "sol": "Output Devices (such as monitors, printers, speakers, and projectors) retrieve processed data from a computer system and translate it into human-understandable visual, audio, or printed form."}, {"q": "A device or program that enables a computer to transmit data over telephone or cable lines is called:", "tag": "SSC CHSL 12/08/2021 (Evening)", "options": ["motherboard", "modem", "monitor", "mouse"], "ans": 1, "sol": "A modem (Modulator-Demodulator) is a hardware device that enables a computer to transmit and receive data over telephone or cable lines by converting digital signals to analog and vice versa."}, {"q": "Which of the following is NOT a part of the hardware of a computer?", "tag": "RRB NTPC 23/01/2021 (Evening)", "options": ["CPU", "Microsoft Office", "Monitor", "Keyboard"], "ans": 1, "sol": "Microsoft Office is an application software suite, not hardware. CPU, Monitor, and Keyboard are physical hardware components."}, {"q": "Which one of the following is not a hardware component of a computer?", "tag": "RRB NTPC 18/01/2021 (Morning)", "options": ["Printer", "Keyboard", "Memory", "Mouse"], "ans": 2, "sol": "Among the given options, Printer, Keyboard, and Mouse are tangible peripheral hardware devices, whereas 'Memory' refers to the logical storage space/capacity concept (though physical memory chips like RAM/ROM are hardware)."}, {"q": "The keyboard, monitor, and cabinet are components of:", "tag": "RRB NTPC 29/01/2021 (Evening)", "options": ["control unit", "computer software", "computer hardware", "storage unit"], "ans": 2, "sol": "The keyboard, monitor, and system cabinet are tangible physical components and therefore belong to computer hardware."}, {"q": "What are the peripheral devices?", "tag": "RRB NTPC 23/02/2021 (Morning)", "options": ["These devices help in storing and analyzing data", "Those that help in the calculation", "These are internal or external devices that connect directly to a computer but do not contribute to the computer’s primary functions", "Those that connect the computer to the internet"], "ans": 2, "sol": "Peripheral devices are auxiliary internal or external devices (such as mouse, keyboard, printer, scanner, webcam) that connect directly to a computer to put information into and get information out of it, without being part of the core CPU/computing architecture."}, {"q": "Which of the following is used to receive and send computer files over telephone lines?", "tag": "SSC CHSL 14/10/2020 (Afternoon)", "options": ["Modem", "MICR device", "Floppy disk", "Light pen"], "ans": 0, "sol": "A Modem (Modulator-Demodulator) converts digital data from a computer into analog signals for transmission over telephone lines and demodulates incoming analog signals back into digital data."}, {"q": "Which of these is NOT a computer characteristic?", "tag": "RRB NTPC 05/01/2021 (Morning)", "options": ["Intelligence quotient", "Data storage", "Speed", "Accuracy"], "ans": 0, "sol": "Intelligence Quotient (IQ) is not a characteristic of a computer; computers have no innate intelligence or feelings of their own and follow programmed instructions. Speed, Accuracy, Diligence, Versatility, and Data Storage are core characteristics of computers."}, {"q": "Which one of the following statements is correct about a computer?", "tag": "RRB NTPC 18/01/2021 (Morning)", "options": ["An electronic device that stores, retrieves and processes data", "A computer is composed of only hardware", "A computer is composed of only software", "A computer can organize all information on its own"], "ans": 0, "sol": "A computer is accurately defined as an electronic device that accepts input data, stores, retrieves, and processes data according to programmed instructions to produce output."}, {"q": "Which of the following does NOT impact a computer’s general performance?", "tag": "RRB NTPC 28/01/2021 (Evening)", "options": ["Size of the Graphics Card", "CPU Speed", "RAM Size", "Hard Disc Speed"], "ans": 0, "sol": "The physical size of the Graphics Card does not impact a computer's general system performance, whereas CPU clock speed, RAM capacity, and Hard Disk/SSD speed directly affect general computing performance."}, {"q": "A person is called computer literate if he/she is just able to:", "tag": "RRB NTPC CBT II 19/01/2017 (Afternoon)", "options": ["Run need-based applications", "Create anti-virus software", "Write programs", "Hack other computers"], "ans": 0, "sol": "Computer literacy refers to having sufficient basic knowledge and skill to use computers and run everyday need-based applications effectively, without needing to be a software programmer or security specialist."}, {"q": "Silicon is a commonly used ________.", "tag": "RRB NTPC CBT II 19/01/2017 (Afternoon)", "options": ["Semiconductor", "Conductor", "Amplifier", "Insulator"], "ans": 0, "sol": "Silicon (along with Germanium and Gallium Arsenide) is the most commonly used semiconductor material for manufacturing integrated circuits and computer chips."}, {"q": "Which one among the following components is used as an amplifying device?", "tag": "SSC CGL 01/09/2016 (Morning)", "options": ["Transformer", "Diode", "Capacitor", "Transistor"], "ans": 3, "sol": "A transistor is a three-terminal semiconductor device used to amplify or switch electrical signals and power. A transformer steps AC voltage up or down, a diode allows current in one direction, and a capacitor stores electrical charge."}, {"q": "The complete form of 'IC' in electronics is", "tag": "SSC CGL 01/09/2016 (Morning)", "options": ["Internal circuit", "Independent circuit", "Integrated circuit", "Inbuilt circuit"], "ans": 2, "sol": "In electronics, 'IC' stands for Integrated Circuit — a semiconductor wafer (typically silicon) on which thousands or millions of tiny resistors, capacitors, diodes, and transistors are fabricated."}, {"q": "Addition of suitable impurities into semiconductor, is called", "tag": "SSC CGL 04/09/2016 (Morning)", "options": ["Doping", "Mixing", "Forming", "Diluting"], "ans": 0, "sol": "In semiconductor production, doping is the intentional introduction of trivalent or pentavalent impurities into an intrinsic semiconductor to modulate its electrical conductivity and create P-type or N-type extrinsic semiconductors."}, {"q": "Which circuit is used to store one bit of data?", "tag": "SSC CGL 08/09/2016 (Evening)", "options": ["Register", "Flip Flop", "Vector", "Encoder"], "ans": 1, "sol": "A flip-flop is a bistable sequential logic circuit that stores a single bit (binary digit, 0 or 1) of data. Multiple flip-flops are combined to build a processor Register."}, {"q": "CMOS is a", "tag": "RRB NTPC 11/04/2016 (Afternoon)", "options": ["Battery-powered memory chip", "Basic input-output system", "Storage device", "Cache memory operating system"], "ans": 0, "sol": "CMOS stands for Complementary Metal-Oxide Semiconductor. On a PC motherboard, 'CMOS' refers to the small battery-powered memory chip (powered by a coin-cell CR2032 battery) that stores BIOS hardware configuration settings and the system real-time clock."}]}, {"id": 2, "title": "2. Types of Computer", "shortTitle": "Types of Computer", "durationMinutes": 25, "totalQuestions": 25, "questions": [{"q": "Which among the following type of computer is also known as a notebook?", "tag": "SSC CGL TIER II 07/03/2023", "options": ["Micro Computer", "Multi Core", "Work Station", "Laptop Computer"], "ans": 3, "sol": "A Laptop Computer is a portable personal computer that is also commonly called a notebook computer."}, {"q": "Which of the following types of computer is used in climate research and weather forecasting?", "tag": "SSC CHSL 10/08/2021 (Morning)", "options": ["Mainframe computers", "Micro - computers", "Supercomputers", "Mini - computers"], "ans": 2, "sol": "Climate research and weather forecasting require exceedingly high-speed numerical simulations and floating-point computations, for which Supercomputers are used."}, {"q": "Which of the following is an example of Footloose industry?", "tag": "RRB NTPC 29/12/2020 (Morning)", "options": ["Jute", "Sugar", "Computer chip", "Tea"], "ans": 2, "sol": "A footloose industry is an industry that can be located at any place without being tied to raw material weight-loss or bulky transport constraints. Computer chip and electronics manufacturing is a classic example of a footloose industry."}, {"q": "Which of the following is NOT a part of a personal computer?", "tag": "RRB NTPC 16/01/2021 (Morning)", "options": ["ROM", "CPU", "USB", "RAM"], "ans": 2, "sol": "Universal Serial Bus (USB) is an external communication/interfacing protocol and connector standard, whereas ROM, CPU, and RAM are core internal functional components of a personal computer."}, {"q": "Which of the following is NOT a type of personal computer?", "tag": "RRB NTPC 09/02/2021 (Evening)", "options": ["Mainframe computer", "Palmtop computer", "Laptop", "Desktop computer"], "ans": 0, "sol": "A Mainframe computer is a large, high-capacity multi-user enterprise computer designed to process bulk data and millions of transactions simultaneously, whereas Desktop, Laptop, and Palmtop are types of single-user personal computers (microcomputers)."}, {"q": "Desktop computers, laptop computers, tablets and smartphones are different types of:", "tag": "RRB NTPC 13/03/2021 (Evening)", "options": ["mainframe computers", "super computers", "mini computers", "microcomputers"], "ans": 3, "sol": "Desktop computers, laptops, tablets, and smartphones all use a microprocessor as their central processing unit and are classified as microcomputers."}, {"q": "Mac is a type of personal computer made by:", "tag": "RRB NTPC 21/03/2021 (Evening)", "options": ["Apple", "Dell", "Acer", "HP"], "ans": 0, "sol": "The Mac (Macintosh) is a family of personal computers designed, manufactured, and sold by Apple Inc. since January 1984."}, {"q": "Which type of computers is used to control air traffic and radar of national defence?", "tag": "SSC CHSL 21/10/2020 (Evening)", "options": ["Personal computers", "Analogue computers", "Hybrid computers", "Digital computers"], "ans": 2, "sol": "Hybrid computers combine the real-time continuous signal measurement of analog computers with the logical control and precision of digital computers, making them ideal for controlling air traffic and national defence radar systems."}, {"q": "Desktop Computers, Laptop Computers, tablets and smartphones are different types of ________.", "tag": "", "options": ["Supercomputers", "Mainframe Computers", "Microcomputers", "Minicomputers"], "ans": 2, "sol": "Desktop computers, laptops, personal digital assistants (PDAs), tablets, and smartphones are all types of microcomputers designed for individual use."}, {"q": "In the context of a digital computer, which of the following pairs of digits is referred to as binary code?", "tag": "", "options": ["3 and 4", "0 and 1", "2 and 3", "1 and 2"], "ans": 1, "sol": "In digital computers, all data and instructions are represented in binary code using strings of the two binary digits (bits): 0 and 1."}, {"q": "Who designed the first analog computer in India?", "tag": "SSC CHSL 13/10/2020 (Evening)", "options": ["Samarendra Kumar Mitra", "Deb Kumar Bose", "Subodh Chandra Das Gupta", "Bimal Kumar Bhattacharyya"], "ans": 0, "sol": "Indian scientist and mathematician Samarendra Kumar Mitra designed and built India's first electronic analog computer in 1953–1954 at the Indian Statistical Institute (ISI), Calcutta, for solving simultaneous linear equations."}, {"q": "‘Start’ menu in a standard personal computer is", "tag": "RRB NTPC 19/04/2016 (Afternoon)", "options": ["Part of the hardware", "A set of options and commands", "Nothing but the status bar", "Network related"], "ans": 1, "sol": "The 'Start' menu in a standard personal computer operating system (such as Microsoft Windows) is a graphical user interface element providing a set of options, commands, and shortcuts to launch programs and access system settings."}, {"q": "Computer systems which do not require any storage device?", "tag": "RRB NTPC 27/04/2016 (Morning)", "options": ["Analog", "Digital", "Hybrid", "Third generation computer"], "ans": 0, "sol": "Pure Analog computer systems process continuous physical quantities in real time and do not require digital memory/storage devices."}, {"q": "PARAM supercomputer belongs to which generation of computers?", "tag": "SSC CHSL 17/03/2023 (Shift 2)", "options": ["Second", "First", "Fifth", "Third"], "ans": 2, "sol": "The PARAM series of supercomputers (developed by C-DAC, Pune starting with PARAM 8000 in 1991) uses parallel processing architecture (ULSI/massively parallel processing) and belongs to the Fifth Generation of computers."}, {"q": "Which is India’s first supercomputer?", "tag": "RRB NTPC 29/12/2020 (Morning)", "options": ["Param Biochrome", "Param Yuva", "Param Padma", "Param 8000"], "ans": 3, "sol": "PARAM 8000, developed indigenously in 1991 by the Centre for Development of Advanced Computing (C-DAC) under Dr. Vijay P. Bhatkar, is India's first supercomputer."}, {"q": "________ is India’s first multi-petaflop supercomputer that has been set up at the Indian Institute of Tropical Meteorology (IITM) Pune. Developed at a cost of Rs 450 crore. The supercomputer is used for weather and climate predictions.", "tag": "RRB NTPC 16/01/2021 (Evening)", "options": ["Pratyaksh", "Param", "Pratyush", "Aaditya"], "ans": 2, "sol": "Pratyush (a Cray XC40 system) is India's first multi-petaflop supercomputer, established at the Indian Institute of Tropical Meteorology (IITM), Pune in 2018 for weather and climate forecasting."}, {"q": "What was India’s first supercomputer called?", "tag": "RRB NTPC 23/01/2021 (Morning)", "options": ["ENIAC", "SAGA 220", "PARAM 8000", "PARAM 6000"], "ans": 2, "sol": "India's first supercomputer was called PARAM 8000, unveiled in 1991 by C-DAC."}, {"q": "Which of the following is NOT a series of supercomputer PARAM that was developed by Indian scientists?", "tag": "RRB NTPC 08/02/2021 (Morning)", "options": ["PARAM 8000", "PARAM BRAHMA", "PARAM 8600", "PARAM MITRA"], "ans": 3, "sol": "PARAM 8000, PARAM 8600, and PARAM Brahma are all supercomputers in the PARAM series developed by C-DAC, whereas PARAM MITRA is not a PARAM series supercomputer."}, {"q": "For which purpose is India’s fastest and first multi-petaflops (PF) supercomputer ‘Pratyush’ used?", "tag": "RRB NTPC 17/02/2021 (Morning)", "options": ["Scientific data processing", "Pharmaceutical development", "Weather forecasting", "Seismic data analysis"], "ans": 2, "sol": "India's first multi-petaflop supercomputer 'Pratyush' (installed at IITM Pune) is used for weather forecasting, monsoon prediction, and climate research."}, {"q": "Which of the following was Asia’s first (fastest in Asia in 2007) supercomputer?", "tag": "RRB NTPC 22/02/2021 (Morning)", "options": ["CRAY-3", "HITAC S-300", "PARAM", "EKA"], "ans": 3, "sol": "EKA, built in 2007 by Computational Research Laboratories (a subsidiary of Tata Sons) in Pune, was ranked the fastest (#1) supercomputer in Asia and 4th fastest in the world in November 2007."}, {"q": "Which of the following is NOT a supercomputer?", "tag": "RRB NTPC 05/03/2021 (Morning)", "options": ["PARAM", "EKA", "Cray - 3", "PDA"], "ans": 3, "sol": "PDA stands for Personal Digital Assistant, a handheld mobile microcomputer. PARAM, EKA, and Cray-3 are supercomputers."}, {"q": "Param Shivay, the first supercomputer assembled indigenously, was installed at ______.", "tag": "RRB NTPC 07/03/2021 (Evening)", "options": ["IIT Kharagpur", "IISC, Bengaluru", "IIT BHU", "IISER Pune"], "ans": 2, "sol": "PARAM Shivay, the first supercomputer assembled indigenously under the National Supercomputing Mission (NSM), was installed at IIT (BHU), Varanasi in 2019."}, {"q": "Write the name of the supercomputer developed by Tata Group in 2007.", "tag": "RRB NTPC 08/03/2021 (Morning)", "options": ["Cray 3", "HITAC S - 300", "EKA", "PARAM"], "ans": 2, "sol": "EKA is the supercomputer developed in 2007 by Computational Research Laboratories (CRL), a subsidiary of Tata Sons, with technical assistance from Hewlett-Packard."}, {"q": "The PARAM 8000 supercomputer was released in which year?", "tag": "RRB NTPC 15/03/2021 (Evening)", "options": ["1988", "2003", "1991", "1996"], "ans": 2, "sol": "The PARAM 8000 supercomputer was released in 1991 by C-DAC under the leadership of Dr. Vijay P. Bhatkar."}, {"q": "Global weather forecasting is done using:", "tag": "RRB NTPC 07/04/2021 (Evening)", "options": ["Supercomputers", "minicomputers", "hybrid computers", "microcomputers"], "ans": 0, "sol": "Global weather forecasting is performed using Supercomputers, which process massive atmospheric datasets to run complex numerical weather prediction models."}]}, {"id": 3, "title": "3. Computer Generations", "shortTitle": "Computer Generations", "durationMinutes": 18, "totalQuestions": 18, "questions": [{"q": "Second Generation computers used ______ as the basic component.", "tag": "Selection Post Phase VI 24/11/2023", "options": ["Integrated circuits", "Vacuum tubes", "Integrated circuits with Large Scale Integration", "Transistors"], "ans": 3, "sol": "Second Generation computers (1956–1963) used discrete transistors (along with magnetic core memory) as their basic switching component, replacing the bulky vacuum tubes of the first generation."}, {"q": "IBM 360 was developed in which of the following generations of computer?", "tag": "SSC CHSL 13/03/2023 (Shift 3)", "options": ["2nd Generation", "1st Generation", "3rd Generation", "4th Generation"], "ans": 2, "sol": "The IBM System/360 family (announced in 1964) was developed in the 3rd Generation of computers (1964–1971), which introduced Integrated Circuits (ICs). Other 3rd generation examples include IBM 370, PDP-8, PDP-11, Honeywell 6000, and ICL 2900."}, {"q": "Apple II is an example of ______ Generation of computer.", "tag": "SSC CHSL 13/03/2023 (Shift 4)", "options": ["Third", "Second", "First", "Fourth"], "ans": 3, "sol": "The Apple II (introduced in 1977, powered by the MOS Technology 6502 microprocessor) is an example of a Fourth Generation computer (microprocessor/VLSI-based)."}, {"q": "Which among the following generations of computers used vacuum tubes?", "tag": "SSC CHSL 15/03/2023 (Shift 1)", "options": ["1st Generation", "3rd Generation", "4th Generation", "2nd Generation"], "ans": 0, "sol": "First Generation computers (1940–1956) used vacuum tubes for circuitry and magnetic drums for memory. Examples include ENIAC, EDVAC, EDSAC, UNIVAC I, IBM 701, and IBM 650."}, {"q": "Which generation of computers used machine code as the programming language?", "tag": "SSC CHSL 15/03/2023 (Shift 1)", "options": ["Second", "First", "Third", "Fourth"], "ans": 1, "sol": "First Generation computers relied on lowest-level machine language (1GL — binary machine code of 0s and 1s) to perform operations, whereas Second Generation computers introduced assembly language (2GL) and early high-level languages."}, {"q": "Sheela recalls using transistors as part of her computer. Which generation of computers used it?", "tag": "SSC CHSL 15/03/2023 (Shift 2)", "options": ["Third", "First", "Fourth", "Second"], "ans": 3, "sol": "Second Generation computers (1956–1963) were transistor-based. First Generation used vacuum tubes, Third Generation used Integrated Circuits (ICs), Fourth Generation used VLSI microprocessors, and Fifth Generation uses ULSI and Artificial Intelligence."}, {"q": "Which of the following is a second generation system?", "tag": "SSC CHSL 15/03/2023 (Shift 4)", "options": ["IBM notebooks", "Sun workstations", "Honeywell 400", "Apple II"], "ans": 2, "sol": "The Honeywell 400 (introduced in 1961) is a transistor-based Second Generation mainframe computer system. Other Second Generation systems include IBM 1620, IBM 7094, CDC 1604, CDC 3600, and UNIVAC 1108."}, {"q": "Which among the following is not an example of the 4th Generation of Computer?", "tag": "SSC CHSL 17/03/2023 (Shift 1)", "options": ["Apple II", "TRS-80", "ICL 2900", "STAR 1000"], "ans": 2, "sol": "The ICL 2900 series is classified in exam syllabi as a 3rd Generation (Integrated Circuit based) mainframe system, whereas Apple II, TRS-80, and STAR 1000 are examples of 4th Generation computers."}, {"q": "Graphical User Interface (GUI) was developed during which of the following generations of computer?", "tag": "SSC CHSL 21/03/2023 (Shift 2)", "options": ["Fourth Generation", "Second Generation", "First Generation", "Third Generation"], "ans": 0, "sol": "The Graphical User Interface (GUI), along with the mouse and handheld devices, was developed and popularized during the Fourth Generation of computers (starting in the 1970s/1980s with Xerox Alto/Star, Apple Lisa/Macintosh, and Windows)."}, {"q": "Which among the following generations of computer used the technology of transistors for the first time?", "tag": "SSC CGL Tier II 03/03/2023", "options": ["Third", "Second", "First", "Fourth"], "ans": 1, "sol": "The Second Generation of computers (1956–1963) used transistor technology for the first time in place of vacuum tubes."}, {"q": "Second-generation computers (1955 - 1964) were made of:", "tag": "SSC CHSL 09/08/2021 (Afternoon)", "options": ["large scale integrated circuit chips", "vacuum tubes", "transistors", "small scale integrated circuit chips"], "ans": 2, "sol": "Second-generation computers were built using discrete transistors."}, {"q": "What is the other name for 'transistor computer'?", "tag": "SSC CHSL 11/08/2021 (Evening)", "options": ["First Generation Computer", "Third Generation Computer", "Second Generation Computer", "Fourth Generation Computer"], "ans": 2, "sol": "A 'transistor computer' is another name for a Second Generation Computer, as transistors were the defining hardware technology of that generation."}, {"q": "In which generation were computers bulky, vacuum based and costly?", "tag": "RRB NTPC 12/01/2021 (Evening)", "options": ["Fourth generation", "Third generation", "First generation", "Fifth generation"], "ans": 2, "sol": "First generation computers (1940–1956) were based on thousands of vacuum tubes, making them enormous, bulky, power-hungry, heat-generating, and very costly."}, {"q": "COBOL is an example of ________ generation programming language.", "tag": "RRB NTPC 01/03/2021 (Evening)", "options": ["1st", "4th", "2nd", "3rd"], "ans": 3, "sol": "COBOL (along with FORTRAN, BASIC, Pascal, and C) is an example of a 3rd Generation programming language (3GL — high-level procedural language). 1GL is machine language, and 2GL is assembly language."}, {"q": "In which generation of computers were FORTRAN and COBOL languages first used?", "tag": "RRB NTPC 08/03/2021 (Morning)", "options": ["II Generation", "I Generation", "V Generation", "IV Generation"], "ans": 0, "sol": "Early versions of high-level programming languages like FORTRAN (1957) and COBOL (1959) were first introduced and used during the Second (II) Generation of computers (1956–1963)."}, {"q": "Which of the following is a First Generation Computer?", "tag": "RRB NTPC 11/03/2021 (Evening)", "options": ["STAR 1000", "SEAC", "ABACUS", "ATLAS"], "ans": 1, "sol": "SEAC (Standards Eastern Automatic Computer, built in 1950) is a First Generation computer. Other First Generation computers include ENIAC, EDVAC, UNIVAC I, IBM 701, and IBM 650."}, {"q": "What was the base of first generation computer systems?", "tag": "RRB NTPC 14/03/2021 (Morning)", "options": ["Vacuum tube based", "Integrated Circuit based", "Transistor based", "VLSI microprocessor based"], "ans": 0, "sol": "First generation computer systems were Vacuum tube based."}, {"q": "IBM 370 was a ______ generation computer.", "tag": "RRB NTPC 19/03/2021 (Evening)", "options": ["3rd", "2nd", "1st", "4th"], "ans": 0, "sol": "The IBM System/370 (announced in 1970) was a 3rd generation mainframe computer based on Integrated Circuits (ICs)."}]}, {"id": 4, "title": "4. CPU & Processing", "shortTitle": "CPU & Processing", "durationMinutes": 39, "totalQuestions": 39, "questions": [{"q": "What is the purpose of the Arithmetic Logic Unit (ALU) in a Central Processing Unit (CPU)?", "tag": "SSC CHSL Tier II 10/01/2024", "options": ["It executes program instructions by performing calculations and logical comparisons.", "It manages the data flow between the CPU fan.", "It controls the speed of the CPU fan.", "It connects the CPU to peripheral devices."], "ans": 0, "sol": "The Arithmetic Logic Unit (ALU) is the digital circuit inside the CPU that executes program instructions by performing arithmetic calculations (addition, subtraction, multiplication, division) and logical comparisons (AND, OR, NOT, greater than, equal to)."}, {"q": "A ______ card is a circuit board that provides additional capabilities to the computer system.", "tag": "Selection Post Phase VI 24/11/2023", "options": ["expansion", "hybrid", "portable", "parallel"], "ans": 0, "sol": "An expansion card (also known as an expansion board or add-on card) is a printed circuit board (PCB) that plugs into an expansion slot on a computer motherboard to provide additional capabilities such as enhanced graphics, audio, or networking."}, {"q": "The clock speed of a CPU is measured in _______.", "tag": "Selection Post Phase VI 24/11/2023", "options": ["seconds", "zepto", "gigahertz (GHz)", "m/s"], "ans": 2, "sol": "The clock speed of a modern CPU is measured in gigahertz (GHz) or megahertz (MHz), representing the number of clock cycles executed per second (1 GHz = 10^9 cycles per second)."}, {"q": "_________ is referred to as the administrative section of the computer system that interprets the data and instruction.", "tag": "Selection Post Phase VI 24/11/2023", "options": ["Input Unit", "Output Unit", "Memory Unit", "Central Processing Unit"], "ans": 3, "sol": "The Central Processing Unit (CPU) is referred to as the administrative and processing hub of the computer system that interprets and executes data and instructions."}, {"q": "Based upon the instruction set, there are two types of computer architectures; which are ______ instruction set computers.", "tag": "Selection Post Phase VI 24/11/2023", "options": ["simple and increased", "embedded and manual", "compile and assembled", "complex and reduced"], "ans": 3, "sol": "Based on instruction set architecture (ISA), the two primary processor architectures are Complex Instruction Set Computer (CISC) and Reduced Instruction Set Computer (RISC)."}, {"q": "In operating system, the CPU scheduling technique used by a time-sharing kernel is called _______.", "tag": "Selection Post Phase VI 24/11/2023", "options": ["first come first serve scheduling", "shortest time scheduling", "pre-emptive scheduling", "round-robin scheduling with time-slicing"], "ans": 3, "sol": "A time-sharing operating system kernel uses Round-Robin scheduling with time-slicing (assigning a fixed time quantum to each ready process in cyclic order) so multiple users/processes can share the CPU interactively."}, {"q": "Multiprocessor systems are also known as ________ systems.", "tag": "Selection Post Phase VI 24/11/2023", "options": ["standalone", "parallel", "distributed", "dual"], "ans": 1, "sol": "Multiprocessor systems have two or more CPUs in close communication sharing the computer bus, clock, and memory, and are also known as parallel systems (or tightly coupled systems)."}, {"q": "In computer registers, Accumulator register stores ________.", "tag": "Selection Post Phase VI 24/11/2023", "options": ["result of arithmetic operations", "data from memory", "operands and any other data", "address of next instructions to be processed"], "ans": 0, "sol": "The Accumulator (AC) is a special CPU register that stores the intermediate and final results of arithmetic and logical operations performed by the ALU."}, {"q": "Which component of a computer is responsible for performing arithmetic calculations and logical operations?", "tag": "Selection Post Phase VI 24/11/2023", "options": ["Cache Memory", "Control Unit (CU)", "Input/Output Interface", "Arithmetic Logic Unit (ALU)"], "ans": 3, "sol": "The Arithmetic Logic Unit (ALU) is the component of the CPU responsible for performing all arithmetic calculations and logical operations."}, {"q": "In computer memory, an instruction consists of _______ and _______.", "tag": "Selection Post Phase VI 24/11/2023", "options": ["opcode, operand", "subroutine, location", "input/output, data", "operation, control"], "ans": 0, "sol": "In computer architecture, a machine instruction stored in memory consists of two main parts: the opcode (operation code, specifying the operation to be performed) and the operand (specifying the data, register, or memory address to operate on)."}, {"q": "A high speed memory is placed between the Central Processing Unit (CPU) and the primary memory known as ________.", "tag": "SSC CGL Tier II 26/10/2023", "options": ["read only memory", "virtual memory", "cache memory", "secondary memory"], "ans": 2, "sol": "Cache memory is an ultra-fast semiconductor memory (SRAM) placed between the CPU and primary memory (RAM) to hold frequently accessed instructions and data, reducing average memory access time."}, {"q": "In computer registers, MAR stands for ______.", "tag": "SSC CGL Tier II 26/10/2023", "options": ["Main Access Register", "Memory Access Register", "Memory Address Register", "Main Address Register"], "ans": 2, "sol": "MAR stands for Memory Address Register. It holds the memory address of the active location in main memory from which data/instructions are to be fetched or to which data is to be written."}, {"q": "The ____ unit is that part of the CPU which controls or directs the operations of the processor.", "tag": "SSC CHSL Tier II 26/06/2023", "options": ["memory", "arithmetic logic", "control", "data"], "ans": 2, "sol": "The Control Unit (CU) is the part of the CPU that directs and coordinates the operations of the processor by generating timing and control signals."}, {"q": "________ is the key circuit board holding the essential processing parts of a computer.", "tag": "SSC CHSL 10/03/2023 (Shift 3)", "options": ["Firmware", "Central Processing Unit", "Random Access Memory", "Motherboard"], "ans": 3, "sol": "The Motherboard (also called the mainboard, system board, or logic board) is the primary printed circuit board that holds and interconnects the CPU, RAM, expansion slots, and other essential components of a computer."}, {"q": "Pick the odd one out in the Central Processing Unit (CPU) of a computer.", "tag": "SSC CHSL 17/03/2023 (Shift 3)", "options": ["ALU and Control Unit both", "Control Unit", "ALU (Arithmetic Logic Unit)", "Output Unit"], "ans": 3, "sol": "The Arithmetic Logic Unit (ALU) and Control Unit (CU) are internal functional units of the CPU, whereas the Output Unit is external to the CPU."}, {"q": "The important system components like the central processing unit (CPU) and random access memory (RAM) modules are connected directly to the _________.", "tag": "SSC CHSL 20/03/2023 (Shift 4)", "options": ["Magnetic Tape", "Motherboard", "Optical Disk", "Flash Memory"], "ans": 1, "sol": "Critical internal components such as the CPU and RAM modules plug directly into sockets/slots on the Motherboard."}, {"q": "________ is a high-speed device used in CPU that is utilised to store data temporarily during processing.", "tag": "SSC CGL Tier II 02/03/2023", "options": ["Arithmetic and Logic Unit (ALU)", "Auxiliary Memory", "Control Unit", "Registers"], "ans": 3, "sol": "Registers are small, ultra-high-speed storage locations built directly inside the CPU to temporarily hold instructions, addresses, and data currently being processed."}, {"q": "The memory unit that communicates directly with the CPU is called ________ memory.", "tag": "SSC CGL Tier II 02/03/2023", "options": ["cache", "backup", "main", "auxiliary"], "ans": 2, "sol": "The memory unit that communicates directly with the CPU (via the memory bus) is called main memory (or primary memory, such as RAM and ROM). Auxiliary/backup memory communicates through I/O channels."}, {"q": "The instruction that is not to be executed immediately is placed in the ________.", "tag": "SSC CGL Tier II 02/03/2023", "options": ["Current Instruction Register (CIR)", "Memory Address Register (MAR)", "Program Counter (PC)", "Instruction Buffer Register (IBR)"], "ans": 3, "sol": "In architectures (like the IAS computer) that fetch two instructions at a time from memory, the instruction to be executed immediately is placed in the Instruction Register (IR/CIR), while the second instruction that is not to be executed immediately is temporarily held in the Instruction Buffer Register (IBR)."}, {"q": "________ is the oldest type of Central Processing Unit (CPU).", "tag": "SSC CGL Tier II 03/03/2023", "options": ["Triple Core", "Single Core", "Dual Core", "Quad Core"], "ans": 1, "sol": "Single Core is the oldest type of CPU architecture, containing only one processing core on the chip, before dual-core, triple-core, and quad-core processors were introduced."}, {"q": "Which among the following statements is incorrect about the Central Processing Unit?", "tag": "SSC CGL Tier II 06/03/2023", "options": ["Control Unit controls the order in which instructions enter and leave the processor and how the instructions are executed.", "Arithmetic Logic Unit is responsible for taking the input, converting it into a signal, and storing it for further processing.", "Arithmetic Logic Unit is also known as the mathematical brain of a computer.", "Control Unit directs and manages operation sequences."], "ans": 1, "sol": "Taking user input and converting it into machine-readable signals is the job of Input Devices/Input Unit, not the Arithmetic Logic Unit (ALU). The ALU performs arithmetic and logical operations on operands."}, {"q": "Which among the following registers in Instruction Cycle holds the last instruction fetched?", "tag": "SSC CGL Tier II 06/03/2023", "options": ["Memory Address Register (MAR)", "Instruction Register (IR)", "Program Counter (PC)", "Memory Buffer Register (MBR)"], "ans": 1, "sol": "The Instruction Register (IR) holds the last instruction fetched from memory while it is being decoded and executed. The Program Counter (PC) holds the address of the next instruction to be fetched."}, {"q": "_______ holds the address of the active memory location.", "tag": "SSC CGL Tier II 07/03/2023", "options": ["Stack pointer", "Program Counter", "Memory Address Register", "Instruction Register"], "ans": 2, "sol": "The Memory Address Register (MAR) holds the memory address of the active memory location currently being read from or written to by the CPU."}, {"q": "______ are a set of wires, which carries a group of bits in parallel and has an associated control scheme. It provides a communication path between two or more devices of a computer system.", "tag": "SSC CGL Tier II 07/03/2023", "options": ["Buses", "Control Unit", "Register", "Cache"], "ans": 0, "sol": "Buses (Address Bus, Data Bus, and Control Bus) are sets of parallel electrical conductors/wires that carry bits and signals between the CPU, memory, and I/O devices."}, {"q": "Which of the following is the time taken by the CPU to access a location in memory?", "tag": "RRB NTPC CBT II 13/06/2022 (Morning)", "options": ["Instruction cycle", "Memory formatting time", "Memory access time", "CPU frequency"], "ans": 2, "sol": "Memory access time is the time interval between the instant a memory read/write request is initiated by the CPU and the instant the delivery or storage of data is completed."}, {"q": "Which of the following is a part of the central processing unit of a computer?", "tag": "SSC CHSL 11/08/2021 (Morning)", "options": ["Mouse", "Scanner", "Memory registers", "Joystick"], "ans": 2, "sol": "Memory registers (such as MAR, MDR, Accumulator, Program Counter) are internal components of the Central Processing Unit (CPU). Mouse, Scanner, and Joystick are external input peripherals."}, {"q": "Which of the following is NOT a computer component?", "tag": "RRB NTPC 07/01/2021 (Morning)", "options": ["Memory", "Paper", "CPU", "ALU"], "ans": 1, "sol": "Paper is a consumable stationery medium used in printers, not a component of a computer. Memory, CPU, and ALU are essential computer components."}, {"q": "Which is called the brain of any computer system?", "tag": "RRB NTPC 09/01/2021 (Morning)", "options": ["Monitor", "ALU", "CPU", "UPS"], "ans": 2, "sol": "The Central Processing Unit (CPU) is called the brain of any computer system."}, {"q": "Which of the following is a single chip based device that is a complete processor in itself and is capable of performing arithmetic and logical operations?", "tag": "RRB NTPC 11/01/2021 (Morning)", "options": ["Operating System", "Modem", "Microprocessor", "Multiprocessing"], "ans": 2, "sol": "A Microprocessor is a single integrated circuit (IC) chip that contains a complete CPU (ALU, Control Unit, and registers) capable of performing arithmetic and logical operations."}, {"q": "Where is the cache memory located?", "tag": "RRB NTPC 17/01/2021 (Evening)", "options": ["CPU", "RAM", "CU", "Monitor"], "ans": 0, "sol": "Cache memory (L1, L2, L3 cache) is located inside or directly adjacent to the CPU chip."}, {"q": "What are the three constituents of a CPU in a computer?", "tag": "RRB NTPC 21/01/2021 (Evening)", "options": ["Control unit, ALU, keyboard", "Control unit, ALU, memory", "Monitor, memory, control unit", "Monitor, ALU, memory"], "ans": 1, "sol": "The three primary constituents of a CPU (Central Processing Unit) are the Control Unit (CU), the Arithmetic Logic Unit (ALU), and the Memory/Register unit (immediate access store)."}, {"q": "Which of the following is a component of the Central Processing Unit?", "tag": "RRB NTPC 25/01/2021 (Evening)", "options": ["Keyboard", "Monitor", "Mouse", "Memory"], "ans": 3, "sol": "Internal memory (registers and cache) is a component of the Central Processing Unit, whereas Keyboard, Monitor, and Mouse are external peripheral devices."}, {"q": "Which part of a CPU coordinates all the functions of a computer?", "tag": "RRB NTPC 27/01/2021 (Morning)", "options": ["Motherboard", "Keyboard", "Control unit", "Mouse"], "ans": 2, "sol": "The Control Unit (CU) is the part of the CPU that directs and coordinates all functions and operations of the computer."}, {"q": "The CPU is called the:", "tag": "RRB NTPC 02/03/2021 (Evening)", "options": ["brain of the computer", "backbone of the computer", "heart of the computer", "lung of the computer"], "ans": 0, "sol": "The Central Processing Unit (CPU) is universally referred to as the brain of the computer."}, {"q": "The speed of a CPU can be measured in ________.", "tag": "RRB NTPC 15/03/2021 (Evening)", "options": ["horsepower", "Bits per second (Bps)", "Megahertz (MHz)", "Lux"], "ans": 2, "sol": "The clock speed of a CPU is measured in Megahertz (MHz) or Gigahertz (GHz)."}, {"q": "Which of the following are the two components of the CPU of a computer?", "tag": "RRB NTPC 03/04/2021 (Morning)", "options": ["Control unit and Bus", "Control unit and ALU", "ALU and Bus", "Registers and Main memory"], "ans": 1, "sol": "The Control Unit (CU) and Arithmetic Logic Unit (ALU) are the two core functional sub-units of the CPU."}, {"q": "_________ is a hardware device generally located on the motherboard of a computer and acts as an internal memory of the CPU.", "tag": "RRB NTPC 24/07/2021 (Morning)", "options": ["DVD-ROM", "Floppy", "CD-ROM", "RAM"], "ans": 3, "sol": "RAM (Random Access Memory) is installed directly on the motherboard and serves as the primary/internal working memory directly accessible by the CPU. DVD-ROM, Floppy, and CD-ROM are secondary storage media."}, {"q": "Which part of the computer is called its brain?", "tag": "RRB NTPC 28/12/2020 (Morning)", "options": ["Monitor", "CPU", "Hard Disc", "ROM"], "ans": 1, "sol": "The CPU (Central Processing Unit) is called the brain of the computer."}, {"q": "Intel core i9 is a type of __________.", "tag": "RRB NTPC 29/12/2020 (Evening)", "options": ["motherboard", "processor", "hard disc", "antivirus"], "ans": 1, "sol": "Intel Core i9 is a high-performance 64-bit microprocessor (processor) line developed and manufactured by Intel."}]}, {"id": 5, "title": "5. Number System", "shortTitle": "Number System", "durationMinutes": 10, "totalQuestions": 10, "questions": [{"q": "Which of the following operation is performed in 2's complement method of computer number system?", "tag": "Selection Post Phase VI 24/11/2023", "options": ["Add 1 to the 1's complement of any number.", "Add 2 to the 1's complement of any number.", "Subtract 1 from the 1's complement of any number.", "Subtract 2 from the 1's complement of any number."], "ans": 0, "sol": "To find the 2's complement of a binary number, we first take its 1's complement (invert all 0s and 1s) and then add 1 to the least significant bit (LSB)."}, {"q": "In computer number system, what is the binary value for decimal number (5)₁₀?", "tag": "Selection Post Phase VI 24/11/2023", "options": ["(1010)₂", "(101)₂", "(011)₂", "(1100)₂"], "ans": 1, "sol": "Converting decimal 5 to binary: 5 = (1 × 2²) + (0 × 2¹) + (1 × 2⁰) = 4 + 0 + 1 = (101)₂."}, {"q": "A ________ bit is an extra bit included with a binary message to make the total number of 1s either odd or even.", "tag": "SSC CHSL Tier II 02/11/2023", "options": ["exclusive", "parity", "complementary", "checker"], "ans": 1, "sol": "A parity bit is an extra bit appended to a binary message for error detection, ensuring that the total number of 1-bits in the codeword is always even (even parity) or odd (odd parity)."}, {"q": "In which form is data stored in a computer?", "tag": "RRB NTPC 04/01/2021 (Morning)", "options": ["Binary", "Magnetic", "Picture", "Alphabets"], "ans": 0, "sol": "Computers store and process all data in Binary form (sequences of 0s and 1s), as binary machine language is directly understood by digital circuitry."}, {"q": "Which of the following languages does a computer use to process data?", "tag": "RRB NTPC 13/01/2021 (Evening)", "options": ["BASIC", "COBOL", "Windows", "Binary"], "ans": 3, "sol": "A computer uses Binary language (base-2 system consisting of '0' and '1') at the hardware level to process all instructions and data."}, {"q": "How many distinct symbols are used in the hexadecimal number system?", "tag": "RRB NTPC 28/01/2021 (Morning)", "options": ["2", "3", "16", "1"], "ans": 2, "sol": "The hexadecimal (base-16) number system uses 16 distinct alphanumeric symbols: digits 0 to 9 (for values 0–9) and letters A to F (for values 10–15)."}, {"q": "Which of the following is NOT used for storage in computer systems?", "tag": "RRB NTPC 12/03/2021 (Morning)", "options": ["Register", "Flip Flop", "Adder", "Latch"], "ans": 2, "sol": "An Adder (Half Adder or Full Adder) is a combinational logic circuit used to perform addition of binary numbers, not to store data. Registers, Flip-Flops, and Latches are sequential memory circuits used for binary storage."}, {"q": "Which of the following is an example of the binary number system?", "tag": "RRB NTPC 06/04/2021 (Evening)", "options": ["100101", "89056", "ABCDE", "009"], "ans": 0, "sol": "100101 is composed solely of the binary digits 0 and 1, making it a valid representation in the binary (base-2) number system."}, {"q": "For a computer, BIT stands for", "tag": "RRB NTPC CBT II 19/01/2017 (Evening)", "options": ["Binary Digit", "Built - in Integer", "Binary Task", "Binary Integer Transfer"], "ans": 0, "sol": "BIT is a portmanteau of 'Binary Digit', the smallest unit of data in a computer (having a single binary value of 0 or 1)."}, {"q": "Which of the following is not weighted code?", "tag": "SSC CGL 30/08/2016 (Afternoon)", "options": ["Excess 3 - code", "Binary Number System", "Decimal Number System", "BCD Number System"], "ans": 0, "sol": "Excess-3 (XS-3) code is a non-weighted, self-complementary BCD code where each decimal digit is represented by its 4-bit binary value plus 3 (0011). Binary, Decimal, and 8421 BCD are positional weighted number systems."}]}];
+
+    // Persistent attempt history (in-memory + safe localStorage)
+    let savedResults = {};
+    try {
+      const raw = localStorage.getItem('pinnacle_computer_mock_results_v1');
+      if (raw) savedResults = JSON.parse(raw) || {};
+    } catch (e) {
+      savedResults = {};
+    }
+
+    function saveResultsToStorage() {
+      try {
+        localStorage.setItem('pinnacle_computer_mock_results_v1', JSON.stringify(savedResults));
+      } catch (e) {}
+    }
+
+    // Active Exam State
+    let activeTest = null;
+    let activeQuestions = []; // Questions in fixed order, with shuffled options per question
+    let currentQIndex = 0;
+    let totalSeconds = 0;
+    let remainingSeconds = 0;
+    let timerInterval = null;
+    let isPaused = false;
+    let currentReviewFilter = 'all'; // 'all' | 'incorrect' | 'unattempted'
+    let activeResultData = null;
+
+    // DOM Elements
+    const viewDashboard = document.getElementById('view-dashboard');
+    const viewIntro = document.getElementById('view-intro');
+    const viewExam = document.getElementById('view-exam');
+    const viewResult = document.getElementById('view-result');
+
+    const modalPause = document.getElementById('modal-pause');
+    const modalSubmit = document.getElementById('modal-submit');
+    const toastEl = document.getElementById('toast-msg');
+    let toastTimeout = null;
+
+    function showToast(msg) {
+      toastEl.textContent = msg;
+      toastEl.classList.remove('hidden');
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toastEl.classList.add('hidden');
+      }, 2600);
+    }
+
+    function switchView(viewName) {
+      viewDashboard.classList.add('hidden');
+      viewIntro.classList.add('hidden');
+      viewExam.classList.add('hidden');
+      viewResult.classList.add('hidden');
+
+      if (viewName === 'dashboard') viewDashboard.classList.remove('hidden');
+      else if (viewName === 'intro') viewIntro.classList.remove('hidden');
+      else if (viewName === 'exam') viewExam.classList.remove('hidden');
+      else if (viewName === 'result') viewResult.classList.remove('hidden');
+      window.scrollTo(0, 0);
+    }
+
+    // Fisher-Yates shuffle for the 4 distractor options ONLY (never shuffle question order)
+    function prepareTestQuestions(testObj) {
+      return testObj.questions.map((item, idx) => {
+        const indexedOpts = item.options.map((text, origIdx) => ({
+          text,
+          isCorrect: origIdx === item.ans
+        }));
+        for (let i = indexedOpts.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const temp = indexedOpts[i];
+          indexedOpts[i] = indexedOpts[j];
+          indexedOpts[j] = temp;
+        }
+        const newCorrectIdx = indexedOpts.findIndex(o => o.isCorrect);
+        return {
+          qNum: idx + 1,
+          q: item.q,
+          tag: item.tag || '',
+          options: indexedOpts.map(o => o.text),
+          correctIdx: newCorrectIdx,
+          sol: item.sol,
+          selectedIdx: null,
+          status: idx === 0 ? 'not_answered' : 'not_visited' // 'not_visited', 'not_answered', 'answered', 'review', 'ans_review'
+        };
+      });
+    }
+
+    // Format MM:SS
+    function formatTime(secs) {
+      const s = Math.max(0, Math.floor(secs));
+      const mins = Math.floor(s / 60);
+      const rem = s % 60;
+      const mStr = String(mins).padStart(2, '0');
+      const sStr = String(rem).padStart(2, '0');
+      return `${mStr}:${sStr}`;
+    }
+
+    // Fullscreen helpers
+    function enterFullscreenSafe() {
+      try {
+        const el = document.documentElement;
+        if (!document.fullscreenElement) {
+          if (el.requestFullscreen) {
+            el.requestFullscreen().catch(() => {});
+          } else if (el.webkitRequestFullscreen) {
+            el.webkitRequestFullscreen();
+          }
+        }
+      } catch (e) {}
+    }
+
+    function exitFullscreenSafe() {
+      try {
+        if (document.fullscreenElement) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen().catch(() => {});
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          }
+          showToast('Exited fullscreen mode.');
+        } else {
+          showToast('Already in standard window mode.');
+        }
+      } catch (e) {
+        showToast('Exited fullscreen mode.');
+      }
+    }
+
+    // Render Main Dashboard
+    function renderDashboard() {
+      const container = document.getElementById('mock-cards-container');
+      container.innerHTML = '';
+
+      let completedCount = 0;
+
+      MOCK_TESTS.forEach((test) => {
+        const prev = savedResults[test.id];
+        if (prev) completedCount++;
+
+        const card = document.createElement('div');
+        card.className = 'mock-card';
+
+        const statusHtml = prev
+          ? `<span class="mock-status-badge status-completed">Last Score: ${prev.score} / ${prev.total} (${prev.accuracy}%)</span>`
+          : `<span class="mock-status-badge status-unattempted">Not Attempted</span>`;
+
+        card.innerHTML = `
+          <div class="mock-card-left">
+            <div class="mock-index-badge">${test.id}</div>
+            <div class="mock-info">
+              <h3>${test.shortTitle}</h3>
+              <div class="mock-meta">
+                <span>📋 ${test.totalQuestions} Questions</span>
+                <span>⏱️ ${test.durationMinutes} Minutes</span>
+                <span>🎯 TCS PYQs</span>
+                ${statusHtml}
+              </div>
+            </div>
+          </div>
+          <div class="mock-card-actions">
+            ${prev ? `<button class="btn btn-outline btn-view-prev" data-test-id="${test.id}" type="button">View Last Analysis</button>` : ''}
+            <button class="btn btn-primary btn-open-intro" data-test-id="${test.id}" type="button">${prev ? 'Retake Mock Test' : 'Start Mock Test'}</button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      document.getElementById('dashboard-completed-summary').textContent = `${completedCount} of ${MOCK_TESTS.length} Completed`;
+
+      container.querySelectorAll('.btn-open-intro').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = parseInt(btn.getAttribute('data-test-id'), 10);
+          openIntroScreen(id);
+        });
+      });
+
+      container.querySelectorAll('.btn-view-prev').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = parseInt(btn.getAttribute('data-test-id'), 10);
+          const prev = savedResults[id];
+          if (prev) {
+            activeTest = MOCK_TESTS.find(t => t.id === id);
+            activeResultData = prev;
+            currentReviewFilter = 'all';
+            renderResultScreen();
+            switchView('result');
+          }
+        });
+      });
+    }
+
+    // Open Initial Introductory Screen for a Mock Test
+    function openIntroScreen(testId) {
+      const test = MOCK_TESTS.find(t => t.id === testId);
+      if (!test) return;
+      activeTest = test;
+
+      document.getElementById('intro-header-title').textContent = `${test.title} — Instructions`;
+      document.getElementById('intro-test-name').textContent = test.title;
+      document.getElementById('intro-q-count').textContent = `${test.totalQuestions} MCQs`;
+      document.getElementById('intro-duration').textContent = `${test.durationMinutes} Minutes`;
+      document.getElementById('intro-declaration-chk').checked = true;
+
+      switchView('intro');
+    }
+
+    // Start Exam
+    function startExam() {
+      if (!activeTest) return;
+      const chk = document.getElementById('intro-declaration-chk');
+      if (!chk.checked) {
+        showToast('Please check the declaration box before starting the test.');
+        return;
+      }
+
+      // Enter Full Screen automatically on test start
+      enterFullscreenSafe();
+
+      activeQuestions = prepareTestQuestions(activeTest);
+      currentQIndex = 0;
+      totalSeconds = activeTest.durationMinutes * 60;
+      remainingSeconds = totalSeconds;
+      isPaused = false;
+
+      document.getElementById('exam-header-title').textContent = activeTest.title;
+      document.getElementById('palette-test-sub').textContent = `${activeTest.totalQuestions} Questions | ${activeTest.durationMinutes} Mins`;
+
+      renderQuestion();
+      renderPalette();
+      startTimer();
+      switchView('exam');
+    }
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      updateTimerUI();
+      timerInterval = setInterval(() => {
+        if (isPaused) return;
+        remainingSeconds--;
+        updateTimerUI();
+        if (remainingSeconds <= 0) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+          finalizeSubmission(true);
+        }
+      }, 1000);
+    }
+
+    function updateTimerUI() {
+      const timerText = document.getElementById('exam-timer-text');
+      const timerBox = document.getElementById('exam-timer-box');
+      timerText.textContent = formatTime(remainingSeconds);
+      if (remainingSeconds <= 60) {
+        timerBox.classList.add('timer-warning');
+      } else {
+        timerBox.classList.remove('timer-warning');
+      }
+    }
+
+    // Sync status of a question based on its selectedIdx unless marked for review
+    function syncQuestionRegularStatus(qObj) {
+      if (qObj.selectedIdx !== null && qObj.selectedIdx !== undefined) {
+        qObj.status = 'answered';
+      } else {
+        qObj.status = 'not_answered';
+      }
+    }
+
+    function renderQuestion() {
+      const qObj = activeQuestions[currentQIndex];
+      if (!qObj) return;
+
+      if (qObj.status === 'not_visited') {
+        qObj.status = 'not_answered';
+      }
+
+      document.getElementById('exam-q-num').textContent = `Question No. ${qObj.qNum} of ${activeQuestions.length}`;
+      document.getElementById('exam-q-text').textContent = qObj.q;
+
+      const tagEl = document.getElementById('exam-q-tag');
+      if (qObj.tag && qObj.tag.trim() !== '') {
+        tagEl.textContent = `[${qObj.tag}]`;
+        tagEl.classList.remove('hidden');
+      } else {
+        tagEl.textContent = '';
+        tagEl.classList.add('hidden');
+      }
+
+      const optsContainer = document.getElementById('exam-options-list');
+      optsContainer.innerHTML = '';
+      const labels = ['(a)', '(b)', '(c)', '(d)'];
+
+      qObj.options.forEach((optText, idx) => {
+        const row = document.createElement('label');
+        const isSel = qObj.selectedIdx === idx;
+        row.className = 'option-row' + (isSel ? ' selected' : '');
+
+        const radio = document.createElement('input');
+        radio.type = 'radio';
+        radio.name = 'exam-mcq-option';
+        radio.checked = isSel;
+        radio.addEventListener('change', () => {
+          qObj.selectedIdx = idx;
+          // If it was marked for review, update to ans_review; otherwise mark as answered
+          if (qObj.status === 'review' || qObj.status === 'ans_review') {
+            qObj.status = 'ans_review';
+          } else {
+            qObj.status = 'answered';
+          }
+          renderQuestion();
+          renderPalette();
+        });
+
+        const prefix = document.createElement('span');
+        prefix.className = 'option-prefix';
+        prefix.textContent = labels[idx];
+
+        const txt = document.createElement('span');
+        txt.className = 'option-text';
+        txt.textContent = optText;
+
+        row.appendChild(radio);
+        row.appendChild(prefix);
+        row.appendChild(txt);
+        optsContainer.appendChild(row);
+      });
+
+      document.getElementById('btn-prev-q').disabled = currentQIndex === 0;
+      document.getElementById('exam-question-scroll').scrollTop = 0;
+    }
+
+    function getStatusClass(status) {
+      switch (status) {
+        case 'answered': return 'pal-answered';
+        case 'not_answered': return 'pal-not-answered';
+        case 'review': return 'pal-review';
+        case 'ans_review': return 'pal-ans-review';
+        default: return 'pal-not-visited';
+      }
+    }
+
+    function getStatusCounts() {
+      const counts = {
+        answered: 0,
+        not_answered: 0,
+        not_visited: 0,
+        review: 0,
+        ans_review: 0
+      };
+      activeQuestions.forEach(q => {
+        if (counts[q.status] !== undefined) counts[q.status]++;
+        else counts.not_visited++;
+      });
+      return counts;
+    }
+
+    function renderPalette() {
+      const counts = getStatusCounts();
+      document.getElementById('cnt-answered').textContent = counts.answered;
+      document.getElementById('cnt-not-answered').textContent = counts.not_answered;
+      document.getElementById('cnt-not-visited').textContent = counts.not_visited;
+      document.getElementById('cnt-review').textContent = counts.review;
+      document.getElementById('cnt-ans-review').textContent = counts.ans_review;
+
+      const grid = document.getElementById('palette-buttons-grid');
+      grid.innerHTML = '';
+
+      activeQuestions.forEach((qObj, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = `q-pal-btn pal-badge ${getStatusClass(qObj.status)} ${idx === currentQIndex ? 'current-q' : ''}`;
+        btn.textContent = qObj.qNum;
+        btn.addEventListener('click', () => {
+          // Leave current question cleanly
+          const curr = activeQuestions[currentQIndex];
+          if (curr && curr.status === 'not_visited') {
+            curr.status = 'not_answered';
+          }
+          currentQIndex = idx;
+          renderQuestion();
+          renderPalette();
+        });
+        grid.appendChild(btn);
+      });
+
+      // Keep active question button visible inside the palette scroll container
+      const activeBtn = grid.children[currentQIndex];
+      if (activeBtn) {
+        activeBtn.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
+    }
+
+    // Navigation & Action Handlers
+    document.getElementById('btn-prev-q').addEventListener('click', () => {
+      if (currentQIndex > 0) {
+        currentQIndex--;
+        renderQuestion();
+        renderPalette();
+      }
+    });
+
+    document.getElementById('btn-next-q').addEventListener('click', () => {
+      const curr = activeQuestions[currentQIndex];
+      if (curr) {
+        if (curr.status !== 'review' && curr.status !== 'ans_review') {
+          syncQuestionRegularStatus(curr);
+        }
+      }
+      if (currentQIndex < activeQuestions.length - 1) {
+        currentQIndex++;
+        renderQuestion();
+        renderPalette();
+      } else {
+        renderQuestion();
+        renderPalette();
+        showToast('You are on the last question. Click Submit when ready.');
+      }
+    });
+
+    document.getElementById('btn-mark-review').addEventListener('click', () => {
+      const curr = activeQuestions[currentQIndex];
+      if (curr) {
+        if (curr.selectedIdx !== null && curr.selectedIdx !== undefined) {
+          curr.status = 'ans_review';
+        } else {
+          curr.status = 'review';
+        }
+      }
+      if (currentQIndex < activeQuestions.length - 1) {
+        currentQIndex++;
+      }
+      renderQuestion();
+      renderPalette();
+    });
+
+    document.getElementById('btn-clear-q').addEventListener('click', () => {
+      const curr = activeQuestions[currentQIndex];
+      if (curr) {
+        curr.selectedIdx = null;
+        curr.status = 'not_answered';
+        renderQuestion();
+        renderPalette();
+      }
+    });
+
+    // Pause / Resume
+    document.getElementById('btn-pause-exam').addEventListener('click', () => {
+      isPaused = true;
+      modalPause.classList.remove('hidden');
+    });
+
+    document.getElementById('btn-pause-resume').addEventListener('click', () => {
+      isPaused = false;
+      modalPause.classList.add('hidden');
+    });
+
+    document.getElementById('btn-pause-quit').addEventListener('click', () => {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = null;
+      isPaused = false;
+      modalPause.classList.add('hidden');
+      exitFullscreenSafe();
+      renderDashboard();
+      switchView('dashboard');
+    });
+
+    // Exit Fullscreen button
+    document.getElementById('btn-exit-fullscreen').addEventListener('click', () => {
+      exitFullscreenSafe();
+    });
+
+    // Open Submit Modal
+    function openSubmitConfirmation() {
+      const counts = getStatusCounts();
+      document.getElementById('sub-mdl-total').textContent = activeQuestions.length;
+      document.getElementById('sub-mdl-ans').textContent = counts.answered;
+      document.getElementById('sub-mdl-not-ans').textContent = counts.not_answered;
+      document.getElementById('sub-mdl-rev').textContent = counts.review;
+      document.getElementById('sub-mdl-ans-rev').textContent = counts.ans_review;
+      document.getElementById('sub-mdl-not-vis').textContent = counts.not_visited;
+      modalSubmit.classList.remove('hidden');
+    }
+
+    document.getElementById('btn-top-submit').addEventListener('click', openSubmitConfirmation);
+    document.getElementById('btn-bottom-submit').addEventListener('click', openSubmitConfirmation);
+    document.getElementById('btn-palette-submit').addEventListener('click', openSubmitConfirmation);
+
+    document.getElementById('btn-submit-cancel').addEventListener('click', () => {
+      modalSubmit.classList.add('hidden');
+    });
+
+    document.getElementById('btn-submit-confirm').addEventListener('click', () => {
+      modalSubmit.classList.add('hidden');
+      finalizeSubmission(false);
+    });
+
+    // Finalize Submission & Compute Score
+    function finalizeSubmission(isAutoTimeUp) {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+      modalPause.classList.add('hidden');
+      modalSubmit.classList.add('hidden');
+
+      let correct = 0;
+      let incorrect = 0;
+      let unattempted = 0;
+
+      const reviewItems = [];
+
+      activeQuestions.forEach(qObj => {
+        const attempted = qObj.selectedIdx !== null && qObj.selectedIdx !== undefined;
+        if (!attempted) {
+          unattempted++;
+          reviewItems.push({
+            qNum: qObj.qNum,
+            q: qObj.q,
+            tag: qObj.tag,
+            options: qObj.options,
+            correctIdx: qObj.correctIdx,
+            selectedIdx: null,
+            resultType: 'unattempted',
+            sol: qObj.sol
+          });
+        } else if (qObj.selectedIdx === qObj.correctIdx) {
+          correct++;
+          // Strictly do NOT include correct questions in solution review as instructed
+        } else {
+          incorrect++;
+          reviewItems.push({
+            qNum: qObj.qNum,
+            q: qObj.q,
+            tag: qObj.tag,
+            options: qObj.options,
+            correctIdx: qObj.correctIdx,
+            selectedIdx: qObj.selectedIdx,
+            resultType: 'incorrect',
+            sol: qObj.sol
+          });
+        }
+      });
+
+      const totalAttempted = correct + incorrect;
+      const accuracy = totalAttempted > 0 ? Math.round((correct / totalAttempted) * 100) : 0;
+      const timeSpent = Math.max(0, totalSeconds - remainingSeconds);
+
+      activeResultData = {
+        testId: activeTest.id,
+        testTitle: activeTest.title,
+        total: activeQuestions.length,
+        score: correct,
+        correct,
+        incorrect,
+        unattempted,
+        accuracy,
+        timeSpentFormatted: formatTime(timeSpent),
+        isAutoTimeUp,
+        reviewItems
+      };
+
+      savedResults[activeTest.id] = activeResultData;
+      saveResultsToStorage();
+
+      currentReviewFilter = 'all';
+      renderResultScreen();
+      switchView('result');
+    }
+
+    function renderResultScreen() {
+      if (!activeResultData) return;
+
+      document.getElementById('result-header-title').textContent = `${activeResultData.testTitle} — Result & Analysis`;
+      document.getElementById('result-test-name').textContent = activeResultData.testTitle;
+      document.getElementById('result-submit-reason').textContent = activeResultData.isAutoTimeUp
+        ? '⏰ Time expired! Your test was submitted automatically.'
+        : '✅ Test submitted successfully. Review your score and solutions for incorrect & un-attempted questions below.';
+
+      document.getElementById('res-score-val').textContent = `${activeResultData.score} / ${activeResultData.total}`;
+      document.getElementById('res-correct-val').textContent = activeResultData.correct;
+      document.getElementById('res-incorrect-val').textContent = activeResultData.incorrect;
+      document.getElementById('res-unattempted-val').textContent = activeResultData.unattempted;
+      document.getElementById('res-accuracy-val').textContent = `${activeResultData.accuracy}%`;
+      document.getElementById('res-time-val').textContent = activeResultData.timeSpentFormatted;
+
+      const allItems = activeResultData.reviewItems || [];
+      const incItems = allItems.filter(i => i.resultType === 'incorrect');
+      const unItems = allItems.filter(i => i.resultType === 'unattempted');
+
+      document.getElementById('flt-cnt-all').textContent = allItems.length;
+      document.getElementById('flt-cnt-inc').textContent = incItems.length;
+      document.getElementById('flt-cnt-un').textContent = unItems.length;
+
+      document.getElementById('tab-filter-all').classList.toggle('active', currentReviewFilter === 'all');
+      document.getElementById('tab-filter-incorrect').classList.toggle('active', currentReviewFilter === 'incorrect');
+      document.getElementById('tab-filter-unattempted').classList.toggle('active', currentReviewFilter === 'unattempted');
+
+      let filtered = allItems;
+      if (currentReviewFilter === 'incorrect') filtered = incItems;
+      else if (currentReviewFilter === 'unattempted') filtered = unItems;
+
+      const container = document.getElementById('review-questions-container');
+      container.innerHTML = '';
+
+      if (filtered.length === 0) {
+        const emptyBox = document.createElement('div');
+        emptyBox.className = 'review-card';
+        emptyBox.style.textAlign = 'center';
+        emptyBox.style.padding = '32px 20px';
+        emptyBox.innerHTML = `
+          <h3 style="color: #15803d; font-size: 17px; margin-bottom: 6px;">No Questions in This Filter</h3>
+          <p style="color: #4b5563; font-size: 14px;">${allItems.length === 0 ? 'Outstanding! You answered all questions correctly, so there are no incorrect or un-attempted questions to review.' : 'No questions match the selected filter tab.'}</p>
+        `;
+        container.appendChild(emptyBox);
+        return;
+      }
+
+      const labels = ['(a)', '(b)', '(c)', '(d)'];
+
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'review-card';
+
+        const badgeHtml = item.resultType === 'incorrect'
+          ? `<span class="review-status-pill pill-incorrect">✗ Incorrect</span>`
+          : `<span class="review-status-pill pill-unattempted">○ Un-attempted</span>`;
+
+        const tagHtml = item.tag && item.tag.trim() !== ''
+          ? `<div class="question-exam-tag" style="margin-bottom: 10px;">[${item.tag}]</div>`
+          : '';
+
+        let optsHtml = '';
+        item.options.forEach((optText, idx) => {
+          const isCorr = idx === item.correctIdx;
+          const isUserWrong = item.selectedIdx === idx && !isCorr;
+          let cls = 'review-opt';
+          let rightTag = '';
+          if (isCorr) {
+            cls += ' opt-correct';
+            rightTag = '<span>✓ Correct Answer</span>';
+          } else if (isUserWrong) {
+            cls += ' opt-user-wrong';
+            rightTag = '<span>✗ Your Answer</span>';
+          }
+          optsHtml += `
+            <div class="${cls}">
+              <span><strong>${labels[idx]}</strong> ${escapeHtml(optText)}</span>
+              ${rightTag}
+            </div>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="review-card-header">
+            <span class="review-q-num">Question ${item.qNum}</span>
+            ${badgeHtml}
+          </div>
+          <div class="question-stem" style="font-size: 15px; margin-bottom: 4px;">${escapeHtml(item.q)}</div>
+          ${tagHtml}
+          <div class="review-options">${optsHtml}</div>
+          <div class="solution-box">
+            <strong>Solution:</strong> ${escapeHtml(item.sol)}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // Filter Tab Listeners
+    document.getElementById('tab-filter-all').addEventListener('click', () => {
+      currentReviewFilter = 'all';
+      renderResultScreen();
+    });
+    document.getElementById('tab-filter-incorrect').addEventListener('click', () => {
+      currentReviewFilter = 'incorrect';
+      renderResultScreen();
+    });
+    document.getElementById('tab-filter-unattempted').addEventListener('click', () => {
+      currentReviewFilter = 'unattempted';
+      renderResultScreen();
+    });
+
+    // Intro Screen Listeners
+    document.getElementById('btn-intro-back').addEventListener('click', () => {
+      renderDashboard();
+      switchView('dashboard');
+    });
+    document.getElementById('btn-intro-back-top').addEventListener('click', () => {
+      renderDashboard();
+      switchView('dashboard');
+    });
+    document.getElementById('btn-start-exam').addEventListener('click', startExam);
+
+    // Result Screen Listeners
+    document.getElementById('btn-result-dashboard').addEventListener('click', () => {
+      renderDashboard();
+      switchView('dashboard');
+    });
+    document.getElementById('btn-result-dashboard-2').addEventListener('click', () => {
+      renderDashboard();
+      switchView('dashboard');
+    });
+    document.getElementById('btn-result-retake').addEventListener('click', () => {
+      if (activeTest) openIntroScreen(activeTest.id);
+    });
+    document.getElementById('btn-result-retake-2').addEventListener('click', () => {
+      if (activeTest) openIntroScreen(activeTest.id);
+    });
+
+    // Initialize Dashboard on load
+    renderDashboard();
+  </script>
+</body>
+</html>

@@ -1,0 +1,2193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CBT Mock Examination — September 2026 Master Current Affairs (150 MCQs)</title>
+  <style>
+    /* ==========================================================================
+       TCS iON / EDUQUITY CBT EXAM INTERFACE (LIGHT THEME ONLY)
+       ========================================================================== */
+    :root {
+      --tcs-blue: #1e3a8a;
+      --tcs-blue-dark: #0f245c;
+      --tcs-blue-light: #2563eb;
+      --bg-page: #f1f5f9;
+      --bg-surface: #ffffff;
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+      --border-color: #cbd5e1;
+      --border-dark: #94a3b8;
+
+      /* TCS Palette Status Colors */
+      --color-answered: #22c55e;        /* Green */
+      --color-not-answered: #ef4444;    /* Red */
+      --color-not-visited: #e2e8f0;     /* Silver/Gray */
+      --color-review: #8b5cf6;          /* Purple */
+      --color-review-ans: #7c3aed;      /* Violet/Purple with tick */
+
+      --font-stack: Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: var(--font-stack);
+      background-color: var(--bg-page);
+      color: var(--text-dark);
+      font-size: 15px;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* View Container Switching */
+    .view-screen {
+      display: none;
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    .view-screen.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ==========================================================================
+       1. INTRODUCTORY / INSTRUCTIONS INTERFACE
+       ========================================================================== */
+    #screen-intro {
+      background: var(--bg-page);
+      padding: 24px 16px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .intro-card {
+      max-width: 960px;
+      width: 100%;
+      background: var(--bg-surface);
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+    }
+
+    .intro-header {
+      background: linear-gradient(135deg, var(--tcs-blue-dark) 0%, var(--tcs-blue) 100%);
+      color: #ffffff;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .intro-header h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+    }
+
+    .intro-header .exam-badge {
+      background: rgba(255, 255, 255, 0.16);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .intro-body {
+      padding: 24px;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    .intro-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+      background: #f8fafc;
+      padding: 14px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+    }
+
+    .intro-meta-item strong {
+      color: var(--tcs-blue);
+      display: block;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .intro-meta-item span {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .intro-section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--tcs-blue);
+      margin: 18px 0 10px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .intro-body p, .intro-body li {
+      color: var(--text-dark);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .intro-body ul, .intro-body ol {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    /* Legend Box on Intro Screen */
+    .legend-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 20px;
+    }
+
+    .legend-table td {
+      padding: 8px 12px;
+      border: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
+
+    .palette-symbol {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-right: 8px;
+      vertical-align: middle;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+    }
+
+    .palette-symbol.sym-answered {
+      background: var(--color-answered);
+      color: #ffffff;
+      border-radius: 4px;
+    }
+
+    .palette-symbol.sym-not-answered {
+      background: var(--color-not-answered);
+      color: #ffffff;
+      border-radius: 4px;
+    }
+
+    .palette-symbol.sym-not-visited {
+      background: var(--color-not-visited);
+      color: var(--text-dark);
+      border-radius: 50%;
+      border: 1px solid var(--border-dark);
+    }
+
+    .palette-symbol.sym-review {
+      background: var(--color-review);
+      color: #ffffff;
+      border-radius: 50%;
+    }
+
+    .palette-symbol.sym-review-ans {
+      background: var(--color-review-ans);
+      color: #ffffff;
+      border-radius: 4px;
+      position: relative;
+    }
+
+    .palette-symbol.sym-review-ans::after {
+      content: "✓";
+      position: absolute;
+      bottom: -4px;
+      right: -4px;
+      background: var(--color-answered);
+      color: #ffffff;
+      font-size: 9px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .intro-declaration {
+      background: #eff6ff;
+      border: 1.5px solid #bfdbfe;
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin-top: 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .intro-declaration input[type="checkbox"] {
+      margin-top: 4px;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    .intro-declaration label {
+      cursor: pointer;
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: #1e3a8a;
+    }
+
+    .intro-footer {
+      background: #f8fafc;
+      padding: 16px 24px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-start-test {
+      background: #15803d;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      padding: 12px 28px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(21, 128, 61, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    .btn-start-test:hover:not(:disabled) {
+      background: #166534;
+      transform: translateY(-1px);
+    }
+
+    .btn-start-test:disabled {
+      background: #94a3b8;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    /* ==========================================================================
+       2. MAIN TEST INTERFACE (TCS / EDUQUITY LIGHT THEME)
+       ========================================================================== */
+    #screen-test {
+      height: 100vh;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    /* Top Bar */
+    .test-top-bar {
+      height: 52px;
+      background: var(--tcs-blue-dark);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      flex-shrink: 0;
+      border-bottom: 2px solid #0b193d;
+    }
+
+    .test-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .test-title-wrap h2 {
+      font-size: 1.08rem;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .top-controls-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .timer-display {
+      background: #0f172a;
+      border: 1px solid #334155;
+      padding: 5px 14px;
+      border-radius: 4px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #facc15;
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: "Courier New", Courier, monospace;
+    }
+
+    .candidate-info-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: #e2e8f0;
+    }
+
+    .candidate-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #3b82f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.9rem;
+      border: 1.5px solid #ffffff;
+    }
+
+    /* Section Sub-Bar */
+    .test-sub-bar {
+      height: 40px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+    }
+
+    .section-tab {
+      background: #ffffff;
+      border: 1.5px solid var(--tcs-blue);
+      border-bottom: none;
+      color: var(--tcs-blue);
+      font-weight: 700;
+      padding: 8px 16px 7px;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      position: relative;
+      top: 1px;
+    }
+
+    .marking-scheme {
+      color: var(--text-muted);
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+
+    .marking-scheme strong {
+      color: #15803d;
+    }
+
+    .marking-scheme .neg {
+      color: #b91c1c;
+    }
+
+    /* Main Test Layout (Left: Question, Right: Palette) */
+    .test-main-container {
+      flex: 1;
+      display: flex;
+      height: calc(100vh - 92px);
+      overflow: hidden;
+    }
+
+    /* Left: Question Pane */
+    .question-pane {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border-right: 1.5px solid var(--border-color);
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .question-header-row {
+      padding: 10px 18px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .question-num-tag {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--tcs-blue);
+    }
+
+    .exam-tag-small {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #475569;
+      background: #e2e8f0;
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid #cbd5e1;
+    }
+
+    /* Scrollable Question Content Area */
+    .question-scroll-content {
+      flex: 1;
+      padding: 22px 24px;
+      overflow-y: auto;
+      background: #ffffff;
+    }
+
+    .question-statement {
+      font-size: 1.06rem;
+      line-height: 1.6;
+      color: var(--text-dark);
+      font-weight: 600;
+      margin-bottom: 22px;
+      white-space: pre-line;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .option-item:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
+    .option-item.selected {
+      background: #eff6ff;
+      border-color: var(--tcs-blue-light);
+      box-shadow: 0 0 0 1px var(--tcs-blue-light);
+    }
+
+    .option-item input[type="radio"] {
+      margin-top: 3px;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: var(--tcs-blue-light);
+      flex-shrink: 0;
+    }
+
+    .option-label-text {
+      font-size: 1rem;
+      line-height: 1.48;
+      color: var(--text-dark);
+      cursor: pointer;
+      user-select: none;
+      flex: 1;
+    }
+
+    .option-letter {
+      font-weight: 800;
+      margin-right: 6px;
+      color: var(--tcs-blue);
+    }
+
+    /* Fixed Bottom Action Toolbar */
+    .test-bottom-toolbar {
+      height: 60px;
+      background: #f8fafc;
+      border-top: 1.5px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      flex-shrink: 0;
+      gap: 8px;
+    }
+
+    .btn-group-left, .btn-group-center, .btn-group-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-exam {
+      font-family: var(--font-stack);
+      font-size: 0.92rem;
+      font-weight: 700;
+      padding: 9px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.16s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1.5px solid transparent;
+      user-select: none;
+    }
+
+    .btn-exam:active {
+      transform: scale(0.98);
+    }
+
+    .btn-default {
+      background: #ffffff;
+      color: var(--text-dark);
+      border-color: #cbd5e1;
+    }
+
+    .btn-default:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
+    .btn-review {
+      background: #ffffff;
+      color: #6d28d9;
+      border-color: #a78bfa;
+    }
+
+    .btn-review:hover {
+      background: #f5f3ff;
+      border-color: #7c3aed;
+    }
+
+    .btn-nav {
+      background: var(--tcs-blue);
+      color: #ffffff;
+      border-color: var(--tcs-blue);
+    }
+
+    .btn-nav:hover {
+      background: #1d4ed8;
+      border-color: #1d4ed8;
+    }
+
+    .btn-clear {
+      background: #ffffff;
+      color: #475569;
+      border-color: #cbd5e1;
+    }
+
+    .btn-clear:hover {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+
+    .btn-pause {
+      background: #fef3c7;
+      color: #92400e;
+      border-color: #fcd34d;
+    }
+
+    .btn-pause:hover {
+      background: #fde68a;
+    }
+
+    .btn-fullscreen {
+      background: #f1f5f9;
+      color: #334155;
+      border-color: #cbd5e1;
+    }
+
+    .btn-fullscreen:hover {
+      background: #e2e8f0;
+    }
+
+    .btn-submit {
+      background: #15803d;
+      color: #ffffff;
+      border-color: #15803d;
+      box-shadow: 0 1px 4px rgba(21, 128, 61, 0.3);
+    }
+
+    .btn-submit:hover {
+      background: #166534;
+      border-color: #166534;
+    }
+
+    /* ==========================================================================
+       RIGHT: QUESTION PALETTE CONTAINER (WITH INDEPENDENT SCROLLING)
+       ========================================================================== */
+    .right-palette {
+      width: 320px;
+      flex-shrink: 0;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .palette-candidate-card {
+      padding: 12px 14px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .palette-candidate-card .avatar-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 4px;
+      background: #e2e8f0;
+      border: 1px solid var(--border-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #334155;
+      font-size: 1.1rem;
+    }
+
+    .palette-candidate-details {
+      font-size: 0.85rem;
+      line-height: 1.35;
+      color: var(--text-dark);
+    }
+
+    .palette-candidate-details strong {
+      font-size: 0.92rem;
+      color: var(--tcs-blue);
+      display: block;
+    }
+
+    /* Mini Status Summary Counters */
+    .palette-status-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      padding: 10px 12px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      flex-shrink: 0;
+      font-size: 0.78rem;
+    }
+
+    .status-counter-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    .status-badge-count {
+      width: 24px;
+      height: 22px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.8rem;
+    }
+
+    .bg-ans { background: var(--color-answered); }
+    .bg-not-ans { background: var(--color-not-answered); }
+    .bg-not-vis { background: var(--color-not-visited); color: var(--text-dark); border: 1px solid var(--border-dark); }
+    .bg-rev { background: var(--color-review); border-radius: 50%; }
+    .bg-rev-ans { background: var(--color-review-ans); }
+
+    .palette-heading-bar {
+      padding: 8px 14px;
+      background: #e2e8f0;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      border-bottom: 1px solid var(--border-color);
+      flex-shrink: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    /* Scrollable Question Number Grid */
+    .palette-grid-scroll {
+      flex: 1;
+      padding: 12px;
+      overflow-y: auto;
+      background: #f1f5f9;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      align-content: start;
+    }
+
+    .palette-btn {
+      height: 36px;
+      font-family: var(--font-stack);
+      font-size: 0.88rem;
+      font-weight: 700;
+      border-radius: 4px;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.14s ease;
+      background: var(--color-not-visited);
+      color: var(--text-dark);
+      user-select: none;
+      position: relative;
+    }
+
+    .palette-btn:hover {
+      transform: scale(1.05);
+      z-index: 2;
+    }
+
+    .palette-btn.current {
+      outline: 2.5px solid #0f172a;
+      outline-offset: 1px;
+    }
+
+    .palette-btn.status-answered {
+      background: var(--color-answered);
+      color: #ffffff;
+      border-color: #16a34a;
+    }
+
+    .palette-btn.status-not-answered {
+      background: var(--color-not-answered);
+      color: #ffffff;
+      border-color: #dc2626;
+    }
+
+    .palette-btn.status-not-visited {
+      background: var(--color-not-visited);
+      color: var(--text-dark);
+      border: 1px solid var(--border-dark);
+    }
+
+    .palette-btn.status-marked-review {
+      background: var(--color-review);
+      color: #ffffff;
+      border-radius: 50%;
+      border-color: #7c3aed;
+    }
+
+    .palette-btn.status-answered-review {
+      background: var(--color-review-ans);
+      color: #ffffff;
+      border-color: #6d28d9;
+    }
+
+    .palette-btn.status-answered-review::after {
+      content: "✓";
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      background: var(--color-answered);
+      color: #ffffff;
+      font-size: 9px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #ffffff;
+    }
+
+    /* ==========================================================================
+       MODALS: PAUSE & SUBMIT CONFIRMATION
+       ========================================================================== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.65);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--border-color);
+      max-width: 540px;
+      width: 100%;
+      overflow: hidden;
+      animation: modalFadeIn 0.2s ease-out;
+    }
+
+    @keyframes modalFadeIn {
+      from { transform: scale(0.96); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-header {
+      background: var(--tcs-blue);
+      color: #ffffff;
+      padding: 14px 18px;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .modal-body {
+      padding: 20px;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      line-height: 1.55;
+    }
+
+    .modal-summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+    }
+
+    .modal-summary-table th, .modal-summary-table td {
+      padding: 8px 12px;
+      border: 1px solid var(--border-color);
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    .modal-summary-table th {
+      background: #f8fafc;
+      font-weight: 700;
+    }
+
+    .modal-footer {
+      background: #f8fafc;
+      padding: 12px 18px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    /* ==========================================================================
+       3. SUBMISSION & RESULT / ANALYSIS INTERFACE
+       ========================================================================== */
+    #screen-result {
+      background: var(--bg-page);
+      padding: 24px 16px 60px;
+      align-items: center;
+      overflow-y: auto;
+    }
+
+    .result-container {
+      max-width: 1080px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .scorecard-banner {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      color: #ffffff;
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
+    }
+
+    .scorecard-banner h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .scorecard-subtitle {
+      color: #cbd5e1;
+      font-size: 0.96rem;
+      margin-bottom: 18px;
+    }
+
+    .score-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+      gap: 12px;
+    }
+
+    .score-stat-card {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      padding: 12px 14px;
+      text-align: center;
+    }
+
+    .score-stat-value {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: #fde047;
+      display: block;
+    }
+
+    .score-stat-label {
+      font-size: 0.8rem;
+      color: #e2e8f0;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    /* Solutions Section (ONLY Incorrect & Unattempted) */
+    .solutions-section {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 22px 24px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+    }
+
+    .solutions-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 20px;
+    }
+
+    .solutions-header-row h3 {
+      font-size: 1.28rem;
+      font-weight: 800;
+      color: var(--tcs-blue);
+    }
+
+    .solution-filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: 1.5px solid var(--border-color);
+      background: #f8fafc;
+      color: var(--text-dark);
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+
+    .filter-btn:hover {
+      background: #e2e8f0;
+    }
+
+    .filter-btn.active {
+      background: var(--tcs-blue);
+      color: #ffffff;
+      border-color: var(--tcs-blue);
+    }
+
+    .solution-notice-box {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      padding: 10px 14px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      color: #92400e;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .solution-item {
+      background: #ffffff;
+      border: 1.5px solid var(--border-color);
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 18px;
+      transition: border-color 0.15s ease;
+    }
+
+    .solution-item:hover {
+      border-color: #94a3b8;
+    }
+
+    .sol-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .sol-qnum {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--tcs-blue);
+    }
+
+    .sol-status-tag {
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .tag-incorrect {
+      background: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fca5a5;
+    }
+
+    .tag-unattempted {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+    }
+
+    .sol-question-text {
+      font-size: 1.02rem;
+      font-weight: 600;
+      line-height: 1.55;
+      color: var(--text-dark);
+      margin-bottom: 14px;
+      white-space: pre-line;
+    }
+
+    .sol-responses-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+      background: #f8fafc;
+      padding: 12px 14px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .sol-ans-row {
+      font-size: 0.94rem;
+      line-height: 1.45;
+    }
+
+    .sol-ans-row strong {
+      display: inline-block;
+      width: 135px;
+      font-weight: 700;
+    }
+
+    .text-danger {
+      color: #dc2626;
+      font-weight: 700;
+    }
+
+    .text-success {
+      color: #16a34a;
+      font-weight: 700;
+    }
+
+    .sol-explanation-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: #14532d;
+    }
+
+    .sol-explanation-box strong {
+      color: #166534;
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.94rem;
+    }
+
+    .result-actions-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE ADJUSTMENTS & MOBILE PALETTE HIDING
+       ========================================================================== */
+    @media (max-width: 768px) {
+      /* Strictly hide palette for mobile phone interface as requested */
+      .right-palette {
+        display: none !important;
+      }
+
+      .test-main-container {
+        height: calc(100vh - 104px);
+      }
+
+      .test-top-bar {
+        height: auto;
+        padding: 8px 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+
+      .top-controls-wrap {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .timer-display {
+        font-size: 1rem;
+        padding: 3px 8px;
+      }
+
+      .test-bottom-toolbar {
+        height: auto;
+        padding: 8px 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .btn-exam {
+        padding: 7px 10px;
+        font-size: 0.82rem;
+      }
+
+      .score-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       VIEW 1: INITIAL INTRODUCTORY & INSTRUCTIONS SCREEN
+       ========================================================================== -->
+  <section id="screen-intro" class="view-screen active">
+    <div class="intro-card">
+      <header class="intro-header">
+        <div>
+          <h1>Computer Based Examination Portal (CBT)</h1>
+          <p style="font-size: 0.92rem; color: #e2e8f0; margin-top: 2px;">TCS / Eduquity Online Assessment Engine</p>
+        </div>
+        <span class="exam-badge">Standard Exam Pattern</span>
+      </header>
+
+      <div class="intro-body">
+        <div class="intro-meta-grid">
+          <div class="intro-meta-item">
+            <strong>Examination Title</strong>
+            <span>September 2026 Monthly Current Affairs</span>
+          </div>
+          <div class="intro-meta-item">
+            <strong>Total Questions</strong>
+            <span>150 MCQs (Single Choice)</span>
+          </div>
+          <div class="intro-meta-item">
+            <strong>Duration Allowed</strong>
+            <span>150 Minutes (Strict Countdown)</span>
+          </div>
+          <div class="intro-meta-item">
+            <strong>Marking Scheme</strong>
+            <span>+1.00 Mark, -0.25 Negative</span>
+          </div>
+        </div>
+
+        <h3 class="intro-section-title">General Instructions &amp; Examination Guidelines</h3>
+        <p>Please read the following instructions carefully before proceeding to start the examination:</p>
+        <ol>
+          <li>The countdown timer at the top-right of your screen will display the remaining time available for you to complete the examination. When the timer reaches <strong>00:00:00</strong>, the examination will <strong>submit automatically</strong>.</li>
+          <li>Each question consists of <strong>Four Multiple Choice Distractor Options</strong>. On each page reload/refresh, the four options are randomised automatically to prevent pattern bias.</li>
+          <li>Only <strong>one question</strong> is displayed on the screen at any time. Selecting an option will <strong>NOT</strong> advance to the next question automatically; you must manually click <strong>Next</strong> or <strong>Mark for Review &amp; Next</strong>.</li>
+          <li>No answers, scores, or solutions are displayed during the test. Score analysis and detailed solutions are provided strictly upon final submission.</li>
+        </ol>
+
+        <h3 class="intro-section-title">Question Palette Symbols &amp; Status Legend</h3>
+        <p>The Question Palette displayed on the right-side of your screen uses the following status symbols:</p>
+        <table class="legend-table">
+          <tbody>
+            <tr>
+              <td style="width: 45px; text-align: center;"><span class="palette-symbol sym-not-visited">1</span></td>
+              <td><strong>Not Visited:</strong> You have not visited the question yet.</td>
+            </tr>
+            <tr>
+              <td style="width: 45px; text-align: center;"><span class="palette-symbol sym-not-answered">2</span></td>
+              <td><strong>Not Answered:</strong> You have visited the question but have not answered it yet.</td>
+            </tr>
+            <tr>
+              <td style="width: 45px; text-align: center;"><span class="palette-symbol sym-answered">3</span></td>
+              <td><strong>Answered:</strong> You have selected an answer for the question.</td>
+            </tr>
+            <tr>
+              <td style="width: 45px; text-align: center;"><span class="palette-symbol sym-review">4</span></td>
+              <td><strong>Marked for Review:</strong> You have not answered the question, but have marked it for review.</td>
+            </tr>
+            <tr>
+              <td style="width: 45px; text-align: center;"><span class="palette-symbol sym-review-ans">5</span></td>
+              <td><strong>Answered &amp; Marked for Review:</strong> You have answered the question, but marked it for review.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 class="intro-section-title">Navigating &amp; Answering Questions</h3>
+        <ul>
+          <li><strong>To Answer:</strong> Click on the desired option's radio button.</li>
+          <li><strong>To Deselect / Clear:</strong> Click on the <strong>Clear</strong> button to deselect your chosen answer for the active question.</li>
+          <li><strong>To Save &amp; Advance:</strong> Click <strong>Next</strong> to proceed to the subsequent question.</li>
+          <li><strong>To Mark for Review:</strong> Click <strong>Mark for Review &amp; Next</strong> to save your response (if any) and flag the question for subsequent reconsideration.</li>
+          <li><strong>Direct Navigation:</strong> You may click any question number on the right-side Question Palette to jump directly to that question.</li>
+          <li><strong>Fullscreen Mode:</strong> The test interface enters fullscreen mode automatically upon beginning. You may use the <strong>Exit Fullscreen</strong> button at any time.</li>
+        </ul>
+
+        <div class="intro-declaration">
+          <input type="checkbox" id="chkDeclaration">
+          <label for="chkDeclaration">
+            I have read and understood all the above instructions. I declare that I am appearing for this examination adhering to all assessment rules, and I understand that the test will automatically submit upon countdown completion.
+          </label>
+        </div>
+      </div>
+
+      <footer class="intro-footer">
+        <button type="button" id="btnStartTest" class="btn-start-test" disabled>
+          I am ready to begin (Start Test) ▶
+        </button>
+      </footer>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       VIEW 2: MAIN TEST EXAMINATION INTERFACE (LIGHT THEME)
+       ========================================================================== -->
+  <section id="screen-test" class="view-screen">
+    <!-- Top Bar -->
+    <header class="test-top-bar">
+      <div class="test-title-wrap">
+        <h2>September 2026 Monthly Current Affairs Master Mock</h2>
+      </div>
+      <div class="top-controls-wrap">
+        <div class="timer-display" id="timerDisplay" title="Remaining Exam Time">
+          ⏱️ <span id="timeString">02:30:00</span>
+        </div>
+        <div class="candidate-info-box">
+          <div class="candidate-avatar">C</div>
+          <div>
+            <div style="font-weight: 700;">Roll: 20261023</div>
+            <div style="font-size: 0.78rem; color: #94a3b8;">Language: English</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sub Bar -->
+    <div class="test-sub-bar">
+      <div class="section-tab">Section: General Awareness &amp; Current Affairs</div>
+      <div class="marking-scheme">
+        Marks per Question: <strong>+1.00</strong> | Negative Marking: <span class="neg">-0.25</span>
+      </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="test-main-container">
+      <!-- Left: Question Pane -->
+      <main class="question-pane">
+        <div class="question-header-row">
+          <span class="question-num-tag" id="qNumHeading">Question No. 1</span>
+          <span class="exam-tag-small">Single Choice • English</span>
+        </div>
+
+        <div class="question-scroll-content" id="questionContentArea">
+          <div class="question-statement" id="questionText"></div>
+          <div class="options-list" id="optionsContainer"></div>
+        </div>
+
+        <!-- Fixed Bottom Action Bar -->
+        <footer class="test-bottom-toolbar">
+          <div class="btn-group-left">
+            <button type="button" id="btnReview" class="btn-exam btn-review" title="Mark for Review & Next">
+              🟣 Mark for Review &amp; Next
+            </button>
+            <button type="button" id="btnClear" class="btn-exam btn-clear" title="Clear chosen response">
+              🧹 Clear
+            </button>
+          </div>
+
+          <div class="btn-group-center">
+            <button type="button" id="btnPrev" class="btn-exam btn-default" title="Previous Question">
+              ◀ Previous
+            </button>
+            <button type="button" id="btnNext" class="btn-exam btn-nav" title="Next Question">
+              Next ▶
+            </button>
+          </div>
+
+          <div class="btn-group-right">
+            <button type="button" id="btnPause" class="btn-exam btn-pause" title="Pause the examination timer">
+              ⏸️ Pause
+            </button>
+            <button type="button" id="btnFullscreen" class="btn-exam btn-fullscreen" title="Toggle Fullscreen">
+              ⛶ Exit Fullscreen
+            </button>
+            <button type="button" id="btnSubmit" class="btn-exam btn-submit" title="Final test submission">
+              ✓ Submit Test
+            </button>
+          </div>
+        </footer>
+      </main>
+
+      <!-- Right: Question Palette Pane (With Independent Scrolling) -->
+      <aside class="right-palette">
+        <div class="palette-candidate-card">
+          <div class="avatar-box">C</div>
+          <div class="palette-candidate-details">
+            <strong>Candidate Assessment</strong>
+            <span>Candidate ID: CBT-2026-CA150</span>
+          </div>
+        </div>
+
+        <!-- Live Status Legend Summary -->
+        <div class="palette-status-grid">
+          <div class="status-counter-item">
+            <span class="status-badge-count bg-ans" id="countAnswered">0</span> Answered
+          </div>
+          <div class="status-counter-item">
+            <span class="status-badge-count bg-not-ans" id="countNotAnswered">0</span> Not Answered
+          </div>
+          <div class="status-counter-item">
+            <span class="status-badge-count bg-not-vis" id="countNotVisited">150</span> Not Visited
+          </div>
+          <div class="status-counter-item">
+            <span class="status-badge-count bg-rev" id="countMarkedReview">0</span> Marked for Review
+          </div>
+          <div class="status-counter-item" style="grid-column: 1 / -1;">
+            <span class="status-badge-count bg-rev-ans" id="countAnsReview">0</span> Ans. &amp; Marked for Review
+          </div>
+        </div>
+
+        <div class="palette-heading-bar">Question Palette (1 – 150)</div>
+
+        <!-- Scrollable Palette Grid -->
+        <div class="palette-grid-scroll" id="paletteGrid">
+          <!-- 150 Question Buttons Injected via JS -->
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       VIEW 3: SUBMISSION & SCORECARD / SOLUTIONS SCREEN
+       ========================================================================== -->
+  <section id="screen-result" class="view-screen">
+    <div class="result-container">
+      <div class="scorecard-banner">
+        <h2>Examination Result &amp; Performance Scorecard</h2>
+        <p class="scorecard-subtitle">
+          September 2026 Monthly Current Affairs Master Examination • 150 Multiple Choice Questions
+        </p>
+
+        <div class="score-stats-grid">
+          <div class="score-stat-card">
+            <span class="score-stat-value" id="statFinalScore">0.00</span>
+            <span class="score-stat-label">Net Score (/150)</span>
+          </div>
+          <div class="score-stat-card">
+            <span class="score-stat-value" id="statAccuracy">0%</span>
+            <span class="score-stat-label">Accuracy Rate</span>
+          </div>
+          <div class="score-stat-card">
+            <span class="score-stat-value" id="statAttempted">0</span>
+            <span class="score-stat-label">Total Attempted</span>
+          </div>
+          <div class="score-stat-card">
+            <span class="score-stat-value" id="statCorrect" style="color: #4ade80;">0</span>
+            <span class="score-stat-label">Correct Answers</span>
+          </div>
+          <div class="score-stat-card">
+            <span class="score-stat-value" id="statIncorrect" style="color: #f87171;">0</span>
+            <span class="score-stat-label">Incorrect Answers</span>
+          </div>
+          <div class="score-stat-card">
+            <span class="score-stat-value" id="statUnattempted" style="color: #cbd5e1;">0</span>
+            <span class="score-stat-label">Unattempted</span>
+          </div>
+          <div class="score-stat-card">
+            <span class="score-stat-value" id="statTimeTaken" style="font-size: 1.25rem;">00:00</span>
+            <span class="score-stat-label">Time Taken</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Solutions Area: Displayed ONLY for Incorrect & Unattempted Questions -->
+      <div class="solutions-section">
+        <div class="solutions-header-row">
+          <div>
+            <h3>Solutions &amp; Explanations</h3>
+            <p style="font-size: 0.88rem; color: #64748b; margin-top: 2px;">
+              Exclusively providing solutions for questions answered incorrectly or left unattempted
+            </p>
+          </div>
+          <div class="solution-filters">
+            <button type="button" class="filter-btn active" data-filter="all" id="btnFilterAll">
+              All for Review (<span id="filterAllCount">0</span>)
+            </button>
+            <button type="button" class="filter-btn" data-filter="incorrect" id="btnFilterIncorrect">
+              Incorrect Only (<span id="filterIncorrectCount">0</span>)
+            </button>
+            <button type="button" class="filter-btn" data-filter="unattempted" id="btnFilterUnattempted">
+              Unattempted Only (<span id="filterUnattemptedCount">0</span>)
+            </button>
+          </div>
+        </div>
+
+        <div class="solution-notice-box">
+          ℹ️ <strong>Assessment Policy:</strong> In accordance with exam instructions, the solution key and detailed factual explanations below are provided <strong>ONLY for your incorrect and un-attempted questions</strong>. Correctly answered questions are verified and excluded from this review.
+        </div>
+
+        <div id="solutionsListContainer">
+          <!-- Dynamically populated review questions -->
+        </div>
+
+        <div class="result-actions-row">
+          <button type="button" id="btnPrintResults" class="btn-exam btn-default">
+            🖨️ Print Scorecard / Review
+          </button>
+          <button type="button" id="btnRetakeTest" class="btn-exam btn-nav">
+            ↺ Retake Examination
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MODALS: PAUSE MODAL & SUBMIT CONFIRMATION MODAL
+       ========================================================================== -->
+  <!-- Pause Modal -->
+  <div id="modalPause" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">⏸️ Assessment Paused</div>
+      <div class="modal-body">
+        <p>Your examination timer has been temporarily paused. The question content is hidden to preserve assessment integrity.</p>
+        <p style="margin-top: 10px; font-weight: 600; color: #1e3a8a;">
+          Click the button below when you are ready to resume your examination.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btnResumeTest" class="btn-exam btn-submit">
+          ▶ Resume Examination
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Submit Confirmation Modal -->
+  <div id="modalSubmitConfirm" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">⚠️ Submit Examination Confirmation</div>
+      <div class="modal-body">
+        <p>Please review your test status summary before final submission:</p>
+        <table class="modal-summary-table">
+          <thead>
+            <tr>
+              <th>Status Category</th>
+              <th>Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Answered Questions</td>
+              <td id="modalCountAnswered">0</td>
+            </tr>
+            <tr>
+              <td>Not Answered Questions</td>
+              <td id="modalCountNotAnswered">0</td>
+            </tr>
+            <tr>
+              <td>Marked for Review</td>
+              <td id="modalCountReview">0</td>
+            </tr>
+            <tr>
+              <td>Answered &amp; Marked for Review</td>
+              <td id="modalCountAnsReview">0</td>
+            </tr>
+            <tr>
+              <td>Not Visited Questions</td>
+              <td id="modalCountNotVisited">0</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="color: #b91c1c; font-weight: 600;">
+          Are you sure you want to submit the examination? You will not be able to modify your answers after submitting.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btnCancelSubmit" class="btn-exam btn-default">
+          Cancel &amp; Return
+        </button>
+        <button type="button" id="btnFinalSubmit" class="btn-exam btn-submit">
+          Yes, Submit Test
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       EMBEDDED JAVASCRIPT: TEST ENGINE, SHUFFLING, PALETTE & SCORING
+       ========================================================================== -->
+  <script>
+    (function () {
+      // Raw Question Bank (150 Questions strictly from source)
+      const rawQuestions = [{"id": 1, "q": "National Forest Martyrs' Day is observed annually on 11 September across India to commemorate which historical event?", "options": ["The 1730 Khejarli Massacre in Marwar (Jodhpur, Rajasthan)", "The 1973 Chipko Movement in Chamoli (Uttarakhand)", "The 1983 Appiko Movement in Uttara Kannada (Karnataka)", "The 1855 Santhal Rebellion in Rajmahal Hills (Jharkhand)"], "ans": 0, "solution": "National Forest Martyrs' Day was instituted by the MoEFCC in 2013 and is observed on 11 September to honour the 1730 Khejarli Massacre, where Amrita Devi Bishnoi and 363 Bishnoi community members sacrificed their lives to protect sacred Khejri trees (Prosopis cineraria)."}, {"id": 2, "q": "Consider the following statements regarding the Khejarli Massacre and the Khejri tree:\nI. The massacre took place in 1730 under the reign of Maharaja Abhai Singh of Marwar.\nII. Amrita Devi Bishnoi led the protest along with her three daughters.\nIII. The Khejri tree (Prosopis cineraria) is the official State Tree of both Rajasthan and Telangana.\nWhich of the statements given above are correct?", "options": ["I and II only", "II and III only", "I and III only", "I, II and III"], "ans": 3, "solution": "All three statements are correct. In 1730, Amrita Devi Bishnoi and her daughters sacrificed their lives alongside 363 Bishnois in Marwar. Prosopis cineraria (Khejri) is the official State Tree of Rajasthan and Telangana (where it is known as Jammi Chettu)."}, {"id": 3, "q": "On which date did the Constituent Assembly of India adopt Hindi written in Devanagari script as the Official Language of the Union, celebrated annually as National Hindi Diwas?", "options": ["14 September 1949", "26 January 1950", "15 August 1947", "10 January 1975"], "ans": 0, "solution": "On 14 September 1949, the Constituent Assembly adopted Hindi in Devanagari script as the Official Language of the Union of India under Article 343(1). It was first celebrated as National Hindi Diwas in 1953. World Hindi Day is observed on 10 January."}, {"id": 4, "q": "With reference to the constitutional provisions regarding languages in India, consider the following statements:\nI. Article 343(1) provides that the official language of the Union shall be Hindi in Devanagari script.\nII. The Constitution of India declares Hindi as the National Language of India.\nIII. English is one of the 22 languages included in the Eighth Schedule of the Constitution.\nWhich of the statements given above is/are correct?", "options": ["I only", "I and II only", "II and III only", "I and III only"], "ans": 0, "solution": "Only Statement I is correct. Statement II is incorrect because India has NO National Language; Hindi and English are the Official Languages. Statement III is incorrect because English is NOT among the 22 Scheduled Languages in the Eighth Schedule."}, {"id": 5, "q": "What is the official theme of the International Day for the Preservation of the Ozone Layer (World Ozone Day) 2026?", "options": ["Global Action for a Cooler Planet", "Montreal Protocol: Fixing the Ozone Layer and Reducing Climate Change", "Ozone for Life: 35 Years of Ozone Layer Protection", "Keep Cool and Carry On: Protecting Our Biosphere"], "ans": 0, "solution": "The UNEP Ozone Secretariat designated 'Global Action for a Cooler Planet' as the theme for World Ozone Day (16 September) 2026, commemorating 10 years of the Kigali Amendment."}, {"id": 6, "q": "Consider the following statements regarding the Ozone layer and related environmental conventions:\nI. The Ozone layer is primarily concentrated in the Stratosphere between 15 km and 35 km altitude.\nII. The Montreal Protocol was signed on 16 September 1987 to phase out Ozone Depleting Substances (ODS).\nIII. The 2016 Kigali Amendment to the Montreal Protocol aims to phase down Hydrofluorocarbons (HFCs).\nWhich of the statements given above are correct?", "options": ["I and II only", "II and III only", "I and III only", "I, II and III"], "ans": 3, "solution": "All three statements are correct. The ozone layer is located in the stratosphere, absorbing harmful UV-B radiation. The Montreal Protocol was signed on 16 September 1987, and the Kigali Amendment (2016) targets the phase-down of potent greenhouse warming HFCs."}, {"id": 7, "q": "Starting in 2025, the Government of India permanently fixed which date to celebrate National Ayurveda Day, coinciding with the Autumnal Equinox?", "options": ["23 September", "11 September", "17 September", "29 October"], "ans": 0, "solution": "Starting in 2025, the Ministry of Ayush permanently fixed 23 September (the Autumnal Equinox) as National Ayurveda Day, ending the previous system of observing it on the variable lunar date of Dhanvantari Jayanti (Dhanteras)."}, {"id": 8, "q": "Which Indian city hosted the national celebration of the 11th National Ayurveda Day on 23 September 2026 under the theme 'Ayurveda for a Healthier Tomorrow'?", "options": ["Nagpur, Maharashtra", "Varanasi, Uttar Pradesh", "Dehradun, Uttarakhand", "Bhubaneswar, Odisha"], "ans": 0, "solution": "The national-level celebration of the 11th National Ayurveda Day 2026 was hosted in Nagpur, Maharashtra. The upcoming World Ayurveda Congress is scheduled for Bhubaneswar, Odisha."}, {"id": 9, "q": "World Tourism Day is observed globally on 27 September. Which host destination was officially designated for the global celebrations of World Tourism Day 2026?", "options": ["San Salvador and Surf City, El Salvador", "Riyadh, Saudi Arabia", "Tbilisi, Georgia", "Bali, Indonesia"], "ans": 0, "solution": "The official global host destination for World Tourism Day (27 September) 2026 was San Salvador and Surf City, El Salvador, coordinated by UN Tourism."}, {"id": 10, "q": "Who was elected as the Secretary-General of UN Tourism (formerly UNWTO) for the 2026\u20132029 term, becoming the first woman to lead the Madrid-based organisation?", "options": ["Shaikha Nasser Al Nowais (UAE)", "Rebeca Grynspan (Costa Rica)", "Ngozi Okonjo-Iweala (Nigeria)", "Audrey Azoulay (France)"], "ans": 0, "solution": "Shaikha Nasser Al Nowais of the United Arab Emirates was elected as the Secretary-General of UN Tourism (headquartered in Madrid, Spain) for the 2026\u20132029 term, becoming the first woman to lead the agency."}, {"id": 11, "q": "Where was the month-long 9th Rashtriya Poshan Maah launched in September 2026 by the Ministry of Women and Child Development?", "options": ["Varanasi, Uttar Pradesh", "Gandhinagar, Gujarat", "Bhopal, Madhya Pradesh", "Patna, Bihar"], "ans": 0, "solution": "The nationwide 9th Rashtriya Poshan Maah 2026 was officially launched in Varanasi, Uttar Pradesh, accompanied by the observance of National Nutrition Week (1\u20137 September)."}, {"id": 12, "q": "What was the official theme for World Coconut Day observed on 2 September 2026?", "options": ["Coconut in the Times of Uncertainty: Securing Food, Energy, and Livelihood", "Sustaining the Coconut Sector for Present and Future Generations", "Coconut for a Healthy Green Planet and Resilient Communities", "Empowering Coconut Growers through Digital Agro-Innovation"], "ans": 0, "solution": "The theme for World Coconut Day (2 September) 2026 was 'Coconut in the Times of Uncertainty: Securing Food, Energy, and Livelihood', observed under the auspices of the Asian and Pacific Coconut Community (APCC)."}, {"id": 13, "q": "On the occasion of World Coconut Day 2026, which ICAR institute launched the upgraded digital portal 'Kshithi 2.0'?", "options": ["ICAR\u2013Central Plantation Crops Research Institute (CPCRI, Kasaragod)", "ICAR\u2013Indian Agricultural Research Institute (IARI, New Delhi)", "ICAR\u2013Central Tuber Crops Research Institute (CTCRI, Thiruvananthapuram)", "ICAR\u2013Indian Institute of Spices Research (IISR, Kozhikode)"], "ans": 0, "solution": "ICAR\u2013Central Plantation Crops Research Institute (CPCRI), Kasaragod (Kerala) launched the 'Kshithi 2.0' portal on World Coconut Day 2026."}, {"id": 14, "q": "International Skyscraper Day is observed annually on 3 September to mark the birth anniversary of which celebrated architect?", "options": ["Louis Sullivan", "Frank Lloyd Wright", "Le Corbusier", "Zaha Hadid"], "ans": 0, "solution": "International Skyscraper Day is observed on 3 September to commemorate the birth anniversary of American architect Louis Sullivan, widely regarded as the 'Father of Skyscrapers'."}, {"id": 15, "q": "On the occasion of National Teachers' Day on 5 September 2026, how many distinguished teachers were conferred the National Teachers' Award by President Droupadi Murmu?", "options": ["82 educators", "50 educators", "75 educators", "100 educators"], "ans": 0, "solution": "On National Teachers' Day (5 September) 2026, President Droupadi Murmu presented the National Teachers' Awards 2026 to 82 exemplary educators at Vigyan Bhawan, New Delhi."}, {"id": 16, "q": "The International Day of Charity, observed on 5 September, commemorates the death anniversary of which Nobel Peace Prize laureate?", "options": ["Mother Teresa", "Nelson Mandela", "Kailash Satyarthi", "Wangari Maathai"], "ans": 0, "solution": "The UN International Day of Charity is observed on 5 September to mark the death anniversary of Mother Teresa, who passed away on 5 September 1997 after a lifetime of selfless humanitarian service."}, {"id": 17, "q": "What was the theme for the 7th International Day of Clean Air for Blue Skies observed by the United Nations on 7 September 2026?", "options": ["Clean Air for Climatic Action", "Together for Clean Air", "The Air We Share", "Healthy Air, Healthy Planet"], "ans": 0, "solution": "The UN observance of the International Day of Clean Air for Blue Skies on 7 September 2026 was celebrated under the theme 'Clean Air for Climatic Action'."}, {"id": 18, "q": "The International Day of Police Cooperation is observed on 7 September to commemorate the 1923 founding of which global law enforcement body?", "options": ["INTERPOL (International Criminal Police Organization)", "Europol", "UN Office on Drugs and Crime (UNODC)", "Financial Action Task Force (FATF)"], "ans": 0, "solution": "The UN General Assembly designated 7 September as the International Day of Police Cooperation to mark the centenary of the founding of INTERPOL (International Criminal Police Commission) on 7 September 1923 in Vienna."}, {"id": 19, "q": "Which country served as the official global host for UNESCO's International Literacy Day 2026 under the theme 'Literacy for People, the Planet, and Prosperity' on 8 September?", "options": ["Mexico", "France", "Brazil", "India"], "ans": 0, "solution": "UNESCO hosted the global conference for International Literacy Day (8 September) 2026 in Mexico under the theme 'Literacy for People, the Planet, and Prosperity'."}, {"id": 20, "q": "What is the official toll-free helpline number for India's National Tele-Mental Health Programme (Tele-MANAS), highlighted on World Suicide Prevention Day (10 September)?", "options": ["14416", "1930", "1098", "112"], "ans": 0, "solution": "Tele-MANAS (Tele Mental Health Assistance and Networking Across States) operates on the 24x7 toll-free emergency helpline number 14416 (or 1800-891-4416)."}, {"id": 21, "q": "Digvijay Diwas is observed annually on 11 September in India to commemorate which momentous event in modern Indian history?", "options": ["Swami Vivekananda's historic address at the 1893 Chicago Parliament of the World's Religions", "Mahatma Gandhi's launch of the Civil Disobedience Movement in 1930", "Netaji Subhas Chandra Bose's declaration of the Azad Hind Government in 1943", "The signing of the Poona Pact in 1932"], "ans": 0, "solution": "Digvijay Diwas (11 September) commemorates Swami Vivekananda's historic opening address at the World Parliament of Religions in Chicago on 11 September 1893."}, {"id": 22, "q": "Saragarhi Day is observed on 12 September to commemorate the heroic last stand of 21 Sikh soldiers in 1897. Which British Indian Army regiment did they belong to?", "options": ["36th Sikhs (now 4th Battalion, Sikh Regiment)", "14th Ferozepore Sikhs", "1st Punjab Regiment", "5th Gorkha Rifles"], "ans": 0, "solution": "On 12 September 1897, 21 brave soldiers of the 36th Sikhs (now 4th Sikh Regiment), led by Havildar Ishar Singh, fought against over 10,000 Pashtun Orakzai and Afridi tribesmen at the Battle of Saragarhi."}, {"id": 23, "q": "National Engineers' Day is observed in India on 15 September to celebrate the birth anniversary of which visionary engineer and statesman?", "options": ["Sir M. Visvesvaraya", "E. Sreedharan", "Verghese Kurien", "Homi J. Bhabha"], "ans": 0, "solution": "National Engineers' Day is celebrated on 15 September to honour Bharat Ratna Sir Mokshagundam Visvesvaraya (born 15 Sept 1861), who also authored the seminal book 'Planned Economy for India' (1934)."}, {"id": 24, "q": "The International Day for Interventional Cardiology is observed annually on 16 September to commemorate which landmark medical breakthrough?", "options": ["The first successful coronary angioplasty performed by Dr. Andreas Gr\u00fcntzig in 1977", "The first human heart transplant performed by Dr. Christiaan Barnard in 1967", "The discovery of penicillin by Alexander Fleming in 1928", "The development of the cardiac pacemaker by Wilson Greatbatch in 1958"], "ans": 0, "solution": "16 September marks the anniversary of the world's first successful percutaneous transluminal coronary angioplasty, performed by German cardiologist Dr. Andreas Gr\u00fcntzig in Zurich on 16 September 1977."}, {"id": 25, "q": "Hyderabad Liberation Day is observed on 17 September. Which military operation was executed by the Indian Armed Forces in September 1948 to integrate the princely state of Hyderabad into the Indian Union?", "options": ["Operation Polo", "Operation Vijay", "Operation Blue Star", "Operation Meghdoot"], "ans": 0, "solution": "Operation Polo (13\u201317 September 1948), led by Major General Joyanto Nath Chaudhuri, was the military action that ended the rule of Nizam Mir Osman Ali Khan and integrated Hyderabad into the Indian Union."}, {"id": 26, "q": "Consider the following statements regarding Doordarshan:\nI. Doordarshan began as an experimental broadcast from New Delhi in September 1959.\nII. September 2026 marked the 67th Foundation Day of Doordarshan.\nWhich of the statements given above is/are correct?", "options": ["I only", "II only", "Both I and II", "Neither I nor II"], "ans": 2, "solution": "Both statements are correct. Doordarshan was founded as an experimental public television service in September 1959 with aid from UNESCO and celebrated its 67th Foundation Day in September 2026."}, {"id": 27, "q": "World Bamboo Day is observed globally on 18 September. In which city was the World Bamboo Organization (WBO) officially established during the 8th World Bamboo Congress in 2009?", "options": ["Bangkok, Thailand", "Tokyo, Japan", "Hanoi, Vietnam", "Manila, Philippines"], "ans": 0, "solution": "World Bamboo Day was officially declared on 18 September 2009 during the 8th World Bamboo Congress held in Bangkok, Thailand."}, {"id": 28, "q": "International Red Panda Day is observed annually on the third Saturday of September. The Red Panda (Ailurus fulgens) is the official State Animal of which Indian state?", "options": ["Sikkim", "Arunachal Pradesh", "Meghalaya", "Nagaland"], "ans": 0, "solution": "The Red Panda (Ailurus fulgens), classified as Endangered on the IUCN Red List, is the official State Animal of Sikkim."}, {"id": 29, "q": "World Rhino Day is celebrated globally on 22 September. Which of the following rhino species is classified as 'Vulnerable' and predominantly found in India's Kaziranga and Pobitora protected areas?", "options": ["Greater One-Horned Rhinoceros (Indian Rhino)", "Javan Rhinoceros", "Sumatran Rhinoceros", "Black Rhinoceros"], "ans": 0, "solution": "The Greater One-Horned Rhinoceros (Rhinoceros unicornis) is listed as Vulnerable and is found in the alluvial grasslands of the Brahmaputra valley in Assam and the Terai region. Javan and Sumatran rhinos are Critically Endangered."}, {"id": 30, "q": "Antyodaya Diwas is celebrated across India on 25 September to mark the birth anniversary of which political philosopher and thinker?", "options": ["Pandit Deendayal Upadhyaya", "Dr. Syama Prasad Mookerjee", "Acharya Vinoba Bhave", "Ram Manohar Lohia"], "ans": 0, "solution": "Antyodaya Diwas is celebrated on 25 September to mark the birth anniversary of Pandit Deendayal Upadhyaya (born 1916), who propounded the philosophy of 'Integral Humanism' and uplifting the last person in society (Antyodaya)."}, {"id": 31, "q": "On 26 September, India commemorates the birth anniversary of Ishwar Chandra Vidyasagar. His relentless social reform crusade was directly instrumental in the enactment of which historic legislation?", "options": ["Hindu Widows' Remarriage Act, 1856", "Abolition of Sati Act, 1829", "Age of Consent Act, 1891", "Child Marriage Restraint Act, 1929"], "ans": 0, "solution": "Ishwar Chandra Vidyasagar's tireless social reform campaign led Lord Dalhousie and Lord Canning's administration to pass the Hindu Widows' Remarriage Act (Act XV) of 1856."}, {"id": 32, "q": "World Rabies Day is observed annually on 28 September to mark the death anniversary of which pioneer who developed the first effective rabies vaccine?", "options": ["Louis Pasteur", "Edward Jenner", "Robert Koch", "Alexander Fleming"], "ans": 0, "solution": "World Rabies Day is observed on 28 September to mark the death anniversary of French microbiologist and chemist Louis Pasteur (passed away 28 Sept 1895), who developed the first rabies vaccine."}, {"id": 33, "q": "Which international organisation organises World Heart Day annually on 29 September to raise awareness about cardiovascular diseases?", "options": ["World Heart Federation (WHF)", "World Health Organization (WHO)", "International Federation of Red Cross", "Doctors Without Borders (MSF)"], "ans": 0, "solution": "World Heart Day was created by the World Heart Federation (WHF) in conjunction with WHO and is celebrated annually on 29 September."}, {"id": 34, "q": "International Translation Day is celebrated annually on 30 September to honour which historical figure, the patron saint of translators who translated the Bible into Latin (the Vulgate)?", "options": ["St. Jerome", "St. Augustine", "St. Thomas Aquinas", "St. Francis of Assisi"], "ans": 0, "solution": "International Translation Day is observed on 30 September on the feast of St. Jerome, the Christian scholar who translated the Bible into Latin (known as the Vulgate)."}, {"id": 35, "q": "In September 2026, the UN General Assembly adopted a resolution officially designating which date as the 'International Day for the Elimination of Child, Early and Forced Marriage'?", "options": ["27 November", "11 October", "25 November", "8 March"], "ans": 0, "solution": "On 4 September 2026, the 193-member UN General Assembly adopted a resolution designating 27 November annually as the International Day for the Elimination of Child, Early and Forced Marriage."}, {"id": 36, "q": "National Wildlife Day is observed annually on 4 September. In which year was the Wildlife (Protection) Act enacted in India to provide legal protection to wild animals, birds, and plant species?", "options": ["1972", "1980", "1986", "2002"], "ans": 0, "solution": "The landmark Wildlife (Protection) Act was enacted by the Indian Parliament in 1972, providing constitutional and statutory frameworks for creating National Parks and Wildlife Sanctuaries."}, {"id": 37, "q": "Himalaya Diwas is celebrated annually on 9 September across which Himalayan state to foster ecological conservation and sustainable development?", "options": ["Uttarakhand", "Himachal Pradesh", "Sikkim", "Arunachal Pradesh"], "ans": 0, "solution": "Himalaya Diwas is celebrated officially on 9 September in the state of Uttarakhand to spread awareness about the preservation of the fragile Himalayan ecosystem."}, {"id": 38, "q": "Consider the following pairs of observances and dates in September:\n1. International Day of Peace \u2014 21 September\n2. World Maritime Day \u2014 Last Thursday of September\n3. World Pharmacists Day \u2014 25 September\nWhich of the pairs given above are correctly matched?", "options": ["1 and 2 only", "2 and 3 only", "1 and 3 only", "1, 2 and 3"], "ans": 3, "solution": "All three pairs are correctly matched. International Day of Peace is on 21 September, World Maritime Day is observed by IMO on the last Thursday of September, and World Pharmacists Day is on 25 September."}, {"id": 39, "q": "International Vulture Awareness Day is observed on the first Saturday of September. As reported in September 2026, which two Tiger Reserves in Maharashtra recorded high survival rates for reintroduced captive vultures?", "options": ["Melghat Tiger Reserve (70%) and Pench Tiger Reserve (60%)", "Tadoba-Andhari Tiger Reserve and Sahyadri Tiger Reserve", "Bor Tiger Reserve and Nawegaon-Nagzira Tiger Reserve", "Pilibhit Tiger Reserve and Dudhwa Tiger Reserve"], "ans": 0, "solution": "Maharashtra recorded successful vulture reintroduction with 70% survival rate in Melghat Tiger Reserve and 60% survival rate in Pench Tiger Reserve."}, {"id": 40, "q": "The UN Day for South-South Cooperation is observed annually on 12 September. It commemorates the adoption of which landmark diplomatic plan of action in 1978?", "options": ["Buenos Aires Plan of Action (BAPA)", "Rio Declaration on Environment and Development", "Kyoto Protocol", "Doha Development Agenda"], "ans": 0, "solution": "The UN Day for South-South Cooperation (12 September) marks the adoption of the Buenos Aires Plan of Action (BAPA) for Promoting and Implementing Technical Cooperation among Developing Countries by 138 nations in 1978."}, {"id": 41, "q": "Who was appointed as the new Lieutenant Governor (LG) of the Union Territory of Andaman and Nicobar Islands in September 2026?", "options": ["Dinesh Sharma", "Manoj Sinha", "Vinai Kumar Saxena", "Praful Patel"], "ans": 0, "solution": "Former Deputy Chief Minister of Uttar Pradesh and Rajya Sabha MP Dinesh Sharma was appointed as the Lieutenant Governor of the Andaman and Nicobar Islands in September 2026."}, {"id": 42, "q": "Senior IPS officer Sanjukta Parashar created history in September 2026 by becoming the first woman to head which elite specialised unit of the Central Reserve Police Force (CRPF)?", "options": ["CoBRA (Commando Battalion for Resolute Action)", "Rapid Action Force (RAF)", "Special Protection Group (SPG)", "National Security Guard (NSG)"], "ans": 0, "solution": "Senior IPS officer Sanjukta Parashar was appointed Inspector General (IG) of CoBRA (Commando Battalion for Resolute Action), becoming the first woman to lead the elite jungle warfare and counter-insurgency unit established in 2008."}, {"id": 43, "q": "Who was appointed as the Chairman of the Central Board of Secondary Education (CBSE) in September 2026?", "options": ["Mandeep K. Bhandari", "Nidhi Chhibber", "Rahul Singh", "Vineet Joshi"], "ans": 0, "solution": "Senior IAS officer Mandeep K. Bhandari was appointed as the Chairman of the Central Board of Secondary Education (CBSE) in September 2026."}, {"id": 44, "q": "Who was entrusted with the additional charge as the Chairperson of the Insolvency and Bankruptcy Board of India (IBBI) in September 2026?", "options": ["Jayanti Prasad", "Ravi Mital", "Navrang Saini", "M. S. Sahoo"], "ans": 0, "solution": "Whole-time member Jayanti Prasad was assigned the additional charge as the Chairperson of the Insolvency and Bankruptcy Board of India (IBBI)."}, {"id": 45, "q": "Under which Article of the Constitution of India does the President of India appoint the Chief Justice and Judges of the High Courts, as exercised in September 2026 for 8 Chief Justices?", "options": ["Article 217", "Article 124", "Article 226", "Article 214"], "ans": 0, "solution": "Under Article 217 of the Constitution of India, the Chief Justice and Judges of High Courts are appointed by the President in consultation with the Chief Justice of India and the Governor of the state."}, {"id": 46, "q": "Who was appointed as an Executive Director (ED) of the Reserve Bank of India (RBI) in September 2026?", "options": ["Suman Ray", "P. Vasudevan", "Manoranjan Mishra", "Radha Shyam Ratho"], "ans": 0, "solution": "The Reserve Bank of India appointed Suman Ray as an Executive Director (ED) in September 2026."}, {"id": 47, "q": "Who took charge as the Chairman and Managing Director (CMD) of public sector undertaking NLC India Ltd / NCL in September 2026?", "options": ["N. Franklin Jayakumar", "Prasanna Kumar Motupalli", "Manoj Jain", "K. S. Murthy"], "ans": 0, "solution": "N. Franklin Jayakumar took charge as the Chairman and Managing Director (CMD) of NLC India Limited / NCL in September 2026."}, {"id": 48, "q": "Who was appointed as the Chairman of the Board of Directors of Asian Paints in September 2026?", "options": ["Leo Puri", "Deepak Satwalekar", "Ashwin Dani", "Amit Syngle"], "ans": 0, "solution": "Seasoned financial and corporate leader Leo Puri was appointed as the Chairman of Asian Paints in September 2026."}, {"id": 49, "q": "Who was named as the Interim Chief Executive Officer (CEO) of Ujjivan Small Finance Bank in September 2026?", "options": ["Carol Furtado", "Ittira Davis", "Sanjay Agarwal", "Govind Singh"], "ans": 0, "solution": "Carol Furtado was appointed as the Interim Chief Executive Officer of Ujjivan Small Finance Bank in September 2026."}, {"id": 50, "q": "Dr. Vinay Prakash Singh was re-elected as the Secretary-General of which international body headquartered in Bangkok, Thailand?", "options": ["Asian-Pacific Postal Union (APPU)", "Asia-Pacific Economic Cooperation (APEC)", "Asian Development Bank (ADB)", "Bay of Bengal Initiative for Multi-Sectoral Technical and Economic Cooperation (BIMSTEC)"], "ans": 0, "solution": "Dr. Vinay Prakash Singh of India was re-elected as the Secretary-General of the Asian-Pacific Postal Union (APPU, HQ: Bangkok, Thailand)."}, {"id": 51, "q": "Fatima Zahra El Mansouri made global headlines in September 2026 after being appointed as the first female Prime Minister of which North African country?", "options": ["Morocco", "Tunisia", "Algeria", "Egypt"], "ans": 0, "solution": "Fatima Zahra El Mansouri was appointed as the first female Prime Minister of Morocco. Morocco lies on the southern shore of the Strait of Gibraltar separating Africa from Europe."}, {"id": 52, "q": "Which Nobel Prize-winning economist was appointed as the Chief Economist and Senior Vice President of the World Bank in September 2026?", "options": ["Michael Kremer", "Abhijit Banerjee", "Esther Duflo", "Joseph Stiglitz"], "ans": 0, "solution": "Professor Michael Kremer (who shared the 2019 Nobel Memorial Prize in Economic Sciences with Abhijit Banerjee and Esther Duflo) was appointed as World Bank Chief Economist and Senior VP."}, {"id": 53, "q": "Apple Inc. announced the appointment of which senior executive to succeed Tim Cook as its new Chief Executive Officer (CEO)?", "options": ["John Ternus", "Craig Federighi", "Jeff Williams", "Luca Maestri"], "ans": 0, "solution": "John Ternus, Senior Vice President of Hardware Engineering, was named to succeed long-serving CEO Tim Cook as Apple's Chief Executive Officer."}, {"id": 54, "q": "Software giant Adobe Inc. announced the appointment of which Indian-origin executive to succeed Shantanu Narayen as its new Chief Executive Officer?", "options": ["Anil Chakravarty", "Satya Nadella", "Nikesh Arora", "George Kurian"], "ans": 0, "solution": "Anil Chakravarty, Adobe's President of Digital Experience, was named to succeed Shantanu Narayen as the new CEO of Adobe Inc."}, {"id": 55, "q": "Who was appointed as India's next Ambassador to the Republic of Cuba in September 2026?", "options": ["Hansraj Singh Verma", "Sanjeev Singla", "Vinay Kwatra", "Taranjit Singh Sandhu"], "ans": 0, "solution": "The Ministry of External Affairs appointed Hansraj Singh Verma as India's next Ambassador to Cuba (Capital: Havana)."}, {"id": 56, "q": "Career diplomat Asad Alam Siam was appointed in September 2026 as the new High Commissioner of which neighbouring country to India?", "options": ["Bangladesh", "Sri Lanka", "Maldives", "Nepal"], "ans": 0, "solution": "Senior diplomat Asad Alam Siam was appointed as the new High Commissioner of Bangladesh to India."}, {"id": 57, "q": "Who was honoured with the prestigious Dr. A. P. J. Abdul Kalam Jan Seva Puraskar 2026 for distinguished public service?", "options": ["Kishor Makwana (Chairman, NCSC)", "Iqbal Singh Lalpura (Chairman, NCM)", "Hansraj Gangaram Ahir (Chairman, NCBC)", "Harsh Chouhan (Former Chairman, NCST)"], "ans": 0, "solution": "Kishor Makwana, Chairman of the National Commission for Scheduled Castes (NCSC), was conferred the Dr. A. P. J. Abdul Kalam Jan Seva Puraskar 2026."}, {"id": 58, "q": "Tenzing Sangyang achieved a historic military milestone in September 2026 by becoming the:", "options": ["First woman officer from Ladakh to be commissioned into the Indian Armed Forces", "First female fighter pilot of the Indian Air Force", "First woman officer to lead a tri-services contingent at Republic Day", "First woman to command an Indian Navy warship"], "ans": 0, "solution": "Tenzing Sangyang was commissioned as the first woman officer from the Union Territory of Ladakh into the Indian Armed Forces."}, {"id": 59, "q": "In September 2026, the administration of Ladakh substantially enhanced the monthly honorarium of traditional village heads known locally as:", "options": ["Goba", "Gaonburha", "Patel", "Pradhan"], "ans": 0, "solution": "In Ladakh, traditional hereditary/elected village heads are designated as 'Goba'. The administration increased their monthly honorarium in recognition of their grassroots administrative role."}, {"id": 60, "q": "Consider the following statements regarding governance and constitutional safeguards in Ladakh:\nI. A constitutional amendment proposing the insertion of Article 371K was discussed to safeguard land, culture, and employment in Ladakh.\nII. Kumik Village in Kargil's Zanskar Valley was declared Ladakh's first designated Heritage Village.\nWhich of the statements given above is/are correct?", "options": ["I only", "II only", "Both I and II", "Neither I nor II"], "ans": 2, "solution": "Both statements are correct. Discussions were held on constitutional safeguards under a proposed Article 371K for Ladakh, and Kumik Village in Zanskar was designated as Ladakh's first Heritage Village."}, {"id": 61, "q": "Which public financial enterprise issued India's first-ever 'Blue Bond' worth \u20b91,000 Crore to finance sustainable maritime and port infrastructure?", "options": ["Sagarmala Finance Corporation Limited (SFCL)", "Power Finance Corporation (PFC)", "Indian Railway Finance Corporation (IRFC)", "REC Limited"], "ans": 0, "solution": "Sagarmala Finance Corporation Limited (SFCL), under the Ministry of Ports, Shipping and Waterways, issued India's first Blue Bond of \u20b91,000 Crore dedicated to financing sustainable blue economy and maritime projects."}, {"id": 62, "q": "India's first Liquefied Natural Gas (LNG)-powered train was flagged off on which railway route using dual-fuel diesel-electric multiple unit technology?", "options": ["Sabarmati to Mehsana (Gujarat)", "Mumbai to Ahmedabad (Maharashtra\u2013Gujarat)", "New Delhi to Agra (Delhi\u2013UP)", "Bengaluru to Mysuru (Karnataka)"], "ans": 0, "solution": "Indian Railways flagged off India's first LNG-powered passenger train on the Sabarmati to Mehsana route in Gujarat, cutting carbon emissions significantly compared to conventional diesel."}, {"id": 63, "q": "Which historic settlement in Kargil's Zanskar Valley was officially designated as Ladakh's First Designated Heritage Village in September 2026?", "options": ["Kumik Village", "Turtuk Village", "Dha Village", "Alchi Village"], "ans": 0, "solution": "Kumik Village, situated in the Zanskar sub-division of Kargil district, was formally notified as Ladakh's first designated Heritage Village."}, {"id": 64, "q": "Which northeastern state developed India's first 'Bio-Happy District' promoting organic agro-forestry and community well-being in September 2026?", "options": ["Arunachal Pradesh", "Sikkim", "Mizoram", "Meghalaya"], "ans": 0, "solution": "Arunachal Pradesh developed India's first 'Bio-Happy District', integrating sustainable agriculture, biodiversity conservation, and tribal happiness indices."}, {"id": 65, "q": "Which state agency became the first forest development organisation in India to receive the prestigious PRAMAAN certification for sustainable forestry?", "options": ["Andhra Pradesh Forest Development Corporation (APFDC)", "Madhya Pradesh State Forest Development Corporation (MPSFDC)", "Karnataka Forest Development Corporation (KFDC)", "Maharashtra Forest Development Corporation (FDCM)"], "ans": 0, "solution": "The Andhra Pradesh Forest Development Corporation (APFDC) achieved the historic milestone of becoming India's first forest entity certified under the PRAMAAN forestry standard."}, {"id": 66, "q": "Where was India's first Glacial Lake Early Warning System (GLEWS) successfully installed to mitigate Glacial Lake Outburst Floods (GLOF)?", "options": ["Vasundhara Tal (Chamoli district, Uttarakhand)", "South Lhonak Lake (Mangan district, Sikkim)", "Chorabari Tal (Rudraprayag district, Uttarakhand)", "Pangong Tso (Leh district, Ladakh)"], "ans": 0, "solution": "Scientists installed India's first automated Glacial Lake Early Warning System (GLEWS) at Vasundhara Tal in Chamoli district, Uttarakhand."}, {"id": 67, "q": "At SEMICON India 2026, which enterprise unveiled India's first indigenous Silicon Carbide (SiC) semiconductor chip?", "options": ["L&T Semiconductor Technologies", "Tata Electronics Private Limited (TEPL)", "Micron Technology India", "Vedanta-Foxconn JV"], "ans": 0, "solution": "L&T Semiconductor Technologies unveiled India's first indigenously designed and engineered Silicon Carbide (SiC) chip at SEMICON India 2026."}, {"id": 68, "q": "Which Indian deep-tech space startup developed the country's first indigenous Optical Inter-Satellite Link (OISL) laser communication terminal?", "options": ["Astrogate Labs (Bengaluru)", "Skyroot Aerospace (Hyderabad)", "Agnikul Cosmos (Chennai)", "Pixxel (Bengaluru)"], "ans": 0, "solution": "Astrogate Labs, a Bengaluru-based space communications startup, indigenously developed India's first Optical Inter-Satellite Link (OISL) laser communications terminal."}, {"id": 69, "q": "Who became the first Indian woman shooter in history to win an Asian Games Gold Medal in the Women's Trap event at the 20th Asian Games 2026?", "options": ["Neeru Dhanda", "Manu Bhaker", "Rajeshwari Kumari", "Shreyasi Singh"], "ans": 0, "solution": "Neeru Dhanda created history by winning the Gold Medal in the Women's Trap shooting competition at the 20th Asian Games 2026 in Aichi-Nagoya, Japan, and also served as India's Closing Ceremony Flag Bearer."}, {"id": 70, "q": "Suchika Tariyal scripted sporting history for India at the 20th Asian Games 2026 by winning the country's first-ever medal in Mixed Martial Arts (MMA). In which weight category did she win Bronze?", "options": ["Women's 60 kg", "Women's 52 kg", "Women's 56 kg", "Women's 65 kg"], "ans": 0, "solution": "Suchika Tariyal won India's first-ever Asian Games medal (Bronze) in Mixed Martial Arts (MMA) in the Women's 60 kg division."}, {"id": 71, "q": "Which pair won India's first-ever Silver medal in Men's Skiff (49er) Sailing at the 20th Asian Games 2026?", "options": ["Manu Francis and Prince Noble", "Varun Thakkar and K. C. Ganapathy", "Vishnu Saravanan and Nethra Kumanan", "Chitresh Tatha and Eabad Ali"], "ans": 0, "solution": "Indian sailors Manu Francis and Prince Noble clinched India's first-ever Silver medal in the Men's Skiff (49er class) at the 20th Asian Games."}, {"id": 72, "q": "Which film created history at the 72nd National Film Awards by becoming the first Santali-language film to be honoured in the non-feature segment?", "options": ["Anga (Angen), directed by Ravi Raj Murmu", "Pather Dabi", "Bramayugam", "Gondhal"], "ans": 0, "solution": "'Anga' ('Angen'), directed by Ravi Raj Murmu, became the first Santali-language film ever to win a National Film Award at the 72nd National Film Awards."}, {"id": 73, "q": "For the first time in 72 years, the National Film Awards ceremony was hosted outside New Delhi. At which historic location was the 72nd ceremony presided over by President Droupadi Murmu?", "options": ["Ekta Nagar (Kevadia), Gujarat", "Varanasi, Uttar Pradesh", "Mumbai, Maharashtra", "Hyderabad, Telangana"], "ans": 0, "solution": "Breaking a 72-year precedent of being held in New Delhi, the 72nd National Film Awards ceremony was held at Ekta Nagar (Kevadia), Gujarat, near the Statue of Unity."}, {"id": 74, "q": "Which major seaport was officially declared as the East Coast of India's first Mega Port, slated for expansion beyond 300\u2013500 MTPA capacity?", "options": ["Paradip Port (Odisha)", "Visakhapatnam Port (Andhra Pradesh)", "V. O. Chidambaranar Port (Tamil Nadu)", "Syama Prasad Mookerjee Port (Kolkata)"], "ans": 0, "solution": "Paradip Port in Odisha was declared as the first Mega Port on India's eastern seaboard under the Maritime Amrit Kaal Vision 2047, aiming to surpass 300 to 500 MTPA cargo handling."}, {"id": 75, "q": "Which nation became the first in the Caribbean region to sign an agreement to adopt India's Unified Payments Interface (UPI) technology?", "options": ["Trinidad and Tobago", "Jamaica", "Barbados", "Guyana"], "ans": 0, "solution": "Trinidad and Tobago became the first Caribbean nation to adopt NPCI's Unified Payments Interface (UPI) for real-time person-to-person and merchant payments."}, {"id": 76, "q": "Which European nation is constructing the world's first artificial energy island named 'Princess Elisabeth Island' in the North Sea to integrate offshore wind grids?", "options": ["Belgium", "Netherlands", "Denmark", "Norway"], "ans": 0, "solution": "Belgium is constructing 'Princess Elisabeth Island', the world's first artificial energy island, situated approximately 45 km off the Belgian coast in the North Sea."}, {"id": 77, "q": "Which district of Mizoram attained the historic 'Surakshit' HIV status in September 2026 by achieving the global UNAIDS 95-95-95 targets?", "options": ["Saitual District", "Champhai District", "Aizawl District", "Lunglei District"], "ans": 0, "solution": "Saitual District in Mizoram achieved 'Surakshit' HIV status after meeting the UNAIDS 95-95-95 targets (95% diagnosed, 95% on antiretroviral therapy, 95% virally suppressed)."}, {"id": 78, "q": "Asia's first Telecom Manufacturing Zone (TMZ) was officially announced to be set up at which city in Madhya Pradesh?", "options": ["Gwalior", "Indore", "Bhopal", "Jabalpur"], "ans": 0, "solution": "The Government announced the establishment of Asia's first dedicated Telecom Manufacturing Zone (TMZ) at Gwalior, Madhya Pradesh."}, {"id": 79, "q": "APEDA facilitated the first-ever commercial export consignment of GI-tagged Kalaburagi (Gulbarga) Tur Dal from Karnataka to which destination country?", "options": ["Maldives", "UAE", "Singapore", "Mauritius"], "ans": 0, "solution": "The Agricultural and Processed Food Products Export Development Authority (APEDA) flagged off the first commercial export shipment of GI-tagged Gulbarga Tur Dal from Karnataka to the Maldives."}, {"id": 80, "q": "Consider the following statements regarding first-time milestones in India:\nI. SFCL issued India's first Blue Bond with an issue size of \u20b91,000 Crore.\nII. India's first LNG passenger train operates between Sabarmati and Mehsana in Gujarat.\nIII. Kumik Village was notified as Ladakh's first designated Heritage Village.\nWhich of the statements given above are correct?", "options": ["I and II only", "II and III only", "I and III only", "I, II and III"], "ans": 3, "solution": "All three statements are correct. India's first Blue Bond was issued by SFCL (\u20b91,000 Cr), the first LNG train runs from Sabarmati to Mehsana in Gujarat, and Kumik village in Zanskar was designated Ladakh's first Heritage Village."}, {"id": 81, "q": "What type of indigenous defense system is 'Gagantak-243', which underwent successful trials in September 2026?", "options": ["Precision-guided long-range glide bomb", "Anti-tank guided missile", "Air-to-air beyond-visual-range missile", "Submarine-launched ballistic missile"], "ans": 0, "solution": "'Gagantak-243' is an indigenously developed precision-guided glide bomb capable of striking adversary targets across borders from standoff distances while remaining within sovereign airspace."}, {"id": 82, "q": "Which autonomous defense system was developed under the name 'Ahuti Mk2' to protect critical infrastructure against hostile low-flying aerial threats?", "options": ["Autonomous counter-UAV / interceptor drone system", "Man-portable air-defense system (MANPADS)", "Anti-radiation loitering munition", "Unmanned surface combat vessel"], "ans": 0, "solution": "'Ahuti Mk2' is an indigenous autonomous counter-UAV (counter-drone) interceptor system engineered to neutralise hostile rogue drones."}, {"id": 83, "q": "The Indian Army established the dedicated 'AASHVAST' facility primarily for which defense technology purpose?", "options": ["Drone-testing, cyber security and hardware vulnerability screening", "High-altitude mountain warfare simulation", "Nuclear fallout decontamination training", "Biological and chemical hazard neutralisation"], "ans": 0, "solution": "The Indian Army operationalised the 'AASHVAST' facility as an advanced laboratory for drone testing, cyber-resilience verification, and hardware screening against malicious backdoors."}, {"id": 84, "q": "The 'Smart Anti-Airfield Weapon' (SAAW), designed to incapacitate enemy airstrips, runways, and fortified bunkers from standoff range, is manufactured by:", "options": ["Bharat Dynamics Limited (BDL)", "Hindustan Aeronautics Limited (HAL)", "Bharat Electronics Limited (BEL)", "Larsen & Toubro Defence"], "ans": 0, "solution": "The Smart Anti-Airfield Weapon (SAAW) was developed by DRDO and is produced by Bharat Dynamics Limited (BDL) to destroy enemy runway infrastructure with pinpoint accuracy."}, {"id": 85, "q": "DRDO achieved a major breakthrough in radar and electronic warfare hardware by developing indigenous MMIC technology based on which wide-bandgap semiconductor material?", "options": ["Gallium Nitride (GaN)", "Silicon Germanium (SiGe)", "Gallium Arsenide (GaAs)", "Indium Phosphide (InP)"], "ans": 0, "solution": "DRDO successfully developed indigenous Gallium Nitride (GaN) Monolithic Microwave Integrated Circuits (MMIC), critical for high-power transmit-receive modules in next-generation AESA radars."}, {"id": 86, "q": "Where did the Indian Air Force (IAF) conduct the high-octane 'Drone-a-thon 2026' to evaluate indigenous UAV swarms and counter-drone systems?", "options": ["Pokhran, Rajasthan", "Chandipur, Odisha", "Suratgarh, Rajasthan", "Leh, Ladakh"], "ans": 0, "solution": "The Indian Air Force conducted the 'Drone-a-thon 2026' operational demonstration at the Pokhran Firing Range in Rajasthan."}, {"id": 87, "q": "Which public sector shipyard in Kolkata is constructing the next-generation Ocean Research Vessel (ORV) 'Sagar Manthan' for the Ministry of Earth Sciences?", "options": ["Garden Reach Shipbuilders & Engineers (GRSE)", "Mazagon Dock Shipbuilders Limited (MDL)", "Cochin Shipyard Limited (CSL)", "Goa Shipyard Limited (GSL)"], "ans": 0, "solution": "GRSE (Garden Reach Shipbuilders & Engineers) in Kolkata is constructing the advanced Ocean Research Vessel (ORV) 'Sagar Manthan' for deep-sea exploration under the Ministry of Earth Sciences."}, {"id": 88, "q": "Project UNICORN (NORA-50), a collaborative defense technology programme between India and Japan, focuses on the co-development of:", "options": ["Unified Complex Radio Antenna stealth mast systems for naval warships", "Air-independent propulsion (AIP) systems for submarines", "Joint stealth fifth-generation fighter jet engines", "Hypersonic glide vehicle interception radars"], "ans": 0, "solution": "Project UNICORN (NORA-50) is an Indo-Japanese naval defense initiative to integrate unified stealth radio antenna masts on Indian Navy warships to reduce radar cross-section."}, {"id": 89, "q": "India's strategic 'BrahMos Belt' defense export initiative involves supplying supersonic cruise missiles to key Southeast Asian littoral nations, including:", "options": ["Philippines, Indonesia, and Vietnam", "Japan, South Korea, and Taiwan", "Oman, UAE, and Qatar", "Kenya, Tanzania, and Seychelles"], "ans": 0, "solution": "Under its strategic maritime framework, India delivers and negotiates supersonic BrahMos coastal missile defense batteries to partner nations in the South China Sea littoral, notably the Philippines, Indonesia, and Vietnam."}, {"id": 90, "q": "NASA's upcoming Nancy Grace Roman Space Telescope is a premier observatory designed primarily to investigate which cosmic phenomena?", "options": ["Dark energy, cosmic expansion, and exoplanet demographic surveys", "Solar coronal mass ejections and sunspot cycles", "Lunar south pole ice regolith composition", "Asteroid deflection and planetary defense trajectory modeling"], "ans": 0, "solution": "NASA's Nancy Grace Roman Space Telescope (named after NASA's first Chief of Astronomy) is a wide-field infrared observatory engineered to study dark energy, large-scale cosmic structure, and discover thousands of exoplanets."}, {"id": 91, "q": "ISRO's EOS-05 (GISAT-1A) satellite is uniquely designed to provide continuous real-time monitoring of the Indian subcontinent from which orbital regime?", "options": ["Geostationary Orbit (GEO)", "Sun-Synchronous Polar Orbit (SSPO)", "Low Earth Orbit (LEO)", "Medium Earth Orbit (MEO)"], "ans": 0, "solution": "EOS-05 (GISAT-1A) is an advanced Earth Observation Satellite positioned in Geostationary Orbit (~36,000 km altitude) to allow near real-time imaging of border security and natural disasters."}, {"id": 92, "q": "The TRISHNA (Thermal infraRed Imaging Satellite for High-resolution Natural resource Assessment) mission is a joint Earth observation partnership between ISRO and which space agency?", "options": ["CNES (National Centre for Space Studies, France)", "JAXA (Japan Aerospace Exploration Agency)", "DLR (German Aerospace Center)", "ESA (European Space Agency)"], "ans": 0, "solution": "TRISHNA is a collaborative satellite mission between ISRO (India) and CNES (France) dedicated to high-resolution thermal infrared monitoring of water resources and urban heat islands."}, {"id": 93, "q": "Under Project NETRA (Network for Space Objects Tracking and Analysis), ISRO operationalised a state-of-the-art space surveillance optical/radar tracking centre in which state?", "options": ["Assam", "Karnataka", "Odisha", "Gujarat"], "ans": 0, "solution": "ISRO established a dedicated Space Situational Awareness (SSA) radar surveillance facility in Assam under Project NETRA to track space debris and safeguard Indian space assets."}, {"id": 94, "q": "Google DeepMind unveiled an artificial intelligence atlas designed to decode the non-coding 'dark matter' of the human genome and predict disease variants. What is it named?", "options": ["AlphaGenome", "AlphaFold 3", "DeepGene", "BioMedLM"], "ans": 0, "solution": "Google DeepMind introduced 'AlphaGenome', an AI model trained to interpret non-coding human DNA sequences and assess how structural variants influence gene regulation and disease risks."}, {"id": 95, "q": "Which indigenous AI platform was launched in India in September 2026 to convert dense academic research papers into plain language summaries and vernacular languages?", "options": ["SARAL AI Platform", "Bhashini Vidya", "Vigyan Doot", "Kavach AI"], "ans": 0, "solution": "The SARAL AI platform was launched to democratise scientific knowledge by generating accessible, simplified summaries of complex scientific research papers in English and regional Indian languages."}, {"id": 96, "q": "Which IT and technology major developed an indigenous System-on-Chip (SoC) designed for connected automotive systems, smart meters, and edge IoT devices in September 2026?", "options": ["Tata Consultancy Services (TCS)", "Infosys", "Wipro", "HCL Technologies"], "ans": 0, "solution": "Tata Consultancy Services (TCS) unveiled its indigenously engineered System-on-Chip (SoC) tailored for smart utility meters, industrial IoT, and electric vehicles."}, {"id": 97, "q": "Where were the India Mobile Congress (IMC) 2026 and the 'Viksit Tech 47' conclave hosted in September 2026?", "options": ["New Delhi", "Bengaluru", "Hyderabad", "Gandhinagar"], "ans": 0, "solution": "The India Mobile Congress (IMC) 2026 and the Viksit Tech 47 conclave were held at Bharat Mandapam, New Delhi, showcasing 6G, AI, and telecom innovations."}, {"id": 98, "q": "The high-yielding, disease-resistant groundnut variety 'GPBD-4', which won the prestigious IISCA Award in September 2026, was developed by:", "options": ["University of Agricultural Sciences (UAS), Dharwad", "Tamil Nadu Agricultural University (TNAU), Coimbatore", "Punjab Agricultural University (PAU), Ludhiana", "ICAR\u2013Directorate of Groundnut Research, Junagadh"], "ans": 0, "solution": "The University of Agricultural Sciences (UAS), Dharwad (Karnataka) developed the celebrated 'GPBD-4' groundnut variety, renowned for resistance against rust and late leaf spot fungal diseases."}, {"id": 99, "q": "'Pusa Rice DST-1', developed by the Indian Agricultural Research Institute (ICAR\u2013IARI), has been engineered specifically to provide resilience against:", "options": ["Salinity and drought stress in coastal and semi-arid tracts", "Blast disease and bacterial leaf blight only", "Submergence and flash-floods during monsoon", "Heavy metal toxicity from arsenic"], "ans": 0, "solution": "ICAR\u2013IARI developed 'Pusa Rice DST-1', a climate-resilient rice variety featuring enhanced tolerance to soil salinity and moisture deficit/drought conditions."}, {"id": 100, "q": "In medical science, the condition known as 'Cold Allodynia', which was the focus of major neurobiology clinical trials in September 2026, refers to:", "options": ["Severe neuropathic pain triggered by innocuous cold temperatures following chemotherapy", "Sudden loss of taste and smell in extreme winter conditions", "Freezing of peripheral capillaries causing frostbite gangrene", "Cardiovascular arrhythmia caused by rapid hypothermia"], "ans": 0, "solution": "Cold Allodynia is a debilitating condition where patients experience severe, burning pain in response to normally painless mild cold sensations, often occurring as a side-effect of oxaliplatin chemotherapy."}, {"id": 101, "q": "Scientists conducted advanced nutritional and crystalline structure analysis on the milk crystals of which viviparous insect species (Diploptera punctata)?", "options": ["Pacific beetle cockroach", "Desert locust", "Honey bee", "Silk moth"], "ans": 0, "solution": "Diploptera punctata (the Pacific beetle cockroach) is the only known viviparous cockroach whose embryos feed on nutrient-dense milk crystals packed with complete proteins, fats, and essential sugars."}, {"id": 102, "q": "Why are Per- and Polyfluoroalkyl Substances (PFAS) commonly referred to as 'Forever Chemicals' in global environmental toxicology?", "options": ["Due to extremely strong Carbon-Fluorine bonds that prevent natural environmental degradation", "Because they release radioactive isotopes with billion-year half-lives", "Because they permanently bond to atmospheric nitrogen gas", "Because they convert into indestructible plastic polymers upon heating"], "ans": 0, "solution": "PFAS are termed 'Forever Chemicals' because the carbon-fluorine bond is one of the strongest in organic chemistry, making them practically indestructible in nature and leading to persistent bioaccumulation."}, {"id": 103, "q": "Which opportunistic fungal pathogen, known for causing severe atypical pneumonia in immunocompromised individuals and exhibiting emerging drug resistance, was highlighted in global health advisories in September 2026?", "options": ["Pneumocystis jirovecii", "Candida auris", "Aspergillus fumigatus", "Cryptococcus neoformans"], "ans": 0, "solution": "Pneumocystis jirovecii is a human-specific fungal pathogen responsible for life-threatening Pneumocystis pneumonia (PCP) in patients with HIV or suppressed immune systems."}, {"id": 104, "q": "Consider the following statements regarding planetary and astronomical discoveries in news:\nI. NASA identified a newly detected lunar impact crater named McGetchin.\nII. Elias 2-24b was catalogued as one of the youngest proto-exoplanets observed in a circumstellar disc.\nIII. Frost and atmospheric vapor cycles were mapped across Mars' giant canyon Valles Marineris.\nWhich of the statements given above are correct?", "options": ["I and II only", "II and III only", "I and III only", "I, II and III"], "ans": 3, "solution": "All three statements are correct. Planetary researchers mapped the McGetchin crater on the Moon, identified the young exoplanet Elias 2-24b, and recorded surface frost deposits in Mars' Valles Marineris canyon system."}, {"id": 105, "q": "Consider the following pairs of technological developments and originating entities:\n1. AlphaGenome \u2014 Google DeepMind\n2. GPT-6 Astra \u2014 OpenAI\n3. SiC Semiconductor Chip \u2014 L&T Semiconductor Technologies\nWhich of the pairs given above are correctly matched?", "options": ["1 and 2 only", "2 and 3 only", "1 and 3 only", "1, 2 and 3"], "ans": 3, "solution": "All three pairs are correctly matched. AlphaGenome was developed by Google DeepMind, GPT-6 Astra was introduced by OpenAI, and India's indigenous SiC chip was developed by L&T Semiconductor Technologies."}, {"id": 106, "q": "The flagship PM Vishwakarma Scheme completed 3 years of implementation on 17 September 2026. Which Union Ministry acts as the nodal ministry for this scheme?", "options": ["Ministry of Micro, Small and Medium Enterprises (MSME)", "Ministry of Skill Development and Entrepreneurship (MSDE)", "Ministry of Commerce and Industry", "Ministry of Rural Development"], "ans": 0, "solution": "The PM Vishwakarma Scheme is a 100% Central Sector Scheme with an outlay of \u20b913,000 Crore, and the Ministry of Micro, Small and Medium Enterprises (MoMSME) is the nodal ministry."}, {"id": 107, "q": "How many traditional artisan and craft trades are officially covered under the PM Vishwakarma Scheme?", "options": ["18 traditional trades", "12 traditional trades", "25 traditional trades", "15 traditional trades"], "ans": 0, "solution": "The PM Vishwakarma Scheme covers 18 traditional artisan and craft trades, including carpenters, boat builders, blacksmiths, potters, sculptors, cobblers, tailors, and weavers."}, {"id": 108, "q": "Consider the following statements regarding the financial support under the PM Vishwakarma Scheme:\nI. Collateral-free enterprise development loans of up to \u20b91 Lakh (first tranche for 18 months) and \u20b92 Lakh (second tranche for 30 months) are provided.\nII. The concessional interest rate charged to beneficiaries is 5%, with an 8% interest subvention by the Ministry of MSME.\nIII. Beneficiaries receive a daily stipend of \u20b9500 during basic skill training and a toolkit incentive of \u20b915,000 via e-vouchers.\nWhich of the statements given above are correct?", "options": ["I and II only", "II and III only", "I and III only", "I, II and III"], "ans": 3, "solution": "All three statements are correct. The scheme provides loans of \u20b91 Lakh (tranche 1) and \u20b92 Lakh (tranche 2) at a concessional 5% interest rate, a \u20b9500/day skill stipend, and a \u20b915,000 toolkit e-voucher."}, {"id": 109, "q": "What is the minimum age criterion for an artisan or craftsperson to be eligible for registration under the PM Vishwakarma Scheme?", "options": ["18 years", "21 years", "16 years", "25 years"], "ans": 0, "solution": "The minimum eligibility age for registration under the PM Vishwakarma Scheme is 18 years on the date of application, restricted to one member per family."}, {"id": 110, "q": "The 'Make in India' initiative completed 12 years of implementation on 25 September 2026. Under which department of the Ministry of Commerce and Industry was it launched in 2014?", "options": ["Department for Promotion of Industry and Internal Trade (DPIIT)", "Department of Commerce", "Directorate General of Foreign Trade (DGFT)", "Department of Economic Affairs (DEA)"], "ans": 0, "solution": "'Make in India' was launched on 25 September 2014 by Prime Minister Narendra Modi under DPIIT (Ministry of Commerce & Industry) to transform India into a global design and manufacturing hub."}, {"id": 111, "q": "The National Health Authority celebrated 'Arogya Manthan 2026' in September. This event commemorated the completion of 8 years of which flagship health protection scheme launched from Ranchi in 2018?", "options": ["Ayushman Bharat Pradhan Mantri Jan Arogya Yojana (AB PM-JAY)", "Pradhan Mantri Swasthya Suraksha Yojana (PMSSY)", "National Health Mission (NHM)", "Pradhan Mantri Matru Vandana Yojana (PMMVY)"], "ans": 0, "solution": "Arogya Manthan 2026 commemorated 8 years of Ayushman Bharat PM-JAY (launched on 23 September 2018 in Ranchi, Jharkhand) and 5 years of the Ayushman Bharat Digital Mission (ABDM, launched September 2021)."}, {"id": 112, "q": "Consider the following statements regarding the Ministry of Tourism's schemes:\nI. Swadesh Darshan 1.0 (launched in 2015) focused on the integrated development of 15 thematic tourist circuits.\nII. Swadesh Darshan 2.0 (launched in 2023) shifted focus towards sustainable and responsible destination-centric development.\nIII. The PRASHAD scheme focuses on the holistic development of pilgrimage and spiritual heritage destinations.\nWhich of the statements given above are correct?", "options": ["I and II only", "II and III only", "I and III only", "I, II and III"], "ans": 3, "solution": "All three statements are correct. Swadesh Darshan 1.0 developed theme-based circuits, Swadesh Darshan 2.0 promotes sustainable destination tourism, and PRASHAD (launched 2014-15) targets pilgrimage infrastructure."}, {"id": 113, "q": "The Delhi Cabinet approved the 'Durga e-Auto Scheme' in September 2026. This electric vehicle livelihood scheme is reserved exclusively for which target group?", "options": ["Women and transgender individuals", "Divyangjan (persons with disabilities) only", "Senior citizens and military veterans", "Rural youth below poverty line"], "ans": 0, "solution": "The Delhi Government notified the 'Durga e-Auto Scheme' exclusively for women and transgender persons to foster financial autonomy and green public transit."}, {"id": 114, "q": "Which dedicated women's security unit was deployed by the Delhi Government and police in September 2026 to enhance commuter safety around metro stations and bus corridors?", "options": ["Delhi Pink Force", "Shakti Vahini", "Rani Laxmibai Brigade", "Durga Vahini"], "ans": 0, "solution": "The 'Delhi Pink Force' was deployed across critical transit points, metro stations, and university campuses in the capital to strengthen women's safety."}, {"id": 115, "q": "What is the primary objective of the 'PACT' (Platform for Aggregating Clean Transport) initiative launched by NITI Aayog in September 2026?", "options": ["Aggregating national demand to accelerate the deployment of zero-emission freight trucks and electric buses", "Subsidising diesel passenger locomotives in hilly terrains", "Establishing toll-free automated highways across national borders", "Providing free inland waterway passes for coastal fishermen"], "ans": 0, "solution": "NITI Aayog launched PACT (Platform for Aggregating Clean Transport) to consolidate demand across states for commercial electric heavy vehicles, e-buses, and green freight logistics."}, {"id": 116, "q": "The Election Commission of India (ECI) executed the 'Special Intensive Revision' (SIR) in 2026 to remove ghost, duplicate, and deceased voter entries. Which Article of the Constitution establishes the superintendence, direction, and control of elections in the ECI?", "options": ["Article 324", "Article 326", "Article 329", "Article 315"], "ans": 0, "solution": "Article 324 of the Constitution vests the superintendence, direction, and control of the preparation of electoral rolls and the conduct of all elections in the Election Commission of India."}, {"id": 117, "q": "The Indian Pharmacopoeia Commission (under the Ministry of Health and Family Welfare) released which edition of the National Formulary of India (NFI) in September 2026 to guide rational drug prescribing?", "options": ["7th Edition", "5th Edition", "8th Edition", "10th Edition"], "ans": 0, "solution": "Union Health authorities published the 7th National Formulary of India (NFI) to serve as a comprehensive authoritative guidance document for healthcare practitioners on generic and essential medicines."}, {"id": 118, "q": "Who inaugurated India Water Week 2026 as the Union Minister for Jal Shakti, emphasising integrated water resource management?", "options": ["C. R. Patil", "Gajendra Singh Shekhawat", "Pralhad Joshi", "Sarbananda Sonowal"], "ans": 0, "solution": "Union Minister for Jal Shakti C. R. Patil inaugurated India Water Week 2026 in New Delhi, advocating for aquifer recharge, rainwater harvesting, and river basin management."}, {"id": 119, "q": "Where did the India Meteorological Department (IMD) operationalise its 51st Doppler Weather Radar (DWR) in September 2026 to boost cyclone and severe weather forecasting in eastern India?", "options": ["Sambalpur, Odisha", "Rourkela, Odisha", "Dhanbad, Jharkhand", "Raipur, Chhattisgarh"], "ans": 0, "solution": "IMD commissioned its 51st Doppler Weather Radar (DWR) at Sambalpur, Odisha, providing vital early warning capabilities for thunderstorms, heavy precipitation, and cyclonic weather."}, {"id": 120, "q": "Under the aegis of the Department of Fisheries, which strategic national mission was launched in September 2026 to position India as a global exporter of ornamental fish by 2031?", "options": ["Mission Rangeen Machhli 2031", "Pradhan Mantri Matsya Sampada Yojana 2.0", "Blue Aquaculture Mission 2031", "Samudra Jal Sampada Initiative"], "ans": 0, "solution": "The Ministry of Fisheries launched 'Mission Rangeen Machhli 2031' to foster breeding clusters, technology adoption, and international marketing of indigenous ornamental fish."}, {"id": 121, "q": "What regulatory threshold was reaffirmed by the Government of India regarding the Merchant Discount Rate (MDR) for Unified Payments Interface (UPI) transactions?", "options": ["UPI transactions up to \u20b92,000 remain completely free of MDR charges for merchants", "A mandatory 1.5% MDR is levied on all transactions above \u20b9500", "MDR is capped at \u20b95 for all peer-to-peer transfers", "Zero MDR applies only to transactions conducted via state-owned banks"], "ans": 0, "solution": "The Government clarified that small-value UPI transactions up to \u20b92,000 remain 100% free of Merchant Discount Rate (MDR), ensuring friction-free digital payment adoption for small merchants."}, {"id": 122, "q": "To facilitate seamless retail contactless payments, the Reserve Bank of India enhanced the transaction limit for UPI Tap-to-Pay (NFC) without requiring a PIN to:", "options": ["\u20b95,000", "\u20b92,000", "\u20b910,000", "\u20b91,000"], "ans": 0, "solution": "The RBI permitted contactless UPI Tap-to-Pay (NFC) transactions without a two-factor UPI PIN up to a threshold of \u20b95,000 per transaction at retail point-of-sale terminals."}, {"id": 123, "q": "The Employees' Provident Fund Organisation (EPFO) announced a major social security reform by raising the statutory mandatory monthly wage ceiling from \u20b915,000 to:", "options": ["\u20b925,000 per month", "\u20b921,000 per month", "\u20b930,000 per month", "\u20b920,000 per month"], "ans": 0, "solution": "The Ministry of Labour and Employment raised the EPFO statutory wage threshold from \u20b915,000 to \u20b925,000 per month, expanding mandatory provident fund and pension coverage to millions of workers."}, {"id": 124, "q": "Which nation officially accepted India's domestic Carbon Credit Trading Scheme (CCTS) under its Carbon Border Adjustment Mechanism (CBAM) compliance framework?", "options": ["United Kingdom", "Germany", "Japan", "Canada"], "ans": 0, "solution": "The United Kingdom formally agreed to recognise India's Carbon Credit Trading Scheme (CCTS) within the verification architecture of its UK CBAM regime."}, {"id": 125, "q": "On 1 September 2026, which government-owned financial entity celebrated its 9th Foundation Day, having been established in 2018 with 100% equity owned by the Department of Posts?", "options": ["India Post Payments Bank (IPPB)", "National Bank for Agriculture and Rural Development (NABARD)", "Small Industries Development Bank of India (SIDBI)", "Export-Import Bank of India (EXIM Bank)"], "ans": 0, "solution": "India Post Payments Bank (IPPB), founded on 1 September 2018 under the Department of Posts (Ministry of Communications), marked its 9th Foundation Day in September 2026."}, {"id": 126, "q": "What was India's rank in the World Economic Forum's (WEF) Global Gender Gap Index 2026, which was topped globally by Iceland?", "options": ["131st", "127th", "135th", "140th"], "ans": 0, "solution": "In the Global Gender Gap Index 2026 published by the World Economic Forum, India was ranked 131st out of 146 economies, while Iceland retained the #1 global position."}, {"id": 127, "q": "Which state/UT secured the 1st position in NITI Aayog's India Electric Mobility Index (IEMI) 2025, excelling in policy readiness and EV charging density?", "options": ["Delhi", "Maharashtra", "Karnataka", "Tamil Nadu"], "ans": 0, "solution": "Delhi retained the #1 overall rank in NITI Aayog's India Electric Mobility Index (IEMI), leading in public charging infrastructure penetration and EV market share."}, {"id": 128, "q": "Which country secured the #1 global ranking in the Global Business Climate Survey 2026, reflecting unprecedented investor optimism and manufacturing competitiveness?", "options": ["India", "Vietnam", "United States", "Singapore"], "ans": 0, "solution": "India was ranked #1 globally in the Global Business Climate Survey 2026, surpassing global peers in foreign direct investment attractiveness and operational confidence."}, {"id": 129, "q": "In LinkedIn's Global Top MBA Programs 2026 ranking, which Indian premier business school was ranked 5th worldwide?", "options": ["Indian School of Business (ISB), Hyderabad", "IIM Ahmedabad", "IIM Bangalore", "IIM Calcutta"], "ans": 0, "solution": "The Indian School of Business (ISB), Hyderabad achieved the 5th rank globally in LinkedIn's Top MBA Programs 2026, with a total of 7 Indian business schools featuring in the Top 100."}, {"id": 130, "q": "Which Indian management institute secured the #1 position in India and ranked 21st globally in the Financial Times (FT) Masters in Management (MiM) Ranking 2026?", "options": ["IIM Bangalore", "IIM Ahmedabad", "IIM Calcutta", "IIM Lucknow"], "ans": 0, "solution": "IIM Bangalore was ranked #1 in India and 21st globally in the Financial Times (FT) Masters in Management (MiM) 2026 ranking."}, {"id": 131, "q": "According to the Times Higher Education (THE) World University Rankings 2026\u201327, which premier Indian academic institution emerged as the top-ranked university in India?", "options": ["Indian Institute of Science (IISc), Bengaluru", "IIT Bombay", "IIT Delhi", "Anna University, Chennai"], "ans": 0, "solution": "The Indian Institute of Science (IISc), Bengaluru retained its position as the highest-ranked Indian university in the THE World University Rankings 2026\u201327, with the University of Oxford topping globally."}, {"id": 132, "q": "In Forbes' 'World's Top Performing Banks 2026' report, which Indian private sector lender was ranked 3rd globally for digital adoption and customer trust?", "options": ["HDFC Bank", "ICICI Bank", "State Bank of India (SBI)", "Axis Bank"], "ans": 0, "solution": "HDFC Bank achieved the 3rd rank globally in Forbes' 'World's Top Performing Banks 2026' benchmark assessment."}, {"id": 133, "q": "Gujarat International Finance Tec-City (GIFT City IFSC, Gandhinagar) climbed to which global rank in the Global Financial Centres Index (GFCI) 2026 published by Z/Yen and CDI?", "options": ["37th", "52nd", "65th", "24th"], "ans": 0, "solution": "GIFT IFSC in Gandhinagar, Gujarat rose to 37th globally in the Global Financial Centres Index (GFCI) 2026, demonstrating its rapid rise as an international offshore financial hub."}, {"id": 134, "q": "Global credit rating agency Moody's upgraded its forecast for India's economic growth for the fiscal year to which percentage?", "options": ["7.0%", "6.5%", "7.5%", "6.2%"], "ans": 0, "solution": "Moody's Ratings revised India's GDP growth forecast upward to 7.0%, buoyed by strong domestic consumption, capital expenditure, and robust 7.8% Q1 growth."}, {"id": 135, "q": "The 18th BRICS Summit was held in New Delhi on 12\u201313 September 2026. What was the official theme of this landmark summit marking 20 years of BRICS?", "options": ["Building for Resilience, Innovation, Cooperation and Sustainability", "Strengthening Multilateralism for Just Global Development and Security", "Fostering High-quality BRICS Partnership for a New Era", "BRICS@15: Intra-BRICS Cooperation for Continuity, Consolidation and Consensus"], "ans": 0, "solution": "Hosted under India's 4th BRICS Chairship in New Delhi, the 18th BRICS Summit was convened under the theme 'Building for Resilience, Innovation, Cooperation and Sustainability'."}, {"id": 136, "q": "Consider the following statements regarding the membership expansion of the BRICS grouping:\nI. In January 2024, Egypt, Ethiopia, Iran, Saudi Arabia, and the UAE formally joined as full members.\nII. In January 2025, Indonesia officially joined as the 11th full member state.\nIII. At the 18th BRICS Summit in New Delhi, the grouping comprised 11 full member states and 10 partner countries.\nWhich of the statements given above are correct?", "options": ["I and II only", "II and III only", "I and III only", "I, II and III"], "ans": 3, "solution": "All three statements are correct. BRICS expanded in 2024 with 5 nations, added Indonesia in January 2025 as the 11th member, and formalised 10 partner nations under the New Delhi Declaration."}, {"id": 137, "q": "Which voluntary, farmer-centric agricultural mechanism was officially established under the 18th BRICS Summit New Delhi Declaration for genetic resources and seed security?", "options": ["BRICS AGRIN (Agro-Inputs, Genetic Resources, and Information Network)", "BRICS Kisan Connect", "BRICS Agro-Tech Alliance", "BRICS Seed Bank Initiative"], "ans": 0, "solution": "Under the New Delhi Declaration, BRICS leaders established BRICS AGRIN (Agro-Inputs, Genetic Resources, and Information Network) as a farmer-centric cooperation mechanism for germplasm and seed exchange."}, {"id": 138, "q": "As part of India's cultural diplomacy during the 18th BRICS Summit in New Delhi, what special literary gift was presented by Prime Minister Narendra Modi to Russian President Vladimir Putin?", "options": ["A Russian translation of Saint Thiruvalluvar's classical Tamil treatise 'Thirukkural'", "A Russian translation of the Bhagavad Gita", "A leather-bound commemorative edition of Kalidasa's Shakuntala", "An illustrated edition of Rabindranath Tagore's Gitanjali"], "ans": 0, "solution": "Prime Minister Narendra Modi presented a Russian translation of the ancient classical Tamil ethical treatise 'Thirukkural' (published by CICT) to Russian President Vladimir Putin."}, {"id": 139, "q": "The 26th Shanghai Cooperation Organisation (SCO) Summit concluded in Bishkek, Kyrgyzstan in September 2026. In which year was the SCO formally established in Shanghai, China?", "options": ["2001 (15 June 2001)", "1996 (Shanghai Five)", "2017 (Astana Summit)", "2004 (Tashkent Summit)"], "ans": 0, "solution": "The SCO was officially founded on 15 June 2001 in Shanghai, China, by 6 founding states, evolving from the original 'Shanghai Five' mechanism established in 1996. September 2026 marked its 25th anniversary."}, {"id": 140, "q": "Consider the following key decisions adopted in the Bishkek Declaration at the 26th SCO Summit:\nI. Pakistan was handed over the rotating SCO Chairmanship for the 2026\u201327 term.\nII. The historic city of Lahore, Pakistan was designated as the SCO Tourism and Cultural Capital for 2026\u201327.\nIII. English was officially adopted as the 3rd official working language of the SCO alongside Russian and Chinese.\nWhich of the statements given above are correct?", "options": ["I and II only", "II and III only", "I and III only", "I, II and III"], "ans": 3, "solution": "All three statements are correct. Pakistan assumed the 2026-27 chair, Lahore was designated the Tourism and Cultural Capital, and English became the 3rd official language of the SCO."}, {"id": 141, "q": "At the 26th SCO Summit in Bishkek, Prime Minister Narendra Modi outlined a future-ready cooperation doctrine based on which 3-pillar 'S-C-O' framework?", "options": ["Security, Connectivity, and Opportunity", "Sustainability, Climate, and Optimism", "Sovereignty, Commerce, and Openness", "Science, Culture, and Outreach"], "ans": 0, "solution": "Prime Minister Modi proposed the 3-pillar 'S-C-O' doctrine: 'S' for Security against radicalism and cybercrime, 'C' for Connectivity adhering to territorial integrity, and 'O' for Opportunity in trade and digital public infrastructure."}, {"id": 142, "q": "Which capital city hosted the 17th Conference of the Parties (COP-17) to the United Nations Convention to Combat Desertification (UNCCD) in 2026?", "options": ["Ulaanbaatar, Mongolia", "Baku, Azerbaijan", "Riyadh, Saudi Arabia", "Samarkand, Uzbekistan"], "ans": 0, "solution": "The 17th Conference of the Parties (COP-17) to the UNCCD was hosted in Ulaanbaatar, Mongolia, focusing on global land degradation neutrality and anti-desertification."}, {"id": 143, "q": "The member nations of the South Asia Wildlife Enforcement Network (SAWEN) adopted which declaration in September 2026 to dismantle transboundary illegal wildlife trafficking syndicates?", "options": ["Kathmandu Declaration", "New Delhi Declaration", "Colombo Declaration", "Thimphu Declaration"], "ans": 0, "solution": "Member countries of SAWEN adopted the 'Kathmandu Declaration' in Nepal to reinforce cross-border intelligence sharing and forensic coordination against wildlife crime."}, {"id": 144, "q": "The Ministry of Environment, Forest and Climate Change issued a fresh draft notification based on the high-level Kasturirangan Committee report, declaring ~56,825 sq km as an Eco-Sensitive Area (ESA). Across how many Indian states is this Western Ghats ESA spread?", "options": ["6 states (Gujarat, Maharashtra, Goa, Karnataka, Kerala, Tamil Nadu)", "4 states (Maharashtra, Karnataka, Kerala, Tamil Nadu)", "5 states (Goa, Karnataka, Kerala, Tamil Nadu, Andhra Pradesh)", "3 states (Karnataka, Kerala, Tamil Nadu)"], "ans": 0, "solution": "The draft ESA notification covers ~56,825 sq km (about 37% of the Western Ghats) spanning 6 states: Gujarat, Maharashtra, Goa, Karnataka, Kerala, and Tamil Nadu."}, {"id": 145, "q": "With the addition of 5 cultural properties (Sites of Satyagraha, Bagh Caves, Chambal Valley Temples, Udayagiri Caves, and Ginnorgarh Fort) on 29 September 2026, India's UNESCO World Heritage Tentative List reached a total of:", "options": ["78 properties", "73 properties", "85 properties", "65 properties"], "ans": 0, "solution": "India's UNESCO Tentative List reached 73 with Assam's Rangpur-Sivasagar Historical Ensemble in early September, and expanded to 78 properties on 29 September 2026 with 5 new submissions."}, {"id": 146, "q": "Which commodity and derivatives exchange launched 'Rain Chennai' (RAINCHNAI), India's innovative weather derivative index designed to hedge against risks of the Northeast Monsoon?", "options": ["National Commodity & Derivatives Exchange Limited (NCDEX)", "Multi Commodity Exchange of India (MCX)", "National Stock Exchange (NSE)", "Bombay Stock Exchange (BSE)"], "ans": 0, "solution": "NCDEX (National Commodity & Derivatives Exchange Ltd) launched 'Rain Chennai' (RAINCHNAI), a rainfall index tracking precipitation during the Northeast Monsoon."}, {"id": 147, "q": "Consider the following statements regarding the 72nd National Film Awards (for 2024 cinema, conferred in September 2026):\nI. Legendary Kannada actor Anant Nag was honoured with the 54th Dadasaheb Phalke Award.\nII. The Dadasaheb Phalke Award carries a Swarna Kamal medallion, a shawl, and a cash prize of \u20b910,00,000 (\u20b910 Lakh).\nIII. The political drama 'Article 370' won the National Award for Best Feature Film.\nWhich of the statements given above are correct?", "options": ["I and II only", "II and III only", "I and III only", "I, II and III"], "ans": 3, "solution": "All three statements are correct. Anant Nag received the 54th Dadasaheb Phalke Award with a \u20b910 Lakh cash prize and Swarna Kamal, and 'Article 370' won Best Feature Film."}, {"id": 148, "q": "Who among the following was NOT among the 3 laureates conferred the prestigious 68th Ramon Magsaysay Award in September 2026?", "options": ["Kailash Satyarthi (India)", "Tommy Koh (Singapore \u2014 UNCLOS diplomat)", "Runa Khan (Bangladesh \u2014 Friendship NGO floating hospitals)", "Bo Kyi (Myanmar \u2014 Human rights defender & AAPP)"], "ans": 0, "solution": "The 68th Ramon Magsaysay Award 2026 was awarded to Tommy Koh (Singapore), Runa Khan (Bangladesh), and Bo Kyi (Myanmar). Kailash Satyarthi was not a recipient."}, {"id": 149, "q": "Dr. Sarah Peluse was awarded the 2026 SASTRA Ramanujan Prize ($10,000 cash award for mathematicians aged \u226432) for her groundbreaking research in which mathematical discipline?", "options": ["Arithmetic combinatorics and analytic number theory", "Algebraic topology and knot theory", "Stochastic calculus and financial mathematics", "Quantum cryptography and Riemannian geometry"], "ans": 0, "solution": "Associate Professor Dr. Sarah Peluse was awarded the 2026 SASTRA Ramanujan Prize by SASTRA University for her outstanding contributions to arithmetic combinatorics and analytic number theory."}, {"id": 150, "q": "Z. T. Lalrithangi of Champhai, Mizoram was selected by the UN Food and Agriculture Organization (FAO) among the '100 Women Heroes in Agrifood Systems and Rural Development' for pioneering the commercial cultivation of which crop?", "options": ["Strawberries", "Dragon fruit", "King Chili (Raja Mircha)", "Large Cardamom"], "ans": 0, "solution": "Z. T. Lalrithangi, a teacher-turned-progressive farmer from Champhai, Mizoram, was felicitated by the FAO at the World Food Forum in Rome for pioneering commercial strawberry cultivation in the northeastern highlands."}];
+
+      // State variables
+      let questions = [];
+      let currentIndex = 0;
+      let userState = []; // Array of { userAnswer: null | number, status: string }
+      let totalTimeSeconds = rawQuestions.length * 60; // 150 minutes = 9000 seconds
+      let remainingSeconds = totalTimeSeconds;
+      let timerInterval = null;
+      let isPaused = false;
+      let testSubmitted = false;
+      let activeFilter = 'all';
+
+      // Elements
+      const screenIntro = document.getElementById('screen-intro');
+      const screenTest = document.getElementById('screen-test');
+      const screenResult = document.getElementById('screen-result');
+
+      const chkDeclaration = document.getElementById('chkDeclaration');
+      const btnStartTest = document.getElementById('btnStartTest');
+
+      const timerDisplay = document.getElementById('timerDisplay');
+      const timeString = document.getElementById('timeString');
+
+      const qNumHeading = document.getElementById('qNumHeading');
+      const questionText = document.getElementById('questionText');
+      const optionsContainer = document.getElementById('optionsContainer');
+
+      const btnPrev = document.getElementById('btnPrev');
+      const btnNext = document.getElementById('btnNext');
+      const btnClear = document.getElementById('btnClear');
+      const btnReview = document.getElementById('btnReview');
+      const btnPause = document.getElementById('btnPause');
+      const btnFullscreen = document.getElementById('btnFullscreen');
+      const btnSubmit = document.getElementById('btnSubmit');
+
+      const paletteGrid = document.getElementById('paletteGrid');
+      const countAnswered = document.getElementById('countAnswered');
+      const countNotAnswered = document.getElementById('countNotAnswered');
+      const countNotVisited = document.getElementById('countNotVisited');
+      const countMarkedReview = document.getElementById('countMarkedReview');
+      const countAnsReview = document.getElementById('countAnsReview');
+
+      const modalPause = document.getElementById('modalPause');
+      const btnResumeTest = document.getElementById('btnResumeTest');
+
+      const modalSubmitConfirm = document.getElementById('modalSubmitConfirm');
+      const btnCancelSubmit = document.getElementById('btnCancelSubmit');
+      const btnFinalSubmit = document.getElementById('btnFinalSubmit');
+
+      // -----------------------------------------------------------------------
+      // Option Shuffling (Randomize options on each refresh, preserve Q order)
+      // -----------------------------------------------------------------------
+      function initializeQuestions() {
+        // Deep clone questions
+        questions = rawQuestions.map(function(item) {
+          // Clone options
+          const opts = item.options.slice();
+          const correctText = opts[item.ans];
+
+          // Fisher-Yates shuffle options
+          for (let i = opts.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            const temp = opts[i];
+            opts[i] = opts[j];
+            opts[j] = temp;
+          }
+
+          // Re-identify correct answer index
+          const newAnsIndex = opts.indexOf(correctText);
+
+          return {
+            id: item.id,
+            q: item.q,
+            options: opts,
+            ans: newAnsIndex,
+            solution: item.solution
+          };
+        });
+
+        // Initialize userState
+        userState = questions.map(function() {
+          return {
+            userAnswer: null, // null or 0, 1, 2, 3
+            status: 'not-visited' // 'not-visited' | 'not-answered' | 'answered' | 'marked-review' | 'answered-review'
+          };
+        });
+      }
+
+      // -----------------------------------------------------------------------
+      // Introductory Screen Controls
+      // -----------------------------------------------------------------------
+      chkDeclaration.addEventListener('change', function () {
+        btnStartTest.disabled = !chkDeclaration.checked;
+      });
+
+      btnStartTest.addEventListener('click', function () {
+        startAssessment();
+      });
+
+      function startAssessment() {
+        screenIntro.classList.remove('active');
+        screenTest.classList.add('active');
+
+        // Request Fullscreen
+        try {
+          if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen().catch(function(e) {
+              console.log("Fullscreen request declined or unsupported: ", e);
+            });
+          }
+        } catch (e) {
+          console.log("Fullscreen error: ", e);
+        }
+
+        // Mark first question as not-answered if not visited
+        if (userState[0].status === 'not-visited') {
+          userState[0].status = 'not-answered';
+        }
+
+        buildPaletteGrid();
+        renderQuestion(0);
+        updateCounters();
+        startTimer();
+      }
+
+      // -----------------------------------------------------------------------
+      // Timer Management
+      // -----------------------------------------------------------------------
+      function formatTime(totalSec) {
+        const hrs = Math.floor(totalSec / 3600);
+        const mins = Math.floor((totalSec % 3600) / 60);
+        const secs = totalSec % 60;
+        const pad = function(n) { return n < 10 ? '0' + n : n; };
+        return pad(hrs) + ':' + pad(mins) + ':' + pad(secs);
+      }
+
+      function startTimer() {
+        timeString.textContent = formatTime(remainingSeconds);
+        timerInterval = setInterval(function () {
+          if (!isPaused && !testSubmitted) {
+            remainingSeconds--;
+            timeString.textContent = formatTime(remainingSeconds);
+
+            if (remainingSeconds <= 300) {
+              // Less than 5 mins - warning style
+              timerDisplay.style.color = '#ef4444';
+              timerDisplay.style.borderColor = '#ef4444';
+            }
+
+            if (remainingSeconds <= 0) {
+              clearInterval(timerInterval);
+              submitAssessment(true); // Auto-submission on time complete
+            }
+          }
+        }, 1000);
+      }
+
+      // -----------------------------------------------------------------------
+      // Palette Grid Builder
+      // -----------------------------------------------------------------------
+      function buildPaletteGrid() {
+        paletteGrid.innerHTML = '';
+        questions.forEach(function (q, idx) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'palette-btn status-not-visited';
+          btn.id = 'palette-btn-' + idx;
+          btn.textContent = (idx + 1);
+
+          btn.addEventListener('click', function () {
+            navigateToQuestion(idx);
+          });
+
+          paletteGrid.appendChild(btn);
+        });
+      }
+
+      function updatePaletteButton(idx) {
+        const btn = document.getElementById('palette-btn-' + idx);
+        if (!btn) return;
+
+        btn.className = 'palette-btn';
+
+        if (idx === currentIndex) {
+          btn.classList.add('current');
+        }
+
+        const st = userState[idx].status;
+        if (st === 'answered') {
+          btn.classList.add('status-answered');
+        } else if (st === 'not-answered') {
+          btn.classList.add('status-not-answered');
+        } else if (st === 'marked-review') {
+          btn.classList.add('status-marked-review');
+        } else if (st === 'answered-review') {
+          btn.classList.add('status-answered-review');
+        } else {
+          btn.classList.add('status-not-visited');
+        }
+      }
+
+      function updateAllPaletteButtons() {
+        for (let i = 0; i < questions.length; i++) {
+          updatePaletteButton(i);
+        }
+      }
+
+      function updateCounters() {
+        let ans = 0, notAns = 0, notVis = 0, rev = 0, revAns = 0;
+        userState.forEach(function(item) {
+          if (item.status === 'answered') ans++;
+          else if (item.status === 'not-answered') notAns++;
+          else if (item.status === 'marked-review') rev++;
+          else if (item.status === 'answered-review') revAns++;
+          else notVis++;
+        });
+
+        countAnswered.textContent = ans;
+        countNotAnswered.textContent = notAns;
+        countNotVisited.textContent = notVis;
+        countMarkedReview.textContent = rev;
+        countAnsReview.textContent = revAns;
+      }
+
+      // -----------------------------------------------------------------------
+      // Question Rendering & Navigation
+      // -----------------------------------------------------------------------
+      function renderQuestion(idx) {
+        currentIndex = idx;
+        const q = questions[idx];
+
+        qNumHeading.textContent = 'Question No. ' + (idx + 1) + ' of ' + questions.length;
+        questionText.textContent = q.q;
+
+        // Render Options
+        optionsContainer.innerHTML = '';
+        const letters = ['A', 'B', 'C', 'D'];
+
+        q.options.forEach(function (optText, optIdx) {
+          const item = document.createElement('label');
+          item.className = 'option-item';
+          if (userState[idx].userAnswer === optIdx) {
+            item.classList.add('selected');
+          }
+
+          const radio = document.createElement('input');
+          radio.type = 'radio';
+          radio.name = 'exam_option';
+          radio.value = optIdx;
+          radio.checked = (userState[idx].userAnswer === optIdx);
+
+          radio.addEventListener('change', function () {
+            // Select option - DO NOT jump to next question automatically!
+            userState[idx].userAnswer = optIdx;
+
+            // Re-render selection highlight
+            const allItems = optionsContainer.querySelectorAll('.option-item');
+            allItems.forEach(function (el, i) {
+              el.classList.toggle('selected', i === optIdx);
+            });
+
+            // If question was marked review, it becomes answered-review
+            if (userState[idx].status === 'marked-review' || userState[idx].status === 'answered-review') {
+              userState[idx].status = 'answered-review';
+            } else {
+              userState[idx].status = 'answered';
+            }
+
+            updatePaletteButton(idx);
+            updateCounters();
+          });
+
+          const labelText = document.createElement('span');
+          labelText.className = 'option-label-text';
+          labelText.innerHTML = '<span class="option-letter">(' + letters[optIdx] + ')</span> ' + escapeHtml(optText);
+
+          item.appendChild(radio);
+          item.appendChild(labelText);
+          optionsContainer.appendChild(item);
+        });
+
+        // Disable Previous on first question
+        btnPrev.disabled = (idx === 0);
+        btnPrev.style.opacity = (idx === 0) ? '0.5' : '1';
+
+        updateAllPaletteButtons();
+
+        // Scroll question pane to top
+        document.getElementById('questionContentArea').scrollTop = 0;
+      }
+
+      function navigateToQuestion(newIdx) {
+        if (newIdx < 0 || newIdx >= questions.length) return;
+
+        // If current question has not been answered or marked, ensure status is 'not-answered'
+        if (userState[currentIndex].userAnswer === null) {
+          if (userState[currentIndex].status !== 'marked-review') {
+            userState[currentIndex].status = 'not-answered';
+          }
+        }
+
+        // Mark target question as visited / not-answered if it was not-visited
+        if (userState[newIdx].status === 'not-visited') {
+          userState[newIdx].status = 'not-answered';
+        }
+
+        renderQuestion(newIdx);
+        updateCounters();
+      }
+
+      // Button Handlers
+      btnNext.addEventListener('click', function () {
+        if (currentIndex < questions.length - 1) {
+          navigateToQuestion(currentIndex + 1);
+        }
+      });
+
+      btnPrev.addEventListener('click', function () {
+        if (currentIndex > 0) {
+          navigateToQuestion(currentIndex - 1);
+        }
+      });
+
+      btnClear.addEventListener('click', function () {
+        userState[currentIndex].userAnswer = null;
+        if (userState[currentIndex].status === 'answered-review') {
+          userState[currentIndex].status = 'marked-review';
+        } else {
+          userState[currentIndex].status = 'not-answered';
+        }
+
+        // Uncheck radio buttons in DOM
+        const radios = optionsContainer.querySelectorAll('input[type="radio"]');
+        radios.forEach(function (r) { r.checked = false; });
+        const items = optionsContainer.querySelectorAll('.option-item');
+        items.forEach(function (it) { it.classList.remove('selected'); });
+
+        updatePaletteButton(currentIndex);
+        updateCounters();
+      });
+
+      btnReview.addEventListener('click', function () {
+        if (userState[currentIndex].userAnswer !== null) {
+          userState[currentIndex].status = 'answered-review';
+        } else {
+          userState[currentIndex].status = 'marked-review';
+        }
+
+        updatePaletteButton(currentIndex);
+        updateCounters();
+
+        if (currentIndex < questions.length - 1) {
+          navigateToQuestion(currentIndex + 1);
+        }
+      });
+
+      // Pause Functionality
+      btnPause.addEventListener('click', function () {
+        isPaused = true;
+        modalPause.classList.add('active');
+      });
+
+      btnResumeTest.addEventListener('click', function () {
+        isPaused = false;
+        modalPause.classList.remove('active');
+      });
+
+      // Fullscreen Toggle
+      btnFullscreen.addEventListener('click', function () {
+        if (!document.fullscreenElement) {
+          if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen().catch(function(){});
+          }
+          btnFullscreen.textContent = '⛶ Exit Fullscreen';
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen().catch(function(){});
+          }
+          btnFullscreen.textContent = '⛶ Fullscreen';
+        }
+      });
+
+      // Submit Confirmation Dialog
+      btnSubmit.addEventListener('click', function () {
+        let ans = 0, notAns = 0, notVis = 0, rev = 0, revAns = 0;
+        userState.forEach(function(item) {
+          if (item.status === 'answered') ans++;
+          else if (item.status === 'not-answered') notAns++;
+          else if (item.status === 'marked-review') rev++;
+          else if (item.status === 'answered-review') revAns++;
+          else notVis++;
+        });
+
+        document.getElementById('modalCountAnswered').textContent = ans;
+        document.getElementById('modalCountNotAnswered').textContent = notAns;
+        document.getElementById('modalCountReview').textContent = rev;
+        document.getElementById('modalCountAnsReview').textContent = revAns;
+        document.getElementById('modalCountNotVisited').textContent = notVis;
+
+        modalSubmitConfirm.classList.add('active');
+      });
+
+      btnCancelSubmit.addEventListener('click', function () {
+        modalSubmitConfirm.classList.remove('active');
+      });
+
+      btnFinalSubmit.addEventListener('click', function () {
+        modalSubmitConfirm.classList.remove('active');
+        submitAssessment(false);
+      });
+
+      // -----------------------------------------------------------------------
+      // Assessment Submission & Results Calculation
+      // -----------------------------------------------------------------------
+      function submitAssessment(isAutoSubmit) {
+        if (testSubmitted) return;
+        testSubmitted = true;
+        clearInterval(timerInterval);
+
+        // Exit Fullscreen if active
+        try {
+          if (document.fullscreenElement && document.exitFullscreen) {
+            document.exitFullscreen().catch(function(){});
+          }
+        } catch(e) {}
+
+        screenTest.classList.remove('active');
+        screenResult.classList.add('active');
+
+        // Calculations
+        let totalAttempted = 0;
+        let correctCount = 0;
+        let incorrectCount = 0;
+        let unattemptedCount = 0;
+
+        const reviewQuestions = [];
+
+        questions.forEach(function (q, idx) {
+          const userAns = userState[idx].userAnswer;
+          if (userAns !== null) {
+            totalAttempted++;
+            if (userAns === q.ans) {
+              correctCount++;
+              // Note: Correct questions are NOT added to reviewQuestions!
+            } else {
+              incorrectCount++;
+              reviewQuestions.push({
+                qIndex: idx,
+                qObj: q,
+                userAnswer: userAns,
+                type: 'incorrect'
+              });
+            }
+          } else {
+            unattemptedCount++;
+            reviewQuestions.push({
+              qIndex: idx,
+              qObj: q,
+              userAnswer: null,
+              type: 'unattempted'
+            });
+          }
+        });
+
+        // Standard SSC / Eduquity marking: +1 for correct, -0.25 for incorrect
+        const rawScore = (correctCount * 1.0) - (incorrectCount * 0.25);
+        const netScore = Math.max(0, rawScore).toFixed(2);
+        const accuracy = totalAttempted > 0 ? ((correctCount / totalAttempted) * 100).toFixed(1) + '%' : '0.0%';
+
+        const timeSpentSec = totalTimeSeconds - remainingSeconds;
+        const timeSpentStr = formatTime(timeSpentSec);
+
+        // Populate Scorecard
+        document.getElementById('statFinalScore').textContent = netScore;
+        document.getElementById('statAccuracy').textContent = accuracy;
+        document.getElementById('statAttempted').textContent = totalAttempted;
+        document.getElementById('statCorrect').textContent = correctCount;
+        document.getElementById('statIncorrect').textContent = incorrectCount;
+        document.getElementById('statUnattempted').textContent = unattemptedCount;
+        document.getElementById('statTimeTaken').textContent = timeSpentStr;
+
+        document.getElementById('filterAllCount').textContent = reviewQuestions.length;
+        document.getElementById('filterIncorrectCount').textContent = incorrectCount;
+        document.getElementById('filterUnattemptedCount').textContent = unattemptedCount;
+
+        renderSolutions(reviewQuestions);
+      }
+
+      // -----------------------------------------------------------------------
+      // Render Solutions (Exclusively for Incorrect & Unattempted)
+      // -----------------------------------------------------------------------
+      function renderSolutions(reviewList) {
+        const container = document.getElementById('solutionsListContainer');
+        container.innerHTML = '';
+
+        if (reviewList.length === 0) {
+          container.innerHTML = '<div style="padding: 24px; text-align: center; color: #16a34a; font-weight: 700; font-size: 1.1rem;">🎉 Outstanding! You scored 100% correct answers. There are no incorrect or unattempted questions to display.</div>';
+          return;
+        }
+
+        const letters = ['A', 'B', 'C', 'D'];
+
+        reviewList.forEach(function (item) {
+          const q = item.qObj;
+          const card = document.createElement('div');
+          card.className = 'solution-item';
+          card.setAttribute('data-type', item.type);
+
+          const topBar = document.createElement('div');
+          topBar.className = 'sol-top-bar';
+
+          const qNum = document.createElement('span');
+          qNum.className = 'sol-qnum';
+          qNum.textContent = 'Question No. ' + (item.qIndex + 1);
+
+          const tag = document.createElement('span');
+          tag.className = 'sol-status-tag ' + (item.type === 'incorrect' ? 'tag-incorrect' : 'tag-unattempted');
+          tag.textContent = (item.type === 'incorrect') ? 'Incorrect Answer' : 'Unattempted';
+
+          topBar.appendChild(qNum);
+          topBar.appendChild(tag);
+          card.appendChild(topBar);
+
+          const qStatement = document.createElement('div');
+          qStatement.className = 'sol-question-text';
+          qStatement.textContent = q.q;
+          card.appendChild(qStatement);
+
+          const responsesGrid = document.createElement('div');
+          responsesGrid.className = 'sol-responses-grid';
+
+          const userRespDiv = document.createElement('div');
+          userRespDiv.className = 'sol-ans-row';
+          if (item.type === 'incorrect') {
+            const chosenLetter = letters[item.userAnswer];
+            const chosenText = q.options[item.userAnswer];
+            userRespDiv.innerHTML = '<strong>Your Response:</strong> <span class="text-danger">(' + chosenLetter + ') ' + escapeHtml(chosenText) + ' [Incorrect]</span>';
+          } else {
+            userRespDiv.innerHTML = '<strong>Your Response:</strong> <span style="color: #64748b; font-weight: 700;">Not Attempted</span>';
+          }
+          responsesGrid.appendChild(userRespDiv);
+
+          const correctRespDiv = document.createElement('div');
+          correctRespDiv.className = 'sol-ans-row';
+          const correctLetter = letters[q.ans];
+          const correctText = q.options[q.ans];
+          correctRespDiv.innerHTML = '<strong>Correct Answer:</strong> <span class="text-success">(' + correctLetter + ') ' + escapeHtml(correctText) + ' [Verified]</span>';
+          responsesGrid.appendChild(correctRespDiv);
+
+          card.appendChild(responsesGrid);
+
+          // Explanation Box
+          const explBox = document.createElement('div');
+          explBox.className = 'sol-explanation-box';
+          explBox.innerHTML = '<strong>💡 Fact-Checked Solution &amp; Exam Context:</strong> ' + escapeHtml(q.solution);
+          card.appendChild(explBox);
+
+          container.appendChild(card);
+        });
+
+        applySolutionFilter();
+      }
+
+      // Solution Filter Chips
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      filterBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          filterBtns.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          activeFilter = btn.getAttribute('data-filter');
+          applySolutionFilter();
+        });
+      });
+
+      function applySolutionFilter() {
+        const items = document.querySelectorAll('.solution-item');
+        items.forEach(function (it) {
+          const itemType = it.getAttribute('data-type');
+          if (activeFilter === 'all' || activeFilter === itemType) {
+            it.style.display = 'block';
+          } else {
+            it.style.display = 'none';
+          }
+        });
+      }
+
+      // Print and Retake
+      document.getElementById('btnPrintResults').addEventListener('click', function () {
+        window.print();
+      });
+
+      document.getElementById('btnRetakeTest').addEventListener('click', function () {
+        location.reload();
+      });
+
+      // Utility: HTML Escaper
+      function escapeHtml(str) {
+        if (!str) return '';
+        return str
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      // Initialize on load
+      initializeQuestions();
+
+    })();
+  </script>
+</body>
+</html>

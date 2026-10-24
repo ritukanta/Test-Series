@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microsoft Master Notes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Base Styling - Light Theme & Calibri Font */
+        body {
+            font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+            line-height: 1.6;
+        }
+
+        /* Reusable UI Components */
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            page-break-inside: avoid; /* Prevents cutting content when printing */
+            break-inside: avoid;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .sub-heading {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #1e293b;
+        }
+
+        .shortcut-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .shortcut-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem;
+            background-color: #f1f5f9;
+            border-radius: 0.25rem;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .shortcut-key {
+            font-weight: 700;
+            color: #334155;
+            background: #e2e8f0;
+            padding: 0.1rem 0.4rem;
+            border-radius: 0.25rem;
+            font-size: 0.9em;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            page-break-inside: avoid;
+        }
+        .data-table th, .data-table td {
+            border: 1px solid #cbd5e1;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        .data-table th {
+            background-color: #f8fafc;
+            font-weight: bold;
+        }
+
+        ul.bullet-list {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        ul.bullet-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Printable Mode Optimizations */
+        @media print {
+            body {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .card {
+                box-shadow: none !important;
+                border: 1px solid #000 !important;
+                margin-bottom: 1rem;
+            }
+            .shortcut-item {
+                background-color: transparent !important;
+                border-color: #666 !important;
+            }
+            .shortcut-key {
+                background: transparent !important;
+                border: 1px solid #000;
+            }
+            .section-title {
+                border-bottom-color: #000 !important;
+            }
+            .dashboard-view {
+                display: none !important;
+            }
+            .chapter-view {
+                display: block !important;
+                page-break-before: always;
+            }
+            /* Only print the active chapter if JS controls visibility */
+            .hidden {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="showDashboard()">
+                    <svg class="h-8 w-8 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    <span class="font-bold text-xl tracking-tight">Microsoft Master Notes</span>
+                </div>
+                <div id="back-btn-container" class="hidden">
+                    <button onclick="showDashboard()" class="text-gray-600 hover:text-blue-600 font-semibold px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                        Dashboard
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- DASHBOARD VIEW -->
+        <div id="dashboard-view" class="block">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Comprehensive Study Material</h1>
+                <p class="text-lg text-gray-600">Select a chapter below to read detailed, verified notes suitable for SSC CGL Tier II & Railway NTPC exams.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Chapter 1 -->
+                <div onclick="openChapter('chapter-1')" class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md cursor-pointer transition-shadow">
+                    <div class="h-3 bg-blue-600"></div>
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2">1. Microsoft Word</h2>
+                        <p class="text-gray-600">Comprehensive Theory, Shortcuts, Tabs, Processes, and Formatting essentials.</p>
+                    </div>
+                </div>
+                
+                <!-- Chapter 2 -->
+                <div onclick="openChapter('chapter-2')" class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md cursor-pointer transition-shadow">
+                    <div class="h-3 bg-green-600"></div>
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2">2. Microsoft Excel</h2>
+                        <p class="text-gray-600">Fundamentals, Interface, Advanced Shortcuts Matrix, and Formula Tab Overview.</p>
+                    </div>
+                </div>
+
+                <!-- Chapter 3 -->
+                <div onclick="openChapter('chapter-3')" class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md cursor-pointer transition-shadow">
+                    <div class="h-3 bg-orange-600"></div>
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2">3. Microsoft PowerPoint</h2>
+                        <p class="text-gray-600">Presentation Mastery, Views, Extensions, Animations, and Verified Fact Checks.</p>
+                    </div>
+                </div>
+
+                <!-- Chapter 4 -->
+                <div onclick="openChapter('chapter-4')" class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md cursor-pointer transition-shadow">
+                    <div class="h-3 bg-red-700"></div>
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2">4. Microsoft Access</h2>
+                        <p class="text-gray-600">RDBMS concepts, Database Specifications, Objects (Tables/Queries/Forms), and Data Types.</p>
+                    </div>
+                </div>
+
+                <!-- Chapter 5 -->
+                <div onclick="openChapter('chapter-5')" class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md cursor-pointer transition-shadow">
+                    <div class="h-3 bg-purple-600"></div>
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2">5. Keyboard Shortcuts</h2>
+                        <p class="text-gray-600">Universal reference guide for Basic, Word, Excel, Windows, Outlook, and Winkey shortcuts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHAPTER 1: MICROSOFT WORD -->
+        <div id="chapter-1" class="chapter-view hidden">
+            <h1 class="text-4xl font-extrabold text-blue-800 border-b-4 border-blue-200 pb-4 mb-8">Chapter 1: Microsoft Word</h1>
+            <p class="text-gray-600 mb-6 italic">Complete Master Notes: Comprehensive Theory, Shortcuts, and Processes</p>
+
+            <div class="card">
+                <h2 class="section-title text-blue-700">1. Theory & Fundamentals</h2>
+                <h3 class="sub-heading">Introduction to Microsoft Word</h3>
+                <ul class="bullet-list">
+                    <li><strong>Application Software Word Processor:</strong> Microsoft Word is an application software, also known as a Word Processor.</li>
+                    <li><strong>First Released:</strong> 1983 (MS Word).</li>
+                    <li><strong>MS Office Suite Introduced:</strong> August 1st, 1988.</li>
+                    <li><strong>Widely used:</strong> For personal and professional purposes across the world.</li>
+                </ul>
+
+                <h3 class="sub-heading">MS Office Suite Components</h3>
+                <ul class="bullet-list">
+                    <li>MS Word</li>
+                    <li>MS Excel</li>
+                    <li>MS PowerPoint</li>
+                    <li>OneNote</li>
+                    <li>Outlook</li>
+                    <li>OneDrive</li>
+                </ul>
+
+                <h3 class="sub-heading">Version History</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <ul class="bullet-list">
+                        <li><strong>Microsoft Office for Windows:</strong> October 1990</li>
+                        <li><strong>Microsoft Office 3.0:</strong> August 30, 1992</li>
+                        <li><strong>Microsoft Office 1997:</strong> 1997</li>
+                        <li><strong>Microsoft Office 2000:</strong> June 7, 1999</li>
+                        <li><strong>Microsoft Office XP:</strong> May 31, 2001</li>
+                    </ul>
+                    <ul class="bullet-list">
+                        <li><strong>Microsoft Office 2003:</strong> October 21, 2003</li>
+                        <li><strong>Microsoft Office 2007:</strong> January 30, 2007</li>
+                        <li><strong>Microsoft Office 2010:</strong> June 15, 2010</li>
+                        <li><strong>Microsoft Office 2013:</strong> January 30, 2012</li>
+                        <li><strong>Microsoft Office 2016:</strong> September 22, 2015</li>
+                        <li><strong>Microsoft Office 2021:</strong> Latest</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title text-blue-700">2. Getting Started</h2>
+                <ul class="bullet-list">
+                    <li><strong>How to Start MS Word:</strong> Run Command: Press <span class="shortcut-key">Win + R</span>, type <code>winword</code> in the Run Dialogue box and press Enter.</li>
+                    <li><strong>Other Word Processors:</strong> Notepad, WordPad, Google Docs, WordPerfect.</li>
+                    <li><strong>File Extensions:</strong> Pre-2007: <code>.doc</code>, Post-2007: <code>.docx</code>.</li>
+                    <li><strong>Default Title:</strong> Document1 - Word.</li>
+                </ul>
+
+                <h3 class="sub-heading">Interface & Controls</h3>
+                <div class="shortcut-grid mb-4">
+                    <div class="shortcut-item"><span>Maximize Window</span><span class="shortcut-key">Ctrl + F10</span></div>
+                    <div class="shortcut-item"><span>Close Document</span><span class="shortcut-key">Ctrl + W</span> or <span class="shortcut-key">Alt + F4</span></div>
+                    <div class="shortcut-item"><span>Help</span><span class="shortcut-key">F1</span></div>
+                    <div class="shortcut-item"><span>Show/Hide Ribbon</span><span class="shortcut-key">Ctrl + F1</span></div>
+                </div>
+
+                <h3 class="sub-heading">Quick Access Toolbar</h3>
+                <ul class="bullet-list">
+                    <li><strong>Undo (Reverse action):</strong> Helpful if you regret an action. <span class="shortcut-key">Ctrl + Z</span></li>
+                    <li><strong>Redo (Reverse Undo):</strong> Helpful if you regret using Undo. <span class="shortcut-key">Ctrl + Y</span></li>
+                    <li><strong>Repeat Last Action:</strong> <span class="shortcut-key">F4</span></li>
+                </ul>
+
+                <h3 class="sub-heading">View Toolbar (Bottom Right)</h3>
+                <ul class="bullet-list">
+                    <li><strong>Print Layout:</strong> Default View.</li>
+                    <li><strong>Read Mode:</strong> For reading only.</li>
+                    <li><strong>Web Layout:</strong> View as webpage.</li>
+                    <li><strong>Outline View:</strong> Shows text in bullet form.</li>
+                    <li><strong>Draft View:</strong> Quick text editing.</li>
+                    <li><strong>Zoom Limits:</strong> Min 10%, Max 500% (Default 100%).</li>
+                    <li><strong>Status Bar:</strong> Bottom of window (Page count, Word count, Language).</li>
+                </ul>
+                
+                <h3 class="sub-heading">Document File Shortcuts</h3>
+                <div class="shortcut-grid">
+                    <div class="shortcut-item"><span>New Document</span><span class="shortcut-key">Ctrl + N</span></div>
+                    <div class="shortcut-item"><span>Open Document</span><span class="shortcut-key">Ctrl + O</span></div>
+                    <div class="shortcut-item"><span>"Open Dialog Box"</span><span class="shortcut-key">Ctrl + F12</span></div>
+                    <div class="shortcut-item"><span>Save</span><span class="shortcut-key">Ctrl + S</span> or <span class="shortcut-key">Shift + F12</span></div>
+                    <div class="shortcut-item"><span>Save As</span><span class="shortcut-key">F12</span></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title text-blue-700">3. The Ribbon & Tabs</h2>
+                <p class="mb-4">Commands are organized in logical groups, collected under tabs: Home, Insert, Design (2013+), Page Layout, References, Mailings, Review, View.</p>
+
+                <h3 class="sub-heading">1. Home Tab</h3>
+                <ul class="bullet-list">
+                    <li><strong>A. Clipboard Group:</strong> 
+                        Cut (<span class="shortcut-key">Ctrl + X</span>), 
+                        Copy (<span class="shortcut-key">Ctrl + C</span>), 
+                        Paste (<span class="shortcut-key">Ctrl + V</span>). 
+                        Format Painter (<span class="shortcut-key">Ctrl + Shift + C/V</span>). 
+                        Paste Special: (<span class="shortcut-key">Ctrl + Alt + V</span>). 
+                        <em>Note: Office Clipboard can hold multiple items.</em>
+                    </li>
+                    <li><strong>B. Font Group:</strong> 
+                        Default Font: Calibri | Default Size: 11. Size Range: Min 1, Max 1638 (UI Dropdown: 8 to 72).<br>
+                        <strong>Shortcuts:</strong> 
+                        Increase Size (<span class="shortcut-key">Ctrl + Shift + ></span>), 
+                        Decrease Size (<span class="shortcut-key">Ctrl + Shift + <</span>), 
+                        Subscript (x<sub>2</sub>) (<span class="shortcut-key">Ctrl + =</span>), 
+                        Superscript (x<sup>2</sup>) (<span class="shortcut-key">Ctrl + Shift + +</span>).<br>
+                        <strong>Change Case:</strong> <span class="shortcut-key">Shift + F3</span> (Cycles: UPPER, lower, Sentence, Capitalize Each, tOGGLE).
+                    </li>
+                    <li><strong>C. Paragraph Group:</strong> 
+                        Alignment: Left (<span class="shortcut-key">Ctrl + L</span>), Right (<span class="shortcut-key">Ctrl + R</span>), Center (<span class="shortcut-key">Ctrl + E</span>), Justify (<span class="shortcut-key">Ctrl + J</span>). Includes Line Spacing, Bullets, Borders, and Indents (Controls white space/margins).
+                    </li>
+                    <li><strong>D. Editing Group:</strong> 
+                        Find (<span class="shortcut-key">Ctrl + F</span>), Replace (<span class="shortcut-key">Ctrl + H</span>), Go To (<span class="shortcut-key">Ctrl + G</span> or F5).
+                    </li>
+                    <li><strong>Other Tools:</strong> Show/Hide Marks (¶): <span class="shortcut-key">Ctrl + *</span></li>
+                </ul>
+
+                <h3 class="sub-heading">2. Insert Tab</h3>
+                <ul class="bullet-list">
+                    <li><strong>Pages & Tables:</strong> Cover Page, Blank Page. Page Break (<span class="shortcut-key">Ctrl + Enter</span>). Tables: Insert Table, Draw, Quick Tables. <strong>Table Limits:</strong> Max 63 Columns, Min 1 Row. Move in Table: Tab (Right), Shift+Tab (Left).</li>
+                    <li><strong>Illustrations & Links:</strong> Pictures, Online Pictures, Shapes, SmartArt, Chart, Screenshot. Hyperlink (<span class="shortcut-key">Ctrl + K</span>), Bookmark, Cross-reference.</li>
+                    <li><strong>Header, Footer & Text:</strong> Header (Top), Footer (Bottom), Page Number. Text Box, WordArt. <strong>Drop Cap:</strong> Drops 3 lines by default (Max 10). Date/Time: (<span class="shortcut-key">Alt + Shift + D/T</span>).</li>
+                </ul>
+
+                <h3 class="sub-heading">3. Page Layout Tab</h3>
+                <ul class="bullet-list">
+                    <li><strong>Margins:</strong> Normal (Default), Narrow, Wide, Mirrored. Gutter margin is used for binding space.</li>
+                    <li><strong>Orientation:</strong> Portrait (Default), Landscape.</li>
+                    <li><strong>Size:</strong> A4 (Default), Letter, Legal, etc.</li>
+                    <li><strong>Columns:</strong> Split text into multiple columns (Default: 1).</li>
+                    <li><strong>Breaks & Paragraph:</strong> Page Breaks, Section Breaks. Indent and Spacing settings.</li>
+                </ul>
+
+                <h3 class="sub-heading">4. References Tab</h3>
+                <ul class="bullet-list">
+                    <li>Table of Contents, Captions, Index, Citations & Bibliography.</li>
+                    <li>Footnotes: <span class="shortcut-key">Alt + Ctrl + F</span></li>
+                    <li>Endnotes: <span class="shortcut-key">Alt + Ctrl + D</span></li>
+                </ul>
+
+                <h3 class="sub-heading">5. Mailings Tab</h3>
+                <ul class="bullet-list">
+                    <li><strong>Mail Merge:</strong> Automated process to create personalized mass emails/letters by combining a document template with a data source (database/spreadsheet).</li>
+                </ul>
+
+                <h3 class="sub-heading">6. Review & Design Tabs</h3>
+                <ul class="bullet-list">
+                    <li><strong>Review Tab:</strong> Spelling & Grammar (<span class="shortcut-key">F7</span>), Thesaurus (<span class="shortcut-key">Shift + F7</span>), Word Count (<span class="shortcut-key">Ctrl + Shift + G</span>), Protect Document.</li>
+                    <li><strong>Design Tab:</strong> Themes, Watermark, Page Color, Page Borders.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title text-blue-700">4. Advanced Navigation & Editing</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="sub-heading mt-0">Moving Cursor</h3>
+                        <div class="shortcut-grid !grid-cols-1">
+                            <div class="shortcut-item"><span>Beginning of Line</span><span class="shortcut-key">Home</span></div>
+                            <div class="shortcut-item"><span>End of Line</span><span class="shortcut-key">End</span></div>
+                            <div class="shortcut-item"><span>Top of Document</span><span class="shortcut-key">Ctrl + Home</span></div>
+                            <div class="shortcut-item"><span>End of Document</span><span class="shortcut-key">Ctrl + End</span></div>
+                            <div class="shortcut-item"><span>Next Page Top</span><span class="shortcut-key">Ctrl + PageDown</span></div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="sub-heading mt-0">Selecting Text</h3>
+                        <div class="shortcut-grid !grid-cols-1">
+                            <div class="shortcut-item"><span>Select Character</span><span class="shortcut-key">Shift + Arrows</span></div>
+                            <div class="shortcut-item"><span>To Line Start</span><span class="shortcut-key">Shift + Home</span></div>
+                            <div class="shortcut-item"><span>To Line End</span><span class="shortcut-key">Shift + End</span></div>
+                            <div class="shortcut-item"><span>To Para End</span><span class="shortcut-key">Ctrl + Shift + ↓</span></div>
+                            <div class="shortcut-item"><span>To Para Start</span><span class="shortcut-key">Ctrl + Shift + ↑</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="sub-heading">Visual Indicators & Effects</h3>
+                <ul class="bullet-list">
+                    <li><strong>Underline Colors:</strong> 
+                        Red (Spelling Error), Blue (Grammar/Context Mistake), Green (Grammar Error - Old Versions).
+                    </li>
+                    <li><strong>Text Effects:</strong> Strikethrough, Shadow, Outline, Emboss, Small Caps, Hidden.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title text-blue-700">5. Essential Notes & Processes</h2>
+                <ul class="bullet-list">
+                    <li><strong>1. Page Setup & Formatting:</strong> Open the Page Layout tab to configure your document canvas. Set your Margins, Orientation (Portrait or Landscape), and Size (Standard is A4 or Letter). Use the Home tab for text adjustments like Font Face, Size, Bold, Italic, and Underline.</li>
+                    <li><strong>2. Generating Dummy Text:</strong> Use formulas to quickly populate the document with random text for testing layouts.
+                        <ul class="bullet-list mt-2">
+                            <li>Generate standard random text: Type <code>=rand()</code> and press Enter immediately after the closing parenthesis.</li>
+                            <li>Generate specific amounts: Type <code>=rand(3,5)</code> to generate 3 paragraphs containing 5 lines each.</li>
+                        </ul>
+                    </li>
+                    <li><strong>3. The Format Painter:</strong> Copies the formatting of specific text and applies it to other areas. Highlight source text, click Format Painter, then highlight target text. 
+                        Copy Format: <span class="shortcut-key">Ctrl + Shift + C</span> | Paste Format: <span class="shortcut-key">Ctrl + Shift + V</span>. <em>Double-click the Format Painter icon to keep it active for multiple applications.</em>
+                    </li>
+                    <li><strong>4. Working with Tables:</strong> Navigate to Insert tab -> Table. 
+                        Move to Next Cell: <span class="shortcut-key">Tab</span>. 
+                        Merge Cells: Highlight multiple cells, right-click, select Merge Cells. 
+                        Delete Elements: Highlight rows/columns, right-click, select Delete Cells.
+                    </li>
+                    <li><strong>5. Automating Tasks with Macros:</strong> Records a sequence of actions to repeat instantly. 
+                        Go to View tab or Developer tab -> Macros -> Record Macro. Assign a keyboard shortcut (e.g., Ctrl+Shift+M). Perform the task, then click Stop Recording. Press custom shortcut to repeat anywhere.
+                    </li>
+                    <li><strong>6. Saving, Converting, and Printing:</strong> 
+                        Convert to PDF: Click Office Button/File menu -> Save As -> select PDF or XPS. 
+                        Print Menu: <span class="shortcut-key">Ctrl + P</span>. Select printer, define Page Range (All, Current Page, or specific e.g., 1, 3, 5-12), and specify Number of Copies.
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- CHAPTER 2: MICROSOFT EXCEL -->
+        <div id="chapter-2" class="chapter-view hidden">
+            <h1 class="text-4xl font-extrabold text-green-800 border-b-4 border-green-200 pb-4 mb-8">Chapter 2: Microsoft Excel</h1>
+            <p class="text-gray-600 mb-6 italic">Comprehensive Fundamentals, Shortcuts Matrix, and Formula Tab Mastery</p>
+
+            <div class="card">
+                <h2 class="section-title text-green-700">1. Fundamentals & Interface</h2>
+                <h3 class="sub-heading">Introduction & Start Up</h3>
+                <ul class="bullet-list">
+                    <li><strong>Electronic Spreadsheet:</strong> A software package which accepts data in a tabular form (rows-columns), shows data in a tabular form and serves many functions to perform calculations.</li>
+                    <li><strong>Spreadsheet Applications:</strong> MS Office (MS Excel), Google Suite (Google Sheets), Libre Office (Calc), iWork (Numbers).</li>
+                    <li><strong>History & Examples:</strong> VisiCalc (First ever spreadsheet application), Lotus 1-2-3, Corel Quattro Pro, MS Excel (Largest selling application).</li>
+                    <li><strong>Extensions:</strong> Before 2007: <code>.xls</code> | Post 2007: <code>.xlsx</code>.</li>
+                    <li><strong>File Name Limit:</strong> Maximum no. of characters in filename can be: 218.</li>
+                    <li><strong>How to Start & Executables:</strong> Run Command: type <code>excel</code> (Excel Executable is excel.exe). <em>Note: Word Executable is winword.exe, PPT Executable is powerpnt.exe.</em></li>
+                    <li><strong>Default Title:</strong> "Book1 - Excel"</li>
+                </ul>
+
+                <h3 class="sub-heading">Window Controls & File Shortcuts</h3>
+                <div class="shortcut-grid mb-4">
+                    <div class="shortcut-item"><span>Switch workbooks</span><span class="shortcut-key">Ctrl + F6</span></div>
+                    <div class="shortcut-item"><span>Maximize</span><span class="shortcut-key">Ctrl + F10</span></div>
+                    <div class="shortcut-item"><span>Minimize</span><span class="shortcut-key">Ctrl + F9</span></div>
+                    <div class="shortcut-item"><span>Close</span><span class="shortcut-key">Ctrl + W / Alt + F4</span></div>
+                    <div class="shortcut-item"><span>New File</span><span class="shortcut-key">Ctrl + N</span></div>
+                    <div class="shortcut-item"><span>Open File</span><span class="shortcut-key">Ctrl + O</span></div>
+                    <div class="shortcut-item"><span>Save File</span><span class="shortcut-key">Ctrl + S</span></div>
+                    <div class="shortcut-item"><span>Save As</span><span class="shortcut-key">F12</span></div>
+                    <div class="shortcut-item"><span>Open Dialog Box</span><span class="shortcut-key">Ctrl + F12</span></div>
+                </div>
+
+                <h3 class="sub-heading">Rows, Columns & Dimensions</h3>
+                <ul class="bullet-list">
+                    <li><strong>Workbook:</strong> Collection of worksheets.</li>
+                    <li><strong>Worksheet:</strong> Made of rows and columns. Basic unit is a cell. Default Sheets (2003-2010): 3. Default Sheets (2013+): 1. Note: Number of sheets can be extended by user.</li>
+                    <li><strong>Rows (Horizontal ↔):</strong> Headings: 1, 2, 3... Max (2003): 65,536 | Max (2007+): 1,048,576.</li>
+                    <li><strong>Columns (Vertical ↕):</strong> Headings: A, B, C... Max (2003 - IV): 256 | Max (2007+ - XFD): 16,384.</li>
+                    <li><strong>Cell & Range:</strong> Cell is Intersection of Row & Col (e.g. A5). Range is a group of cells (e.g. A5:C8).</li>
+                </ul>
+
+                <table class="data-table">
+                    <tr><th>Dimension</th><th>Default / Max</th></tr>
+                    <tr><td>Row Height</td><td>Default: 15 | Max Height: 409</td></tr>
+                    <tr><td>Column Width</td><td>Default: 8.43 | Max Chars: 255</td></tr>
+                </table>
+
+                <h3 class="sub-heading">Interface Components</h3>
+                <ul class="bullet-list">
+                    <li><strong>Ribbon:</strong> Panel of organized 'Tabs'. (Show/Hide: <span class="shortcut-key">Ctrl + F1</span>). Tabs include File, Home, Insert, Page Layout, Formulas, Data, Review, View, Help. Hidden: Draw, Developer.</li>
+                    <li><strong>Status Bar:</strong> Bottom of sheet. Displays active sheet, page number, view shortcuts, ZOOM Slider.</li>
+                    <li><strong>Formula Bar:</strong> Beneath Ribbon. Used to enter/edit data.</li>
+                    <li><strong>Name Box:</strong> Represents address of the cell.</li>
+                    <li><strong>Active Cell:</strong> Dark colored boundary around the cell.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title text-green-700">2. Basic Operations, Formatting & Tabs</h2>
+                
+                <h3 class="sub-heading">Operations & Visiblity</h3>
+                <ul class="bullet-list">
+                    <li><strong>Adding New Sheets (4 Ways):</strong> Press '+' icon, Right click tab → Insert, <span class="shortcut-key">Shift + F11</span>, or <span class="shortcut-key">Alt + Shift + F1</span>.</li>
+                    <li><strong>Rename Sheet:</strong> Max 31 chars. Double click Tab OR Right Click → Rename.</li>
+                    <li><strong>Format Cells Dialog:</strong> <span class="shortcut-key">Ctrl + 1</span>. Tabs: Number, Alignment, Font, Border, Fill, Protection.</li>
+                    <li><strong>Hide/Unhide Row:</strong> Hide Row: <span class="shortcut-key">Ctrl + 9</span> | Unhide Row: <span class="shortcut-key">Ctrl + Shift + 9</span>.</li>
+                    <li><strong>Basic Formats:</strong> Bold: <span class="shortcut-key">Ctrl + 2</span> | Strike Through: <span class="shortcut-key">Ctrl + 5</span>.</li>
+                    <li><strong>Alignment Types:</strong> Top, Middle, Bottom, Left, Center, Right.</li>
+                </ul>
+
+                <h3 class="sub-heading">Tabs & Tools Outline</h3>
+                <ul class="bullet-list">
+                    <li><strong>Home / Editing:</strong> Wrap Text (Fix text in column), Merge and Center, Conditional Formatting (Home → Styles). Autosum: <span class="shortcut-key">Alt + =</span>, Find/Replace: <span class="shortcut-key">Ctrl + H</span>, Go To: <span class="shortcut-key">F5 / Ctrl + G</span>. Fill Handle (+): Fill series. 4-Head Arrow: Move cells.</li>
+                    <li><strong>Insert:</strong> Insert Chart (<span class="shortcut-key">F11</span>). Charts: Column, Line, Pie, Bar, Area, Scatter, Stock, Surface, Radar.</li>
+                    <li><strong>Page Layout:</strong> Margins: Normal, Wide, Narrow. Default Size: Letter. Breaks: Page Layout → Page Setup.</li>
+                    <li><strong>Formulas & Data:</strong> Insert Function (<span class="shortcut-key">Shift + F3</span>). Goal Seek: What-If Analysis. Legend: Chart symbol/color key.</li>
+                    <li><strong>Review:</strong> Spelling (<span class="shortcut-key">F7</span>), Comment (<span class="shortcut-key">Shift + F2</span>), Research (<span class="shortcut-key">Alt + Click word</span>).</li>
+                    <li><strong>View:</strong> Normal (Default), Page Break, Layout. Zoom: 10% to 400% (Default 100%). Macros: <span class="shortcut-key">Alt + F8</span> (Record actions).</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title text-green-700">3. Advanced Shortcuts Matrix & Navigation</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="sub-heading mt-0">Moving in Cells & Dataset</h3>
+                        <ul class="bullet-list">
+                            <li>Right: <span class="shortcut-key">Tab</span> or Right Arrow</li>
+                            <li>Left: <span class="shortcut-key">Shift + Tab</span> or Left Arrow</li>
+                            <li>Up: <span class="shortcut-key">Shift + Enter</span> or Up Arrow</li>
+                            <li>Down: <span class="shortcut-key">Enter</span> or Down Arrow</li>
+                            <li>Jump to edge of data region: <span class="shortcut-key">Ctrl + Arrow keys</span></li>
+                            <li>Move to last used cell: <span class="shortcut-key">Ctrl + End</span></li>
+                            <li>Move to beginning (A1): <span class="shortcut-key">Ctrl + Home</span></li>
+                            <li>Move Page/Sheet: <span class="shortcut-key">PgUp/Dn</span> (Screen), <span class="shortcut-key">Alt + PgUp/Dn</span> (Left/Right screen), <span class="shortcut-key">Ctrl + PgUp/Dn</span> (Move Sheet).</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="sub-heading mt-0">Selection</h3>
+                        <ul class="bullet-list">
+                            <li>Entire Column: <span class="shortcut-key">Ctrl + Spacebar</span></li>
+                            <li>Entire Row: <span class="shortcut-key">Shift + Spacebar</span></li>
+                            <li>All Sheet/Dataset: <span class="shortcut-key">Ctrl + A</span> or <span class="shortcut-key">Ctrl + Shift + Space</span></li>
+                            <li>Select from position to edge: <span class="shortcut-key">Ctrl + Shift + Arrow keys</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="sub-heading">Cell Alignments & Resizing</h3>
+                <div class="shortcut-grid mb-4">
+                    <div class="shortcut-item"><span>Align Left</span><span class="shortcut-key">Alt, H, A, L</span></div>
+                    <div class="shortcut-item"><span>Align Center</span><span class="shortcut-key">Alt, H, A, C</span></div>
+                    <div class="shortcut-item"><span>Align Right</span><span class="shortcut-key">Alt, H, A, R</span></div>
+                    <div class="shortcut-item"><span>Align Top Edge</span><span class="shortcut-key">Alt, H, A, T</span></div>
+                    <div class="shortcut-item"><span>Align Exact Middle</span><span class="shortcut-key">Alt, H, A, M</span></div>
+                    <div class="shortcut-item"><span>Align Bottom Edge</span><span class="shortcut-key">Alt, H, A, B</span></div>
+                    <div class="shortcut-item"><span>Auto-fit column width</span><span class="shortcut-key">Alt, H, O, I</span></div>
+                    <div class="shortcut-item"><span>Auto-fit row height</span><span class="shortcut-key">Alt, H, O, A</span></div>
+                </div>
+
+                <h3 class="sub-heading">Formatting & Miscellaneous Actions</h3>
+                <div class="shortcut-grid">
+                    <div class="shortcut-item"><span>Convert to Table</span><span class="shortcut-key">Ctrl + T</span></div>
+                    <div class="shortcut-item"><span>Apply/Remove Data Filters</span><span class="shortcut-key">Ctrl + Shift + L</span></div>
+                    <div class="shortcut-item"><span>Currency Formatting</span><span class="shortcut-key">Ctrl + Shift + $</span></div>
+                    <div class="shortcut-item"><span>% Formatting</span><span class="shortcut-key">Ctrl + Shift + %</span></div>
+                    <div class="shortcut-item"><span>Fill data down from above</span><span class="shortcut-key">Ctrl + D</span></div>
+                    <div class="shortcut-item"><span>Wrap text</span><span class="shortcut-key">Alt, H, W</span></div>
+                    <div class="shortcut-item"><span>Start new line in same cell</span><span class="shortcut-key">Alt + Enter</span></div>
+                    <div class="shortcut-item"><span>Insert Current Date</span><span class="shortcut-key">Ctrl + ;</span></div>
+                    <div class="shortcut-item"><span>Insert Current Time</span><span class="shortcut-key">Ctrl + Shift + ;</span> (or Ctrl+:)</div>
+                    <div class="shortcut-item"><span>Add new row/col</span><span class="shortcut-key">Ctrl + +</span></div>
+                    <div class="shortcut-item"><span>Remove selected row/col</span><span class="shortcut-key">Ctrl + -</span></div>
+                    <div class="shortcut-item"><span>Merge and Centre</span><span class="shortcut-key">Alt, H, M, C</span></div>
+                    <div class="shortcut-item"><span>Edit Cell</span><span class="shortcut-key">F2</span></div>
+                    <div class="shortcut-item"><span>Cycle absolute/Relative Ref</span><span class="shortcut-key">F4</span></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title text-green-700">4. Formula Tab & Functions Overview</h2>
+                <ul class="bullet-list">
+                    <li><strong>Switch Theme Shortcut:</strong> <span class="shortcut-key">Alt + M</span></li>
+                    <li><strong>Formula Tab Groups:</strong> Insert Function, AutoSum, Function Library, Defined Names, Formula Auditing, Calculation.</li>
+                    <li><strong>Rule:</strong> All Formulas MUST start with an <code>=</code> (Equal to) sign.</li>
+                    <li><strong>Order of Operations (PEMDAS):</strong> Excel calculates in order: 1. Parentheses, 2. Exponents (^), 3. Multiplication (*) & Division (/), 4. Addition (+) & Subtraction (-). Rule for consecutive operators of same precedence (e.g. multiple divisions): Excel calculates Left to Right (e.g. <code>8/4/2 -> (8/4)/2 = 1</code>).</li>
+                </ul>
+
+                <h3 class="sub-heading">Function Categories</h3>
+                <ul class="bullet-list">
+                    <li><strong>Logical Functions:</strong> AND, FALSE, IF, IFERROR, IFNA, IFS, NOT, OR, SWITCH, TRUE, XOR.
+                        <ul class="bullet-list mt-1">
+                            <li><code>AND</code>: TRUE if all conditions are TRUE. (e.g. <code>1=1, 2=2 -> TRUE</code>, <code>1=2, 2=3 -> FALSE</code>).</li>
+                            <li><code>IF</code>: Checks condition. Returns one value if TRUE, another if FALSE. (e.g. <code>IF(A1=25, "Pass", "Fail")</code>).</li>
+                            <li><code>NOT</code>: Reverses logical value. <code>NOT(TRUE) -> FALSE</code>.</li>
+                            <li><code>OR</code>: TRUE if any condition is TRUE. FALSE only if all are FALSE.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Text Functions:</strong>
+                        <ul class="bullet-list mt-1">
+                            <li><code>CONCATENATE</code> / <code>CONCAT</code>: Joins strings. e.g. <code>CONCATENATE("Parmar", " ", "Academy")</code>. Enclose in double quotes.</li>
+                            <li><code>LOWER</code> / <code>UPPER</code> / <code>PROPER</code>: Lowercase, Uppercase, Capitalizes first letter of each word.</li>
+                            <li><code>TRIM</code>: Removes extra spaces leaving only single spaces between words.</li>
+                            <li><code>LEN</code>: Total characters in string (includes spaces).</li>
+                            <li><code>SUBSTITUTE</code> vs <code>REPLACE</code>: SUBSTITUTE replaces specific text. REPLACE replaces text based on position.</li>
+                            <li><code>LEFT</code> / <code>RIGHT</code> / <code>MID</code>: Returns characters from start/end/middle.</li>
+                            <li><code>FIND</code> (Case Sensitive) / <code>SEARCH</code> (Not Case Sensitive): Finds position of text.</li>
+                            <li><code>EXACT</code>: Checks if identical (Case Sensitive).</li>
+                            <li><code>DOLLAR</code>: Converts number to text using currency format.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Date & Time Functions:</strong> <code>TODAY()</code> (Current date), <code>NOW()</code> (Current date/time), <code>DATE(y,m,d)</code>, <code>DAY()</code>, <code>MONTH()</code>, <code>YEAR()</code>, <code>HOUR/MINUTE/SECOND()</code>, <code>DATEDIF</code> (diff between dates).</li>
+                    <li><strong>Lookup & Reference Functions:</strong>
+                        <ul class="bullet-list mt-1">
+                            <li><code>MATCH</code>: Returns relative position. Types: 1 (Less than - Ascending array), 0 (Exact match), -1 (Greater than - Descending array).</li>
+                            <li><code>VLOOKUP</code> (Vertical - searches first column, moves across row), <code>HLOOKUP</code> (Horizontal - searches first row, moves down column).</li>
+                            <li><code>ADDRESS</code>, <code>COLUMN/ROW</code>, <code>TRANSPOSE</code> (Converts vertical to horizontal).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Math & Trig Functions:</strong>
+                        <ul class="bullet-list mt-1">
+                            <li><code>ABS</code> (Absolute value), <code>SQRT</code>, <code>FACT</code> (Factorial, 0!=1), <code>PRODUCT</code>, <code>SUMSQ</code>, <code>GCD/LCM</code>, <code>MOD</code> (Remainder - result sign matches divisor sign), <code>POWER</code>.</li>
+                            <li><strong>Rounding:</strong> <code>ROUND</code> (to specified digits), <code>ROUNDUP</code>, <code>ROUNDDOWN</code>, <code>INT</code> (Rounds down to nearest integer), <code>TRUNC</code> (Removes fractional part without rounding).</li>
+                            <li><code>CEILING</code> (Rounds up to multiple of significance), <code>FLOOR</code> (Rounds down to multiple).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Counting Functions:</strong> <code>COUNT</code> (Counts cells with numbers), <code>COUNTA</code> (Counts non-empty cells), <code>COUNTBLANK</code> (Counts empty cells).</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title text-green-700">5. Cursors & Errors Indications</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="sub-heading mt-0">Indication Marks (Cursors)</h3>
+                        <ul class="bullet-list">
+                            <li><strong>Black Arrow:</strong> Selects entire row/column.</li>
+                            <li><strong>Double-headed Arrow:</strong> Adjusts row height/column width.</li>
+                            <li><strong>Black Cross (Fill Handle):</strong> Copies formulas/fills series.</li>
+                            <li><strong>Four-headed Arrow:</strong> Moves selected cells.</li>
+                            <li><strong>White Plus:</strong> Selection cursor.</li>
+                            <li><strong>Red Triangle:</strong> Indicates a Comment.</li>
+                            <li><strong>Green Triangle:</strong> Indicates a potential Error.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="sub-heading mt-0">Types of Errors</h3>
+                        <ul class="bullet-list">
+                            <li><code>#DIV/0!</code>: Division by zero.</li>
+                            <li><code>#VALUE!</code>: Wrong type of argument/operand.</li>
+                            <li><code>#NAME?</code>: Invalid text/function name.</li>
+                            <li><code>#REF!</code>: Invalid cell reference (deleted cells).</li>
+                            <li><code>#NUM!</code>: Invalid numeric values.</li>
+                            <li><code>#N/A</code>: Value not available (common in Lookup).</li>
+                            <li><code>#NULL!</code>: Incorrect range operator.</li>
+                            <li><code>####</code>: Column is too narrow to display data.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHAPTER 3: MICROSOFT POWERPOINT -->
+        <div id="chapter-3" class="chapter-view hidden">
+            <h1 class="text-4xl font-extrabold text-orange-800 border-b-4 border-orange-200 pb-4 mb-8">Chapter 3: Microsoft PowerPoint</h1>
+            <p class="text-gray-600 mb-6 italic">Presentation Mastery, Interface Views, Effects, and MCQ Review</p>
+
+            <div class="card">
+                <h2 class="section-title text-orange-700">1. Fundamentals & Start Up</h2>
+                <ul class="bullet-list">
+                    <li><strong>Presentation Applications:</strong> Microsoft: MS PowerPoint | Google: Google Slides | Apple: Keynote | LibreOffice: Impress.</li>
+                    <li><strong>Office Suites Comparison:</strong> 
+                        <ul class="bullet-list mt-1">
+                            <li><strong>Apple iWork:</strong> Pages (Word), Numbers (Spreadsheet), Keynote (Presentation).</li>
+                            <li><strong>Google Suite:</strong> Google Docs, Google Sheet, Google Slides.</li>
+                            <li><strong>LibreOffice:</strong> Writer (Word), Calc (Spreadsheet), Impress (Presentation), Draw (Vector Graphics), Base (Database), Math (Formula Editing).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Extensions:</strong> Pre 2007: <code>.ppt</code> | Post 2007: <code>.pptx</code> | Template: <code>.potx</code> | Macro Enabled: <code>.pptm</code>.</li>
+                    <li><strong>Terms:</strong> Slide (Individual page), Place Holder (Dotted box), Animation pane (Is on Right Side), Template (Readymade presentation).</li>
+                    <li><strong>Zoom Config:</strong> Min 10% | Max 400% | Default 100%.</li>
+                    <li><strong>Fact:</strong> Default PowerPoint standard Layout is Title Slide.</li>
+                    <li><strong>How to Start & Navigation:</strong> Run Dialog: Type <code>powerpnt</code>, Enter. Executable File: <code>powerpnt.exe</code>. 
+                        <strong>Home:</strong> Brings user directly to first slide. <strong>End:</strong> Brings user directly to last slide.
+                        <strong>Dragging:</strong> Term used to hold a slide and Move it on the Slide Sorter.
+                        <strong>Motion Path:</strong> Method of moving items on a slide.
+                    </li>
+                </ul>
+
+                <h3 class="sub-heading">Basic Shortcut Keys</h3>
+                <div class="shortcut-grid mb-4">
+                    <div class="shortcut-item"><span>Create new/blank presentation</span><span class="shortcut-key">Ctrl + N</span></div>
+                    <div class="shortcut-item"><span>Insert a New slide</span><span class="shortcut-key">Ctrl + M</span></div>
+                    <div class="shortcut-item"><span>Duplicate current slide</span><span class="shortcut-key">Ctrl + D</span></div>
+                    <div class="shortcut-item"><span>View/Run Presentation</span><span class="shortcut-key">F5</span></div>
+                    <div class="shortcut-item"><span>Run slide show from current</span><span class="shortcut-key">Shift + F5</span></div>
+                    <div class="shortcut-item"><span>Return to first slide</span><span class="shortcut-key">1 + Enter</span></div>
+                    <div class="shortcut-item"><span>End the Slide show</span><span class="shortcut-key">Esc</span></div>
+                    <div class="shortcut-item"><span>Check spellings</span><span class="shortcut-key">F7</span></div>
+                    <div class="shortcut-item"><span>Insert a Hyperlink</span><span class="shortcut-key">Ctrl + K</span></div>
+                </div>
+
+                <h3 class="sub-heading">Text Case & Fonts</h3>
+                <ul class="bullet-list">
+                    <li><strong>Text Case:</strong> 1. Sentence Case (First letter of 1st word capitalized). 2. Lowercase (No letter capitalized). 3. Uppercase (Each character Capitalized). 4. Capitalize Each Word (First letter of each word capitalized). 5. Toggle Case (Reverses case e.g., tOGGLE CASE).</li>
+                    <li><strong>Font Effects:</strong> Strikethrough, Double Strikethrough, Superscript, Subscript.</li>
+                    <li><strong>Font Styles:</strong> Regular, Italic, Bold, Bold Italic.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title text-orange-700">2. Presentation Views & Tabs</h2>
+                <h3 class="sub-heading">Total Types of Views: 8 (5 Presentation + 3 Master)</h3>
+                <table class="data-table mb-4">
+                    <tr><th>Presentation Views (5)</th><th>Description</th></tr>
+                    <tr><td>Normal View</td><td>Editing mode, Create slides</td></tr>
+                    <tr><td>Outline View</td><td>Heading levels, text only</td></tr>
+                    <tr><td>Slide Sorter</td><td>Thumbnail form, rearrange/add/delete</td></tr>
+                    <tr><td>Notes Page</td><td>Extra text (Comments) for print</td></tr>
+                    <tr><td>Reading View</td><td>Like Slide Show but keeps taskbar</td></tr>
+                </table>
+                <table class="data-table">
+                    <tr><th>Master Views (3)</th><th>Description</th></tr>
+                    <tr><td>1. Slide Master</td><td>Changes apply in all slides, logos add. Insert logo here to appear in same position on each slide.</td></tr>
+                    <tr><td>2. Handout Master</td><td>Repositioning, resizing, or formatting of the header and footer.</td></tr>
+                    <tr><td>3. Notes Master</td><td>Customize how your representation looks when printed out with notes.</td></tr>
+                </table>
+
+                <h3 class="sub-heading">Tabs & Features</h3>
+                <ul class="bullet-list">
+                    <li><strong>Home Tab:</strong> Clipboard (Cut, Copy, Paste, Format Painter), New Slide, Font, Shape Fill, Shape Outline, Shape Effect, Find, Replace, Go To.</li>
+                    <li><strong>Insert Tab:</strong> Table, Pictures, Shapes, SmartArt, Chart, Text Box, Header, Footer, WordArt, Date and Time, Symbols, Video, Audio, Screen Recording.</li>
+                    <li><strong>Design Tab:</strong> Themes, Variants (Colors, Fonts, Effects, Background Style), Slide Size (Standard 4:3, Widescreen 16:9), Format Background.</li>
+                    <li><strong>Transitions:</strong> Subtle (Morph, Fade, Push, Wipe), Exciting (Curtains, Wind, Fracture, Crush), Dynamic Content (Pan, Ferris Wheel, Rotate).</li>
+                    <li><strong>Animations:</strong> Entrance (Appear, Fade, Fly In, Float In), Emphasis (Pulse, Spin, Grow/Shrink), Exit (Disappear, Fade, Fly Out, Split), Motion Path (Lines, Arcs, Turns, Shapes, Loops).</li>
+                    <li><strong>Other Tabs:</strong> 
+                        <ul class="bullet-list mt-1">
+                            <li><strong>Slide Show:</strong> From Beginning, From Current Slide, Custom Slide Show.</li>
+                            <li><strong>Record:</strong> Record, Screenshot, Screen Recording, Video, Audio.</li>
+                            <li><strong>Review:</strong> Proofing (Spelling, Thesaurus), Search, Translate, Language.</li>
+                            <li><strong>View:</strong> Presentation Views, Master Views, Ruler, Gridlines, Notes, Zoom, Fit to Window, Color/Grayscale/Black and White, Window Cascade/New/Split/Arrange All/Switch, Macros.</li>
+                            <li><strong>Help:</strong> Help, Contact Support, Feedback, Show Training.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title text-orange-700">3. Important Question Bank (Fact Verified)</h2>
+                <ul class="bullet-list">
+                    <li><strong>Application used to create presentation:</strong> MS PowerPoint</li>
+                    <li><strong>Systematic display of data along with graphics, Sounds, movies etc called:</strong> Presentation</li>
+                    <li><strong>Individual page of a presentation is:</strong> Slide</li>
+                    <li><strong>Shortcut key to insert a new slide:</strong> Ctrl + M</li>
+                    <li><strong>Multimedia Software is:</strong> MS PowerPoint</li>
+                    <li><strong>Shortcut key to view slide in MS PowerPoint:</strong> F5</li>
+                    <li><strong>Shortcut key to create duplicate of current slide:</strong> Ctrl + D</li>
+                    <li><strong>What the question mark in MS PowerPoint window represents:</strong> Help / Menu Box</li>
+                    <li><strong>Steps to view a slide show:</strong> View > Slide Show OR Slide Show > View Slide</li>
+                    <li><strong>Side of MS PowerPoint window where Animation pane appears:</strong> Right</li>
+                    <li><strong>Replacing a font on all slides with another font is done using:</strong> Format > Replace Fonts</li>
+                    <li><strong>Opposite of title case:</strong> Toggle Case</li>
+                    <li><strong>Bar in PowerPoint that has bullets and numbering option:</strong> Format</li>
+                    <li><strong>Shortcut key to increase size of selected text in MS PowerPoint:</strong> Ctrl + Shift + ></li>
+                    <li><strong>Steps to Save File:</strong> File Save OR Ctrl + S OR File Save As</li>
+                    <li><strong>File extension of MS PowerPoint slide show:</strong> .pps</li>
+                    <li><strong>First Slide when creating a new Presentation:</strong> Title Slide</li>
+                    <li><strong>Sorting in PowerPoint means:</strong> Physical arrangement of the data</li>
+                    <li><strong>Special effects used for introducing slides in a presentation called:</strong> Transitions</li>
+                    <li><strong>Audio format that can be inserted into a PowerPoint presentation:</strong> .MP3</li>
+                    <li><strong>File that is non-editable presentation created in MS PowerPoint:</strong> .pps</li>
+                    <li><strong>To automatically place company logo at same position on each slide use:</strong> Slide Master</li>
+                    <li><strong>A theme can be:</strong> Applied to all slides and selected slides</li>
+                    <li><strong>Allows you to display your presentation in a web browser:</strong> Broadcast Slide Show</li>
+                    <li><strong>View used to easily rearrange slides:</strong> Slide Sorter</li>
+                    <li><strong>Slide displaying at end of presentation indicating end of slide show:</strong> Black Slide</li>
+                    <li><strong>Shortcut key to move cursor to end of presentation:</strong> Ctrl + End</li>
+                    <li><strong>Group used to insert movies, CD or clipboard:</strong> Media Clips</li>
+                    <li><strong>Shortcut key to return to first slide:</strong> 1 + Enter</li>
+                    <li><strong>Default PowerPoint Standard Layout:</strong> Title Slide</li>
+                    <li><strong>To resume slide show in PowerPoint:</strong> Shift + F5</li>
+                    <li><strong>To end the slide show:</strong> Esc</li>
+                    <li><strong>File formats that can be added to a Presentation:</strong> .gif, .jpg, .wav</li>
+                    <li><strong>Defined as Trigger that performs action on slide when you click mouse:</strong> Trigger/Action Button</li>
+                    <li><strong>View used to view all slides at once:</strong> Slide Sorter View</li>
+                    <li><strong>View used to add comments:</strong> Notes Page view</li>
+                    <li><strong>Defined by Handout Master:</strong> Layout of Handout</li>
+                    <li><strong>Master allowing customization of presentation appearance when printed out with notes:</strong> Notes Master</li>
+                    <li><strong>Identify invalid options in MS PowerPoint 2016 based on given choices:</strong> Option Dependent (Check given choices)</li>
+                    <li><strong>Go to first slide:</strong> 1 + Enter OR Ctrl + Home</li>
+                    <li><strong>Key to open Font Dialog Box on MS PowerPoint:</strong> Ctrl + Shift + F</li>
+                    <li><strong>Default title name on PowerPoint:</strong> Presentation 1</li>
+                    <li><strong>Fill effects used to fill background of place holder/slide in PowerPoint 2019:</strong> Picture, Gradient, Texture</li>
+                    <li><strong>Not a font style in MS PowerPoint 2019:</strong> Strikethrough (It is an Effect)</li>
+                    <li><strong>Appear, Fade, Fly In, Split etc. found under tab:</strong> Animations</li>
+                    <li><strong>Entrance, Emphasis, Exit, Motion Paths are groups of tab:</strong> Animations</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- CHAPTER 4: MICROSOFT ACCESS -->
+        <div id="chapter-4" class="chapter-view hidden">
+            <h1 class="text-4xl font-extrabold text-red-900 border-b-4 border-red-200 pb-4 mb-8">Chapter 4: Microsoft Access</h1>
+            <p class="text-gray-600 mb-6 italic">Target: OSSC CGL, OSAP CONSTABLE, RI ARI AMIN - RDBMS Concepts, Objects, Data Types and MCQs</p>
+
+            <div class="card">
+                <h2 class="section-title text-red-800">1. Introduction to MS Access & Specs</h2>
+                <ul class="bullet-list">
+                    <li><strong>What is MS Access?</strong> Microsoft Access is a widely used Relational Database Management System (RDBMS) developed by Microsoft. It is a part of the Microsoft Office Suite.</li>
+                    <li>Combines the relational Microsoft Jet Database Engine with a graphical user interface and software-development tools.</li>
+                    <li>Unlike MS Excel (financial/statistical data spreadsheet), MS Access handles large amounts of data, linking multiple tables through relationships.</li>
+                </ul>
+
+                <h3 class="sub-heading">Key Terminology</h3>
+                <ul class="bullet-list">
+                    <li><strong>Database:</strong> An organized collection of structured information or data.</li>
+                    <li><strong>Record (Row):</strong> A complete set of information in a table (also called a Tuple).</li>
+                    <li><strong>Field (Column):</strong> A specific piece of information within a record (also called an Attribute).</li>
+                </ul>
+
+                <h3 class="sub-heading">Database Specifications & File Extensions</h3>
+                <ul class="bullet-list">
+                    <li><strong>File Extensions:</strong>
+                        <ul class="bullet-list mt-1">
+                            <li><code>.mdb</code>: Default extension for MS Access versions prior to 2007 (e.g., 2000, 2003). Stands for Microsoft Database.</li>
+                            <li><code>.accdb</code>: Default extension for MS Access 2007 and newer. Stands for Access Database.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Size Limits:</strong> Maximum Database Size is <strong>2 Gigabytes (2GB)</strong>. (Absolute correct max limit).</li>
+                    <li><strong>Object Limits:</strong> Maximum 32,768 objects in a single database.</li>
+                    <li><strong>Name Limit:</strong> Max length of object name is 64 characters.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title text-red-800">2. Core Objects, Data Types & Keys</h2>
+                <h3 class="sub-heading">Four Core Objects of MS Access</h3>
+                <ul class="bullet-list">
+                    <li><strong>A. Tables:</strong> Foundational object storing all raw data arranged in rows and columns. Other objects rely on this data. Can establish Relationships (One-to-One, One-to-Many, Many-to-Many).</li>
+                    <li><strong>B. Queries:</strong> Tool used to retrieve or manipulate specific data based on conditions. Select Query retrieves/displays data. Action Queries perform actions (Append, Update, Delete in bulk).</li>
+                    <li><strong>C. Forms:</strong> User Interface (UI) for database entry, editing, and viewing. Prevents direct table interaction reducing corruption. Can contain buttons, text boxes, drop-downs.</li>
+                    <li><strong>D. Reports:</strong> Summarize, format, and print data. Read-only. Ideal for invoices, summaries, labels. Usually based on Queries.</li>
+                </ul>
+
+                <h3 class="sub-heading">Data Types in MS Access (Crucial)</h3>
+                <table class="data-table">
+                    <tr><th>Data Type</th><th>Description / Usage</th><th>Size / Limit</th></tr>
+                    <tr><td>Short Text</td><td>Alphanumeric data (names, titles, short addresses).</td><td>Up to 255 characters</td></tr>
+                    <tr><td>Long Text (Memo)</td><td>Large amounts of alphanumeric data (descriptions, notes, paragraphs).</td><td>Up to 65,536 characters</td></tr>
+                    <tr><td>Number</td><td>Numeric data used for mathematical calculations.</td><td>1, 2, 4, or 8 bytes</td></tr>
+                    <tr><td>Date/Time</td><td>Dates and times (DOB, Date of Joining, Timestamps).</td><td>8 bytes</td></tr>
+                    <tr><td>Currency</td><td>Monetary data, prevents rounding off during calculations.</td><td>8 bytes</td></tr>
+                    <tr><td>AutoNumber</td><td>Generates unique, sequential number automatically for each new record. Often Primary Key.</td><td>4 bytes</td></tr>
+                    <tr><td>Yes/No (Boolean)</td><td>Logical values that can only be one of two states (True/False, On/Off, Yes/No).</td><td>1 bit</td></tr>
+                    <tr><td>OLE Object</td><td>Object Linking and Embedding. Used to attach files, images, or docs.</td><td>Up to 2 GB</td></tr>
+                    <tr><td>Lookup Wizard</td><td>Creates drop-down list of values to choose option from another table/list.</td><td>Depends on target</td></tr>
+                </table>
+
+                <h3 class="sub-heading">Database Keys & Views</h3>
+                <ul class="bullet-list">
+                    <li><strong>Primary Key (PK):</strong> Field (or combination) uniquely identifying each record. Cannot contain duplicates or be left blank (NULL). Example: Roll Number, Employee ID.</li>
+                    <li><strong>Foreign Key (FK):</strong> Field in one table uniquely identifying a row of another table. Used to establish relationship.</li>
+                    <li><strong>Datasheet View:</strong> Used to view, enter, and edit actual data. Looks like an Excel spreadsheet.</li>
+                    <li><strong>Design View:</strong> Used to create or modify structure (Field Names, Data Types, PK). No raw data entered here.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title text-red-800">3. Important MCQs for Revision (Fact Verified)</h2>
+                <ul class="bullet-list">
+                    <li><strong>Maximum size of an Access database file:</strong> 2 GB</li>
+                    <li><strong>Access object used to retrieve data from one or more tables based on specified criteria:</strong> Query</li>
+                    <li><strong>Access object used to create a user interface for data entry and editing:</strong> Form</li>
+                    <li><strong>Default file extension for Microsoft Access 2007 and newer databases:</strong> .accdb</li>
+                    <li><strong>NOT a valid data type in MS Access among options:</strong> Picture (It is called OLE Object or Attachment)</li>
+                    <li><strong>Access view used to enter and edit the actual data in a table:</strong> Datasheet View</li>
+                    <li><strong>Field that uniquely identifies each record in a table is called:</strong> Primary Key</li>
+                    <li><strong>Access data type used to store a logical value like True or False:</strong> Yes/No</li>
+                    <li><strong>Object that summarizes data for printing on physical paper:</strong> Report</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- CHAPTER 5: KEYBOARD SHORTCUTS -->
+        <div id="chapter-5" class="chapter-view hidden">
+            <h1 class="text-4xl font-extrabold text-purple-800 border-b-4 border-purple-200 pb-4 mb-8">Chapter 5: Keyboard Shortcuts</h1>
+            <p class="text-gray-600 mb-6 italic">World's #1 Quick Reference Guide & Special Characters</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Basic Shortcut Keys -->
+                <div class="card p-0 overflow-hidden border-t-4 border-t-purple-600">
+                    <div class="p-4 bg-purple-50 border-b border-gray-200"><h2 class="text-xl font-bold text-purple-900 m-0">Basic Shortcut Keys</h2></div>
+                    <table class="data-table m-0 border-0">
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50 w-1/3">Alt + F</td><td>File menu options in current program</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Alt + E</td><td>Edit options in current program</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">F1</td><td>Universal help (for all programs)</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + A</td><td>Select all text</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + X</td><td>Cut selected item</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Shift + Del</td><td>Cut selected item</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + C</td><td>Copy selected item</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Ins</td><td>Copy selected item</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + V</td><td>Paste</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Shift + Ins</td><td>Paste</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Home</td><td>Go to beginning of current line</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Home</td><td>Go to beginning of document</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">End</td><td>Go to end of current line</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + End</td><td>Go to end of document</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Shift + Home</td><td>Highlight from current position to beginning of line</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Shift + End</td><td>Highlight from current position to end of line</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + ←</td><td>Move one word to the left at a time</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + →</td><td>Move one word to the right at a time</td></tr>
+                    </table>
+                </div>
+
+                <!-- Word Shortcut Keys -->
+                <div class="card p-0 overflow-hidden border-t-4 border-t-blue-600">
+                    <div class="p-4 bg-blue-50 border-b border-gray-200"><h2 class="text-xl font-bold text-blue-900 m-0">Word Shortcut Keys</h2></div>
+                    <table class="data-table m-0 border-0">
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50 w-1/3">Ctrl + A</td><td>Select all contents of the page</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + B</td><td>Bold highlighted selection</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + C</td><td>Copy selected text</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + X</td><td>Cut selected text</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + N</td><td>Open new/blank document</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + O</td><td>Open options</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + P</td><td>Open the print window</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + F</td><td>Open find box</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + I</td><td>Italicize highlighted selection</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + K</td><td>Insert link</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + U</td><td>Underline highlighted selection</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + V</td><td>Paste</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Y</td><td>Redo the last action performed</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Z</td><td>Undo last action</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + G</td><td>Find and replace options</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + H</td><td>Find and replace options</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + J</td><td>Justify paragraph alignment</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + L</td><td>Align selected text or line to the left</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Q</td><td>Align selected paragraph to the left</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + E</td><td>Align selected text or line to the center</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + R</td><td>Align selected text or line to the right</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + M</td><td>Indent the paragraph</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + T</td><td>Hanging indent</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + D</td><td>Font options</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Shift + F</td><td>Change the font</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Shift + ></td><td>Increase selected font +1</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + ]</td><td>Increase selected font +1</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Shift + <</td><td>Decrease selected font -1</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + [</td><td>Decrease selected font -1</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Shift + *</td><td>View or hide non printing characters</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + ←</td><td>Move one word to the left</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + →</td><td>Move one word to the right</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + ↑</td><td>Move to beginning of the line or paragraph</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + ↓</td><td>Move to the end of the paragraph</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Del</td><td>Delete word to right of cursor</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Backspace</td><td>Delete word to left of cursor</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Space</td><td>Reset highlighted text to default font</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + 1</td><td>Single-space lines</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + 2</td><td>Double-space lines</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + 5</td><td>1.5-line spacing</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Alt + 1</td><td>Change text to heading 1</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Alt + 2</td><td>Change text to heading 2</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Alt + 3</td><td>Change text to heading 3</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">F1</td><td>Open help</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Shift + F3</td><td>Change case of selected text</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Shift + Insert</td><td>Paste</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">F4</td><td>Repeat last action performed (Word 2000+)</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">F7</td><td>Spell check selected text and/or document</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Shift + F7</td><td>Activate the thesaurus</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">F12</td><td>Save as</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + S</td><td>Save</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Shift + F12</td><td>Save</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Alt + Shift + D</td><td>Insert the current date</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Alt + Shift + T</td><td>Insert the current time</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + W</td><td>Close document</td></tr>
+                    </table>
+                </div>
+
+                <!-- Excel Shortcut Keys -->
+                <div class="card p-0 overflow-hidden border-t-4 border-t-green-600">
+                    <div class="p-4 bg-green-50 border-b border-gray-200"><h2 class="text-xl font-bold text-green-900 m-0">Excel Shortcut Keys</h2></div>
+                    <table class="data-table m-0 border-0">
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50 w-1/3">F2</td><td>Edit the selected cell</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">F5</td><td>Go to a specific cell</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">F7</td><td>Spell check selected text and/or document</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">F11</td><td>Create chart</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Shift + ;</td><td>Enter the current time</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + ;</td><td>Enter the current date</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Alt + Shift + F1</td><td>Insert new worksheet</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Shift + F3</td><td>Open the Excel formula window</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Shift + F5</td><td>Bring up search box</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + A</td><td>Select all contents of worksheet</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + B</td><td>Bold highlighted selection</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + I</td><td>Italicize highlighted selection</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + C</td><td>Copy selected text</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + V</td><td>Paste</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + D</td><td>Fill</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + K</td><td>Insert link</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + F</td><td>Open find and replace options</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + G</td><td>Open go-to options</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + H</td><td>Open find and replace options</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + U</td><td>Underline highlighted selection / selected text</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + 5</td><td>Strikethrough highlighted selection</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + O</td><td>Open options</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + N</td><td>Open new document</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + P</td><td>Open print dialog box</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + S</td><td>Save</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Z</td><td>Undo last action</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + F9</td><td>Minimize current window</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + F10</td><td>Maximize currently selected window</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + F6</td><td>Switch between open workbooks/windows</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Page up/Down</td><td>Move between Excel worksheets in same document</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Tab</td><td>Move between two or more open Excel files</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Alt + =</td><td>Create formula to sum all of above cells</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + '</td><td>Insert value of above cell into current cell</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Shift + !</td><td>Format number in comma format</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Shift + $</td><td>Format number in currency format</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Shift + #</td><td>Format number in date format</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Shift + %</td><td>Format number in percentage format</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Shift + ^</td><td>Format number in scientific format</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Shift + @</td><td>Format number in time format</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Space</td><td>Select entire column</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Shift + Space</td><td>Select entire row</td></tr>
+                        <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + W</td><td>Close document</td></tr>
+                    </table>
+                </div>
+
+                <!-- MS Windows & Outlook Shortcut Keys -->
+                <div>
+                    <div class="card p-0 overflow-hidden mb-6 border-t-4 border-t-yellow-500">
+                        <div class="p-4 bg-yellow-50 border-b border-gray-200"><h2 class="text-xl font-bold text-yellow-900 m-0">MS Windows Shortcut Keys</h2></div>
+                        <table class="data-table m-0 border-0">
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50 w-1/3">Alt + Tab</td><td>Switch between open applications</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Alt + Shift + Tab</td><td>Switch backwards between open applications</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Alt + Print Screen</td><td>Create screen shot for current program</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Alt + Del</td><td>Reboot/Windows task manager</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Esc</td><td>Bring up start menu</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Alt + Esc</td><td>Switch between applications on taskbar</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">F2</td><td>Rename selected icon</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">F3</td><td>Start find from desktop</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">F4</td><td>Open the drive selection when browsing</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">F5</td><td>Refresh contents</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Alt + F4</td><td>Close current open program</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + F4</td><td>Close window in program</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Plus Key</td><td>Automatically adjust widths of all columns in Windows Explorer</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Alt + Enter</td><td>Open properties window of selected icon or program</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Shift + F10</td><td>Simulate right-click on selected item</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Shift + Del</td><td>Delete programs/files permanently</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Holding Shift</td><td>Boot safe mode or bypass system files During Bootup</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Holding Shift (CD)</td><td>When putting in an audio CD, prevent CD Player from playing</td></tr>
+                        </table>
+                    </div>
+
+                    <div class="card p-0 overflow-hidden mb-6 border-t-4 border-t-teal-600">
+                        <div class="p-4 bg-teal-50 border-b border-gray-200"><h2 class="text-xl font-bold text-teal-900 m-0">Outlook Shortcut Keys</h2></div>
+                        <table class="data-table m-0 border-0">
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50 w-1/3">Alt + S</td><td>Send the email</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + C</td><td>Copy selected text</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + X</td><td>Cut selected text</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + P</td><td>Open print dialog box</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + K</td><td>Complete name/email typed in address bar</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + B</td><td>Bold highlighted selection</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + I</td><td>Italicize highlighted selection</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + U</td><td>Underline highlighted selection</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + R</td><td>Reply to an email</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + F</td><td>Forward an email</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + N</td><td>Create a new email</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Shift + A</td><td>Create a new appointment to your calendar</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Shift + O</td><td>Open the outbox</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Shift + I</td><td>Open the inbox</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Shift + K</td><td>Add a new task</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Shift + C</td><td>Create a new contact</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">Ctrl + Shift + J</td><td>Create a new journal entry</td></tr>
+                        </table>
+                    </div>
+
+                    <div class="card p-0 overflow-hidden border-t-4 border-t-pink-600">
+                        <div class="p-4 bg-pink-50 border-b border-gray-200"><h2 class="text-xl font-bold text-pink-900 m-0">Winkey Shortcuts</h2></div>
+                        <table class="data-table m-0 border-0">
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50 w-1/3">WINKEY + D</td><td>Bring desktop to the top of other windows</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">WINKEY + M</td><td>Minimize all windows</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">WINKEY + SHIFT + M</td><td>Undo the minimize done by WINKEY + M and WINKEY + D</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">WINKEY + E</td><td>Open Microsoft Explorer</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">WINKEY + Tab</td><td>Cycle through open programs on taskbar</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">WINKEY + F</td><td>Display the Windows Search/Find feature</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">WINKEY + CTRL + F</td><td>Display the search for computers window</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">WINKEY + F1</td><td>Display the Microsoft Windows help</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">WINKEY + R</td><td>Open the run window</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">WINKEY + Pause/Break</td><td>Open the system properties window</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">WINKEY + U</td><td>Open utility manager</td></tr>
+                            <tr><td class="font-bold whitespace-nowrap bg-gray-50">WINKEY + L</td><td>Lock the computer (Windows XP & later)</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Store all chapter IDs in an array for easy management
+        const chapters = ['chapter-1', 'chapter-2', 'chapter-3', 'chapter-4', 'chapter-5'];
+
+        function showDashboard() {
+            // Hide all chapters
+            chapters.forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            // Show dashboard
+            document.getElementById('dashboard-view').classList.remove('hidden');
+            document.getElementById('dashboard-view').classList.add('block');
+            
+            // Hide back button
+            document.getElementById('back-btn-container').classList.add('hidden');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openChapter(chapterId) {
+            // Hide dashboard
+            document.getElementById('dashboard-view').classList.remove('block');
+            document.getElementById('dashboard-view').classList.add('hidden');
+            
+            // Hide all chapters first
+            chapters.forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            
+            // Show selected chapter
+            document.getElementById(chapterId).classList.remove('hidden');
+            
+            // Show back button
+            document.getElementById('back-btn-container').classList.remove('hidden');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Ensure Print CSS works by capturing beforeprint event (Optional safeguard)
+        window.addEventListener('beforeprint', (event) => {
+            console.log('Preparing to print...');
+        });
+    </script>
+</body>
+</html>

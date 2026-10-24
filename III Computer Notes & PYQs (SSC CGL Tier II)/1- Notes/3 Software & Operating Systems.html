@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSC CGL & NTPC Notes Dashboard</title>
+    <style>
+        /* Base Styles & Light Theme */
+        :root {
+            --bg-color: #f4f7f6;
+            --text-color: #1a1a1a;
+            --card-bg: #ffffff;
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Calibri', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        h1 { font-size: 2.5rem; text-align: center; margin-top: 2rem; }
+        h2 { font-size: 1.8rem; border-bottom: 2px solid var(--accent-color); padding-bottom: 0.3rem; margin-top: 2rem;}
+        h3 { font-size: 1.4rem; margin-top: 1.5rem; }
+        
+        p, li { font-size: 1.1rem; }
+        ul { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+        li { margin-bottom: 0.5rem; }
+
+        strong { color: var(--secondary-color); }
+
+        /* Layout & Containers */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .dashboard-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            border-color: var(--accent-color);
+        }
+
+        .dashboard-card h2 {
+            border: none;
+            margin: 0;
+            color: var(--accent-color);
+        }
+
+        /* Chapter Notes Layout */
+        .chapter-view {
+            display: none; /* Hidden by default */
+            background-color: var(--card-bg);
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-top: 2rem;
+        }
+
+        .nav-controls {
+            margin-bottom: 2rem;
+        }
+
+        .btn-back {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-family: inherit;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-back:hover {
+            background-color: #2980b9;
+        }
+
+        /* Content Grids & Cards */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .info-card {
+            background-color: #f9fbff;
+            border: 1px solid #d6e4f0;
+            border-radius: 6px;
+            padding: 1.5rem;
+            page-break-inside: avoid;
+        }
+
+        .info-card h4 {
+            margin-top: 0;
+            color: var(--accent-color);
+            border-bottom: 1px solid #d6e4f0;
+            padding-bottom: 0.5rem;
+        }
+
+        .qa-list li {
+            background-color: #fdfdfd;
+            border-left: 4px solid var(--accent-color);
+            padding: 0.8rem 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0 4px 4px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            list-style-type: none;
+            page-break-inside: avoid;
+        }
+        
+        .qa-list ul {
+            padding-left: 0;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+                color: black;
+                font-size: 12pt;
+            }
+            .container {
+                padding: 0;
+                max-width: 100%;
+            }
+            .chapter-view {
+                box-shadow: none;
+                padding: 0;
+                margin: 0;
+            }
+            .no-print, .btn-back {
+                display: none !important;
+            }
+            .info-card, .qa-list li {
+                page-break-inside: avoid;
+                border: 1px solid #ccc;
+                background-color: white;
+                box-shadow: none;
+                color: black;
+            }
+            h1, h2, h3, h4, strong {
+                color: black !important;
+            }
+            h2 {
+                border-bottom: 2px solid black;
+            }
+            /* Ensure grid turns into block for better printing if needed, or maintain grid if space allows */
+            .content-grid {
+                display: block;
+            }
+            .info-card {
+                margin-bottom: 1.5rem;
+            }
+            .dashboard-view {
+                display: none !important; /* Never print dashboard */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Dashboard View -->
+    <div id="dashboard" class="dashboard-view">
+        <h1>Study Materials Dashboard</h1>
+        <p style="text-align: center; color: var(--secondary-color);">Select a chapter to view its comprehensive notes (Optimized for SSC CGL Tier II & Railway NTPC).</p>
+        
+        <div class="dashboard-grid">
+            <div class="dashboard-card" onclick="showChapter('chapter1')">
+                <h2>1. Software</h2>
+                <p>Definitions, Types, OS, Extensions & Utilities.</p>
+            </div>
+            <div class="dashboard-card" onclick="showChapter('chapter2')">
+                <h2>2. File Extensions</h2>
+                <p>Complete Reference & Extracted MCQs.</p>
+            </div>
+            <div class="dashboard-card" onclick="showChapter('chapter3')">
+                <h2>3. Programming</h2>
+                <p>Languages, OOP, C Programming & Key Personalities.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chapter 1: Software -->
+    <div id="chapter1" class="chapter-view">
+        <div class="nav-controls no-print">
+            <button class="btn-back" onclick="showDashboard()">← Back to Dashboard</button>
+        </div>
+        
+        <h1>1. Software & Types</h1>
+        <p><em>Comprehensive Notes & Question Bank (Includes Windows OS & Explorer)</em></p>
+
+        <h2>Core Concepts & Definitions</h2>
+        <ul>
+            <li><strong>Software:</strong> A collection of instructions, data, or programs; these are intangible components used to operate computers and execute specific tasks.</li>
+            <li><strong>Mobile Software:</strong> Referred to as Applications (Apps).</li>
+            <li><strong>Source Code:</strong> The human-readable code required to create software.</li>
+            <li><strong>Module:</strong> The smallest functional unit of software.</li>
+            <li><strong>Software Composition:</strong> A collection of modules.</li>
+        </ul>
+
+        <h2>File Extensions</h2>
+        <div class="content-grid">
+            <div class="info-card">
+                <h4>Windows</h4>
+                <ul><li>.exe, .com, .msi (Microsoft Installer)</li></ul>
+            </div>
+            <div class="info-card">
+                <h4>macOS</h4>
+                <ul><li>.app (App Bundle), .dmg (Disk Image), .pkg (Package)</li></ul>
+            </div>
+            <div class="info-card">
+                <h4>Linux</h4>
+                <ul>
+                    <li><strong>Debian:</strong> .deb, .sh</li>
+                    <li><strong>RedHat:</strong> .rpm, .sh</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h4>Mobile OS</h4>
+                <ul>
+                    <li><strong>Android:</strong> .apk (Android Package Kit), .xapk</li>
+                    <li><strong>iOS:</strong> .ipa</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>Software Classification & Licensing</h2>
+        <h3>Source Code Types</h3>
+        <ul>
+            <li><strong>Open Source:</strong> Free of cost, source code is available and editable. <br><em>Examples:</em> Android OS, Linux OS, Firefox, Chromium.</li>
+            <li><strong>Closed Source:</strong> Proprietary code. Restricted by developer/manufacturer. <br><em>Examples:</em> MS Office, Tally, ERP (Enterprise Resource Planning), SAP (Systems, Applications, Products).</li>
+        </ul>
+
+        <h3>Distribution Models</h3>
+        <ul>
+            <li><strong>Freeware:</strong> Proprietary software available for no cost (e.g., Media Players).</li>
+            <li><strong>Shareware:</strong> Distributed for free but requires payment to unlock premium features.</li>
+            <li><strong>Trialware:</strong> Type of shareware that expires after a specific time limit.</li>
+            <li><strong>Nagware/Annoyware:</strong> Shareware that functions but persistently interrupts with pop-ups.</li>
+        </ul>
+
+        <h3>Important Terms</h3>
+        <ul>
+            <li><strong>Executable:</strong> Collection of Object Code or Machine Code.</li>
+            <li><strong>Patch:</strong> Repair of a bug available for free online.</li>
+            <li><strong>Malware:</strong> Malicious Software (Virus, Worm, Adware, Trojan, etc.).</li>
+            <li><strong>EULA:</strong> End User License Agreement (Contract between User and Publisher).</li>
+        </ul>
+
+        <h2>System vs. Application Software</h2>
+        <div class="content-grid">
+            <div class="info-card">
+                <h4>System Software</h4>
+                <p>Designed to operate the computer hardware and provide a platform for applications.</p>
+                <ul>
+                    <li><strong>Utility Software:</strong> Analyzes, configures, optimizes, and maintains the computer. (e.g., Antivirus, Disk Defragmenter, Disk Cleaner, Compression tools like 7-Zip, WinRAR).</li>
+                    <li><strong>Operating System:</strong> Windows, macOS, Linux, Android, iOS.</li>
+                    <li><strong>Drivers:</strong> Software used to run specific hardware.</li>
+                    <li><strong>Firmware:</strong> Permanent software programmed into read-only memory (BIOS/UEFI, Traffic Lights, Embedded systems).</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h4>Application Software</h4>
+                <p>Designed for specific tasks for the end-user.</p>
+                <ul>
+                    <li><strong>Examples:</strong> MS Office, Web Browsers, Media Players (VLC), Accounting (Tally).</li>
+                    <li><strong>Horizontal Software:</strong> General purpose, anyone can use (e.g., MS Word).</li>
+                    <li><strong>Vertical Software:</strong> Niche/Industry-specific (e.g., Finacle for banking).</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>Programming & Translation</h2>
+        <h3>Translators</h3>
+        <ul>
+            <li><strong>Compiler:</strong> Converts High-Level Language (HLL) to Machine Language (ML). Converts the entire source code to object code at once. Shows all errors at the end.</li>
+            <li><strong>Interpreter:</strong> Converts HLL to ML line-by-line. Shows errors after every line.</li>
+            <li><strong>Assembler:</strong> Converts Assembly Language into Machine Language.</li>
+            <li><em>Note:</em> Java uses both Compiler and Interpreter.</li>
+        </ul>
+        <h3>Steps to Write a Program</h3>
+        <ol>
+            <li>Algorithm</li>
+            <li>Pseudo Code</li>
+            <li>Flowchart</li>
+            <li>Program (Coding)</li>
+        </ol>
+
+        <h2>Question Bank (60 MCQs)</h2>
+        <div class="qa-list">
+            <ul>
+                <li><strong>Which type of software is maliciously designed to steal or destroy computer data?</strong> Malware</li>
+                <li><strong>Which of the following is considered a type of Malware?</strong> Virus, Adware, Trojan</li>
+                <li><strong>The legal agreement between a software developer and the software user is known as?</strong> EULA</li>
+                <li><strong>What does the acronym EULA stand for?</strong> End User License Agreement</li>
+                <li><strong>Which of the following is a Vertical Software widely used in the banking sector?</strong> Finacle</li>
+                <li><strong>Finacle, the core banking solution, was developed by which company?</strong> Infosys</li>
+                <li><strong>Which of the following is a common extension for an executable software file in Windows?</strong> .EXE</li>
+                <li><strong>An error or flaw in a software program is technically called a?</strong> Bug</li>
+                <li><strong>What term describes changes made to existing software, often to fix bugs or minor issues?</strong> Patch</li>
+                <li><strong>The process of deleting an old version and installing a new, major version of software is called?</strong> Upgrade</li>
+                <li><strong>Who is recognized as the world's first computer programmer?</strong> Ada Lovelace</li>
+                <li><strong>A set of instructions given to a computer to perform a task is called?</strong> Software</li>
+                <li><strong>What is the smallest functional unit of software called?</strong> Module</li>
+                <li><strong>A collection of modules combined together is called?</strong> Software</li>
+                <li><strong>Which software is absolutely essential for the computer to start and run?</strong> System Software</li>
+                <li><strong>Which of the following is an example of Utility Software?</strong> Antivirus, Disk Cleanup, Disk Defragmenter</li>
+                <li><strong>What is the primary responsibility of Utility Software?</strong> Increase Performance (Optimization) / Maintenance</li>
+                <li><strong>Name the professional who designs and builds software?</strong> Software Engineer / Programmer</li>
+                <li><strong>Vertical Software is also known as?</strong> Custom Software, Niche Software, Industry Specific Software</li>
+                <li><strong>Which characteristic best describes Open Source Software?</strong> Easily modified (Source available)</li>
+                <li><strong>Among these, which is NOT open source software?</strong> MS Office</li>
+                <li><strong>Software available for a limited trial basis is called?</strong> Shareware</li>
+                <li><strong>Which of the following is commonly distributed as Shareware?</strong> Antivirus</li>
+                <li><strong>Software that persistently attempts to make the user pay by displaying pop-ups is called?</strong> Nagware</li>
+                <li><strong>A program that provides a software interface to hardware devices is called?</strong> Device Drivers</li>
+                <li><strong>The process of organizing scattered files and folders on a hard drive is called?</strong> Defragmentation</li>
+                <li><strong>The illegal reproduction and distribution of software applications is known as?</strong> Piracy</li>
+                <li><strong>Which of the following cannot be categorized as Application Software?</strong> MS-DOS</li>
+                <li><strong>What is the alternative name for Application Software?</strong> End-user software</li>
+                <li><strong>Application software is defined as software that:</strong> Performs a specific task for computer users</li>
+                <li><strong>In a computer, the Operating System and Utility programs are examples of?</strong> System software</li>
+                <li><strong>A part of a computer system that consists of data on computer instructions is called?</strong> Software</li>
+                <li><strong>Special purpose software are typically classified as?</strong> Application software</li>
+                <li><strong>A translator that converts low-level assembly language into machine language is known as?</strong> Assembler</li>
+                <li><strong>Which of the following is NOT an example of System Software?</strong> Word Processors</li>
+                <li><strong>What do you call a program currently in execution?</strong> Process</li>
+                <li><strong>OSS stands for?</strong> Open Source Software</li>
+                <li><strong>A set of programs which consists of full documentation is called?</strong> Software Package</li>
+                <li><strong>Software that is substituted for hardware and stored in ROM is called?</strong> Firmware</li>
+                <li><strong>Software that acts as "glue" between client and server parts of an application is called?</strong> Middleware</li>
+                <li><strong>Where is Firmware typically stored?</strong> ROM</li>
+                <li><strong>A software that lies between the OS and the applications running on it is called?</strong> Middleware</li>
+                <li><strong>A type of middleware that allows for communication between built-in applications and the real-time OS?</strong> Embedded Middleware</li>
+                <li><strong>Which of the following is a group of programs found in Windows?</strong> Accessories</li>
+                <li><strong>Users typically write programs in which language?</strong> High-Level Language</li>
+                <li><strong>Which computer program accepts high-level language and converts it into assembly/machine language?</strong> Compiler</li>
+                <li><strong>Does the compiler program translate the whole source code in one step?</strong> Yes</li>
+                <li><strong>A Compiler translates High-level language into?</strong> Machine Language / Binary Language</li>
+                <li><strong>Which term refers to any program that is not copyrighted and free for public use?</strong> Public Domain Software</li>
+                <li><strong>Software that comes with permission to redistribute copies for a limited period is called?</strong> Shareware</li>
+                <li><strong>Who is credited with inventing the first computer algorithm?</strong> Ada Lovelace</li>
+                <li><strong>The first computer algorithm was designed to calculate?</strong> Bernoulli Numbers</li>
+                <li><strong>In which year was the first computer algorithm (for the Analytical Engine) created?</strong> 1843</li>
+                <li><strong>According to standard programming flow, what follows writing an Algorithm?</strong> Flowchart / Pseudo code</li>
+                <li><strong>When writing an Algorithm, instructions are generally written in which direction?</strong> Top to Bottom</li>
+                <li><strong>The part of an Algorithm which is repeated for a fixed number of times is called?</strong> Iteration</li>
+                <li><strong>Which famous algorithm was used by Google Search to rank web pages?</strong> Page Rank</li>
+                <li><strong>Which of the following is a known Google Algorithm update?</strong> Panda, Penguin, Hummingbird</li>
+                <li><strong>Name the algorithm used by Facebook for its news feed?</strong> Edge Rank</li>
+                <li><strong>What is the name of Google's latest natural language processing algorithm?</strong> BERT (Bidirectional Encoder Representations from Transformers)</li>
+            </ul>
+        </div>
+
+        <hr style="margin: 3rem 0; border: 1px solid var(--border-color);">
+
+        <h2>Windows OS | Complete Notes</h2>
+        <p>Comprehensive study notes covering version history, architecture, shortcuts, and core system management.</p>
+        <ul>
+            <li><strong>First Version:</strong> Windows 1.0</li>
+            <li><strong>Latest Version:</strong> Windows 11</li>
+        </ul>
+
+        <h3>Evolution & Versions</h3>
+        <div class="content-grid">
+            <div class="info-card">
+                <h4>Classic Era</h4>
+                <ul>
+                    <li>Windows 1.0 - 2.0</li>
+                    <li>Windows 3.0 - 3.1</li>
+                    <li>Windows 95</li>
+                    <li>Windows 98</li>
+                    <li>Windows ME (Millennium Edition)</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h4>NT Architecture</h4>
+                <ul>
+                    <li>Windows NT (New Technology)</li>
+                    <li>Windows 2000</li>
+                    <li>Windows XP (Experience)</li>
+                    <li>Windows Vista</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h4>Modern OS</h4>
+                <ul>
+                    <li>Windows 7</li>
+                    <li>Windows 8/8.1</li>
+                    <li>Windows 10</li>
+                    <li>Windows 11 (Announced: June 24, 2021 | Released: October 05, 2021)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h3>Windows 11 Key Features</h3>
+        <ul>
+            <li>New Start Menu</li>
+            <li>Android Apps Integration</li>
+            <li>Gaming Widgets</li>
+            <li>System Tray</li>
+            <li>MS Teams Integration</li>
+        </ul>
+
+        <h3>File System Architecture</h3>
+        <ul>
+            <li><strong>NTFS (New Technology File System):</strong> Introduced in 1993 with Windows NT. It is the standard file system for Windows XP, Vista, 7, 8, 10, and 11.</li>
+        </ul>
+
+        <h3>Command Center (Shortcuts)</h3>
+        <div class="content-grid">
+            <div class="info-card">
+                <ul>
+                    <li><strong>POWER MENU:</strong> Win + X</li>
+                    <li><strong>SETTINGS:</strong> Win + I</li>
+                    <li><strong>LOCK DEVICE:</strong> Win + L</li>
+                    <li><strong>SEARCH:</strong> Win + S / Q</li>
+                    <li><strong>NOTIFICATIONS:</strong> Win + A</li>
+                    <li><strong>SHOW DESKTOP:</strong> Win + D</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <ul>
+                    <li><strong>FILE EXPLORER:</strong> Win + E</li>
+                    <li><strong>RUN COMMAND:</strong> Win + R</li>
+                    <li><strong>PROJECT SCREEN:</strong> Win + P</li>
+                    <li><strong>CLIPBOARD HISTORY:</strong> Win + V</li>
+                    <li><strong>SNIP & SKETCH:</strong> Win + Shift + S</li>
+                    <li><strong>TASK MANAGER:</strong> Ctrl + Shift + Esc</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>Question Bank (Windows OS - 42 Questions)</h3>
+        <div class="qa-list">
+            <ul>
+                <li><strong>Which keyboard shortcut key can be used to open File Explorer?</strong> Windows Key + E</li>
+                <li><strong>Which keyboard shortcut opens the properties for the selected item on Windows 10/11?</strong> Alt + Enter</li>
+                <li><strong>On Windows 11, which characters are not allowed in file or folder names?</strong> \ / : * ? " &lt; &gt; |</li>
+                <li><strong>Which shortcut key is used to hard refresh on Google Chrome on Windows?</strong> Ctrl + F5 (Hard Reload)</li>
+                <li><strong>A large space common in most of the windows OS which is displayed at the background of Desktop main screen, is called?</strong> Work Area</li>
+                <li><strong>Which operating system do you choose to implement a client server network?</strong> Windows 2000</li>
+                <li><strong>Which mode loads minimal set of drivers when starting Windows?</strong> Safe Mode</li>
+                <li><strong>In Windows, Start Button is used to...</strong> Run Applications, Device Settings, Turn off System</li>
+                <li><strong>The date and time display on-</strong> System Tray</li>
+                <li><strong>Which Windows version does not have Start button?</strong> Windows 8</li>
+                <li><strong>Which OS doesn't support networking between Computers?</strong> Windows 3.1</li>
+                <li><strong>My computer was introduced from...</strong> Windows 95</li>
+                <li><strong>Which statement is correct about Windows OS?</strong> Windows is a GUI based OS</li>
+                <li><strong>Which is the default mode for Windows to start?</strong> Normal Mode</li>
+                <li><strong>NTFS stands for-</strong> New Technology File System</li>
+                <li><strong>Which button(s) you might find in a windows title bar?</strong> Close, Maximize, Minimize</li>
+                <li><strong>Which applications may appear on System tray?</strong> Windows Defender, Clock, Volume Control, Network Connection</li>
+                <li><strong>Which is the default location of saving and opening any file?</strong> My Documents</li>
+                <li><strong>Maximum characters length for a file name on Windows 7/8/10/11?</strong> 260 characters</li>
+                <li><strong>Which file format is supported in Windows 7?</strong> NTFS</li>
+                <li><strong>Press key while booting system to display Advanced Boot menu?</strong> F8</li>
+                <li><strong>Which key does the user use to switch between application running simultaneously?</strong> Alt + Tab</li>
+                <li><strong>Which windows command is used to open settings?</strong> Windows + I</li>
+                <li><strong>Which Windows command is used for Snip and Sketch tool?</strong> Windows + Shift + S</li>
+                <li><strong>Which feature in windows 10 will arrange all your open windows?</strong> Snap</li>
+                <li><strong>Which feature in windows 10 will quickly minimize all open windows except the active window?</strong> Shake</li>
+                <li><strong>Name the first OS?</strong> GMOS (General Motors Operating System)</li>
+                <li><strong>What is the shortcut to see clipboard in Windows 10/11?</strong> Windows Key + V</li>
+                <li><strong>On Windows 10/11, what happens when Shift key is pressed 5-times?</strong> Sticky Keys is Enabled</li>
+                <li><strong>Name that anti-virus software used mainly for online backing and is fully free for Windows OS?</strong> Bitdefender</li>
+                <li><strong>What is the keyboard shortcut key to refresh the active window on Windows 11?</strong> F5</li>
+                <li><strong>Which Windows feature helps end-users to arrange applications in different layouts?</strong> Snap Layouts</li>
+                <li><strong>What is the default search engine for Windows XP?</strong> MSN</li>
+                <li><strong>In which year was Microsoft's Windows OS first introduced?</strong> 1985</li>
+                <li><strong>Which shortcut key is used to delete a file permanently on Windows?</strong> Shift + Delete</li>
+                <li><strong>Which one is built-in default Word Processor on Windows OS?</strong> WordPad</li>
+                <li><strong>How many maximum users can access a shared folder simultaneously from a Windows XP Machine?</strong> 10</li>
+                <li><strong>How many users can access a shared folder simultaneously from a Windows 7/8/10/11 Machine?</strong> 20</li>
+                <li><strong>What is the name of Virtual Assistant included on Windows 10?</strong> Cortana</li>
+                <li><strong>What are small, actionable, visual representations of files, folders, applications or system tools on Windows OS called?</strong> Icons</li>
+                <li><strong>Default Text Editor on Windows?</strong> Notepad</li>
+                <li><strong>Which key combination is used to close an opened application on Windows?</strong> Alt + F4</li>
+            </ul>
+        </div>
+
+        <hr style="margin: 3rem 0; border: 1px solid var(--border-color);">
+
+        <h2>Windows Explorer Notes</h2>
+        <p>File Management System Software</p>
+        
+        <h3>System Overview</h3>
+        <ul>
+            <li><strong>Definition:</strong> System Software (Utility Software). Built-in application on the OS.</li>
+            <li>Manages files and folders.</li>
+            <li>Uses GUI (Graphical User Interface).</li>
+            <li><strong>Launch Date:</strong> August 15, 1995 (Win 95)</li>
+            <li><strong>Original Name:</strong> Windows Explorer</li>
+            <li><strong>New Name:</strong> File Explorer (Win 8+)</li>
+        </ul>
+
+        <h3>Interface & Navigation</h3>
+        <ul>
+            <li><strong>Methods to Open:</strong>
+                <ol>
+                    <li>Shortcut: Windows Key + E</li>
+                    <li>Present on the Start Menu.</li>
+                    <li>Folder Icon is present on the Task Bar.</li>
+                </ol>
+            </li>
+            <li><strong>Navigation Pane:</strong> Allows easy navigation in Windows Explorer. Present in the Left Pane. Contains the Quick Access Area.</li>
+        </ul>
+
+        <h3>Essential Shortcuts</h3>
+        <div class="content-grid">
+            <div class="info-card">
+                <ul>
+                    <li><strong>Open Explorer:</strong> Win + E</li>
+                    <li><strong>Create New Folder:</strong> Ctrl + Shift + N</li>
+                    <li><strong>Rename File/Folder:</strong> F2</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <ul>
+                    <li><strong>File Properties:</strong> Alt + Enter</li>
+                    <li><strong>Open Classic Full Menu:</strong> Shift + F10</li>
+                    <li><strong>Delete Permanently:</strong> Shift + Delete</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>Practice Questions</h3>
+        <div class="qa-list">
+            <ul>
+                <li><strong>Which of the following statements about Windows Explorer is incorrect?</strong> The right window of windows explorer is called Navigation pane. (Correct fact: Navigation is on the left pane).</li>
+                <li><strong>Pressing keys in Windows Explorer deletes a file permanently, bypassing the Recycle Bin?</strong> Shift + Delete</li>
+                <li><strong>How many types of views does File Explorer have in Windows 10/11?</strong> 8 views</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Chapter 2: File Extensions -->
+    <div id="chapter2" class="chapter-view">
+        <div class="nav-controls no-print">
+            <button class="btn-back" onclick="showDashboard()">← Back to Dashboard</button>
+        </div>
+
+        <h1>2. File Extensions</h1>
+        <p><em>Top MCQs & Computer Awareness Reference Grid</em></p>
+
+        <h2>Concept Grid: Common File Extensions Reference</h2>
+        
+        <div class="content-grid">
+            <div class="info-card">
+                <h4>Document Files</h4>
+                <ul>
+                    <li><strong>.doc / .docx</strong> - Microsoft Word Document</li>
+                    <li><strong>.pdf</strong> - Portable Document Format (Adobe)</li>
+                    <li><strong>.txt</strong> - Plain Text File (Notepad)</li>
+                    <li><strong>.rtf</strong> - Rich Text Format</li>
+                    <li><strong>.odt</strong> - OpenDocument Text Document</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h4>Data & Spreadsheets</h4>
+                <ul>
+                    <li><strong>.xls / .xlsx</strong> - Microsoft Excel Spreadsheet</li>
+                    <li><strong>.csv</strong> - Comma-Separated Values</li>
+                    <li><strong>.sql</strong> - Structured Query Language Data</li>
+                    <li><strong>.accdb</strong> - MS Access Database</li>
+                    <li><strong>.xml</strong> - Extensible Markup Language</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h4>Image & Graphics</h4>
+                <ul>
+                    <li><strong>.jpg / .jpeg</strong> - Joint Photographic Experts Group</li>
+                    <li><strong>.png</strong> - Portable Network Graphics</li>
+                    <li><strong>.gif</strong> - Graphics Interchange Format</li>
+                    <li><strong>.svg</strong> - Scalable Vector Graphics</li>
+                    <li><strong>.psd</strong> - Adobe Photoshop Document</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h4>Audio & Video</h4>
+                <ul>
+                    <li><strong>.mp3</strong> - MPEG Audio Layer 3</li>
+                    <li><strong>.wav</strong> - Waveform Audio File (Windows)</li>
+                    <li><strong>.mp4</strong> - MPEG-4 Video File</li>
+                    <li><strong>.avi</strong> - Audio Video Interleave</li>
+                    <li><strong>.mkv</strong> - Matroska Video Container</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h4>System & Executables</h4>
+                <ul>
+                    <li><strong>.exe</strong> - Windows Executable File</li>
+                    <li><strong>.dll</strong> - Dynamic Link Library</li>
+                    <li><strong>.bat</strong> - Batch File</li>
+                    <li><strong>.sys</strong> - System File</li>
+                    <li><strong>.apk</strong> - Android Application Package</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h4>Web & Compressed</h4>
+                <ul>
+                    <li><strong>.html / .htm</strong> - Hypertext Markup Language</li>
+                    <li><strong>.css</strong> - Cascading Style Sheet</li>
+                    <li><strong>.js</strong> - JavaScript File</li>
+                    <li><strong>.zip</strong> - Zipped Compressed Archive</li>
+                    <li><strong>.rar</strong> - Roshal Archive Compressed File</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>Comprehensive MCQs Bank</h2>
+        <div class="qa-list">
+            <ul>
+                <li><strong>What is the default file extension for Microsoft Word 2007 and newer versions?</strong> .docx (Context: The 'x' stands for XML. Older versions used .doc).</li>
+                <li><strong>Which of the following file extensions is used for a plain text file?</strong> .txt (Context: Created by basic editors like Windows Notepad. Contains unformatted text).</li>
+                <li><strong>What does PDF stand for?</strong> Portable Document Format (Context: Developed by Adobe in 1992).</li>
+                <li><strong>What is the standard file extension for Microsoft Excel (2007 onwards)?</strong> .xlsx</li>
+                <li><strong>Which of these file extensions is NOT related to image files?</strong> .wav (Context: .wav is a Waveform Audio File Format).</li>
+                <li><strong>What is the extension of an executable file in the Windows Operating System?</strong> .exe (Context: Contains instructions a computer can run directly).</li>
+                <li><strong>Which of the following file extensions indicates a temporary file?</strong> .tmp (Context: Created automatically to hold data temporarily).</li>
+                <li><strong>Which format is widely used for compressing multiple files into a single archive?</strong> .zip (Context: Used to save storage space).</li>
+                <li><strong>What does the apk file extension stand for?</strong> Android Package Kit (Context: Used by Android OS for apps).</li>
+                <li><strong>Which file extension represents a basic web page?</strong> .html (Context: Hypertext Markup Language).</li>
+                <li><strong>The extension .csv is commonly used for tabular data. What does CSV mean?</strong> Comma-Separated Values (Context: Plain text data separated by commas).</li>
+                <li><strong>Which of these is a database file extension primarily used by Microsoft Access?</strong> .accdb (Context: Older versions used .mdb).</li>
+                <li><strong>What is the standard extension for a Cascading Style Sheets file?</strong> .css (Context: Used to format web layouts).</li>
+                <li><strong>Which extension is associated with a Batch script file used in Windows Command Prompt?</strong> .bat (Context: Contains DOS commands).</li>
+                <li><strong>The .gif extension stands for:</strong> Graphics Interchange Format (Context: Commonly used for soundless web animations).</li>
+                <li><strong>What is a .dll file?</strong> Dynamic Link Library (Context: Contains code usable by multiple programs).</li>
+                <li><strong>Which of the following represents an Apple Disk Image file?</strong> .dmg (Context: Used by macOS to distribute software).</li>
+                <li><strong>The .svg file format is unique because it is a:</strong> Scalable Vector Graphics format (Context: Based on XML, resizable without quality loss).</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Chapter 3: Programming -->
+    <div id="chapter3" class="chapter-view">
+        <div class="nav-controls no-print">
+            <button class="btn-back" onclick="showDashboard()">← Back to Dashboard</button>
+        </div>
+
+        <h1>3. Programming</h1>
+        <p><em>Comprehensive Guide & Computer Science Facts</em></p>
+
+        <h2>Programming Language Definition</h2>
+        <p>It is a set of commands, instructions, and other syntax and semantics, used to create a software program.</p>
+
+        <h2>Types of Languages</h2>
+        <div class="content-grid">
+            <div class="info-card">
+                <h4>Low Level Language (LLL)</h4>
+                <p>Difficult to understand. There are two types:</p>
+                <ul>
+                    <li><strong>Machine Language:</strong> The only language understood by computers. Also referred to as Machine code, object code, or binary language (e.g., raw 0s and 1s).</li>
+                    <li><strong>Assembly Language:</strong> Grants direct manipulation of hardware registers for precise control. Assemblers translate human-readable mnemonics into executable binary code. (Examples: x86 Assembly, ARM Assembly, MIPS Assembly).</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h4>Medium Level Language (MLL)</h4>
+                <p>Designed to improve the translated code before it is executed by the processor.</p>
+                <ul>
+                    <li>Examples: C, C++, Java</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h4>High Level Language (HLL)</h4>
+                <p>Prioritizes abstraction, readability, and portability across different computers. Faster and Simpler.</p>
+                <ul>
+                    <li>Examples: Python, Java, C++, C#, JavaScript, Ruby, etc.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>Generational Languages</h2>
+        <ul>
+            <li><strong>1st Gen:</strong> Machine Language (Binary code)</li>
+            <li><strong>2nd Gen:</strong> Assembly Language (Mnemonics)</li>
+            <li><strong>3rd Gen:</strong> C, C++, Java, FORTRAN, COBOL, PASCAL (Software Making)</li>
+            <li><strong>4th Gen:</strong> Perl, Python, Ruby, SQL, MatLab (Database Languages)</li>
+            <li><strong>5th Gen:</strong> Mercury, Ops5, LISP and Prolog (AI / Robots / Machine)</li>
+        </ul>
+
+        <h2>Object-Oriented Programming (OOP)</h2>
+        <p><strong>Examples:</strong> Simula, Smalltalk, Java, JavaScript, Python, C++, Visual Basic .NET, Ruby, Scala, PHP.</p>
+        
+        <div class="content-grid">
+            <div class="info-card">
+                <h4>Class & Object</h4>
+                <p>A class is a blue-print for creating objects (a particular data structure), providing member variables, attributes, and implementations of Member Functions or Methods.</p>
+            </div>
+            <div class="info-card">
+                <h4>Encapsulation</h4>
+                <p>The principle in OOP that binds data and methods that manipulate that data into a single unit, known as a class. <em>(Diagram: Methods + Data -> Class)</em></p>
+            </div>
+            <div class="info-card">
+                <h4>Polymorphism</h4>
+                <p>Where a single entity (method or object) takes multiple forms, allowing different classes.</p>
+            </div>
+            <div class="info-card">
+                <h4>Data Hiding</h4>
+                <p>The principle of Encapsulation that helps to protect the Data.</p>
+            </div>
+            <div class="info-card">
+                <h4>Data Abstraction</h4>
+                <p>The technique of hiding complex, internal implementation details of data while exposing essential features and behaviours to the user.</p>
+            </div>
+            <div class="info-card">
+                <h4>Inheritance</h4>
+                <p>Mechanism by which one class is allowed to inherit the features of another class.</p>
+            </div>
+        </div>
+
+        <h3>OOP History and Facts</h3>
+        <ul>
+            <li><strong>First-ever High-Level Language:</strong> FORTRAN (Formula Translation); founded by John Backus.</li>
+            <li><strong>First-ever OOP Language:</strong> SIMULA (Simulation Language), specifically Simula 67.</li>
+            <li><strong>First-ever Purely Object-Oriented Language:</strong> Smalltalk.</li>
+            <li><strong>Facebook Stack:</strong> Front-end (JavaScript, React, CSS, PHP), Chat System (Erlang), Backend (Python, GO, C#).</li>
+            <li><strong>Internet-based languages:</strong> JavaScript, HTML.</li>
+            <li><strong>Scientific Languages:</strong> Python, MatLab, R, FORTRAN.</li>
+            <li><strong>Animation-based Language:</strong> JavaScript.</li>
+            <li><strong>Microsoft's OOP Language:</strong> Visual Basic (VB).</li>
+        </ul>
+
+        <h2>C Programming</h2>
+        <div class="content-grid">
+            <div class="info-card">
+                <ul>
+                    <li>Designed by Dennis Ritchie at Bell Labs in 1972.</li>
+                    <li>A compiled language.</li>
+                    <li>First OS created with C: Unix.</li>
+                    <li>Structured programming.</li>
+                    <li>Also called ANSI C.</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <ul>
+                    <li>Used in building Chromium browser, MySQL database.</li>
+                    <li>It is case-sensitive.</li>
+                    <li>32 keywords.</li>
+                    <li>Widely used in Embedded Systems / IoT Applications.</li>
+                    <li>A High-Level Language. Platform independent.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>Famous Personalities in Computer Science</h2>
+        <div class="content-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+            <div class="info-card"><strong>1. Keyboard:</strong> Christopher Latham Sholes</div>
+            <div class="info-card"><strong>2. Mouse:</strong> Douglas Engelbart</div>
+            <div class="info-card"><strong>3. BIOS:</strong> Gary Kildall</div>
+            <div class="info-card"><strong>4. Integrated Circuit:</strong> Jack Kilby and Robert Noyce</div>
+            <div class="info-card"><strong>5. Hard Disk:</strong> Reynold Johnson</div>
+            <div class="info-card"><strong>6. Bluetooth:</strong> Dr. Jaap Haartsen at Ericsson</div>
+            <div class="info-card"><strong>7. Mobile phone:</strong> Martin Cooper</div>
+            <div class="info-card"><strong>8. USB port:</strong> Ajay V. Bhatt</div>
+            <div class="info-card"><strong>9. USB Drive:</strong> Pua Khein-Seng</div>
+            <div class="info-card"><strong>10. CD & DVD:</strong> James Russell</div>
+            <div class="info-card"><strong>11. Floppy Disk:</strong> A team at IBM, Led by Alan Shugart</div>
+            <div class="info-card"><strong>12. RAM / ROM:</strong> Robert Heath Dennard</div>
+            <div class="info-card"><strong>13. EEPROM / Flash Memory:</strong> Fujio Masuoka (Toshiba)</div>
+            <div class="info-card"><strong>14. Super Computer (Globally):</strong> Seymour Cray</div>
+            <div class="info-card"><strong>15. Super Computer (Indian):</strong> Vijay Bhatkar</div>
+            <div class="info-card"><strong>16. ENIAC:</strong> John Mauchly and Presper Eckert</div>
+            <div class="info-card"><strong>17. Computer Science:</strong> Alan Turing</div>
+            <div class="info-card"><strong>18. First programmer:</strong> Ada Lovelace</div>
+            <div class="info-card"><strong>19. Bug:</strong> Grace Hopper</div>
+            <div class="info-card"><strong>20. AI:</strong> John McCarthy</div>
+            <div class="info-card"><strong>21. C:</strong> Dennis Ritchie</div>
+            <div class="info-card"><strong>22. Java:</strong> James Gosling (Sun Microsystems)</div>
+            <div class="info-card"><strong>23. C++:</strong> Bjarne Stroustrup</div>
+            <div class="info-card"><strong>24. PHP:</strong> Rasmus Lerdorf</div>
+            <div class="info-card"><strong>25. Binary Language:</strong> Gottfried Wilhelm Leibniz</div>
+            <div class="info-card"><strong>26. C#:</strong> Microsoft Corporation</div>
+            <div class="info-card"><strong>27. Finacle (Banking):</strong> Infosys</div>
+            <div class="info-card"><strong>28. Android:</strong> Andy Rubin (Google)</div>
+            <div class="info-card"><strong>29. Linux:</strong> Linus Torvalds</div>
+            <div class="info-card"><strong>30. Python:</strong> Guido van Rossum</div>
+            <div class="info-card"><strong>31. Unix:</strong> Ken Thompson and Dennis Ritchie</div>
+            <div class="info-card"><strong>32. Windows, DOS:</strong> Microsoft</div>
+            <div class="info-card"><strong>33. iOS:</strong> Steve Wozniak</div>
+            <div class="info-card"><strong>34. macOS:</strong> Steve Jobs</div>
+            <div class="info-card"><strong>35. RDBMS / DBMS:</strong> Edgar Frank Codd / Charles W. Bachman</div>
+            <div class="info-card"><strong>36. SQL:</strong> Donald Chamberlin and Raymond Boyce</div>
+            <div class="info-card"><strong>37. Oracle:</strong> Bob Miner</div>
+            <div class="info-card"><strong>38. Fiber Optics:</strong> Narinder Singh Kapany</div>
+            <div class="info-card"><strong>39. ARPANET:</strong> Lawrence Roberts (DARPA)</div>
+            <div class="info-card"><strong>40. OSI Model:</strong> ISO</div>
+            <div class="info-card"><strong>41. TCP/IP Model:</strong> Vint Cerf and Bob Kahn</div>
+            <div class="info-card"><strong>42. Internet:</strong> Vint Cerf and Bob Kahn</div>
+            <div class="info-card"><strong>43. WWW & Website CERN:</strong> Sir Tim Berners-Lee</div>
+            <div class="info-card"><strong>44. Email:</strong> Ray Tomlinson</div>
+            <div class="info-card"><strong>45. Modern Computer Arch:</strong> John von Neumann</div>
+            <div class="info-card"><strong>46. Google:</strong> Larry Page and Sergey Brin</div>
+            <div class="info-card"><strong>47. Facebook:</strong> Mark Zuckerberg</div>
+            <div class="info-card"><strong>48. Microsoft:</strong> Bill Gates and Paul Allen</div>
+            <div class="info-card"><strong>49. Apple:</strong> Steve Jobs, Steve Wozniak, Ronald Wayne</div>
+            <div class="info-card"><strong>50. WhatsApp:</strong> Jan Koum and Brian Acton</div>
+            <div class="info-card"><strong>51. Signal App:</strong> Brian Acton and Moxie Marlinspike</div>
+            <div class="info-card"><strong>52. Instagram:</strong> Kevin Systrom</div>
+            <div class="info-card"><strong>53. Twitter:</strong> Jack Dorsey</div>
+            <div class="info-card"><strong>54. YouTube:</strong> Jawed Karim, Chad Hurley, Steve Chen</div>
+            <div class="info-card"><strong>55. G-Mail:</strong> Paul Buchheit</div>
+            <div class="info-card"><strong>56. Hotmail:</strong> Sabeer Bhatia</div>
+            <div class="info-card"><strong>57. Yahoo:</strong> Jerry Yang and David Filo</div>
+            <div class="info-card"><strong>58. Infosys:</strong> Narayana Murthy</div>
+            <div class="info-card"><strong>59. Flipkart:</strong> Sachin Bansal and Binny Bansal</div>
+            <div class="info-card"><strong>60. Amazon:</strong> Jeff Bezos</div>
+            <div class="info-card"><strong>61. Alibaba:</strong> Jack Ma</div>
+            <div class="info-card"><strong>62. SpaceX + Tesla:</strong> Elon Musk</div>
+            <div class="info-card"><strong>63. Analytical Engine:</strong> Charles Babbage</div>
+            <div class="info-card"><strong>64. Fortran:</strong> John Backus</div>
+            <div class="info-card"><strong>65. JavaScript:</strong> Brendan Eich</div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    function showChapter(chapterId) {
+        // Hide Dashboard
+        document.getElementById('dashboard').style.display = 'none';
+        
+        // Hide all chapters
+        document.getElementById('chapter1').style.display = 'none';
+        document.getElementById('chapter2').style.display = 'none';
+        document.getElementById('chapter3').style.display = 'none';
+        
+        // Show selected chapter
+        document.getElementById(chapterId).style.display = 'block';
+        window.scrollTo(0, 0); // Scroll to top
+    }
+
+    function showDashboard() {
+        // Show Dashboard
+        document.getElementById('dashboard').style.display = 'block';
+        
+        // Hide all chapters
+        document.getElementById('chapter1').style.display = 'none';
+        document.getElementById('chapter2').style.display = 'none';
+        document.getElementById('chapter3').style.display = 'none';
+        window.scrollTo(0, 0); // Scroll to top
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,3757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TCS / Eduquity Computer Knowledge PYQ Mock Tests</title>
+  <style>
+    :root {
+      --bg-page: #f4f6f9;
+      --bg-surface: #ffffff;
+      --bg-header: #1e4b8a;
+      --bg-subheader: #2c62ad;
+      --bg-palette-header: #e8eef5;
+      --bg-palette: #f8fafd;
+      --border-color: #d1d9e4;
+      --text-primary: #1a202c;
+      --text-secondary: #4a5568;
+      --text-muted: #718096;
+      --accent-blue: #2563eb;
+      --accent-blue-hover: #1d4ed8;
+      --status-answered: #2e8540;
+      --status-not-answered: #d9381e;
+      --status-not-visited: #e2e8f0;
+      --status-review: #6b46c1;
+      --status-ans-review: #553c9a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.5;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Views Management */
+    .view-section {
+      display: none;
+      width: 100%;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .view-section.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top System Bar */
+    .top-bar {
+      background-color: var(--bg-header);
+      color: #ffffff;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #153868;
+      flex-shrink: 0;
+    }
+
+    .top-bar-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .top-bar-badge {
+      background-color: rgba(255, 255, 255, 0.18);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    /* Main Dashboard View */
+    .dashboard-container {
+      max-width: 1040px;
+      width: 100%;
+      margin: 32px auto;
+      padding: 0 20px 40px;
+    }
+
+    .dashboard-hero {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .dashboard-hero h1 {
+      font-size: 1.5rem;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .dashboard-hero p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .stats-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #edf2f7;
+    }
+
+    .stat-pill {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    .test-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .test-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-top: 4px solid var(--bg-header);
+      border-radius: 8px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .test-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+    }
+
+    .test-card-header {
+      margin-bottom: 16px;
+    }
+
+    .test-order-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--bg-header);
+      background: #e6f0fd;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    .test-card h2 {
+      font-size: 1.35rem;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .test-card-sub {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .test-meta-list {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .test-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .test-meta-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .test-meta-val {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 9px 16px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+      user-select: none;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-blue);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-blue-hover);
+    }
+
+    .btn-success {
+      background-color: #2e8540;
+      color: #ffffff;
+    }
+
+    .btn-success:hover {
+      background-color: #246932;
+    }
+
+    .btn-secondary {
+      background-color: #ffffff;
+      color: #334155;
+      border-color: #cbd5e1;
+    }
+
+    .btn-secondary:hover {
+      background-color: #f1f5f9;
+    }
+
+    .btn-purple {
+      background-color: #6b46c1;
+      color: #ffffff;
+    }
+
+    .btn-purple:hover {
+      background-color: #553c9a;
+    }
+
+    .btn-warning {
+      background-color: #d97706;
+      color: #ffffff;
+    }
+
+    .btn-warning:hover {
+      background-color: #b45309;
+    }
+
+    .btn-danger {
+      background-color: #dc2626;
+      color: #ffffff;
+    }
+
+    .btn-danger:hover {
+      background-color: #b91c1c;
+    }
+
+    /* Introductory Instructions View */
+    .intro-container {
+      max-width: 880px;
+      width: 100%;
+      margin: 28px auto;
+      padding: 0 20px 40px;
+    }
+
+    .intro-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .intro-card-header {
+      background: #edf2f7;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .intro-card-header h2 {
+      font-size: 1.25rem;
+      color: var(--text-primary);
+    }
+
+    .intro-card-body {
+      padding: 24px;
+    }
+
+    .intro-card-body h3 {
+      font-size: 1.05rem;
+      margin-bottom: 12px;
+      color: var(--bg-header);
+    }
+
+    .instruction-list {
+      margin-left: 20px;
+      margin-bottom: 20px;
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+    }
+
+    .instruction-list li {
+      margin-bottom: 8px;
+    }
+
+    .palette-legend-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .legend-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .legend-swatch {
+      width: 28px;
+      height: 26px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .swatch-not-visited {
+      background: #e2e8f0;
+      color: #1e293b;
+      border: 1px solid #cbd5e1;
+    }
+
+    .swatch-not-answered {
+      background: var(--status-not-answered);
+      color: #ffffff;
+    }
+
+    .swatch-answered {
+      background: var(--status-answered);
+      color: #ffffff;
+    }
+
+    .swatch-review {
+      background: var(--status-review);
+      color: #ffffff;
+      border-radius: 50%;
+    }
+
+    .swatch-ans-review {
+      background: var(--status-ans-review);
+      color: #ffffff;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .swatch-ans-review::after {
+      content: "";
+      position: absolute;
+      bottom: 1px;
+      right: 1px;
+      width: 8px;
+      height: 8px;
+      background: #48bb78;
+      border-radius: 50%;
+      border: 1px solid #ffffff;
+    }
+
+    .intro-footer {
+      padding: 16px 24px;
+      background: #f8fafc;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Exam Interface (TCS / Eduquity Light Theme) */
+    #view-exam.active {
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .exam-header {
+      background: var(--bg-header);
+      color: #ffffff;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      border-bottom: 1px solid #12325e;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .exam-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .exam-title-text {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .exam-header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .timer-box {
+      background: #ffffff;
+      color: #1a202c;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #cbd5e1;
+    }
+
+    .timer-box.low-time {
+      background: #fee2e2;
+      color: #b91c1c;
+      border-color: #f87171;
+    }
+
+    .exam-body {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      background: var(--bg-surface);
+    }
+
+    /* Left Question Area */
+    .question-workspace {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      height: 100%;
+      border-right: 1px solid var(--border-color);
+    }
+
+    .question-Meta-bar {
+      background: #edf2f7;
+      padding: 10px 20px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .q-number-label {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .q-marking-info {
+      font-size: 0.8rem;
+      color: #475569;
+      font-weight: 600;
+    }
+
+    .question-scroll-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 22px 26px;
+    }
+
+    .question-stem {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #111827;
+      white-space: pre-line;
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    .exam-tag-badge {
+      display: inline-block;
+      font-size: 0.74rem;
+      color: #64748b;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 780px;
+    }
+
+    .option-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: background-color 0.12s ease, border-color 0.12s ease;
+    }
+
+    .option-row:hover {
+      background-color: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    .option-row.selected {
+      background-color: #eff6ff;
+      border-color: #2563eb;
+    }
+
+    .option-row input[type="radio"] {
+      margin-top: 4px;
+      width: 17px;
+      height: 17px;
+      accent-color: #2563eb;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .option-text {
+      font-size: 0.96rem;
+      color: #1e293b;
+      line-height: 1.45;
+      flex: 1;
+    }
+
+    /* Fixed Bottom Control Bar in Question Workspace */
+    .exam-action-bar {
+      background: #f1f5f9;
+      border-top: 1px solid var(--border-color);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .action-group-left,
+    .action-group-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Right Side Small Question Palette */
+    .palette-sidebar {
+      width: 280px;
+      background: var(--bg-palette);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      flex-shrink: 0;
+    }
+
+    .palette-summary {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-color);
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .palette-summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      font-size: 0.75rem;
+      color: #334155;
+    }
+
+    .palette-stat-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .palette-stat-badge {
+      width: 22px;
+      height: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .palette-header-bar {
+      background: var(--bg-subheader);
+      color: #ffffff;
+      padding: 7px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .palette-numbers-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      align-content: start;
+    }
+
+    .q-palette-btn {
+      height: 34px;
+      border-radius: 4px;
+      border: 1px solid #cbd5e1;
+      background: #e2e8f0;
+      color: #1e293b;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: transform 0.1s ease;
+    }
+
+    .q-palette-btn:hover {
+      filter: brightness(0.95);
+    }
+
+    .q-palette-btn.current-q {
+      outline: 2px solid #0f172a;
+      outline-offset: 1px;
+    }
+
+    .q-palette-btn.st-not-answered {
+      background: var(--status-not-answered);
+      color: #ffffff;
+      border-color: #b82d16;
+    }
+
+    .q-palette-btn.st-answered {
+      background: var(--status-answered);
+      color: #ffffff;
+      border-color: #236630;
+    }
+
+    .q-palette-btn.st-review {
+      background: var(--status-review);
+      color: #ffffff;
+      border-color: #553c9a;
+      border-radius: 50%;
+    }
+
+    .q-palette-btn.st-ans-review {
+      background: var(--status-ans-review);
+      color: #ffffff;
+      border-color: #44337a;
+      border-radius: 50%;
+    }
+
+    .q-palette-btn.st-ans-review::after {
+      content: "";
+      position: absolute;
+      bottom: 1px;
+      right: 1px;
+      width: 8px;
+      height: 8px;
+      background: #48bb78;
+      border-radius: 50%;
+      border: 1px solid #ffffff;
+    }
+
+    .palette-footer {
+      padding: 12px 14px;
+      border-top: 1px solid var(--border-color);
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .palette-footer .btn {
+      width: 100%;
+    }
+
+    /* Hide right-side palette on mobile phone interface per requirement 4 */
+    @media (max-width: 768px) {
+      .palette-sidebar {
+        display: none !important;
+      }
+      .question-workspace {
+        border-right: none;
+      }
+      .question-scroll-area {
+        padding: 16px;
+      }
+      .exam-action-bar {
+        padding: 10px 12px;
+      }
+      .btn {
+        padding: 7px 11px;
+        font-size: 0.8rem;
+      }
+    }
+
+    /* Results & Solutions Analysis View */
+    .results-container {
+      max-width: 1020px;
+      width: 100%;
+      margin: 28px auto;
+      padding: 0 20px 48px;
+    }
+
+    .score-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    .score-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e2e8f0;
+      margin-bottom: 20px;
+    }
+
+    .score-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+      gap: 14px;
+    }
+
+    .metric-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .metric-box-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .metric-box-value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .val-green { color: #16a34a; }
+    .val-red { color: #dc2626; }
+    .val-amber { color: #d97706; }
+    .val-blue { color: #2563eb; }
+
+    .solutions-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab-btn {
+      padding: 6px 14px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      border-radius: 4px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #334155;
+      cursor: pointer;
+    }
+
+    .filter-tab-btn.active {
+      background: var(--bg-header);
+      color: #ffffff;
+      border-color: var(--bg-header);
+    }
+
+    .solution-item-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .solution-item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .status-pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .pill-incorrect {
+      background: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fca5a5;
+    }
+
+    .pill-unattempted {
+      background: #fef3c7;
+      color: #b45309;
+      border: 1px solid #fcd34d;
+    }
+
+    .sol-options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 14px 0;
+    }
+
+    .sol-opt {
+      padding: 9px 12px;
+      border-radius: 4px;
+      border: 1px solid #e2e8f0;
+      font-size: 0.9rem;
+      background: #f8fafc;
+    }
+
+    .sol-opt.correct-opt {
+      background: #dcfce7;
+      border-color: #86efac;
+      color: #14532d;
+      font-weight: 600;
+    }
+
+    .sol-opt.user-wrong-opt {
+      background: #fee2e2;
+      border-color: #fca5a5;
+      color: #7f1d1d;
+    }
+
+    .explanation-box {
+      background: #f0f9ff;
+      border-left: 4px solid #0284c7;
+      padding: 12px 16px;
+      border-radius: 0 4px 4px 0;
+      font-size: 0.9rem;
+      color: #0c4a6e;
+      margin-top: 12px;
+    }
+
+    /* In-page Modals (Pause & Submit Confirmation) */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-dialog {
+      background: #ffffff;
+      border-radius: 8px;
+      max-width: 460px;
+      width: 100%;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+    }
+
+    .modal-header {
+      background: #edf2f7;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border-color);
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .modal-body {
+      padding: 20px;
+      color: var(--text-secondary);
+      font-size: 0.94rem;
+    }
+
+    .modal-summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+      background: #f8fafc;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .modal-footer {
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- VIEW 1: MAIN DASHBOARD -->
+  <section id="view-dashboard" class="view-section active">
+    <header class="top-bar">
+      <div class="top-bar-title">
+        <span>Computer Knowledge PYQ Mock Portal</span>
+        <span class="top-bar-badge">TCS / Eduquity Interface</span>
+      </div>
+      <div style="font-size: 0.85rem; opacity: 0.9;">SSC / Railway / Delhi Police CBT Mode</div>
+    </header>
+
+    <div class="dashboard-container">
+      <div class="dashboard-hero">
+        <h1>Main Mock Test Dashboard</h1>
+        <p>Select any of the 3 separate chapter-wise TCS Previous Years Questions (PYQ) mock tests below. Each mock test features randomized options on every attempt, strict 1-minute-per-question timer, and post-submission analysis for incorrect and unattempted questions.</p>
+        <div class="stats-strip">
+          <div class="stat-pill">Total Mock Tests: 3</div>
+          <div class="stat-pill">1. Software: 96 Qs (96 Mins)</div>
+          <div class="stat-pill">2. Extensions: 21 Qs (21 Mins)</div>
+          <div class="stat-pill">3. Programming: 41 Qs (41 Mins)</div>
+        </div>
+      </div>
+
+      <div id="dashboard-cards" class="test-cards-grid"></div>
+    </div>
+  </section>
+
+  <!-- VIEW 2: INTRODUCTORY INSTRUCTIONS SCREEN -->
+  <section id="view-intro" class="view-section">
+    <header class="top-bar">
+      <div class="top-bar-title">
+        <span id="intro-top-title">Mock Test Instructions</span>
+        <span class="top-bar-badge">General Instructions</span>
+      </div>
+      <button type="button" id="btn-intro-back" class="btn btn-secondary" style="padding: 5px 12px; font-size: 0.8rem;">Back to Dashboard</button>
+    </header>
+
+    <div class="intro-container">
+      <div class="intro-card">
+        <div class="intro-card-header">
+          <h2 id="intro-test-name">1. Software</h2>
+          <div id="intro-test-badge" style="font-size: 0.9rem; font-weight: 700; color: #1e4b8a;">96 Questions | 96 Minutes</div>
+        </div>
+        <div class="intro-card-body">
+          <h3>Please read the instructions carefully before starting the examination:</h3>
+          <ol class="instruction-list">
+            <li>The clock is set at the server. The countdown timer in the top right corner of screen will display the remaining time available for you to complete the examination (<strong id="intro-duration-text">96 minutes</strong> for <strong id="intro-qcount-text">96 questions</strong>). When the timer reaches zero, the examination will end and submit by itself.</li>
+            <li>One Multiple Choice Question (MCQ) is displayed on the screen at a time with four options. Options are randomized on each fresh attempt while maintaining question order.</li>
+            <li>Selecting an option does not automatically advance to the next question or reveal the answer during the test. Click <strong>Next</strong> or <strong>Mark for Review &amp; Next</strong> to save your response and move forward.</li>
+            <li>You can use the <strong>Clear</strong> button to deselect your chosen response for the current question at any time before submission.</li>
+            <li>The Question Palette displayed on the right side of the screen (on desktop/tablet screens) shows the status of each question using the following symbols:</li>
+          </ol>
+
+          <div class="palette-legend-box">
+            <strong style="font-size: 0.88rem; color: #1e293b;">Question Palette Symbols:</strong>
+            <div class="legend-grid">
+              <div class="legend-item">
+                <span class="legend-swatch swatch-not-visited">1</span>
+                <span>You have not visited the question yet.</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-swatch swatch-not-answered">2</span>
+                <span>You have visited but not answered the question.</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-swatch swatch-answered">3</span>
+                <span>You have answered the question.</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-swatch swatch-review">4</span>
+                <span>Marked for review (not answered).</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-swatch swatch-ans-review">5</span>
+                <span>Answered and Marked for Review.</span>
+              </div>
+            </div>
+          </div>
+
+          <p style="font-size: 0.88rem; color: #475569;">
+            <strong>Note:</strong> Clicking <strong>Start Mock Test</strong> will automatically enter Fullscreen mode and start the countdown timer. Upon submission, detailed solutions and explanations will be shown exclusively for incorrect and un-attempted questions.
+          </p>
+        </div>
+        <div class="intro-footer">
+          <button type="button" id="btn-intro-cancel" class="btn btn-secondary">Back to Main Dashboard</button>
+          <button type="button" id="btn-start-exam" class="btn btn-primary" style="padding: 10px 24px; font-size: 0.95rem;">Start Mock Test</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIEW 3: ACTIVE EXAM INTERFACE -->
+  <section id="view-exam" class="view-section">
+    <header class="exam-header">
+      <div class="exam-title-group">
+        <span id="exam-header-title" class="exam-title-text">1. Software</span>
+      </div>
+      <div class="exam-header-right">
+        <div id="exam-timer-box" class="timer-box">
+          <span>Time Left:</span>
+          <span id="exam-timer-display">96:00</span>
+        </div>
+        <button type="button" id="btn-pause-exam" class="btn btn-warning" style="padding: 5px 12px; font-size: 0.8rem;">Pause</button>
+        <button type="button" id="btn-exit-fullscreen" class="btn btn-secondary" style="padding: 5px 12px; font-size: 0.8rem;">Exit Fullscreen</button>
+        <button type="button" id="btn-top-submit" class="btn btn-success" style="padding: 5px 12px; font-size: 0.8rem;">Submit</button>
+      </div>
+    </header>
+
+    <div class="exam-body">
+      <!-- Left Main Question Workspace -->
+      <div class="question-workspace">
+        <div class="question-Meta-bar">
+          <div id="exam-q-number" class="q-number-label">Question No. 1 of 96</div>
+          <div class="q-marking-info">Single Choice MCQ</div>
+        </div>
+
+        <div class="question-scroll-area" id="question-scroll-container">
+          <div id="exam-q-stem" class="question-stem"></div>
+          <div id="exam-q-tag" class="exam-tag-badge"></div>
+          <div id="exam-options-container" class="options-list"></div>
+        </div>
+
+        <div class="exam-action-bar">
+          <div class="action-group-left">
+            <button type="button" id="btn-prev-q" class="btn btn-secondary">Previous</button>
+            <button type="button" id="btn-mark-review" class="btn btn-purple">Mark for Review &amp; Next</button>
+            <button type="button" id="btn-clear-q" class="btn btn-secondary">Clear</button>
+          </div>
+          <div class="action-group-right">
+            <button type="button" id="btn-next-q" class="btn btn-primary">Next</button>
+            <button type="button" id="btn-bottom-submit" class="btn btn-success">Submit</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Small Scrollable Question Palette (Hidden on mobile) -->
+      <aside class="palette-sidebar">
+        <div class="palette-summary">
+          <div class="palette-summary-grid">
+            <div class="palette-stat-item">
+              <span id="count-answered" class="palette-stat-badge swatch-answered">0</span>
+              <span>Answered</span>
+            </div>
+            <div class="palette-stat-item">
+              <span id="count-not-answered" class="palette-stat-badge swatch-not-answered">0</span>
+              <span>Not Answered</span>
+            </div>
+            <div class="palette-stat-item">
+              <span id="count-not-visited" class="palette-stat-badge swatch-not-visited">0</span>
+              <span>Not Visited</span>
+            </div>
+            <div class="palette-stat-item">
+              <span id="count-review" class="palette-stat-badge swatch-review">0</span>
+              <span>Marked Review</span>
+            </div>
+            <div class="palette-stat-item" style="grid-column: span 2;">
+              <span id="count-ans-review" class="palette-stat-badge swatch-ans-review">0</span>
+              <span>Answered &amp; Marked for Review</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="palette-header-bar">Question Palette</div>
+
+        <div id="palette-grid" class="palette-numbers-scroll"></div>
+
+        <div class="palette-footer">
+          <button type="button" id="btn-palette-submit" class="btn btn-success">Submit Test</button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- VIEW 4: POST-SUBMISSION SCORE & SOLUTIONS -->
+  <section id="view-results" class="view-section">
+    <header class="top-bar">
+      <div class="top-bar-title">
+        <span id="results-top-title">Test Result &amp; Solutions Analysis</span>
+        <span class="top-bar-badge">Post-Submission Report</span>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button type="button" id="btn-retake-test" class="btn btn-secondary" style="padding: 5px 12px; font-size: 0.8rem;">Retake This Mock</button>
+        <button type="button" id="btn-results-dashboard" class="btn btn-primary" style="padding: 5px 12px; font-size: 0.8rem;">Main Dashboard</button>
+      </div>
+    </header>
+
+    <div class="results-container">
+      <div class="score-card">
+        <div class="score-card-top">
+          <div>
+            <h2 id="res-test-title" style="font-size: 1.35rem;">1. Software — Performance Summary</h2>
+            <p id="res-submit-reason" style="font-size: 0.85rem; color: #64748b;">Submitted successfully</p>
+          </div>
+          <div style="font-size: 1.15rem; font-weight: 700; color: #1e4b8a;" id="res-score-headline">Score: 0 / 96</div>
+        </div>
+
+        <div class="score-metrics-grid">
+          <div class="metric-box">
+            <div class="metric-box-label">Total Questions</div>
+            <div id="res-total-q" class="metric-box-value">96</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-box-label">Attempted</div>
+            <div id="res-attempted" class="metric-box-value val-blue">0</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-box-label">Correct</div>
+            <div id="res-correct" class="metric-box-value val-green">0</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-box-label">Incorrect</div>
+            <div id="res-incorrect" class="metric-box-value val-red">0</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-box-label">Unattempted</div>
+            <div id="res-unattempted" class="metric-box-value val-amber">0</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-box-label">Accuracy</div>
+            <div id="res-accuracy" class="metric-box-value">0%</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-box-label">Time Taken</div>
+            <div id="res-time-taken" class="metric-box-value" style="font-size: 1.15rem;">00:00</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solutions-header">
+        <div>
+          <h3 style="font-size: 1.15rem; color: #1e293b;">Solutions for Incorrect &amp; Un-attempted Questions</h3>
+          <p style="font-size: 0.85rem; color: #64748b;">Per exam instructions, solutions are displayed exclusively for incorrect and un-attempted questions.</p>
+        </div>
+        <div class="filter-tabs">
+          <button type="button" id="filter-all-review" class="filter-tab-btn active">All Incorrect &amp; Unattempted (<span id="cnt-all-inc-un">0</span>)</button>
+          <button type="button" id="filter-incorrect" class="filter-tab-btn">Incorrect Only (<span id="cnt-inc-only">0</span>)</button>
+          <button type="button" id="filter-unattempted" class="filter-tab-btn">Unattempted Only (<span id="cnt-un-only">0</span>)</button>
+        </div>
+      </div>
+
+      <div id="solutions-list-container"></div>
+    </div>
+  </section>
+
+  <!-- PAUSE MODAL -->
+  <div id="modal-pause" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">Test Paused</div>
+      <div class="modal-body">
+        <p>Your mock test countdown timer has been paused. Question content is hidden while the test is paused.</p>
+        <p style="margin-top: 10px; font-weight: 600; color: #1e293b;">Time Remaining: <span id="pause-time-remaining">00:00</span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btn-resume-exam" class="btn btn-primary">Resume Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBMIT CONFIRMATION MODAL -->
+  <div id="modal-submit" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">Confirm Test Submission</div>
+      <div class="modal-body">
+        <p>Are you sure you want to submit the mock test? Here is a summary of your current responses:</p>
+        <div class="modal-summary-grid">
+          <div>Answered: <strong id="mod-sum-ans">0</strong></div>
+          <div>Not Answered: <strong id="mod-sum-not-ans">0</strong></div>
+          <div>Marked for Review: <strong id="mod-sum-rev">0</strong></div>
+          <div>Not Visited: <strong id="mod-sum-not-vis">0</strong></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btn-cancel-submit" class="btn btn-secondary">Return to Test</button>
+        <button type="button" id="btn-confirm-submit" class="btn btn-success">Yes, Submit Now</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const MOCK_TESTS = [
+  {
+    "id": "software",
+    "order": 1,
+    "title": "1. Software",
+    "subtitle": "TCS Previous Years Questions (Windows, OS, Application & Utility Software)",
+    "durationMinutes": 96,
+    "totalQuestions": 96,
+    "questions": [
+      {
+        "q": "What is the keyboard shortcut to 'Paste' copied content from the clipboard in most Windows applications?",
+        "tag": "SSC CHSL Tier II 10/01/2024",
+        "options": [
+          "Ctrl + C",
+          "Ctrl + X",
+          "Ctrl + Z",
+          "Ctrl + V"
+        ],
+        "ans": "Ctrl + V",
+        "exp": "Ctrl + V is used to paste copied or cut content from the clipboard. Ctrl + C copies selected text or images, Ctrl + X cuts selected content, and Ctrl + Z undoes the previous action."
+      },
+      {
+        "q": "Which keyboard shortcut opens File Explorer (previously known as Windows Explorer) in Windows 10?",
+        "tag": "SSC CHSL Tier II 10/01/2024",
+        "options": [
+          "Ctrl + P",
+          "Win + E",
+          "Ctrl + C",
+          "Alt + Tab"
+        ],
+        "ans": "Win + E",
+        "exp": "Pressing Windows logo key + E (Win + E) opens File Explorer in Windows 10 and Windows 11. Alt + D selects the address bar, Ctrl + E selects the search box, and Ctrl + N opens a new window."
+      },
+      {
+        "q": "Which of the following keyboard shortcuts is used to 'Create a New Folder' in Windows?",
+        "tag": "Selection Post Phase VI 24/11/2023",
+        "options": [
+          "Ctrl + Alt + N",
+          "Ctrl + Shift + F",
+          "Ctrl + Alt + F",
+          "Ctrl + Shift + N"
+        ],
+        "ans": "Ctrl + Shift + N",
+        "exp": "Ctrl + Shift + N creates a new folder in Windows File Explorer or on the Desktop. Ctrl + Shift + E displays all folders above the selected folder."
+      },
+      {
+        "q": "What is the purpose of the 'Quick Access' section in Windows Explorer (File Explorer)?",
+        "tag": "Selection Post Phase VI 24/11/2023",
+        "options": [
+          "To provide quick access to the Internet.",
+          "To display shortcuts to frequently used folders and files.",
+          "To play multimedia files, such as videos and music.",
+          "To view recently visited websites."
+        ],
+        "ans": "To display shortcuts to frequently used folders and files.",
+        "exp": "Quick Access in File Explorer makes it simple to find and open frequently used folders and recently viewed files."
+      },
+      {
+        "q": "Which function is NOT performed by Windows Explorer (File Explorer) in the Windows operating system?",
+        "tag": "Selection Post Phase VI 24/11/2023",
+        "options": [
+          "Copying and moving files between locations.",
+          "Running software applications.",
+          "Searching for files and folders.",
+          "Browsing the file system and managing files and folders."
+        ],
+        "ans": "Running software applications.",
+        "exp": "File Explorer is a file manager application used for browsing the file system, searching, copying, and moving files and folders, whereas executing/running software applications is managed by the operating system's process manager."
+      },
+      {
+        "q": "Which of the following disk file systems is supported by the Windows operating system?",
+        "tag": "Selection Post Phase VI 24/11/2023",
+        "options": [
+          "Berkeley Fast File System",
+          "Extended File System",
+          "Apple File System",
+          "New Technology File System"
+        ],
+        "ans": "New Technology File System",
+        "exp": "New Technology File System (NTFS) is the primary disk file system supported by modern Windows operating systems (along with FAT32 and exFAT). Extended File System (ext) is used by Linux, and Apple File System (APFS) is used by macOS/iOS."
+      },
+      {
+        "q": "In Windows 11, to open File Explorer you press ______ on the keyboard.",
+        "tag": "SSC CHSL Tier II 02/11/2023",
+        "options": [
+          "Windows logo key + W",
+          "Windows logo key + O",
+          "Windows logo key + E",
+          "Windows logo key + F"
+        ],
+        "ans": "Windows logo key + E",
+        "exp": "Windows logo key + E opens File Explorer. Win + W opens Widgets, Win + O locks device orientation, and Win + F opens Feedback Hub and takes a screenshot."
+      },
+      {
+        "q": "In File Explorer of Windows 11, to reduce the space between files, select View > ______ view.",
+        "tag": "SSC CHSL Tier II 02/11/2023",
+        "options": [
+          "Cloud",
+          "Wide",
+          "Compact",
+          "Stretch"
+        ],
+        "ans": "Compact",
+        "exp": "In Windows 11 File Explorer, selecting View > Show > Compact view reduces the padding/space between files and folders in the list."
+      },
+      {
+        "q": "Which of the following keyboard shortcuts is used to copy the selected item in Windows 11?",
+        "tag": "SSC CHSL Tier II 02/11/2023",
+        "options": [
+          "Shift + Enter",
+          "Shift + Insert",
+          "Ctrl + Insert",
+          "Ctrl + Enter"
+        ],
+        "ans": "Ctrl + Insert",
+        "exp": "Ctrl + Insert (along with Ctrl + C) copies the selected item to the clipboard in Windows. Shift + Insert pastes the copied item."
+      },
+      {
+        "q": "In File Explorer of Windows 11, which of the following tabs includes the 'hidden items' option?",
+        "tag": "SSC CGL Tier II 26/10/2023",
+        "options": [
+          "Home",
+          "File",
+          "View",
+          "Share"
+        ],
+        "ans": "View",
+        "exp": "The View menu/tab in Windows File Explorer contains options for Tiles, Content, Details Pane, Preview Pane, and Show (which includes Navigation pane, Compact view, Item check boxes, File name extensions, and Hidden items)."
+      },
+      {
+        "q": "What is the keyboard shortcut for 'Copy' in most Windows applications?",
+        "tag": "SSC CGL Tier II 26/10/2023",
+        "options": [
+          "Ctrl + Z",
+          "Ctrl + C",
+          "Ctrl + X",
+          "Ctrl + V"
+        ],
+        "ans": "Ctrl + C",
+        "exp": "Ctrl + C copies the selected content to the Clipboard. Ctrl + V pastes it, Ctrl + X cuts it, and Ctrl + Z undoes the previous action."
+      },
+      {
+        "q": "In File Explorer of Windows 10, the keyboard shortcut 'Num Lock + Asterisk sign (*)' is used to ______.",
+        "tag": "SSC CGL Tier II 26/10/2023",
+        "options": [
+          "display all subfolders under the selected folder",
+          "open the properties dialog box for the selected item",
+          "display the contents of the selected folder",
+          "collapse the selected folder"
+        ],
+        "ans": "display all subfolders under the selected folder",
+        "exp": "In File Explorer, Num Lock + Asterisk (*) displays all subfolders under the selected folder. Num Lock + Plus (+) displays the contents of the selected folder, and Num Lock + Minus (-) collapses the selected folder."
+      },
+      {
+        "q": "In Windows 10, which of the following keyboard shortcuts is used to display and hide the desktop?",
+        "tag": "SSC CHSL Tier II 26/06/2023",
+        "options": [
+          "Windows logo key + G",
+          "Windows logo key + C",
+          "Windows logo key + D",
+          "Windows logo key + H"
+        ],
+        "ans": "Windows logo key + D",
+        "exp": "Windows logo key + D displays and hides the desktop. Win + G opens the Xbox Game Bar, Win + C opens Cortana/Copilot/Teams chat, and Win + H launches voice typing."
+      },
+      {
+        "q": "In operating system, privileged instructions are performed only when central processing unit is in ______.",
+        "tag": "Selection Post Phase VI 24/11/2023",
+        "options": [
+          "time-sharing mode",
+          "kernel mode",
+          "user mode",
+          "programming mode"
+        ],
+        "ans": "kernel mode",
+        "exp": "Privileged instructions (such as I/O control, timer management, and interrupt management) can only be executed when the CPU is in kernel mode (mode bit = 0). User programs execute in user mode (mode bit = 1) and must use system calls to request privileged operations."
+      },
+      {
+        "q": "In process management of operating system, a process changes its state when it is ______.",
+        "tag": "Selection Post Phase VI 24/11/2023",
+        "options": [
+          "executed",
+          "waiting",
+          "deleted",
+          "terminated"
+        ],
+        "ans": "executed",
+        "exp": "As a process executes, it changes its state depending on current activity. The standard process states in an operating system are New, Ready, Running, Waiting (Blocked), and Terminated."
+      },
+      {
+        "q": "In least frequently used page-replacement algorithm of operating system, when a page must be replaced, then which page is chosen?",
+        "tag": "Selection Post Phase VI 24/11/2023",
+        "options": [
+          "a page with the zero count",
+          "page with the largest count",
+          "page with the average count",
+          "page with the smallest count"
+        ],
+        "ans": "page with the smallest count",
+        "exp": "The Least Frequently Used (LFU) page-replacement algorithm keeps a counter of the number of references made to each page and replaces the page with the smallest count (accessed the minimum number of times)."
+      },
+      {
+        "q": "Which one of the following is the correct formula for effective access time for the demand paging in the operating system? (p = Probability of page fault, ma = memory access time)",
+        "tag": "Selection Post Phase VI 24/11/2023",
+        "options": [
+          "Effective access time = (1 - p) × ma + p × page fault time",
+          "Effective access time = (1 - p) × ma - p × page fault time",
+          "Effective access time = (1 + p) × ma + p × page fault time",
+          "Effective access time = (1 + p) × ma - p × page fault time"
+        ],
+        "ans": "Effective access time = (1 - p) × ma + p × page fault time",
+        "exp": "With page fault probability p (0 <= p <= 1), the probability of a memory hit is (1 - p), taking 'ma' time, while a page fault takes 'page fault time'. Thus, Effective Access Time (EAT) = (1 - p) × ma + p × page fault time."
+      },
+      {
+        "q": "Most operating systems also have an ______ (or back door) that transparently passes arbitrary commands from one application to a device driver.",
+        "tag": "Selection Post Phase VI 24/11/2023",
+        "options": [
+          "interrupt",
+          "stealing",
+          "interface",
+          "escape"
+        ],
+        "ans": "escape",
+        "exp": "In operating system I/O architecture (e.g., UNIX ioctl()), most operating systems provide an escape (or back door) system call that transparently passes arbitrary commands directly from an application program to a device driver."
+      },
+      {
+        "q": "In operating system an input/output port typically consists of four registers. Which one of these registers contains bits that can be read by the host?",
+        "tag": "Selection Post Phase VI 24/11/2023",
+        "options": [
+          "data-in register",
+          "data-out register",
+          "status register",
+          "temporary register"
+        ],
+        "ans": "status register",
+        "exp": "An I/O port typically consists of four registers: status, control, data-in, and data-out. The status register contains bits that can be read by the host to check whether the device is busy, whether a command has completed, or if an error occurred."
+      },
+      {
+        "q": "In an operating system, the general model of protection can be viewed abstractly as a matrix, called as ______ matrix.",
+        "tag": "Selection Post Phase VI 24/11/2023",
+        "options": [
+          "policy",
+          "access",
+          "dense",
+          "identity"
+        ],
+        "ans": "access",
+        "exp": "The general model of protection in an operating system can be viewed abstractly as an Access Matrix, where rows represent protection domains (subjects/processes) and columns represent objects (files, devices)."
+      },
+      {
+        "q": "Which statement is true about Belady's anomaly in page replacement algorithm of operating system?",
+        "tag": "Selection Post Phase VI 24/11/2023",
+        "options": [
+          "The page fault rate may increase as the number of allocated frames decreases.",
+          "The page fault rate may decrease as the number of allocated frames increases.",
+          "The page fault rate may increase as the number of allocated frames increases.",
+          "The page fault rate may decrease as the number of allocated frames decreases."
+        ],
+        "ans": "The page fault rate may increase as the number of allocated frames increases.",
+        "exp": "Belady's anomaly is the phenomenon (observed in algorithms like FIFO page replacement) in which increasing the number of allocated page frames results in an increase in the number of page faults."
+      },
+      {
+        "q": "______ displays a list of utilities to configure the computer system and install software and hardware.",
+        "tag": "SSC CGL Tier II 02/03/2023",
+        "options": [
+          "Control Panel",
+          "Help and Support",
+          "Taskbar",
+          "Run"
+        ],
+        "ans": "Control Panel",
+        "exp": "Control Panel is a component of Microsoft Windows that displays a list of utilities (applets) to configure the computer system and install or manage software and hardware."
+      },
+      {
+        "q": "Which among the following statements is incorrect?",
+        "tag": "SSC CGL Tier II 03/03/2023",
+        "options": [
+          "The right window of Windows Explorer is called the Navigation Pane.",
+          "From the Navigation pane, you can view your computer's file and folder structure and access files and folders.",
+          "In the Navigation Pane, there is a Quick Access area.",
+          "Navigation Pane is to enable easier navigation through Windows Explorer."
+        ],
+        "ans": "The right window of Windows Explorer is called the Navigation Pane.",
+        "exp": "The Navigation Pane is the vertical pane on the LEFT side (not the right side) of Windows Explorer/File Explorer, whereas the Preview/Details pane appears on the right."
+      },
+      {
+        "q": "Which among the following keyboard shortcuts opens the properties for the selected item on a Windows 10 home screen?",
+        "tag": "SSC CGL Tier II 06/03/2023",
+        "options": [
+          "Alt + Shift + Spacebar",
+          "Ctrl + Shift + Spacebar",
+          "Alt + Enter",
+          "Ctrl + Enter"
+        ],
+        "ans": "Alt + Enter",
+        "exp": "Pressing Alt + Enter opens the Properties dialog box for the currently selected file, folder, or shortcut in Windows."
+      },
+      {
+        "q": "______ displays a list of utility to configure the computer system and install software and hardware.",
+        "tag": "SSC CGL Tier II 07/03/2023",
+        "options": [
+          "Run",
+          "Control Panel",
+          "Taskbar",
+          "Help and Support"
+        ],
+        "ans": "Control Panel",
+        "exp": "Control Panel provides utilities to view and change system settings, manage hardware and sound, configure network settings, and install/uninstall programs."
+      },
+      {
+        "q": "A User Interface is the part of ______ that allows the user to enter and receive information.",
+        "tag": "SSC CHSL 19/04/2021 (Afternoon)",
+        "options": [
+          "computer network",
+          "operating system",
+          "computer hardware",
+          "data science"
+        ],
+        "ans": "operating system",
+        "exp": "A User Interface (UI) is the part of the operating system that enables a user to interact with the computer by entering commands/data and receiving information."
+      },
+      {
+        "q": "______ contains and manages all the programs and applications that a computer or other device is able to run.",
+        "tag": "SSC CHSL 12/08/2021 (Afternoon)",
+        "options": [
+          "Data Science",
+          "Operating system",
+          "Computer hardware",
+          "Computer software"
+        ],
+        "ans": "Operating system",
+        "exp": "An operating system (OS) is system software that manages computer hardware, software resources, and all the programs and applications that a computer can run."
+      },
+      {
+        "q": "What do you call an event where a computer becomes unresponsive due to either a program or the system itself becoming unresponsive and no longer taking input?",
+        "tag": "SSC CHSL 12/04/2021 (Afternoon)",
+        "options": [
+          "Booting",
+          "Hanging",
+          "Ejecting",
+          "Moving"
+        ],
+        "ans": "Hanging",
+        "exp": "In computing, a hang (or freeze) occurs when either an individual program or the entire operating system becomes unresponsive and stops accepting user input."
+      },
+      {
+        "q": "______ is the process of turning on a computer and powering up the system.",
+        "tag": "SSC CHSL 04/08/2021 (Morning)",
+        "options": [
+          "Booting",
+          "Loading",
+          "Saving",
+          "Execution"
+        ],
+        "ans": "Booting",
+        "exp": "Booting is the startup process of turning on a computer, initializing hardware, and loading the operating system into main memory."
+      },
+      {
+        "q": "Which of the following options defines Operating System?",
+        "tag": "RRB NTPC 12/01/2021 (Morning)",
+        "options": [
+          "It is a software that is used to convert source program instructions to set programs.",
+          "It is a set of programs that control the way a computer works and runs other programs",
+          "It is a set of programs used to convert high level language to low level language.",
+          "It is the actual way of working on computers."
+        ],
+        "ans": "It is a set of programs that control the way a computer works and runs other programs",
+        "exp": "An operating system is a collection of system programs that controls the operation of computer hardware and provides an environment to run application programs."
+      },
+      {
+        "q": "A/An ______ is an interface between the user and hardware.",
+        "tag": "RRB NTPC 23/01/2021 (Morning)",
+        "options": [
+          "memory",
+          "command",
+          "screen",
+          "operating system"
+        ],
+        "ans": "operating system",
+        "exp": "An operating system serves as an intermediary (interface) between the computer user and the computer hardware."
+      },
+      {
+        "q": "From the following options, identify the name of the user interface element that is found on desktops as a small blinking symbol or an arrow.",
+        "tag": "RRB NTPC 03/02/2021 (Evening)",
+        "options": [
+          "Icons",
+          "Cursor",
+          "Shortcut",
+          "Taskbar"
+        ],
+        "ans": "Cursor",
+        "exp": "A cursor is the visual indicator on a computer screen (typically a small blinking vertical bar for text or an arrow pointer for the mouse) that shows where user interaction will occur."
+      },
+      {
+        "q": "A/an ______ is required for booting a computer.",
+        "tag": "RRB NTPC 27/03/2021 (Evening)",
+        "options": [
+          "Compiler",
+          "Assembler",
+          "Operating System",
+          "Translator"
+        ],
+        "ans": "Operating System",
+        "exp": "An Operating System is required for booting a computer, as the boot loader loads the OS kernel into main memory (RAM) so the computer can function."
+      },
+      {
+        "q": "Which of the following is NOT an open-source operating system?",
+        "tag": "SSC CHSL 12/04/2021 (Morning)",
+        "options": [
+          "Windows",
+          "Ubuntu",
+          "Linux",
+          "Drupal"
+        ],
+        "ans": "Windows",
+        "exp": "Microsoft Windows is a closed-source (proprietary) operating system, whereas Linux and Ubuntu are open-source operating systems. (Note: Drupal is an open-source content management system, and the official SSC key identifies Windows as the closed-source OS)."
+      },
+      {
+        "q": "In the context of computers, what is Ubuntu?",
+        "tag": "SSC CHSL 12/04/2021 (Afternoon)",
+        "options": [
+          "An open-source operating system sponsored by Canonical Ltd.",
+          "A search engine by Mozilla Foundation.",
+          "An anti-virus software by Microsoft.",
+          "An android-based search engine by Microsoft."
+        ],
+        "ans": "An open-source operating system sponsored by Canonical Ltd.",
+        "exp": "Ubuntu is a popular Debian-based open-source Linux operating system developed and sponsored by Canonical Ltd."
+      },
+      {
+        "q": "Which of the following is an open-source operating system?",
+        "tag": "SSC CHSL 11/08/2021 (Afternoon)",
+        "options": [
+          "Windows 10",
+          "Windows Vista",
+          "Android",
+          "iOS"
+        ],
+        "ans": "Android",
+        "exp": "Android (via the Android Open Source Project, based on the Linux kernel) is an open-source operating system, whereas Windows 10, Windows Vista, and Apple iOS are proprietary/closed-source."
+      },
+      {
+        "q": "What is 'UBUNTU'?",
+        "tag": "RRB NTPC 28/12/2020 (Morning)",
+        "options": [
+          "Operating System",
+          "Malware",
+          "External Hard drive",
+          "Web Browser"
+        ],
+        "ans": "Operating System",
+        "exp": "Ubuntu is a free and open-source Linux distribution (operating system) based on Debian."
+      },
+      {
+        "q": "Cupcake, Donut, Eclair, Froyo and Gingerbread are codenames for different ______ versions.",
+        "tag": "RRB NTPC 04/02/2021 (Evening)",
+        "options": [
+          "Piano",
+          "Android",
+          "Computer",
+          "Ca"
+        ],
+        "ans": "Android",
+        "exp": "Cupcake (1.5), Donut (1.6), Eclair (2.0), Froyo (2.2), and Gingerbread (2.3) are dessert-themed codenames for early versions of the Android operating system."
+      },
+      {
+        "q": "Linux is ______.",
+        "tag": "SSC CHSL 17/03/2020 (Evening)",
+        "options": [
+          "an interpreter",
+          "an operating system",
+          "an assembly language",
+          "a high level language"
+        ],
+        "ans": "an operating system",
+        "exp": "Linux is an open-source Unix-like operating system based on the Linux kernel, first released by Linus Torvalds in 1991."
+      },
+      {
+        "q": "In the world of Computers, what is 'Ubuntu'?",
+        "tag": "SSC CHSL 02/07/2019 (Afternoon)",
+        "options": [
+          "A firewall developed by Microsoft",
+          "Open Source Linux Operating System",
+          "An ERP system from SAP",
+          "Latest financial software package by Infosys"
+        ],
+        "ans": "Open Source Linux Operating System",
+        "exp": "Ubuntu is an open-source Linux operating system based on the Debian GNU/Linux distribution."
+      },
+      {
+        "q": "In operating system, MS-DOS is an example of ______ operating system.",
+        "tag": "Selection Post Phase VI 24/11/2023",
+        "options": [
+          "multiprocessing",
+          "multitasking and single-user",
+          "embedded",
+          "single-user and single-task"
+        ],
+        "ans": "single-user and single-task",
+        "exp": "MS-DOS (Microsoft Disk Operating System) is a command-driven, single-user and single-tasking operating system."
+      },
+      {
+        "q": "Which of the following operating systems is a command line user interface operating system?",
+        "tag": "Selection Post Phase VI 24/11/2023",
+        "options": [
+          "Android",
+          "MS-DOS",
+          "MS-Windows",
+          "Linux"
+        ],
+        "ans": "MS-DOS",
+        "exp": "MS-DOS operates strictly through a Command Line Interface (CLI) where users type text commands."
+      },
+      {
+        "q": "Which of the following operating systems guarantees a response within specified time constraints?",
+        "tag": "SSC CHSL 16/04/2021 (Afternoon)",
+        "options": [
+          "Time sharing operating system",
+          "Distributed operating system",
+          "Real-time operating system",
+          "Interactive operating system"
+        ],
+        "ans": "Real-time operating system",
+        "exp": "A Real-Time Operating System (RTOS) is designed to process data and guarantee a response within strict, predefined time constraints."
+      },
+      {
+        "q": "Which of the following is a single user operating system?",
+        "tag": "SSC CHSL 05/08/2021 (Afternoon)",
+        "options": [
+          "Windows 7",
+          "MS-DOS",
+          "Windows NT",
+          "Linux"
+        ],
+        "ans": "MS-DOS",
+        "exp": "MS-DOS is a classic example of a single-user, single-tasking operating system in which only one user can access the system at a time."
+      },
+      {
+        "q": "Which of the following was the first operating system written in 'C' language?",
+        "tag": "SSC CHSL 06/08/2021 (Evening)",
+        "options": [
+          "UNIX",
+          "Windows 95",
+          "Xenix",
+          "LINUX"
+        ],
+        "ans": "UNIX",
+        "exp": "UNIX was rewritten in the C programming language in the early 1970s by Dennis Ritchie and Ken Thompson at Bell Labs, making it the first operating system written in C."
+      },
+      {
+        "q": "AIX is the operating system of which company?",
+        "tag": "SSC CHSL 06/08/2021 (Evening)",
+        "options": [
+          "Apple",
+          "Unisys",
+          "IBM",
+          "Microsoft"
+        ],
+        "ans": "IBM",
+        "exp": "AIX (Advanced Interactive eXecutive) is a series of proprietary Unix operating systems developed and sold by IBM."
+      },
+      {
+        "q": "In which year was Microsoft's Windows operating system first introduced?",
+        "tag": "SSC CHSL 15/04/2021 (Afternoon)",
+        "options": [
+          "1985",
+          "1989",
+          "1991",
+          "1993"
+        ],
+        "ans": "1985",
+        "exp": "Microsoft introduced Windows 1.0 on November 20, 1985, initially as a graphical operating environment over MS-DOS."
+      },
+      {
+        "q": "Which one of the following is not an operating system?",
+        "tag": "RRB NTPC 21/01/2021 (Morning)",
+        "options": [
+          "Java",
+          "Mint",
+          "MS DOS",
+          "Ubuntu"
+        ],
+        "ans": "Java",
+        "exp": "Java is an object-oriented programming language and computing platform first released by Sun Microsystems in 1995, whereas Linux Mint, MS-DOS, and Ubuntu are operating systems."
+      },
+      {
+        "q": "MS-DOS is an operating system that has a/an:",
+        "tag": "RRB NTPC 22/01/2021 (Evening)",
+        "options": [
+          "Command Line Interface",
+          "Voice Line Interface",
+          "Open source Origin",
+          "Graphical User Interface"
+        ],
+        "ans": "Command Line Interface",
+        "exp": "MS-DOS uses a Command Line Interface (CLI), requiring users to interact with the system by typing text commands."
+      },
+      {
+        "q": "Which one of the following is not an operating system?",
+        "tag": "RRB NTPC 10/02/2021 (Evening)",
+        "options": [
+          "macOS",
+          "Linux",
+          "MS Windows",
+          "Microsoft Office"
+        ],
+        "ans": "Microsoft Office",
+        "exp": "Microsoft Office is an application software suite (containing Word, Excel, PowerPoint, etc.), not an operating system."
+      },
+      {
+        "q": "Which among the following is NOT an example of an Operating System?",
+        "tag": "RRB NTPC 12/02/2021 (Morning)",
+        "options": [
+          "MS Office",
+          "LINUX",
+          "UNIX",
+          "WINDOWS"
+        ],
+        "ans": "MS Office",
+        "exp": "MS Office is a productivity application suite, whereas Linux, UNIX, and Windows are operating systems."
+      },
+      {
+        "q": "Operating system of a computer is an example of:",
+        "tag": "RRB NTPC 27/02/2021 (Evening)",
+        "options": [
+          "Application software",
+          "System software",
+          "Hardware",
+          "Application platform"
+        ],
+        "ans": "System software",
+        "exp": "An operating system is the fundamental example of system software, which manages hardware resources and provides common services for application software."
+      },
+      {
+        "q": "Which of the following is NOT a type of desktop operating system?",
+        "tag": "RRB NTPC 02/03/2021 (Morning)",
+        "options": [
+          "Windows",
+          "Mac",
+          "Android",
+          "Linux"
+        ],
+        "ans": "Android",
+        "exp": "Android is a mobile operating system designed primarily for touchscreen devices like smartphones and tablets, whereas Windows, macOS, and Linux are desktop operating systems."
+      },
+      {
+        "q": "Which of the following is an open source operating system to manage computer hardware and software?",
+        "tag": "RRB NTPC 09/03/2021 (Evening)",
+        "options": [
+          "Macintosh",
+          "Microsoft Windows",
+          "Linux",
+          "Apple"
+        ],
+        "ans": "Linux",
+        "exp": "Linux is a free and open-source operating system used to manage computer hardware and software."
+      },
+      {
+        "q": "Which of the following is NOT an operating system?",
+        "tag": "RRB NTPC 12/03/2021 (Evening)",
+        "options": [
+          "Mac",
+          "Linux",
+          "Windows",
+          "Intel"
+        ],
+        "ans": "Intel",
+        "exp": "Intel (Intel Corporation) is a semiconductor chip and microprocessor manufacturer, not an operating system."
+      },
+      {
+        "q": "Ubuntu, Mint and Fedora are versions of:",
+        "tag": "RRB NTPC 13/03/2021 (Morning)",
+        "options": [
+          "Windows 10",
+          "MS DOS",
+          "Apple MAC OS X",
+          "Linux"
+        ],
+        "ans": "Linux",
+        "exp": "Ubuntu, Linux Mint, and Fedora are popular Linux distributions (versions of the Linux operating system)."
+      },
+      {
+        "q": "Unix, MS DOS, Linux are examples of:",
+        "tag": "RRB NTPC 07/04/2021 (Morning)",
+        "options": [
+          "Computers",
+          "Brands of printers",
+          "Operating Systems",
+          "Printers"
+        ],
+        "ans": "Operating Systems",
+        "exp": "Unix, MS-DOS, and Linux are all examples of computer operating systems."
+      },
+      {
+        "q": "Which of the following is NOT a version of the Android mobile operating system?",
+        "tag": "RRB NTPC 31/07/2021 (Morning)",
+        "options": [
+          "Candy bean",
+          "Lollipop",
+          "Pie",
+          "Marshmallow"
+        ],
+        "ans": "Candy bean",
+        "exp": "Lollipop (Android 5), Marshmallow (Android 6), Pie (Android 9), and Jelly Bean (Android 4.1-4.3) are official Android versions, whereas 'Candy bean' is not."
+      },
+      {
+        "q": "Which of the following is a multi-user operating system?",
+        "tag": "RRB NTPC 31/07/2021 (Morning)",
+        "options": [
+          "Unix",
+          "MS-DOS",
+          "Windows 7",
+          "iOS"
+        ],
+        "ans": "Unix",
+        "exp": "Unix is a multi-user, multitasking operating system that allows multiple users to access the computer system concurrently."
+      },
+      {
+        "q": "What is Linux?",
+        "tag": "RRB NTPC 31/07/2021 (Evening)",
+        "options": [
+          "App",
+          "Software",
+          "Operating System",
+          "Hardware"
+        ],
+        "ans": "Operating System",
+        "exp": "Linux is an open-source Unix-like operating system."
+      },
+      {
+        "q": "Which of these is not an operating system?",
+        "tag": "RRB NTPC CBT II 18/01/2017 (Evening)",
+        "options": [
+          "Android",
+          "Scala",
+          "UNIX",
+          "Windows"
+        ],
+        "ans": "Scala",
+        "exp": "Scala is a strong statically typed general-purpose programming language that supports both object-oriented and functional programming, not an operating system."
+      },
+      {
+        "q": "Which of the following is not an operating system?",
+        "tag": "SSC CGL 10/09/2016 (Morning)",
+        "options": [
+          "Android",
+          "Vista",
+          "iOS",
+          "Opera"
+        ],
+        "ans": "Opera",
+        "exp": "Opera is a web browser, whereas Android, Windows Vista, and iOS are operating systems."
+      },
+      {
+        "q": "Which is not an Operating System?",
+        "tag": "RRB NTPC 03/04/2016 (Morning)",
+        "options": [
+          "OS X",
+          "Windows 7",
+          "DOS",
+          "C++"
+        ],
+        "ans": "C++",
+        "exp": "C++ is a general-purpose programming language, whereas OS X, Windows 7, and DOS are operating systems."
+      },
+      {
+        "q": "Multitasking system specifically refers to:",
+        "tag": "RRB NTPC 06/04/2016 (Morning)",
+        "options": [
+          "More than one user.",
+          "More than one process.",
+          "More than one hardware.",
+          "More than one IP address."
+        ],
+        "ans": "More than one process.",
+        "exp": "Multitasking in an operating system refers to executing more than one process (or task) concurrently by rapidly switching the CPU between them."
+      },
+      {
+        "q": "What is the category of software that enables word processing, database management, graphic manipulation and spreadsheet creation?",
+        "tag": "Delhi Police 20/11/2023 (Morning)",
+        "options": [
+          "Structure",
+          "Application",
+          "Framework",
+          "System"
+        ],
+        "ans": "Application",
+        "exp": "Application software is designed to perform specific user-oriented tasks such as word processing, spreadsheet creation, graphic manipulation, and database management."
+      },
+      {
+        "q": "Which of the following is not an integral component of the MS Office 365 suite?",
+        "tag": "NTPC CBT II 16/06/2022 (Evening)",
+        "options": [
+          "MS-Word",
+          "MS-Access",
+          "MS-Excel",
+          "MS-Paint"
+        ],
+        "ans": "MS-Paint",
+        "exp": "MS-Paint is a basic raster graphics editor bundled with Microsoft Windows, not a component of the Microsoft Office 365 suite."
+      },
+      {
+        "q": "Which of the following is the core of an operating system?",
+        "tag": "SSC CHSL 15/04/2021 (Evening)",
+        "options": [
+          "Kernel",
+          "Xenix",
+          "Device Driver",
+          "Ventura"
+        ],
+        "ans": "Kernel",
+        "exp": "The kernel is the central core component of an operating system that stays resident in memory and manages hardware resources, CPU scheduling, and memory."
+      },
+      {
+        "q": "A ______ is a software program that travels the web locating and indexing websites for search engines.",
+        "tag": "SSC CHSL 16/04/2021 (Evening)",
+        "options": [
+          "bug",
+          "spider",
+          "python",
+          "penguin"
+        ],
+        "ans": "spider",
+        "exp": "A web spider (or web crawler) is an automated bot that browses the World Wide Web to locate and index web pages for search engines."
+      },
+      {
+        "q": "Which one of the following is NOT an Office Package?",
+        "tag": "RRB NTPC 20/01/2021 (Morning)",
+        "options": [
+          "WPS",
+          "Microsoft Office 2010",
+          "Libre",
+          "Quantum"
+        ],
+        "ans": "Quantum",
+        "exp": "WPS Office, Microsoft Office 2010, and LibreOffice are office productivity suites, whereas Quantum is not an office package."
+      },
+      {
+        "q": "A computer program that converts an entire program into machine language is called a(n):",
+        "tag": "RRB NTPC 21/01/2021 (Morning)",
+        "options": [
+          "Interpreter",
+          "Simulator",
+          "Compiler",
+          "Converter"
+        ],
+        "ans": "Compiler",
+        "exp": "A compiler translates an entire high-level language source program into machine language at once, whereas an interpreter translates and executes code line by line."
+      },
+      {
+        "q": "Modern computers follow a set of instructions to perform any task. These instructions can be better known as:",
+        "tag": "RRB NTPC 25/01/2021 (Evening)",
+        "options": [
+          "Programs",
+          "Language",
+          "Commands",
+          "Guidelines"
+        ],
+        "ans": "Programs",
+        "exp": "A computer program is a structured set of instructions that a computer follows to perform a specific task."
+      },
+      {
+        "q": "Among the following, name the software components of a computer.",
+        "tag": "RRB NTPC 25/01/2021 (Evening)",
+        "options": [
+          "Memory",
+          "CMOS",
+          "Programs",
+          "CPU"
+        ],
+        "ans": "Programs",
+        "exp": "Programs constitute the software components of a computer, whereas Memory, CMOS, and CPU are physical hardware components."
+      },
+      {
+        "q": "Which of the following is NOT a component of the Microsoft Office 2019 package?",
+        "tag": "RRB NTPC 27/01/2021 (Evening)",
+        "options": [
+          "OneNote",
+          "Outlook",
+          "Excel",
+          "Keynote"
+        ],
+        "ans": "Keynote",
+        "exp": "Keynote is a presentation software application developed by Apple Inc. as part of its iWork productivity suite, not Microsoft Office."
+      },
+      {
+        "q": "In a computer, a menu contains a list of:",
+        "tag": "RRB NTPC 01/02/2021 (Evening)",
+        "options": [
+          "commands",
+          "objects",
+          "data",
+          "reports"
+        ],
+        "ans": "commands",
+        "exp": "In a graphical user interface, a menu presents a list of commands or options available to the user."
+      },
+      {
+        "q": "In the context of computing, a 'spider' is a/an:",
+        "tag": "RRB NTPC 04/02/2021 (Evening)",
+        "options": [
+          "a Search engine",
+          "an Application for viewing websites",
+          "a Program that catalogs websites",
+          "a Hacker who breaks into a corporate computing system"
+        ],
+        "ans": "a Program that catalogs websites",
+        "exp": "A spider (or web crawler) is a program that systematically visits websites and reads their pages to catalog/index them for search engines."
+      },
+      {
+        "q": "Which one of the following is defined as 'a program that runs in the background on your computer, sending information about your browsing habits to the company that installed it on your computer'?",
+        "tag": "RRB NTPC 16/02/2021 (Evening)",
+        "options": [
+          "Grayware",
+          "Malware",
+          "Adware",
+          "Spyware"
+        ],
+        "ans": "Spyware",
+        "exp": "Spyware is malicious software that covertly runs in the background, monitoring and transmitting user activity and browsing habits to third parties."
+      },
+      {
+        "q": "Which one of the following software applications is NOT a part of Microsoft Office?",
+        "tag": "RRB NTPC 16/02/2021 (Evening)",
+        "options": [
+          "Excel",
+          "Word",
+          "Acrobat Reader",
+          "PowerPoint"
+        ],
+        "ans": "Acrobat Reader",
+        "exp": "Adobe Acrobat Reader is developed by Adobe Inc. for viewing, printing, and annotating PDF files, and is not part of Microsoft Office."
+      },
+      {
+        "q": "Which of these is NOT a part of the MS Office Suite?",
+        "tag": "RRB NTPC 27/02/2021 (Morning)",
+        "options": [
+          "PowerPoint",
+          "Projects",
+          "Excel",
+          "Word"
+        ],
+        "ans": "Projects",
+        "exp": "PowerPoint, Excel, and Word are standard applications in the MS Office Suite, whereas 'Projects' is not part of the standard bundled MS Office Suite (Microsoft Project is sold separately)."
+      },
+      {
+        "q": "In Computers, files when deleted are moved to:",
+        "tag": "RRB NTPC 14/03/2021 (Evening)",
+        "options": [
+          "Outbox",
+          "My documents",
+          "Recycle Bin",
+          "Inbox"
+        ],
+        "ans": "Recycle Bin",
+        "exp": "In Windows computers, deleted files are temporarily moved to the Recycle Bin (unless permanently deleted using Shift + Delete)."
+      },
+      {
+        "q": "Which among the following is NOT open-source software?",
+        "tag": "RRB NTPC 08/04/2021 (Morning)",
+        "options": [
+          "Android",
+          "Linux",
+          "Microsoft Office",
+          "Mozilla Firefox"
+        ],
+        "ans": "Microsoft Office",
+        "exp": "Microsoft Office is proprietary, closed-source commercial software, whereas Android, Linux, and Mozilla Firefox are open-source."
+      },
+      {
+        "q": "What does GUI stand for with respect to a computer?",
+        "tag": "RRB NTPC CBT II 17/01/2017 (Morning)",
+        "options": [
+          "Group User Interface",
+          "Graphic Utility Interaction",
+          "Graphical User Interface",
+          "Graphical Utility Interface"
+        ],
+        "ans": "Graphical User Interface",
+        "exp": "GUI stands for Graphical User Interface, which allows users to interact with electronic devices through graphical icons, windows, and pointing devices."
+      },
+      {
+        "q": "Which of the following is the correct software used for Word processing?",
+        "tag": "Delhi Police 02/12/2023 (Evening)",
+        "options": [
+          "MS Excel",
+          "MS PowerPoint",
+          "MS Word",
+          "MS Access"
+        ],
+        "ans": "MS Word",
+        "exp": "MS Word is a word processing software, whereas MS Excel is a spreadsheet program, MS PowerPoint is presentation software, and MS Access is a database management system."
+      },
+      {
+        "q": "Which of the following is NOT a word processing package?",
+        "tag": "Delhi Police 02/12/2023 (Evening)",
+        "options": [
+          "Adobe Photoshop",
+          "Microsoft Word",
+          "Apple Pages",
+          "Google Docs"
+        ],
+        "ans": "Adobe Photoshop",
+        "exp": "Adobe Photoshop is a raster graphics editor and image manipulation software, whereas Microsoft Word, Apple Pages, and Google Docs are word processors."
+      },
+      {
+        "q": "Which of the following is not a document processing software?",
+        "tag": "Delhi Police 10/10/2022 (Morning)",
+        "options": [
+          "OpenOffice Impress",
+          "Microsoft Word",
+          "Notepad",
+          "WordPad"
+        ],
+        "ans": "OpenOffice Impress",
+        "exp": "OpenOffice Impress is a presentation program (similar to MS PowerPoint), not a word/document processor. OpenOffice Writer is the word processor in the OpenOffice suite."
+      },
+      {
+        "q": "Text editors and text formatters belong to which category of computing?",
+        "tag": "Delhi Police 13/10/2022 (Evening)",
+        "options": [
+          "Compiler",
+          "Language Translator",
+          "Word Processors",
+          "Interpreter"
+        ],
+        "ans": "Word Processors",
+        "exp": "Text editors and text formatters belong to the category of Word Processors, which are used to compose, edit, format, and print text documents."
+      },
+      {
+        "q": "Which of the following is NOT word processing software?",
+        "tag": "Delhi Police 08/12/2020 (Evening)",
+        "options": [
+          "Notepad",
+          "MS-Excel",
+          "MS-Word",
+          "WordPad"
+        ],
+        "ans": "MS-Excel",
+        "exp": "MS-Excel is spreadsheet software used to organize and calculate data in rows and columns, not word processing software."
+      },
+      {
+        "q": "CorelDraw is an example of a/an:",
+        "tag": "SSC CHSL 04/08/2021 (Afternoon)",
+        "options": [
+          "database software",
+          "accounting software",
+          "spreadsheet software",
+          "desktop publishing software"
+        ],
+        "ans": "desktop publishing software",
+        "exp": "CorelDraw is vector graphics and desktop publishing (DTP) software used to design brochures, logos, posters, newsletters, and business cards."
+      },
+      {
+        "q": "Which of the following is NOT an 'operating system'?",
+        "tag": "RRB NTPC 21/01/2021 (Evening)",
+        "options": [
+          "Ubuntu",
+          "Android",
+          "Tally",
+          "Mint"
+        ],
+        "ans": "Tally",
+        "exp": "Tally (Tally ERP 9 / TallyPrime) is enterprise accounting and inventory management software, whereas Ubuntu, Android, and Linux Mint are operating systems."
+      },
+      {
+        "q": "Which of the following is NOT an application software?",
+        "tag": "SSC CHSL 10/03/2023 (Shift 2)",
+        "options": [
+          "Operating systems",
+          "Graphics software",
+          "Spreadsheet software",
+          "Word-processing software"
+        ],
+        "ans": "Operating systems",
+        "exp": "Operating systems are system software that manage hardware and system resources, whereas graphics, spreadsheet, and word-processing programs are application software."
+      },
+      {
+        "q": "Which of the following is NOT an application software?",
+        "tag": "SSC CHSL 13/03/2023 (Shift 1)",
+        "options": [
+          "Entertainment software",
+          "Education software",
+          "Programming language translator software",
+          "Personal assistance software"
+        ],
+        "ans": "Programming language translator software",
+        "exp": "Programming language translator software (such as compilers, assemblers, and interpreters) is system/programming software rather than end-user application software."
+      },
+      {
+        "q": "Which of the following is not a LibreOffice Software Suite program?",
+        "tag": "SSC CGL Tier II 07/03/2023",
+        "options": [
+          "LibreOffice Writer",
+          "LibreOffice Excel",
+          "LibreOffice Calc",
+          "LibreOffice Impress"
+        ],
+        "ans": "LibreOffice Excel",
+        "exp": "LibreOffice includes Writer (word processor), Calc (spreadsheet), Impress (presentation), Draw, Base, and Math. 'Excel' is part of Microsoft Office, not LibreOffice."
+      },
+      {
+        "q": "GIMP is a/an ______.",
+        "tag": "SSC CHSL 16/04/2021 (Evening)",
+        "options": [
+          "application software",
+          "diagnostic utility program",
+          "text editor",
+          "operating system"
+        ],
+        "ans": "application software",
+        "exp": "GIMP (GNU Image Manipulation Program) is a free and open-source raster graphics editor, which falls under application software."
+      },
+      {
+        "q": "Which of the following is a computer application software?",
+        "tag": "SSC CHSL 06/08/2021 (Morning)",
+        "options": [
+          "Word processor",
+          "RAM",
+          "Visual Basic",
+          "Java"
+        ],
+        "ans": "Word processor",
+        "exp": "A word processor is an end-user computer application software used to create, edit, and print documents. RAM is hardware, and Visual Basic and Java are programming languages."
+      },
+      {
+        "q": "Which of the following is an application software?",
+        "tag": "RRB NTPC 07/01/2021 (Evening)",
+        "options": [
+          "LINUX",
+          "UNIX",
+          "macOS",
+          "Graphics"
+        ],
+        "ans": "Graphics",
+        "exp": "Graphics software is application software used for visual design and image editing, whereas LINUX, UNIX, and macOS are operating systems (system software)."
+      },
+      {
+        "q": "MS Word is an example of:",
+        "tag": "RRB NTPC 17/01/2017 (Afternoon)",
+        "options": [
+          "Application Software",
+          "Compiler",
+          "Operating System",
+          "System Software"
+        ],
+        "ans": "Application Software",
+        "exp": "MS Word is a word-processing program designed for end users, making it an example of Application Software."
+      },
+      {
+        "q": "Which of the following is a Computer utility programme?",
+        "tag": "RRB NTPC 26/07/2021 (Evening)",
+        "options": [
+          "Inventory control system",
+          "Shareware",
+          "Package software",
+          "Disk defragmenter"
+        ],
+        "ans": "Disk defragmenter",
+        "exp": "Disk Defragmenter is a computer utility program that reorganizes fragmented data on a disk drive so related pieces are stored contiguously, improving access speed."
+      }
+    ]
+  },
+  {
+    "id": "extensions",
+    "order": 2,
+    "title": "2. Extensions",
+    "subtitle": "TCS Previous Years Questions (File Name & Domain Name Extensions)",
+    "durationMinutes": 21,
+    "totalQuestions": 21,
+    "questions": [
+      {
+        "q": "In MS Excel 365, which file type used in MS Excel produces a comma-delimited text file that can be read by almost all spreadsheet applications on any operating system?",
+        "tag": "Delhi Police 17/11/2023 (Morning)",
+        "options": [
+          "csv",
+          "docx",
+          "pdf",
+          "xlsx"
+        ],
+        "ans": "csv",
+        "exp": "CSV (Comma-Separated Values) is a plain text file format that separates data fields with commas and is universally supported across spreadsheet programs and operating systems."
+      },
+      {
+        "q": "Which of the following is NOT a valid file format in MS-Word 365?",
+        "tag": "SSC CHSL 15/03/2023 (Shift 4)",
+        "options": [
+          ".dotx",
+          ".dcp",
+          ".doc",
+          ".docx"
+        ],
+        "ans": ".dcp",
+        "exp": ".doc (Word 97-2003 document), .docx (Word Open XML document), and .dotx (Word Open XML template) are valid MS Word formats, whereas .dcp is not."
+      },
+      {
+        "q": "Which of the following is NOT a valid file format in MS-PowerPoint 365?",
+        "tag": "SSC CHSL 21/03/2023 (Shift 3)",
+        "options": [
+          ".pptm",
+          ".pwpt",
+          ".ppt",
+          ".pptx"
+        ],
+        "ans": ".pwpt",
+        "exp": ".ppt (PowerPoint 97-2003), .pptx (PowerPoint Open XML presentation), and .pptm (macro-enabled presentation) are valid MS PowerPoint formats, whereas .pwpt is not."
+      },
+      {
+        "q": "Which of the following is an extension of a temporary file?",
+        "tag": "SSC CHSL 12/04/2021 (Morning)",
+        "options": [
+          ".tnt",
+          ".tar",
+          ".tmp",
+          ".txt"
+        ],
+        "ans": ".tmp",
+        "exp": ".tmp is the standard file extension for temporary files created by operating systems and software applications to hold intermediate data."
+      },
+      {
+        "q": "A file with the ______ file extension is a Word Open XML Macro-Enabled Document file.",
+        "tag": "SSC CHSL 12/04/2021 (Evening)",
+        "options": [
+          "docm",
+          "pdf",
+          "docx",
+          "org"
+        ],
+        "ans": "docm",
+        "exp": "A .docm file is a Microsoft Word Open XML Macro-Enabled Document that supports embedded VBA macros."
+      },
+      {
+        "q": "What kind of file has the extension .png?",
+        "tag": "SSC CHSL 15/04/2021 (Evening)",
+        "options": [
+          "Document file",
+          "Video file",
+          "Audio file",
+          "Image file"
+        ],
+        "ans": "Image file",
+        "exp": "A .png (Portable Network Graphics) file is a lossless raster image file format commonly used on the web."
+      },
+      {
+        "q": "Which of the following is one of the file formats used for web graphics?",
+        "tag": "SSC CHSL 05/08/2021 (Morning)",
+        "options": [
+          "gif",
+          ".exe",
+          ".txt",
+          ".docx"
+        ],
+        "ans": "gif",
+        "exp": "GIF (Graphics Interchange Format) is a bitmap image format widely used on the web for graphics and short animations."
+      },
+      {
+        "q": "Which of the following file formats does MS Paint use to open and save files in Windows?",
+        "tag": "SSC CHSL 06/08/2021 (Morning)",
+        "options": [
+          ".doc",
+          ".xls",
+          ".jpeg",
+          ".ppt"
+        ],
+        "ans": ".jpeg",
+        "exp": "MS Paint opens and saves raster image formats such as .jpeg (.jpg), .png, .bmp, and .gif, whereas .doc, .xls, and .ppt are Office document/spreadsheet/presentation formats."
+      },
+      {
+        "q": "The ______ is a three or four letter abbreviation that signifies the file type.",
+        "tag": "SSC CHSL 10/08/2021 (Evening)",
+        "options": [
+          "extension",
+          "search",
+          "virus",
+          "name"
+        ],
+        "ans": "extension",
+        "exp": "A file extension is the suffix (typically three or four letters after the period) at the end of a filename that identifies the file format and associated application."
+      },
+      {
+        "q": "Which of the following is an audio file extension?",
+        "tag": "RRB NTPC 19/01/2021 (Evening)",
+        "options": [
+          "wma",
+          "mov",
+          "wmv",
+          "mp5"
+        ],
+        "ans": "wma",
+        "exp": "WMA (Windows Media Audio) is an audio file format developed by Microsoft. .mov and .wmv are video formats."
+      },
+      {
+        "q": "Which among the following is NOT an extension for a video file?",
+        "tag": "RRB NTPC 20/01/2021 (Evening)",
+        "options": [
+          ".avi",
+          ".mov",
+          ".jpeg",
+          ".mp4"
+        ],
+        "ans": ".jpeg",
+        "exp": ".jpeg (Joint Photographic Experts Group) is a still image file extension, whereas .avi, .mov, and .mp4 are video file extensions."
+      },
+      {
+        "q": "'psd' is a file extension for which type of computer file?",
+        "tag": "RRB NTPC 01/03/2021 (Morning)",
+        "options": [
+          "Adobe Acrobat",
+          "Adobe PhotoShop",
+          "Microsoft Word",
+          "Paint Shop Pro"
+        ],
+        "ans": "Adobe PhotoShop",
+        "exp": ".psd (Photoshop Document) is the native layered image file format used by Adobe Photoshop."
+      },
+      {
+        "q": "PNG file is a/an:",
+        "tag": "RRB NTPC 15/03/2021 (Morning)",
+        "options": [
+          "video file",
+          "image file",
+          "batch file",
+          "audio file"
+        ],
+        "ans": "image file",
+        "exp": "PNG (Portable Network Graphics) is a lossless raster image file format supporting 24-bit color and transparency."
+      },
+      {
+        "q": "Which of the following is the extension of Microsoft Word files?",
+        "tag": "RRB NTPC 23/07/2021 (Evening)",
+        "options": [
+          "docx",
+          "mwd",
+          "dcox",
+          "docd"
+        ],
+        "ans": "docx",
+        "exp": ".docx is the default XML-based file extension for Microsoft Word documents (from Word 2007 onwards)."
+      },
+      {
+        "q": "Which of the following is called binary file format and used by the older versions of MS Word, such as MS Word 97 to 2003?",
+        "tag": "Delhi Police 01/12/2020 (Afternoon)",
+        "options": [
+          ".docm",
+          ".doc",
+          ".docxx",
+          ".docx"
+        ],
+        "ans": ".doc",
+        "exp": "The .doc extension represents the binary file format used by older versions of Microsoft Word (Word 97 to 2003)."
+      },
+      {
+        "q": "The '.docx' file extension was first introduced in which of the following?",
+        "tag": "Delhi Police 08/12/2020 (Morning)",
+        "options": [
+          "MS Word 2007",
+          "MS Word 2010",
+          "MS Word 2013",
+          "MS Word 2016"
+        ],
+        "ans": "MS Word 2007",
+        "exp": "Microsoft introduced the Office Open XML (.docx, .xlsx, .pptx) file formats with the release of Microsoft Office 2007 (MS Word 2007)."
+      },
+      {
+        "q": "In MS Excel 2007, a file is saved with the ______ extension by default.",
+        "tag": "Delhi Police 10/12/2020 (Morning)",
+        "options": [
+          "xlx",
+          "xls",
+          "xlxs",
+          "xlsx"
+        ],
+        "ans": "xlsx",
+        "exp": "Starting with MS Excel 2007, workbooks are saved with the .xlsx (Excel Open XML Spreadsheet) extension by default."
+      },
+      {
+        "q": "Match the following list of domain names with their meanings:\n\nDomain Name:\nP. .net\nQ. .edu\nR. .org\nS. .com\n\nMeaning:\n1. Non-profit organizations\n2. Commercial organizations\n3. Educational organizations\n4. Indicates state and national Government agencies\n5. Department of Defense\n6. Network organization",
+        "tag": "Delhi Police 17/10/2022 (Evening)",
+        "options": [
+          "P - 1, Q - 3, R - 4, S - 2",
+          "P - 6, Q - 3, R - 1, S - 2",
+          "P - 6, Q - 2, R - 4, S - 2",
+          "P - 5, Q - 1, R - 2, S - 4"
+        ],
+        "ans": "P - 6, Q - 3, R - 1, S - 2",
+        "exp": ".net is for Network organizations (P - 6), .edu is for Educational organizations (Q - 3), .org is for Non-profit organizations (R - 1), and .com is for Commercial organizations (S - 2)."
+      },
+      {
+        "q": "In a web address, the domain indicator (suffix) '.com' stands for:",
+        "tag": "RRB NTPC 12/01/2021 (Evening)",
+        "options": [
+          "computer",
+          "communication",
+          "common",
+          "commercial"
+        ],
+        "ans": "commercial",
+        "exp": "The generic top-level domain (gTLD) '.com' stands for 'commercial' and was originally created for commercial organizations."
+      },
+      {
+        "q": "A domain name is a unique name given to each website on the internet. The last part of the domain name is known as domain extension. Which of the following is a domain extension of any government website?",
+        "tag": "RRB NTPC 16/01/2021 (Evening)",
+        "options": [
+          ".net",
+          ".mil",
+          ".gov",
+          ".com"
+        ],
+        "ans": ".gov",
+        "exp": "'.gov' is a sponsored top-level domain (sTLD) restricted to government entities and agencies."
+      },
+      {
+        "q": "Match the following domain name extensions with their respective definitions:\n1. .gov — A) Government agencies\n2. .org — B) Network organizations\n3. .edu — C) Non-Profit organizations\n4. .net — D) Educational organizations",
+        "tag": "Delhi Police 09/12/2020 (Evening)",
+        "options": [
+          "1 - A, 2 - D, 3 - C, 4 - B",
+          "1 - A, 2 - C, 3 - D, 4 - B",
+          "1 - C, 2 - A, 3 - D, 4 - B",
+          "1 - D, 2 - C, 3 - A, 4 - B"
+        ],
+        "ans": "1 - A, 2 - C, 3 - D, 4 - B",
+        "exp": "1. .gov -> A) Government agencies; 2. .org -> C) Non-Profit organizations; 3. .edu -> D) Educational organizations; 4. .net -> B) Network organizations."
+      }
+    ]
+  },
+  {
+    "id": "programming",
+    "order": 3,
+    "title": "3. Programming",
+    "subtitle": "TCS Previous Years Questions (Algorithms, Languages, Markup & Testing)",
+    "durationMinutes": 41,
+    "totalQuestions": 41,
+    "questions": [
+      {
+        "q": "Optimal page replacement and Least Recently Used page replacement algorithm do not suffer from Belady's anomaly. Both these page replacement algorithms of operating system belong to which class of page replacement algorithms?",
+        "tag": "Selection Post Phase VI 24/11/2023",
+        "options": [
+          "Queue algorithm",
+          "Heap algorithm",
+          "Tree algorithm",
+          "Stack algorithm"
+        ],
+        "ans": "Stack algorithm",
+        "exp": "A stack algorithm is a class of page-replacement algorithms (including Optimal and LRU) for which the set of pages in memory for n frames is always a subset of the pages in memory for n + 1 frames, guaranteeing they never suffer from Belady's anomaly."
+      },
+      {
+        "q": "An/A ______ is a finite set of instructions which, when followed, accomplish a particular task.",
+        "tag": "SSC CHSL 19/04/2021 (Morning)",
+        "options": [
+          "array",
+          "algorithm",
+          "data",
+          "node"
+        ],
+        "ans": "algorithm",
+        "exp": "An algorithm is a finite, well-defined sequence of step-by-step instructions used to solve a problem or accomplish a specific computational task."
+      },
+      {
+        "q": "Which of the following is a method of describing computer algorithms using a combination of natural language and programming language?",
+        "tag": "SSC CHSL 12/08/2021 (Morning)",
+        "options": [
+          "Node",
+          "Pseudocode",
+          "Flowchart",
+          "Array"
+        ],
+        "ans": "Pseudocode",
+        "exp": "Pseudocode is an informal, high-level description of a computer algorithm that combines natural language with programming language structure without strict syntax."
+      },
+      {
+        "q": "______ is a diagrammatic representation of a program logic.",
+        "tag": "SSC CHSL 16/10/2020 (Morning)",
+        "options": [
+          "Process",
+          "Flowchart",
+          "Data",
+          "Legend"
+        ],
+        "ans": "Flowchart",
+        "exp": "A flowchart is a graphical or diagrammatic representation of an algorithm, workflow, or program logic using standardized geometric symbols connected by arrows."
+      },
+      {
+        "q": "Which algorithm is used to decide the path to transfer the packets from source to destination?",
+        "tag": "SSC CGL 31/08/2016 (Evening)",
+        "options": [
+          "Routing",
+          "Pathing",
+          "Selecting",
+          "Directing"
+        ],
+        "ans": "Routing",
+        "exp": "A routing algorithm determines the optimal path (route) for transferring data packets from a source node to a destination node across a network."
+      },
+      {
+        "q": "Natural language processing (NLP) is a branch of artificial intelligence that helps computers ______ human language.\nI. understand\nII. interpret\nIII. manipulate",
+        "tag": "SSC CHSL 10/03/2023 (Shift 4)",
+        "options": [
+          "I, II and III",
+          "only I and III",
+          "only I and II",
+          "only II and III"
+        ],
+        "ans": "I, II and III",
+        "exp": "Natural Language Processing (NLP) is a branch of Artificial Intelligence that enables computers to understand, interpret, and manipulate human language."
+      },
+      {
+        "q": "Preet wants to use object oriented programming language for her application. Which among the following languages should she pick?",
+        "tag": "SSC CHSL 15/03/2023 (Shift 3)",
+        "options": [
+          "Java",
+          "Either Java or Pascal",
+          "Pascal",
+          "BASIC"
+        ],
+        "ans": "Java",
+        "exp": "Java is an object-oriented programming language developed by James Gosling at Sun Microsystems, whereas standard Pascal and BASIC are procedural programming languages."
+      },
+      {
+        "q": "What is the full form of RPG?",
+        "tag": "SSC CHSL 20/03/2023 (Shift 1)",
+        "options": [
+          "Report Program Generator",
+          "Random Program Generator",
+          "Report Process Generator",
+          "Random Process Generator"
+        ],
+        "ans": "Report Program Generator",
+        "exp": "RPG stands for Report Program Generator, a high-level programming language introduced by IBM in 1959 for business applications."
+      },
+      {
+        "q": "C++ is an example of which type of computer language?",
+        "tag": "SSC CHSL 20/03/2023 (Shift 1)",
+        "options": [
+          "Visual Programming Language",
+          "Object-Oriented Language",
+          "Business Data Processing",
+          "String and List Processing"
+        ],
+        "ans": "Object-Oriented Language",
+        "exp": "C++ (created by Bjarne Stroustrup) is an Object-Oriented Programming (OOP) language supporting classes, objects, inheritance, polymorphism, and encapsulation."
+      },
+      {
+        "q": "Before writing codes in a high level language, a ______ of a program helps in representing the basic functionality of the intended program.",
+        "tag": "SSC CHSL 20/03/2023 (Shift 4)",
+        "options": [
+          "Original code",
+          "Small code",
+          "naive code",
+          "pseudocode"
+        ],
+        "ans": "pseudocode",
+        "exp": "Writing pseudocode before coding in a high-level language helps programmers outline and represent the core logic and functionality of the intended program."
+      },
+      {
+        "q": "Which of the following languages is an example of a fourth-generation language in computer programming?",
+        "tag": "SSC CHSL 13/04/2021 (Evening)",
+        "options": [
+          "ALGOL",
+          "SQL",
+          "SNOBOL",
+          "Pascal"
+        ],
+        "ans": "SQL",
+        "exp": "SQL (Structured Query Language) is a fourth-generation (4GL) non-procedural database query language, whereas ALGOL, SNOBOL, and Pascal are third-generation (3GL) languages."
+      },
+      {
+        "q": "______ is an interpreted, high-level and general-purpose programming language.",
+        "tag": "SSC CHSL 12/08/2021 (Morning)",
+        "options": [
+          "Python",
+          "Spider",
+          "Penguin",
+          "Cookie"
+        ],
+        "ans": "Python",
+        "exp": "Python (created by Guido van Rossum) is an interpreted, high-level, general-purpose programming language."
+      },
+      {
+        "q": "Python is a/an ______.",
+        "tag": "RRB NTPC 29/12/2020 (Evening)",
+        "options": [
+          "Malware",
+          "programming language",
+          "web browser",
+          "operating system"
+        ],
+        "ans": "programming language",
+        "exp": "Python is an interpreted, high-level, general-purpose programming language known for code readability."
+      },
+      {
+        "q": "Programming language Java was developed by ______.",
+        "tag": "RRB NTPC 04/01/2021 (Morning)",
+        "options": [
+          "Paul Allen",
+          "Jaap Haartsen",
+          "James Gosling",
+          "Charles Simonyi"
+        ],
+        "ans": "James Gosling",
+        "exp": "Java was developed by James Gosling at Sun Microsystems and released in 1995."
+      },
+      {
+        "q": "What is the full form of COBOL?",
+        "tag": "RRB NTPC 10/01/2021 (Evening)",
+        "options": [
+          "Computer Based Operating Language",
+          "Common Business Oriented Language",
+          "Common Basic Operating Language",
+          "Computer Basic Oriented Language"
+        ],
+        "ans": "Common Business Oriented Language",
+        "exp": "COBOL stands for Common Business-Oriented Language, designed for business, finance, and administrative systems."
+      },
+      {
+        "q": "Which one of the following is not a computer virus but is, basically, a computer language?",
+        "tag": "RRB NTPC 18/01/2021 (Morning)",
+        "options": [
+          "Python",
+          "Conficker",
+          "Code Red",
+          "Sasser"
+        ],
+        "ans": "Python",
+        "exp": "Python is a high-level programming language, whereas Conficker, Code Red, and Sasser are well-known computer worms/viruses."
+      },
+      {
+        "q": "A system program that translates and executes an instruction at the same time is called:",
+        "tag": "RRB NTPC 28/01/2021 (Morning)",
+        "options": [
+          "Assembler",
+          "Interpreter",
+          "Compiler",
+          "Operating System"
+        ],
+        "ans": "Interpreter",
+        "exp": "Fact-checked: An Interpreter is a language processor that translates and executes instructions line by line at the same time without generating a separate machine-code file beforehand. (An Assembler only translates assembly code to machine code, and a Compiler translates the entire program at once before execution)."
+      },
+      {
+        "q": "Which of the following is a program that translates each instruction of high-level language and executes it before passing it on to the next instruction?",
+        "tag": "RRB NTPC 31/01/2021 (Evening)",
+        "options": [
+          "Assembler",
+          "Multiprocessing",
+          "Interpreter",
+          "Data Processing"
+        ],
+        "ans": "Interpreter",
+        "exp": "An interpreter translates each high-level language statement into machine form and immediately executes it before moving to the next instruction."
+      },
+      {
+        "q": "______ is a high-level programming language for scientific and mathematical use.",
+        "tag": "RRB NTPC 03/02/2021 (Morning)",
+        "options": [
+          "EDP",
+          "FORTRAN",
+          "COBOL",
+          "RFID"
+        ],
+        "ans": "FORTRAN",
+        "exp": "FORTRAN (Formula Translation) is a high-level programming language developed by IBM in the 1950s specifically for numeric, scientific, and engineering computation."
+      },
+      {
+        "q": "FORTRAN is the ______.",
+        "tag": "RRB NTPC 05/02/2021 (Morning)",
+        "options": [
+          "language of the fifth generation of computers.",
+          "the first electronic digital computer in the world.",
+          "link to connect all the universities.",
+          "first high-level programming language."
+        ],
+        "ans": "first high-level programming language.",
+        "exp": "FORTRAN (developed by John Backus and IBM in 1957) is widely recognized as the first commercially available high-level programming language."
+      },
+      {
+        "q": "The COBOL language is suitable for:",
+        "tag": "RRB NTPC 11/02/2021 (Evening)",
+        "options": [
+          "creating graphical interfaces",
+          "business purposes",
+          "scientific purposes",
+          "educational purposes"
+        ],
+        "ans": "business purposes",
+        "exp": "COBOL (Common Business-Oriented Language) is specifically designed and used for business, financial, and administrative data processing."
+      },
+      {
+        "q": "What is the official name of JavaScript?",
+        "tag": "RRB NTPC 17/02/2021 (Morning)",
+        "options": [
+          "ECMAScript",
+          "JavaScript",
+          "WireScript",
+          "LiveScript"
+        ],
+        "ans": "ECMAScript",
+        "exp": "The official standardized specification name of JavaScript (standardized by Ecma International under ECMA-262) is ECMAScript."
+      },
+      {
+        "q": "Which of the following is NOT a computer programming language?",
+        "tag": "RRB NTPC 22/02/2021 (Morning)",
+        "options": [
+          "Java",
+          "Swift",
+          "Python",
+          "C++++"
+        ],
+        "ans": "C++++",
+        "exp": "Java, Swift, Python, C, C++, and C# are real programming languages, whereas 'C++++' is not a computer programming language."
+      },
+      {
+        "q": "Which of the following is not a high-level language?",
+        "tag": "RRB NTPC 09/03/2021 (Morning)",
+        "options": [
+          "C++",
+          "Machine language",
+          "Java",
+          "C"
+        ],
+        "ans": "Machine language",
+        "exp": "Machine language (first-generation binary code consisting of 0s and 1s) is a low-level language, whereas C, C++, and Java are high-level languages."
+      },
+      {
+        "q": "What is LOGO in computers?",
+        "tag": "RRB NTPC 19/03/2021 (Morning)",
+        "options": [
+          "Programming language",
+          "Instruction",
+          "Command",
+          "Programme"
+        ],
+        "ans": "Programming language",
+        "exp": "Logo is an educational programming language (designed in 1967 by Wally Feurzeig, Seymour Papert, and Cynthia Solomon) famous for its use of 'turtle graphics'."
+      },
+      {
+        "q": "Which of the following is a computer programming language?",
+        "tag": "RRB NTPC 26/07/2021 (Evening)",
+        "options": [
+          "Scratch",
+          "BOSS",
+          "Norton",
+          "UNIX"
+        ],
+        "ans": "Scratch",
+        "exp": "Scratch is a high-level block-based visual programming language developed by the MIT Media Lab. BOSS and UNIX are operating systems, and Norton is antivirus software."
+      },
+      {
+        "q": "Python is a ______.",
+        "tag": "SSC CHSL 17/03/2020 (Evening)",
+        "options": [
+          "high-level language",
+          "assembly language",
+          "low-level language",
+          "machine language"
+        ],
+        "ans": "high-level language",
+        "exp": "Python is a high-level, interpreted general-purpose programming language."
+      },
+      {
+        "q": "In which year did the JavaScript Programming language come into existence?",
+        "tag": "SSC CHSL 13/10/2020 (Afternoon)",
+        "options": [
+          "2000",
+          "1990",
+          "1995",
+          "1999"
+        ],
+        "ans": "1995",
+        "exp": "JavaScript was created by Brendan Eich at Netscape in 1995."
+      },
+      {
+        "q": "What is the full form of BASIC in the context of the BASIC computer language?",
+        "tag": "SSC CHSL 16/10/2020 (Afternoon)",
+        "options": [
+          "Beginner's All-purpose Symbolic Input Code",
+          "Beginner's All-purpose Systematic Instruction Code",
+          "Beginner's All-purpose Symbolic Input-output Code",
+          "Beginner's All-purpose Symbolic Instruction Code"
+        ],
+        "ans": "Beginner's All-purpose Symbolic Instruction Code",
+        "exp": "BASIC stands for Beginner's All-purpose Symbolic Instruction Code, designed in 1964 by John G. Kemeny and Thomas E. Kurtz."
+      },
+      {
+        "q": "What does HLL stand for in computing?",
+        "tag": "SSC CHSL 21/10/2020 (Morning)",
+        "options": [
+          "High Low Language",
+          "Hyper Level Language",
+          "High-Level List",
+          "High-Level Language"
+        ],
+        "ans": "High-Level Language",
+        "exp": "HLL stands for High-Level Language, a programming language that is machine-independent and closer to human language."
+      },
+      {
+        "q": "Who has created LISP, the Programming Language for Artificial Intelligence?",
+        "tag": "SSC CHSL 26/10/2020 (Evening)",
+        "options": [
+          "Grace Hopper",
+          "John McCarthy",
+          "Charles Bachman",
+          "Leslie Lamport"
+        ],
+        "ans": "John McCarthy",
+        "exp": "John McCarthy created LISP (LISt Processing) in 1958 at MIT as a functional programming language widely used in Artificial Intelligence."
+      },
+      {
+        "q": "Which of the following are the boldface tags instructions for the web browser?",
+        "tag": "Selection Post Phase VI 24/11/2023",
+        "options": [
+          "<Br> and </Br>",
+          "<Bl> and </Bl>",
+          "<Bo> and </Bo>",
+          "<B> and </B>"
+        ],
+        "ans": "<B> and </B>",
+        "exp": "In HTML, the <b> and </b> (or <B> and </B>) tags are used to display enclosed text in boldface."
+      },
+      {
+        "q": "Which of the following is a complementary language that helps style the HTML markup code used to create and design websites and web pages?",
+        "tag": "SSC CHSL TIER II 26/06/2023",
+        "options": [
+          "Hypertext Preprocessor (PHP)",
+          "Java",
+          "Cascading Style Sheets (CSS)",
+          "Structured Query Language (SQL)"
+        ],
+        "ans": "Cascading Style Sheets (CSS)",
+        "exp": "Cascading Style Sheets (CSS) is a style sheet language used to describe the visual presentation, layout, and styling of documents written in HTML or XML."
+      },
+      {
+        "q": "A markup language and file format used for storing, transmitting, and reconstructing arbitrary data is known as ______.",
+        "tag": "Delhi Police 10/10/2022 (Morning)",
+        "options": [
+          "HTML",
+          "XML",
+          "EML",
+          "SGML"
+        ],
+        "ans": "XML",
+        "exp": "XML (Extensible Markup Language) is a markup language and file format designed for storing, transmitting, and reconstructing arbitrary structured data."
+      },
+      {
+        "q": "Consider the following statements about HTML:\nP: HTML was designed to store and transport data.\nQ: All HTML documents must start with a document type declaration: <!DOCTYPE html>\nR: HTML is the standard markup language for Web pages.\nWhich of these statement(s) is/are correct?",
+        "tag": "Delhi Police 17/10/2022 (Afternoon)",
+        "options": [
+          "Only Q",
+          "All P, Q, R",
+          "Only Q and R",
+          "Only P and Q"
+        ],
+        "ans": "Only Q and R",
+        "exp": "Statements Q and R are correct: HTML is the standard markup language for Web pages and HTML5 documents start with <!DOCTYPE html>. Statement P is false because XML (not HTML) was designed to store and transport data, whereas HTML was designed to display data."
+      },
+      {
+        "q": "Consider the following statements about HTML:\nP: HTML was designed to store and transport data.\nQ: All HTML documents must start with a document type declaration: <!DOCTYPE html>\nR: HTML is the standard markup language for Web pages.\nWhich of these statement(s) is/are False?",
+        "tag": "Delhi Police 18/10/2022 (Evening)",
+        "options": [
+          "Only R",
+          "Only P and Q",
+          "Only P and R",
+          "Only P"
+        ],
+        "ans": "Only P",
+        "exp": "Statement P is false because HTML was designed to display data in web pages, whereas XML was designed to store and transport data."
+      },
+      {
+        "q": "Which of the following is not an example of markup language?",
+        "tag": "Delhi Police 20/10/2022 (Evening)",
+        "options": [
+          "QBE",
+          "XML",
+          "HTML",
+          "SGML"
+        ],
+        "ans": "QBE",
+        "exp": "QBE (Query By Example) is a relational database query language, whereas XML, HTML, and SGML are markup languages."
+      },
+      {
+        "q": "In which language can a web page be written?",
+        "tag": "RRB NTPC 19/03/2021 (Morning)",
+        "options": [
+          "SQL",
+          "C/C++",
+          "FORTRAN",
+          "HTML"
+        ],
+        "ans": "HTML",
+        "exp": "Web pages are structured and written using HTML (HyperText Markup Language)."
+      },
+      {
+        "q": "The trial test of a computer or software before the commercial launch is called:",
+        "tag": "RRB NTPC 10/02/2021 (Evening)",
+        "options": [
+          "Beta test",
+          "Alpha test",
+          "Delta test",
+          "e-test"
+        ],
+        "ans": "Beta test",
+        "exp": "A Beta test is the external user acceptance trial test of software conducted in a real-world environment prior to commercial launch."
+      },
+      {
+        "q": "Debugging is another term for:",
+        "tag": "RRB NTPC 11/02/2021 (Evening)",
+        "options": [
+          "executing",
+          "removing errors",
+          "compiling",
+          "not reading comments"
+        ],
+        "ans": "removing errors",
+        "exp": "Debugging is the process of detecting, locating, and removing errors (bugs) in computer software code."
+      },
+      {
+        "q": "Debugging is the process of:",
+        "tag": "RRB NTPC 29/04/2016 (Evening)",
+        "options": [
+          "Rolling out a software program.",
+          "Modifying a software program.",
+          "Checking errors in a software program.",
+          "Changing the design structure of a program."
+        ],
+        "ans": "Checking errors in a software program.",
+        "exp": "Debugging is the systematic process of checking, identifying, and resolving errors or defects ('bugs') in a software program."
+      }
+    ]
+  }
+];
+
+    // Application State
+    let activeTest = null;
+    let preparedQuestions = [];
+    let currentQIndex = 0;
+    let remainingSeconds = 0;
+    let elapsedSeconds = 0;
+    let timerInterval = null;
+    let isPaused = false;
+    let solutionFilter = "all"; // 'all' | 'incorrect' | 'unattempted'
+
+    // Fisher-Yates shuffle for randomizing options on each attempt/refresh without changing question order
+    function shuffleArray(arr) {
+      const copy = arr.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = copy[i];
+        copy[i] = copy[j];
+        copy[j] = temp;
+      }
+      return copy;
+    }
+
+    function formatTime(totalSecs) {
+      const mins = Math.floor(totalSecs / 60);
+      const secs = totalSecs % 60;
+      const mStr = String(mins).padStart(2, "0");
+      const sStr = String(secs).padStart(2, "0");
+      return mStr + ":" + sStr;
+    }
+
+    function showView(viewId) {
+      document.querySelectorAll(".view-section").forEach(sec => {
+        sec.classList.remove("active");
+      });
+      const target = document.getElementById(viewId);
+      if (target) {
+        target.classList.add("active");
+      }
+    }
+
+    function enterFullscreenSafe() {
+      try {
+        const el = document.documentElement;
+        if (!document.fullscreenElement && el.requestFullscreen) {
+          el.requestFullscreen().catch(() => {});
+        }
+      } catch (e) {}
+      updateFullscreenButtonLabel();
+    }
+
+    function exitFullscreenSafe() {
+      try {
+        if (document.fullscreenElement && document.exitFullscreen) {
+          document.exitFullscreen().catch(() => {});
+        }
+      } catch (e) {}
+      updateFullscreenButtonLabel();
+    }
+
+    function updateFullscreenButtonLabel() {
+      const btn = document.getElementById("btn-exit-fullscreen");
+      if (!btn) return;
+      btn.textContent = "Exit Fullscreen";
+    }
+
+    document.addEventListener("fullscreenchange", updateFullscreenButtonLabel);
+
+    // Render Main Dashboard Cards in exact order (1. Software, 2. Extensions, 3. Programming)
+    function renderDashboard() {
+      const container = document.getElementById("dashboard-cards");
+      container.innerHTML = "";
+
+      MOCK_TESTS.forEach((test) => {
+        const card = document.createElement("div");
+        card.className = "test-card";
+        card.innerHTML = `
+          <div>
+            <div class="test-card-header">
+              <span class="test-order-tag">Mock Test ${test.order}</span>
+              <h2>${escapeHtml(test.title)}</h2>
+              <p class="test-card-sub">${escapeHtml(test.subtitle)}</p>
+            </div>
+            <div class="test-meta-list">
+              <div class="test-meta-item">
+                <span class="test-meta-label">Questions</span>
+                <span class="test-meta-val">${test.totalQuestions} MCQs</span>
+              </div>
+              <div class="test-meta-item">
+                <span class="test-meta-label">Duration</span>
+                <span class="test-meta-val">${test.durationMinutes} Mins</span>
+              </div>
+              <div class="test-meta-item">
+                <span class="test-meta-label">Source</span>
+                <span class="test-meta-val">TCS PYQs</span>
+              </div>
+              <div class="test-meta-item">
+                <span class="test-meta-label">Interface</span>
+                <span class="test-meta-val">TCS Light CBT</span>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary open-intro-btn" data-test-id="${test.id}" style="width: 100%; padding: 11px;">
+            Open Mock Test
+          </button>
+        `;
+        container.appendChild(card);
+      });
+
+      container.querySelectorAll(".open-intro-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const testId = btn.getAttribute("data-test-id");
+          openIntroView(testId);
+        });
+      });
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function openIntroView(testId) {
+      const found = MOCK_TESTS.find(t => t.id === testId);
+      if (!found) return;
+      activeTest = found;
+
+      document.getElementById("intro-top-title").textContent = found.title + " — Instructions";
+      document.getElementById("intro-test-name").textContent = found.title;
+      document.getElementById("intro-test-badge").textContent =
+        found.totalQuestions + " Questions | " + found.durationMinutes + " Minutes";
+      document.getElementById("intro-duration-text").textContent = found.durationMinutes + " minutes";
+      document.getElementById("intro-qcount-text").textContent = found.totalQuestions + " questions";
+
+      showView("view-intro");
+    }
+
+    function startExam() {
+      if (!activeTest) return;
+
+      // Prepare questions: keep exact question order, randomize the 4 options on each start/refresh
+      preparedQuestions = activeTest.questions.map((item, idx) => {
+        const shuffledOpts = shuffleArray(item.options);
+        return {
+          index: idx,
+          q: item.q,
+          tag: item.tag,
+          options: shuffledOpts,
+          ans: item.ans,
+          exp: item.exp,
+          selectedOption: null,
+          visited: idx === 0,
+          markedForReview: false
+        };
+      });
+
+      currentQIndex = 0;
+      remainingSeconds = activeTest.durationMinutes * 60;
+      elapsedSeconds = 0;
+      isPaused = false;
+
+      document.getElementById("exam-header-title").textContent = activeTest.title;
+      updateTimerUI();
+      showView("view-exam");
+      enterFullscreenSafe();
+
+      renderQuestion();
+      renderPalette();
+      startTimer();
+    }
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (isPaused) return;
+        if (remainingSeconds > 0) {
+          remainingSeconds--;
+          elapsedSeconds++;
+          updateTimerUI();
+          if (remainingSeconds <= 0) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            finalizeSubmission("Time Expired — Auto-Submitted");
+          }
+        }
+      }, 1000);
+    }
+
+    function updateTimerUI() {
+      const display = document.getElementById("exam-timer-display");
+      const box = document.getElementById("exam-timer-box");
+      display.textContent = formatTime(remainingSeconds);
+      if (remainingSeconds <= 60) {
+        box.classList.add("low-time");
+      } else {
+        box.classList.remove("low-time");
+      }
+    }
+
+    function getQuestionStatus(qObj) {
+      if (!qObj.visited) return "not-visited";
+      const hasAns = qObj.selectedOption !== null;
+      if (hasAns && qObj.markedForReview) return "ans-review";
+      if (!hasAns && qObj.markedForReview) return "review";
+      if (hasAns) return "answered";
+      return "not-answered";
+    }
+
+    function renderQuestion() {
+      const qObj = preparedQuestions[currentQIndex];
+      if (!qObj) return;
+      qObj.visited = true;
+
+      document.getElementById("exam-q-number").textContent =
+        "Question No. " + (currentQIndex + 1) + " of " + preparedQuestions.length;
+      document.getElementById("exam-q-stem").textContent = qObj.q;
+
+      const tagEl = document.getElementById("exam-q-tag");
+      if (qObj.tag) {
+        tagEl.textContent = qObj.tag;
+        tagEl.style.display = "inline-block";
+      } else {
+        tagEl.style.display = "none";
+      }
+
+      const optsContainer = document.getElementById("exam-options-container");
+      optsContainer.innerHTML = "";
+
+      qObj.options.forEach((optText, optIdx) => {
+        const row = document.createElement("label");
+        const isSelected = qObj.selectedOption === optText;
+        row.className = "option-row" + (isSelected ? " selected" : "");
+
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = "mcq-option";
+        radio.value = optText;
+        radio.checked = isSelected;
+
+        radio.addEventListener("change", () => {
+          // Only record user's choice; do NOT mark right/wrong or jump to next question automatically
+          qObj.selectedOption = optText;
+          renderQuestion();
+          renderPalette();
+        });
+
+        const span = document.createElement("span");
+        span.className = "option-text";
+        span.textContent = "(" + String.fromCharCode(97 + optIdx) + ") " + optText;
+
+        row.appendChild(radio);
+        row.appendChild(span);
+        optsContainer.appendChild(row);
+      });
+
+      document.getElementById("btn-prev-q").disabled = currentQIndex === 0;
+    }
+
+    function renderPalette() {
+      const grid = document.getElementById("palette-grid");
+      grid.innerHTML = "";
+
+      let cntAnswered = 0;
+      let cntNotAnswered = 0;
+      let cntNotVisited = 0;
+      let cntReview = 0;
+      let cntAnsReview = 0;
+
+      preparedQuestions.forEach((qObj, idx) => {
+        const st = getQuestionStatus(qObj);
+        if (st === "answered") cntAnswered++;
+        else if (st === "not-answered") cntNotAnswered++;
+        else if (st === "not-visited") cntNotVisited++;
+        else if (st === "review") cntReview++;
+        else if (st === "ans-review") cntAnsReview++;
+
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "q-palette-btn st-" + st + (idx === currentQIndex ? " current-q" : "");
+        btn.textContent = idx + 1;
+        btn.addEventListener("click", () => {
+          currentQIndex = idx;
+          renderQuestion();
+          renderPalette();
+        });
+        grid.appendChild(btn);
+      });
+
+      document.getElementById("count-answered").textContent = cntAnswered;
+      document.getElementById("count-not-answered").textContent = cntNotAnswered;
+      document.getElementById("count-not-visited").textContent = cntNotVisited;
+      document.getElementById("count-review").textContent = cntReview;
+      document.getElementById("count-ans-review").textContent = cntAnsReview;
+    }
+
+    function goToNextQuestion() {
+      if (currentQIndex < preparedQuestions.length - 1) {
+        currentQIndex++;
+      }
+      renderQuestion();
+      renderPalette();
+    }
+
+    function goToPreviousQuestion() {
+      if (currentQIndex > 0) {
+        currentQIndex--;
+        renderQuestion();
+        renderPalette();
+      }
+    }
+
+    function clearCurrentOption() {
+      const qObj = preparedQuestions[currentQIndex];
+      if (!qObj) return;
+      qObj.selectedOption = null;
+      qObj.markedForReview = false;
+      renderQuestion();
+      renderPalette();
+    }
+
+    function markForReviewAndNext() {
+      const qObj = preparedQuestions[currentQIndex];
+      if (!qObj) return;
+      qObj.markedForReview = true;
+      if (currentQIndex < preparedQuestions.length - 1) {
+        currentQIndex++;
+      }
+      renderQuestion();
+      renderPalette();
+    }
+
+    function openPauseModal() {
+      isPaused = true;
+      document.getElementById("pause-time-remaining").textContent = formatTime(remainingSeconds);
+      document.getElementById("modal-pause").classList.add("active");
+    }
+
+    function closePauseModal() {
+      isPaused = false;
+      document.getElementById("modal-pause").classList.remove("active");
+    }
+
+    function openSubmitModal() {
+      let cntAns = 0;
+      let cntNotAns = 0;
+      let cntRev = 0;
+      let cntNotVis = 0;
+
+      preparedQuestions.forEach(qObj => {
+        const st = getQuestionStatus(qObj);
+        if (st === "answered" || st === "ans-review") cntAns++;
+        if (st === "not-answered") cntNotAns++;
+        if (st === "review" || st === "ans-review") cntRev++;
+        if (st === "not-visited") cntNotVis++;
+      });
+
+      document.getElementById("mod-sum-ans").textContent = cntAns;
+      document.getElementById("mod-sum-not-ans").textContent = cntNotAns;
+      document.getElementById("mod-sum-rev").textContent = cntRev;
+      document.getElementById("mod-sum-not-vis").textContent = cntNotVis;
+
+      document.getElementById("modal-submit").classList.add("active");
+    }
+
+    function closeSubmitModal() {
+      document.getElementById("modal-submit").classList.remove("active");
+    }
+
+    function finalizeSubmission(reasonText) {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+      closeSubmitModal();
+      closePauseModal();
+      exitFullscreenSafe();
+
+      const totalQ = preparedQuestions.length;
+      let attempted = 0;
+      let correct = 0;
+      let incorrect = 0;
+      let unattempted = 0;
+
+      preparedQuestions.forEach(qObj => {
+        if (qObj.selectedOption === null) {
+          unattempted++;
+        } else {
+          attempted++;
+          if (qObj.selectedOption === qObj.ans) {
+            correct++;
+          } else {
+            incorrect++;
+          }
+        }
+      });
+
+      const accuracy = attempted > 0 ? ((correct / attempted) * 100).toFixed(1) : "0.0";
+
+      document.getElementById("res-test-title").textContent = activeTest.title + " — Performance Summary";
+      document.getElementById("res-submit-reason").textContent = reasonText || "Submitted by Candidate";
+      document.getElementById("res-score-headline").textContent = "Score: " + correct + " / " + totalQ;
+      document.getElementById("res-total-q").textContent = totalQ;
+      document.getElementById("res-attempted").textContent = attempted;
+      document.getElementById("res-correct").textContent = correct;
+      document.getElementById("res-incorrect").textContent = incorrect;
+      document.getElementById("res-unattempted").textContent = unattempted;
+      document.getElementById("res-accuracy").textContent = accuracy + "%";
+      document.getElementById("res-time-taken").textContent = formatTime(elapsedSeconds);
+
+      document.getElementById("cnt-all-inc-un").textContent = incorrect + unattempted;
+      document.getElementById("cnt-inc-only").textContent = incorrect;
+      document.getElementById("cnt-un-only").textContent = unattempted;
+
+      solutionFilter = "all";
+      updateFilterTabUI();
+      renderSolutionsList();
+      showView("view-results");
+    }
+
+    function updateFilterTabUI() {
+      document.getElementById("filter-all-review").classList.toggle("active", solutionFilter === "all");
+      document.getElementById("filter-incorrect").classList.toggle("active", solutionFilter === "incorrect");
+      document.getElementById("filter-unattempted").classList.toggle("active", solutionFilter === "unattempted");
+    }
+
+    function renderSolutionsList() {
+      const container = document.getElementById("solutions-list-container");
+      container.innerHTML = "";
+
+      // Filter strictly to ONLY incorrect and un-attempted questions as requested
+      const filtered = preparedQuestions.filter(qObj => {
+        const isUnattempted = qObj.selectedOption === null;
+        const isIncorrect = !isUnattempted && qObj.selectedOption !== qObj.ans;
+        if (!isUnattempted && !isIncorrect) return false; // Never show correct questions here
+        if (solutionFilter === "incorrect") return isIncorrect;
+        if (solutionFilter === "unattempted") return isUnattempted;
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="solution-item-card" style="text-align: center; color: #475569;">
+            No questions match this filter.
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(qObj => {
+        const isUnattempted = qObj.selectedOption === null;
+        const card = document.createElement("div");
+        card.className = "solution-item-card";
+
+        let optsHtml = "";
+        qObj.options.forEach((optText, i) => {
+          const isCorrectOpt = optText === qObj.ans;
+          const isUserWrongOpt = !isUnattempted && optText === qObj.selectedOption && !isCorrectOpt;
+          let cls = "sol-opt";
+          let suffix = "";
+          if (isCorrectOpt) {
+            cls += " correct-opt";
+            suffix = " ✓ [Correct Answer]";
+          } else if (isUserWrongOpt) {
+            cls += " user-wrong-opt";
+            suffix = " ✗ [Your Answer]";
+          }
+          optsHtml += `<div class="${cls}">(${String.fromCharCode(97 + i)}) ${escapeHtml(optText)}${suffix}</div>`;
+        });
+
+        const statusBadge = isUnattempted
+          ? `<span class="status-pill pill-unattempted">Unattempted</span>`
+          : `<span class="status-pill pill-incorrect">Incorrect</span>`;
+
+        card.innerHTML = `
+          <div class="solution-item-top">
+            <strong style="font-size: 0.96rem; color: #1e293b;">Question ${qObj.index + 1}</strong>
+            ${statusBadge}
+          </div>
+          <div class="question-stem" style="font-size: 0.98rem; margin-bottom: 6px;">${escapeHtml(qObj.q)}</div>
+          <div class="exam-tag-badge" style="margin-bottom: 10px;">${escapeHtml(qObj.tag)}</div>
+          <div class="sol-options-grid">${optsHtml}</div>
+          <div style="font-size: 0.86rem; color: #334155; margin-top: 6px;">
+            <strong>Your Response:</strong> ${isUnattempted ? "Not Attempted" : escapeHtml(qObj.selectedOption)} |
+            <strong>Correct Answer:</strong> <span style="color: #15803d; font-weight: 700;">${escapeHtml(qObj.ans)}</span>
+          </div>
+          <div class="explanation-box">
+            <strong>Solution:</strong> ${escapeHtml(qObj.exp)}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Wire up all event listeners
+    window.addEventListener("DOMContentLoaded", () => {
+      renderDashboard();
+
+      document.getElementById("btn-intro-back").addEventListener("click", () => showView("view-dashboard"));
+      document.getElementById("btn-intro-cancel").addEventListener("click", () => showView("view-dashboard"));
+      document.getElementById("btn-start-exam").addEventListener("click", startExam);
+
+      document.getElementById("btn-prev-q").addEventListener("click", goToPreviousQuestion);
+      document.getElementById("btn-next-q").addEventListener("click", goToNextQuestion);
+      document.getElementById("btn-clear-q").addEventListener("click", clearCurrentOption);
+      document.getElementById("btn-mark-review").addEventListener("click", markForReviewAndNext);
+
+      document.getElementById("btn-pause-exam").addEventListener("click", openPauseModal);
+      document.getElementById("btn-resume-exam").addEventListener("click", closePauseModal);
+
+      document.getElementById("btn-exit-fullscreen").addEventListener("click", exitFullscreenSafe);
+
+      document.getElementById("btn-top-submit").addEventListener("click", openSubmitModal);
+      document.getElementById("btn-bottom-submit").addEventListener("click", openSubmitModal);
+      document.getElementById("btn-palette-submit").addEventListener("click", openSubmitModal);
+      document.getElementById("btn-cancel-submit").addEventListener("click", closeSubmitModal);
+      document.getElementById("btn-confirm-submit").addEventListener("click", () => {
+        finalizeSubmission("Submitted by Candidate");
+      });
+
+      document.getElementById("btn-results-dashboard").addEventListener("click", () => showView("view-dashboard"));
+      document.getElementById("btn-retake-test").addEventListener("click", () => {
+        if (activeTest) openIntroView(activeTest.id);
+      });
+
+      document.getElementById("filter-all-review").addEventListener("click", () => {
+        solutionFilter = "all";
+        updateFilterTabUI();
+        renderSolutionsList();
+      });
+      document.getElementById("filter-incorrect").addEventListener("click", () => {
+        solutionFilter = "incorrect";
+        updateFilterTabUI();
+        renderSolutionsList();
+      });
+      document.getElementById("filter-unattempted").addEventListener("click", () => {
+        solutionFilter = "unattempted";
+        updateFilterTabUI();
+        renderSolutionsList();
+      });
+    });
+  </script>
+</body>
+</html>

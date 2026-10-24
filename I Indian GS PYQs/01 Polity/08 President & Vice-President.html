@@ -1,0 +1,2662 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>08 - President & Vice President — Mock Test</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-blue: #1a56db;
+      --primary-dark: #0f2942;
+      --header-bg: #1e3a5f;
+      --subheader-bg: #f1f5f9;
+      --bg-main: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border-color: #cbd5e1;
+      --status-answered: #16a34a;
+      --status-not-answered: #dc2626;
+      --status-not-visited: #e2e8f0;
+      --status-review: #7e22ce;
+      --status-ans-review: #7e22ce;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Top System Bar */
+    .top-bar {
+      background-color: var(--header-bg);
+      color: #ffffff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+      z-index: 30;
+    }
+
+    .brand-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-badge {
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .exam-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .timer-box {
+      background: #0f172a;
+      border: 1px solid #334155;
+      padding: 6px 14px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .timer-value {
+      font-variant-numeric: tabular-nums;
+      color: #38bdf8;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .timer-value.urgent {
+      color: #f87171;
+      animation: pulseUrgent 1s infinite;
+    }
+
+    @keyframes pulseUrgent {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.45; }
+    }
+
+    .top-btn {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .top-btn:hover {
+      background: rgba(255, 255, 255, 0.22);
+      border-color: rgba(255, 255, 255, 0.45);
+    }
+
+    /* Screens */
+    .screen {
+      display: none;
+      flex: 1;
+    }
+
+    .screen.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Intro Screen */
+    .intro-wrapper {
+      max-width: 920px;
+      width: 100%;
+      margin: 28px auto;
+      padding: 0 16px;
+    }
+
+    .intro-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+      overflow: hidden;
+    }
+
+    .intro-card-header {
+      background: linear-gradient(135deg, #1e3a5f 0%, #1a56db 100%);
+      color: #ffffff;
+      padding: 24px 28px;
+    }
+
+    .intro-card-header h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .intro-card-header p {
+      font-size: 0.92rem;
+      color: #e2e8f0;
+    }
+
+    .intro-body {
+      padding: 24px 28px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .meta-stat {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+
+    .meta-stat .label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+    }
+
+    .meta-stat .val {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-top: 4px;
+    }
+
+    .instructions-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .instructions-list {
+      list-style: decimal;
+      padding-left: 20px;
+      color: #334155;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .instructions-list li {
+      margin-bottom: 8px;
+    }
+
+    .palette-legend-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 22px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.86rem;
+      color: #334155;
+      font-weight: 500;
+    }
+
+    .p-badge {
+      width: 28px;
+      height: 26px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .p-not-visited {
+      background: #e2e8f0;
+      color: #1e293b;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+    }
+
+    .p-not-answered {
+      background: var(--status-not-answered);
+      color: #ffffff;
+      border-radius: 4px 4px 10px 10px;
+    }
+
+    .p-answered {
+      background: var(--status-answered);
+      color: #ffffff;
+      border-radius: 10px 10px 4px 4px;
+    }
+
+    .p-review {
+      background: var(--status-review);
+      color: #ffffff;
+      border-radius: 50%;
+    }
+
+    .p-ans-review {
+      background: var(--status-ans-review);
+      color: #ffffff;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .p-ans-review::after {
+      content: "";
+      position: absolute;
+      bottom: 1px;
+      right: 1px;
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border: 1.5px solid #ffffff;
+      border-radius: 50%;
+    }
+
+    .declaration-row {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      padding: 14px 16px;
+      border-radius: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 20px;
+      font-size: 0.88rem;
+      color: #1e3a8a;
+      cursor: pointer;
+    }
+
+    .declaration-row input[type="checkbox"] {
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .intro-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .declaration-error {
+      color: #dc2626;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: none;
+    }
+
+    .start-exam-btn {
+      background: var(--primary-blue);
+      color: #ffffff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s;
+      margin-left: auto;
+    }
+
+    .start-exam-btn:hover {
+      background: #1d4ed8;
+    }
+
+    /* Main Exam Layout (TCS / Eduquity Style) */
+    .exam-workspace {
+      display: flex;
+      flex: 1;
+      height: calc(100vh - 54px);
+      overflow: hidden;
+    }
+
+    .question-pane {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    .section-strip {
+      background: var(--subheader-bg);
+      border-bottom: 1px solid var(--border-color);
+      padding: 8px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .section-tab {
+      background: var(--primary-blue);
+      color: #ffffff;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .question-header-bar {
+      padding: 12px 24px;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffff;
+      gap: 10px;
+    }
+
+    .q-number-label {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .exam-tag-small {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #475569;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.3px;
+    }
+
+    .question-scroll-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+    }
+
+    .question-stem {
+      font-size: 1.08rem;
+      line-height: 1.65;
+      color: #0f172a;
+      font-weight: 500;
+      margin-bottom: 24px;
+      white-space: pre-line;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 820px;
+    }
+
+    .option-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 13px 16px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: border-color 0.15s, background-color 0.15s;
+      user-select: none;
+    }
+
+    .option-row:hover {
+      border-color: #60a5fa;
+      background: #f8fafc;
+    }
+
+    .option-row.selected {
+      border-color: var(--primary-blue);
+      background: #eff6ff;
+    }
+
+    .option-row input[type="radio"] {
+      margin-top: 3px;
+      width: 17px;
+      height: 17px;
+      accent-color: var(--primary-blue);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .option-letter {
+      font-weight: 700;
+      color: #334155;
+      min-width: 22px;
+      font-size: 0.96rem;
+    }
+
+    .option-text {
+      font-size: 0.98rem;
+      line-height: 1.5;
+      color: #0f172a;
+      flex: 1;
+    }
+
+    /* Bottom Action Footer */
+    .action-footer {
+      padding: 12px 24px;
+      background: #f8fafc;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-left-btns,
+    .footer-right-btns {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .cbt-btn {
+      padding: 9px 16px;
+      border-radius: 5px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #1e293b;
+      transition: all 0.15s;
+    }
+
+    .cbt-btn:hover:not(:disabled) {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
+    .cbt-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .cbt-btn-review {
+      background: #7e22ce;
+      color: #ffffff;
+      border-color: #6b21a8;
+    }
+
+    .cbt-btn-review:hover:not(:disabled) {
+      background: #6b21a8;
+      border-color: #581c87;
+    }
+
+    .cbt-btn-next {
+      background: #16a34a;
+      color: #ffffff;
+      border-color: #15803d;
+      padding: 9px 22px;
+    }
+
+    .cbt-btn-next:hover:not(:disabled) {
+      background: #15803d;
+    }
+
+    .cbt-btn-submit {
+      background: var(--primary-blue);
+      color: #ffffff;
+      border-color: #1e40af;
+      padding: 10px 20px;
+    }
+
+    .cbt-btn-submit:hover {
+      background: #1d4ed8;
+    }
+
+    .mobile-submit-btn {
+      display: none;
+    }
+
+    /* Right-Side Small Question Number Palette */
+    .palette-sidebar {
+      width: 270px;
+      background: #f1f5f9;
+      border-left: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      height: 100%;
+    }
+
+    .candidate-strip {
+      padding: 10px 14px;
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .candidate-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #dbeafe;
+      color: #1e40af;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.88rem;
+    }
+
+    .candidate-info {
+      font-size: 0.8rem;
+      line-height: 1.3;
+    }
+
+    .candidate-info strong {
+      display: block;
+      color: #0f172a;
+    }
+
+    .candidate-info span {
+      color: #64748b;
+    }
+
+    .palette-summary {
+      padding: 10px 12px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      font-size: 0.73rem;
+      color: #334155;
+    }
+
+    .summary-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+    }
+
+    .summary-item.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .mini-badge {
+      width: 22px;
+      height: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .palette-title-bar {
+      background: #1e3a5f;
+      color: #ffffff;
+      padding: 6px 12px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .palette-grid-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+      background: #e8f0fe;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 7px;
+    }
+
+    .q-pal-btn {
+      height: 32px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.1s;
+      border: 1px solid #94a3b8;
+      background: #ffffff;
+      color: #0f172a;
+      border-radius: 4px;
+    }
+
+    .q-pal-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .q-pal-btn.status-not-visited {
+      background: #f8fafc;
+      color: #334155;
+      border-color: #cbd5e1;
+    }
+
+    .q-pal-btn.status-not-answered {
+      background: var(--status-not-answered);
+      color: #ffffff;
+      border-color: #b91c1c;
+      border-radius: 4px 4px 10px 10px;
+    }
+
+    .q-pal-btn.status-answered {
+      background: var(--status-answered);
+      color: #ffffff;
+      border-color: #15803d;
+      border-radius: 10px 10px 4px 4px;
+    }
+
+    .q-pal-btn.status-review {
+      background: var(--status-review);
+      color: #ffffff;
+      border-color: #6b21a8;
+      border-radius: 50%;
+    }
+
+    .q-pal-btn.status-ans-review {
+      background: var(--status-ans-review);
+      color: #ffffff;
+      border-color: #6b21a8;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .q-pal-btn.status-ans-review::after {
+      content: "";
+      position: absolute;
+      bottom: 1px;
+      right: 1px;
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border: 1.5px solid #ffffff;
+      border-radius: 50%;
+    }
+
+    .q-pal-btn.current-q {
+      outline: 2.5px solid #0f172a;
+      outline-offset: 1px;
+    }
+
+    .palette-footer {
+      padding: 12px;
+      background: #ffffff;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .palette-footer .cbt-btn-submit {
+      width: 100%;
+    }
+
+    /* Hide Palette on Mobile Interface as Requested */
+    @media (max-width: 768px) {
+      .palette-sidebar {
+        display: none !important;
+      }
+      .mobile-submit-btn {
+        display: inline-block;
+      }
+      .exam-workspace {
+        height: calc(100vh - 96px);
+      }
+      .question-scroll-area {
+        padding: 16px;
+      }
+      .action-footer {
+        padding: 10px 14px;
+      }
+    }
+
+    /* Modals (Pause & Submit Confirmation) */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 16px;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: 10px;
+      max-width: 480px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25);
+      border: 1px solid #e2e8f0;
+    }
+
+    .modal-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 10px;
+    }
+
+    .modal-card p {
+      font-size: 0.92rem;
+      color: #475569;
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      font-size: 0.88rem;
+    }
+
+    .summary-table th,
+    .summary-table td {
+      border: 1px solid #e2e8f0;
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    .summary-table th {
+      background: #f8fafc;
+      color: #334155;
+      font-weight: 600;
+    }
+
+    .summary-table td:last-child {
+      text-align: right;
+      font-weight: 700;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    /* Results / Scorecard Screen */
+    .result-wrapper {
+      max-width: 980px;
+      width: 100%;
+      margin: 28px auto;
+      padding: 0 16px 48px;
+    }
+
+    .score-banner {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+    }
+
+    .score-banner-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .score-banner-top h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .score-Grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+    }
+
+    .score-stat-card {
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+    }
+
+    .score-stat-card .s-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #64748b;
+    }
+
+    .score-stat-card .s-val {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 6px;
+      color: #0f172a;
+    }
+
+    .score-stat-card.correct-card {
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+    }
+    .score-stat-card.correct-card .s-val { color: #15803d; }
+
+    .score-stat-card.wrong-card {
+      background: #fef2f2;
+      border-color: #fecaca;
+    }
+    .score-stat-card.wrong-card .s-val { color: #b91c1c; }
+
+    .score-stat-card.unattempted-card {
+      background: #fffbeb;
+      border-color: #fde68a;
+    }
+    .score-stat-card.unattempted-card .s-val { color: #b45309; }
+
+    .review-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .review-header-bar h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab {
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #334155;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .filter-tab.active {
+      background: var(--primary-blue);
+      color: #ffffff;
+      border-color: var(--primary-blue);
+    }
+
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .review-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+    }
+
+    .review-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .review-q-num {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--primary-dark);
+    }
+
+    .review-badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge-status {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+
+    .badge-incorrect {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+    }
+
+    .badge-unattempted {
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fde68a;
+    }
+
+    .review-q-text {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #0f172a;
+      font-weight: 500;
+      margin-bottom: 14px;
+      white-space: pre-line;
+    }
+
+    .review-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .review-opt {
+      padding: 10px 14px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      font-size: 0.92rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .review-opt.is-correct {
+      background: #dcfce7;
+      border-color: #22c55e;
+      color: #14532d;
+      font-weight: 600;
+    }
+
+    .review-opt.is-user-wrong {
+      background: #fee2e2;
+      border-color: #ef4444;
+      color: #7f1d1d;
+      font-weight: 600;
+    }
+
+    .opt-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .opt-tag.correct-tag {
+      background: #16a34a;
+      color: #ffffff;
+    }
+
+    .opt-tag.wrong-tag {
+      background: #dc2626;
+      color: #ffffff;
+    }
+
+    .solution-callout {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      padding: 10px 14px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      color: #14532d;
+    }
+
+    .empty-review-msg {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+      padding: 24px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top System Header -->
+  <header class="top-bar">
+    <div class="brand-block">
+      <span class="brand-badge">CBT Mode</span>
+      <span class="exam-title">08 - President & Vice President</span>
+    </div>
+    <div class="top-actions" id="examTopActions" style="display: none;">
+      <div class="timer-box">
+        <span>Time Left:</span>
+        <span class="timer-value" id="timerDisplay">67:00</span>
+      </div>
+      <button type="button" class="top-btn" id="pauseBtn">Pause</button>
+      <button type="button" class="top-btn" id="exitFsBtn">Exit Fullscreen</button>
+    </div>
+  </header>
+
+  <!-- 1. Initial Introductory Interface -->
+  <section class="screen active" id="introScreen">
+    <div class="intro-wrapper">
+      <div class="intro-card">
+        <div class="intro-card-header">
+          <h1>08 - President & Vice President</h1>
+          <p>General Awareness (Indian Polity) — Computer Based Examination Interface</p>
+        </div>
+        <div class="intro-body">
+          <div class="meta-grid">
+            <div class="meta-stat">
+              <div class="label">Total Questions</div>
+              <div class="val">67 MCQs</div>
+            </div>
+            <div class="meta-stat">
+              <div class="label">Total Duration</div>
+              <div class="val">67 Minutes</div>
+            </div>
+            <div class="meta-stat">
+              <div class="label">Maximum Marks</div>
+              <div class="val">67 Marks</div>
+            </div>
+            <div class="meta-stat">
+              <div class="label">Question Order</div>
+              <div class="val">Sequential (1–67)</div>
+            </div>
+          </div>
+
+          <div class="instructions-title">General Instructions</div>
+          <ol class="instructions-list">
+            <li>The clock has been set at the server and the countdown timer at the top right corner of your screen will display the time remaining for you to complete the examination (<strong>67 minutes</strong> for <strong>67 questions</strong>). When the timer reaches zero, the examination will end and submit by itself.</li>
+            <li>Each question has four multiple-choice options. Only one option is correct. The options are randomized on each attempt while the question order remains fixed.</li>
+            <li>Selecting an option does <strong>not</strong> lock the answer or advance to the next question automatically. You may change your response or clear it using the <strong>Clear</strong> button at any time before submission.</li>
+            <li>No hints, scores, or answer validations are shown during the active test. Complete score analysis and solutions for incorrect and un-attempted questions will be displayed upon submission.</li>
+            <li>The Question Palette displayed on the right side of the screen (on desktop/tablet screens) shows the status of each question using the following standard symbols:</li>
+          </ol>
+
+          <div class="palette-legend-box">
+            <div class="legend-item">
+              <span class="p-badge p-not-visited">1</span>
+              <span>You have not visited the question yet.</span>
+            </div>
+            <div class="legend-item">
+              <span class="p-badge p-not-answered">2</span>
+              <span>You have not answered the question.</span>
+            </div>
+            <div class="legend-item">
+              <span class="p-badge p-answered">3</span>
+              <span>You have answered the question.</span>
+            </div>
+            <div class="legend-item">
+              <span class="p-badge p-review">4</span>
+              <span>You have NOT answered the question, but have marked it for review.</span>
+            </div>
+            <div class="legend-item">
+              <span class="p-badge p-ans-review">5</span>
+              <span>You have answered the question and marked it for review (will be evaluated).</span>
+            </div>
+          </div>
+
+          <label class="declaration-row" for="agreeCheck">
+            <input type="checkbox" id="agreeCheck" checked />
+            <span>I have read and understood all the instructions. I declare that I am not in possession of any unauthorized reference material and I am ready to begin the mock test in fullscreen mode.</span>
+          </label>
+
+          <div class="intro-footer">
+            <span class="declaration-error" id="declarationError">Please accept the declaration checkbox above to start the test.</span>
+            <button type="button" class="start-exam-btn" id="startTestBtn">Start Mock Test</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Main TCS / Eduquity Exam Interface -->
+  <section class="screen" id="examScreen">
+    <div class="exam-workspace">
+      <!-- Left/Center Question Area -->
+      <div class="question-pane">
+        <div class="section-strip">
+          <div>Section: <span class="section-tab">Indian Polity</span></div>
+          <div>Single Choice MCQ</div>
+        </div>
+
+        <div class="question-header-bar">
+          <div class="q-number-label" id="qNumberHeader">Question No. 1 of 67</div>
+          <span class="exam-tag-small" id="examTagBadge" style="display: none;"></span>
+        </div>
+
+        <div class="question-scroll-area">
+          <div class="question-stem" id="questionStem"></div>
+          <div class="options-list" id="optionsList"></div>
+        </div>
+
+        <div class="action-footer">
+          <div class="footer-left-btns">
+            <button type="button" class="cbt-btn" id="prevBtn">Previous</button>
+            <button type="button" class="cbt-btn cbt-btn-review" id="reviewNextBtn">Mark for Review &amp; Next</button>
+            <button type="button" class="cbt-btn" id="clearBtn">Clear</button>
+          </div>
+          <div class="footer-right-btns">
+            <button type="button" class="cbt-btn cbt-btn-next" id="nextBtn">Next</button>
+            <button type="button" class="cbt-btn cbt-btn-submit mobile-submit-btn" id="mobileSubmitBtn">Submit</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right-Side Question Number Palette (Hidden on Mobile) -->
+      <aside class="palette-sidebar" id="paletteSidebar">
+        <div class="candidate-strip">
+          <div class="candidate-avatar">CAND</div>
+          <div class="candidate-info">
+            <strong>Candidate</strong>
+            <span>08 - President & Vice President</span>
+          </div>
+        </div>
+
+        <div class="palette-summary">
+          <div class="summary-item">
+            <span class="mini-badge p-answered" id="countAnswered">0</span>
+            <span>Answered</span>
+          </div>
+          <div class="summary-item">
+            <span class="mini-badge p-not-answered" id="countNotAnswered">0</span>
+            <span>Not Answered</span>
+          </div>
+          <div class="summary-item">
+            <span class="mini-badge p-not-visited" id="countNotVisited">67</span>
+            <span>Not Visited</span>
+          </div>
+          <div class="summary-item">
+            <span class="mini-badge p-review" id="countReview">0</span>
+            <span>Marked for Review</span>
+          </div>
+          <div class="summary-item full-width">
+            <span class="mini-badge p-ans-review" id="countAnsReview">0</span>
+            <span>Answered &amp; Marked for Review</span>
+          </div>
+        </div>
+
+        <div class="palette-title-bar">Question Palette</div>
+
+        <div class="palette-grid-container">
+          <div class="palette-grid" id="paletteGrid"></div>
+        </div>
+
+        <div class="palette-footer">
+          <button type="button" class="cbt-btn cbt-btn-submit" id="submitBtn">Submit</button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 3. Post-Submission Analysis & Scorecard Screen -->
+  <section class="screen" id="resultScreen">
+    <div class="result-wrapper">
+      <div class="score-banner">
+        <div class="score-banner-top">
+          <div>
+            <h2>Test Result &amp; Performance Analysis</h2>
+            <p style="font-size: 0.88rem; color: #64748b; margin-top: 2px;">08 - President & Vice President</p>
+          </div>
+          <button type="button" class="cbt-btn cbt-btn-submit" id="retakeBtn">Retake Mock Test</button>
+        </div>
+
+        <div class="score-Grid">
+          <div class="score-stat-card">
+            <div class="s-label">Final Score</div>
+            <div class="s-val" id="resScore">0 / 67</div>
+          </div>
+          <div class="score-stat-card">
+            <div class="s-label">Accuracy</div>
+            <div class="s-val" id="resAccuracy">0%</div>
+          </div>
+          <div class="score-stat-card correct-card">
+            <div class="s-label">Correct</div>
+            <div class="s-val" id="resCorrect">0</div>
+          </div>
+          <div class="score-stat-card wrong-card">
+            <div class="s-label">Incorrect</div>
+            <div class="s-val" id="resWrong">0</div>
+          </div>
+          <div class="score-stat-card unattempted-card">
+            <div class="s-label">Un-attempted</div>
+            <div class="s-val" id="resUnattempted">0</div>
+          </div>
+          <div class="score-stat-card">
+            <div class="s-label">Time Taken</div>
+            <div class="s-val" id="resTimeTaken">00:00</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-header-bar">
+        <h3>Solutions for Incorrect &amp; Un-attempted Questions</h3>
+        <div class="filter-tabs">
+          <button type="button" class="filter-tab active" id="filterAllBtn">All Incorrect &amp; Un-attempted</button>
+          <button type="button" class="filter-tab" id="filterWrongBtn">Incorrect Only</button>
+          <button type="button" class="filter-tab" id="filterUnattemptedBtn">Un-attempted Only</button>
+        </div>
+      </div>
+
+      <div class="review-list" id="reviewList"></div>
+    </div>
+  </section>
+
+  <!-- Pause Modal -->
+  <div class="modal-backdrop" id="pauseModal">
+    <div class="modal-card">
+      <h3>Examination Paused</h3>
+      <p>Your countdown timer has been paused. Question content is hidden while the test is paused. Click <strong>Resume Test</strong> below to continue.</p>
+      <div class="modal-actions">
+        <button type="button" class="cbt-btn cbt-btn-submit" id="resumeBtn">Resume Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Submit Confirmation Modal -->
+  <div class="modal-backdrop" id="submitModal">
+    <div class="modal-card">
+      <h3>Submit Mock Test</h3>
+      <p>Please review your attempt summary before final submission:</p>
+      <table class="summary-table">
+        <tbody>
+          <tr>
+            <th>Total Questions</th>
+            <td id="modalTotalQ">67</td>
+          </tr>
+          <tr>
+            <th>Answered</th>
+            <td id="modalAnswered">0</td>
+          </tr>
+          <tr>
+            <th>Not Answered</th>
+            <td id="modalNotAnswered">0</td>
+          </tr>
+          <tr>
+            <th>Marked for Review (Unanswered)</th>
+            <td id="modalReview">0</td>
+          </tr>
+          <tr>
+            <th>Answered &amp; Marked for Review</th>
+            <td id="modalAnsReview">0</td>
+          </tr>
+          <tr>
+            <th>Not Visited</th>
+            <td id="modalNotVisited">0</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="modal-actions">
+        <button type="button" class="cbt-btn" id="cancelSubmitBtn">Back to Test</button>
+        <button type="button" class="cbt-btn cbt-btn-submit" id="confirmSubmitBtn">Confirm &amp; Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const MASTER_QUESTIONS = [
+  {
+    "q": "Consider the following statements with regard to pardoning power of the President of India:\nI. The exercise of this power by the President can be subjected to limited judicial review.\nII. The President can exercise this power without the advice of the Central Government.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "I only",
+      "II only",
+      "Both I and II",
+      "Neither I nor II"
+    ],
+    "answer": "I only",
+    "tag": "CSE-2025"
+  },
+  {
+    "q": "When the President of India is impeached for the violation of the Constitution, the charge shall be preferred by",
+    "options": [
+      "the Lok Sabha",
+      "the Rajya Sabha",
+      "either House of the Parliament",
+      "the Lok Sabha followed by the Rajya Sabha"
+    ],
+    "answer": "either House of the Parliament",
+    "tag": "GEOSCIENTISTS 2025"
+  },
+  {
+    "q": "Who, among the following Presidents of India, sent back the Post Office (Amendment) Bill, 1986 for the reconsideration of the Parliament?",
+    "options": [
+      "R. Venkataraman",
+      "Shankar Dayal Sharma",
+      "Giani Zail Singh",
+      "K. R. Narayanan"
+    ],
+    "answer": "R. Venkataraman",
+    "tag": "CAPF 2024"
+  },
+  {
+    "q": "Which one of the following powers has not been conferred on the President of India?",
+    "options": [
+      "Appointment of Prime Minister",
+      "To decide at his/her discretion any question regarding disqualification of a Member of the Parliament",
+      "To grant pardon to a person who has been punished by a court-martial",
+      "To remove a Judge of the High Court"
+    ],
+    "answer": "To decide at his/her discretion any question regarding disqualification of a Member of the Parliament",
+    "tag": "CAPF-2021"
+  },
+  {
+    "q": "The Electoral College for electing the President of India does not include which of the following?\n1. All elected members of the Rajya Sabha\n2. All elected members of the Legislative Assemblies of States\n3. All members of the Legislative Councils of States",
+    "options": [
+      "1 and 2",
+      "2 and 3",
+      "3 only",
+      "2 only"
+    ],
+    "answer": "3 only",
+    "tag": "CAPF-2021"
+  },
+  {
+    "q": "The President of India may resign from his/her office by writing under his/her hand. To whom of the following is his/her resignation addressed to?",
+    "options": [
+      "The Chief Justice of India",
+      "The senior most available Judge of the Supreme Court, in the absence of the Chief Justice of India",
+      "The Vice President of India",
+      "The Speaker of the Lok Sabha"
+    ],
+    "answer": "The Vice President of India",
+    "tag": "CBI-2023"
+  },
+  {
+    "q": "Who among the following served as the President of India for the shortest period of time?",
+    "options": [
+      "Giani Zail Singh",
+      "Pratibha Patil",
+      "Sarvepalli Radhakrishnan",
+      "Zakir Husain"
+    ],
+    "answer": "Zakir Husain",
+    "tag": "CBI-2023"
+  },
+  {
+    "q": "Which one of the following statements about the election of the President of India is not correct?",
+    "options": [
+      "Union Minister shall not be eligible for election as the President.",
+      "The President is elected by the elected members of the Parliament and the Legislative Assemblies of States and Union Territories.",
+      "The Electoral College does not include elected members of the Legislative Councils.",
+      "The system of proportional representation by means of single transferable vote is followed."
+    ],
+    "answer": "Union Minister shall not be eligible for election as the President.",
+    "tag": "CDS-1-2023"
+  },
+  {
+    "q": "Which one of the following methods is followed in electing the President of India?",
+    "options": [
+      "Proportional Representation only",
+      "First-Past-the-Post System only",
+      "Proportional Representation and the Single Transferable Vote System",
+      "Proportional Representation and the First-Past-the-Post System"
+    ],
+    "answer": "Proportional Representation and the Single Transferable Vote System",
+    "tag": "CDS-1-2022"
+  },
+  {
+    "q": "Consider the following statements:\n1. If the election of the President of India is declared void by the Supreme Court of India, all acts done by him/her in the performance of duties of his/her office of President before the date of decision become invalid.\n2. Election for the post of the President of India can be postponed on the ground that some Legislative Assemblies have been dissolved and elections are yet to take place.\n3. When a Bill is presented to the President of India, the Constitution prescribes time limits within which he/she has to declare his/her assent.\nHow many of the above statements are correct?",
+    "options": [
+      "Only one",
+      "Only two",
+      "All three",
+      "None"
+    ],
+    "answer": "None",
+    "tag": "CSE - 2023"
+  },
+  {
+    "q": "Consider the following statements in respect of election to the President of India:\n1. The members nominated to either House of the Parliament or the Legislative Assemblies of States are also eligible to be included in the Electoral College.\n2. Higher the number of elective Assembly seats, higher is the value of vote of each MLA of that State.\n3. The value of vote of each MLA of Madhya Pradesh is greater than that of Kerala.\n4. The value of vote of each MLA of Puducherry is higher than that of Arunachal Pradesh because the ratio of total population to total number of elective seats in Puducherry is greater as compared to Arunachal Pradesh.\nHow many of the above statements are correct?",
+    "options": [
+      "Only one",
+      "Only two",
+      "Only three",
+      "All four"
+    ],
+    "answer": "Only one",
+    "tag": "CSE - 2023"
+  },
+  {
+    "q": "Which of the following statements regarding the President of India is/are correct?\n1. The President of India is elected by an electoral college in accordance with the system of proportional representation by means of the single transferable vote.\n2. The elected members of the Legislative Assemblies of Union Territories of Delhi and Puducherry take part in the election of the President of India.",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": "Both 1 and 2",
+    "tag": "GEOSCIENTIST 2023"
+  },
+  {
+    "q": "The President of India may resign from his post by writing under his hand addressed to",
+    "options": [
+      "the Chief Justice of the Supreme Court of India",
+      "the Speaker of the Lok Sabha",
+      "the Vice President of India",
+      "the Prime Minister of India"
+    ],
+    "answer": "the Vice President of India",
+    "tag": "GEOSCIENTISTS - 2022"
+  },
+  {
+    "q": "The Vice President of India, who is also the ex-officio Chairman of the Council of States, is elected by the Members of an Electoral College consisting of the Members of",
+    "options": [
+      "the Rajya Sabha only",
+      "both the Houses of the Parliament",
+      "both the Houses of the Parliament and the Upper House of the State Legislatures",
+      "both the Houses of the Parliament and the Members of the Legislative Assemblies of States and UTs"
+    ],
+    "answer": "both the Houses of the Parliament",
+    "tag": "GEOSCIENTISTS 2025"
+  },
+  {
+    "q": "Which one of the following statements about the Vice-President of India is not correct?",
+    "options": [
+      "He is not eligible for re-election.",
+      "He must not be less than 35 years of age.",
+      "He is elected by members of an electoral college consisting of members of both Houses of Parliament.",
+      "His term of office is five years."
+    ],
+    "answer": "He is not eligible for re-election.",
+    "tag": "CDS-1-2021"
+  },
+  {
+    "q": "The Vice President of India shall be elected by the electoral college consisting of the members of",
+    "options": [
+      "Lok Sabha.",
+      "Rajya Sabha.",
+      "Both Houses of Parliament.",
+      "Both Houses with the support of State Legislatures."
+    ],
+    "answer": "Both Houses of Parliament.",
+    "tag": "CISF AC-2021"
+  },
+  {
+    "q": "Who amongst the following has not occupied the office of both President and Vice President of India?",
+    "options": [
+      "Sarvepalli Radhakrishnan",
+      "Zakir Hussain",
+      "K. R. Narayanan",
+      "Neelam Sanjiva Reddy"
+    ],
+    "answer": "Neelam Sanjiva Reddy",
+    "tag": "CISF AC-2023"
+  },
+  {
+    "q": "Articles 52 to 78 of the Indian Constitution deal with:",
+    "options": [
+      "the Judiciary",
+      "the Union Executive",
+      "the State Executive",
+      "the Legislature"
+    ],
+    "answer": "the Union Executive",
+    "tag": "RPF CONSTABLE 09/03/2025"
+  },
+  {
+    "q": "Which Article establishes the office of the President?",
+    "options": [
+      "Article 53",
+      "Article 52",
+      "Article 75",
+      "Article 74"
+    ],
+    "answer": "Article 52",
+    "tag": "RRB NTPC UG 04/09/2025"
+  },
+  {
+    "q": "Which Article of the Indian Constitution is related with the Executive power of the Union?",
+    "options": [
+      "57",
+      "51",
+      "53",
+      "55"
+    ],
+    "answer": "53",
+    "tag": "RRB NTPC 14/06/2022"
+  },
+  {
+    "q": "Which Article of the Indian Constitution mentions that 'The President shall, notwithstanding the expiration of his/her term, continue to hold office until his successor enters upon his/her office'?",
+    "options": [
+      "Article 61",
+      "Article 56",
+      "Article 58",
+      "Article 50"
+    ],
+    "answer": "Article 56",
+    "tag": "Graduate Level 25/06/2024"
+  },
+  {
+    "q": "Which Article of the Constitution of India expressly provides that the President is eligible for re-election?",
+    "options": [
+      "Article 58",
+      "Article 56",
+      "Article 59",
+      "Article 57"
+    ],
+    "answer": "Article 57",
+    "tag": "SSC CGL 11/09/2024"
+  },
+  {
+    "q": "What specific provision concerning the President of India is outlined in Article 59(3) of the Constitution of India?",
+    "options": [
+      "Powers of the President",
+      "Election of the President",
+      "Impeachment of the President",
+      "Salary and privileges of the President"
+    ],
+    "answer": "Salary and privileges of the President",
+    "tag": "RRB NTPC 20/06/2025"
+  },
+  {
+    "q": "Which of the following statement is incorrect regarding the election of the President of India?",
+    "options": [
+      "The elections are held in accordance with the system of Proportional Representation by means of single transferable vote.",
+      "Every elected member of the Legislative Assembly of a State shall have as many votes as there are multiples of one hundred in the quotient obtained by dividing the population of the State by the total number of the elected members of the Assembly.",
+      "The President of India is elected by the members of an Electoral College consisting of (a) the elected members of both the Houses of Parliament and (b) the elected members of the Legislative Assemblies of the States and the Union Territories with Legislative Assembly.",
+      "Value of vote for each of the members of the Electoral College is decided based on the population census of 1971 and it will continue to be so till population of the first census taken after the year 2026 have been published."
+    ],
+    "answer": "Every elected member of the Legislative Assembly of a State shall have as many votes as there are multiples of one hundred in the quotient obtained by dividing the population of the State by the total number of the elected members of the Assembly.",
+    "tag": "RAS PRE 2024"
+  },
+  {
+    "q": "The President of India's authority is explained in which of the following?",
+    "options": [
+      "The Representation of the People Act",
+      "The Civil Procedure Code",
+      "The Constitution of India",
+      "The Indian Penal Code"
+    ],
+    "answer": "The Constitution of India",
+    "tag": "IB ACIO - II - 16/09/2025"
+  },
+  {
+    "q": "Which Article of the Indian Constitution deals with the oath or affirmation by the President?",
+    "options": [
+      "65",
+      "70",
+      "60",
+      "55"
+    ],
+    "answer": "60",
+    "tag": "RRB NTPC 13/06/2022"
+  },
+  {
+    "q": "Which Article of the Indian Constitution deals with the impeachment procedure of the President?",
+    "options": [
+      "Article 54",
+      "Article 66",
+      "Article 52",
+      "Article 61"
+    ],
+    "answer": "Article 61",
+    "tag": "RRB NTPC UG 19/08/2025"
+  },
+  {
+    "q": "Which of the following statements are correct regarding removal of the President of India?\nA. The impeachment process can be initiated in either House of Parliament.\nB. The impeachment charges must be signed by the one-third members of the House in which the process is initiated.\nC. In the impeachment process, a 30 days' notice should be given to the President.\nD. The impeachment resolution is passed by a majority of two-thirds of the total membership of that House.",
+    "options": [
+      "A, B and C only",
+      "A, B, C and D",
+      "A and D only",
+      "B and C only"
+    ],
+    "answer": "A and D only",
+    "tag": "SSC CGL 19/07/2023"
+  },
+  {
+    "q": "Impeachment can be imposed on the President of India on which of the following grounds?",
+    "options": [
+      "Professional misconduct",
+      "Violation of the Constitution",
+      "Carrying on a vocation of profit",
+      "Mental instability"
+    ],
+    "answer": "Violation of the Constitution",
+    "tag": "MPPSC - 2025"
+  },
+  {
+    "q": "Who has the power to give directions to the State Government to ensure compliance with Union laws?",
+    "options": [
+      "President of India",
+      "Parliament of India",
+      "Prime Minister of India",
+      "Supreme Court of India"
+    ],
+    "answer": "President of India",
+    "tag": "RRB NTPC UG 14/08/2025"
+  },
+  {
+    "q": "Which Article gives the President of India the power to grant pardons and reprieves?",
+    "options": [
+      "Article 74",
+      "Article 76",
+      "Article 72",
+      "Article 75"
+    ],
+    "answer": "Article 72",
+    "tag": "RRB NTPC UG 09/09/2025"
+  },
+  {
+    "q": "What is the term of office for the President of India?",
+    "options": [
+      "4 years",
+      "6 years",
+      "Until removed by Parliament",
+      "5 years"
+    ],
+    "answer": "5 years",
+    "tag": "RRB NTPC UG 14/08/2025"
+  },
+  {
+    "q": "How many times may the President of India ask the Prime Minister to have an executive recommendation reconsidered by the Cabinet?",
+    "options": [
+      "It is at the President's absolute discretion without limits.",
+      "As many times as needed",
+      "Twice",
+      "Only once"
+    ],
+    "answer": "Only once",
+    "tag": "RRB NTPC 14/06/2025"
+  },
+  {
+    "q": "The President of India possesses the power to remove or recall officials such as Governors and Ambassadors. This power is exercised based on the advice of:",
+    "options": [
+      "a resolution passed by the Parliament",
+      "the Union Council of Ministers",
+      "the State Governments",
+      "the Supreme Court of India"
+    ],
+    "answer": "the Union Council of Ministers",
+    "tag": "RRB NTPC 24/06/2025"
+  },
+  {
+    "q": "Which of the following accurately describes the Indian President's role in foreign affairs?",
+    "options": [
+      "The President appoints ambassadors and conducts diplomatic work in his/her name.",
+      "The President delegates all foreign affairs responsibilities to the Prime Minister.",
+      "The President is solely responsible for negotiating international treaties without any advisory input.",
+      "The President only receives foreign ambassadors but does not appoint them"
+    ],
+    "answer": "The President appoints ambassadors and conducts diplomatic work in his/her name.",
+    "tag": "RRB NTPC 18/06/2025"
+  },
+  {
+    "q": "How does the President of India exercise his/her executive functions with respect to decision-making?",
+    "options": [
+      "The President acts independently of the Union Government for foreign affairs.",
+      "The President acts entirely on his own absolute discretion.",
+      "The President can repeatedly ask for reconsideration of any ministerial decision until satisfied.",
+      "The President considers the advice of the Prime Minister and the Union council of ministers."
+    ],
+    "answer": "The President considers the advice of the Prime Minister and the Union council of ministers.",
+    "tag": "RRB NTPC 17/06/2025"
+  },
+  {
+    "q": "Which of the following statements are correct regarding the benefits of the retired President of India?\nA. The former President of India will also be entitled to a monthly pension of 2.5 lakh.\nB. He/She is entitled to a secretarial staff comprising a private secretary, a personal assistant, an additional private secretary, two peons, and office expenses up to 1 lakh per annum.\nC. He/She is also entitled to free highest-class travel anywhere in India, accompanied by one person, by rail, air, or steamer.",
+    "options": [
+      "A and B only",
+      "B and C only",
+      "A and C only",
+      "A, B and C"
+    ],
+    "answer": "A, B and C",
+    "tag": "SSC CGL Tier II (02/03/2023)"
+  },
+  {
+    "q": "Who is the Chief Executive Officer of the Union Territory of Delhi?",
+    "options": [
+      "The Lieutenant Governor",
+      "The Chief Minister",
+      "The Prime Minister",
+      "The President of India"
+    ],
+    "answer": "The Lieutenant Governor",
+    "tag": "RPF CONSTABLE 09/03/2025"
+  },
+  {
+    "q": "Which President of India exercised the pocket veto on the Indian Post Office (Amendment) Bill?",
+    "options": [
+      "APJ Abdul Kalam",
+      "R Venkataraman",
+      "Zail Singh",
+      "Dr. Rajendra Prasad"
+    ],
+    "answer": "Zail Singh",
+    "tag": "RPF CONSTABLE 02/03/2025"
+  },
+  {
+    "q": "The President of India is elected by:",
+    "options": [
+      "State Governors",
+      "members of the electoral college",
+      "members of the Rajya Sabha only",
+      "direct vote of the people"
+    ],
+    "answer": "members of the electoral college",
+    "tag": "RPF CONSTABLE 05/03/2025"
+  },
+  {
+    "q": "Who's assent is required for the Constitutional Amendment Bill to become an Act?",
+    "options": [
+      "The President of India",
+      "The Prime Minister of India",
+      "Chief Justice of India",
+      "The Speaker of Lok Sabha"
+    ],
+    "answer": "The President of India",
+    "tag": "RPF CONSTABLE 06/03/2025"
+  },
+  {
+    "q": "Who among the following is the Supreme Commander of the Indian armed forces?",
+    "options": [
+      "President",
+      "Speaker of Lok Sabha",
+      "Prime Minister",
+      "Defence Minister"
+    ],
+    "answer": "President",
+    "tag": "RRB NTPC 12/06/2022"
+  },
+  {
+    "q": "In India when a president is to be impeached for violation of the Constitution, the charge is preferred by ...",
+    "options": [
+      "Only Lok Sabha",
+      "Either House of Parliament",
+      "Only Rajya Sabha",
+      "Union Council of Ministers"
+    ],
+    "answer": "Either House of Parliament",
+    "tag": "RRB NTPC 13/06/2022"
+  },
+  {
+    "q": "The President of India is elected by an Electoral College consisting of:\n1. the elected members of both Houses of Parliament i.e. Lok Sabha and Rajya Sabha\n2. the elected members of the State Legislative Assemblies",
+    "options": [
+      "Both 1 and 2",
+      "Only 1",
+      "Only 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": "Both 1 and 2",
+    "tag": "RRB NTPC 17/06/2022"
+  },
+  {
+    "q": "Which of the following is NOT a condition for the President's office in India?",
+    "options": [
+      "He shall not be entitled, without payment of rent, to use his official residence",
+      "He shall not be a member of either House of the Parliament.",
+      "The allowances shall not be diminished during his term of office.",
+      "He shall not hold any office of profit."
+    ],
+    "answer": "He shall not be entitled, without payment of rent, to use his official residence",
+    "tag": "SSC CGL 09/09/2024"
+  },
+  {
+    "q": "Which Article of the Constitution of India provides that 'there shall be a Vice President of India' ?",
+    "options": [
+      "Article 61",
+      "Article 63",
+      "Article 65",
+      "Article 62"
+    ],
+    "answer": "Article 63",
+    "tag": "SSC CGL 12/09/2024"
+  },
+  {
+    "q": "Which Article deals with the election of the President?",
+    "options": [
+      "Article 72",
+      "Article 54",
+      "Article 74",
+      "Article 66"
+    ],
+    "answer": "Article 54",
+    "tag": "SSC CGL 24/09/2024"
+  },
+  {
+    "q": "Who unfurls the flag at Rajpath on the Republic Day?",
+    "options": [
+      "The Chief of Defence Staff",
+      "The President of India",
+      "The Chief Minister of Delhi",
+      "The Prime Minister of India"
+    ],
+    "answer": "The President of India",
+    "tag": "Higher Secondary 21/06/2024"
+  },
+  {
+    "q": "Which Article of the Indian Constitution mentions that an election to fill a vacancy caused by the expiration of the term of office of the President shall be completed before the expiration of the term?",
+    "options": [
+      "Article 59",
+      "Article 62",
+      "Article 61",
+      "Article 60"
+    ],
+    "answer": "Article 62",
+    "tag": "Graduate Level 26/06/2024"
+  },
+  {
+    "q": "When the President of India keeps a bill (except money bill and constitutional amendment bill) pending for an indefinite period, it is called",
+    "options": [
+      "absolute veto of the President",
+      "amendatory veto of the President",
+      "pocket veto of the President",
+      "suspensive veto of the President"
+    ],
+    "answer": "pocket veto of the President",
+    "tag": "SSC CPO 03/10/2023"
+  },
+  {
+    "q": "Who among the following Presidents of India was also the deputy chairman of the Planning Commission?",
+    "options": [
+      "VV Giri",
+      "KR Narayanan",
+      "Ramaswamy Venkataraman",
+      "Pranab Mukherjee"
+    ],
+    "answer": "Pranab Mukherjee",
+    "tag": "SSC CGL 01/12/2022"
+  },
+  {
+    "q": "Which of the following scenarios could validly lead to the impeachment of the President of India?",
+    "options": [
+      "Refusing to dissolve Lok Sabha on the advice of the Cabinet",
+      "Declining to sign a bill passed by Parliament",
+      "Willfully acting against a constitutional provision.",
+      "Failing to address the nation on Independence Day"
+    ],
+    "answer": "Willfully acting against a constitutional provision.",
+    "tag": "SSC PHASE XIII 25/07/2025"
+  },
+  {
+    "q": "Which of the following is NOT a role of the President of India?",
+    "options": [
+      "Conducting elections",
+      "Summoning and dissolving the Parliament",
+      "Passing bills into laws",
+      "Appointing the Prime Minister"
+    ],
+    "answer": "Conducting elections",
+    "tag": "RRB NTPC UG 02/09/2025"
+  },
+  {
+    "q": "Who among the following is NOT appointed by the President of India?",
+    "options": [
+      "Ambassadors and High Commissioners",
+      "Comptroller and Auditor General of India",
+      "Attorney General of India",
+      "Solicitor General of India"
+    ],
+    "answer": "Solicitor General of India",
+    "tag": "Graduate Level 05/08/2022"
+  },
+  {
+    "q": "Who is the 15th President of India?",
+    "options": [
+      "Pratibha Patil",
+      "Ram Nath Kovind",
+      "Droupadi Murmu",
+      "Pranab Mukherjee"
+    ],
+    "answer": "Droupadi Murmu",
+    "tag": "SSC PHASE XIII 02/08/2025"
+  },
+  {
+    "q": "Which part of the Indian Constitution deals with the election of the Vice President?",
+    "options": [
+      "Part IV",
+      "Part III",
+      "Part VI",
+      "Part V"
+    ],
+    "answer": "Part V",
+    "tag": "SSC CGL 26/09/2024"
+  },
+  {
+    "q": "The Vice-President of India is part of which branch of the government?",
+    "options": [
+      "Legislative only",
+      "Executive only",
+      "Judicial only",
+      "Both Executive and Legislative"
+    ],
+    "answer": "Both Executive and Legislative",
+    "tag": "SSC STENO 06/08/2025"
+  },
+  {
+    "q": "Disputes regarding the election of the President and Vice-President shall be inquired into and decided by the Supreme Court whose decision shall be final' is mentioned under which Article of the Constitution?",
+    "options": [
+      "Article 54",
+      "Article 74",
+      "Article 58",
+      "Article 71"
+    ],
+    "answer": "Article 71",
+    "tag": "SSC GD 17/02/2025"
+  },
+  {
+    "q": "Which procedure is followed for selecting India's Vice President?",
+    "options": [
+      "First-past-the-post system",
+      "Direct election by people",
+      "Lottery system",
+      "Proportional representation by means of single transferable vote"
+    ],
+    "answer": "Proportional representation by means of single transferable vote",
+    "tag": "IB ACIO - II - 17/09/2025"
+  },
+  {
+    "q": "In what circumstances does the vice president assume the office of president?",
+    "options": [
+      "During casual vacancy due to death, resignation, removal, or otherwise",
+      "When the president is on a foreign visit only",
+      "Only when Parliament declares it",
+      "During elections"
+    ],
+    "answer": "During casual vacancy due to death, resignation, removal, or otherwise",
+    "tag": "IB ACIO - II - 16/09/2025"
+  },
+  {
+    "q": "According to Article 66, who among the following participates in the election of Vice-President of India?",
+    "options": [
+      "All the members of both the Houses of Parliament",
+      "Members of Parliament and State Legislatures",
+      "Members of Rajya Sabha only",
+      "Members of Lok Sabha only"
+    ],
+    "answer": "All the members of both the Houses of Parliament",
+    "tag": "UKPCS - 2025"
+  },
+  {
+    "q": "Which of the following statements about the Vice President of India is INCORRECT?",
+    "options": [
+      "Members of State legislatures do not take part in his elections.",
+      "He acts as the ex-officio Chairman of the Rajya Sabha.",
+      "The Vice President is elected for five years.",
+      "He can be removed from his office by the President approved through a resolution passed by the Lok Sabha and Rajya Sabha"
+    ],
+    "answer": "He can be removed from his office by the President approved through a resolution passed by the Lok Sabha and Rajya Sabha",
+    "tag": "SSC CGL 02/12/2022"
+  },
+  {
+    "q": "According to the Constitution of India, who conducts the Election of the Vice-President of India?",
+    "options": [
+      "The Legislature Councils of all States",
+      "The Election Commission of India",
+      "The Legislative Assemblies of all States",
+      "The Parliament of India"
+    ],
+    "answer": "The Election Commission of India",
+    "tag": "RPF CONSTABLE 02/03/2025"
+  },
+  {
+    "q": "The election of the next Vice President is to be held within _____ of the expiry of the term of office of the outgoing Vice- President.",
+    "options": [
+      "90 days",
+      "60 days",
+      "120 days",
+      "75 days"
+    ],
+    "answer": "60 days",
+    "tag": "SSC CHSL 02/06/2022"
+  },
+  {
+    "q": "In which year did Dr. Sarvepalli Radhakrishnan assume office as the first Vice-President of India ?",
+    "options": [
+      "1954",
+      "1951",
+      "1952",
+      "1950"
+    ],
+    "answer": "1952",
+    "tag": "Graduate Level 21/06/2024"
+  },
+  {
+    "q": "Who was the second vice President of India?",
+    "options": [
+      "VV Giri",
+      "Krishna Kant",
+      "Dr Zakir Hussain",
+      "Dr S Radhakrishnan"
+    ],
+    "answer": "Dr Zakir Hussain",
+    "tag": "SSC CGL Tier II 26/10/2023"
+  },
+  {
+    "q": "Who among the following was the third Vice- President of India?",
+    "options": [
+      "BD Jatti",
+      "Zakir Hussain",
+      "Gopal Swarup Pathak",
+      "V. V. Giri"
+    ],
+    "answer": "V. V. Giri",
+    "tag": "SSC CHSL02/06/2022"
+  }
+];
+
+    const TOTAL_QUESTIONS = MASTER_QUESTIONS.length;
+    const TOTAL_DURATION_SECONDS = TOTAL_QUESTIONS * 60;
+
+    let questionsState = [];
+    let currentIndex = 0;
+    let remainingSeconds = TOTAL_DURATION_SECONDS;
+    let timerInterval = null;
+    let isPaused = false;
+    let isSubmitted = false;
+    let currentReviewFilter = 'all';
+
+    // DOM Elements
+    const introScreen = document.getElementById('introScreen');
+    const examScreen = document.getElementById('examScreen');
+    const resultScreen = document.getElementById('resultScreen');
+    const examTopActions = document.getElementById('examTopActions');
+    const timerDisplay = document.getElementById('timerDisplay');
+    const agreeCheck = document.getElementById('agreeCheck');
+    const declarationError = document.getElementById('declarationError');
+    const startTestBtn = document.getElementById('startTestBtn');
+
+    const qNumberHeader = document.getElementById('qNumberHeader');
+    const examTagBadge = document.getElementById('examTagBadge');
+    const questionStem = document.getElementById('questionStem');
+    const optionsList = document.getElementById('optionsList');
+    const paletteGrid = document.getElementById('paletteGrid');
+
+    const countAnswered = document.getElementById('countAnswered');
+    const countNotAnswered = document.getElementById('countNotAnswered');
+    const countNotVisited = document.getElementById('countNotVisited');
+    const countReview = document.getElementById('countReview');
+    const countAnsReview = document.getElementById('countAnsReview');
+
+    const prevBtn = document.getElementById('prevBtn');
+    const reviewNextBtn = document.getElementById('reviewNextBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    const mobileSubmitBtn = document.getElementById('mobileSubmitBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const exitFsBtn = document.getElementById('exitFsBtn');
+
+    const pauseModal = document.getElementById('pauseModal');
+    const resumeBtn = document.getElementById('resumeBtn');
+    const submitModal = document.getElementById('submitModal');
+    const cancelSubmitBtn = document.getElementById('cancelSubmitBtn');
+    const confirmSubmitBtn = document.getElementById('confirmSubmitBtn');
+
+    const retakeBtn = document.getElementById('retakeBtn');
+    const filterAllBtn = document.getElementById('filterAllBtn');
+    const filterWrongBtn = document.getElementById('filterWrongBtn');
+    const filterUnattemptedBtn = document.getElementById('filterUnattemptedBtn');
+    const reviewList = document.getElementById('reviewList');
+
+    // Fisher-Yates shuffle for options only (DO NOT shuffle question sequence)
+    function shuffleOptions(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function normalizeQuestionText(rawText) {
+      return rawText
+        .replace(/<br\s*\/?>/gi, '\n')
+        .replace(/&nbsp;/gi, ' ');
+    }
+
+    function initMockData() {
+      // Preserve exact question order; randomize only the 4 options per question
+      questionsState = MASTER_QUESTIONS.map((item, idx) => {
+        const shuffledOpts = shuffleOptions(item.options);
+        return {
+          index: idx,
+          q: normalizeQuestionText(item.q),
+          options: shuffledOpts,
+          correctAnswer: item.answer,
+          tag: item.tag ? item.tag.trim() : '',
+          selectedOption: null,
+          status: idx === 0 ? 'not-answered' : 'not-visited'
+        };
+      });
+      currentIndex = 0;
+      remainingSeconds = TOTAL_DURATION_SECONDS;
+      isPaused = false;
+      isSubmitted = false;
+      updateTimerDisplay();
+      buildPalette();
+      renderCurrentQuestion();
+      updatePaletteCounts();
+    }
+
+    function enterFullscreenSafe() {
+      try {
+        const el = document.documentElement;
+        if (!document.fullscreenElement) {
+          if (el.requestFullscreen) {
+            el.requestFullscreen().catch(() => {});
+          } else if (el.webkitRequestFullscreen) {
+            el.webkitRequestFullscreen();
+          }
+        }
+      } catch (e) {}
+    }
+
+    function exitFullscreenSafe() {
+      try {
+        if (document.fullscreenElement) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen().catch(() => {});
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          }
+        }
+      } catch (e) {}
+    }
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (isPaused || isSubmitted) return;
+        remainingSeconds--;
+        if (remainingSeconds <= 0) {
+          remainingSeconds = 0;
+          updateTimerDisplay();
+          clearInterval(timerInterval);
+          finalizeSubmission();
+        } else {
+          updateTimerDisplay();
+        }
+      }, 1000);
+    }
+
+    function formatTime(totalSecs) {
+      const mins = Math.floor(totalSecs / 60);
+      const secs = totalSecs % 60;
+      return String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+    }
+
+    function updateTimerDisplay() {
+      timerDisplay.textContent = formatTime(remainingSeconds);
+      if (remainingSeconds <= 120) {
+        timerDisplay.classList.add('urgent');
+      } else {
+        timerDisplay.classList.remove('urgent');
+      }
+    }
+
+    function buildPalette() {
+      paletteGrid.innerHTML = '';
+      questionsState.forEach((qItem, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'q-pal-btn status-' + qItem.status + (idx === currentIndex ? ' current-q' : '');
+        btn.textContent = String(idx + 1);
+        btn.addEventListener('click', () => jumpToQuestion(idx));
+        paletteGrid.appendChild(btn);
+      });
+    }
+
+    function syncPaletteStyles() {
+      const buttons = paletteGrid.children;
+      for (let i = 0; i < buttons.length; i++) {
+        const qItem = questionsState[i];
+        buttons[i].className = 'q-pal-btn status-' + qItem.status + (i === currentIndex ? ' current-q' : '');
+      }
+      updatePaletteCounts();
+    }
+
+    function updatePaletteCounts() {
+      let ans = 0, notAns = 0, notVis = 0, rev = 0, ansRev = 0;
+      questionsState.forEach((q) => {
+        if (q.status === 'answered') ans++;
+        else if (q.status === 'not-answered') notAns++;
+        else if (q.status === 'not-visited') notVis++;
+        else if (q.status === 'review') rev++;
+        else if (q.status === 'ans-review') ansRev++;
+      });
+      countAnswered.textContent = String(ans);
+      countNotAnswered.textContent = String(notAns);
+      countNotVisited.textContent = String(notVis);
+      countReview.textContent = String(rev);
+      countAnsReview.textContent = String(ansRev);
+    }
+
+    function renderCurrentQuestion() {
+      const qItem = questionsState[currentIndex];
+      if (qItem.status === 'not-visited') {
+        qItem.status = qItem.selectedOption !== null ? 'answered' : 'not-answered';
+      }
+
+      qNumberHeader.textContent = 'Question No. ' + (currentIndex + 1) + ' of ' + TOTAL_QUESTIONS;
+
+      if (qItem.tag) {
+        examTagBadge.textContent = qItem.tag;
+        examTagBadge.style.display = 'inline-block';
+      } else {
+        examTagBadge.textContent = '';
+        examTagBadge.style.display = 'none';
+      }
+
+      questionStem.textContent = qItem.q;
+
+      optionsList.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D'];
+      qItem.options.forEach((optText, optIdx) => {
+        const row = document.createElement('div');
+        const isSelected = qItem.selectedOption === optText;
+        row.className = 'option-row' + (isSelected ? ' selected' : '');
+
+        const radio = document.createElement('input');
+        radio.type = 'radio';
+        radio.name = 'mcq_option';
+        radio.checked = isSelected;
+
+        const letterSpan = document.createElement('span');
+        letterSpan.className = 'option-letter';
+        letterSpan.textContent = letters[optIdx] + '.';
+
+        const textSpan = document.createElement('span');
+        textSpan.className = 'option-text';
+        textSpan.textContent = optText;
+
+        row.appendChild(radio);
+        row.appendChild(letterSpan);
+        row.appendChild(textSpan);
+
+        row.addEventListener('click', () => {
+          qItem.selectedOption = optText;
+          // If it was marked for review, keep review flag as ans-review; otherwise mark as answered
+          if (qItem.status === 'review' || qItem.status === 'ans-review') {
+            qItem.status = 'ans-review';
+          } else {
+            qItem.status = 'answered';
+          }
+          renderCurrentQuestion();
+        });
+
+        optionsList.appendChild(row);
+      });
+
+      prevBtn.disabled = currentIndex === 0;
+      syncPaletteStyles();
+    }
+
+    function commitLeaveStatus() {
+      const qItem = questionsState[currentIndex];
+      if (qItem.status === 'review' || qItem.status === 'ans-review') {
+        qItem.status = qItem.selectedOption !== null ? 'ans-review' : 'review';
+      } else {
+        qItem.status = qItem.selectedOption !== null ? 'answered' : 'not-answered';
+      }
+    }
+
+    function jumpToQuestion(targetIdx) {
+      if (targetIdx < 0 || targetIdx >= TOTAL_QUESTIONS) return;
+      commitLeaveStatus();
+      currentIndex = targetIdx;
+      renderCurrentQuestion();
+    }
+
+    // Button Handlers
+    startTestBtn.addEventListener('click', () => {
+      if (!agreeCheck.checked) {
+        declarationError.style.display = 'inline';
+        return;
+      }
+      declarationError.style.display = 'none';
+      enterFullscreenSafe();
+      initMockData();
+      introScreen.classList.remove('active');
+      resultScreen.classList.remove('active');
+      examScreen.classList.add('active');
+      examTopActions.style.display = 'flex';
+      startTimer();
+    });
+
+    agreeCheck.addEventListener('change', () => {
+      if (agreeCheck.checked) {
+        declarationError.style.display = 'none';
+      }
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        commitLeaveStatus();
+        currentIndex--;
+        renderCurrentQuestion();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const qItem = questionsState[currentIndex];
+      qItem.status = qItem.selectedOption !== null ? 'answered' : 'not-answered';
+      if (currentIndex < TOTAL_QUESTIONS - 1) {
+        currentIndex++;
+      }
+      renderCurrentQuestion();
+    });
+
+    reviewNextBtn.addEventListener('click', () => {
+      const qItem = questionsState[currentIndex];
+      qItem.status = qItem.selectedOption !== null ? 'ans-review' : 'review';
+      if (currentIndex < TOTAL_QUESTIONS - 1) {
+        currentIndex++;
+      }
+      renderCurrentQuestion();
+    });
+
+    clearBtn.addEventListener('click', () => {
+      const qItem = questionsState[currentIndex];
+      qItem.selectedOption = null;
+      qItem.status = 'not-answered';
+      renderCurrentQuestion();
+    });
+
+    pauseBtn.addEventListener('click', () => {
+      if (isSubmitted) return;
+      isPaused = true;
+      pauseModal.classList.add('active');
+    });
+
+    resumeBtn.addEventListener('click', () => {
+      isPaused = false;
+      pauseModal.classList.remove('active');
+    });
+
+    exitFsBtn.addEventListener('click', () => {
+      exitFullscreenSafe();
+    });
+
+    function openSubmitModal() {
+      commitLeaveStatus();
+      syncPaletteStyles();
+      let ans = 0, notAns = 0, notVis = 0, rev = 0, ansRev = 0;
+      questionsState.forEach((q) => {
+        if (q.status === 'answered') ans++;
+        else if (q.status === 'not-answered') notAns++;
+        else if (q.status === 'not-visited') notVis++;
+        else if (q.status === 'review') rev++;
+        else if (q.status === 'ans-review') ansRev++;
+      });
+      document.getElementById('modalTotalQ').textContent = String(TOTAL_QUESTIONS);
+      document.getElementById('modalAnswered').textContent = String(ans);
+      document.getElementById('modalNotAnswered').textContent = String(notAns);
+      document.getElementById('modalReview').textContent = String(rev);
+      document.getElementById('modalAnsReview').textContent = String(ansRev);
+      document.getElementById('modalNotVisited').textContent = String(notVis);
+      submitModal.classList.add('active');
+    }
+
+    submitBtn.addEventListener('click', openSubmitModal);
+    mobileSubmitBtn.addEventListener('click', openSubmitModal);
+
+    cancelSubmitBtn.addEventListener('click', () => {
+      submitModal.classList.remove('active');
+    });
+
+    confirmSubmitBtn.addEventListener('click', () => {
+      submitModal.classList.remove('active');
+      finalizeSubmission();
+    });
+
+    function finalizeSubmission() {
+      if (isSubmitted) return;
+      isSubmitted = true;
+      if (timerInterval) clearInterval(timerInterval);
+      pauseModal.classList.remove('active');
+      submitModal.classList.remove('active');
+
+      let correctCount = 0;
+      let wrongCount = 0;
+      let unattemptedCount = 0;
+
+      questionsState.forEach((q) => {
+        if (q.selectedOption === null) {
+          unattemptedCount++;
+        } else if (q.selectedOption === q.correctAnswer) {
+          correctCount++;
+        } else {
+          wrongCount++;
+        }
+      });
+
+      const attemptedCount = correctCount + wrongCount;
+      const accuracy = attemptedCount > 0 ? Math.round((correctCount / attemptedCount) * 100) : 0;
+      const elapsedSeconds = TOTAL_DURATION_SECONDS - remainingSeconds;
+
+      document.getElementById('resScore').textContent = correctCount + ' / ' + TOTAL_QUESTIONS;
+      document.getElementById('resAccuracy').textContent = accuracy + '%';
+      document.getElementById('resCorrect').textContent = String(correctCount);
+      document.getElementById('resWrong').textContent = String(wrongCount);
+      document.getElementById('resUnattempted').textContent = String(unattemptedCount);
+      document.getElementById('resTimeTaken').textContent = formatTime(elapsedSeconds);
+
+      filterAllBtn.textContent = 'All Incorrect & Un-attempted (' + (wrongCount + unattemptedCount) + ')';
+      filterWrongBtn.textContent = 'Incorrect Only (' + wrongCount + ')';
+      filterUnattemptedBtn.textContent = 'Un-attempted Only (' + unattemptedCount + ')';
+
+      currentReviewFilter = 'all';
+      updateFilterTabUI();
+      renderReviewQuestions();
+
+      examTopActions.style.display = 'none';
+      examScreen.classList.remove('active');
+      resultScreen.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateFilterTabUI() {
+      filterAllBtn.classList.toggle('active', currentReviewFilter === 'all');
+      filterWrongBtn.classList.toggle('active', currentReviewFilter === 'wrong');
+      filterUnattemptedBtn.classList.toggle('active', currentReviewFilter === 'unattempted');
+    }
+
+    filterAllBtn.addEventListener('click', () => {
+      currentReviewFilter = 'all';
+      updateFilterTabUI();
+      renderReviewQuestions();
+    });
+
+    filterWrongBtn.addEventListener('click', () => {
+      currentReviewFilter = 'wrong';
+      updateFilterTabUI();
+      renderReviewQuestions();
+    });
+
+    filterUnattemptedBtn.addEventListener('click', () => {
+      currentReviewFilter = 'unattempted';
+      updateFilterTabUI();
+      renderReviewQuestions();
+    });
+
+    function renderReviewQuestions() {
+      reviewList.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D'];
+
+      // Filter strictly to ONLY incorrect and un-attempted questions
+      const filtered = questionsState.filter((q) => {
+        const isUnattempted = q.selectedOption === null;
+        const isWrong = q.selectedOption !== null && q.selectedOption !== q.correctAnswer;
+        if (currentReviewFilter === 'wrong') return isWrong;
+        if (currentReviewFilter === 'unattempted') return isUnattempted;
+        return isWrong || isUnattempted;
+      });
+
+      if (filtered.length === 0) {
+        const emptyDiv = document.createElement('div');
+        emptyDiv.className = 'empty-review-msg';
+        emptyDiv.textContent = 'No questions found in this category! Every attempted question in this view was answered correctly.';
+        reviewList.appendChild(emptyDiv);
+        return;
+      }
+
+      filtered.forEach((q) => {
+        const isUnattempted = q.selectedOption === null;
+        const card = document.createElement('div');
+        card.className = 'review-card';
+
+        const topRow = document.createElement('div');
+        topRow.className = 'review-card-top';
+
+        const qNum = document.createElement('div');
+        qNum.className = 'review-q-num';
+        qNum.textContent = 'Question ' + (q.index + 1);
+
+        const badgesDiv = document.createElement('div');
+        badgesDiv.className = 'review-badges';
+
+        if (q.tag) {
+          const tagSpan = document.createElement('span');
+          tagSpan.className = 'exam-tag-small';
+          tagSpan.textContent = q.tag;
+          badgesDiv.appendChild(tagSpan);
+        }
+
+        const statusBadge = document.createElement('span');
+        statusBadge.className = 'badge-status ' + (isUnattempted ? 'badge-unattempted' : 'badge-incorrect');
+        statusBadge.textContent = isUnattempted ? 'Un-attempted' : 'Incorrect';
+        badgesDiv.appendChild(statusBadge);
+
+        topRow.appendChild(qNum);
+        topRow.appendChild(badgesDiv);
+
+        const qText = document.createElement('div');
+        qText.className = 'review-q-text';
+        qText.textContent = q.q;
+
+        const optsContainer = document.createElement('div');
+        optsContainer.className = 'review-options';
+
+        let correctLetter = 'A';
+        q.options.forEach((opt, oIdx) => {
+          const isCorrectOpt = opt === q.correctAnswer;
+          const isUserWrongOpt = !isUnattempted && opt === q.selectedOption && !isCorrectOpt;
+          if (isCorrectOpt) correctLetter = letters[oIdx];
+
+          const optDiv = document.createElement('div');
+          optDiv.className = 'review-opt' + (isCorrectOpt ? ' is-correct' : '') + (isUserWrongOpt ? ' is-user-wrong' : '');
+
+          const leftSpan = document.createElement('span');
+          leftSpan.textContent = letters[oIdx] + '. ' + opt;
+          optDiv.appendChild(leftSpan);
+
+          if (isCorrectOpt) {
+            const rightTag = document.createElement('span');
+            rightTag.className = 'opt-tag correct-tag';
+            rightTag.textContent = 'Correct Answer';
+            optDiv.appendChild(rightTag);
+          } else if (isUserWrongOpt) {
+            const rightTag = document.createElement('span');
+            rightTag.className = 'opt-tag wrong-tag';
+            rightTag.textContent = 'Your Answer';
+            optDiv.appendChild(rightTag);
+          }
+
+          optsContainer.appendChild(optDiv);
+        });
+
+        const solBox = document.createElement('div');
+        solBox.className = 'solution-callout';
+        solBox.innerHTML = '<strong>Solution / Correct Answer:</strong> Option ' + correctLetter + ' — ';
+        const ansSpan = document.createElement('span');
+        ansSpan.textContent = q.correctAnswer;
+        solBox.appendChild(ansSpan);
+
+        card.appendChild(topRow);
+        card.appendChild(qText);
+        card.appendChild(optsContainer);
+        card.appendChild(solBox);
+
+        reviewList.appendChild(card);
+      });
+    }
+
+    retakeBtn.addEventListener('click', () => {
+      resultScreen.classList.remove('active');
+      introScreen.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
