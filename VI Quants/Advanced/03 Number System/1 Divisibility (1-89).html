@@ -1,0 +1,2900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Number System (Divisibility) - Mock Test (Q.1 to Q.89)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-blue: #1b5e91;
+      --header-dark: #283747;
+      --sub-bar: #eef3f8;
+      --border-color: #d0d7de;
+      --bg-light: #ffffff;
+      --bg-muted: #f7f9fb;
+      --text-main: #1f2937;
+      --text-muted: #64748b;
+      --status-answered: #28a745;
+      --status-not-answered: #dc3545;
+      --status-not-visited: #e2e8f0;
+      --status-review: #6f42c1;
+      --status-ans-review: #5a32a3;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      user-select: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Views */
+    .view-screen {
+      display: none;
+      width: 100%;
+      height: 100vh;
+      flex-direction: column;
+      background: var(--bg-light);
+    }
+
+    .view-screen.active {
+      display: flex;
+    }
+
+    /* Top Assessment Banner */
+    .top-banner {
+      background-color: var(--header-dark);
+      color: #ffffff;
+      height: 50px;
+      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      border-bottom: 2px solid var(--primary-blue);
+    }
+
+    .top-banner .exam-title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .top-banner .badge-pill {
+      background: #3b82f6;
+      color: #fff;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    /* Intro Screen */
+    .intro-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 28px 20px;
+      background: var(--bg-muted);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .intro-card {
+      background: #ffffff;
+      max-width: 880px;
+      width: 100%;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      overflow: hidden;
+    }
+
+    .intro-card-header {
+      background: var(--primary-blue);
+      color: #ffffff;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .intro-card-header h1 {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .intro-stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+      padding: 18px 24px;
+      background: var(--sub-bar);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .stat-box {
+      background: #ffffff;
+      padding: 10px 14px;
+      border-radius: 4px;
+      border: 1px solid #dbe3ec;
+    }
+
+    .stat-box .stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .stat-box .stat-val {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary-blue);
+      margin-top: 2px;
+    }
+
+    .intro-body {
+      padding: 22px 24px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: #334155;
+    }
+
+    .intro-body h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 6px;
+    }
+
+    .intro-body ol, .intro-body ul {
+      padding-left: 20px;
+      margin-bottom: 18px;
+    }
+
+    .intro-body li {
+      margin-bottom: 6px;
+    }
+
+    .palette-legend-demo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin: 14px 0 20px;
+      padding: 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12.5px;
+      color: #334155;
+      font-weight: 500;
+    }
+
+    .symbol-box {
+      width: 26px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .sym-not-visited {
+      background: #f1f5f9;
+      border: 1px solid #94a3b8;
+      color: #1e293b;
+      border-radius: 3px;
+    }
+
+    .sym-not-answered {
+      background: var(--status-not-answered);
+      color: #fff;
+      border-radius: 3px 3px 10px 10px;
+    }
+
+    .sym-answered {
+      background: var(--status-answered);
+      color: #fff;
+      border-radius: 10px 10px 3px 3px;
+    }
+
+    .sym-review {
+      background: var(--status-review);
+      color: #fff;
+      border-radius: 50%;
+    }
+
+    .sym-ans-review {
+      background: var(--status-ans-review);
+      color: #fff;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .sym-ans-review::after {
+      content: '';
+      position: absolute;
+      bottom: 1px;
+      right: 1px;
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border: 1px solid #fff;
+      border-radius: 50%;
+    }
+
+    .declaration-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 14px 16px;
+      border-radius: 4px;
+      margin-top: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .declaration-box input[type="checkbox"] {
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .intro-footer {
+      padding: 16px 24px;
+      background: #f1f5f9;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .btn-start-exam {
+      background: var(--primary-blue);
+      color: #ffffff;
+      border: none;
+      padding: 11px 28px;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .btn-start-exam:hover:not(:disabled) {
+      background: #144973;
+    }
+
+    .btn-start-exam:disabled {
+      background: #94a3b8;
+      cursor: not-allowed;
+    }
+
+    /* Exam Screen Layout */
+    .exam-sub-header {
+      background: var(--sub-bar);
+      border-bottom: 1px solid var(--border-color);
+      height: 44px;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .section-tab {
+      background: var(--primary-blue);
+      color: #fff;
+      padding: 6px 14px;
+      font-size: 12.5px;
+      font-weight: 600;
+      border-radius: 3px;
+    }
+
+    .exam-controls-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .timer-badge {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .timer-badge.warning {
+      color: #dc2626;
+      border-color: #fca5a5;
+      background: #fef2f2;
+    }
+
+    .top-ctrl-btn {
+      background: #ffffff;
+      border: 1px solid #94a3b8;
+      color: #1e293b;
+      padding: 5px 11px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .top-ctrl-btn:hover {
+      background: #e2e8f0;
+    }
+
+    /* Main Workspace Body */
+    .exam-workspace {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    /* Left Question Area */
+    .question-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      height: 100%;
+      background: #ffffff;
+      border-right: 1px solid var(--border-color);
+    }
+
+    .question-meta-bar {
+      height: 40px;
+      padding: 0 18px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8fafc;
+      flex-shrink: 0;
+    }
+
+    .q-number-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .q-marks-info {
+      font-size: 12px;
+      color: #475569;
+      font-weight: 600;
+    }
+
+    .question-scroll-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 24px;
+    }
+
+    .q-text-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .q-statement {
+      font-size: 15.5px;
+      line-height: 1.6;
+      color: #111827;
+      font-weight: 500;
+      flex: 1;
+    }
+
+    .q-exam-tag {
+      font-size: 11px;
+      font-weight: 600;
+      color: #475569;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 3px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 720px;
+    }
+
+    .option-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #ffffff;
+      transition: background 0.12s, border-color 0.12s;
+    }
+
+    .option-row:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    .option-row input[type="radio"] {
+      width: 17px;
+      height: 17px;
+      cursor: pointer;
+      accent-color: var(--primary-blue);
+      flex-shrink: 0;
+    }
+
+    .option-row .opt-text {
+      font-size: 14.5px;
+      color: #1f2937;
+      line-height: 1.4;
+    }
+
+    /* Bottom Action Footer */
+    .question-action-footer {
+      min-height: 56px;
+      padding: 8px 18px;
+      background: #f1f5f9;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .footer-left-btns, .footer-right-btns {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .exam-btn {
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      border: 1px solid #94a3b8;
+      background: #ffffff;
+      color: #1e293b;
+      transition: all 0.12s;
+    }
+
+    .exam-btn:hover:not(:disabled) {
+      background: #e2e8f0;
+    }
+
+    .exam-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .exam-btn.btn-primary {
+      background: var(--primary-blue);
+      color: #ffffff;
+      border-color: var(--primary-blue);
+    }
+
+    .exam-btn.btn-primary:hover:not(:disabled) {
+      background: #144973;
+    }
+
+    .exam-btn.btn-review {
+      background: #ffffff;
+      color: #5b21b6;
+      border-color: #8b5cf6;
+    }
+
+    .exam-btn.btn-review:hover {
+      background: #f5f3ff;
+    }
+
+    .exam-btn.btn-submit {
+      background: #16a34a;
+      color: #ffffff;
+      border-color: #15803d;
+      padding: 8px 20px;
+    }
+
+    .exam-btn.btn-submit:hover {
+      background: #15803d;
+    }
+
+    /* Right Small Question Palette */
+    .palette-sidebar {
+      width: 265px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      background: #f8fafc;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .candidate-strip {
+      padding: 10px 12px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .candidate-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--primary-blue);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .candidate-info {
+      font-size: 12px;
+      line-height: 1.3;
+    }
+
+    .candidate-info .cand-name {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .candidate-info .cand-sub {
+      color: var(--text-muted);
+      font-size: 11px;
+    }
+
+    .palette-summary-grid {
+      padding: 8px 10px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+
+    .sum-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #334155;
+      font-weight: 500;
+    }
+
+    .sum-item.full-span {
+      grid-column: span 2;
+    }
+
+    .palette-header-bar {
+      background: var(--primary-blue);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      flex-shrink: 0;
+    }
+
+    .palette-numbers-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 7px;
+      align-content: start;
+      background: #eef3f8;
+    }
+
+    .pal-btn {
+      height: 32px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #94a3b8;
+      background: #ffffff;
+      color: #1e293b;
+      border-radius: 3px;
+      position: relative;
+      transition: transform 0.08s;
+    }
+
+    .pal-btn:hover {
+      filter: brightness(0.95);
+    }
+
+    .pal-btn.current-q {
+      outline: 2px solid #0f172a;
+      outline-offset: 1px;
+    }
+
+    .pal-btn.st-not-visited {
+      background: #ffffff;
+      color: #1e293b;
+      border-color: #94a3b8;
+    }
+
+    .pal-btn.st-not-answered {
+      background: var(--status-not-answered);
+      color: #ffffff;
+      border-color: #b91c1c;
+      border-radius: 3px 3px 11px 11px;
+    }
+
+    .pal-btn.st-answered {
+      background: var(--status-answered);
+      color: #ffffff;
+      border-color: #15803d;
+      border-radius: 11px 11px 3px 3px;
+    }
+
+    .pal-btn.st-review {
+      background: var(--status-review);
+      color: #ffffff;
+      border-color: #5b21b6;
+      border-radius: 50%;
+    }
+
+    .pal-btn.st-ans-review {
+      background: var(--status-ans-review);
+      color: #ffffff;
+      border-color: #4c1d95;
+      border-radius: 50%;
+    }
+
+    .pal-btn.st-ans-review::after {
+      content: '';
+      position: absolute;
+      bottom: 1px;
+      right: 1px;
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border: 1px solid #ffffff;
+      border-radius: 50%;
+    }
+
+    /* Hide right palette on mobile phones as requested */
+    @media (max-width: 768px) {
+      .palette-sidebar {
+        display: none !important;
+      }
+      .question-scroll-area {
+        padding: 14px 16px;
+      }
+      .q-text-row {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .exam-sub-header {
+        padding: 0 10px;
+      }
+      .section-tab {
+        font-size: 11px;
+        padding: 5px 8px;
+      }
+      .exam-btn {
+        padding: 7px 10px;
+        font-size: 12px;
+      }
+    }
+
+    /* Overlays / Modals */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: 6px;
+      max-width: 460px;
+      width: 100%;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+
+    .modal-header {
+      background: var(--primary-blue);
+      color: #ffffff;
+      padding: 14px 18px;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .modal-body {
+      padding: 18px;
+      font-size: 14px;
+      color: #334155;
+      line-height: 1.5;
+    }
+
+    .summary-Mini-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 13px;
+    }
+
+    .summary-Mini-table th, .summary-Mini-table td {
+      border: 1px solid #cbd5e1;
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .summary-Mini-table th {
+      background: #f1f5f9;
+      font-weight: 600;
+    }
+
+    .modal-footer {
+      padding: 12px 18px;
+      background: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    /* Result / Analysis View */
+    .result-scroll-wrap {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px 20px;
+      background: var(--bg-muted);
+    }
+
+    .result-container {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .score-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 20px 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .score-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+    }
+
+    .score-card-top h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .score-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+      gap: 12px;
+    }
+
+    .metric-tile {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 5px;
+      padding: 12px 14px;
+      text-align: center;
+    }
+
+    .metric-tile .m-label {
+      font-size: 11.5px;
+      color: #64748b;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .metric-tile .m-val {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 4px;
+      color: #0f172a;
+    }
+
+    .metric-tile.m-correct .m-val { color: #16a34a; }
+    .metric-tile.m-wrong .m-val { color: #dc2626; }
+    .metric-tile.m-unattempted .m-val { color: #d97706; }
+    .metric-tile.m-score .m-val { color: var(--primary-blue); }
+
+    .filter-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      padding: 12px 18px;
+      border-radius: 6px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab-btn {
+      padding: 6px 14px;
+      font-size: 12.5px;
+      font-weight: 600;
+      border-radius: 4px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #334155;
+      cursor: pointer;
+    }
+
+    .filter-tab-btn.active {
+      background: var(--primary-blue);
+      color: #ffffff;
+      border-color: var(--primary-blue);
+    }
+
+    .solutions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .sol-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 18px 20px;
+    }
+
+    .sol-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .sol-q-num {
+      font-weight: 700;
+      font-size: 14px;
+      color: #0f172a;
+    }
+
+    .status-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .pill-incorrect {
+      background: #fef2f2;
+      color: #dc2626;
+      border: 1px solid #fecaca;
+    }
+
+    .pill-unattempted {
+      background: #fffbeb;
+      color: #b45309;
+      border: 1px solid #fde68a;
+    }
+
+    .sol-q-text {
+      font-size: 14.5px;
+      color: #1e293b;
+      line-height: 1.55;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .sol-ans-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 13px;
+      margin-bottom: 12px;
+      padding: 8px 12px;
+      background: #f8fafc;
+      border-radius: 4px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .sol-explanation {
+      background: #f0fdf4;
+      border-left: 3px solid #16a34a;
+      padding: 10px 14px;
+      font-size: 13.5px;
+      color: #166534;
+      line-height: 1.55;
+      border-radius: 0 4px 4px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. INITIAL INTRODUCTORY INTERFACE -->
+  <section id="intro-screen" class="view-screen active">
+    <header class="top-banner">
+      <div class="exam-title">
+        <span>SSC / Railway CBT Portal</span>
+        <span class="badge-pill">Number System (Divisibility)</span>
+      </div>
+      <div style="font-size: 12px; font-weight: 500;">Questions 1 to 89</div>
+    </header>
+
+    <div class="intro-container">
+      <div class="intro-card">
+        <div class="intro-card-header">
+          <h1>General Instructions &amp; Mock Test Information</h1>
+          <span style="font-size: 12px; background: rgba(255,255,255,0.18); padding: 4px 10px; border-radius: 4px;">TCS / Eduquity Standard Interface</span>
+        </div>
+
+        <div class="intro-stats-row">
+          <div class="stat-box">
+            <div class="stat-label">Total Questions</div>
+            <div class="stat-val">89 MCQs</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Total Duration</div>
+            <div class="stat-val">89 Minutes</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Correct Answer</div>
+            <div class="stat-val">+1.0 Mark</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Negative Marking</div>
+            <div class="stat-val">-0.25 Marks</div>
+          </div>
+        </div>
+
+        <div class="intro-body">
+          <h2>Please read the instructions carefully before starting the examination:</h2>
+          <ol>
+            <li>The clock will be set at the server. The countdown timer in the top right corner of screen will display the remaining time available for you to complete the examination (<strong>89 Minutes for 89 Questions</strong>). When the timer reaches zero, the examination will end by itself.</li>
+            <li>The Question Palette displayed on the right side of the screen (on desktop/tablet) will show the status of each question using one of the following symbols:</li>
+          </ol>
+
+          <div class="palette-legend-demo">
+            <div class="legend-item">
+              <span class="symbol-box sym-not-visited">1</span>
+              <span>You have not visited the question yet.</span>
+            </div>
+            <div class="legend-item">
+              <span class="symbol-box sym-not-answered">2</span>
+              <span>You have not answered the question.</span>
+            </div>
+            <div class="legend-item">
+              <span class="symbol-box sym-answered">3</span>
+              <span>You have answered the question.</span>
+            </div>
+            <div class="legend-item">
+              <span class="symbol-box sym-review">4</span>
+              <span>Marked for review (not answered).</span>
+            </div>
+            <div class="legend-item">
+              <span class="symbol-box sym-ans-review">5</span>
+              <span>Answered &amp; Marked for review (will be evaluated).</span>
+            </div>
+          </div>
+
+          <h2>Navigating &amp; Answering a Question:</h2>
+          <ul>
+            <li>Click on the question number in the Question Palette at the right of your screen to go to that numbered question directly. Note that using this option does NOT automatically save your answer to the current question unless an option is selected.</li>
+            <li>Select one of the four radio button options to choose your answer. Selecting an option does NOT automatically jump to the next question.</li>
+            <li>Use <strong>Next</strong> or <strong>Previous</strong> to move across questions, <strong>Clear</strong> to deselect your chosen option, and <strong>Mark for Review &amp; Next</strong> to flag a question for review.</li>
+            <li>Upon clicking <strong>Start Mock Test</strong>, the exam will automatically enter Fullscreen mode. You can pause the test or exit fullscreen at any time using the header controls.</li>
+          </ul>
+
+          <label class="declaration-box" for="agree-checkbox">
+            <input type="checkbox" id="agree-checkbox" />
+            <span>I have read and understood all the instructions. I declare that I am not in possession of any prohibited gadget or material and agree to start the 89-minute mock test.</span>
+          </label>
+        </div>
+
+        <div class="intro-footer">
+          <button type="button" id="btn-begin-test" class="btn-start-exam" disabled>I am ready to begin (Start Mock Test)</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. MAIN EXAM INTERFACE -->
+  <section id="exam-screen" class="view-screen">
+    <header class="top-banner">
+      <div class="exam-title">
+        <span>Number System (Divisibility) — Mock Test</span>
+      </div>
+      <div class="exam-controls-right">
+        <button type="button" id="btn-pause-test" class="top-ctrl-btn">Pause</button>
+        <button type="button" id="btn-exit-fullscreen" class="top-ctrl-btn">Exit Fullscreen</button>
+      </div>
+    </header>
+
+    <div class="exam-sub-header">
+      <div class="section-tab">Section: Quantitative Aptitude (Q.1 – Q.89)</div>
+      <div id="timer-display" class="timer-badge">Time Left: 89:00</div>
+    </div>
+
+    <div class="exam-workspace">
+      <!-- Left Main Question Panel -->
+      <div class="question-column">
+        <div class="question-meta-bar">
+          <div id="q-number-heading" class="q-number-label">Question No. 1</div>
+          <div class="q-marks-info">Marks: +1.00 | Negative: -0.25</div>
+        </div>
+
+        <div class="question-scroll-area">
+          <div class="q-text-row">
+            <div id="q-statement-text" class="q-statement"></div>
+            <span id="q-exam-tag" class="q-exam-tag" style="display: none;"></span>
+          </div>
+
+          <div id="options-container" class="options-list"></div>
+        </div>
+
+        <div class="question-action-footer">
+          <div class="footer-left-btns">
+            <button type="button" id="btn-prev" class="exam-btn">Previous</button>
+            <button type="button" id="btn-mark-next" class="exam-btn btn-review">Mark for Review &amp; Next</button>
+            <button type="button" id="btn-clear" class="exam-btn">Clear</button>
+            <button type="button" id="btn-next" class="exam-btn btn-primary">Next</button>
+          </div>
+          <div class="footer-right-btns">
+            <button type="button" id="btn-submit-open" class="exam-btn btn-submit">Submit</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Small Question Number Palette (Hidden on mobile via CSS) -->
+      <aside class="palette-sidebar">
+        <div class="candidate-strip">
+          <div class="candidate-avatar">CA</div>
+          <div class="candidate-info">
+            <div class="cand-name">Candidate</div>
+            <div class="cand-sub">Roll No: SSC-NS-089</div>
+          </div>
+        </div>
+
+        <div class="palette-summary-grid">
+          <div class="sum-item">
+            <span id="cnt-answered" class="symbol-box sym-answered">0</span>
+            <span>Answered</span>
+          </div>
+          <div class="sum-item">
+            <span id="cnt-not-answered" class="symbol-box sym-not-answered">1</span>
+            <span>Not Answered</span>
+          </div>
+          <div class="sum-item">
+            <span id="cnt-not-visited" class="symbol-box sym-not-visited">88</span>
+            <span>Not Visited</span>
+          </div>
+          <div class="sum-item">
+            <span id="cnt-review" class="symbol-box sym-review">0</span>
+            <span>Marked</span>
+          </div>
+          <div class="sum-item full-span">
+            <span id="cnt-ans-review" class="symbol-box sym-ans-review">0</span>
+            <span>Answered &amp; Marked for Review</span>
+          </div>
+        </div>
+
+        <div class="palette-header-bar">Question Palette (1 – 89)</div>
+        <div id="palette-grid" class="palette-numbers-scroll"></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 3. POST-SUBMISSION SCORE & SOLUTIONS INTERFACE -->
+  <section id="result-screen" class="view-screen">
+    <header class="top-banner">
+      <div class="exam-title">
+        <span>Mock Test Analysis &amp; Solutions Report</span>
+        <span class="badge-pill">Number System (1–89)</span>
+      </div>
+      <div>
+        <button type="button" id="btn-retake" class="top-ctrl-btn">Retake Test (Randomize Options)</button>
+      </div>
+    </header>
+
+    <div class="result-scroll-wrap">
+      <div class="result-container">
+        <div class="score-card">
+          <div class="score-card-top">
+            <h2>Performance Scorecard</h2>
+            <span id="res-time-taken" style="font-size: 13px; color: #475569; font-weight: 600;"></span>
+          </div>
+
+          <div class="score-metrics-grid">
+            <div class="metric-tile m-score">
+              <div class="m-label">Total Score</div>
+              <div id="res-score" class="m-val">0.00 / 89</div>
+            </div>
+            <div class="metric-tile">
+              <div class="m-label">Attempted</div>
+              <div id="res-attempted" class="m-val">0 / 89</div>
+            </div>
+            <div class="metric-tile m-correct">
+              <div class="m-label">Correct (+1)</div>
+              <div id="res-correct" class="m-val">0</div>
+            </div>
+            <div class="metric-tile m-wrong">
+              <div class="m-label">Incorrect (-0.25)</div>
+              <div id="res-incorrect" class="m-val">0</div>
+            </div>
+            <div class="metric-tile m-unattempted">
+              <div class="m-label">Un-attempted (0)</div>
+              <div id="res-unattempted" class="m-val">0</div>
+            </div>
+            <div class="metric-tile">
+              <div class="m-label">Accuracy</div>
+              <div id="res-accuracy" class="m-val">0%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <div style="font-size: 14px; font-weight: 700; color: #0f172a;">
+            Solutions for Incorrect &amp; Un-attempted Questions Only
+          </div>
+          <div class="filter-tabs">
+            <button type="button" id="flt-all-wrong-unatt" class="filter-tab-btn active">All Incorrect &amp; Un-attempted</button>
+            <button type="button" id="flt-incorrect-only" class="filter-tab-btn">Incorrect Only</button>
+            <button type="button" id="flt-unattempted-only" class="filter-tab-btn">Un-attempted Only</button>
+          </div>
+        </div>
+
+        <div id="solutions-container" class="solutions-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAUSE MODAL -->
+  <div id="pause-modal" class="modal-backdrop">
+    <div class="modal-card">
+      <div class="modal-header">Test Paused</div>
+      <div class="modal-body">
+        <p>Your examination timer is currently paused. Click <strong>Resume Test</strong> below when you are ready to continue.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btn-resume-test" class="exam-btn btn-primary">Resume Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBMIT CONFIRMATION MODAL -->
+  <div id="submit-modal" class="modal-backdrop">
+    <div class="modal-card">
+      <div class="modal-header">Confirm Test Submission</div>
+      <div class="modal-body">
+        <p>Are you sure you want to submit the mock test? Here is a summary of your responses:</p>
+        <table class="summary-Mini-table">
+          <tbody>
+            <tr><th>Total Questions</th><td id="mod-total">89</td></tr>
+            <tr><th>Answered</th><td id="mod-answered">0</td></tr>
+            <tr><th>Not Answered</th><td id="mod-not-answered">0</td></tr>
+            <tr><th>Marked for Review (Unanswered)</th><td id="mod-review">0</td></tr>
+            <tr><th>Answered &amp; Marked for Review</th><td id="mod-ans-review">0</td></tr>
+            <tr><th>Not Visited</th><td id="mod-not-visited">0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btn-cancel-submit" class="exam-btn">Cancel</button>
+        <button type="button" id="btn-confirm-submit" class="exam-btn btn-submit">Yes, Submit Test</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const RAW_QUESTIONS = [
+  {
+    "id": 1,
+    "tag": "RRB NTPC GL 12/06/2025 S-2",
+    "q": "If the eight-digit number 43377p08 is divisible by 8, then find the maximum value of p.",
+    "options": [
+      "8",
+      "7",
+      "4",
+      "6"
+    ],
+    "ans": "8",
+    "sol": "For a number to be divisible by 8, its last three digits (p08) must be divisible by 8. Since 08 is divisible by 8, 100p must be divisible by 8, which holds when p is an even digit (0, 2, 4, 6, 8). Thus, the maximum single-digit value of p is 8."
+  },
+  {
+    "id": 2,
+    "tag": "RRB NTPC GL 05/06/2025 S-3",
+    "q": "Which of the following numbers is divisible by 7?",
+    "options": [
+      "875",
+      "687",
+      "894",
+      "87"
+    ],
+    "ans": "875",
+    "sol": "Checking each option: 875 = 7 \u00d7 125, so 875 is exactly divisible by 7. (687 = 7\u00d798 + 1, 894 = 7\u00d7127 + 5, 87 = 7\u00d712 + 3)."
+  },
+  {
+    "id": 3,
+    "tag": "SSC CGL 12/09/2024",
+    "q": "Which of the following numbers is NOT divisible by 11?",
+    "options": [
+      "128041",
+      "80124",
+      "109153",
+      "5445"
+    ],
+    "ans": "128041",
+    "sol": "By the divisibility rule of 11, for 128041: (1 + 8 + 4) - (2 + 0 + 1) = 13 - 3 = 10, which is not divisible by 11. The other numbers (80124, 109153, and 5445) are all divisible by 11."
+  },
+  {
+    "id": 4,
+    "tag": "SSC CGL 12/09/2024",
+    "q": "Find the smallest value of 'a' that makes the number 91876a2 divisible by 8.",
+    "options": [
+      "3",
+      "1",
+      "2",
+      "0"
+    ],
+    "ans": "3",
+    "sol": "For 91876a2 to be divisible by 8, the last three digits 6a2 must be divisible by 8. Testing values from 0 to 9: 602, 612, 622 are not divisible by 8, while 632 \u00f7 8 = 79. Thus, the smallest value of 'a' is 3."
+  },
+  {
+    "id": 5,
+    "tag": "SSC CGL 03/12/2022 (4th Shift)",
+    "q": "If the 8-digit number 123456xy is divisible by 8, then what are the total possible pairs of (x, y)?",
+    "options": [
+      "13",
+      "8",
+      "10",
+      "11"
+    ],
+    "ans": "13",
+    "sol": "For 123456xy to be divisible by 8, the 3-digit number 6xy (from 600 to 699) must be divisible by 8. The multiples of 8 from 600 to 699 are 600, 608, 616, ..., 696. Total count = ((696 - 600) / 8) + 1 = (96 / 8) + 1 = 13 pairs."
+  },
+  {
+    "id": 6,
+    "tag": "SSC CPO 15 March 2019 (Evening)",
+    "q": "The number 106974 is divisible by which of the following one-digit numbers?",
+    "options": [
+      "Only 2, 3 and 7",
+      "Only 2, 3, 4 and 7",
+      "Only 2, 3 and 4",
+      "Only 2 and 3"
+    ],
+    "ans": "Only 2, 3 and 7",
+    "sol": "106974 is even (divisible by 2). Sum of digits = 1+0+6+9+7+4 = 27 (divisible by 3). Last two digits 74 is not divisible by 4. Also, 106974 \u00f7 7 = 15282 (exact). Hence among the given choices, it is divisible by only 2, 3 and 7."
+  },
+  {
+    "id": 7,
+    "tag": "SSC CPO 16 March 2019 (Evening)",
+    "q": "The number 30744 is divisible by which one-digit numbers (excluding 1)?",
+    "options": [
+      "All the other one-digit numbers except 5",
+      "All the other one-digit numbers except 5 and 7",
+      "Only 2, 3 and 6",
+      "Only 2, 3, 6 and 9"
+    ],
+    "ans": "All the other one-digit numbers except 5",
+    "sol": "30744 ends in 4 (not divisible by 5). Checking other digits: last 3 digits 744 \u00f7 8 = 93 (so divisible by 2, 4, 8); sum of digits = 3+0+7+4+4 = 18 (divisible by 3, 6, 9); and 30744 \u00f7 7 = 4392 (divisible by 7). Thus it is divisible by all single-digit numbers except 5."
+  },
+  {
+    "id": 8,
+    "tag": "SSC CHSL 05/08/2021 (Shift-3)",
+    "q": "If the number 87m6203m is divisible by 6, then find the sum of all possible values of 'm'.",
+    "options": [
+      "10",
+      "16",
+      "15",
+      "20"
+    ],
+    "ans": "10",
+    "sol": "For 87m6203m to be divisible by 6, it must be divisible by both 2 and 3. Thus m \u2208 {0, 2, 4, 6, 8}. Sum of digits = 26 + 2m. Testing even digits: for m=2, 26+4=30 (divisible by 3); for m=8, 26+16=42 (divisible by 3). Sum of possible values of m = 2 + 8 = 10."
+  },
+  {
+    "id": 9,
+    "tag": "SSC CHSL 09/03/2023 (3rd Shift)",
+    "q": "If 5A72B is divisible by 11, then what is the value of B - A?",
+    "options": [
+      "1",
+      "3",
+      "2",
+      "4"
+    ],
+    "ans": "1",
+    "sol": "By the divisibility rule of 11: (5 + 7 + B) - (A + 2) = 10 + B - A must be a multiple of 11. For single digits A and B, 10 + B - A = 11 \u21d2 B - A = 1."
+  },
+  {
+    "id": 10,
+    "tag": "SSC CPO 10/11/2022 (Afternoon)",
+    "q": "If 8764x5 is a number divisible by 9, find the least possible value of x, where x is a two-digit number.",
+    "options": [
+      "15",
+      "06",
+      "14",
+      "18"
+    ],
+    "ans": "15",
+    "sol": "Sum of the known digits = 8 + 7 + 6 + 4 + 5 = 30. For the number to be divisible by 9, 30 + x must be a multiple of 9. Since x is a two-digit number (x \u2265 10), the smallest multiple of 9 greater than or equal to 40 is 45, giving x = 45 - 30 = 15 (whose digit sum is also 1+5=6)."
+  },
+  {
+    "id": 11,
+    "tag": "Graduate Level 27/06/2023 (Shift - 4)",
+    "q": "Find the minimum value of K for which 7864K3 is divisible by 7.",
+    "options": [
+      "4",
+      "5",
+      "2",
+      "1"
+    ],
+    "ans": "4",
+    "sol": "Using 3-digit grouping for divisibility by 7: 4K3 - 786 must be divisible by 7. Since 786 - 4K3 = 383 - 10K, testing K = 4 gives 383 - 40 = 343 = 7 \u00d7 49. Thus K = 4."
+  },
+  {
+    "id": 12,
+    "tag": "SSC CGL 17/08/2021 (Shift 02)",
+    "q": "Find the smallest value of 'a' so that 42a48b (where a > b) is divisible by 11.",
+    "options": [
+      "5",
+      "4",
+      "0",
+      "9"
+    ],
+    "ans": "5",
+    "sol": "For 42a48b to be divisible by 11: (4 + a + 8) - (2 + 4 + b) = 6 + a - b must be 0 or 11. Since a > b, a - b > 0, so 6 + a - b = 11 \u21d2 a - b = 5. For the smallest value of 'a', take the smallest non-negative digit b = 0, which gives a = 5."
+  },
+  {
+    "id": 13,
+    "tag": "SSC CGL 13/08/2021 (Shift-03)",
+    "q": "Find the greatest value of 'b' so that 30a68b (where a > b) is divisible by 11.",
+    "options": [
+      "3",
+      "4",
+      "9",
+      "6"
+    ],
+    "ans": "3",
+    "sol": "For 30a68b to be divisible by 11: (3 + a + 8) - (0 + 6 + b) = 5 + a - b must be a multiple of 11. Since a > b, a - b > 0, so 5 + a - b = 11 \u21d2 a - b = 6. To maximize b, set the maximum digit a = 9, which gives b = 9 - 6 = 3."
+  },
+  {
+    "id": 14,
+    "tag": "SSC CGL 24/08/2021 (Shift-03)",
+    "q": "Find the sum of all the possible values of (a + b), so that the number 4a067b is divisible by 11.",
+    "options": [
+      "21",
+      "16",
+      "5",
+      "11"
+    ],
+    "ans": "21",
+    "sol": "By the divisibility rule of 11: (4 + 0 + 7) - (a + 6 + b) = 5 - (a + b) is a multiple of 11. Since 0 \u2264 a + b \u2264 18, (a + b) can be 5 (giving 0) or 16 (giving -11). The sum of all possible values of (a + b) is 5 + 16 = 21."
+  },
+  {
+    "id": 15,
+    "tag": "UPSC CSAT 10/10/2021",
+    "q": "If 3798125P369 is a number divisible by 7, find the value of P.",
+    "options": [
+      "6",
+      "7",
+      "9",
+      "3"
+    ],
+    "ans": "6",
+    "sol": "Grouping into 3-digit blocks from the right: (369 + 812 + 37) - (5P3 + 79) = 1218 - (582 + 10P) = 636 - 10P. Since 636 \u2261 6 (mod 7) and 10 \u2261 3 (mod 7), we need 6 - 3P \u2261 0 (mod 7), so P = 6 (as 636 - 60 = 576, wait: let's verify direct division: 37981256369 \u00f7 7 = 5425893767). Thus P = 6."
+  },
+  {
+    "id": 16,
+    "tag": "CDS 07/02/2021",
+    "q": "If 413283P759387 is a number divisible by 13, find the value of P.",
+    "options": [
+      "8",
+      "3",
+      "6",
+      "7"
+    ],
+    "ans": "8",
+    "sol": "Direct division of 413283P759387 by 13 shows that for P = 8, 4132838759387 = 13 \u00d7 317910673799. Thus P = 8."
+  },
+  {
+    "id": 17,
+    "tag": "RRB NTPC UGL 19/08/2025 S-3",
+    "q": "If the 6-digit number N46M37 is divisible by 11, then which of the options below can possibly express the correct relationship between M and N?",
+    "options": [
+      "M - N = -2",
+      "M = N",
+      "M - N = 1",
+      "M + N = 2"
+    ],
+    "ans": "M - N = -2",
+    "sol": "By the divisibility rule of 11: (N + 6 + 3) - (4 + M + 7) = N - M - 2 = 0 \u21d2 M - N = -2."
+  },
+  {
+    "id": 18,
+    "tag": "RRB NTPC UGL 19/08/2025 S-3",
+    "q": "If the 6-digit number N73M10 is divisible by 11, then which of the options below can possibly express the correct relationship between M and N?",
+    "options": [
+      "M - N = -3",
+      "M - N = 1",
+      "M + N = 3",
+      "M = N"
+    ],
+    "ans": "M - N = -3",
+    "sol": "By the divisibility rule of 11: (N + 3 + 1) - (7 + M + 0) = N - M - 3 = 0 \u21d2 M - N = -3."
+  },
+  {
+    "id": 19,
+    "tag": "RRB NTPC UGL 28/08/2025 S-1",
+    "q": "Which of the following numbers divides 74,75,79,723?",
+    "options": [
+      "11",
+      "13",
+      "8",
+      "9"
+    ],
+    "ans": "11",
+    "sol": "Checking divisibility of 747579723 by 11: (7 + 7 + 7 + 7 + 3) - (4 + 5 + 9 + 2) = 31 - 20 = 11, which is divisible by 11. Therefore, 11 divides 74,75,79,723."
+  },
+  {
+    "id": 20,
+    "tag": "RRB NTPC GL 06/06/2025 S-2",
+    "q": "Which of the following numbers is divisible by 41?",
+    "options": [
+      "7995",
+      "7889",
+      "7431",
+      "8537"
+    ],
+    "ans": "7995",
+    "sol": "Dividing each option by 41: 7995 \u00f7 41 = 195 (exact). Hence, 7995 is divisible by 41."
+  },
+  {
+    "id": 21,
+    "tag": "IB ACIO 2025",
+    "q": "The 7-digit number 51A808B is divisible by 24. Find the minimum value of (A + B).",
+    "options": [
+      "2",
+      "6",
+      "3",
+      "5"
+    ],
+    "ans": "2",
+    "sol": "For 51A808B to be divisible by 24, it must be divisible by 8 and 3. For 08B to be divisible by 8, B can be 0 or 8. To minimize A + B, choose B = 0. Then sum of digits = 5+1+A+8+0+8+0 = 22 + A. The smallest A making 22 + A divisible by 3 is A = 2 (since 24 is divisible by 3). Minimum (A + B) = 2 + 0 = 2."
+  },
+  {
+    "id": 22,
+    "tag": "RRB NTPC GL 17/06/2025 S-3",
+    "q": "Which of the following numbers is divisible by 22?",
+    "options": [
+      "7986",
+      "7019",
+      "8371",
+      "7664"
+    ],
+    "ans": "7986",
+    "sol": "A number divisible by 22 must be even and divisible by 11. 7019 and 8371 are odd. For 7986: it is even, and (7 + 8) - (9 + 6) = 15 - 15 = 0 (divisible by 11). Thus 7986 is divisible by 22."
+  },
+  {
+    "id": 23,
+    "tag": "RRB NTPC GL 09/06/2025 S-3",
+    "q": "Which of the following numbers is divisible by 38?",
+    "options": [
+      "1938",
+      "2620",
+      "2423",
+      "1495"
+    ],
+    "ans": "1938",
+    "sol": "1938 = 38 \u00d7 51. Thus, 1938 is exactly divisible by 38."
+  },
+  {
+    "id": 24,
+    "tag": "SSC CGL 19/07/2023 (1st shift)",
+    "q": "Which of the following numbers is divisible by 36?",
+    "options": [
+      "55512",
+      "8840",
+      "1542",
+      "96272"
+    ],
+    "ans": "55512",
+    "sol": "A number is divisible by 36 if it is divisible by both 4 and 9. For 55512: the last two digits 12 are divisible by 4, and the sum of digits = 5+5+5+1+2 = 18 is divisible by 9."
+  },
+  {
+    "id": 25,
+    "tag": "SSC Selection Post Phase-XII 24/06/2024",
+    "q": "If a number is divisible by both 11 and 13, then it must necessarily be:",
+    "options": [
+      "Divisible by (11 \u00d7 13)",
+      "Divisible by (13 - 11)",
+      "Divisible by 42",
+      "Divisible by (11 + 13)"
+    ],
+    "ans": "Divisible by (11 \u00d7 13)",
+    "sol": "Since 11 and 13 are co-prime (prime) numbers, any number divisible by both 11 and 13 is always divisible by their LCM, which is (11 \u00d7 13)."
+  },
+  {
+    "id": 26,
+    "tag": "IB ACIO 2024",
+    "q": "If the 9-digit number 9834x97y4 is divisible by 88, then what is the maximum possible value of (3x + 2y)?",
+    "options": [
+      "34",
+      "27",
+      "31",
+      "37"
+    ],
+    "ans": "34",
+    "sol": "Divisibility by 88 requires divisibility by 8 and 11. For 7y4 to be divisible by 8, y can be 0, 4, or 8. To maximize (3x + 2y), test y = 8: by the rule of 11, (9+3+x+7+4) - (8+4+9+y) = (23 + x) - (21 + 8) = x - 6. For this to be divisible by 11, x = 6. Thus max (3x + 2y) = 3(6) + 2(8) = 18 + 16 = 34."
+  },
+  {
+    "id": 27,
+    "tag": "SSC Selection Post Phase-XII 2024",
+    "q": "If the six-digit number 15x1y2 is divisible by 44, then the minimum value of (x + y) is:",
+    "options": [
+      "7",
+      "8",
+      "5",
+      "6"
+    ],
+    "ans": "7",
+    "sol": "For 15x1y2 to be divisible by 44, it must be divisible by 4 and 11. By the rule of 11: (1 + x + y) - (5 + 1 + 2) = x + y - 7 must be a multiple of 11. Thus (x + y) can be 7 or 18. The minimum value of (x + y) is 7 (e.g., y = 7, x = 0, where y2 = 72 is divisible by 4)."
+  },
+  {
+    "id": 28,
+    "tag": "SSC Selection Post Phase-XII 2024",
+    "q": "If the 9-digit number 937X728Y6 is divisible by 72, then which of the following can be a possible value of X + Y?",
+    "options": [
+      "12",
+      "5",
+      "9",
+      "8"
+    ],
+    "ans": "12",
+    "sol": "Divisibility by 72 requires divisibility by 8 and 9. Sum of digits = 9+3+7+X+7+2+8+Y+6 = 42 + X + Y. For 42 + X + Y to be a multiple of 9, X + Y can be 3 or 12 (since 42+3=45 and 42+12=54). Among the options, 12 is valid (e.g., Y=9 where 896\u00f78=112, and X=3)."
+  },
+  {
+    "id": 29,
+    "tag": "SSC CGL 2024",
+    "q": "Which of the following numbers is divisible by 2, 5, 10 and 11?",
+    "options": [
+      "589270",
+      "1234560",
+      "830942",
+      "203467"
+    ],
+    "ans": "589270",
+    "sol": "Divisibility by 2, 5, and 10 requires the last digit to be 0 (ruling out 830942 and 203467). Checking 589270 for 11: (5 + 9 + 7) - (8 + 2 + 0) = 21 - 10 = 11, which is divisible by 11."
+  },
+  {
+    "id": 30,
+    "tag": "SSC CHSL 2024",
+    "q": "Which of the following is the number nearest to 7658 that is completely divisible by 45?",
+    "options": [
+      "7650",
+      "7660",
+      "7645",
+      "7640"
+    ],
+    "ans": "7650",
+    "sol": "Dividing 7658 by 45 gives 7658 = 45 \u00d7 170 + 8. Thus, the nearest multiple of 45 is 7658 - 8 = 7650."
+  },
+  {
+    "id": 31,
+    "tag": "SSC CHSL 05/07/2024",
+    "q": "If 3c2933k is divisible by both 5 and 11, where c and k are single-digit natural numbers, then c + k = ________.",
+    "options": [
+      "6",
+      "8",
+      "7",
+      "5"
+    ],
+    "ans": "6",
+    "sol": "Since k is a natural number (k \u2265 1) and the number is divisible by 5, k must be 5. By the rule of 11 for 3c29335: (3 + 2 + 3 + 5) - (c + 9 + 3) = 13 - (12 + c) = 1 - c. For divisibility by 11, c = 1. Therefore, c + k = 1 + 5 = 6."
+  },
+  {
+    "id": 32,
+    "tag": "SSC CHSL 2024",
+    "q": "If the number 6p5157q is divisible by 88, where p and q are single-digit numbers, then p \u00d7 q = ________.",
+    "options": [
+      "18",
+      "12",
+      "15",
+      "20"
+    ],
+    "ans": "18",
+    "sol": "For 6p5157q to be divisible by 88, 57q must be divisible by 8 \u21d2 576 is divisible by 8, so q = 6. By the rule of 11: (6 + 5 + 5 + 6) - (p + 1 + 7) = 22 - (8 + p) = 14 - p. For divisibility by 11, 14 - p = 11 \u21d2 p = 3. Thus, p \u00d7 q = 3 \u00d7 6 = 18."
+  },
+  {
+    "id": 33,
+    "tag": "SSC CHSL 01/07/2024 Shift-4",
+    "q": "Find the lowest positive value of (c - b) so that the 7-digit number 1738b9c is divisible by 12.",
+    "options": [
+      "1",
+      "7",
+      "2",
+      "4"
+    ],
+    "ans": "1",
+    "sol": "For 1738b9c to be divisible by 12, 9c must be divisible by 4 \u21d2 c \u2208 {2, 6}. Sum of digits = 28 + b + c must be divisible by 3. If c = 6, 34 + b is divisible by 3 for b \u2208 {2, 5, 8}. Taking b = 5 gives c - b = 6 - 5 = 1, which is the smallest positive integer."
+  },
+  {
+    "id": 34,
+    "tag": "SSC Selection Post Phase-XII 20/06/2024",
+    "q": "'34PQ' is a four-digit number which is divisible by 3, 5 and 7. Find the value of P + Q.",
+    "options": [
+      "11",
+      "13",
+      "12",
+      "10"
+    ],
+    "ans": "11",
+    "sol": "LCM(3, 5, 7) = 105. Dividing 3400 by 105: 105 \u00d7 33 = 3465. Thus the 4-digit number is 3465, giving P = 6 and Q = 5. Hence, P + Q = 6 + 5 = 11."
+  },
+  {
+    "id": 35,
+    "tag": "SSC CGL 2024",
+    "q": "45yz0 is a five-digit number that is divisible by 40. What is the maximum possible value of (y + z)?",
+    "options": [
+      "16",
+      "18",
+      "17",
+      "15"
+    ],
+    "ans": "16",
+    "sol": "For 45yz0 to be divisible by 40, 45yz must be divisible by 4, meaning the two-digit number yz must be divisible by 4. To maximize y + z, take the largest digit y = 9 (9z divisible by 4 gives z = 6, sum = 15) or y = 8 (8z divisible by 4 gives z = 8, sum = 8 + 8 = 16). Thus maximum (y + z) = 16."
+  },
+  {
+    "id": 36,
+    "tag": "SSC CGL 2024",
+    "q": "If the 9-digit number 5x79856y6 is divisible by 36, then what is the negative value of \u221a(2x + y) for the largest possible value of y, given that x and y are natural numbers?",
+    "options": [
+      "-5",
+      "-2",
+      "-4",
+      "-7"
+    ],
+    "ans": "-5",
+    "sol": "For divisibility by 36 (4 and 9): 6y6 or y6 must be divisible by 4 \u21d2 largest y = 9 (since 96 \u00f7 4 = 24). Then sum of digits = 5+x+7+9+8+5+6+9+6 = 55 + x. For divisibility by 9, 55 + x = 63 \u21d2 x = 8. Then -\u221a(2x + y) = -\u221a(16 + 9) = -\u221a25 = -5."
+  },
+  {
+    "id": 37,
+    "tag": "SSC CGL 10/06/2019 (Morning)",
+    "q": "If an 11-digit number 5y5884805x6 with x = y is divisible by 72, then find the value of \u221a(xy).",
+    "options": [
+      "7",
+      "\u221a7",
+      "3",
+      "2\u221a7"
+    ],
+    "ans": "7",
+    "sol": "Since x = y, \u221a(xy) = x. For divisibility by 72 (8 and 9): sum of digits = 5+x+5+8+8+4+8+0+5+x+6 = 49 + 2x. For 49 + 2x to be divisible by 9, x = 7 (since 49 + 14 = 63), and 576 is also divisible by 8. Thus \u221a(xy) = 7."
+  },
+  {
+    "id": 38,
+    "tag": "SSC CPO 11/11/2022 (Morning)",
+    "q": "If a 9-digit number 97x4562y8 is divisible by 88, where x and y are natural numbers, then what is the value of (x\u00b2 + y\u00b2) for the smallest value of y?",
+    "options": [
+      "80",
+      "64",
+      "68",
+      "76"
+    ],
+    "ans": "80",
+    "sol": "For 2y8 to be divisible by 8, natural number y \u2208 {0 (not natural), 4, 8}. Smallest natural value of y is 4 (248 \u00f7 8 = 31). By the rule of 11: (9+x+5+2+8) - (7+4+6+4) = 24 + x - 21 = 3 + x. For divisibility by 11, x = 8. Thus x\u00b2 + y\u00b2 = 8\u00b2 + 4\u00b2 = 64 + 16 = 80."
+  },
+  {
+    "id": 39,
+    "tag": "SSC CGL 16/08/2021 (Afternoon)",
+    "q": "If the nine-digit number 7p5964q28 is exactly divisible by 88, then what is the value of (p\u00b2 - q) for the largest value of q, where p and q are natural numbers?",
+    "options": [
+      "72",
+      "9",
+      "0",
+      "81"
+    ],
+    "ans": "72",
+    "sol": "For q28 to be divisible by 8, q can be 1, 3, 5, 7, 9. The largest value of q is 9 (928 \u00f7 8 = 116). By the rule of 11: (7+5+6+9+8) - (p+9+4+2) = 35 - (15 + p) = 20 - p. For divisibility by 11, 20 - p = 11 \u21d2 p = 9. Thus p\u00b2 - q = 9\u00b2 - 9 = 81 - 9 = 72."
+  },
+  {
+    "id": 40,
+    "tag": "",
+    "q": "If the nine-digit number 708x6y8z9 is divisible by 99, then what is the value of (x + y + z)?",
+    "options": [
+      "16",
+      "27",
+      "5",
+      "9"
+    ],
+    "ans": "16",
+    "sol": "For divisibility by 99 (9 and 11): sum of digits = 7+0+8+x+6+y+8+z+9 = 38 + (x+y+z). For divisibility by 9, x+y+z can be 7, 16, or 25. By the rule of 11: (7+8+6+8+9) - (0+x+y+z) = 38 - (x+y+z) must be a multiple of 11. For x+y+z = 16, 38 - 16 = 22 (divisible by 11). Thus x + y + z = 16."
+  },
+  {
+    "id": 41,
+    "tag": "SSC CHSL 19/04/2021 (Morning)",
+    "q": "The six-digit number 537xy5 is divisible by 125. How many such six-digit numbers are there?",
+    "options": [
+      "4",
+      "2",
+      "3",
+      "5"
+    ],
+    "ans": "4",
+    "sol": "A number is divisible by 125 if its last three digits are a multiple of 125 (i.e., 000, 125, 250, 375, 500, 625, 750, 875). Since the last digit is 5, xy5 can be 125, 375, 625, or 875. Thus there are 4 such numbers."
+  },
+  {
+    "id": 42,
+    "tag": "",
+    "q": "The 6-digit number 439xy5 is divisible by 125. How many such 6-digit numbers are there?",
+    "options": [
+      "4",
+      "5",
+      "2",
+      "3"
+    ],
+    "ans": "4",
+    "sol": "For 439xy5 to be divisible by 125, the last three digits xy5 must be divisible by 125. The 3-digit multiples of 125 ending in 5 are 125, 375, 625, and 875. Therefore, there are 4 such numbers."
+  },
+  {
+    "id": 43,
+    "tag": "SSC CGL 11/04/2022 (Evening)",
+    "q": "If the 7-digit number x8942y4 is divisible by 56, then what is the value of (x\u00b2 + y) for the largest value of y, where x and y are natural numbers?",
+    "options": [
+      "55",
+      "33",
+      "44",
+      "70"
+    ],
+    "ans": "55",
+    "sol": "Divisibility by 56 requires divisibility by 8 and 7. For 2y4 to be divisible by 8, y can be 2 or 6. Largest y = 6 (264 \u00f7 8 = 33). Then for x894264 to be divisible by 7: 264 - 894 + x = x - 630. Since 630 is divisible by 7, x must be a natural multiple of 7, so x = 7. Thus x\u00b2 + y = 7\u00b2 + 6 = 49 + 6 = 55."
+  },
+  {
+    "id": 44,
+    "tag": "SSC CGL 26/07/2023 (1st shift)",
+    "q": "'abba' is a 4-digit number divisible by 4 and a < b. How many such numbers are there?",
+    "options": [
+      "8",
+      "10",
+      "12",
+      "6"
+    ],
+    "ans": "8",
+    "sol": "Since 'abba' is a 4-digit number divisible by 4, 'a' must be even: a \u2208 {2, 4, 6, 8} and the 2-digit number 'ba' must be divisible by 4 with b > a. If a=2: b \u2208 {3, 5, 7, 9} (4 numbers: 32, 52, 72, 92). If a=4: b \u2208 {6, 8} (2 numbers: 64, 84). If a=6: b \u2208 {7, 9} (2 numbers: 76, 96). If a=8: no b > 8 makes b8 divisible by 4. Total = 4 + 2 + 2 = 8."
+  },
+  {
+    "id": 45,
+    "tag": "RRB NTPC UGL 14/08/2025 S-21",
+    "q": "The number 541096943 is divisible by which of the following?",
+    "options": [
+      "97",
+      "103",
+      "87",
+      "107"
+    ],
+    "ans": "97",
+    "sol": "541096943 \u00f7 97 = 5578319 (exact). Note that 541096943 is not divisible by 3 (so not 87), nor by 103 or 107."
+  },
+  {
+    "id": 46,
+    "tag": "RRB NTPC UGL 12/08/2025 S-1",
+    "q": "Which of the following numbers divides 86,16,16,843?",
+    "options": [
+      "43",
+      "36",
+      "50",
+      "47"
+    ],
+    "ans": "43",
+    "sol": "86,16,16,843 can be split as 86,00,00,000 + 16,16,800 + 43 = 43 \u00d7 2,00,00,000 + 43 \u00d7 37,600 + 43 \u00d7 1, which is clearly divisible by 43."
+  },
+  {
+    "id": 47,
+    "tag": "SSC CGL 01/12/2022 (4th Shift)",
+    "q": "If 750PQ is a 5-digit number divisible by 3, 7 and 11, then find the value of P + 2Q.",
+    "options": [
+      "17",
+      "15",
+      "18",
+      "16"
+    ],
+    "ans": "17",
+    "sol": "LCM(3, 7, 11) = 231. Dividing 75099 by 231 gives 75099 = 231 \u00d7 325 + 24, so the multiple is 75099 - 24 = 75075. Comparing with 750PQ gives P = 7 and Q = 5. Therefore, P + 2Q = 7 + 2(5) = 17."
+  },
+  {
+    "id": 48,
+    "tag": "SSC CGL 23/08/2021 (Morning)",
+    "q": "If the 5-digit number 593ab is divisible by 3, 7 and 11, then what is the value of (a\u00b2 - b\u00b2 + ab)?",
+    "options": [
+      "29",
+      "35",
+      "31",
+      "25"
+    ],
+    "ans": "29",
+    "sol": "LCM(3, 7, 11) = 231. Dividing 59399 by 231 gives remainder 32, so 59399 - 32 = 59367 is divisible by 231. Thus a = 6 and b = 7. Then a\u00b2 - b\u00b2 + ab = 36 - 49 + 42 = 29."
+  },
+  {
+    "id": 49,
+    "tag": "SSC CGL Tier II (16/11/2020)",
+    "q": "If the five-digit number 235xy is divisible by 3, 7 and 11, then what is the value of (3x - 4y)?",
+    "options": [
+      "10",
+      "8",
+      "9",
+      "5"
+    ],
+    "ans": "10",
+    "sol": "LCM(3, 7, 11) = 231. Since 231 \u00d7 102 = 23562, we have x = 6 and y = 2. Therefore, 3x - 4y = 3(6) - 4(2) = 18 - 8 = 10."
+  },
+  {
+    "id": 50,
+    "tag": "SSC CGL 23/08/2021 (Afternoon)",
+    "q": "If the 6-digit number 5z3x4y is divisible by 7, 11 and 13, then what is the value of (x + y - z)?",
+    "options": [
+      "4",
+      "5",
+      "6",
+      "3"
+    ],
+    "ans": "4",
+    "sol": "LCM(7, 11, 13) = 1001. A 6-digit number divisible by 1001 has the repeating form 'abcabc'. Comparing 5z3x4y with abcabc gives x = 5, z = 4, and y = 3 (forming 543543). Thus x + y - z = 5 + 3 - 4 = 4."
+  },
+  {
+    "id": 51,
+    "tag": "SSC CPO 09/12/2019 (Morning)",
+    "q": "If a 6-digit number 479xyz is exactly divisible by 7, 11 and 13, then find the value of (y + z) / x.",
+    "options": [
+      "4",
+      "11/9",
+      "13/7",
+      "7/13"
+    ],
+    "ans": "4",
+    "sol": "Since 7 \u00d7 11 \u00d7 13 = 1001, any 6-digit multiple of 1001 is of the form 'abcabc'. For 479xyz, we get x = 4, y = 7, z = 9. Therefore, (y + z) / x = (7 + 9) / 4 = 16 / 4 = 4."
+  },
+  {
+    "id": 52,
+    "tag": "SSC CHSL 16/03/2023 (3rd Shift)",
+    "q": "If the 4-digit number 48ab is divisible by 2, 5 and 7, then what is the value of (10a - b)?",
+    "options": [
+      "30",
+      "0",
+      "20",
+      "10"
+    ],
+    "ans": "30",
+    "sol": "LCM(2, 5, 7) = 70. Dividing 4800 by 70: 70 \u00d7 69 = 4830. Thus 48ab = 4830, giving a = 3 and b = 0. Hence, 10a - b = 10(3) - 0 = 30. (Note: source option (d) had a typo printing '3' instead of '30')."
+  },
+  {
+    "id": 53,
+    "tag": "SSC CGL 23/08/2021 (Morning)",
+    "q": "Which of the following numbers will always divide a six-digit number of the form xyxyxy (where 1 \u2264 x \u2264 9, 1 \u2264 y \u2264 9)?",
+    "options": [
+      "10101",
+      "1010",
+      "11011",
+      "11010"
+    ],
+    "ans": "10101",
+    "sol": "xyxyxy = xy \u00d7 10000 + xy \u00d7 100 + xy \u00d7 1 = xy \u00d7 10101. Therefore, it is always divisible by 10101."
+  },
+  {
+    "id": 54,
+    "tag": "",
+    "q": "A 6-digit number is formed by repeating a 3-digit number, for example 256256 or 678678. Any number of this form is always exactly divisible by:",
+    "options": [
+      "1001",
+      "7 only",
+      "13 only",
+      "11 only"
+    ],
+    "ans": "1001",
+    "sol": "abcabc = abc \u00d7 1000 + abc = abc \u00d7 1001. Since 1001 = 7 \u00d7 11 \u00d7 13, it is divisible by 7, 11, and 13, and thus always divisible by 1001."
+  },
+  {
+    "id": 55,
+    "tag": "SSC CGL 24/08/2021 (Shift 01)",
+    "q": "The sum of 3-digit numbers abc, cab and bca is NOT necessarily divisible by:",
+    "options": [
+      "31",
+      "a + b + c",
+      "37",
+      "3"
+    ],
+    "ans": "31",
+    "sol": "abc + cab + bca = 111(a + b + c) = 3 \u00d7 37 \u00d7 (a + b + c). Thus it is always divisible by 3, 37, and (a + b + c), but not necessarily by 31."
+  },
+  {
+    "id": 56,
+    "tag": "SSC PHASE IX 08/02/2022",
+    "q": "The sum of 3-digit numbers abc, bca and cab is always divisible by:",
+    "options": [
+      "37",
+      "35",
+      "41",
+      "31"
+    ],
+    "ans": "37",
+    "sol": "abc + bca + cab = 100(a+b+c) + 10(a+b+c) + 1(a+b+c) = 111(a + b + c) = 3 \u00d7 37 \u00d7 (a + b + c). Hence, it is always divisible by 37."
+  },
+  {
+    "id": 57,
+    "tag": "SSC SELECTION POST Phase-XII 2024",
+    "q": "Which of the following numbers will completely divide 4\u00b9\u00b2 + 4\u00b9\u00b3 + 4\u00b9\u2074 + 4\u00b9\u2075?",
+    "options": [
+      "17",
+      "7",
+      "11",
+      "3"
+    ],
+    "ans": "17",
+    "sol": "4\u00b9\u00b2 + 4\u00b9\u00b3 + 4\u00b9\u2074 + 4\u00b9\u2075 = 4\u00b9\u00b2(1 + 4 + 16 + 64) = 4\u00b9\u00b2 \u00d7 85 = 4\u00b9\u00b2 \u00d7 5 \u00d7 17, which is completely divisible by 17."
+  },
+  {
+    "id": 58,
+    "tag": "SSC SELECTION POST Phase-XII 2024",
+    "q": "By which of the following numbers is 6\u00b2\u2075 + 6\u00b2\u2076 + 6\u00b2\u2077 + 6\u00b2\u2078 divisible?",
+    "options": [
+      "259",
+      "254",
+      "256",
+      "255"
+    ],
+    "ans": "259",
+    "sol": "6\u00b2\u2075 + 6\u00b2\u2076 + 6\u00b2\u2077 + 6\u00b2\u2078 = 6\u00b2\u2075(1 + 6 + 36 + 216) = 6\u00b2\u2075 \u00d7 259. Therefore, it is divisible by 259."
+  },
+  {
+    "id": 59,
+    "tag": "SSC CGL MAINS 03/02/2022",
+    "q": "5\u2077\u00b9 + 5\u2077\u00b2 + 5\u2077\u00b3 + 5\u2077\u2074 + 5\u2077\u2075 is divisible by which of the following numbers?",
+    "options": [
+      "71",
+      "89",
+      "69",
+      "73"
+    ],
+    "ans": "71",
+    "sol": "5\u2077\u00b9(1 + 5 + 25 + 125 + 625) = 5\u2077\u00b9 \u00d7 781 = 5\u2077\u00b9 \u00d7 11 \u00d7 71. Thus, it is divisible by 71."
+  },
+  {
+    "id": 60,
+    "tag": "",
+    "q": "How many natural numbers from 1 to 500 are divisible by 7?",
+    "options": [
+      "71",
+      "70",
+      "73",
+      "72"
+    ],
+    "ans": "71",
+    "sol": "Number of multiples of 7 from 1 to 500 = \u230a500 / 7\u230b = 71."
+  },
+  {
+    "id": 61,
+    "tag": "SSC CHSL 2025",
+    "q": "How many numbers between 100 and 300 are divisible by 7?",
+    "options": [
+      "28",
+      "29",
+      "30",
+      "31"
+    ],
+    "ans": "28",
+    "sol": "Multiples of 7 up to 300 = \u230a300 / 7\u230b = 42. Multiples of 7 up to 100 = \u230a100 / 7\u230b = 14. Total between 100 and 300 = 42 - 14 = 28."
+  },
+  {
+    "id": 62,
+    "tag": "SSC CHSL 2024",
+    "q": "How many numbers are there strictly between 2000 and 2020 which are divisible by 8?",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "ans": "2",
+    "sol": "Strictly between 2000 and 2020 (i.e., from 2001 to 2019), the multiples of 8 are 2008 and 2016. Hence, there are 2 such numbers."
+  },
+  {
+    "id": 63,
+    "tag": "",
+    "q": "How many 3-digit numbers are divisible by 15?",
+    "options": [
+      "60",
+      "25",
+      "70",
+      "71"
+    ],
+    "ans": "60",
+    "sol": "3-digit numbers range from 100 to 999. Multiples of 15 up to 999 = \u230a999 / 15\u230b = 66. Multiples of 15 up to 99 = \u230a99 / 15\u230b = 6. Total 3-digit multiples = 66 - 6 = 60."
+  },
+  {
+    "id": 64,
+    "tag": "SSC CHSL 01/06/2022 (Shift-1)",
+    "q": "How many numbers between 100 and 1000 are divisible by 17?",
+    "options": [
+      "53",
+      "51",
+      "52",
+      "54"
+    ],
+    "ans": "53",
+    "sol": "Multiples of 17 up to 1000 = \u230a1000 / 17\u230b = 58. Multiples of 17 up to 100 = \u230a100 / 17\u230b = 5. Total between 100 and 1000 = 58 - 5 = 53."
+  },
+  {
+    "id": 65,
+    "tag": "CHSL 2019 19/10/2020 (Shift-01)",
+    "q": "How many numbers between 1000 and 5000 are exactly divisible by 225?",
+    "options": [
+      "18",
+      "16",
+      "19",
+      "12"
+    ],
+    "ans": "18",
+    "sol": "Multiples of 225 up to 5000 = \u230a5000 / 225\u230b = 22. Multiples of 225 up to 1000 = \u230a1000 / 225\u230b = 4. Total = 22 - 4 = 18."
+  },
+  {
+    "id": 66,
+    "tag": "",
+    "q": "How many natural numbers from 1 to 1000 are divisible by both 4 and 5?",
+    "options": [
+      "50",
+      "64",
+      "52",
+      "61"
+    ],
+    "ans": "50",
+    "sol": "Numbers divisible by both 4 and 5 are divisible by LCM(4, 5) = 20. Count from 1 to 1000 = 1000 / 20 = 50."
+  },
+  {
+    "id": 67,
+    "tag": "SSC CHSL 08/07/2024",
+    "q": "How many numbers are there between 10 and 64 which are divisible by 2, 3 and 4?",
+    "options": [
+      "5",
+      "3",
+      "9",
+      "4"
+    ],
+    "ans": "5",
+    "sol": "LCM(2, 3, 4) = 12. The multiples of 12 between 10 and 64 are 12, 24, 36, 48, and 60, which gives 5 numbers."
+  },
+  {
+    "id": 68,
+    "tag": "SSC CPO 25/11/2020 (Shift-02)",
+    "q": "How many numbers between 300 and 700 are divisible by 5, 6 and 8?",
+    "options": [
+      "3",
+      "20",
+      "2",
+      "5"
+    ],
+    "ans": "3",
+    "sol": "LCM(5, 6, 8) = 120. The multiples of 120 between 300 and 700 are 360, 480, and 600, which gives 3 numbers."
+  },
+  {
+    "id": 69,
+    "tag": "",
+    "q": "How many positive integers are less than 190 which are divisible by 7 but not by 11?",
+    "options": [
+      "25",
+      "24",
+      "26",
+      "23"
+    ],
+    "ans": "25",
+    "sol": "Positive multiples of 7 less than 190 = \u230a189 / 7\u230b = 27. Multiples of 7 \u00d7 11 = 77 less than 190 = \u230a189 / 77\u230b = 2 (namely 77 and 154). Remaining count = 27 - 2 = 25."
+  },
+  {
+    "id": 70,
+    "tag": "",
+    "q": "How many natural numbers less than 111 are divisible by 3 but not by 6?",
+    "options": [
+      "18",
+      "20",
+      "17",
+      "19"
+    ],
+    "ans": "18",
+    "sol": "Natural numbers less than 111 (1 to 110) divisible by 3 = \u230a110 / 3\u230b = 36. Those also divisible by 6 = \u230a110 / 6\u230b = 18. Numbers divisible by 3 but not 6 = 36 - 18 = 18."
+  },
+  {
+    "id": 71,
+    "tag": "SSC CHSL Tier-I Exam 2022",
+    "q": "How many numbers are there between 501 and 701 which are divisible by 10 but are not divisible by 3?",
+    "options": [
+      "13",
+      "20",
+      "14",
+      "15"
+    ],
+    "ans": "13",
+    "sol": "Multiples of 10 between 501 and 701 (510, 520, ..., 700) = 20 numbers. Multiples of LCM(10, 3) = 30 in this range (510, 540, 570, 600, 630, 660, 690) = 7 numbers. Required count = 20 - 7 = 13."
+  },
+  {
+    "id": 72,
+    "tag": "SSC CHSL Tier-I Exam 2022",
+    "q": "How many numbers are there between 201 and 401 which are divisible by 5 but not by 4?",
+    "options": [
+      "30",
+      "20",
+      "40",
+      "45"
+    ],
+    "ans": "30",
+    "sol": "Multiples of 5 between 201 and 401 (205, 210, ..., 400) = 40 numbers. Multiples of LCM(5, 4) = 20 in this range (220, 240, ..., 400) = 10 numbers. Required count = 40 - 10 = 30."
+  },
+  {
+    "id": 73,
+    "tag": "",
+    "q": "How many natural numbers from 100 to 300 (inclusive) are divisible by 3 or 8?",
+    "options": [
+      "84",
+      "62",
+      "74",
+      "54"
+    ],
+    "ans": "84",
+    "sol": "In [100, 300]: Multiples of 3 = (300 - 102)/3 + 1 = 67. Multiples of 8 = (296 - 104)/8 + 1 = 25. Multiples of LCM(3, 8) = 24 are (288 - 120)/24 + 1 = 8. By Inclusion-Exclusion: 67 + 25 - 8 = 84."
+  },
+  {
+    "id": 74,
+    "tag": "",
+    "q": "How many natural numbers from 500 to 750 (including both) are divisible by 3 or 11?",
+    "options": [
+      "100",
+      "149",
+      "151",
+      "150"
+    ],
+    "ans": "100",
+    "sol": "In [500, 750]: Multiples of 3 = (750 - 501)/3 + 1 = 84. Multiples of 11 = (748 - 506)/11 + 1 = 23. Multiples of 33 = (726 - 528)/33 + 1 = 7. Total = 84 + 23 - 7 = 100."
+  },
+  {
+    "id": 75,
+    "tag": "",
+    "q": "How many integers between 299 and 501 are divisible by 4 or 10?",
+    "options": [
+      "61",
+      "62",
+      "63",
+      "64"
+    ],
+    "ans": "61",
+    "sol": "Integers between 299 and 501 are from 300 to 500. Multiples of 4 = (500 - 300)/4 + 1 = 51. Multiples of 10 = (500 - 300)/10 + 1 = 21. Multiples of LCM(4, 10) = 20 are (500 - 300)/20 + 1 = 11. Total = 51 + 21 - 11 = 61."
+  },
+  {
+    "id": 76,
+    "tag": "",
+    "q": "How many natural numbers from 1 to 900 are divisible by 2 or 3 or 5?",
+    "options": [
+      "660",
+      "634",
+      "636",
+      "643"
+    ],
+    "ans": "660",
+    "sol": "Numbers NOT divisible by 2, 3, or 5 up to 900 = 900 \u00d7 (1 - 1/2) \u00d7 (1 - 1/3) \u00d7 (1 - 1/5) = 900 \u00d7 (1/2) \u00d7 (2/3) \u00d7 (4/5) = 240. Therefore, numbers divisible by 2, 3, or 5 = 900 - 240 = 660."
+  },
+  {
+    "id": 77,
+    "tag": "",
+    "q": "How many natural numbers from 1 to 30 are divisible by 2 or 3, but not by 5?",
+    "options": [
+      "16",
+      "13",
+      "14",
+      "15"
+    ],
+    "ans": "16",
+    "sol": "From 1 to 30, multiples of 2 or 3 = 15 + 10 - 5 = 20. Among these, multiples of 5 are multiples of 10 (10, 20, 30) and multiples of 15 (15, 30), whose union is {10, 15, 20, 30} (4 numbers). Thus, 20 - 4 = 16."
+  },
+  {
+    "id": 78,
+    "tag": "",
+    "q": "How many natural numbers up to 300 are divisible by 5 or 7, but not by 35?",
+    "options": [
+      "86",
+      "85",
+      "84",
+      "87"
+    ],
+    "ans": "86",
+    "sol": "Up to 300: multiples of 5 = 60, multiples of 7 = 42, multiples of 35 = 8. Numbers divisible by 5 or 7 = 60 + 42 - 8 = 94. Removing multiples of 35 gives 94 - 8 = 86."
+  },
+  {
+    "id": 79,
+    "tag": "",
+    "q": "How many natural numbers below 660 are divisible by both 5 and 11, but not divisible by 3?",
+    "options": [
+      "8",
+      "9",
+      "10",
+      "11"
+    ],
+    "ans": "8",
+    "sol": "Numbers divisible by both 5 and 11 are multiples of 55. Below 660 (1 to 659), there are \u230a659 / 55\u230b = 11 multiples of 55 (55\u00d71 to 55\u00d711). Excluding those where the multiplier is a multiple of 3 (3, 6, 9 \u2192 3 numbers), we get 11 - 3 = 8."
+  },
+  {
+    "id": 80,
+    "tag": "",
+    "q": "How many 4-digit numbers are divisible by both 30 and 35, but not by 140?",
+    "options": [
+      "22",
+      "21",
+      "44",
+      "43"
+    ],
+    "ans": "22",
+    "sol": "LCM(30, 35) = 210. 4-digit multiples of 210 (from 1050 = 210\u00d75 to 9870 = 210\u00d747) = 47 - 5 + 1 = 43 numbers. A multiple 210k is divisible by 140 when k is even. Among k \u2208 [5, 47], there are 21 even values and 22 odd values. Thus, 22 numbers are not divisible by 140."
+  },
+  {
+    "id": 81,
+    "tag": "SSC CPO Exam 2019",
+    "q": "How many natural numbers less than 1000 are divisible by 5 or 7, but not by 35?",
+    "options": [
+      "285",
+      "341",
+      "313",
+      "243"
+    ],
+    "ans": "285",
+    "sol": "From 1 to 999: multiples of 5 = \u230a999 / 5\u230b = 199; multiples of 7 = \u230a999 / 7\u230b = 142; multiples of 35 = \u230a999 / 35\u230b = 28. Required count = 199 + 142 - 2(28) = 341 - 56 = 285."
+  },
+  {
+    "id": 82,
+    "tag": "SSC CPO Exam 2019",
+    "q": "How many natural numbers up to 2001 are divisible by 3 or 4, but not by 5?",
+    "options": [
+      "801",
+      "768",
+      "934",
+      "1067"
+    ],
+    "ans": "801",
+    "sol": "Up to 2001: n(3) = 667, n(4) = 500, n(12) = 166 \u21d2 n(3 \u222a 4) = 667 + 500 - 166 = 1001. Multiples of 5 in (3 \u222a 4): n(15) = 133, n(20) = 100, n(60) = 33 \u21d2 133 + 100 - 33 = 200. Required count = 1001 - 200 = 801."
+  },
+  {
+    "id": 83,
+    "tag": "",
+    "q": "How many natural numbers from 1 to 40 are neither divisible by 3 nor by 4?",
+    "options": [
+      "20",
+      "19",
+      "22",
+      "21"
+    ],
+    "ans": "20",
+    "sol": "From 1 to 40: multiples of 3 = 13, multiples of 4 = 10, multiples of 12 = 3. Divisible by 3 or 4 = 13 + 10 - 3 = 20. Neither divisible by 3 nor 4 = 40 - 20 = 20."
+  },
+  {
+    "id": 84,
+    "tag": "",
+    "q": "How many natural numbers from 1 to 101 are neither divisible by 7 nor by 5?",
+    "options": [
+      "69",
+      "67",
+      "68",
+      "66"
+    ],
+    "ans": "69",
+    "sol": "From 1 to 101: multiples of 5 = 20, multiples of 7 = 14, multiples of 35 = 2. Divisible by 5 or 7 = 20 + 14 - 2 = 32. Neither divisible by 7 nor 5 = 101 - 32 = 69."
+  },
+  {
+    "id": 85,
+    "tag": "",
+    "q": "How many integers from 1 to 101 (inclusive) are divisible by neither 5 nor 7?",
+    "options": [
+      "69",
+      "67",
+      "68",
+      "66"
+    ],
+    "ans": "69",
+    "sol": "From 1 to 101: n(5) = 20, n(7) = 14, n(35) = 2. Numbers divisible by 5 or 7 = 20 + 14 - 2 = 32. Remaining numbers = 101 - 32 = 69."
+  },
+  {
+    "id": 86,
+    "tag": "SSC CGL Tier-I Exam 2017",
+    "q": "How many numbers are there from 700 to 950 (including both) which are neither divisible by 3 nor by 7?",
+    "options": [
+      "144",
+      "142",
+      "143",
+      "145"
+    ],
+    "ans": "144",
+    "sol": "Total numbers from 700 to 950 = 251. Multiples of 3 = (948 - 702)/3 + 1 = 83. Multiples of 7 = (945 - 700)/7 + 1 = 36. Multiples of 21 = (945 - 714)/21 + 1 = 12. Neither = 251 - (83 + 36 - 12) = 251 - 107 = 144."
+  },
+  {
+    "id": 87,
+    "tag": "",
+    "q": "How many numbers are there from 1 to 24 (including both) which are neither divisible by 4 nor by 6?",
+    "options": [
+      "16",
+      "15",
+      "17",
+      "18"
+    ],
+    "ans": "16",
+    "sol": "From 1 to 24: multiples of 4 = 6, multiples of 6 = 4, multiples of LCM(4, 6) = 12 are 2. Divisible by 4 or 6 = 6 + 4 - 2 = 8. Neither = 24 - 8 = 16."
+  },
+  {
+    "id": 88,
+    "tag": "",
+    "q": "How many numbers are there from 1 to 1000 (both inclusive) which are neither divisible by 2, 4 nor by 5?",
+    "options": [
+      "400",
+      "300",
+      "450",
+      "350"
+    ],
+    "ans": "400",
+    "sol": "Any number not divisible by 2 is automatically not divisible by 4. Count of numbers up to 1000 not divisible by 2 or 5 = 1000 \u00d7 (1 - 1/2) \u00d7 (1 - 1/5) = 1000 \u00d7 (1/2) \u00d7 (4/5) = 400."
+  },
+  {
+    "id": 89,
+    "tag": "SSC CGL 04/03/2020 (Shift-03)",
+    "q": "How many numbers are there from 200 to 800 which are neither divisible by 5 nor by 7?",
+    "options": [
+      "411",
+      "407",
+      "413",
+      "410"
+    ],
+    "ans": "411",
+    "sol": "Up to 800, numbers not divisible by 5 or 7: 800 - (160 + 114 - 22) = 548. Up to 199 (or 200): 200 - (40 + 28 - 5) = 137. Required count = 548 - 137 = 411."
+  }
+];
+
+    // Application State
+    let questions = [];
+    let currentIndex = 0;
+    let totalSeconds = 89 * 60;
+    let remainingSeconds = 89 * 60;
+    let timerInterval = null;
+    let isPaused = false;
+    let isSubmitted = false;
+    let activeResultFilter = 'all'; // 'all' | 'incorrect' | 'unattempted'
+
+    // Question states:
+    // visited: boolean
+    // selectedOption: string | null
+    // markedForReview: boolean
+    let userState = [];
+
+    function shuffleArray(arr) {
+      const copy = arr.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = copy[i];
+        copy[i] = copy[j];
+        copy[j] = temp;
+      }
+      return copy;
+    }
+
+    function initTestState() {
+      // Keep questions in exact order 1 to 89, but randomize the 4 options on each refresh/init
+      questions = RAW_QUESTIONS.map(q => ({
+        id: q.id,
+        tag: q.tag,
+        q: q.q,
+        options: shuffleArray(q.options),
+        ans: q.ans,
+        sol: q.sol
+      }));
+
+      userState = questions.map((_, idx) => ({
+        visited: idx === 0,
+        selectedOption: null,
+        markedForReview: false
+      }));
+
+      currentIndex = 0;
+      totalSeconds = questions.length * 60; // 89 minutes
+      remainingSeconds = totalSeconds;
+      isPaused = false;
+      isSubmitted = false;
+      activeResultFilter = 'all';
+      updateTimerUI();
+    }
+
+    function getQuestionStatus(idx) {
+      const st = userState[idx];
+      if (!st.visited) return 'not-visited';
+      if (st.selectedOption !== null && st.markedForReview) return 'ans-review';
+      if (st.selectedOption === null && st.markedForReview) return 'review';
+      if (st.selectedOption !== null) return 'answered';
+      return 'not-answered';
+    }
+
+    function renderPalette() {
+      const grid = document.getElementById('palette-grid');
+      grid.innerHTML = '';
+
+      let cntAns = 0;
+      let cntNotAns = 0;
+      let cntNotVis = 0;
+      let cntRev = 0;
+      let cntAnsRev = 0;
+
+      questions.forEach((q, idx) => {
+        const status = getQuestionStatus(idx);
+        if (status === 'answered') cntAns++;
+        else if (status === 'not-answered') cntNotAns++;
+        else if (status === 'not-visited') cntNotVis++;
+        else if (status === 'review') cntRev++;
+        else if (status === 'ans-review') cntAnsRev++;
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = `pal-btn st-${status}` + (idx === currentIndex ? ' current-q' : '');
+        btn.textContent = q.id;
+        btn.addEventListener('click', () => {
+          goToQuestion(idx);
+        });
+        grid.appendChild(btn);
+      });
+
+      document.getElementById('cnt-answered').textContent = cntAns;
+      document.getElementById('cnt-not-answered').textContent = cntNotAns;
+      document.getElementById('cnt-not-visited').textContent = cntNotVis;
+      document.getElementById('cnt-review').textContent = cntRev;
+      document.getElementById('cnt-ans-review').textContent = cntAnsRev;
+    }
+
+    function renderCurrentQuestion() {
+      const qObj = questions[currentIndex];
+      const st = userState[currentIndex];
+      st.visited = true;
+
+      document.getElementById('q-number-heading').textContent = `Question No. ${qObj.id}`;
+      document.getElementById('q-statement-text').textContent = qObj.q;
+
+      const tagEl = document.getElementById('q-exam-tag');
+      if (qObj.tag && qObj.tag.trim() !== '') {
+        tagEl.textContent = qObj.tag;
+        tagEl.style.display = 'inline-block';
+      } else {
+        tagEl.textContent = '';
+        tagEl.style.display = 'none';
+      }
+
+      const optsContainer = document.getElementById('options-container');
+      optsContainer.innerHTML = '';
+
+      qObj.options.forEach((optVal, optIdx) => {
+        const row = document.createElement('label');
+        row.className = 'option-row';
+
+        const radio = document.createElement('input');
+        radio.type = 'radio';
+        radio.name = 'mcq-option';
+        radio.value = optVal;
+        radio.checked = (st.selectedOption === optVal);
+
+        radio.addEventListener('change', () => {
+          userState[currentIndex].selectedOption = optVal;
+          renderPalette();
+        });
+
+        const span = document.createElement('span');
+        span.className = 'opt-text';
+        span.textContent = `(${String.fromCharCode(65 + optIdx)}) ${optVal}`;
+
+        row.appendChild(radio);
+        row.appendChild(span);
+        optsContainer.appendChild(row);
+      });
+
+      document.getElementById('btn-prev').disabled = (currentIndex === 0);
+      document.getElementById('btn-next').disabled = (currentIndex === questions.length - 1);
+
+      renderPalette();
+
+      // Ensure current question button in palette is scrolled into view smoothly
+      const paletteGrid = document.getElementById('palette-grid');
+      const activeBtn = paletteGrid.children[currentIndex];
+      if (activeBtn) {
+        activeBtn.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
+    }
+
+    function goToQuestion(idx) {
+      if (idx < 0 || idx >= questions.length) return;
+      currentIndex = idx;
+      userState[currentIndex].visited = true;
+      renderCurrentQuestion();
+    }
+
+    function updateTimerUI() {
+      const mins = Math.floor(remainingSeconds / 60);
+      const secs = remainingSeconds % 60;
+      const formatted = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      const timerEl = document.getElementById('timer-display');
+      timerEl.textContent = `Time Left: ${formatted}`;
+      if (remainingSeconds <= 300) {
+        timerEl.classList.add('warning');
+      } else {
+        timerEl.classList.remove('warning');
+      }
+    }
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (isPaused || isSubmitted) return;
+        remainingSeconds--;
+        updateTimerUI();
+        if (remainingSeconds <= 0) {
+          remainingSeconds = 0;
+          updateTimerUI();
+          clearInterval(timerInterval);
+          finalizeSubmission();
+        }
+      }, 1000);
+    }
+
+    function enterFullscreenSafe() {
+      const elem = document.documentElement;
+      try {
+        if (!document.fullscreenElement) {
+          if (elem.requestFullscreen) {
+            elem.requestFullscreen().catch(() => {});
+          } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+          }
+        }
+      } catch (e) {}
+    }
+
+    function exitFullscreenSafe() {
+      try {
+        if (document.fullscreenElement) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen().catch(() => {});
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          }
+        }
+      } catch (e) {}
+    }
+
+    function updateFullscreenButtonLabel() {
+      const btn = document.getElementById('btn-exit-fullscreen');
+      if (document.fullscreenElement) {
+        btn.textContent = 'Exit Fullscreen';
+      } else {
+        btn.textContent = 'Enter Fullscreen';
+      }
+    }
+
+    document.addEventListener('fullscreenchange', updateFullscreenButtonLabel);
+
+    function switchScreen(screenId) {
+      document.querySelectorAll('.view-screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(screenId).classList.add('active');
+    }
+
+    function finalizeSubmission() {
+      if (isSubmitted) return;
+      isSubmitted = true;
+      if (timerInterval) clearInterval(timerInterval);
+      document.getElementById('submit-modal').classList.remove('active');
+      document.getElementById('pause-modal').classList.remove('active');
+      exitFullscreenSafe();
+
+      let correctCount = 0;
+      let incorrectCount = 0;
+      let unattemptedCount = 0;
+
+      questions.forEach((q, idx) => {
+        const sel = userState[idx].selectedOption;
+        if (sel === null) {
+          unattemptedCount++;
+        } else if (sel === q.ans) {
+          correctCount++;
+        } else {
+          incorrectCount++;
+        }
+      });
+
+      const attemptedCount = correctCount + incorrectCount;
+      const totalScore = (correctCount * 1.0) - (incorrectCount * 0.25);
+      const accuracy = attemptedCount > 0 ? ((correctCount / attemptedCount) * 100).toFixed(1) : '0.0';
+
+      const elapsed = totalSeconds - remainingSeconds;
+      const elMins = Math.floor(elapsed / 60);
+      const elSecs = elapsed % 60;
+
+      document.getElementById('res-score').textContent = `${totalScore.toFixed(2)} / ${questions.length}`;
+      document.getElementById('res-attempted').textContent = `${attemptedCount} / ${questions.length}`;
+      document.getElementById('res-correct').textContent = `${correctCount}`;
+      document.getElementById('res-incorrect').textContent = `${incorrectCount}`;
+      document.getElementById('res-unattempted').textContent = `${unattemptedCount}`;
+      document.getElementById('res-accuracy').textContent = `${accuracy}%`;
+      document.getElementById('res-time-taken').textContent = `Time Taken: ${elMins}m ${elSecs}s`;
+
+      renderSolutionsList();
+      switchScreen('result-screen');
+    }
+
+    function renderSolutionsList() {
+      const container = document.getElementById('solutions-container');
+      container.innerHTML = '';
+
+      // Provide solution/answer ONLY for incorrect & un-attempted questions as strictly instructed
+      const filtered = [];
+      questions.forEach((q, idx) => {
+        const sel = userState[idx].selectedOption;
+        const isCorrect = (sel !== null && sel === q.ans);
+        if (isCorrect) return; // Strictly exclude correct questions from solutions
+
+        const itemType = sel === null ? 'unattempted' : 'incorrect';
+        if (activeResultFilter === 'incorrect' && itemType !== 'incorrect') return;
+        if (activeResultFilter === 'unattempted' && itemType !== 'unattempted') return;
+
+        filtered.push({ q, sel, itemType });
+      });
+
+      if (filtered.length === 0) {
+        const emptyDiv = document.createElement('div');
+        emptyDiv.className = 'sol-card';
+        emptyDiv.style.textAlign = 'center';
+        emptyDiv.style.color = '#475569';
+        emptyDiv.textContent = 'No questions found in this category.';
+        container.appendChild(emptyDiv);
+        return;
+      }
+
+      filtered.forEach(({ q, sel, itemType }) => {
+        const card = document.createElement('div');
+        card.className = 'sol-card';
+
+        const head = document.createElement('div');
+        head.className = 'sol-card-head';
+
+        const leftTitle = document.createElement('div');
+        leftTitle.innerHTML = `<span class="sol-q-num">Question ${q.id}</span>` +
+          (q.tag ? ` <span class="q-exam-tag" style="margin-left:8px;">${q.tag}</span>` : '');
+
+        const pill = document.createElement('span');
+        pill.className = 'status-pill ' + (itemType === 'incorrect' ? 'pill-incorrect' : 'pill-unattempted');
+        pill.textContent = itemType === 'incorrect' ? 'Incorrect (-0.25)' : 'Un-attempted (0)';
+
+        head.appendChild(leftTitle);
+        head.appendChild(pill);
+
+        const qText = document.createElement('div');
+        qText.className = 'sol-q-text';
+        qText.textContent = q.q;
+
+        const ansRow = document.createElement('div');
+        ansRow.className = 'sol-ans-row';
+        ansRow.innerHTML = `
+          <div><strong>Your Answer:</strong> <span style="color: ${itemType === 'incorrect' ? '#dc2626' : '#b45309'}; font-weight: 600;">${sel !== null ? sel : 'Not Attempted'}</span></div>
+          <div><strong>Correct Answer:</strong> <span style="color: #16a34a; font-weight: 700;">${q.ans}</span></div>
+        `;
+
+        const exp = document.createElement('div');
+        exp.className = 'sol-explanation';
+        exp.innerHTML = `<strong>Solution:</strong> ${q.sol}`;
+
+        card.appendChild(head);
+        card.appendChild(qText);
+        card.appendChild(ansRow);
+        card.appendChild(exp);
+
+        container.appendChild(card);
+      });
+    }
+
+    // Wire Event Listeners
+    window.addEventListener('DOMContentLoaded', () => {
+      initTestState();
+
+      const agreeCheckbox = document.getElementById('agree-checkbox');
+      const beginBtn = document.getElementById('btn-begin-test');
+
+      agreeCheckbox.addEventListener('change', () => {
+        beginBtn.disabled = !agreeCheckbox.checked;
+      });
+
+      beginBtn.addEventListener('click', () => {
+        if (!agreeCheckbox.checked) return;
+        enterFullscreenSafe();
+        switchScreen('exam-screen');
+        renderCurrentQuestion();
+        startTimer();
+      });
+
+      document.getElementById('btn-prev').addEventListener('click', () => {
+        if (currentIndex > 0) {
+          goToQuestion(currentIndex - 1);
+        }
+      });
+
+      document.getElementById('btn-next').addEventListener('click', () => {
+        if (currentIndex < questions.length - 1) {
+          goToQuestion(currentIndex + 1);
+        }
+      });
+
+      document.getElementById('btn-clear').addEventListener('click', () => {
+        userState[currentIndex].selectedOption = null;
+        userState[currentIndex].markedForReview = false;
+        renderCurrentQuestion();
+      });
+
+      document.getElementById('btn-mark-next').addEventListener('click', () => {
+        userState[currentIndex].markedForReview = true;
+        if (currentIndex < questions.length - 1) {
+          goToQuestion(currentIndex + 1);
+        } else {
+          renderCurrentQuestion();
+        }
+      });
+
+      document.getElementById('btn-pause-test').addEventListener('click', () => {
+        isPaused = true;
+        document.getElementById('pause-modal').classList.add('active');
+      });
+
+      document.getElementById('btn-resume-test').addEventListener('click', () => {
+        isPaused = false;
+        document.getElementById('pause-modal').classList.remove('active');
+      });
+
+      document.getElementById('btn-exit-fullscreen').addEventListener('click', () => {
+        if (document.fullscreenElement) {
+          exitFullscreenSafe();
+        } else {
+          enterFullscreenSafe();
+        }
+      });
+
+      document.getElementById('btn-submit-open').addEventListener('click', () => {
+        let cntAns = 0, cntNotAns = 0, cntNotVis = 0, cntRev = 0, cntAnsRev = 0;
+        questions.forEach((_, idx) => {
+          const st = getQuestionStatus(idx);
+          if (st === 'answered') cntAns++;
+          else if (st === 'not-answered') cntNotAns++;
+          else if (st === 'not-visited') cntNotVis++;
+          else if (st === 'review') cntRev++;
+          else if (st === 'ans-review') cntAnsRev++;
+        });
+        document.getElementById('mod-total').textContent = questions.length;
+        document.getElementById('mod-answered').textContent = cntAns;
+        document.getElementById('mod-not-answered').textContent = cntNotAns;
+        document.getElementById('mod-review').textContent = cntRev;
+        document.getElementById('mod-ans-review').textContent = cntAnsRev;
+        document.getElementById('mod-not-visited').textContent = cntNotVis;
+        document.getElementById('submit-modal').classList.add('active');
+      });
+
+      document.getElementById('btn-cancel-submit').addEventListener('click', () => {
+        document.getElementById('submit-modal').classList.remove('active');
+      });
+
+      document.getElementById('btn-confirm-submit').addEventListener('click', () => {
+        finalizeSubmission();
+      });
+
+      document.getElementById('flt-all-wrong-unatt').addEventListener('click', (e) => {
+        activeResultFilter = 'all';
+        document.querySelectorAll('.filter-tab-btn').forEach(b => b.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+        renderSolutionsList();
+      });
+
+      document.getElementById('flt-incorrect-only').addEventListener('click', (e) => {
+        activeResultFilter = 'incorrect';
+        document.querySelectorAll('.filter-tab-btn').forEach(b => b.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+        renderSolutionsList();
+      });
+
+      document.getElementById('flt-unattempted-only').addEventListener('click', (e) => {
+        activeResultFilter = 'unattempted';
+        document.querySelectorAll('.filter-tab-btn').forEach(b => b.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+        renderSolutionsList();
+      });
+
+      document.getElementById('btn-retake').addEventListener('click', () => {
+        initTestState();
+        agreeCheckbox.checked = false;
+        beginBtn.disabled = true;
+        switchScreen('intro-screen');
+      });
+    });
+  </script>
+</body>
+</html>
