@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profit &amp; Loss — 6 Mock Tests Dashboard (TCS iON / Eduquity Interface)</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f4f6f9;
+      color: #1e293b;
+    }
+    /* TCS iON / Eduquity Authentic Palette Badges */
+    .status-not-visited {
+      background-color: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      border-radius: 4px;
+    }
+    .status-not-answered {
+      background-color: #dc2626;
+      border: 1px solid #b91c1c;
+      color: #ffffff;
+      border-radius: 10px 10px 2px 2px;
+    }
+    .status-answered {
+      background-color: #16a34a;
+      border: 1px solid #15803d;
+      color: #ffffff;
+      border-radius: 2px 2px 10px 10px;
+    }
+    .status-review {
+      background-color: #7c3aed;
+      border: 1px solid #6d28d9;
+      color: #ffffff;
+      border-radius: 50%;
+    }
+    .status-ans-review {
+      background-color: #7c3aed;
+      border: 1px solid #6d28d9;
+      color: #ffffff;
+      border-radius: 50%;
+      position: relative;
+    }
+    .status-ans-review::after {
+      content: '';
+      position: absolute;
+      bottom: 1px;
+      right: 1px;
+      width: 9px;
+      height: 9px;
+      background-color: #22c55e;
+      border: 1.5px solid #ffffff;
+      border-radius: 50%;
+    }
+    .palette-btn-active {
+      outline: 2.5px solid #0284c7;
+      outline-offset: 1px;
+      font-weight: 700;
+    }
+    /* Custom thin scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94a3b8;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #64748b;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- ==================== VIEW 1: MAIN DASHBOARD ==================== -->
+  <div id="view-dashboard" class="flex-1 flex flex-col">
+    <!-- Top Official Header -->
+    <header class="bg-[#1e40af] text-white border-b border-blue-900 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded bg-white text-[#1e40af] flex items-center justify-center font-bold text-lg shadow-inner">
+            P&amp;L
+          </div>
+          <div>
+            <h1 class="text-base sm:text-lg font-bold tracking-tight">SSC / Railway CBT Examination Portal</h1>
+            <p class="text-xs text-blue-100">Profit &amp; Loss Complete Practice Suite • 156 Verified Questions • 6 Mock Tests</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 text-xs bg-blue-800/80 px-3 py-1.5 rounded border border-blue-700">
+          <span class="font-medium">Marking: <strong class="text-emerald-300">+2.0</strong> / <strong class="text-rose-300">-0.5</strong></span>
+          <span class="text-blue-300">|</span>
+          <span>Duration: <strong>16 Mins / Mock</strong></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 flex-1">
+      <!-- Summary Strip -->
+      <div class="bg-white border border-slate-200 rounded-lg p-4 mb-6 shadow-sm flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 class="text-base font-bold text-slate-800">Select a Mock Test to Begin</h2>
+          <p class="text-xs text-slate-600 mt-0.5">
+            All 156 Profit &amp; Loss problems are organized into 6 full-length sectional mock tests of 26 questions each. Options are randomized on every attempt while preserving question order.
+          </p>
+        </div>
+        <div class="flex items-center gap-3">
+          <button id="btn-ShuffleOptionsNow" class="text-xs font-semibold px-3 py-2 rounded border border-slate-300 bg-slate-50 hover:bg-slate-100 text-slate-700 transition">
+            Re-Shuffle All Options
+          </button>
+          <button id="btn-ResetAllProgress" class="text-xs font-semibold px-3 py-2 rounded border border-rose-200 bg-rose-50 hover:bg-rose-100 text-rose-700 transition">
+            Reset Saved Scores
+          </button>
+        </div>
+      </div>
+
+      <!-- 6 Mock Tests Grid -->
+      <div id="mock-cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Populated dynamically via JS -->
+      </div>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-3 text-center text-xs text-slate-500">
+      TCS iON / Eduquity Standard Light Examination Interface • 100% Fact-Checked &amp; Verified Solutions
+    </footer>
+  </div>
+
+  <!-- ==================== VIEW 2: INTRODUCTORY INSTRUCTIONS SCREEN ==================== -->
+  <div id="view-instructions" class="hidden min-h-screen flex flex-col bg-white">
+    <!-- Top Bar -->
+    <header class="bg-[#1e40af] text-white px-4 sm:px-6 py-3 flex items-center justify-between border-b border-blue-900">
+      <div>
+        <h1 id="inst-mock-title" class="text-base sm:text-lg font-bold">Mock Test 1 — Profit and Loss</h1>
+        <p class="text-xs text-blue-100">General Instructions &amp; Examination Guidelines</p>
+      </div>
+      <button id="btn-BackToDashboardFromInst" class="text-xs bg-white/15 hover:bg-white/25 text-white font-semibold px-3 py-1.5 rounded border border-white/30 transition">
+        ← Back to Dashboard
+      </button>
+    </header>
+
+    <!-- Scrollable Instructions Body -->
+    <div class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-6 overflow-y-auto">
+      <div class="bg-slate-50 border border-slate-200 rounded-lg p-5 mb-5">
+        <h2 class="text-sm font-bold text-slate-800 uppercase tracking-wider border-b border-slate-200 pb-2 mb-3">
+          Test Overview &amp; Marking Scheme
+        </h2>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+          <div class="bg-white p-3 rounded border border-slate-200">
+            <span class="text-slate-500 block">Total Questions</span>
+            <strong class="text-base text-slate-800">26 MCQs</strong>
+          </div>
+          <div class="bg-white p-3 rounded border border-slate-200">
+            <span class="text-slate-500 block">Maximum Marks</span>
+            <strong class="text-base text-slate-800">52.0 Marks</strong>
+          </div>
+          <div class="bg-white p-3 rounded border border-slate-200">
+            <span class="text-slate-500 block">Time Duration</span>
+            <strong class="text-base text-blue-700">16 Minutes</strong>
+          </div>
+          <div class="bg-white p-3 rounded border border-slate-200">
+            <span class="text-slate-500 block">Marking Pattern</span>
+            <strong class="text-sm text-emerald-700">+2 Correct</strong> / <strong class="text-sm text-rose-600">-0.5 Wrong</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-4 text-xs sm:text-sm text-slate-700 leading-relaxed bg-white border border-slate-200 rounded-lg p-5">
+        <h3 class="font-bold text-slate-900 text-sm">Please read the following instructions carefully before starting the test:</h3>
+        <ol class="list-decimal pl-5 space-y-2">
+          <li>Total duration of this mock examination is <strong>16 minutes (960 seconds)</strong>. The countdown timer in the top right corner displays the remaining time. When the timer reaches zero, the examination will <strong>submit automatically</strong>.</li>
+          <li>Each question carries <strong>+2.0 marks</strong> for a correct answer, <strong>-0.50 marks</strong> (negative marking) for an incorrect answer, and <strong>0 marks</strong> for an un-attempted question.</li>
+          <li>Only <strong>one question</strong> is displayed on the screen at a time. Selecting an option does NOT automatically jump to the next question or reveal the answer during the test.</li>
+          <li>Use the <strong>Next</strong>, <strong>Previous</strong>, <strong>Clear</strong>, and <strong>Mark for Review &amp; Next</strong> buttons at the bottom of the question panel to navigate and manage your responses.</li>
+          <li>Upon clicking <strong>Start Mock Test</strong>, the interface will automatically enter <strong>Full Screen Mode</strong>. You can exit Full Screen at any time using the <strong>Exit Fullscreen</strong> button in the header.</li>
+          <li>After submission, your detailed scorecard will be displayed along with step-by-step verified solutions <strong>exclusively for Incorrect and Un-attempted questions</strong>.</li>
+        </ol>
+
+        <div class="mt-4 pt-4 border-t border-slate-200">
+          <h4 class="font-bold text-slate-800 text-xs uppercase tracking-wider mb-3">Question Palette Symbols (Right-Hand Panel):</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs">
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 inline-flex items-center justify-center font-semibold status-not-visited">1</span>
+              <span>You have not visited the question yet.</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 inline-flex items-center justify-center font-semibold status-not-answered">2</span>
+              <span>You have visited but NOT answered the question.</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 inline-flex items-center justify-center font-semibold status-answered">3</span>
+              <span>You have answered the question.</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 inline-flex items-center justify-center font-semibold status-review">4</span>
+              <span>Marked for review (NOT answered).</span>
+            </div>
+            <div class="flex items-center gap-2.5 sm:col-span-2">
+              <span class="w-7 h-7 inline-flex items-center justify-center font-semibold status-ans-review">5</span>
+              <span>Answered &amp; Marked for Review (will be evaluated for marks).</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Declaration & Start Box -->
+      <div class="mt-5 bg-blue-50/70 border border-blue-200 rounded-lg p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <label class="flex items-start gap-2.5 cursor-pointer select-none text-xs sm:text-sm text-slate-800">
+          <input type="checkbox" id="chk-declaration" class="mt-0.5 w-4 h-4 accent-blue-700 rounded cursor-pointer" checked />
+          <span>I have read and understood all the instructions. I agree to abide by the examination rules.</span>
+        </label>
+        <button id="btn-StartExamNow" class="w-full sm:w-auto px-6 py-2.5 rounded bg-[#1e40af] hover:bg-blue-800 text-white font-bold text-sm shadow transition whitespace-nowrap">
+          I am ready to begin →
+        </button>
+      </div>
+      <p id="inst-error-msg" class="hidden text-xs text-rose-600 font-semibold mt-2">Please check the declaration box above to proceed.</p>
+    </div>
+  </div>
+
+  <!-- ==================== VIEW 3: MAIN TCS / EDUQUITY EXAM INTERFACE ==================== -->
+  <div id="view-exam" class="hidden h-screen w-screen overflow-hidden flex flex-col bg-white select-none">
+    <!-- Top Exam Header Bar -->
+    <header class="h-14 bg-[#1e40af] text-white px-3 sm:px-5 flex items-center justify-between border-b border-blue-900 shrink-0">
+      <div class="flex items-center gap-3 min-w-0">
+        <span class="bg-white text-[#1e40af] font-bold text-xs px-2 py-1 rounded shrink-0">CBT</span>
+        <div class="truncate">
+          <h1 id="exam-header-title" class="text-xs sm:text-sm font-bold truncate">Mock Test 1 (Q.1 – Q.26)</h1>
+          <p class="text-[11px] text-blue-200 hidden sm:block">Quantitative Aptitude — Profit &amp; Loss</p>
+        </div>
+      </div>
+
+      <!-- Right Controls: Timer + Pause + Fullscreen + Submit -->
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <div class="bg-slate-900/90 border border-blue-400/40 px-2.5 py-1 rounded flex items-center gap-1.5">
+          <span class="text-[11px] text-blue-200 hidden md:inline">Time Left:</span>
+          <span id="exam-timer-display" class="font-mono font-bold text-sm sm:text-base text-amber-300 tracking-wider">16:00</span>
+        </div>
+
+        <button id="btn-PauseExam" class="px-2.5 py-1.5 rounded bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs transition">
+          Pause
+        </button>
+
+        <button id="btn-ExitFullscreen" class="px-2.5 py-1.5 rounded bg-blue-700 hover:bg-blue-600 border border-blue-400/50 text-white font-semibold text-xs transition">
+          Exit Fullscreen
+        </button>
+
+        <button id="btn-SubmitExamTop" class="px-3 py-1.5 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow transition">
+          Submit
+        </button>
+      </div>
+    </header>
+
+    <!-- Sub-header Section & Marking Bar -->
+    <div class="h-9 bg-slate-100 border-b border-slate-300 px-3 sm:px-5 flex items-center justify-between text-xs shrink-0">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-blue-800 bg-white border border-blue-300 px-2.5 py-0.5 rounded shadow-2xs">Section: Profit &amp; Loss</span>
+      </div>
+      <div class="flex items-center gap-3 text-slate-700 font-medium">
+        <span>Marks: <strong class="text-emerald-700">+2.00</strong></span>
+        <span>Negative: <strong class="text-rose-600">-0.50</strong></span>
+      </div>
+    </div>
+
+    <!-- Main Body Area: Left Question Area + Right Small Question Palette (Hidden on Mobile) -->
+    <div class="flex-1 flex overflow-hidden">
+      <!-- Left: Question Display + Bottom Fixed Action Bar -->
+      <div class="flex-1 flex flex-col h-full overflow-hidden bg-white">
+        <!-- Question Number Bar -->
+        <div class="px-4 sm:px-6 py-2.5 border-b border-slate-200 flex items-center justify-between bg-slate-50/60 shrink-0">
+          <div class="flex items-center gap-2.5">
+            <span id="exam-q-number" class="text-sm font-bold text-slate-900">Question No. 1</span>
+            <span id="exam-q-source-id" class="text-[11px] font-medium text-slate-500 bg-slate-200/70 px-2 py-0.5 rounded">Source #1</span>
+          </div>
+          <span id="exam-q-tag" class="text-[11px] font-semibold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded"></span>
+        </div>
+
+        <!-- Scrollable Single Question & 4 Options Area -->
+        <div class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5">
+          <div id="exam-q-text" class="text-sm sm:text-base font-medium text-slate-900 leading-relaxed select-text">
+            <!-- Question text -->
+          </div>
+
+          <div id="exam-options-container" class="space-y-2.5 max-w-2xl pt-1">
+            <!-- 4 MCQ Options rendered here -->
+          </div>
+        </div>
+
+        <!-- Bottom Action Bar (Always visible without scrolling main interface) -->
+        <div class="border-t border-slate-300 bg-slate-100 px-3 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-2 shrink-0">
+          <div class="flex flex-wrap items-center gap-2">
+            <button id="btn-Previous" class="px-3.5 py-1.5 rounded border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 font-semibold text-xs transition shadow-2xs">
+              ← Previous
+            </button>
+            <button id="btn-MarkReviewNext" class="px-3.5 py-1.5 rounded border border-purple-300 bg-purple-600 hover:bg-purple-700 text-white font-semibold text-xs transition shadow-2xs">
+              Mark for Review &amp; Next
+            </button>
+            <button id="btn-ClearResponse" class="px-3.5 py-1.5 rounded border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 font-semibold text-xs transition shadow-2xs">
+              Clear
+            </button>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button id="btn-Next" class="px-5 py-1.5 rounded bg-[#1e40af] hover:bg-blue-800 text-white font-bold text-xs transition shadow-2xs">
+              Next →
+            </button>
+            <button id="btn-SubmitExamBottom" class="px-4 py-1.5 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition shadow-2xs">
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Small Question Palette (Hidden on mobile phone interface: hidden md:flex) -->
+      <aside class="hidden md:flex w-64 lg:w-72 border-l border-slate-300 bg-[#f8fafc] flex-col h-full shrink-0">
+        <!-- Candidate Info Strip -->
+        <div class="p-3 border-b border-slate-200 bg-white flex items-center gap-2.5 shrink-0">
+          <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-800 font-bold text-xs flex items-center justify-center border border-blue-300">
+            CAND
+          </div>
+          <div class="min-w-0">
+            <div class="text-xs font-bold text-slate-800 truncate">Aspirant Candidate</div>
+            <div id="palette-mock-label" class="text-[11px] text-slate-500 truncate">Mock Test 1</div>
+          </div>
+        </div>
+
+        <!-- Compact Legend -->
+        <div class="p-2.5 border-b border-slate-200 bg-slate-50 grid grid-cols-2 gap-1.5 text-[11px] shrink-0">
+          <div class="flex items-center gap-1.5">
+            <span id="count-answered" class="w-5 h-5 inline-flex items-center justify-center text-[10px] font-bold status-answered">0</span>
+            <span class="text-slate-700 truncate">Answered</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span id="count-not-answered" class="w-5 h-5 inline-flex items-center justify-center text-[10px] font-bold status-not-answered">0</span>
+            <span class="text-slate-700 truncate">Not Answered</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span id="count-not-visited" class="w-5 h-5 inline-flex items-center justify-center text-[10px] font-bold status-not-visited">26</span>
+            <span class="text-slate-700 truncate">Not Visited</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span id="count-review" class="w-5 h-5 inline-flex items-center justify-center text-[10px] font-bold status-review">0</span>
+            <span class="text-slate-700 truncate">Marked Review</span>
+          </div>
+          <div class="col-span-2 flex items-center gap-1.5">
+            <span id="count-ans-review" class="w-5 h-5 inline-flex items-center justify-center text-[10px] font-bold status-ans-review shrink-0">0</span>
+            <span class="text-slate-700 truncate">Answered &amp; Marked for Review</span>
+          </div>
+        </div>
+
+        <!-- Palette Title -->
+        <div class="bg-blue-900 text-white text-xs font-semibold px-3 py-1.5 shrink-0">
+          Question Palette (26 Questions)
+        </div>
+
+        <!-- Scrollable Question Number Grid -->
+        <div id="palette-grid-container" class="flex-1 overflow-y-auto p-3">
+          <div id="palette-grid" class="grid grid-cols-4 gap-2">
+            <!-- 26 buttons rendered here -->
+          </div>
+        </div>
+
+        <!-- Palette Footer Submit Button -->
+        <div class="p-3 border-t border-slate-200 bg-white shrink-0">
+          <button id="btn-SubmitExamPalette" class="w-full py-2 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow transition">
+            Submit Mock Test
+          </button>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ==================== VIEW 4: POST-SUBMISSION SCORE & ANALYSIS ==================== -->
+  <div id="view-result" class="hidden min-h-screen flex flex-col bg-[#f4f6f9]">
+    <header class="bg-[#1e40af] text-white px-4 sm:px-6 py-3.5 border-b border-blue-900 shadow-sm">
+      <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h1 id="result-mock-title" class="text-base sm:text-lg font-bold">Mock Test 1 — Result &amp; Analysis</h1>
+          <p class="text-xs text-blue-100">Marking Scheme: +2 for Correct | -0.5 for Incorrect | 0 for Un-attempted</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="btn-RetakeSameMock" class="px-3.5 py-1.5 rounded bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs transition">
+            Retake This Mock (Re-Shuffle Options)
+          </button>
+          <button id="btn-BackToDashboardFromResult" class="px-3.5 py-1.5 rounded bg-white text-[#1e40af] hover:bg-blue-50 font-bold text-xs transition">
+            ← All 6 Mock Tests Dashboard
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 flex-1 space-y-6">
+      <!-- Scorecard Summary Cards -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
+        <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-2xs">
+          <span class="text-xs text-slate-500 block">Final Score</span>
+          <strong id="res-score" class="text-xl font-bold text-blue-700">0.00 / 52</strong>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-2xs">
+          <span class="text-xs text-slate-500 block">Attempted</span>
+          <strong id="res-attempted" class="text-xl font-bold text-slate-800">0 / 26</strong>
+        </div>
+        <div class="bg-white border border-emerald-200 rounded-lg p-4 shadow-2xs">
+          <span class="text-xs text-emerald-700 block">Correct (+2)</span>
+          <strong id="res-correct" class="text-xl font-bold text-emerald-600">0</strong>
+        </div>
+        <div class="bg-white border border-rose-200 rounded-lg p-4 shadow-2xs">
+          <span class="text-xs text-rose-700 block">Incorrect (-0.5)</span>
+          <strong id="res-incorrect" class="text-xl font-bold text-rose-600">0</strong>
+        </div>
+        <div class="bg-white border border-amber-200 rounded-lg p-4 shadow-2xs">
+          <span class="text-xs text-amber-700 block">Un-attempted (0)</span>
+          <strong id="res-unattempted" class="text-xl font-bold text-amber-600">0</strong>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-2xs">
+          <span class="text-xs text-slate-500 block">Accuracy &amp; Time</span>
+          <strong id="res-accuracy" class="text-sm font-bold text-slate-800 block mt-0.5">0%</strong>
+          <span id="res-time-taken" class="text-[11px] text-slate-500">00:00</span>
+        </div>
+      </div>
+
+      <!-- Filter Bar for Incorrect & Un-attempted Solutions -->
+      <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-2xs flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h2 class="text-sm sm:text-base font-bold text-slate-800">
+            Solutions &amp; Explanations (Incorrect &amp; Un-attempted Questions Only)
+          </h2>
+          <p class="text-xs text-slate-500">
+            As per examination analysis rules, detailed answers and step-by-step solutions are shown below strictly for Incorrect and Un-attempted questions.
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="filter-all-wrong-un" class="px-3 py-1.5 rounded text-xs font-semibold bg-blue-700 text-white">
+            All Incorrect &amp; Un-attempted
+          </button>
+          <button id="filter-only-incorrect" class="px-3 py-1.5 rounded text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200">
+            Incorrect Only
+          </button>
+          <button id="filter-only-unattempted" class="px-3 py-1.5 rounded text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200">
+            Un-attempted Only
+          </button>
+        </div>
+      </div>
+
+      <!-- Solutions List Container -->
+      <div id="result-solutions-list" class="space-y-4">
+        <!-- Populated via JS -->
+      </div>
+    </main>
+  </div>
+
+  <!-- ==================== MODAL 1: PAUSE OVERLAY ==================== -->
+  <div id="modal-pause" class="hidden fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white border border-slate-200 rounded-lg max-w-md w-full p-6 text-center shadow-xl">
+      <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-700 mx-auto flex items-center justify-center font-bold text-lg mb-3">
+        ⏸
+      </div>
+      <h3 class="text-base font-bold text-slate-900">Examination Paused</h3>
+      <p class="text-xs text-slate-600 mt-1.5">
+        Your countdown timer is paused. Click the button below when you are ready to resume the test.
+      </p>
+      <div class="mt-5 flex items-center justify-center gap-3">
+        <button id="btn-ResumeExam" class="px-5 py-2 rounded bg-[#1e40af] hover:bg-blue-800 text-white font-bold text-xs shadow transition">
+          Resume Test
+        </button>
+        <button id="btn-AbortToDashboard" class="px-4 py-2 rounded border border-slate-300 bg-slate-50 hover:bg-slate-100 text-slate-700 font-semibold text-xs transition">
+          Exit to Dashboard
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 2: SUBMIT CONFIRMATION ==================== -->
+  <div id="modal-submit" class="hidden fixed inset-0 z-50 bg-slate-900/75 flex items-center justify-center p-4">
+    <div class="bg-white border border-slate-200 rounded-lg max-w-md w-full p-6 shadow-xl">
+      <h3 class="text-base font-bold text-slate-900 border-b border-slate-200 pb-2.5">Confirm Test Submission</h3>
+      <p class="text-xs text-slate-600 mt-3">Are you sure you want to submit your mock test? Here is a summary of your current responses:</p>
+      <div class="grid grid-cols-2 gap-2.5 my-4 text-xs">
+        <div class="bg-emerald-50 border border-emerald-200 p-2.5 rounded flex justify-between">
+          <span class="text-emerald-800">Answered:</span>
+          <strong id="sub-modal-ans" class="text-emerald-900">0</strong>
+        </div>
+        <div class="bg-rose-50 border border-rose-200 p-2.5 rounded flex justify-between">
+          <span class="text-rose-800">Not Answered:</span>
+          <strong id="sub-modal-not-ans" class="text-rose-900">0</strong>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 p-2.5 rounded flex justify-between">
+          <span class="text-slate-700">Not Visited:</span>
+          <strong id="sub-modal-not-vis" class="text-slate-900">0</strong>
+        </div>
+        <div class="bg-purple-50 border border-purple-200 p-2.5 rounded flex justify-between">
+          <span class="text-purple-800">Marked Review:</span>
+          <strong id="sub-modal-rev" class="text-purple-900">0</strong>
+        </div>
+      </div>
+      <div class="flex items-center justify-end gap-2.5 pt-2 border-t border-slate-200">
+        <button id="btn-CancelSubmit" class="px-4 py-2 rounded border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs">
+          Resume Exam
+        </button>
+        <button id="btn-ConfirmSubmitNow" class="px-5 py-2 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow">
+          Yes, Submit Final Test
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ==================== ALL 156 VERIFIED PROFIT & LOSS QUESTIONS ====================
+    const RAW_QUESTIONS = [{"id": 1, "tag": "CHSL TIER I - 20/11/2025 - SHIFT 1", "q": "A car was sold for ₹3,30,000 at a 10% profit. For what price should the car be sold to gain a 25% profit?", "options": ["₹3,65,000", "₹3,75,000", "₹3,89,000", "₹3,96,678"], "ans": 1, "sol": "Cost Price (CP) = ₹3,30,000 / 1.10 = ₹3,00,000. Required Selling Price (SP) for 25% profit = ₹3,00,000 × 1.25 = ₹3,75,000."}, {"id": 2, "tag": "CGL TIER I - 20/09/2025 - SHIFT 3", "q": "A businessman invests Rs. 50,000 in buying items and spends Rs. 5,000 on transportation and Rs. 3,000 on storage. If he sells the items for Rs. 63,000, what is the profit or loss percentage?", "options": ["8.62% profit", "8.62% loss", "7.26% loss", "7.26% profit"], "ans": 0, "sol": "Total Cost Price = 50,000 + 5,000 + 3,000 = Rs. 58,000. Selling Price = Rs. 63,000. Profit = 63,000 - 58,000 = Rs. 5,000. Profit % = (5,000 / 58,000) × 100 ≈ 8.62% profit."}, {"id": 3, "tag": "CGL TIER I - 25/09/2025 - SHIFT 3", "q": "A man got 10% profit on his investment. If he invested Rs. 5,000, and the profit was reinvested, what will be the total value after the second year with the same profit rate?", "options": ["Rs. 6,000", "Rs. 6,050", "Rs. 6,100", "Rs. 6,150"], "ans": 1, "sol": "Value after 1st year = 5,000 × 1.10 = Rs. 5,500. Value after 2nd year (compound profit at 10%) = 5,500 × 1.10 = Rs. 6,050."}, {"id": 4, "tag": "CHSL TIER I - 15/11/2025 - SHIFT 2", "q": "A trader buys 200 mixed stationery boxes at a rate of ₹120 each. He spends ₹1,800 on transportation and packaging. He sells 100 boxes at ₹150 each and the remaining at ₹130 each. What is his total profit percentage?", "options": ["8%", "8.53%", "8.75%", "9%"], "ans": 1, "sol": "Total CP = (200 × 120) + 1,800 = 24,000 + 1,800 = ₹25,800. Total SP = (100 × 150) + (100 × 130) = 15,000 + 13,000 = ₹28,000. Profit = ₹2,200. Profit % = (2,200 / 25,800) × 100 ≈ 8.53%."}, {"id": 5, "tag": "CGL TIER I - 23/09/2025 - SHIFT 2", "q": "If the selling price of an item is increased by 25% and the profit also increases from 20% to 30%, what is the percentage increase in cost price?", "options": ["4.5%", "15%", "11.11%", "15.38%"], "ans": 3, "sol": "Let initial CP₁ = 100. Then initial SP₁ = 120 (at 20% profit). New SP₂ = 120 × 1.25 = 150. Since new profit is 30% on new cost price CP₂, CP₂ = 150 / 1.30 = 1500/13 ≈ 115.38. Percentage increase in CP = 15.38%."}, {"id": 6, "tag": "RRB NTPC GL 24/06/2025", "q": "By selling cloth at the rate of ₹344/m, a shopkeeper incurs a loss of 57%. To earn a profit of 71%, at what rate (in ₹/m) should he sell the cloth?", "options": ["1,368", "1,365", "1,366", "1,367"], "ans": 0, "sol": "43% of CP = ₹344 ⇒ CP = 344 / 0.43 = ₹800/m. Required SP for 71% profit = 800 × 1.71 = ₹1,368/m."}, {"id": 7, "tag": "NTPC GL 2025", "q": "Mukesh sold a car for ₹2,03,700 at a loss of 10%. To earn a profit of 68%, at what price (in ₹) should he sell the car?", "options": ["3,80,240", "3,80,237", "3,80,238", "3,80,243"], "ans": 0, "sol": "90% of CP = ₹2,03,700 ⇒ Required SP (168% of CP) = 2,03,700 × (168 / 90) = 2,03,700 × (28 / 15) = 13,580 × 28 = ₹3,80,240."}, {"id": 8, "tag": "SSC CGL 20/07/2023 (1st shift)", "q": "A shopkeeper sold a pair of headphones for Rs. 5,520 at a profit of 20%. If it was sold for Rs. 4,370, what would have been the gain or loss percentage?", "options": ["15% profit", "5% loss", "2% profit", "10% loss"], "ans": 1, "sol": "CP = 5,520 / 1.20 = Rs. 4,600. New SP = Rs. 4,370. Loss = 4,600 - 4,370 = Rs. 230. Loss % = (230 / 4,600) × 100 = 5% loss."}, {"id": 9, "tag": "CHSL 2024", "q": "The difference between the cost price and selling price of an article is ₹1,800. If there is a profit of 20%, then what is the cost price of the article?", "options": ["₹7,000", "₹9,000", "₹11,000", "₹8,000"], "ans": 1, "sol": "20% of CP = ₹1,800 ⇒ CP = 1,800 × 5 = ₹9,000."}, {"id": 10, "tag": "SSC CGL 14/07/2023 (4th shift)", "q": "If the selling price of the article is increased by Rs. 324, a shopkeeper makes a profit of 20% instead of 16% loss. What is the cost price of the article?", "options": ["₹900", "₹750", "₹1,350", "₹60"], "ans": 0, "sol": "Difference in percentage = 20% - (-16%) = 36% of CP. Given 36% of CP = ₹324 ⇒ CP = (324 / 36) × 100 = ₹900."}, {"id": 11, "tag": "CHSL 2024", "q": "A seller reduced the selling price of each article from ₹5,000 to ₹4,680, which increased his loss percentage by 4%. If he wants to earn a profit of 4%, what should be the selling price of the article?", "options": ["₹8,840", "₹7,280", "₹8,320", "₹7,800"], "ans": 2, "sol": "Reduction in SP = 5,000 - 4,680 = ₹320, which equals 4% of CP. Thus CP = (320 / 4) × 100 = ₹8,000. For a 4% profit, SP = 8,000 × 1.04 = ₹8,320."}, {"id": 12, "tag": "IB ACIO 2025", "q": "Pallavi bought a toy for ₹460, then spent ₹20 on its decoration and sold the toy for ₹94. Find the loss or profit percentage.", "options": ["Profit 975/12 %", "Loss 965%", "Profit 965/12 %", "Loss 965/12 %"], "ans": 3, "sol": "Total CP = 460 + 20 = ₹480. SP = ₹94. Loss = 480 - 94 = ₹386. Loss % = (386 / 480) × 100 = (193 × 5) / 12 = 965/12 % Loss."}, {"id": 13, "tag": "RRB NTPC UGL 29/08/2025", "q": "The selling price of 50 books is equal to the cost price of 15 books. Find the loss or profit percentage on these books.", "options": ["70% profit", "100/35% loss", "100/35% profit", "70% loss"], "ans": 3, "sol": "50 × SP = 15 × CP ⇒ SP / CP = 15 / 50 = 3 / 10. Loss % = ((10 - 3) / 10) × 100 = 70% loss."}, {"id": 14, "tag": "CHSL 2024", "q": "If the selling price of 100 pens is equal to the cost price of 140 pens, find the profit percentage.", "options": ["30%", "36%", "40%", "45%"], "ans": 2, "sol": "100 × SP = 140 × CP ⇒ SP / CP = 140 / 100 = 1.40. Profit % = 40%."}, {"id": 15, "tag": "CPO 2024", "q": "The cost price of 36 items is equal to the selling price of N items. If the profit is 20%, then find the value of N.", "options": ["25", "30", "42", "40"], "ans": 1, "sol": "36 × CP = N × SP ⇒ SP / CP = 36 / N = 1.20 = 6 / 5 ⇒ N = 36 × 5 / 6 = 30."}, {"id": 16, "tag": "SSC CHSL 21/03/2023 (4th Shift)", "q": "The cost price of 44 articles is equal to the selling price of x articles. If the profit is 10%, what is the value of x?", "options": ["55", "50", "40", "60"], "ans": 2, "sol": "44 × CP = x × SP ⇒ SP / CP = 44 / x = 1.10 = 11 / 10 ⇒ x = 40."}, {"id": 17, "tag": "", "q": "An article is sold at a certain price. If it is sold at 80% of this price, then there will be a loss of 10%. What is the profit percentage when the article is sold at the original selling price?", "options": ["10%", "12.5%", "15%", "8%"], "ans": 1, "sol": "0.80 × SP = 0.90 × CP ⇒ SP / CP = 9 / 8 = 1.125. Thus, profit when sold at original SP = 12.5%."}, {"id": 18, "tag": "RRB NTPC UGL 13/08/2025", "q": "By selling an article at 4/14 of its original selling price, Akash incurs a loss of 30%. If he sells it at 54% of its original selling price, then find the profit percentage.", "options": ["34.8%", "33.8%", "32.6%", "32.3%"], "ans": 3, "sol": "(4/14) × SP = 0.70 × CP ⇒ SP / CP = 0.70 × (14/4) = 2.45. When sold at 54% of original SP, New SP = 0.54 × 2.45 × CP = 1.323 × CP. Profit % = 32.3%."}, {"id": 19, "tag": "RRB NTPC UGL 09/09/2025", "q": "Selling an article at 4/13th of its original selling price, Hitesh incurs a loss of 22%. If he sells this article at 60% of its original selling price, find the profit percentage.", "options": ["52.1%", "52.5%", "54.2%", "53.9%"], "ans": 0, "sol": "(4/13) × SP = 0.78 × CP ⇒ SP / CP = 0.78 × (13/4) = 2.535. At 60% of original SP, New SP = 0.60 × 2.535 × CP = 1.521 × CP. Profit % = 52.1%."}, {"id": 20, "tag": "", "q": "An article is sold at a certain price. If it is sold at 33.33% of this price, there is a loss of 33.33%. What is the profit percentage when it is sold at 60% of the original selling price?", "options": ["10%", "12.5%", "20%", "25%"], "ans": 2, "sol": "(1/3) × SP = (2/3) × CP ⇒ SP = 2 × CP. When sold at 60% of original SP, New SP = 0.60 × 2 × CP = 1.20 × CP. Profit % = 20%."}, {"id": 21, "tag": "", "q": "A TV is sold at a certain price. If it is sold at 86% of this price, there would be a loss of 16%. What is the profit or loss percent when the TV is sold at 7/6th of the original selling price?", "options": ["12.82% profit", "13.95% profit", "13.95% loss", "12.22% loss"], "ans": 1, "sol": "0.86 × SP = 0.84 × CP ⇒ SP / CP = 84 / 86 = 42 / 43. When sold at (7/6) of SP, New SP / CP = (7/6) × (42/43) = 49 / 43. Profit % = ((49 - 43) / 43) × 100 = 600 / 43 ≈ 13.95% profit."}, {"id": 22, "tag": "CGL TIER I - 17/09/2025 - S2", "q": "A fruit vendor sells 15 kg of apples for Rs. 750, thereby gaining the cost price of 5 kg of apples. What is his profit percentage?", "options": ["28.65%", "33.33%", "26.32%", "31.56%"], "ans": 1, "sol": "Profit = 5 × CP. Cost of 15 kg = 15 × CP. Profit % = (5 / 15) × 100 = 33.33%."}, {"id": 23, "tag": "CHSL 03/07/2024", "q": "A shopkeeper earns a profit equal to the selling price of 10 meters of cloth by selling 30 meters of cloth. What is the selling price of 1 meter of cloth if the cost price of 1 meter is ₹480?", "options": ["₹820", "₹520", "₹960", "₹720"], "ans": 3, "sol": "30 × SP - 30 × CP = 10 × SP ⇒ 20 × SP = 30 × CP ⇒ SP = 1.5 × CP = 1.5 × 480 = ₹720."}, {"id": 24, "tag": "SSC MTS 03/05/2023 (Evening)", "q": "Akhil bought 13 kg apples for Rs. 2,400. He sold them at a profit equal to the selling price of 7 kg of apples. Find the selling price of apples per kilogram.", "options": ["Rs. 400", "Rs. 350", "Rs. 650", "Rs. 600"], "ans": 0, "sol": "13 × SP - Total CP = 7 × SP ⇒ 6 × SP = Total CP = Rs. 2,400 ⇒ SP per kg = 2,400 / 6 = Rs. 400."}, {"id": 25, "tag": "SSC CGL Tier II (12/09/2019)", "q": "By selling two articles for Rs. 800, a person makes a profit equal to the cost price of three articles. The profit percentage is:", "options": ["125%", "140%", "120%", "150%"], "ans": 3, "sol": "Profit on 2 articles = 3 × CP. Profit % = (3 × CP) / (2 × CP) × 100 = 150%."}, {"id": 26, "tag": "SSC CHSL 21/10/2020 (Afternoon)", "q": "By selling 26 balls for Rs. 1,350, there is a loss equal to the cost price of eight balls. The cost price of one ball is:", "options": ["Rs. 70", "Rs. 65", "Rs. 60", "Rs. 75"], "ans": 3, "sol": "26 × CP - 26 × SP = 8 × CP ⇒ 18 × CP = 26 × SP = 1,350 ⇒ CP of 1 ball = 1,350 / 18 = Rs. 75."}, {"id": 27, "tag": "SSC CHSL 01/06/2022 (Morning)", "q": "If the selling price is doubled, the profit triples. What is the profit percentage?", "options": ["110%", "50%", "100%", "28%"], "ans": 2, "sol": "2 × SP - CP = 3 × (SP - CP) ⇒ SP = 2 × CP. Profit % = ((2 - 1) / 1) × 100 = 100%."}, {"id": 28, "tag": "SSC CGL 17/07/2023 (4th shift)", "q": "If the selling price of an item is doubled, the profit becomes four times. What was the original profit percentage?", "options": ["75%", "100%", "50%", "25%"], "ans": 2, "sol": "2 × SP - CP = 4 × (SP - CP) ⇒ 2 × SP = 3 × CP ⇒ SP / CP = 1.5. Original Profit % = 50%."}, {"id": 29, "tag": "", "q": "If the selling price is increased to 7/3 of itself, the profit becomes 4 times. Find the original profit percentage.", "options": ["100%", "80%", "75%", "72%"], "ans": 1, "sol": "(7/3) × SP - CP = 4 × (SP - CP) ⇒ 3 × CP = (5/3) × SP ⇒ SP / CP = 9 / 5 = 1.80. Profit % = 80%."}, {"id": 30, "tag": "", "q": "If the selling price is twice the cost price, what will be the profit percentage if the cost price is doubled and the selling price of the article is tripled?", "options": ["100%", "200%", "300%", "400%"], "ans": 1, "sol": "Let CP = 1, SP = 2. New CP = 2, New SP = 2 × 3 = 6. Profit % = ((6 - 2) / 2) × 100 = 200%."}, {"id": 31, "tag": "", "q": "If the purchasing price of an item is made 5 times and the selling price of the item is made 9 times, find the new profit percentage, given that initially the selling price is 3 times the cost price.", "options": ["180%", "440%", "140%", "240%"], "ans": 1, "sol": "Let initial CP = 1, SP = 3. New CP = 5, New SP = 3 × 9 = 27. New Profit % = ((27 - 5) / 5) × 100 = (22 / 5) × 100 = 440%."}, {"id": 32, "tag": "SSC CHSL 03/06/2022", "q": "A woman sold her earphone for ₹2,000 and got a percentage profit equal to the numerical value of the cost price. The cost price of the earphone is:", "options": ["₹500", "₹200", "₹600", "₹400"], "ans": 3, "sol": "x × (1 + x/100) = 2,000 ⇒ x(100 + x) = 2,00,000 ⇒ x = 400 (since 400 × 500 = 2,00,000)."}, {"id": 33, "tag": "SSC CPO 09/11/2022 (Evening)", "q": "A wristwatch is sold for Rs. 1,200 at a profit percentage equal to its cost price. Find the cost price of the wristwatch.", "options": ["₹400", "₹250", "₹350", "₹300"], "ans": 3, "sol": "x × (1 + x/100) = 1,200 ⇒ x(100 + x) = 1,20,000 ⇒ x = ₹300 (since 300 × 400 = 1,20,000)."}, {"id": 34, "tag": "SSC CGL 18/08/2021 (Afternoon)", "q": "By selling an article for Rs. 131.25, a trader makes a profit in a percentage equal to the numerical value of the cost price of the article. At what price (in Rs.) should the article be sold to earn a profit of 40%?", "options": ["100", "140", "105", "75"], "ans": 2, "sol": "x × (1 + x/100) = 131.25 ⇒ x = 75 (since 75 × 1.75 = 131.25). For 40% profit, SP = 75 × 1.40 = Rs. 105."}, {"id": 35, "tag": "", "q": "If the selling price is made 3 times and the cost price is made 2 times of itself, the profit would become 60%. What is the original profit percent?", "options": ["3.33%", "6%", "6.67%", "66.7%"], "ans": 2, "sol": "3 × SP / (2 × CP) = 1.60 ⇒ SP / CP = 3.20 / 3 = 16 / 15. Original Profit % = (1 / 15) × 100 = 6.67%."}, {"id": 36, "tag": "", "q": "After selling 10 candles, a man earns a profit equal to the SP of 3 pens. While selling 10 pens, a man incurs a loss equal to the SP of 4 candles. The numerical value of P% and L% is equal and the CP of a candle is half the CP of a pen. Find the ratio of the SP of a candle to a pen.", "options": ["2:3", "3:2", "2:5", "5:1"], "ans": 1, "sol": "Let CP of candle = c, CP of pen = 2c. Profit% on 10 candles = (3 × SP_p) / (10c). Loss% on 10 pens = (4 × SP_c) / (20c). Equating both: (3 × SP_p) / 10c = (4 × SP_c) / 20c ⇒ 3 × SP_p = 2 × SP_c ⇒ SP_c : SP_p = 3 : 2."}, {"id": 37, "tag": "", "q": "A fruit seller sells mangoes and bananas in such a way that when he sells 35 bananas, he makes a profit equal to the selling price of 7 mangoes and when he sells 35 mangoes, he loses the selling price of 15 bananas. In this transaction, the numerical value of profit percentage is equal to loss percentage. If the ratio of cost price per unit of Banana and Mango is 1 : 2, then what is the ratio of selling price per unit of Mango and Banana?", "options": ["14:15", "7:15", "15:7", "15:14"], "ans": 3, "sol": "Let CP of Banana = c, Mango = 2c. Profit% on 35 bananas = (7 × SP_m) / (35c) = SP_m / (5c). Loss% on 35 mangoes = (15 × SP_b) / (70c) = (3 × SP_b) / (14c). Since P% = L%, SP_m / 5 = 3 × SP_b / 14 ⇒ SP_m : SP_b = 15 : 14."}, {"id": 38, "tag": "SSC CGL 25/09/2024", "q": "Aditi sells her scooter for ₹40,620 and earns a profit equal to 1/5th of the selling price. Find her profit percent.", "options": ["10%", "35%", "25%", "20%"], "ans": 2, "sol": "Profit = (1/5) × SP ⇒ CP = SP - Profit = (4/5) × SP. Profit % on CP = ((1/5) / (4/5)) × 100 = 25%."}, {"id": 39, "tag": "CHSL TIER I - 27/11/2025 - SHIFT 2", "q": "If profit earned is 25% of the selling price, what is the profit percentage on cost price?", "options": ["33.33%", "20%", "25%", "30%"], "ans": 0, "sol": "Profit = (1/4) × SP ⇒ CP = (3/4) × SP. Profit % on CP = (1/3) × 100 = 33.33%."}, {"id": 40, "tag": "SSC CGL 17/08/2021 (Morning)", "q": "By selling an article for Rs. 640, a man incurs a loss of 15% of its selling price. At what price (in Rs.) should he sell it to earn a profit of 15% on his cost price?", "options": ["835", "832", "836.6", "846.4"], "ans": 3, "sol": "Loss = 15% of 640 = Rs. 96. CP = 640 + 96 = Rs. 736. Required SP for 15% profit on CP = 736 × 1.15 = Rs. 846.4."}, {"id": 41, "tag": "SSC MTS 13/08/2019 (Afternoon)", "q": "Parikh sold his pen at a profit of Rs. 11. He calculated his profit percentage on selling price and found it to be 25%. What is the cost price (in Rs.) of the pen?", "options": ["33", "24", "36", "44"], "ans": 0, "sol": "25% of SP = 11 ⇒ SP = Rs. 44. Cost Price = SP - Profit = 44 - 11 = Rs. 33."}, {"id": 42, "tag": "IB SA 2025", "q": "The profit made on a product is 29%. What is the loss percentage (correct to two decimal places) incurred on the sale if the figures of both cost price and selling price are interchanged?", "options": ["19.97%", "22.48%", "24.34%", "19.84%"], "ans": 1, "sol": "Initially CP = 100, SP = 129. After interchanging, new CP = 129, new SP = 100. Loss % = (29 / 129) × 100 ≈ 22.48%."}, {"id": 43, "tag": "RRB NTPC GL 2025", "q": "The profit made on a product is 79%. If the figures of both cost price and selling price are interchanged, what is the loss percentage (correct to two decimal places) on the sale?", "options": ["45.77%", "45.18%", "46.79%", "44.13%"], "ans": 3, "sol": "Initially CP = 100, SP = 179. After interchanging, new CP = 179, new SP = 100. Loss % = (79 / 179) × 100 ≈ 44.13%."}, {"id": 44, "tag": "SSC CGL 25/07/2023 (2nd shift)", "q": "Mona bought two sets of jewellery for ₹4,000 each. She sold one of these sets at a profit of 8% and the other at a loss of 6%. Calculate the total loss or profit in the entire transaction.", "options": ["₹120 profit", "₹80 profit", "₹80 loss", "₹120 loss"], "ans": 1, "sol": "Net % on ₹4,000 = (+8% - 6%) of ₹4,000 = 2% of ₹4,000 = ₹80 profit."}, {"id": 45, "tag": "CHSL TIER I - 15/11/2025 - SHIFT 1", "q": "A dealer buys a batch of 25 pressure cookers at ₹800 each. He sells 15 of them at 20% profit and the remaining at 10% loss. Find the overall profit or loss percentage.", "options": ["6% Profit", "8% Profit", "10% Profit", "12% Loss"], "ans": 1, "sol": "Ratio of quantities = 15 : 10 = 3 : 2. Overall % = (3 × 20% + 2 × (-10%)) / 5 = (60 - 20) / 5 = 8% Profit."}, {"id": 46, "tag": "CGL TIER I - 25/09/2025 - SHIFT 1", "q": "A shopkeeper sells two shirts at Rs. 500 each. On one, he gains 25%, and on the other, he loses 25%. What is his net gain or loss?", "options": ["Rs. 31.25 loss", "Rs. 31.25 gain", "Rs. 66.67 gain", "Rs. 66.67 loss"], "ans": 3, "sol": "Total SP = Rs. 1,000. Net loss % = (25² / 100)% = 6.25% = 1/16. Thus Total SP = (15/16) × Total CP ⇒ Loss = Total SP / 15 = 1,000 / 15 = Rs. 66.67 loss."}, {"id": 47, "tag": "CHSL TIER I - 17/11/2025 - SHIFT 2", "q": "A trader sells two articles at ₹960 each. On one, he gains 20%, and on the other, he loses 20%. What is his overall profit or loss percentage?", "options": ["5% Profit", "4% Loss", "4% Profit", "5% Loss"], "ans": 1, "sol": "When two items are sold at the same SP, one at x% profit and the other at x% loss, overall loss % = (x² / 100)% = (20² / 100)% = 4% Loss."}, {"id": 48, "tag": "SSC CHSL 13/03/2023 (1st Shift)", "q": "A trader sells two machines at the rate of Rs. 15,000 each. On one machine he makes a profit of 20% and on the other he loses 40%. What is his profit or loss percentage in the entire transaction?", "options": ["20% loss", "10% loss", "10% profit", "20% profit"], "ans": 0, "sol": "CP₁ = 15,000 / 1.2 = Rs. 12,500. CP₂ = 15,000 / 0.6 = Rs. 25,000. Total CP = Rs. 37,500. Total SP = Rs. 30,000. Loss = Rs. 7,500. Loss % = (7,500 / 37,500) × 100 = 20% loss."}, {"id": 49, "tag": "SSC CHSL 16/03/2023 (1st Shift)", "q": "Manoj bought two TVs for Rs. 2,280. He sold one at a loss of 20 per cent and the other at a profit of 10 per cent. If each TV was sold at the same price, then what is the cost price of the TV which was sold at a loss?", "options": ["Rs. 1,380", "Rs. 1,320", "Rs. 1,050", "Rs. 1,440"], "ans": 1, "sol": "0.80 × CP₁ = 1.10 × CP₂ ⇒ CP₁ : CP₂ = 11 : 8. Total CP = Rs. 2,280. CP₁ (sold at loss) = (11 / 19) × 2,280 = 11 × 120 = Rs. 1,320."}, {"id": 50, "tag": "SSC CGL 09/12/2022 (4th Shift)", "q": "A man sells two cows for Rs. 15,640 each, making a profit of 15% on the first and a loss of 15% on the second. Find his total profit or loss.", "options": ["Rs. 720 loss", "Rs. 360 loss", "Rs. 720 profit", "Rs. 360 profit"], "ans": 0, "sol": "CP₁ = 15,640 / 1.15 = Rs. 13,600. CP₂ = 15,640 / 0.85 = Rs. 18,400. Total CP = Rs. 32,000. Total SP = Rs. 31,280. Net loss = 32,000 - 31,280 = Rs. 720 loss."}, {"id": 51, "tag": "SSC CGL Tier II (08/08/2022)", "q": "The selling prices of items A and B are the same. A is sold at a profit of 28% and B is sold at a loss of 24%. If the total selling price of the two articles together is Rs. 48,640, then what is the cost price of A and B respectively?", "options": ["₹26,000, ₹40,000", "₹24,000, ₹38,000", "₹17,000, ₹28,000", "₹19,000, ₹32,000"], "ans": 3, "sol": "SP of each article = 48,640 / 2 = ₹24,320. CP of A = 24,320 / 1.28 = ₹19,000. CP of B = 24,320 / 0.76 = ₹32,000."}, {"id": 52, "tag": "SSC CGL 07/03/2020 (Afternoon)", "q": "A man bought two watches 'A' and 'B' at a total cost of Rs. 800. He sold both the watches at the same selling price and made a profit of 18% on watch A while on watch B he incurred a loss of 22%. What is the cost price of both the watches?", "options": ["A = ₹350.32 and B = ₹450.68", "A = ₹318.37 and B = ₹481.63", "A = ₹220 and B = ₹580", "A = ₹317 and B = ₹483"], "ans": 1, "sol": "1.18 × A = 0.78 × B ⇒ A : B = 78 : 118 = 39 : 59. Total = 98 parts = ₹800. A = (39 / 98) × 800 ≈ ₹318.37, and B = (59 / 98) × 800 ≈ ₹481.63."}, {"id": 53, "tag": "SSC CGL 10/06/2019 (Afternoon)", "q": "Two articles are sold at the rate of Rs. 9,720 each. On the first article, the seller makes a profit of 8% and on the second article he loses 10%. What is his total profit or loss?", "options": ["Rs. 380 profit", "Rs. 380 loss", "Rs. 360 loss", "Rs. 360 profit"], "ans": 2, "sol": "CP₁ = 9,720 / 1.08 = Rs. 9,000 (Profit = +720). CP₂ = 9,720 / 0.90 = Rs. 10,800 (Loss = -1,080). Net result = 720 - 1,080 = Rs. 360 loss."}, {"id": 54, "tag": "CPO 2024", "q": "A man bought two buffaloes for ₹11,520. One buffalo was sold at a loss of 15% and the other buffalo at a profit of 19%. If the selling price of both the buffaloes is equal, then find the cost price of the first buffalo.", "options": ["₹6,700", "₹6,710", "₹6,720", "₹6,715"], "ans": 2, "sol": "0.85 × CP₁ = 1.19 × CP₂ ⇒ CP₁ : CP₂ = 119 : 85 = 7 : 5. CP₁ = (7 / 12) × 11,520 = 7 × 960 = ₹6,720."}, {"id": 55, "tag": "SSC CHSL 09/03/2023 (3rd Shift)", "q": "Ram buys two watches for Rs. 3,500. By selling one watch at a profit of 25% and the other at a loss of 10%, he neither earns profit nor incurs loss in the whole transaction. What is the cost price of each watch?", "options": ["Rs. 1,500 and Rs. 2,000", "Rs. 1,500 and Rs. 1,720", "Rs. 1,000 and Rs. 2,500", "Rs. 1,250 and Rs. 2,250"], "ans": 2, "sol": "25% of CP₁ = 10% of CP₂ ⇒ CP₁ : CP₂ = 10 : 25 = 2 : 5. Since total CP = Rs. 3,500, CP₁ = Rs. 1,000 and CP₂ = Rs. 2,500."}, {"id": 56, "tag": "IB ACIO 2025", "q": "I bought two music players for ₹1,200. I sold the first music player at a loss of 13% and the second music player at a profit of 17%. If, in total, I neither incurred any loss nor gain, then what was the cost price (in ₹) of the first music player?", "options": ["Rs. 680", "Rs. 664", "Rs. 700", "Rs. 704"], "ans": 0, "sol": "13% of CP₁ = 17% of CP₂ ⇒ CP₁ : CP₂ = 17 : 13. CP₁ = (17 / 30) × 1,200 = Rs. 680."}, {"id": 57, "tag": "IB ACIO 2025", "q": "I bought two shirts for ₹1,200. I sold the first shirt at a loss of 13% and the second shirt at a profit of 26%. If I neither lost nor made a profit overall, then find the cost price (in ₹) of the first shirt.", "options": ["Rs. 820", "Rs. 824", "Rs. 784", "Rs. 800"], "ans": 3, "sol": "13% of CP₁ = 26% of CP₂ ⇒ CP₁ : CP₂ = 2 : 1. CP₁ = (2 / 3) × 1,200 = Rs. 800."}, {"id": 58, "tag": "PHASE XIII(GRAD) - 31/07/2025 - SHIFT 3", "q": "A shopkeeper finds that profit from selling a watch for ₹1,100 equals the loss when selling for ₹900. What is the percentage loss if sold for ₹850?", "options": ["15%", "16%", "17%", "18%"], "ans": 0, "sol": "CP = (1,100 + 900) / 2 = ₹1,000. When sold for ₹850, Loss = 1,000 - 850 = ₹150. Loss % = (150 / 1,000) × 100 = 15%."}, {"id": 59, "tag": "CGL TIER I - 12/09/2025 - SHIFT 3", "q": "The profit made on an item sold for ₹2,200 is equal to the loss incurred when it is sold for ₹1,800. What will be the profit or loss percentage if the item is sold for ₹2,050?", "options": ["Profit of 2.25%", "Loss of 3.5%", "Profit of 2.5%", "Loss of 4.25%"], "ans": 2, "sol": "CP = (2,200 + 1,800) / 2 = ₹2,000. When sold for ₹2,050, Profit = ₹50. Profit % = (50 / 2,000) × 100 = 2.5% Profit."}, {"id": 60, "tag": "RRB NTPC GL 12/06/2025", "q": "On selling a stool for ₹8,378, the value of the profit is 20% more than the value of the loss incurred on selling it for ₹1,756. To get a 50% profit, find the selling price (in ₹).", "options": ["7,150", "7,148", "7,151", "7,149"], "ans": 3, "sol": "Profit : Loss = 6 : 5. Difference = 8,378 - 1,756 = 6,622. Loss = (5 / 11) × 6,622 = 5 × 602 = ₹3,010. CP = 1,756 + 3,010 = ₹4,766. For 50% profit, SP = 4,766 × 1.5 = ₹7,149."}, {"id": 61, "tag": "RRB NTPC GL 10/06/2025", "q": "On selling a bed for ₹8,845, the value of the profit is 25% more than the value of the loss incurred on selling it for ₹1,987. To get a 20% profit, find the selling price (in ₹).", "options": ["6,042", "6,039", "6,043", "6,044"], "ans": 0, "sol": "Profit : Loss = 5 : 4. Difference = 8,845 - 1,987 = 6,858. Loss = (4 / 9) × 6,858 = 4 × 762 = ₹3,048. CP = 1,987 + 3,048 = ₹5,035. For 20% profit, SP = 5,035 × 1.2 = ₹6,042."}, {"id": 62, "tag": "SSC CGL MAINS 03 Feb 2022", "q": "A lady sold an article for Rs. 960 at some profit. Had she sold it for Rs. 800, then there would have been a loss equal to 1/3 of the initial profit. What was the profit percentage of the article?", "options": ["150/7 %", "50/7 %", "10/7 %", "100/7 %"], "ans": 3, "sol": "Profit : Loss = 3 : 1. Difference = 960 - 800 = Rs. 160 = 4 parts ⇒ 1 part (Loss) = Rs. 40, Initial Profit (3 parts) = Rs. 120. CP = 960 - 120 = Rs. 840. Profit % = (120 / 840) × 100 = 100/7 %."}, {"id": 63, "tag": "UPSI 1/12/2021 (Shift-03)", "q": "The loss incurred by selling an article at ₹2,066 is 85% of the gain attained by selling the same article at ₹2,621. Find the cost price of the article.", "options": ["₹2,421", "₹2,321", "₹2,521", "₹2,621"], "ans": 1, "sol": "Loss : Gain = 85 : 100 = 17 : 20. Total gap = 2,621 - 2,066 = 555 = 37 parts ⇒ 1 part = 15. Loss = 17 × 15 = 255. CP = 2,066 + 255 = ₹2,321."}, {"id": 64, "tag": "UPSI 17/11/2021 (Shift-01)", "q": "The loss incurred by selling an article at Rs. 1,970 is 85% of the gain attained by selling the same article at Rs. 2,377. Find the cost price of the article.", "options": ["Rs. 1,700", "Rs. 2,157", "Rs. 1,900", "Rs. 1,800"], "ans": 1, "sol": "Loss : Gain = 17 : 20. Gap = 2,377 - 1,970 = 407 = 37 parts ⇒ 1 part = 11. Loss = 17 × 11 = 187. CP = 1,970 + 187 = Rs. 2,157."}, {"id": 65, "tag": "UPSI 22/11/2021 (Shift-01)", "q": "When an article sold at the rate of Rs. 11,544 earned a profit of 22% more than the loss incurred when the same article was sold at the rate of Rs. 5,772, find the cost price of the article.", "options": ["Rs. 8,372", "Rs. 8,572", "Rs. 8,472", "Rs. 8,272"], "ans": 0, "sol": "Profit : Loss = 122 : 100 = 61 : 50. Total gap = 11,544 - 5,772 = 5,772 = 111 parts ⇒ 1 part = 52. Loss = 50 × 52 = 2,600. CP = 5,772 + 2,600 = Rs. 8,372."}, {"id": 66, "tag": "RRB NTPC GL 18/06/2025", "q": "Umesh sold an article at a loss of 22%. If he had bought the article for 5% less and sold it for ₹935 more, he would have made a profit of 15%. Find the cost price of the article (in ₹).", "options": ["3,241", "2,839", "3,488", "2,992"], "ans": 3, "sol": "Let CP = 100x. Initial SP₁ = 78x. New CP₂ = 95x, New SP₂ = 95x × 1.15 = 109.25x. Difference in SP = 109.25x - 78x = 31.25x = 935 ⇒ 100x = 935 / 0.3125 = ₹2,992."}, {"id": 67, "tag": "SSC CGL Tier II (08/08/2022)", "q": "A man sells an article at a loss of 18%. If he increases the selling price by Rs. 144 and decreases the cost price by 30%, there is a profit of 20%. What is the original selling price?", "options": ["Rs. 5,068", "Rs. 6,036", "Rs. 5,904", "Rs. 6,124"], "ans": 2, "sol": "Let CP = 100x. Original SP = 82x. New CP = 70x, New SP = 70x × 1.20 = 84x. Given 84x - 82x = 2x = 144 ⇒ x = 72. Original SP = 82 × 72 = Rs. 5,904."}, {"id": 68, "tag": "SSC CHSL 14/03/2023 (4th Shift)", "q": "Vinay sold an article at a profit of 20 percent. If both the cost price and the selling price are reduced by Rs. 20, the profit becomes 40 percent. What is the initial cost price of the article?", "options": ["Rs. 80", "Rs. 60", "Rs. 50", "Rs. 40"], "ans": 3, "sol": "Let initial CP = x, SP = 1.2x. Since both are reduced by 20, the profit amount remains 0.2x. Now 0.2x = 40% of (x - 20) = 0.4(x - 20) ⇒ 0.2x = 8 ⇒ x = Rs. 40."}, {"id": 69, "tag": "SSC CHSL 09/03/2023 (4th Shift)", "q": "An article is sold at a loss of 10%. If its cost price is decreased by Rs. 5 and selling price is increased by Rs. 8, a profit of 10 percent is earned on it. What is the actual selling price of the article?", "options": ["Rs. 68.5", "Rs. 67.5", "Rs. 62.5", "Rs. 60.75"], "ans": 3, "sol": "Let CP = x, actual SP = 0.9x. Then 0.9x + 8 = 1.1(x - 5) = 1.1x - 5.5 ⇒ 0.2x = 13.5 ⇒ x = 67.5. Actual SP = 0.9 × 67.5 = Rs. 60.75."}, {"id": 70, "tag": "SSC MTS 16/06/2023 (Morning)", "q": "An article is sold at a loss of 5%. If its cost price is decreased by Rs. 20 and selling price is increased by Rs. 13, it makes a profit of 10 percent. What is the actual selling price of the article?", "options": ["Rs. 266.66", "Rs. 221.66", "Rs. 283.33", "Rs. 250"], "ans": 1, "sol": "Let CP = x, actual SP = 0.95x. Then 0.95x + 13 = 1.10(x - 20) = 1.10x - 22 ⇒ 0.15x = 35 ⇒ x = 700/3. Actual SP = (19/20) × (700/3) = 665/3 = Rs. 221.66."}, {"id": 71, "tag": "CHSL TIER I - 12/11/2025 - SHIFT 2", "q": "A vendor buys apples at 10 for ₹120 and sells them at 8 for ₹100. What is his profit or loss percentage?", "options": ["4.17% profit", "4.17% loss", "5.27% profit", "5.27% loss"], "ans": 0, "sol": "CP per apple = 120 / 10 = ₹12. SP per apple = 100 / 8 = ₹12.5. Profit % = (0.5 / 12) × 100 ≈ 4.17% profit."}, {"id": 72, "tag": "CGL TIER I - 13/09/2025 - SHIFT 1", "q": "A vendor sold 15 toys for ₹3,000 and gained a profit of 25%. How many toys should he sell for ₹2,816 to make a profit of 10%?", "options": ["15", "16", "17", "18"], "ans": 1, "sol": "SP of 1 toy at 25% profit = 3,000 / 15 = ₹200 ⇒ CP of 1 toy = 200 / 1.25 = ₹160. For 10% profit, SP of 1 toy = 160 × 1.10 = ₹176. Number of toys for ₹2,816 = 2,816 / 176 = 16."}, {"id": 73, "tag": "IB ACIO 2025", "q": "A man buys 9 same type of articles for a total of ₹18. If he sells each of them for ₹2.9, then his profit percentage will be ___ %.", "options": ["45", "32.03", "31.03", "46"], "ans": 0, "sol": "CP of 1 article = 18 / 9 = ₹2. SP of 1 article = ₹2.9. Profit % = ((2.9 - 2) / 2) × 100 = 45%."}, {"id": 74, "tag": "RRB NTPC GL 16/06/2025", "q": "A vendor sells an orange for ₹29 and incurs a loss of 75%. If he wants to earn a profit of 75%, at what price (in ₹) should he sell each orange?", "options": ["201", "206", "203", "205"], "ans": 2, "sol": "25% of CP = ₹29. Required SP (175% of CP) = 29 × (175 / 25) = 29 × 7 = ₹203."}, {"id": 75, "tag": "SSC CPO 28/06/2024", "q": "A shopkeeper buys 10 oranges for ₹50 and sells 12 oranges for ₹74. Find his profit or loss percentage.", "options": ["23⅓% profit", "25⅓% loss", "30% loss", "25% profit"], "ans": 0, "sol": "CP of 1 orange = ₹5. CP of 12 oranges = ₹60. SP of 12 oranges = ₹74. Profit % = (14 / 60) × 100 = 70 / 3 = 23⅓% profit."}, {"id": 76, "tag": "", "q": "A person bought some articles at the rate of 6 for ₹20 and bought double the number of articles at the rate of 8 for ₹26 and sold all the stock at the rate of 24 for ₹118. Find the profit or loss percentage.", "options": ["30% profit", "40% profit", "50% profit", "60% profit"], "ans": 2, "sol": "Let first lot = 24 articles: CP₁ = (24 / 6) × 20 = ₹80. Second lot = 48 articles: CP₂ = (48 / 8) × 26 = ₹156. Total CP for 72 articles = 80 + 156 = ₹236. Total SP for 72 articles = (72 / 24) × 118 = ₹354. Profit = 354 - 236 = ₹118. Profit % = (118 / 236) × 100 = 50% profit."}, {"id": 77, "tag": "Selection Post 25/06/2024", "q": "A seller buys 20 pens for ₹15 and sells them at ₹20 for 15 pens. How many pens must he sell to earn ₹245 profit?", "options": ["540", "280", "320", "420"], "ans": 3, "sol": "For 60 pens: CP = 3 × 15 = ₹45, SP = 4 × 20 = ₹80. Profit on 60 pens = ₹35. To earn ₹245 profit, number of pens = (245 / 35) × 60 = 7 × 60 = 420 pens."}, {"id": 78, "tag": "", "q": "A trader bought some oranges at 7 for ₹11. He sold all at 2 for ₹3, thereby losing ₹30. Find the number of oranges sold.", "options": ["420", "400", "210", "280"], "ans": 0, "sol": "For 14 oranges: CP = 2 × 11 = ₹22, SP = 7 × 3 = ₹21. Loss on 14 oranges = ₹1. For a total loss of ₹30, oranges sold = 30 × 14 = 420."}, {"id": 79, "tag": "", "q": "A man buys some oranges at the rate of 5 for ₹1 and the same number of oranges at 4 for ₹1. He sells all of them at 9 for ₹2. During the whole transaction he incurs a loss of ₹30. Find the total number of oranges that he purchased.", "options": ["11,080", "11,000", "10,800", "7,200"], "ans": 2, "sol": "Take 180 oranges of each type (total 360 oranges): CP = (180 / 5) + (180 / 4) = 36 + 45 = ₹81. SP = (360 / 9) × 2 = ₹80. Loss on 360 oranges = ₹1. For ₹30 loss, total oranges = 30 × 360 = 10,800."}, {"id": 80, "tag": "", "q": "A man buys 18 oranges for ₹135 and sells them at 11 for ₹90. How many oranges must he sell to gain ₹150?", "options": ["242", "240", "220", "198"], "ans": 2, "sol": "CP of 1 orange = 135 / 18 = ₹7.5. For 22 oranges: CP = 22 × 7.5 = ₹165, SP = 2 × 90 = ₹180. Profit on 22 oranges = ₹15. For ₹150 gain, oranges = (150 / 15) × 22 = 220."}, {"id": 81, "tag": "", "q": "A person bought items at 3 for ₹10 and double the quantity at 4 for ₹13. He sold all the items at 12 for ₹59. Find the profit or loss percentage.", "options": ["33% profit", "50% profit", "40% profit", "66.66% profit"], "ans": 1, "sol": "Take 12 items of first type (CP = 4 × 10 = ₹40) and 24 items of second type (CP = 6 × 13 = ₹78). Total CP for 36 items = ₹118. Total SP for 36 items = 3 × 59 = ₹177. Profit = ₹59. Profit % = (59 / 118) × 100 = 50% profit."}, {"id": 82, "tag": "", "q": "A bought chocolates at 4 for ₹1. He kept 1/5 of the chocolates and sold the rest at 3 for ₹1, earning ₹1 profit. Find the number of chocolates bought.", "options": ["40", "50", "60", "45"], "ans": 2, "sol": "Let total chocolates = x. CP = x / 4. Sold = (4/5)x at 3 for ₹1 ⇒ SP = 4x / 15. Profit = 4x/15 - x/4 = x/60 = 1 ⇒ x = 60."}, {"id": 83, "tag": "SSC CHSL 09/03/2023 (2nd)", "q": "A man bought 80 pens at the rate of Rs. 80 per pen. He sells 40 pens at a loss of 20%. If a profit of 20% is earned on all the pens together, then what will be the profit percentage on the remaining 40 pens?", "options": ["60%", "80%", "70%", "90%"], "ans": 0, "sol": "Since the two lots are equal (40 pens each), average profit % = (-20% + x%) / 2 = 20% ⇒ x = 60%."}, {"id": 84, "tag": "CHSL TIER I - 30/11/2025 - SHIFT 3", "q": "A fruit vendor sold 3/4 of his apples at a profit of 20% and the rest at a loss of 10%. If he gained ₹90 on the whole, find the cost price of all apples.", "options": ["₹680", "₹800", "₹750", "₹720"], "ans": 3, "sol": "Overall profit % = (3/4) × 20% + (1/4) × (-10%) = 15% - 2.5% = 12.5% = 1/8. Given (1/8) × CP = ₹90 ⇒ CP = ₹720."}, {"id": 85, "tag": "PHASE XIII(GRAD) - 29/07/2025 - SHIFT 3", "q": "A baker made 100 cakes for ₹3,000. Due to an accident, 10 cakes were damaged. At what price per cake should he sell the remaining cakes to make an overall profit of 15%?", "options": ["₹63.62", "₹28.43", "₹39.62", "₹38.33"], "ans": 3, "sol": "Total required SP = 3,000 × 1.15 = ₹3,450. Remaining cakes = 90. SP per cake = 3,450 / 90 = ₹38.33."}, {"id": 86, "tag": "CPO TIER I - 09/12/2025 - SHIFT 1", "q": "A shopkeeper bought 100 pens at Rs. 10 each. He sold 60 pens at 20% profit and the rest at 10% loss. What is the overall profit or loss percentage?", "options": ["2% profit", "1% loss", "3% loss", "8% profit"], "ans": 3, "sol": "Overall % = 0.60 × 20% + 0.40 × (-10%) = 12% - 4% = 8% profit."}, {"id": 87, "tag": "SSC CHSL 30/05/2022 (Evening)", "q": "A man bought a piece of land for ₹48,000. He sold two-fifths of it at a loss of 10%. At what profit percentage should he sell the remaining land (rounded off to 1 decimal place) to earn an overall profit of 42%?", "options": ["76.7%", "84.3%", "79.5%", "89.8%"], "ans": 0, "sol": "(2/5) × (-10%) + (3/5) × x% = 42% ⇒ -4 + 0.6x = 42 ⇒ 0.6x = 46 ⇒ x = 460 / 6 ≈ 76.7%."}, {"id": 88, "tag": "IB SA 2025", "q": "During a sale, 30% of the goods are sold at a 40% profit, 20% of the remaining goods are sold at a 37% profit, and the still remaining goods are sold at a loss of 48%. If there is an overall loss of x%, then what is the value of x?", "options": ["5.7", "7.5", "9.7", "7.9"], "ans": 2, "sol": "Proportions of goods: First = 30%, Second = 20% of 70% = 14%, Remaining = 100% - 44% = 56%. Overall % = 0.30(40) + 0.14(37) + 0.56(-48) = 12 + 5.18 - 26.88 = -9.7%. Thus x = 9.7."}, {"id": 89, "tag": "CGL TIER I - 20/09/2025 - SHIFT 2", "q": "A can contains 40 litres of oil at Rs. 50/litre. Another can contains 60 litres of oil at Rs. 60/litre. They are mixed, and 20 litres are sold at Rs. 70/litre. How much profit or loss does the seller make on this 20-litre sale?", "options": ["Rs. 160 profit", "Rs. 160 loss", "Rs. 280 loss", "Rs. 280 profit"], "ans": 3, "sol": "Cost of 100 litres = 40 × 50 + 60 × 60 = 2,000 + 3,600 = Rs. 5,600 ⇒ Average CP = Rs. 56/litre. On selling 20 litres at Rs. 70/litre, Profit = 20 × (70 - 56) = Rs. 280 profit."}, {"id": 90, "tag": "SSC CGL 25/09/2024", "q": "Ramesh bought 130 books at ₹200 per book. He sold half at ₹300, one-fifth at ₹350, and the remaining at cost price. Find his overall profit percentage.", "options": ["44%", "38%", "40%", "35%"], "ans": 2, "sol": "Half (50%) sold at 50% profit ((300-200)/200), one-fifth (20%) sold at 75% profit ((350-200)/200), rest at 0% profit. Overall Profit % = 0.50 × 50% + 0.20 × 75% = 25% + 15% = 40%."}, {"id": 91, "tag": "SSC CGL 17/09/2024", "q": "If a shopkeeper sells sugar at ₹44.8 per kg, he makes a 12% profit. Due to leakage, 1/5th of the sugar is wasted. What should be the selling price per kg for the remaining sugar to make a 5% profit?", "options": ["₹51.5", "₹48.5", "₹52.5", "₹49.5"], "ans": 2, "sol": "CP per kg = 44.8 / 1.12 = ₹40. For 5 kg sugar, Total CP = ₹200. Target SP for 5% profit = 200 × 1.05 = ₹210. Remaining sugar = 4 kg. SP per kg = 210 / 4 = ₹52.5."}, {"id": 92, "tag": "CGL TIER I - 14/09/2025 - S3", "q": "A flower vendor bought 200 flowers for Rs. 800. 20 flowers withered and became unsellable. At what price per flower should he sell the remaining flowers to earn a profit of 30% on his total cost?", "options": ["Rs. 7.85", "Rs. 6.54", "Rs. 5.78", "Rs. 3.82"], "ans": 2, "sol": "Required Total SP = 800 × 1.30 = Rs. 1,040. Remaining flowers = 180. SP per flower = 1,040 / 180 ≈ Rs. 5.78."}, {"id": 93, "tag": "CHSL 04/07/2024", "q": "A shopkeeper buys 1,800 kg wheat for ₹32,400. If 20% of this wheat gets damaged due to rain, at what price per kg should he sell the remaining wheat to earn a 20% profit?", "options": ["₹29", "₹25", "₹26", "₹27"], "ans": 3, "sol": "CP per kg = 32,400 / 1,800 = ₹18. Since 80% wheat remains and target is 120% of total cost, SP per kg = 18 × (1.20 / 0.80) = 18 × 1.5 = ₹27."}, {"id": 94, "tag": "CHSL 04/07/2024", "q": "A retailer buys a batch of goods for ₹5,000. Due to manufacturing defect, 5% of the goods get damaged. If he wants to earn a 20% profit on the remaining goods, at what price should he sell them?", "options": ["₹5,700", "₹5,900", "₹5,800", "₹6,000"], "ans": 0, "sol": "Cost of remaining 95% goods = 5,000 × 0.95 = ₹4,750. Selling price with 20% profit on remaining goods = 4,750 × 1.20 = ₹5,700."}, {"id": 95, "tag": "CPO 28/06/2024", "q": "A vegetable seller bought 100 kg potatoes at ₹19 per kg and spent ₹100 on transportation. He sold 60 kg at 50% profit and half of the remaining at 40% profit. Then, from the leftover potatoes, he sold half at 25% profit. To earn an overall profit of 42%, at what profit percentage (expressed as a decimal) should he sell the remaining potatoes?", "options": ["0.15", "0.16", "0.1", "0.12"], "ans": 0, "sol": "Quantities: 60 kg at 50%, 20 kg at 40%, 10 kg at 25%, and remaining 10 kg at x%. Weighted profit: 0.6(50) + 0.2(40) + 0.1(25) + 0.1(x) = 42 ⇒ 30 + 8 + 2.5 + 0.1x = 42 ⇒ 0.1x = 1.5 ⇒ x = 15% = 0.15."}, {"id": 96, "tag": "", "q": "A man buys a plot of land at ₹3,43,235. He sells one-third of the plot at 20% loss and two-thirds of the remaining at 25% profit. To get an overall profit of 10%, at what profit percentage should he sell the remaining plot?", "options": ["20%", "22%", "25%", "30%"], "ans": 2, "sol": "Fractions: 1/3 at -20%, (2/3)×(2/3) = 4/9 at +25%, and remaining 2/9 at x%. Weighted sum: (3/9)(-20) + (4/9)(25) + (2/9)x = 10 ⇒ -60 + 100 + 2x = 90 ⇒ 2x = 50 ⇒ x = 25%."}, {"id": 97, "tag": "", "q": "The cost price ratio of articles A and B is 7:9. Article A is sold at 80% profit and article B at 20% profit. If the total profit earned is ₹407, what is the difference between the cost price of A and B?", "options": ["₹125", "₹112", "₹110", "₹122"], "ans": 2, "sol": "Let CP of A = 7x, B = 9x. Total profit = 0.8(7x) + 0.2(9x) = 5.6x + 1.8x = 7.4x = 407 ⇒ x = 55. Difference between CPs = 9x - 7x = 2x = ₹110."}, {"id": 98, "tag": "CG PSC CSAT 2020", "q": "A person buys 5 tables and 9 chairs for ₹15,400. He sells the tables at 10% profit and the chairs at 20% profit. If his total profit is ₹2,080, what is the cost price of 3 chairs?", "options": ["₹1,890", "₹1,740", "₹1,800", "₹1,860"], "ans": 2, "sol": "0.10(T + C) + 0.10C = 2,080 ⇒ 1,540 + 0.10C = 2,080 ⇒ 0.10C = 540 ⇒ Cost of 9 chairs (C) = ₹5,400. Cost of 3 chairs = 5,400 / 3 = ₹1,800."}, {"id": 99, "tag": "IB SA 2025", "q": "A trader buys 250 articles, each at the same price. He sells 60% of them at a profit of 40%, one-fifth of them at a loss of 25%, and the remaining articles at a loss equal to the cost price of 5 articles. His gain/loss percentage in the entire transaction is:", "options": ["Profit, 17%", "Loss, 15%", "Loss, 18%", "Profit, 20%"], "ans": 0, "sol": "Let CP of 1 article = ₹1 (Total CP = ₹250). Profit on 60% (150 items) = 150 × 0.40 = +60. Loss on 1/5 (50 items) = 50 × (-0.25) = -12.5. Loss on remaining = -5. Net profit = 60 - 12.5 - 5 = 42.5. Profit % = (42.5 / 250) × 100 = 17% Profit."}, {"id": 100, "tag": "SSC Selection Post 14/03/2022", "q": "Raju bought 75 items, each of which has the same price. He sold one-third of them at a profit of 40% and 20% of the rest at a profit of 20%. He sold the remaining articles at a loss equal to the cost price of 7 articles. What is his profit/loss percentage in the whole transaction?", "options": ["Loss, 6⅔%", "Profit, 6⅔%", "Profit, 8%", "Loss, 8%"], "ans": 1, "sol": "Let CP of 1 item = ₹1 (Total CP = ₹75). 1/3 (25 items) at 40% profit = +10. 20% of remaining 50 (10 items) at 20% profit = +2. Remaining items at loss of 7 = -7. Net profit = 10 + 2 - 7 = +5. Profit % = (5 / 75) × 100 = 6⅔% Profit."}, {"id": 101, "tag": "SSC MTS (Shift- II) 26/10/2021", "q": "A shopkeeper bought 600 pens. He sold 480 of them for the price he paid for 600 pens, 100 pens at 10% higher rate than that at which he sold 480 pens, and the rest at the cost price. His profit percentage in the transaction is:", "options": ["25%", "26.25%", "28.5%", "27%"], "ans": 1, "sol": "Let CP of 1 pen = ₹1 (Total CP = ₹600). SP of first 480 pens = ₹600 (rate = 600/480 = ₹1.25/pen). Next 100 pens sold at 10% higher rate = 1.25 × 1.10 = ₹1.375/pen ⇒ SP = ₹137.50. Remaining 20 pens sold at CP = ₹20. Total SP = 600 + 137.50 + 20 = ₹757.50. Profit = ₹157.50. Profit % = (157.50 / 600) × 100 = 26.25%."}, {"id": 102, "tag": "SSC MTS 14/10/2021 (Afternoon)", "q": "A shopkeeper bought 500 notebooks. He sold 300 of them for the price he paid for all 500 notebooks. He sold 140 notebooks at a rate 20% more than that at which he sold 300 notebooks and the rest at the cost price. What is the profit percentage in the whole transaction?", "options": ["60%", "56%", "68%", "64%"], "ans": 2, "sol": "Let CP of 1 notebook = ₹1 (Total CP = ₹500). SP of 300 notebooks = ₹500 (rate = 5/3 per notebook). SP of 140 notebooks = 140 × (5/3) × 1.2 = ₹280. Remaining 60 sold at CP = ₹60. Total SP = 500 + 280 + 60 = ₹840. Profit = ₹340. Profit % = (340 / 500) × 100 = 68%."}, {"id": 103, "tag": "UPSI 29/1/2021 (Shift-03)", "q": "A trader mixes 215 kg of rice at ₹110 per kg with 225 kg of rice of another variety at ₹110 per kg and sells the mixture at ₹132 per kg. Find his profit percent.", "options": ["20%", "35%", "25%", "30%"], "ans": 0, "sol": "CP of mixture = ₹110/kg. SP of mixture = ₹132/kg. Profit % = ((132 - 110) / 110) × 100 = 20%."}, {"id": 104, "tag": "UPSI 30/11/2021 (Shift-01)", "q": "A trader mixes 265 kg of rice at ₹185 per kg with 275 kg of rice of another variety at ₹185 per kg and sells the mixture at ₹222 per kg. Find his profit percent.", "options": ["26%", "20%", "22%", "24%"], "ans": 1, "sol": "CP of mixture = ₹185/kg. SP of mixture = ₹222/kg. Profit % = ((222 - 185) / 185) × 100 = (37 / 185) × 100 = 20%."}, {"id": 105, "tag": "SSC CHSL 08/06/2022 (Evening)", "q": "If half of the sugar in a bag is sold at 20% profit, 1/4th part at 16% profit and the remaining part at 24% profit and the total profit earned by selling all the sugar in the bag was Rs. 90, then find the total cost price of the material.", "options": ["₹450", "₹750", "₹500", "₹400"], "ans": 0, "sol": "Overall profit % = (1/2)(20%) + (1/4)(16%) + (1/4)(24%) = 10% + 4% + 6% = 20%. Given 20% of CP = ₹90 ⇒ CP = ₹450."}, {"id": 106, "tag": "SSC CHSL 13/03/2023 (4th Shift)", "q": "The cost price of two dozen bananas is Rs. 30. After selling 15 bananas at the rate of Rs. 12 per dozen, the shopkeeper sold the remaining bananas at the rate of Rs. 5 per dozen. What is the loss percentage?", "options": ["22.5%", "25%", "37.5%", "30%"], "ans": 2, "sol": "Total bananas = 24, Total CP = Rs. 30. SP of 15 bananas at Rs. 1/banana = Rs. 15. Remaining 9 bananas (3/4 dozen) sold at Rs. 5/dozen = 0.75 × 5 = Rs. 3.75. Total SP = Rs. 18.75. Loss = 30 - 18.75 = Rs. 11.25. Loss % = (11.25 / 30) × 100 = 37.5%."}, {"id": 107, "tag": "SSC MTS 14/07/2022 (Morning)", "q": "The cost price of a pen and a notebook is ₹600 and ₹4,000 respectively. If the pen and notebook are sold at losses of 20% and 32% respectively, then what will be the approximate percentage of the total loss incurred through the two sales made?", "options": ["21.40%", "26.08%", "30.43%", "28.42%"], "ans": 2, "sol": "Total Loss = 20% of 600 + 32% of 4,000 = 120 + 1,280 = ₹1,400. Total CP = ₹4,600. Loss % = (1,400 / 4,600) × 100 ≈ 30.43%."}, {"id": 108, "tag": "SSC CGL TIER I - 12/09/2025 - Shift 2", "q": "A candy shop owner buys three kinds of candies: red, blue, and green. Red candies are purchased at 3 for ₹15, blue candies at 4 for ₹18, and green candies at 5 for ₹22. He mixes them in the ratio 1:1:2. He sells all the mixed candies at 2 for ₹10. What is his profit or loss percentage?", "options": ["20% profit", "9.29% profit", "10% loss", "No profit no loss"], "ans": 1, "sol": "CP per candy: Red = ₹5, Blue = ₹4.5, Green = ₹4.4. For 4 candies in ratio 1:1:2, Total CP = 5 + 4.5 + 2(4.4) = ₹18.3. SP of 4 candies at ₹5 each = ₹20. Profit % = (1.7 / 18.3) × 100 ≈ 9.29% profit."}, {"id": 109, "tag": "CGL TIER I - 13/09/2025 - SHIFT 2", "q": "An antique dealer sold three items, A, B, and C, with their selling prices in the ratio 4:5:6. He suffered a loss of 10% on item A, made a profit of 50% on item B, and broke even (no profit, no loss) on item C. What was his approximate percentage gain or loss in the overall deal?", "options": ["8.88% profit", "8.88% loss", "10.88% profit", "10.88% loss"], "ans": 0, "sol": "Let SPs be 4, 5, 6 (Total SP = 15). CP_A = 4 / 0.9 = 40/9. CP_B = 5 / 1.5 = 10/3 = 30/9. CP_C = 6 = 54/9. Total CP = 124/9. Total SP = 135/9. Profit % = ((135 - 124) / 124) × 100 = 1100 / 124 ≈ 8.88% profit."}, {"id": 110, "tag": "CGL TIER I - 13/09/2025 - SHIFT 1", "q": "A trader sells one brand of tea at ₹150 per kg, incurring a 25% loss. He also sells another brand of tea at ₹200 per kg, incurring a 20% loss. If he mixes the two brands in equal proportions and sells the mixture at ₹175 per kg, what is his overall profit or loss percentage?", "options": ["Loss of 22.22%", "Profit of 22.22%", "Loss of 25%", "Profit of 25%"], "ans": 0, "sol": "CP₁ = 150 / 0.75 = ₹200/kg. CP₂ = 200 / 0.80 = ₹250/kg. Average CP for equal mix = (200 + 250) / 2 = ₹225/kg. SP = ₹175/kg. Loss = ₹50/kg. Loss % = (50 / 225) × 100 = 22.22% Loss."}, {"id": 111, "tag": "CGL TIER I - 14/09/2025 - S2", "q": "A fruit seller buys three varieties of mangoes. The first variety is bought at 4 for Rs. 10, the second at 5 for Rs. 12, and the third at 2 for Rs. 5. He mixed them in the ratio 2 : 3 : 1 respectively. If he sells all the mangoes at 3 for Rs. 7, what is his approximate gain or loss percentage?", "options": ["Profit of 4.76%", "Loss of 4.76%", "Loss of 6%", "Profit of 6%"], "ans": 1, "sol": "CP per mango: V₁ = 2.5, V₂ = 2.4, V₃ = 2.5. For 6 mangoes (2:3:1), Total CP = 2(2.5) + 3(2.4) + 1(2.5) = 5 + 7.2 + 2.5 = Rs. 14.7. SP of 6 mangoes = 2 × 7 = Rs. 14. Loss = Rs. 0.7. Loss % = (0.7 / 14.7) × 100 = (1 / 21) × 100 ≈ 4.76% Loss."}, {"id": 112, "tag": "CGL TIER I - 13/09/2025 - SHIFT 2", "q": "Three varieties of rice costing ₹40/kg, ₹50/kg, and a third unknown price are mixed in the ratio 2:3:5. If the resulting mixture is sold at ₹55/kg, making a profit of 10% on the cost price, what is the price of the third variety of rice per kg?", "options": ["₹52.50", "₹57.50", "₹54.00", "₹62.50"], "ans": 2, "sol": "CP of mixture = 55 / 1.10 = ₹50/kg. Thus (2×40 + 3×50 + 5×x) / 10 = 50 ⇒ 80 + 150 + 5x = 500 ⇒ 5x = 270 ⇒ x = ₹54.00."}, {"id": 113, "tag": "CGL TIER I - 14/09/2025 - SHIFT", "q": "One type of pulses is sold for ₹72 per kg at a 20% profit. Another type is sold for ₹60 per kg at a 25% profit. If these two varieties are mixed in the ratio 2:1 (first variety to second variety) and the mixture is sold at ₹70 per kg, what is the overall profit or loss percentage?", "options": ["Profit of 50%", "Loss of 25%", "Profit of 25%", "Loss of 50%"], "ans": 2, "sol": "CP₁ = 72 / 1.20 = ₹60/kg. CP₂ = 60 / 1.25 = ₹48/kg. Mixture CP (2:1) = (2×60 + 1×48) / 3 = 168 / 3 = ₹56/kg. SP = ₹70/kg. Profit = ₹14/kg. Profit % = (14 / 56) × 100 = 25% Profit."}, {"id": 114, "tag": "IB SA 2025", "q": "A manufacturer sells a product to a wholesaler at a profit of 12%. The wholesaler, in turn, sells it to a retailer at a profit of 25%, and the retailer sells it to a customer at a profit of 25%. If the customer pays ₹511, find the cost price (in ₹) for the manufacturer.", "options": ["289", "291", "293", "292"], "ans": 3, "sol": "CP × (28/25) × (5/4) × (5/4) = 511 ⇒ CP × (7/4) = 511 ⇒ CP = 511 × 4 / 7 = 73 × 4 = ₹292."}, {"id": 115, "tag": "IB SA 2025", "q": "A manufacturer sells a product to a wholesaler at a profit of 40%. The wholesaler, in turn, sells it to a retailer at a profit of 25%, and the retailer sells it to a customer at a profit of 44%. If the customer pays ₹189, find the cost price (in ₹) for the manufacturer.", "options": ["74", "75", "77", "72"], "ans": 1, "sol": "CP × 1.40 × 1.25 × 1.44 = 189 ⇒ CP × 2.52 = 189 ⇒ CP = 189 / 2.52 = ₹75."}, {"id": 116, "tag": "SSC CGL 13/12/2022 (3rd Shift)", "q": "Ram sold an article worth Rs. 1,250 to Ramesh at a profit of 18%. It was again sold by Ramesh to Shyam at a loss of 10%. Find the selling price of Ramesh.", "options": ["Rs. 1,328.50", "Rs. 1,428.50", "Rs. 1,427.50", "Rs. 1,327.50"], "ans": 3, "sol": "Selling price of Ramesh = 1,250 × 1.18 × 0.90 = Rs. 1,327.50."}, {"id": 117, "tag": "CPO 27/06/2024", "q": "Aarav sells a ₹10,000 watch to Bhavin at 15% profit. Later Bhavin sells it back to Aarav at 15% loss. What is Aarav's overall profit/loss %?", "options": ["18.25% profit", "18.75% loss", "17.25% loss", "17.25% profit"], "ans": 3, "sol": "Aarav sells for ₹11,500 and buys back for 11,500 × 0.85 = ₹9,775. Aarav's net gain = 11,500 - 9,775 = ₹1,725 on ₹10,000 watch = 17.25% profit."}, {"id": 118, "tag": "CPO 17/09/2024", "q": "An item is sold at 40% overall profit after passing through two sellers. If the first seller earns 30% profit, what is the second seller's profit %?", "options": ["8⁶⁄₁₃%", "7¹⁄₁₃%", "6³⁄₁₃%", "7⁹⁄₁₃%"], "ans": 3, "sol": "1.30 × (1 + x/100) = 1.40 ⇒ x/100 = 10/130 ⇒ x = 100/13 = 7⁹⁄₁₃%."}, {"id": 119, "tag": "CHSL 2024", "q": "A sells an item to B at 10% profit, B sells it to C at 60% profit, and C sells it to D at 12½% profit. If D pays ₹59.40, at what price did A purchase it?", "options": ["₹28", "₹34", "₹32", "₹30"], "ans": 3, "sol": "CP × (11/10) × (8/5) × (9/8) = 59.40 ⇒ CP × (99/50) = 59.40 ⇒ CP = 59.40 × 50 / 99 = ₹30."}, {"id": 120, "tag": "CHSL TIER I - 27/11/2025 - SHIFT 1", "q": "A dishonest dealer professes to sell goods at cost price but uses a false weight of 950 g instead of 1 kg. Find his profit percentage.", "options": ["4.76%", "5.26%", "6.25%", "7.14%"], "ans": 1, "sol": "Profit % = ((1,000 - 950) / 950) × 100 = (50 / 950) × 100 = 100 / 19 ≈ 5.26%."}, {"id": 121, "tag": "PHASE XIII(GRAD) - 28/07/2025 - SHIFT 3", "q": "A shopkeeper claims to sell goods at a profit of 10% on the cost price but uses a false weight of 900 g for every 1 kg. What is his actual profit percentage?", "options": ["20.62%", "22.22%", "19.62%", "21.32%"], "ans": 1, "sol": "SP / CP = (1.10 / 0.90) = 11 / 9. Actual Profit % = (2 / 9) × 100 = 22.22%."}, {"id": 122, "tag": "CGL TIER I - 12/09/2025 - SHIFT 3", "q": "A fruit seller sells apples at a loss of 5% on the cost price but uses a weight that is 20% less than the actual weight. Find his total profit percentage.", "options": ["20.62%", "19.25%", "16.28%", "18.75%"], "ans": 3, "sol": "SP / CP = 0.95 / 0.80 = 19 / 16. Profit % = (3 / 16) × 100 = 18.75%."}, {"id": 123, "tag": "SSC CGL 24/07/2023 (4th shift)", "q": "A dishonest shopkeeper sells mangoes bought at ₹20/kg at ₹30/kg and he gives only 800 g instead of 1 kg. What is the actual profit percentage of the shopkeeper?", "options": ["75%", "37.5%", "50%", "87.5%"], "ans": 3, "sol": "Cost of 800 g = 0.8 × 20 = ₹16. Selling price charged = ₹30. Profit = ₹14. Profit % = (14 / 16) × 100 = 87.5%."}, {"id": 124, "tag": "SSC CGL 20/07/2023 (2nd shift)", "q": "A vendor claims to sell his fruits at cost price, but still makes a profit of 5⁵⁄₁₉%. How much fruit does he give instead of 1 kg?", "options": ["905 gm", "900 gm", "5 gm", "950 gm"], "ans": 3, "sol": "Profit % = 100/19 % = 1/19. Thus (1000 - w) / w = 1/19 ⇒ 20w = 19,000 ⇒ w = 950 gm."}, {"id": 125, "tag": "RPF SI 13/12/2024", "q": "A vendor claims to sell wheat at a 35% loss. But he cheats by using weights which are 60% less than the marked weight. What is his profit percentage (rounded off to two decimal places)?", "options": ["62.50%", "57.39%", "58.64%", "64.56%"], "ans": 0, "sol": "SP / CP = 0.65 / 0.40 = 13 / 8 = 1.625. Profit % = 62.50%."}, {"id": 126, "tag": "SSC CPO 10/11/2022 (Afternoon)", "q": "A shopkeeper sells his items using a defective scale which weighs 25% less. He then marks his goods 15% above the cost price. Even if he gives a discount of 10%, find his net profit percentage on 1 kg of goods.", "options": ["32%", "41%", "44%", "38%"], "ans": 3, "sol": "SP / CP = (1.15 × 0.90) / 0.75 = 1.035 / 0.75 = 1.38. Net profit % = 38%."}, {"id": 127, "tag": "CG TET 2016", "q": "In a defective balance, the weight of the left edge is 100 gm more than its right edge. A shopkeeper while purchasing keeps weights on the left edge and while selling keeps weights on the right edge. He only uses a weight of 1 kg. If he sells the things on marked price, then his profit percentage is:", "options": ["200/9 %", "100/9 %", "250/9 %", "150/9 %"], "ans": 0, "sol": "While purchasing (1 kg weight on heavier left pan), goods on right pan weigh 1,100 gm. While selling (1 kg weight on lighter right pan), goods on left pan weigh 900 gm. Profit % = ((1,100 - 900) / 900) × 100 = 200/9 %."}, {"id": 128, "tag": "SSC CPO 09/11/2022 (Morning)", "q": "A merchant uses a 120 cm tape instead of 100 cm while buying clothes, while selling the clothes he uses an 80 cm tape instead of 100 cm, and then he offers a discount of 10%. Find his profit or loss %.", "options": ["27%", "54%", "35%", "45%"], "ans": 2, "sol": "SP / CP = (120 / 80) × 0.90 = 1.5 × 0.90 = 1.35. Profit % = 35%."}, {"id": 129, "tag": "SSC CGL 20/07/2023 (4th shift)", "q": "The cost price and selling price of rice are the same. Due to a malfunction in the weighing machine, the seller makes a profit of 15%. If the cost price of 1,000 gm rice is Rs. x and the machine is replaced with one which shows 1,000 gm instead of 950 gm, then what should be the selling price now to get the same profit percentage?", "options": ["1.0295x", "1.0925x", "1.0259x", "1.0950x"], "ans": 1, "sol": "Cost of 950 gm actually given = 0.95x. To earn 15% profit on it, required SP = 0.95x × 1.15 = 1.0925x."}, {"id": 130, "tag": "SSC CGL 26/07/2023 (1st shift)", "q": "R's weighing machine shows 400 gm load while the actual load is 350 gm. The cost price of almonds is ₹880 per kg and 200 gm packets are made by the defective machine. What should be the selling price (in ₹) of each packet to earn a profit of 25%?", "options": ["197.50", "182.50", "175.50", "192.50"], "ans": 3, "sol": "A packet shown as 200 gm actually contains 350 / 2 = 175 gm. Cost of 175 gm = (175 / 1,000) × 880 = ₹154. For 25% profit, SP = 154 × 1.25 = ₹192.50."}, {"id": 131, "tag": "SSC CGL 05/12/2022 (3rd Shift)", "q": "A businessman cheats by using 12% defective weights every time he buys and sells materials. By how much is his profit percentage increased by using defective weights?", "options": ["22%", "25.44%", "24%", "26.32%"], "ans": 1, "sol": "Using the standard SSC formula for successive 12% cheating while buying and selling: 12 + 12 + (12 × 12)/100 = 25.44%."}, {"id": 132, "tag": "CHSL 09/06/2022", "q": "By using a faulty weight, a shopkeeper cheats to the extent of 6% while buying and selling rice. Find his gain percentage (rounded to two decimal places).", "options": ["14.66%", "13.65%", "12.77%", "11.25%"], "ans": 2, "sol": "Ratio = 106 / 94. Gain % = ((106 - 94) / 94) × 100 = (12 / 94) × 100 ≈ 12.77%."}, {"id": 133, "tag": "CPO 28/06/2024", "q": "A shopkeeper gives a discount of 12% on the purchase of 10 kg of sugar. The cost price of the sugar is Rs. 30/kg, and the marked price is Rs. 38/kg. The weighing machine of the shopkeeper is faulty, and it shows a weight of 1 kg when the actual weight is 900 gm. Find the percentage profit of the shopkeeper.", "options": ["30.18%", "12.5%", "22.25%", "23.85%"], "ans": 3, "sol": "SP / CP = (38 × 0.88) / (30 × 0.90) = 33.44 / 27 ≈ 1.2385. Profit % = 23.85%."}, {"id": 134, "tag": "Selection Post 2024", "q": "A shopkeeper generally makes a profit of 20% in a certain transaction; due to a fault in the weighing machine, it weighs only 900 gm instead of 1 kg. If he charges 15% less than the normal price, then what is his actual profit or loss percentage?", "options": ["13.33% loss", "13.33% profit", "18.33% profit", "18.00% loss"], "ans": 1, "sol": "SP / CP = (1.20 × 0.85) / 0.90 = 1.02 / 0.90 = 17 / 15. Actual Profit % = (2 / 15) × 100 = 13.33% profit."}, {"id": 135, "tag": "Selection Post 2024", "q": "During the lockdown, a state government gives 4.5 kg of rice to each person in a family at a purchase price of ₹40 per kg. But the distributor distributes rice at the wrong weight of 3.75 kg instead of 4.5 kg. The leftover rice was sold on the black market at double the price. He showed the government that he had distributed 2,700 kg of rice. When caught, he had to pay a fine of 125% of the amount he earned on the black market. What was his fine amount?", "options": ["₹36,000", "₹54,000", "₹28,000", "₹45,000"], "ans": 3, "sol": "Rice stolen = ((4.5 - 3.75) / 4.5) × 2,700 = (1 / 6) × 2,700 = 450 kg. Black market price = 2 × ₹40 = ₹80/kg. Black market earnings = 450 × 80 = ₹36,000. Fine (125%) = 36,000 × 1.25 = ₹45,000."}, {"id": 136, "tag": "Selection Post 25/06/2024", "q": "A shopkeeper claims to sell 450 kg rice at a cost price of Rs. 40 per kg but uses a weight of 900 gm instead of a one kilogram weight. He makes a profit of Rs. 2,520 by selling the remaining rice in the black market. The ratio of the black market price to the original price per kg of rice is:", "options": ["9 : 4", "7 : 5", "10 : 7", "4 : 3"], "ans": 1, "sol": "Remaining rice saved by short-weighing 450 kg = 10% of 450 kg = 45 kg. Black market price per kg = 2,520 / 45 = Rs. 56/kg. Ratio to original price = 56 : 40 = 7 : 5."}, {"id": 137, "tag": "CHSL TIER I - 19/11/2025 - SHIFT 2", "q": "A milk seller claims to sell milk at its actual cost price. He secretly adds water to it and thus secures a 25% profit. In what proportion of water to milk must the mixture be prepared?", "options": ["1 : 3", "1 : 4", "1 : 5", "4 : 1"], "ans": 1, "sol": "Water : Milk = Profit % : 100% = 25 : 100 = 1 : 4."}, {"id": 138, "tag": "PHASE XIII(GRAD) - 29/08/2025 - SHIFT 1", "q": "A milkman mixes water in pure milk and sells at milk's cost price. If he mixes 0.75 L water in every 5.25 L milk, what is his profit percentage?", "options": ["12.5%", "14.28%", "16.66%", "17.64%"], "ans": 1, "sol": "Profit % = (0.75 / 5.25) × 100 = (1 / 7) × 100 = 14.28%."}, {"id": 139, "tag": "", "q": "A dishonest milkman professes to sell his milk at cost price, but he mixes it with water and thereby gains 25%. The percentage of water in the mixture is:", "options": ["25%", "50%", "20%", "40%"], "ans": 2, "sol": "Water : Milk = 1 : 4. Percentage of water in total mixture = (1 / (1 + 4)) × 100 = 20%."}, {"id": 140, "tag": "SSC MTS 07/07/2022 (Morning)", "q": "A bought a bag and a bottle for a total of ₹900. He sold the bottle at a profit of 12% and the bag at a profit of 20%. If he earned a total profit of Rs. 160.80, find the cost price of the bottle.", "options": ["₹320", "₹300", "₹200", "₹240"], "ans": 3, "sol": "If all ₹900 were sold at 20% profit, profit would be ₹180. Difference = 180 - 160.80 = ₹19.20, which equals (20% - 12%) = 8% of Bottle CP. Bottle CP = 19.20 / 0.08 = ₹240."}, {"id": 141, "tag": "", "q": "Two horses were bought for Rs. 1,600 in total. The first was sold at 10% profit and the second at 20% profit. If the first were sold at 20% profit and the second at 10% profit, he would get Rs. 5 more. Find the difference between the cost prices of both the horses.", "options": ["Rs. 120", "Rs. 50", "Rs. 100", "Rs. 150"], "ans": 1, "sol": "10% of (CP₁ - CP₂) = 5 ⇒ CP₁ - CP₂ = Rs. 50."}, {"id": 142, "tag": "", "q": "A man purchases 5 horses and 10 cows for ₹10,000. He sells the horses at 15% profit and the cows at 10% loss, thus he gets ₹375 as profit. Find the cost of 1 horse and 1 cow separately.", "options": ["₹1,000, ₹400", "₹1,100, ₹400", "₹1,000, ₹450", "₹1,100, ₹450"], "ans": 3, "sol": "Let total cost of horses = H, cows = C. H + C = 10,000 and 0.15H - 0.10C = 375 ⇒ 0.25H = 1,375 ⇒ H = ₹5,500, C = ₹4,500. Cost of 1 horse = 5,500 / 5 = ₹1,100; Cost of 1 cow = 4,500 / 10 = ₹450."}, {"id": 143, "tag": "", "q": "A man sells a table at 12% loss and a book at 19% profit and earns a profit of ₹160, but if he sells the table at 12% profit and the book at 16% loss, then he bears a loss of ₹40. Find the difference between the price of a table and a book.", "options": ["₹1,000", "₹1,300", "₹1,400", "₹1,500"], "ans": 0, "sol": "-0.12T + 0.19B = 160 and 0.12T - 0.16B = -40. Adding both gives 0.03B = 120 ⇒ B = ₹4,000. Then 0.12T = 0.19(4,000) - 160 = 600 ⇒ T = ₹5,000. Difference = 5,000 - 4,000 = ₹1,000."}, {"id": 144, "tag": "", "q": "A shopkeeper buys two radios for ₹2,375. If he sells the 1st at 12% profit and the 2nd at 24% profit, and if he reverses the profit percentages, he gets ₹9 more. Find their cost prices.", "options": ["₹1,000 & ₹1,375", "₹1,225 & ₹1,150", "₹1,300 & ₹1,075", "₹800 & ₹1,575"], "ans": 1, "sol": "12% of (CP₁ - CP₂) = 9 ⇒ CP₁ - CP₂ = 9 / 0.12 = ₹75. With CP₁ + CP₂ = ₹2,375, we get CP₁ = ₹1,225 and CP₂ = ₹1,150."}, {"id": 145, "tag": "", "q": "Arvind sold one article at 8% profit and the other at 12% profit. Total profit is ₹264. If the profit percentages are interchanged, the profit reduces by ₹8. Find the total cost price of both articles.", "options": ["₹2,600", "₹1,320", "₹1,300", "₹1,400"], "ans": 0, "sol": "0.08A + 0.12B = 264 and 0.12A + 0.08B = 256. Adding both equations: 0.20(A + B) = 520 ⇒ A + B = 520 / 0.20 = ₹2,600."}, {"id": 146, "tag": "CGL TIER I - 23/09/2025 - SHIFT 1", "q": "An electronics store orders 150 portable speakers at a cost of ₹400 each. The owner plans to price them so that selling only 120 speakers would guarantee a 40% profit on the total investment. However, a local event leads to the sale of 135 speakers. If the remaining speakers have no resale value, what is the actual profit percentage on the total investment?", "options": ["52.2%", "53.5%", "62.8%", "57.5%"], "ans": 3, "sol": "Selling 120 speakers gives 140% of total CP. Thus selling 135 speakers gives (135 / 120) × 140% = (9 / 8) × 140% = 157.5% of total CP. Actual profit % = 57.5%."}, {"id": 147, "tag": "CHSL TIER I - 24/11/2025 - SHIFT 1", "q": "A bookstore bought 120 different novels at an average price of ₹145. It sold 40 novels at 20% profit, 60 novels at 10% loss, and the rest were sold in a combo deal that included a 30% profit on the total cost of those remaining novels. What was the selling price per novel in the combo deal?", "options": ["₹186.75", "₹192.00", "₹190.25", "₹188.50"], "ans": 3, "sol": "Since the combo deal gave a 30% profit on the cost of those remaining novels, SP per novel in the combo deal = 145 × 1.30 = ₹188.50."}, {"id": 148, "tag": "SSC MTS 18/07/2022 (Morning)", "q": "Kapil bought 100 frocks at the rate of ₹320 per frock. The transportation expenses were ₹1,000. She paid a tax of ₹1.50 per frock and the labour charge was ₹500. What should be the selling price per frock if she wants to make a profit of 10%?", "options": ["₹385.45", "₹390.80", "₹370.15", "₹336.50"], "ans": 2, "sol": "Total CP for 100 frocks = 32,000 + 1,000 + 150 + 500 = ₹33,650 ⇒ CP per frock = ₹336.50. For 10% profit, SP per frock = 336.50 × 1.10 = ₹370.15."}, {"id": 149, "tag": "SSC CGL 17/08/2021 (Afternoon)", "q": "A shopkeeper bought 20 kg of sugar at the rate of Rs. 45 per kg, 25 kg of sugar at Rs. 50 per kg and 35 kg of sugar at the rate of Rs. 40 per kg. He spent an amount of Rs. 450 on transportation and other expenses. He mixed all three types of sugar and sold the entire stock at Rs. 52.50 per kg. Find his profit percentage in the entire transaction.", "options": ["5%", "7.25%", "4.25%", "6.5%"], "ans": 0, "sol": "Total CP for 80 kg = (20×45) + (25×50) + (35×40) + 450 = 900 + 1,250 + 1,400 + 450 = Rs. 4,000. CP per kg = 4,000 / 80 = Rs. 50. SP per kg = Rs. 52.50. Profit % = (2.50 / 50) × 100 = 5%."}, {"id": 150, "tag": "SELECTION POST - PHASE IX 08/02/2022", "q": "The cost price of two articles A and B is the same. Article A is sold at a loss of 24% and article B is sold for Rs. 270 more than the selling price of A. If the net profit by selling both the articles is 12%, then what is the selling price (in Rs.) of article B?", "options": ["645", "575", "555", "610"], "ans": 2, "sol": "Let CP of each = x. SP_A = 0.76x. Since overall profit on 2x is 12%, Total SP = 2.24x ⇒ SP_B = 2.24x - 0.76x = 1.48x. Given 1.48x - 0.76x = 0.72x = 270 ⇒ x = 375. SP_B = 1.48 × 375 = Rs. 555."}, {"id": 151, "tag": "SELECTION POST PHASE IX 09/02/2022", "q": "The cost price of Article X and Y is the same. Article X is sold at 20% profit and Article Y is sold for Rs. 126 less than the selling price of X. If the net profit by selling both the articles is 14%, then what is the cost price (in Rs.) of each article?", "options": ["1,260", "1,050", "840", "1,080"], "ans": 1, "sol": "Let CP of each = x. SP_X = 1.20x. Total SP = 2.28x ⇒ SP_Y = 1.08x. Difference = 1.20x - 1.08x = 0.12x = 126 ⇒ x = Rs. 1,050."}, {"id": 152, "tag": "", "q": "Sheela bought a saree and a lehenga at a certain price. She sold the saree at 10% gain and the lehenga at 25% gain. She found that the cost price of the saree is equal to the selling price of the lehenga. Find her overall profit percent.", "options": ["16.66%", "15%", "20%", "17.5%"], "ans": 0, "sol": "Let CP of lehenga = 4. Then SP of lehenga = 5 = CP of saree. Total CP = 4 + 5 = 9. Profit = 25% of 4 + 10% of 5 = 1 + 0.5 = 1.5. Overall profit % = (1.5 / 9) × 100 = 16.66%."}, {"id": 153, "tag": "SSC CGL 20.08.2021 (Afternoon)", "q": "A shopkeeper sold two items. The selling price of the first item equals the cost price of the second item. He sold the first item at a profit of 20% and the second item at a loss of 10%. What is his overall profit/loss percent?", "options": ["Profit 3⁷⁄₁₁%", "Loss 4⁷⁄₁₁%", "Profit 47%", "Loss 1%"], "ans": 0, "sol": "Let CP₁ = 5 ⇒ SP₁ = 6 = CP₂. SP₂ = 6 × 0.90 = 5.4. Total CP = 5 + 6 = 11. Total SP = 6 + 5.4 = 11.4. Profit % = (0.4 / 11) × 100 = 40/11 % = Profit 3⁷⁄₁₁%."}, {"id": 154, "tag": "IB ACIO 2025", "q": "A shopkeeper sells 1 kg of guavas costing ₹22/kg to each of Anand and Sakshi at ₹25/kg. He sold 950 g to Anand instead of 1 kg and sold x g to Sakshi instead of 1 kg by using a defective weight. If he makes a total profit of ₹7.76 by selling to both, then what is the value of x?", "options": ["970 g", "980 g", "960 g", "985 g"], "ans": 0, "sol": "Total SP = 25 + 25 = ₹50. Total CP = 50 - 7.76 = ₹42.24. Total weight given = (42.24 / 22) × 1,000 = 1,920 g. Since 950 g was given to Anand, x = 1,920 - 950 = 970 g."}, {"id": 155, "tag": "IB ACIO 2025", "q": "A shopkeeper sells 1 kg of Product A costing Rs. 30/kg to Ramesh and Mahesh at Rs. 33/kg. He sells X gm to Ramesh and 950 gm to Mahesh using defective weights. If he gains Rs. 9.3 in total, what is X?", "options": ["920", "940", "960", "900"], "ans": 1, "sol": "Total SP = 33 + 33 = Rs. 66. Total CP = 66 - 9.3 = Rs. 56.7. Total weight given = (56.7 / 30) × 1,000 = 1,890 gm. Thus X = 1,890 - 950 = 940 gm."}, {"id": 156, "tag": "IB ACIO 2025", "q": "In a new year, a father gives 25% of his property to each of his four sons A, B, C, and D. They all invest. At the end of the first year, A and B each make a profit of 40%, while C and D suffer losses of 20% and 30% respectively. At the end of the second year (after reinvesting the profit), A suffers a 50% loss, while B, C, and D each make a 25% profit. What percentage of the father's property remains at the end of the second year? (Rounded to the nearest integer)", "options": ["108%", "58%", "98%", "8%"], "ans": 0, "sol": "Start with 25 each (Total = 100). After Year 1: A = 35, B = 35, C = 20, D = 17.5. After Year 2: A = 35 × 0.5 = 17.5; B = 35 × 1.25 = 43.75; C = 20 × 1.25 = 25; D = 17.5 × 1.25 = 21.875. Total = 17.5 + 43.75 + 25 + 21.875 = 108.125% ≈ 108%."}];
+
+    // Define the 6 Mock Tests (26 questions each = 156 total)
+    const MOCK_CONFIGS = [
+      {
+        mockId: 1,
+        title: "Mock Test 1",
+        subtitle: "Basic Profit & Loss, CP(x) = SP(y) & SP Ratios",
+        rangeText: "Questions 1 to 26",
+        startIdx: 0,
+        endIdx: 26
+      },
+      {
+        mockId: 2,
+        title: "Mock Test 2",
+        subtitle: "Multiplying SP/CP, Profit on SP & Same CP/SP Cases",
+        rangeText: "Questions 27 to 52",
+        startIdx: 26,
+        endIdx: 52
+      },
+      {
+        mockId: 3,
+        title: "Mock Test 3",
+        subtitle: "No Profit No Loss, SP1-CP-SP2 & Article Rate Problems",
+        rangeText: "Questions 53 to 78",
+        startIdx: 52,
+        endIdx: 78
+      },
+      {
+        mockId: 4,
+        title: "Mock Test 4",
+        subtitle: "Article Trading, Weighted Average & Damaged Stock",
+        rangeText: "Questions 79 to 104",
+        startIdx: 78,
+        endIdx: 104
+      },
+      {
+        mockId: 5,
+        title: "Mock Test 5",
+        subtitle: "Alligation Mixtures, Successive Selling & Dishonest Dealer I",
+        rangeText: "Questions 105 to 130",
+        startIdx: 104,
+        endIdx: 130
+      },
+      {
+        mockId: 6,
+        title: "Mock Test 6",
+        subtitle: "Faulty Weights II, Two-Article Linear Cases & Miscellaneous",
+        rangeText: "Questions 131 to 156",
+        startIdx: 130,
+        endIdx: 156
+      }
+    ];
+
+    // Application State
+    let savedStats = {};
+    try {
+      const raw = localStorage.getItem("pl_156_mock_stats_v1");
+      if (raw) savedStats = JSON.parse(raw);
+    } catch (e) {
+      savedStats = {};
+    }
+
+    let activeMock = null;
+    let examQuestions = []; // 26 questions with randomized options (question order strictly preserved)
+    let qStates = [];       // { visited, selectedOptIdx, markedReview }
+    let currentQIndex = 0;  // 0..25
+    let remainingSeconds = 16 * 60; // 960 seconds (16 minutes)
+    let timerInterval = null;
+    let isPaused = false;
+    let currentResultFilter = "all"; // "all" | "incorrect" | "unattempted"
+    let lastSubmissionData = null;
+
+    // Helper: Fisher-Yates shuffle for 4 options while keeping question sequence untouched
+    function createMockQuestionsWithShuffledOptions(startIdx, endIdx) {
+      const slice = RAW_QUESTIONS.slice(startIdx, endIdx);
+      return slice.map((item, idx) => {
+        const optionObjects = item.options.map((text, origIdx) => ({
+          text,
+          isCorrect: origIdx === item.ans
+        }));
+        for (let i = optionObjects.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const temp = optionObjects[i];
+          optionObjects[i] = optionObjects[j];
+          optionObjects[j] = temp;
+        }
+        const newCorrectIdx = optionObjects.findIndex(o => o.isCorrect);
+        return {
+          mockQNum: idx + 1,
+          sourceId: item.id,
+          tag: item.tag || "",
+          q: item.q,
+          options: optionObjects.map(o => o.text),
+          correctIdx: newCorrectIdx,
+          sol: item.sol
+        };
+      });
+    }
+
+    function saveStatsToStorage() {
+      try {
+        localStorage.setItem("pl_156_mock_stats_v1", JSON.stringify(savedStats));
+      } catch (e) {}
+    }
+
+    function formatTime(sec) {
+      const s = Math.max(0, Math.floor(sec));
+      const m = Math.floor(s / 60);
+      const rem = s % 60;
+      return String(m).padStart(2, "0") + ":" + String(rem).padStart(2, "0");
+    }
+
+    // ==================== VIEW SWITCHING ====================
+    function showView(viewId) {
+      ["view-dashboard", "view-instructions", "view-exam", "view-result"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          if (id === viewId) el.classList.remove("hidden");
+          else el.classList.add("hidden");
+        }
+      });
+    }
+
+    // ==================== RENDER DASHBOARD ====================
+    function renderDashboard() {
+      const grid = document.getElementById("mock-cards-grid");
+      grid.innerHTML = "";
+
+      MOCK_CONFIGS.forEach(cfg => {
+        const st = savedStats[cfg.mockId];
+        const statusBadge = st
+          ? `<span class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-300">Completed • Score: ${st.score.toFixed(2)}/52</span>`
+          : `<span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200">26 Questions • 16 Mins</span>`;
+
+        const prevSummary = st
+          ? `<div class="mt-3 pt-2.5 border-t border-slate-100 grid grid-cols-3 gap-2 text-[11px] text-slate-600">
+               <div>Correct: <strong class="text-emerald-700">${st.correct}</strong></div>
+               <div>Wrong: <strong class="text-rose-600">${st.incorrect}</strong></div>
+               <div>Skipped: <strong class="text-amber-700">${st.unattempted}</strong></div>
+             </div>`
+          : `<div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+               <span>Max Marks: 52.0</span>
+               <span>+2.0 / -0.50 / 0</span>
+             </div>`;
+
+        const card = document.createElement("div");
+        card.className = "bg-white border border-slate-200 rounded-lg p-5 shadow-xs hover:shadow-md transition flex flex-col justify-between";
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-blue-800">${cfg.rangeText}</span>
+              ${statusBadge}
+            </div>
+            <h3 class="text-base font-bold text-slate-900">${cfg.title}</h3>
+            <p class="text-xs text-slate-600 mt-1">${cfg.subtitle}</p>
+            ${prevSummary}
+          </div>
+          <div class="mt-4 pt-2 flex items-center gap-2">
+            <button data-mock-id="${cfg.mockId}" class="btn-open-instructions flex-1 py-2 px-4 rounded bg-[#1e40af] hover:bg-blue-800 text-white font-bold text-xs shadow-2xs transition cursor-pointer">
+              ${st ? "Retake Mock Test →" : "Start Mock Test →"}
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      document.querySelectorAll(".btn-open-instructions").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const mId = parseInt(btn.getAttribute("data-mock-id"), 10);
+          openInstructionsForMock(mId);
+        });
+      });
+    }
+
+    // ==================== OPEN INSTRUCTIONS SCREEN ====================
+    function openInstructionsForMock(mockId) {
+      activeMock = MOCK_CONFIGS.find(m => m.mockId === mockId);
+      if (!activeMock) return;
+
+      document.getElementById("inst-mock-title").textContent =
+        `${activeMock.title} (${activeMock.rangeText}) — ${activeMock.subtitle}`;
+      document.getElementById("chk-declaration").checked = true;
+      document.getElementById("inst-error-msg").classList.add("hidden");
+      showView("view-instructions");
+      window.scrollTo(0, 0);
+    }
+
+    // ==================== START EXAM ====================
+    function startExamSession() {
+      if (!activeMock) return;
+      const chk = document.getElementById("chk-declaration");
+      if (!chk.checked) {
+        document.getElementById("inst-error-msg").classList.remove("hidden");
+        return;
+      }
+
+      // Build 26 questions in exact sequence, with freshly randomized 4 options
+      examQuestions = createMockQuestionsWithShuffledOptions(activeMock.startIdx, activeMock.endIdx);
+      qStates = examQuestions.map((_, i) => ({
+        visited: i === 0,
+        selectedOptIdx: null,
+        markedReview: false
+      }));
+      currentQIndex = 0;
+      remainingSeconds = 16 * 60;
+      isPaused = false;
+
+      document.getElementById("exam-header-title").textContent =
+        `${activeMock.title} (${activeMock.rangeText})`;
+      document.getElementById("palette-mock-label").textContent =
+        `${activeMock.title} • 26 MCQs`;
+
+      showView("view-exam");
+      enterFullscreenSafe();
+      renderCurrentQuestion();
+      renderQuestionPalette();
+      startStrictTimer();
+    }
+
+    function startStrictTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      updateTimerUI();
+      timerInterval = setInterval(() => {
+        if (isPaused) return;
+        remainingSeconds--;
+        updateTimerUI();
+        if (remainingSeconds <= 0) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+          finalizeAndSubmitExam(true);
+        }
+      }, 1000);
+    }
+
+    function updateTimerUI() {
+      const el = document.getElementById("exam-timer-display");
+      el.textContent = formatTime(remainingSeconds);
+      if (remainingSeconds <= 120) {
+        el.classList.remove("text-amber-300");
+        el.classList.add("text-rose-400", "animate-pulse");
+      } else {
+        el.classList.add("text-amber-300");
+        el.classList.remove("text-rose-400", "animate-pulse");
+      }
+    }
+
+    // Fullscreen helpers
+    function enterFullscreenSafe() {
+      try {
+        const docEl = document.documentElement;
+        if (!document.fullscreenElement && docEl.requestFullscreen) {
+          docEl.requestFullscreen().catch(() => {});
+        }
+      } catch (e) {}
+    }
+
+    function exitFullscreenSafe() {
+      try {
+        if (document.fullscreenElement && document.exitFullscreen) {
+          document.exitFullscreen().catch(() => {});
+        }
+      } catch (e) {}
+    }
+
+    // ==================== QUESTION & PALETTE RENDERING ====================
+    function getQuestionStatusClass(idx) {
+      const st = qStates[idx];
+      if (!st.visited) return "status-not-visited";
+      if (st.selectedOptIdx !== null && st.markedReview) return "status-ans-review";
+      if (st.markedReview) return "status-review";
+      if (st.selectedOptIdx !== null) return "status-answered";
+      return "status-not-answered";
+    }
+
+    function renderCurrentQuestion() {
+      const qObj = examQuestions[currentQIndex];
+      const st = qStates[currentQIndex];
+      st.visited = true;
+
+      document.getElementById("exam-q-number").textContent = `Question No. ${qObj.mockQNum} of 26`;
+      document.getElementById("exam-q-source-id").textContent = `PDF Q.${qObj.sourceId}`;
+
+      const tagEl = document.getElementById("exam-q-tag");
+      if (qObj.tag) {
+        tagEl.textContent = qObj.tag;
+        tagEl.classList.remove("hidden");
+      } else {
+        tagEl.textContent = "";
+        tagEl.classList.add("hidden");
+      }
+
+      document.getElementById("exam-q-text").textContent = qObj.q;
+
+      const optsContainer = document.getElementById("exam-options-container");
+      optsContainer.innerHTML = "";
+
+      const labels = ["A", "B", "C", "D"];
+      qObj.options.forEach((optText, optIdx) => {
+        const isSelected = st.selectedOptIdx === optIdx;
+        const row = document.createElement("label");
+        row.className = `flex items-center gap-3 p-3 rounded border cursor-pointer transition select-none ${
+          isSelected
+            ? "border-blue-600 bg-blue-50/70"
+            : "border-slate-300 bg-white hover:bg-slate-50"
+        }`;
+        row.innerHTML = `
+          <input type="radio" name="mcq-option" value="${optIdx}" ${isSelected ? "checked" : ""} class="w-4 h-4 accent-blue-700 cursor-pointer shrink-0" />
+          <span class="text-xs font-bold text-slate-600 w-5">(${labels[optIdx]})</span>
+          <span class="text-sm text-slate-900 font-medium">${optText}</span>
+        `;
+        row.addEventListener("click", (e) => {
+          e.preventDefault();
+          qStates[currentQIndex].selectedOptIdx = optIdx;
+          // Do NOT jump to next question or mark correctness during test
+          renderCurrentQuestion();
+          renderQuestionPalette();
+        });
+        optsContainer.appendChild(row);
+      });
+
+      // Disable Previous on Q1
+      const prevBtn = document.getElementById("btn-Previous");
+      prevBtn.disabled = currentQIndex === 0;
+      prevBtn.classList.toggle("opacity-50", currentQIndex === 0);
+      prevBtn.classList.toggle("cursor-not-allowed", currentQIndex === 0);
+    }
+
+    function renderQuestionPalette() {
+      const grid = document.getElementById("palette-grid");
+      grid.innerHTML = "";
+
+      let cAnswered = 0;
+      let cNotAnswered = 0;
+      let cNotVisited = 0;
+      let cReview = 0;
+      let cAnsReview = 0;
+
+      qStates.forEach((st, idx) => {
+        if (!st.visited) cNotVisited++;
+        else if (st.selectedOptIdx !== null && st.markedReview) cAnsReview++;
+        else if (st.markedReview) cReview++;
+        else if (st.selectedOptIdx !== null) cAnswered++;
+        else cNotAnswered++;
+
+        const btn = document.createElement("button");
+        const statusCls = getQuestionStatusClass(idx);
+        const activeCls = idx === currentQIndex ? "palette-btn-active" : "";
+        btn.className = `h-9 w-full flex items-center justify-center text-xs font-semibold transition cursor-pointer ${statusCls} ${activeCls}`;
+        btn.textContent = idx + 1;
+        btn.addEventListener("click", () => {
+          currentQIndex = idx;
+          qStates[currentQIndex].visited = true;
+          renderCurrentQuestion();
+          renderQuestionPalette();
+        });
+        grid.appendChild(btn);
+      });
+
+      document.getElementById("count-answered").textContent = cAnswered;
+      document.getElementById("count-not-answered").textContent = cNotAnswered;
+      document.getElementById("count-not-visited").textContent = cNotVisited;
+      document.getElementById("count-review").textContent = cReview;
+      document.getElementById("count-ans-review").textContent = cAnsReview;
+    }
+
+    // ==================== NAVIGATION BUTTON HANDLERS ====================
+    function goNextQuestion(markReview = false) {
+      qStates[currentQIndex].markedReview = markReview;
+      if (currentQIndex < examQuestions.length - 1) {
+        currentQIndex++;
+        qStates[currentQIndex].visited = true;
+      }
+      renderCurrentQuestion();
+      renderQuestionPalette();
+      scrollActivePaletteButtonIntoView();
+    }
+
+    function goPreviousQuestion() {
+      if (currentQIndex > 0) {
+        currentQIndex--;
+        qStates[currentQIndex].visited = true;
+        renderCurrentQuestion();
+        renderQuestionPalette();
+        scrollActivePaletteButtonIntoView();
+      }
+    }
+
+    function clearCurrentResponse() {
+      qStates[currentQIndex].selectedOptIdx = null;
+      qStates[currentQIndex].markedReview = false;
+      renderCurrentQuestion();
+      renderQuestionPalette();
+    }
+
+    function scrollActivePaletteButtonIntoView() {
+      const container = document.getElementById("palette-grid-container");
+      const buttons = container.querySelectorAll("button");
+      if (buttons[currentQIndex]) {
+        buttons[currentQIndex].scrollIntoView({ block: "nearest", behavior: "smooth" });
+      }
+    }
+
+    // ==================== SUBMIT & SCORE ANALYSIS ====================
+    function openSubmitConfirmationModal() {
+      let cAns = 0, cNotAns = 0, cNotVis = 0, cRev = 0;
+      qStates.forEach(st => {
+        if (!st.visited) cNotVis++;
+        else {
+          if (st.selectedOptIdx !== null) cAns++;
+          else cNotAns++;
+          if (st.markedReview) cRev++;
+        }
+      });
+      document.getElementById("sub-modal-ans").textContent = cAns;
+      document.getElementById("sub-modal-not-ans").textContent = cNotAns;
+      document.getElementById("sub-modal-not-vis").textContent = cNotVis;
+      document.getElementById("sub-modal-rev").textContent = cRev;
+      document.getElementById("modal-submit").classList.remove("hidden");
+    }
+
+    function finalizeAndSubmitExam(autoSubmitted = false) {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+      document.getElementById("modal-submit").classList.add("hidden");
+      document.getElementById("modal-pause").classList.add("hidden");
+      exitFullscreenSafe();
+
+      let correct = 0;
+      let incorrect = 0;
+      let unattempted = 0;
+      const reviewItems = [];
+
+      examQuestions.forEach((qObj, idx) => {
+        const st = qStates[idx];
+        const chosen = st.selectedOptIdx;
+        if (chosen === null) {
+          unattempted++;
+          reviewItems.push({
+            status: "unattempted",
+            qObj,
+            chosenIdx: null
+          });
+        } else if (chosen === qObj.correctIdx) {
+          correct++;
+          // Per strict instruction: "Provide the solution/answer for ONLY incorrect & un-attempted questions on submission."
+        } else {
+          incorrect++;
+          reviewItems.push({
+            status: "incorrect",
+            qObj,
+            chosenIdx: chosen
+          });
+        }
+      });
+
+      const score = (correct * 2.0) - (incorrect * 0.5);
+      const attempted = correct + incorrect;
+      const accuracy = attempted > 0 ? ((correct / attempted) * 100).toFixed(1) : "0.0";
+      const timeSpentSec = (16 * 60) - Math.max(0, remainingSeconds);
+
+      savedStats[activeMock.mockId] = {
+        score,
+        correct,
+        incorrect,
+        unattempted,
+        timeSpentSec
+      };
+      saveStatsToStorage();
+
+      lastSubmissionData = {
+        mockTitle: `${activeMock.title} (${activeMock.rangeText})`,
+        autoSubmitted,
+        score,
+        attempted,
+        correct,
+        incorrect,
+        unattempted,
+        accuracy,
+        timeSpentSec,
+        reviewItems
+      };
+
+      currentResultFilter = "all";
+      renderResultView();
+      showView("view-result");
+      window.scrollTo(0, 0);
+    }
+
+    function renderResultView() {
+      if (!lastSubmissionData) return;
+      const d = lastSubmissionData;
+
+      document.getElementById("result-mock-title").textContent =
+        `${d.mockTitle} — Final Scorecard & Solutions${d.autoSubmitted ? " (Time Up — Auto-Submitted)" : ""}`;
+      document.getElementById("res-score").textContent = `${d.score.toFixed(2)} / 52`;
+      document.getElementById("res-attempted").textContent = `${d.attempted} / 26`;
+      document.getElementById("res-correct").textContent = d.correct;
+      document.getElementById("res-incorrect").textContent = d.incorrect;
+      document.getElementById("res-unattempted").textContent = d.unattempted;
+      document.getElementById("res-accuracy").textContent = `${d.accuracy}% Accuracy`;
+      document.getElementById("res-time-taken").textContent = `Time Taken: ${formatTime(d.timeSpentSec)}`;
+
+      // Update filter button styles
+      const btnAll = document.getElementById("filter-all-wrong-un");
+      const btnInc = document.getElementById("filter-only-incorrect");
+      const btnUn = document.getElementById("filter-only-unattempted");
+      [
+        [btnAll, "all"],
+        [btnInc, "incorrect"],
+        [btnUn, "unattempted"]
+      ].forEach(([btn, key]) => {
+        if (currentResultFilter === key) {
+          btn.className = "px-3 py-1.5 rounded text-xs font-semibold bg-blue-700 text-white";
+        } else {
+          btn.className = "px-3 py-1.5 rounded text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200";
+        }
+      });
+
+      const listEl = document.getElementById("result-solutions-list");
+      listEl.innerHTML = "";
+
+      const filtered = d.reviewItems.filter(item => {
+        if (currentResultFilter === "all") return true;
+        return item.status === currentResultFilter;
+      });
+
+      if (filtered.length === 0) {
+        listEl.innerHTML = `
+          <div class="bg-white border border-slate-200 rounded-lg p-8 text-center">
+            <p class="text-sm font-bold text-emerald-700">No questions in this category!</p>
+            <p class="text-xs text-slate-500 mt-1">All other questions were answered correctly (+2.0 marks each).</p>
+          </div>
+        `;
+        return;
+      }
+
+      const labels = ["A", "B", "C", "D"];
+      filtered.forEach(item => {
+        const { qObj, status, chosenIdx } = item;
+        const isWrong = status === "incorrect";
+        const badgeHtml = isWrong
+          ? `<span class="text-xs font-bold px-2.5 py-0.5 rounded bg-rose-100 text-rose-800 border border-rose-300">Incorrect (-0.50)</span>`
+          : `<span class="text-xs font-bold px-2.5 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-300">Un-attempted (0.00)</span>`;
+
+        let optionsHtml = "";
+        qObj.options.forEach((optText, i) => {
+          const isCorrectOpt = i === qObj.correctIdx;
+          const isUserWrongOpt = isWrong && i === chosenIdx;
+          let boxCls = "border-slate-200 bg-slate-50 text-slate-700";
+          let note = "";
+          if (isCorrectOpt) {
+            boxCls = "border-emerald-500 bg-emerald-50 text-emerald-900 font-semibold";
+            note = `<span class="ml-auto text-[11px] font-bold text-emerald-700">✓ Correct Answer</span>`;
+          } else if (isUserWrongOpt) {
+            boxCls = "border-rose-400 bg-rose-50 text-rose-900 font-semibold";
+            note = `<span class="ml-auto text-[11px] font-bold text-rose-700">✗ Your Choice</span>`;
+          }
+          optionsHtml += `
+            <div class="p-2.5 rounded border text-xs flex items-center gap-2 ${boxCls}">
+              <span class="font-bold">(${labels[i]})</span>
+              <span>${optText}</span>
+              ${note}
+            </div>
+          `;
+        });
+
+        const card = document.createElement("div");
+        card.className = "bg-white border border-slate-200 rounded-lg p-5 shadow-2xs space-y-3";
+        card.innerHTML = `
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-2.5">
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-bold text-slate-900">Q.${qObj.mockQNum}</span>
+              <span class="text-xs text-slate-500">(PDF Q.${qObj.sourceId})</span>
+              ${qObj.tag ? `<span class="text-[11px] font-semibold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded">${qObj.tag}</span>` : ""}
+            </div>
+            ${badgeHtml}
+          </div>
+          <p class="text-sm font-medium text-slate-900 leading-relaxed">${qObj.q}</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+            ${optionsHtml}
+          </div>
+          <div class="bg-blue-50/70 border border-blue-200 rounded p-3 text-xs text-slate-800 leading-relaxed">
+            <strong class="text-blue-900 block mb-1">Verified Solution:</strong>
+            ${qObj.sol}
+          </div>
+        `;
+        listEl.appendChild(card);
+      });
+    }
+
+    // ==================== WIRE UP EVENT LISTENERS ====================
+    window.addEventListener("DOMContentLoaded", () => {
+      renderDashboard();
+
+      document.getElementById("btn-ShuffleOptionsNow").addEventListener("click", () => {
+        renderDashboard();
+      });
+
+      document.getElementById("btn-ResetAllProgress").addEventListener("click", () => {
+        savedStats = {};
+        try { localStorage.removeItem("pl_156_mock_stats_v1"); } catch (e) {}
+        renderDashboard();
+      });
+
+      document.getElementById("btn-BackToDashboardFromInst").addEventListener("click", () => {
+        showView("view-dashboard");
+        renderDashboard();
+      });
+
+      document.getElementById("btn-StartExamNow").addEventListener("click", startExamSession);
+
+      // Exam navigation controls
+      document.getElementById("btn-Next").addEventListener("click", () => goNextQuestion(false));
+      document.getElementById("btn-MarkReviewNext").addEventListener("click", () => goNextQuestion(true));
+      document.getElementById("btn-Previous").addEventListener("click", goPreviousQuestion);
+      document.getElementById("btn-ClearResponse").addEventListener("click", clearCurrentResponse);
+
+      // Fullscreen button (toggles or exits fullscreen cleanly)
+      const fsBtn = document.getElementById("btn-ExitFullscreen");
+      fsBtn.addEventListener("click", () => {
+        if (document.fullscreenElement) {
+          exitFullscreenSafe();
+        } else {
+          enterFullscreenSafe();
+        }
+      });
+      document.addEventListener("fullscreenchange", () => {
+        if (document.fullscreenElement) {
+          fsBtn.textContent = "Exit Fullscreen";
+        } else {
+          fsBtn.textContent = "Enter Fullscreen";
+        }
+      });
+
+      // Pause & Resume
+      document.getElementById("btn-PauseExam").addEventListener("click", () => {
+        isPaused = true;
+        document.getElementById("modal-pause").classList.remove("hidden");
+      });
+      document.getElementById("btn-ResumeExam").addEventListener("click", () => {
+        isPaused = false;
+        document.getElementById("modal-pause").classList.add("hidden");
+      });
+      document.getElementById("btn-AbortToDashboard").addEventListener("click", () => {
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+        isPaused = false;
+        document.getElementById("modal-pause").classList.add("hidden");
+        exitFullscreenSafe();
+        showView("view-dashboard");
+        renderDashboard();
+      });
+
+      // Submit buttons
+      document.getElementById("btn-SubmitExamTop").addEventListener("click", openSubmitConfirmationModal);
+      document.getElementById("btn-SubmitExamBottom").addEventListener("click", openSubmitConfirmationModal);
+      document.getElementById("btn-SubmitExamPalette").addEventListener("click", openSubmitConfirmationModal);
+      document.getElementById("btn-CancelSubmit").addEventListener("click", () => {
+        document.getElementById("modal-submit").classList.add("hidden");
+      });
+      document.getElementById("btn-ConfirmSubmitNow").addEventListener("click", () => finalizeAndSubmitExam(false));
+
+      // Result screen buttons
+      document.getElementById("btn-BackToDashboardFromResult").addEventListener("click", () => {
+        showView("view-dashboard");
+        renderDashboard();
+      });
+      document.getElementById("btn-RetakeSameMock").addEventListener("click", () => {
+        if (activeMock) openInstructionsForMock(activeMock.mockId);
+      });
+
+      document.getElementById("filter-all-wrong-un").addEventListener("click", () => {
+        currentResultFilter = "all";
+        renderResultView();
+      });
+      document.getElementById("filter-only-incorrect").addEventListener("click", () => {
+        currentResultFilter = "incorrect";
+        renderResultView();
+      });
+      document.getElementById("filter-only-unattempted").addEventListener("click", () => {
+        currentResultFilter = "unattempted";
+        renderResultView();
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Percentage Mock Test Portal - 8 Full Mocks (202 Questions)</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f4f6f9;
+      color: #1e293b;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    /* TCS iON / Eduquity Authentic Palette Shapes */
+    .tcs-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 30px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      position: relative;
+    }
+    .tcs-badge:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+    }
+    .tcs-badge-active {
+      outline: 2px solid #0f172a;
+      outline-offset: 1px;
+    }
+
+    /* 0: Not Visited */
+    .status-not-visited {
+      background: #f8fafc;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+    }
+    /* 1: Not Answered */
+    .status-not-answered {
+      background: #dc2626;
+      color: #ffffff;
+      border: 1px solid #b91c1c;
+      border-radius: 3px 3px 12px 12px;
+    }
+    /* 2: Answered */
+    .status-answered {
+      background: #16a34a;
+      color: #ffffff;
+      border: 1px solid #15803d;
+      border-radius: 12px 12px 3px 3px;
+    }
+    /* 3: Marked for Review */
+    .status-review {
+      background: #7e22ce;
+      color: #ffffff;
+      border: 1px solid #6b21a8;
+      border-radius: 50%;
+    }
+    /* 4: Answered & Marked for Review */
+    .status-ans-review {
+      background: #7e22ce;
+      color: #ffffff;
+      border: 1px solid #6b21a8;
+      border-radius: 50%;
+    }
+    .status-ans-review::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 10px;
+      height: 10px;
+      background-color: #22c55e;
+      border: 1.5px solid #ffffff;
+      border-radius: 50%;
+    }
+
+    /* Custom Scrollbars for Exam Area & Palette */
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- ==================== VIEW 1: MAIN DASHBOARD ==================== -->
+  <div id="view-dashboard" class="flex-1 flex flex-col">
+    <!-- Top Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-lg bg-blue-700 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+            %
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h1 class="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">Percentage CBT Mock Test Portal</h1>
+              <span class="hidden sm:inline-block px-2 py-0.5 text-[11px] font-semibold bg-blue-50 text-blue-700 border border-blue-200 rounded">TCS / Eduquity Interface</span>
+            </div>
+            <p class="text-xs text-slate-500">Complete 202 Verified Exam Questions • 8 Structured Mock Tests • SSC &amp; Railway Pattern</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div class="bg-slate-100 border border-slate-200 rounded-lg px-3 py-1.5 text-xs font-medium text-slate-700">
+            Marking: <span class="text-emerald-700 font-semibold">+2.0</span> / <span class="text-red-600 font-semibold">-0.5</span> / <span class="text-slate-500 font-semibold">0</span>
+          </div>
+          <button id="btn-reset-all" type="button" class="px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-red-600 bg-white hover:bg-red-50 border border-slate-200 rounded-lg transition">
+            Reset Saved Progress
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1">
+      <!-- Summary KPI Strip -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6">
+        <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+          <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Total Mock Tests</p>
+          <p class="text-2xl font-bold text-slate-900 mt-1">8 Mocks</p>
+          <p class="text-xs text-slate-500 mt-0.5">7 × 25 Qs + 1 × 27 Qs</p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+          <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Total Questions</p>
+          <p class="text-2xl font-bold text-blue-700 mt-1">202 MCQs</p>
+          <p class="text-xs text-slate-500 mt-0.5">100% Fact-Checked &amp; Verified</p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+          <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Mocks Completed</p>
+          <p id="kpi-completed" class="text-2xl font-bold text-emerald-600 mt-1">0 / 8</p>
+          <p id="kpi-attempted-qs" class="text-xs text-slate-500 mt-0.5">0 of 202 questions attempted</p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+          <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Aggregate Score</p>
+          <p id="kpi-total-score" class="text-2xl font-bold text-slate-900 mt-1">0.00 <span class="text-sm font-normal text-slate-400">/ 404</span></p>
+          <p id="kpi-accuracy" class="text-xs text-slate-500 mt-0.5">Overall Accuracy: —</p>
+        </div>
+      </div>
+
+      <!-- Mock Cards Grid -->
+      <div class="mb-3 flex items-center justify-between">
+        <h2 class="text-base font-bold text-slate-800">Select a Mock Test to Begin</h2>
+        <span class="text-xs text-slate-500">Options randomize on each test launch; question sequence stays fixed</span>
+      </div>
+      <div id="mock-cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-3 px-4 text-center text-xs text-slate-500">
+      Percentage Examination Portal • Standard Light-Theme TCS / Eduquity CBT Interface • All 202 Source Problems Included
+    </footer>
+  </div>
+
+  <!-- ==================== VIEW 2: INTRODUCTORY INSTRUCTIONS ==================== -->
+  <div id="view-instructions" class="hidden fixed inset-0 bg-white z-30 flex flex-col">
+    <!-- Top Bar -->
+    <div class="bg-[#29558c] text-white px-4 sm:px-6 py-2.5 flex items-center justify-between shrink-0">
+      <div class="flex items-center gap-3">
+        <span class="font-bold text-sm sm:text-base tracking-wide" id="inst-header-title">MOCK TEST - 1 : GENERAL INSTRUCTIONS</span>
+      </div>
+      <button id="btn-inst-back" type="button" class="px-3 py-1 bg-white/15 hover:bg-white/25 text-white rounded text-xs font-medium transition">
+        ← Back to Dashboard
+      </button>
+    </div>
+
+    <!-- Scrollable Instructions Body -->
+    <div class="flex-1 overflow-y-auto custom-scroll p-4 sm:p-8 max-w-5xl w-full mx-auto">
+      <div class="bg-slate-50 border border-slate-200 rounded-lg p-4 mb-6 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 id="inst-mock-name" class="text-lg font-bold text-slate-900">Mock Test 1 (Questions 1 to 25)</h2>
+          <p id="inst-mock-sub" class="text-xs text-slate-600 mt-0.5">Topics: Basic Percentage Calculations, Reverse Rule &amp; Successive Change</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3 text-xs font-semibold">
+          <span class="px-3 py-1.5 bg-white border border-slate-200 rounded text-slate-700">Questions: <strong id="inst-q-count" class="text-blue-700">25</strong></span>
+          <span class="px-3 py-1.5 bg-white border border-slate-200 rounded text-slate-700">Duration: <strong id="inst-duration" class="text-blue-700">15 Minutes</strong></span>
+          <span class="px-3 py-1.5 bg-white border border-slate-200 rounded text-slate-700">Max Marks: <strong id="inst-max-marks" class="text-blue-700">50.0</strong></span>
+        </div>
+      </div>
+
+      <h3 class="text-sm font-bold text-slate-800 uppercase tracking-wider mb-3">Please read the instructions carefully before starting the examination:</h3>
+
+      <ol class="list-decimal list-inside space-y-2.5 text-sm text-slate-700 leading-relaxed mb-6">
+        <li>Total duration of this mock examination is <strong id="inst-duration-inline">15 minutes</strong>. The countdown timer in the top-right corner of the screen will display the remaining time available for you to complete the examination. When the timer reaches zero, the examination will <strong>submit automatically</strong>.</li>
+        <li>The Question Palette displayed on the right side of the screen (on desktop/tablet screens) will show the status of each question using one of the following standard symbols:</li>
+      </ol>
+
+      <!-- Palette Legend Table -->
+      <div class="bg-white border border-slate-200 rounded-lg p-4 mb-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-700">
+        <div class="flex items-center gap-3">
+          <span class="tcs-badge status-not-visited shrink-0">1</span>
+          <span>You have <strong>not visited</strong> the question yet.</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="tcs-badge status-not-answered shrink-0">2</span>
+          <span>You have <strong>not answered</strong> the question.</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="tcs-badge status-answered shrink-0">3</span>
+          <span>You have <strong>answered</strong> the question.</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="tcs-badge status-review shrink-0">4</span>
+          <span>You have <strong>NOT answered</strong> the question, but have <strong>marked it for review</strong>.</span>
+        </div>
+        <div class="flex items-center gap-3 sm:col-span-2">
+          <span class="tcs-badge status-ans-review shrink-0">5</span>
+          <span>The question is <strong>Answered and Marked for Review</strong> (will be evaluated for marks upon submission).</span>
+        </div>
+      </div>
+
+      <h4 class="text-sm font-bold text-slate-800 mb-2">Marking Scheme &amp; Navigation Rules:</h4>
+      <ul class="list-disc list-inside space-y-2 text-sm text-slate-700 mb-6">
+        <li>Each correct answer carries <strong>+2.0 marks</strong>.</li>
+        <li>There is a negative marking of <strong>-0.50 marks</strong> for each wrong answer.</li>
+        <li>No marks (<strong>0 marks</strong>) will be awarded or deducted for un-attempted questions.</li>
+        <li>Selecting an option does <strong>not</strong> automatically jump to the next question or reveal the answer during the test. Use <strong>Next</strong>, <strong>Previous</strong>, <strong>Clear</strong>, or <strong>Mark for Review &amp; Next</strong> to navigate and manage responses.</li>
+        <li>Upon clicking <strong>Start Mock Test</strong>, the interface will automatically enter <strong>Fullscreen Mode</strong>. You can exit fullscreen anytime using the <strong>Exit Fullscreen</strong> button in the header.</li>
+        <li>After submission, your detailed scorecard and step-by-step solutions for <strong>incorrect and un-attempted questions</strong> will be displayed for analysis.</li>
+      </ul>
+    </div>
+
+    <!-- Bottom Declaration & Start Action -->
+    <div class="bg-slate-50 border-t border-slate-200 px-4 sm:px-8 py-4 shrink-0">
+      <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <label class="flex items-start gap-2.5 cursor-pointer text-xs sm:text-sm text-slate-700">
+          <input id="chk-declaration" type="checkbox" class="mt-0.5 w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500" checked />
+          <span>I have read and understood all the instructions. I agree to abide by the examination rules and marking scheme (+2 / -0.5 / 0).</span>
+        </label>
+        <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+          <button id="btn-cancel-inst" type="button" class="px-4 py-2 text-xs sm:text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded hover:bg-slate-100 transition">
+            Cancel
+          </button>
+          <button id="btn-begin-exam" type="button" class="px-6 py-2 text-xs sm:text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded shadow-sm transition">
+            I am ready to begin →
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== VIEW 3: TCS / EDUQUITY EXAM INTERFACE ==================== -->
+  <div id="view-exam" class="hidden fixed inset-0 bg-white z-40 flex flex-col overflow-hidden">
+    <!-- Top Exam Bar -->
+    <header class="bg-[#29558c] text-white px-3 sm:px-5 py-2 flex items-center justify-between gap-2 shrink-0 border-b border-[#1e406b]">
+      <div class="flex items-center gap-2.5 min-w-0">
+        <span class="px-2 py-0.5 bg-white/15 rounded text-xs font-bold tracking-wide shrink-0">SSC / RAILWAY CBT</span>
+        <h2 id="exam-header-title" class="font-bold text-sm sm:text-base truncate">Percentage Mock Test - 1</h2>
+      </div>
+
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <!-- Timer Box -->
+        <div class="bg-[#1b3b63] border border-blue-400/30 px-3 py-1 rounded flex items-center gap-2">
+          <span class="text-[11px] uppercase tracking-wider text-blue-100 hidden sm:inline">Time Left:</span>
+          <span id="exam-timer" class="font-mono font-bold text-sm sm:text-base text-amber-300">15:00</span>
+        </div>
+
+        <!-- Pause Button -->
+        <button id="btn-pause-exam" type="button" class="px-2.5 sm:px-3 py-1 bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold rounded text-xs transition shadow-sm">
+          Pause
+        </button>
+
+        <!-- Exit Fullscreen / Toggle Fullscreen Button -->
+        <button id="btn-exit-fullscreen" type="button" class="px-2.5 sm:px-3 py-1 bg-white/15 hover:bg-white/25 text-white font-medium rounded text-xs border border-white/20 transition">
+          Exit Fullscreen
+        </button>
+      </div>
+    </header>
+
+    <!-- Sub-header Strip (Section & Marking Info) -->
+    <div class="bg-[#f1f5f9] border-b border-slate-300 px-3 sm:px-5 py-1.5 flex items-center justify-between text-xs shrink-0">
+      <div class="flex items-center gap-2">
+        <span class="font-semibold text-slate-600">Section:</span>
+        <span class="px-2.5 py-0.5 bg-[#29558c] text-white font-semibold rounded-sm">Quantitative Aptitude (Percentage)</span>
+      </div>
+      <div class="flex items-center gap-3 text-slate-600">
+        <span>Correct: <strong class="text-emerald-700">+2.0</strong></span>
+        <span>Wrong: <strong class="text-red-600">-0.5</strong></span>
+      </div>
+    </div>
+
+    <!-- Main Exam Workspace (Left Question Area + Right Palette on Desktop) -->
+    <div class="flex-1 flex overflow-hidden">
+      <!-- Left Column: Question Header + Scrollable Question + Fixed Bottom Action Bar -->
+      <div class="flex-1 flex flex-col min-w-0 bg-white">
+        <!-- Question Number & Source Tag Strip -->
+        <div class="px-4 sm:px-6 py-2.5 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2 bg-slate-50/70 shrink-0">
+          <div class="flex items-center gap-2.5">
+            <span class="text-sm sm:text-base font-bold text-slate-900" id="exam-q-num-label">Question No. 1</span>
+            <span class="text-xs text-slate-400 font-medium" id="exam-q-global-id">(Source Q.1)</span>
+          </div>
+          <!-- Exam Tag in Smaller Text (ONLY if exists) -->
+          <span id="exam-q-tag" class="hidden px-2.5 py-0.5 text-[11px] font-medium bg-slate-100 text-slate-600 border border-slate-200 rounded"></span>
+        </div>
+
+        <!-- Scrollable Question & Options Container -->
+        <div id="exam-question-scroll" class="flex-1 overflow-y-auto custom-scroll p-4 sm:p-6">
+          <div class="max-w-3xl">
+            <p id="exam-q-text" class="text-sm sm:text-base font-medium text-slate-900 leading-relaxed mb-6 whitespace-pre-line"></p>
+            <div id="exam-options-list" class="space-y-3"></div>
+          </div>
+        </div>
+
+        <!-- Fixed Bottom Navigation Bar (Never hidden, no scrolling needed to reach buttons) -->
+        <div class="bg-[#f8fafc] border-t border-slate-300 px-3 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-2 shrink-0">
+          <div class="flex flex-wrap items-center gap-2">
+            <button id="btn-prev-q" type="button" class="px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-300 rounded shadow-sm transition disabled:opacity-40 disabled:pointer-events-none">
+              Previous
+            </button>
+            <button id="btn-mark-review" type="button" class="px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-purple-800 bg-purple-50 hover:bg-purple-100 border border-purple-300 rounded shadow-sm transition">
+              Mark for Review &amp; Next
+            </button>
+            <button id="btn-clear-resp" type="button" class="px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-300 rounded shadow-sm transition">
+              Clear
+            </button>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button id="btn-next-q" type="button" class="px-5 py-1.5 text-xs sm:text-sm font-semibold text-white bg-[#29558c] hover:bg-[#1e406b] rounded shadow-sm transition">
+              Next
+            </button>
+            <!-- Submit button also visible on mobile bottom bar since right palette is hidden on mobile -->
+            <button id="btn-submit-mobile" type="button" class="md:hidden px-4 py-1.5 text-xs sm:text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded shadow-sm transition">
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Small Question Palette (Hidden on Mobile Phones via hidden md:flex) -->
+      <aside class="hidden md:flex md:w-72 lg:w-80 bg-[#eef3f8] border-l border-slate-300 flex-col shrink-0 overflow-hidden">
+        <!-- Candidate Info Strip -->
+        <div class="p-3 bg-white border-b border-slate-300 flex items-center gap-3 shrink-0">
+          <div class="w-9 h-9 rounded-full bg-blue-100 border border-blue-300 text-blue-800 font-bold text-sm flex items-center justify-center shrink-0">
+            C
+          </div>
+          <div class="min-w-0">
+            <p class="text-xs font-bold text-slate-800 truncate">Candidate</p>
+            <p id="palette-mock-label" class="text-[11px] text-slate-500 truncate">Mock Test 1</p>
+          </div>
+        </div>
+
+        <!-- Status Legend Counters -->
+        <div class="p-3 bg-white border-b border-slate-300 grid grid-cols-2 gap-2 text-[11px] text-slate-700 shrink-0">
+          <div class="flex items-center gap-2">
+            <span id="count-answered" class="tcs-badge status-answered !w-7 !h-6 !text-[11px] !cursor-default">0</span>
+            <span>Answered</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span id="count-not-answered" class="tcs-badge status-not-answered !w-7 !h-6 !text-[11px] !cursor-default">0</span>
+            <span>Not Answered</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span id="count-not-visited" class="tcs-badge status-not-visited !w-7 !h-6 !text-[11px] !cursor-default">0</span>
+            <span>Not Visited</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span id="count-review" class="tcs-badge status-review !w-7 !h-6 !text-[11px] !cursor-default">0</span>
+            <span>Marked for Review</span>
+          </div>
+          <div class="col-span-2 flex items-center gap-2">
+            <span id="count-ans-review" class="tcs-badge status-ans-review !w-7 !h-6 !text-[11px] !cursor-default">0</span>
+            <span>Answered &amp; Marked for Review</span>
+          </div>
+        </div>
+
+        <!-- Palette Header -->
+        <div class="bg-[#29558c] text-white px-3 py-1.5 text-xs font-semibold shrink-0">
+          Choose a Question
+        </div>
+
+        <!-- Independently Scrollable Question Number Palette -->
+        <div id="palette-grid-container" class="flex-1 overflow-y-auto custom-scroll p-3">
+          <div id="palette-grid" class="grid grid-cols-5 gap-2"></div>
+        </div>
+
+        <!-- Submit Section at Bottom of Palette -->
+        <div class="p-3 bg-white border-t border-slate-300 shrink-0">
+          <button id="btn-submit-exam" type="button" class="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm rounded shadow-sm transition">
+            Submit
+          </button>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ==================== VIEW 4: POST-SUBMISSION ANALYSIS & SOLUTIONS ==================== -->
+  <div id="view-analysis" class="hidden flex-1 flex flex-col bg-slate-50">
+    <!-- Top Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-sm">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded">TEST SUBMITTED</span>
+            <h1 id="analysis-title" class="text-lg font-bold text-slate-900">Mock Test 1 - Result &amp; Analysis</h1>
+          </div>
+          <p id="analysis-subtitle" class="text-xs text-slate-500 mt-0.5">Solutions are provided exclusively for Incorrect and Un-attempted questions as per exam instructions.</p>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <button id="btn-retake-mock" type="button" class="px-3.5 py-1.5 text-xs font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition">
+            Retake This Mock
+          </button>
+          <button id="btn-back-dashboard" type="button" class="px-4 py-1.5 text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 rounded-lg shadow-sm transition">
+            ← Back to Main Dashboard
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Scorecard & Solutions Content -->
+    <main class="max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 flex-1">
+      <!-- Scorecard Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-6">
+        <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+          <p class="text-[11px] font-semibold text-slate-500 uppercase">Final Score</p>
+          <p id="res-score" class="text-2xl font-bold text-blue-700 mt-1">0.00</p>
+          <p id="res-max-score" class="text-[11px] text-slate-400">out of 50.0</p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+          <p class="text-[11px] font-semibold text-slate-500 uppercase">Correct (+2)</p>
+          <p id="res-correct" class="text-2xl font-bold text-emerald-600 mt-1">0</p>
+          <p id="res-correct-marks" class="text-[11px] text-emerald-600">+0.00 marks</p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+          <p class="text-[11px] font-semibold text-slate-500 uppercase">Incorrect (-0.5)</p>
+          <p id="res-incorrect" class="text-2xl font-bold text-red-600 mt-1">0</p>
+          <p id="res-incorrect-marks" class="text-[11px] text-red-600">-0.00 marks</p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+          <p class="text-[11px] font-semibold text-slate-500 uppercase">Un-attempted (0)</p>
+          <p id="res-unattempted" class="text-2xl font-bold text-slate-700 mt-1">0</p>
+          <p class="text-[11px] text-slate-400">0.00 marks</p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+          <p class="text-[11px] font-semibold text-slate-500 uppercase">Accuracy</p>
+          <p id="res-accuracy" class="text-2xl font-bold text-slate-900 mt-1">0%</p>
+          <p id="res-attempted" class="text-[11px] text-slate-400">0 attempted</p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+          <p class="text-[11px] font-semibold text-slate-500 uppercase">Time Taken</p>
+          <p id="res-time" class="text-2xl font-bold text-slate-900 mt-1">00:00</p>
+          <p id="res-submit-reason" class="text-[11px] text-slate-400">Manual Submit</p>
+        </div>
+      </div>
+
+      <!-- Filter Tabs for Incorrect & Un-attempted Solutions -->
+      <div class="bg-white border border-slate-200 rounded-xl p-4 mb-4 flex flex-wrap items-center justify-between gap-3 shadow-sm">
+        <div>
+          <h2 class="text-sm sm:text-base font-bold text-slate-900">Solutions for Incorrect &amp; Un-attempted Questions</h2>
+          <p class="text-xs text-slate-500">Correctly answered questions are excluded below as per examination protocol.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="tab-filter-all" type="button" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-blue-600 text-white transition">
+            All Incorrect &amp; Un-attempted (<span id="cnt-filter-all">0</span>)
+          </button>
+          <button id="tab-filter-wrong" type="button" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+            Incorrect Only (<span id="cnt-filter-wrong">0</span>)
+          </button>
+          <button id="tab-filter-unatt" type="button" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+            Un-attempted Only (<span id="cnt-filter-unatt">0</span>)
+          </button>
+        </div>
+      </div>
+
+      <!-- Solutions List -->
+      <div id="analysis-solutions-list" class="space-y-4"></div>
+    </main>
+  </div>
+
+  <!-- ==================== MODAL 1: PAUSE OVERLAY ==================== -->
+  <div id="modal-pause" class="hidden fixed inset-0 bg-slate-900/75 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white border border-slate-200 rounded-xl max-w-md w-full p-6 text-center shadow-xl">
+      <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center mx-auto mb-3 font-bold text-lg">
+        ⏸
+      </div>
+      <h3 class="text-lg font-bold text-slate-900">Examination Paused</h3>
+      <p class="text-xs sm:text-sm text-slate-600 mt-1 mb-5">
+        Your countdown timer has been paused. Questions are hidden while the test is paused. Click below when you are ready to resume.
+      </p>
+      <div class="bg-slate-50 border border-slate-200 rounded-lg p-3 mb-5 text-xs text-slate-700 flex justify-around">
+        <span>Time Remaining: <strong id="pause-time-left" class="text-blue-700 font-mono">15:00</strong></span>
+        <span>Answered: <strong id="pause-answered-cnt" class="text-emerald-700">0</strong></span>
+      </div>
+      <div class="flex items-center justify-center gap-3">
+        <button id="btn-abort-from-pause" type="button" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-lg transition">
+          Exit to Dashboard
+        </button>
+        <button id="btn-resume-exam" type="button" class="px-6 py-2 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm transition">
+          Resume Examination
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 2: SUBMIT CONFIRMATION ==================== -->
+  <div id="modal-submit" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+    <div class="bg-white border border-slate-200 rounded-xl max-w-lg w-full p-6 shadow-xl">
+      <h3 class="text-lg font-bold text-slate-900 mb-1">Submit Examination Confirmation</h3>
+      <p class="text-xs text-slate-500 mb-4">Please review your attempt summary before final submission:</p>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-5 text-xs">
+        <div class="bg-slate-50 border border-slate-200 rounded-lg p-2.5">
+          <span class="text-slate-500 block">Total Questions</span>
+          <strong id="sub-modal-total" class="text-base text-slate-900">25</strong>
+        </div>
+        <div class="bg-emerald-50 border border-emerald-200 rounded-lg p-2.5">
+          <span class="text-emerald-700 block">Answered</span>
+          <strong id="sub-modal-ans" class="text-base text-emerald-700">0</strong>
+        </div>
+        <div class="bg-red-50 border border-red-200 rounded-lg p-2.5">
+          <span class="text-red-700 block">Not Answered</span>
+          <strong id="sub-modal-not-ans" class="text-base text-red-700">0</strong>
+        </div>
+        <div class="bg-purple-50 border border-purple-200 rounded-lg p-2.5">
+          <span class="text-purple-700 block">Marked for Review</span>
+          <strong id="sub-modal-rev" class="text-base text-purple-700">0</strong>
+        </div>
+        <div class="bg-purple-50 border border-purple-200 rounded-lg p-2.5">
+          <span class="text-purple-700 block">Ans &amp; Marked</span>
+          <strong id="sub-modal-ans-rev" class="text-base text-purple-700">0</strong>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 rounded-lg p-2.5">
+          <span class="text-slate-500 block">Not Visited</span>
+          <strong id="sub-modal-not-vis" class="text-base text-slate-700">0</strong>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-3">
+        <button id="btn-cancel-submit" type="button" class="px-4 py-2 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition">
+          Return to Test
+        </button>
+        <button id="btn-confirm-submit" type="button" class="px-5 py-2 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg shadow-sm transition">
+          Final Submit
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== INLINE TOAST NOTIFICATION ==================== -->
+  <div id="toast-msg" class="hidden fixed bottom-5 right-5 bg-slate-900 text-white text-xs font-medium px-4 py-2.5 rounded-lg shadow-lg z-50"></div>
+
+  <script>
+    // Embedded Master Dataset of all 202 Verified Percentage Questions
+    const MASTER_QUESTIONS = [{"id": 1, "question": "What percent of 0.05 cubic meters is 25,000 cubic centimeters?", "tag": "PHASE XIII(GRAD) - 02/08/2025 - SHIFT3", "options": ["25%", "50%", "75%", "100%"], "answer_letter": "B", "solution": "1 m³ = 10,00,000 cm³, so 0.05 m³ = 50,000 cm³. Required percentage = (25,000 / 50,000) × 100% = 50%.", "ans_idx": 1}, {"id": 2, "question": "What percentage of 1/30 is 1/20?", "tag": "RRB NTPC GL 23/06/2025", "options": ["300%", "165%", "150%", "160%"], "answer_letter": "C", "solution": "Required percentage = [(1/20) ÷ (1/30)] × 100% = (30 / 20) × 100% = 150%.", "ans_idx": 2}, {"id": 3, "question": "Which of the following is the least?", "tag": "CHSL TIER I-13/11/2025-SHIFT 3", "options": ["18% of 450", "20% of 380", "25% of 300", "30% of 240"], "answer_letter": "D", "solution": "Evaluating each option: 18% of 450 = 81; 20% of 380 = 76; 25% of 300 = 75; 30% of 240 = 72. Thus, 30% of 240 (72) is the least.", "ans_idx": 3}, {"id": 4, "question": "What percent of Rs. 300 is Rs. 45?", "tag": "CHSL TIER I-27/11/2025-SHIFT 1", "options": ["10%", "15%", "20%", "25%"], "answer_letter": "B", "solution": "Required percentage = (45 / 300) × 100% = 15%.", "ans_idx": 1}, {"id": 5, "question": "If A is 95% of B, then what percent of A is B?", "tag": "SSC CGL 14/07/2023 (1st shift)", "options": ["100 3/19%", "104 7/19%", "108 17/19%", "105 5/19%"], "answer_letter": "D", "solution": "Given A = 95% of B = (19/20)B. Therefore, B as a percentage of A = (B / A) × 100% = (20 / 19) × 100% = 105 5/19%.", "ans_idx": 3}, {"id": 6, "question": "How much is 60% of 75 more than 1/5 of 25?", "tag": "SSC CGL MAINS 18/01/2025", "options": ["37", "40", "38", "34"], "answer_letter": "B", "solution": "60% of 75 = 45, and (1/5) of 25 = 5. Required difference = 45 − 5 = 40.", "ans_idx": 1}, {"id": 7, "question": "The difference between 20% of a number and 10% of the same number is 120. What is the number?", "tag": "CGL TIER 1-22/09/2025-SHIFT 1", "options": ["1000", "1100", "1200", "1400"], "answer_letter": "C", "solution": "Let the number be N. Given (20% − 10%) of N = 120 ⇒ 10% of N = 120 ⇒ N = 1200.", "ans_idx": 2}, {"id": 8, "question": "If 45% of a number is 0.9 more than 30% of it, What is the number?", "tag": "CGL TIER I-14/09/2025-S2", "options": ["6", "7", "8", "9"], "answer_letter": "A", "solution": "Let the number be N. Given (45% − 30%) of N = 0.9 ⇒ 15% of N = 0.9 ⇒ N = 0.9 / 0.15 = 6.", "ans_idx": 0}, {"id": 9, "question": "The sum of 25% of a number and 40% of the same number is 325. What is 120% of that number?", "tag": "PHASE XIII(GRAD) - 29/07/2025 -SHIFT 3", "options": ["500", "550", "600", "650"], "answer_letter": "C", "solution": "Let the number be N. Given (25% + 40%) of N = 325 ⇒ 65% of N = 325 ⇒ N = 500. Now, 120% of 500 = 600.", "ans_idx": 2}, {"id": 10, "question": "If 7% of a number is 21, what is the value of the number minus 25% of itself?", "tag": "PHASE XIII(GRAD) -30/07/2025 - SHIFT 3", "options": ["200", "225", "250", "275"], "answer_letter": "B", "solution": "Let the number be N. Given 7% of N = 21 ⇒ N = 300. Required value = N − 25% of N = 75% of 300 = 225.", "ans_idx": 1}, {"id": 11, "question": "Seventy-five percent of a number is 15 more than two-thirds of that number. Find the number.", "tag": "CGL TIER I-16/09/2025-S3", "options": ["120", "150", "180", "210"], "answer_letter": "C", "solution": "Let the number be N. Given (3/4)N − (2/3)N = 15 ⇒ (1/12)N = 15 ⇒ N = 180.", "ans_idx": 2}, {"id": 12, "question": "A's salary is 40% more than B's. If B's salary increases by 20% and A's increases by x%, then A's new salary becomes 25% more than B's new salary. What is the value of x?", "tag": "CGL TIER 1-23/09/2025-SHIFT 1", "options": ["2.5%", "7.14%", "10.63%", "15.6%"], "answer_letter": "B", "solution": "Let B's salary = 100, then A's salary = 140. B's new salary = 120. A's new salary = 125% of 120 = 150. Percentage increase in A's salary (x) = [(150 − 140) / 140] × 100% ≈ 7.14%.", "ans_idx": 1}, {"id": 13, "question": "Mrs. Deepa Devi saves 30% of her salary. If they get Rs. 42,000 per month as salary, what is their monthly expenditure?", "tag": "SSC CGL Tier II (06/03/2023)", "options": ["Rs.29,200", "Rs.29,300", "Rs.29,400", "Rs.29,100"], "answer_letter": "C", "solution": "Saving = 30%, so monthly expenditure = 70% of Rs. 42,000 = 0.70 × 42,000 = Rs. 29,400.", "ans_idx": 2}, {"id": 14, "question": "When 18 is added to 85 percent of a number, the number itself is obtained. What is the value of the number?", "tag": "IB ACIO 18/01/2024", "options": ["135", "150", "105", "120"], "answer_letter": "D", "solution": "Let the number be N. Given 85% of N + 18 = N ⇒ 15% of N = 18 ⇒ N = 18 / 0.15 = 120.", "ans_idx": 3}, {"id": 15, "question": "On increasing a number by 57 percent, it becomes 942. Find the number.", "tag": "IB ACIO 13/01/2024", "options": ["600", "800", "500", "700"], "answer_letter": "A", "solution": "Let the number be N. Increasing N by 57% gives 1.57N = 942 ⇒ N = 942 / 1.57 = 600.", "ans_idx": 0}, {"id": 16, "question": "When a number is increased by 57 1/2%, it becomes 378. Find the number.", "tag": "RRB NTPC GL 24/06/2025", "options": ["100", "240", "400", "200"], "answer_letter": "B", "solution": "Let the number be N. Increasing N by 57.5% gives 1.575N = 378 ⇒ N = 378 / 1.575 = 240.", "ans_idx": 1}, {"id": 17, "question": "If 20% of k is 10 less than 1200% of 10, what is the value of k?", "tag": "RRB NTPC GL 12/06/2025", "options": ["510", "530", "550", "590"], "answer_letter": "C", "solution": "Given 20% of k = 1200% of 10 − 10 = 120 − 10 = 110 ⇒ 0.20k = 110 ⇒ k = 550.", "ans_idx": 2}, {"id": 18, "question": "After pouring 50 liters of petrol into an empty storage tank, it was still 10% empty. How much more petrol (in litres, rounded to two decimal places) is needed to fill the tank?", "tag": "RRB NTPC GL 06/06/2025", "options": ["54.56", "56.56", "51.33", "55.56"], "answer_letter": "D", "solution": "Since the tank is 10% empty, 50 litres represents 90% of the tank's capacity. Total petrol capacity to fill the tank = 50 / 0.90 = 55.56 litres.", "ans_idx": 3}, {"id": 19, "question": "A landlord bought a flat for ₹8,00,000. He wants to earn a 9% annual return on his investment after paying ₹2,000 per month for maintenance. What should be the monthly rent he charges?", "tag": "SSC CGL TIER I - 12/09/2025 - Shift 1", "options": ["₹7,000", "₹7,500", "₹8,000", "₹8,500"], "answer_letter": "C", "solution": "Desired annual return = 9% of ₹8,00,000 = ₹72,000 (₹6,000/month). Adding ₹2,000 monthly maintenance, monthly rent = ₹6,000 + ₹2,000 = ₹8,000.", "ans_idx": 2}, {"id": 20, "question": "If A's income is 20% more than B's and B earns ₹50,000, what percent less is B's income than A's?", "tag": "CHSL TIERI - 24/11/2025 - SHIFT 1", "options": ["16.66%", "20%", "18%", "25%"], "answer_letter": "A", "solution": "Required percentage less = [20 / (100 + 20)] × 100% = (20 / 120) × 100% = 16.66%.", "ans_idx": 0}, {"id": 21, "question": "If A's salary is 16% more than B's, then by what percentage (up to two decimal places) is B's salary less than A's?", "tag": "RRB NTPC GL 23/06/2025", "options": ["12.72%", "15.05%", "13.62%", "13.79%"], "answer_letter": "D", "solution": "Required percentage less = [16 / (100 + 16)] × 100% = (16 / 116) × 100% ≈ 13.79%.", "ans_idx": 3}, {"id": 22, "question": "A value is increased by 30% and then decreased by an unknown percentage to return to the original value. What is the percentage decrease required?", "tag": "CGL TIER I-23/09/2025-SHIFT 2", "options": ["23.08%", "33.00%", "30.23%", "20.22%"], "answer_letter": "A", "solution": "Required percentage decrease = [30 / (100 + 30)] × 100% = (30 / 130) × 100% ≈ 23.08%.", "ans_idx": 0}, {"id": 23, "question": "If A's salary is 51% more than B's, then by what percentage (up to two decimal places) is B's salary less than A's?", "tag": "RRB NTPC GL 23/06/2025", "options": ["34.80%", "32.75%", "33.77%", "36.52%"], "answer_letter": "C", "solution": "Required percentage less = [51 / (100 + 51)] × 100% = (51 / 151) × 100% ≈ 33.77%.", "ans_idx": 2}, {"id": 24, "question": "The value of a machine depreciates 10% in the first year, 20% in the second year, and 30% in the third year. If the initial value was ₹10,000, what is its value at the end of 3 years?", "tag": "CGL TIERI - 22/09/2025 - SHIFT 2", "options": ["₹5040", "₹5600", "₹5800", "₹6200"], "answer_letter": "A", "solution": "Value after 3 years = 10,000 × 0.90 × 0.80 × 0.70 = ₹5,040.", "ans_idx": 0}, {"id": 25, "question": "The price of a product is decreased by x% and then increased by x%. The final price becomes 10% less than the original. What is the value of x (approximately)?", "tag": "CGL TIER I-23/09/2025 - SHIFT 3", "options": ["31.6", "33.6", "30.6", "39.6"], "answer_letter": "A", "solution": "Net percentage decrease = x² / 100 = 10 ⇒ x² = 1000 ⇒ x = √1000 ≈ 31.6.", "ans_idx": 0}, {"id": 26, "question": "The production of bottles rose to 26000 from 16000 in 2 years. Find the rate of growth per annum.", "tag": "CGL TIER I-26/09/2025-SHIFT 3", "options": ["26.47%", "31.25%", "28.47%", "27.47%"], "answer_letter": "D", "solution": "Let annual growth rate be R%. Then (1 + R/100)² = 26,000 / 16,000 = 1.625 ⇒ 1 + R/100 = √1.625 ≈ 1.27475 ⇒ R ≈ 27.47%.", "ans_idx": 3}, {"id": 27, "question": "The price of a shirt is increased by 20% and then again increased by 10%. What is the net percentage increase in price?", "tag": "CHSL TIER I - 12/11/2025- SHIFT 2", "options": ["30%", "32%", "31%", "33%"], "answer_letter": "B", "solution": "Net percentage increase = 20 + 10 + (20 × 10)/100 = 32%.", "ans_idx": 1}, {"id": 28, "question": "The original price of a music set is ₹8,000. Its price was decreased by 12% and then increased by 20%. Find its new price (in ₹).", "tag": "RRB NTPC GL 09/06/2025", "options": ["7,748", "8,948", "8,448", "7,948"], "answer_letter": "C", "solution": "New price = 8,000 × (1 − 0.12) × (1 + 0.20) = 8,000 × 0.88 × 1.20 = ₹8,448.", "ans_idx": 2}, {"id": 29, "question": "The number of bacteria in a petri dish was 1,20,000. It increased by 10% in the first hour and changed by x in the second hour. In the third hour, it increases by 10%. If the current number is 1,16,160, then determine the change in population in the second hour.", "tag": "IB SA 2025", "options": ["Decreased by 29,040", "Decreased by 22%", "Decreased by 20%", "Decreased by 26,000"], "answer_letter": "C", "solution": "1,20,000 × 1.10 × k × 1.10 = 1,16,160 ⇒ 1,45,200 × k = 1,16,160 ⇒ k = 0.80, which means a 20% decrease in the second hour.", "ans_idx": 2}, {"id": 30, "question": "Suresh studies the pattern of daily sale of a shop. He finds that on Monday, the sale was decreased by 10% in comparison to the sale on Sunday. On Tuesday, the sale was increased by 10% in comparison to the sale of Monday. If the sale on Tuesday was ₹1,485, how much was the sale on Sunday?", "tag": "CHSL 08/07/2024 Shift-2", "options": ["₹1,495", "₹1,500", "₹1,485", "₹ 1,475"], "answer_letter": "B", "solution": "Let Sunday's sale be S. Then S × 0.90 × 1.10 = 1485 ⇒ 0.99S = 1485 ⇒ S = ₹1,500.", "ans_idx": 1}, {"id": 31, "question": "A number is first increased by 12% and then increased by 23%. The number thus obtained, is now reduced by 34%. Find the percentage increase or decrease (in the percentage of the total integer) in the original number.", "tag": "CGL 09/09/2024", "options": ["9% decrease", "9% increase", "10% decrease", "10% increase"], "answer_letter": "A", "solution": "Multiplier = 1.12 × 1.23 × 0.66 = 0.909216. Net change = (0.909216 − 1) × 100% = −9.08% ≈ 9% decrease.", "ans_idx": 0}, {"id": 32, "question": "An investor invested ₹2,00,000 in shares. Shares rose 18% on the first day, fell 15% on the second day, and then fell 3% on the third day. What is the net percentage increase or decrease in the value of the investor's shares? (Rounded off to one decimal place)", "tag": "CGL 18/09/2024", "options": ["2.2% decrease", "2.7% increase", "2.2% increase", "2.7% decrease"], "answer_letter": "D", "solution": "Multiplier = 1.18 × 0.85 × 0.97 = 0.97291. Net change = (0.97291 − 1) × 100% = −2.709% ≈ 2.7% decrease.", "ans_idx": 3}, {"id": 33, "question": "At the beginning of day 1 of a month, Rajesh has 500 eggs. He sells 20% of the eggs by the end of the day and added b% of the eggs at the beginning of the next day and sold 20% of the eggs at the end of the next day. This pattern continued up to the end of the third day of the month when he is left with 1024 eggs. The value of b is equal to?", "tag": "CHSL 02/07/2024", "options": ["10", "500", "100", "20"], "answer_letter": "C", "solution": "After 3 days, remaining eggs = 500 × (0.80)³ × (1 + b/100)² = 1024 ⇒ 256 × (1 + b/100)² = 1024 ⇒ (1 + b/100)² = 4 ⇒ 1 + b/100 = 2 ⇒ b = 100.", "ans_idx": 2}, {"id": 34, "question": "During the last year, the price of an electronic item increased by 10%, and this year the price of the same article decreased by 10%. If the price of the electronic item at present is ₹66,000, then what was the price of the corresponding electronic item at the beginning of the previous year? (rounded off to one decimal place)", "tag": "Graduate Level 28/06/2023 (Shift-3)", "options": ["₹91,262.5", "₹66,666.7", "₹72,432.4", "₹82,345.4"], "answer_letter": "B", "solution": "Let initial price be P. Then P × 1.10 × 0.90 = 66,000 ⇒ 0.99P = 66,000 ⇒ P = 66,000 / 0.99 = ₹66,666.7.", "ans_idx": 1}, {"id": 35, "question": "If the radius of a sphere is increased by 20 percent, by what percentage will its volume increase?", "tag": "CHSL TIER I - 12/11/2025-SHIFT 2", "options": ["76.6%", "60.5%", "72.8%", "78.4%"], "answer_letter": "C", "solution": "Volume of a sphere ∝ r³. New volume multiplier = (1.20)³ = 1.728, which corresponds to a 72.8% increase.", "ans_idx": 2}, {"id": 36, "question": "A spherical balloon is inflated, causing its radius to grow by 10%. By what percentage does its surface area increase?", "tag": "CGL TIER 1-22/09/2025 -SHIFT 1", "options": ["10%", "20%", "21%", "25%"], "answer_letter": "C", "solution": "Surface area of a sphere ∝ r². New surface area multiplier = (1.10)² = 1.21, which is a 21% increase.", "ans_idx": 2}, {"id": 37, "question": "A manufacturer reduces the diameter of their spherical bearing balls by 50% to cut costs. What is the percentage decrease in volume of each ball?", "tag": "CHSL TIER I- 25/11/2025-SHIFT 1", "options": ["87.5%", "75%", "50%", "65.5%"], "answer_letter": "A", "solution": "Reducing diameter by 50% reduces radius to 0.5r. Volume multiplier = (0.5)³ = 0.125, which means an 87.5% decrease.", "ans_idx": 0}, {"id": 38, "question": "A right circular cylinder's height increases by 96% while its radius decreases by 25%. What is the approximate percentage change in its volume?", "tag": "CHSL TIER I - 29/11/2025 -SHIFT 1", "options": ["8% decrease", "10% increase", "12% increase", "15% increase"], "answer_letter": "B", "solution": "Volume of cylinder ∝ r²h. Multiplier = (0.75)² × 1.96 = (9/16) × 1.96 = 1.1025, which is approximately a 10% increase.", "ans_idx": 1}, {"id": 39, "question": "A circular iron plate of radius 24 cm is heated, and its radius increases by 1.8%. What is the approximate percentage increase in its area?", "tag": "CHSL TIER I-17/11/2025-SHIFT 2", "options": ["1.8%", "2.2%", "3.64%", "4.3%"], "answer_letter": "C", "solution": "Area of circle ∝ r². Percentage increase = 1.8 + 1.8 + (1.8 × 1.8)/100 = 3.6 + 0.0324 ≈ 3.64%.", "ans_idx": 2}, {"id": 40, "question": "The area of a regular triangle increases by 44%. By what percentage did the side length increase?", "tag": "CGL TIER I-22/09/2025 - SHIFT 1", "options": ["20%", "44%", "54%", "10%"], "answer_letter": "A", "solution": "Area of an equilateral triangle ∝ side². Since area becomes 1.44 times, side length becomes √1.44 = 1.20 times, i.e., a 20% increase.", "ans_idx": 0}, {"id": 41, "question": "The base area of a prism is increased by 25%, while the height remains the same. By what percentage does the volume increase?", "tag": "CGL TIER 1-20/09/2025-SHIFT 2", "options": ["10%", "20%", "25%", "30%"], "answer_letter": "C", "solution": "Volume of prism = Base Area × Height. Since height is constant and base area increases by 25%, volume also increases by 25%.", "ans_idx": 2}, {"id": 42, "question": "If the length and breadth of a cuboid are increased by 6% and 8% respectively, then the percentage increase in its volume (rounded off to two decimal places) is:", "tag": "SSC CPO 29/06/2024", "options": ["13.96%", "12.96%", "11.48%", "14.48%"], "answer_letter": "D", "solution": "With height constant, percentage increase in volume = 6 + 8 + (6 × 8)/100 = 14 + 0.48 = 14.48%.", "ans_idx": 3}, {"id": 43, "question": "If the radius of a sphere is increased by 125%, then by what percentage will its surface area be increased (rounded off to two decimal places)?", "tag": "CPO 28/06/2024", "options": ["409.76%", "509.54%", "406.25%", "506.25%"], "answer_letter": "C", "solution": "Radius increases by 125%, so r_new = 2.25r. Surface area multiplier = (2.25)² = 5.0625, meaning an increase of (5.0625 − 1) × 100% = 406.25%.", "ans_idx": 2}, {"id": 44, "question": "If both the length and breadth of a cuboid are increased by 50%, by how much percent its height must be decreased so that its volume remains the same?", "tag": "SSC MTS 02/05/2023 (Morning)", "options": ["62.34 %", "55.55 %", "37.25 %", "48.75%"], "answer_letter": "B", "solution": "Let height multiplier be k. Then 1.5 × 1.5 × k = 1 ⇒ 2.25k = 1 ⇒ k = 4/9. Percentage decrease in height = (1 − 4/9) × 100% = 55.55%.", "ans_idx": 1}, {"id": 45, "question": "The population of a town increases by 20% in the first year, decreases by 10% in the second year, and again increases by 25% in the third year. If the population at the beginning was 40,000, what will it be after 3 years?", "tag": "CHSL TIER I-12/11/2025-SHIFT 2", "options": ["24,000", "43,200", "48,000", "54,000"], "answer_letter": "D", "solution": "Population after 3 years = 40,000 × 1.20 × 0.90 × 1.25 = 54,000.", "ans_idx": 3}, {"id": 46, "question": "The population of a village increases by 8% annually. If the current population is 58,320, what was it two years ago (approx) ?", "tag": "CGL TIER I-21/09/2025-SHIFT 2", "options": ["50,000", "49,900", "49,980", "49,800"], "answer_letter": "A", "solution": "Population 2 years ago = 58,320 / (1.08)² = 58,320 / 1.1664 = 50,000.", "ans_idx": 0}, {"id": 47, "question": "The population falls by 12% in the first year. By what percentage must it increase in the second year so that at the end of the second year the population is exactly the same as the original?", "tag": "CHSL TIER I - 18/11/2025 -SHIFT 2", "options": ["10.6%", "11.6%", "13.6%", "14.6%"], "answer_letter": "C", "solution": "Required percentage increase in 2nd year = [12 / (100 − 12)] × 100% = (12 / 88) × 100% ≈ 13.6%.", "ans_idx": 2}, {"id": 48, "question": "Two years ago, the population of a town was 9487500. Due to migration to big cities, it decreases at the rate of 8% per annum. What will be the present population of the town?", "tag": "SSC CGL MAINS 20/01/2025", "options": ["8030220", "7060320", "8070120", "9060110"], "answer_letter": "A", "solution": "Present population = 94,87,500 × (0.92)² = 94,87,500 × 0.8464 = 80,30,220.", "ans_idx": 0}, {"id": 49, "question": "In 1968, the population of a town was 4,85,000. If its population increased at the rate of 20% per decade for two consecutive decades, what was the population of the town in 1988?", "tag": "RRB NTPC GL 18/06/2025", "options": ["6,98,395", "6,98,397", "6,98,405", "6,98,400"], "answer_letter": "D", "solution": "From 1968 to 1988 is 2 decades. Population in 1988 = 4,85,000 × (1.20)² = 4,85,000 × 1.44 = 6,98,400.", "ans_idx": 3}, {"id": 50, "question": "The population of a place increased to 50,000 from 2016 to 2018 at the rate of 6% per annum, and continued the same trend for the next 3 years. If A is the population in 2016 and B is the population in 2020, and both are approximated to the next possible integers, then what is the value of B - A?", "tag": "SSC CGL MAINS 18/01/2025", "options": ["13220", "12850", "11680", "16270"], "answer_letter": "C", "solution": "Population in 2018 = 50,000. A (in 2016) = 50,000 / (1.06)² ≈ 44,499.82 → 44,500. B (in 2020) = 50,000 × (1.06)² = 56,180. Thus, B − A = 56,180 − 44,500 = 11,680.", "ans_idx": 2}, {"id": 51, "question": "Due to water crisis, 40% of the initial population left the town, and 30% of the remaining population left the town for pursuing jobs. If presently 3360 people inhabit the town, what is the ratio of initial population to present population?", "tag": "IB SA 2025", "options": ["52 : 27", "50 : 21", "55 : 27", "60 : 37"], "answer_letter": "B", "solution": "After 40% leave, 60% remain. After 30% of the remaining leave, 70% of 60% = 42% remain. Ratio of initial to present population = 100 : 42 = 50 : 21.", "ans_idx": 1}, {"id": 52, "question": "The present population of a town is 3,70,000 and it is increasing at the rate of 25% per annum. What will be the difference between the population of the town 3 years ago and 2 years ago?", "tag": "IB ACIO 2025", "options": ["47,360", "47,710", "46,810", "46,610"], "answer_letter": "A", "solution": "Present population P = 3,70,000. Population 2 years ago = P × (4/5)² = 2,36,800. Population 3 years ago = 2,36,800 × (4/5) = 1,89,440. Difference = 2,36,800 − 1,89,440 = 47,360.", "ans_idx": 0}, {"id": 53, "question": "The present population of a town is 3,80,000 and it is increasing at the rate of 25% per annum. What will be the difference between the population of the town 3 years ago and 2 years ago?", "tag": "IB ACIO 2025", "options": ["48,090", "48,640", "48,990", "47,890"], "answer_letter": "B", "solution": "Present population P = 3,80,000. Population 2 years ago = 3,80,000 × (16/25) = 2,43,200. Population 3 years ago = 2,43,200 × (4/5) = 1,94,560. Difference = 2,43,200 − 1,94,560 = 48,640.", "ans_idx": 1}, {"id": 54, "question": "What will be the difference in the population of a town 3 years ago and 2 years ago, whose present population is 1,40,000 and it is increasing at the rate of 25% per annum?", "tag": "RRB NTPC GL 20/06/2025", "options": ["17,920", "17,170", "18,270", "17,370"], "answer_letter": "A", "solution": "Present population P = 1,40,000. Population 2 years ago = 1,40,000 × (16/25) = 89,600. Population 3 years ago = 89,600 × (4/5) = 71,680. Difference = 89,600 − 71,680 = 17,920.", "ans_idx": 0}, {"id": 55, "question": "In a certain year, the population of a town was 18000. If the next year, the population of males increased by 5% and that of females increased by 7%, and the total population increased to 19200, then what was the ratio of population of males to females in that given year?", "tag": "SSC CGL 20/07/2023 (1st shift)", "options": ["2:5", "1:5", "4:3", "3:5"], "answer_letter": "B", "solution": "Total increase = 19,200 − 18,000 = 1,200 (which is 6.67%). By alligation or equation: 0.05M + 0.07(18,000 − M) = 1,200 ⇒ 1,260 − 0.02M = 1,200 ⇒ M = 3,000 and F = 15,000. Ratio M : F = 3,000 : 15,000 = 1 : 5.", "ans_idx": 1}, {"id": 56, "question": "The present population of a village is 15280. If the number of males increases by 25% and the number of females increases by 15%, the population will become 18428. What is the difference between the present population of males and females in the village?", "tag": "SSC CGL 20/08/2021 (Afternoon)", "options": ["1840", "1380", "920", "2760"], "answer_letter": "A", "solution": "Total increase = 18,428 − 15,280 = 3,148. If all increased by 15%, increase would be 0.15 × 15,280 = 2,292. Extra 10% of Males = 3,148 − 2,292 = 856 ⇒ Males = 8,560, Females = 6,720. Difference = 8,560 − 6,720 = 1,840.", "ans_idx": 0}, {"id": 57, "question": "Total number of males and females in a town is 70000. If the number of males is increased by 6% and that of females is increased by 4%, the total number of males and females in the town will become 73520. What is the difference between the number of males and females in the town initially?", "tag": "SSC CPO 11/12/2019 (Evening)", "options": ["1500", "1800", "2000", "1400"], "answer_letter": "C", "solution": "Total increase = 73,520 − 70,000 = 3,520. If all increased by 4%, increase = 2,800. Extra 2% of Males = 3,520 − 2,800 = 720 ⇒ Males = 36,000, Females = 34,000. Difference = 36,000 − 34,000 = 2,000.", "ans_idx": 2}, {"id": 58, "question": "An employee contributes 20% of their salary to charity. From the remaining amount, 40% is allocated to investments. The rest is divided for education and travel in the ratio 7:5. If the expense on travel is 6,000, what is the employee's total salary?", "tag": "CGL TIER I-20/09/2025-SHIFT 2", "options": ["₹28,000", "₹30,000", "₹32,000", "₹35,000"], "answer_letter": "B", "solution": "After 20% charity, 80% remains. After 40% investment, 60% of 80% = 48% remains, split 7:5 for education and travel. Travel = (5/12) of 48% = 20% of salary = ₹6,000 ⇒ Total salary = ₹30,000.", "ans_idx": 1}, {"id": 59, "question": "From the salary of a software engineer, if 15% is used as house rent, 25% of the remaining is spent on household items, 25% of the remaining as income tax, and 15% of the remaining on clothing, then he is left with Rs. 10404. Find his total salary.", "tag": "CHSL 02/07/2024 Shift -2", "options": ["₹24,600", "₹23,600", "₹22,600", "₹25,600"], "answer_letter": "D", "solution": "Remaining fraction = 0.85 × 0.75 × 0.75 × 0.85 = (17/20) × (3/4) × (3/4) × (17/20) = 2601 / 6400. Given (2601 / 6400) × Salary = 10,404 ⇒ Salary = 4 × 6400 = ₹25,600.", "ans_idx": 3}, {"id": 60, "question": "Pranav gave 30% of the money he had to his wife, and 86% of the remaining to his two children. Half of the remaining amount was spent on other things and the remaining ₹98,000 was deposited in the bank. How much money did he have in the beginning?", "tag": "CHSL 08/07/2024", "options": ["₹40,00,000", "₹30,00,000", "₹ 20,00,000", "₹10,00,000"], "answer_letter": "C", "solution": "Remaining after wife (30%) = 70%. Remaining after children (86% of 70%) = 14% of 70% = 9.8%. Half of 9.8% = 4.9% = ₹98,000 ⇒ Total money = 98,000 / 0.049 = ₹20,00,000.", "ans_idx": 2}, {"id": 61, "question": "Raju spends 10 percent and 20 percent of his income on transport and food respectively. He spends 30 per cent of the remaining income on clothes. He saves the rest of his income. If his savings are ₹ 26460, then what will be the total expenditure on food and clothes together?", "tag": "SSC CGL TI (08/08/2022)", "options": ["26420", "22140", "24480", "23440"], "answer_letter": "B", "solution": "Transport + Food = 10% + 20% = 30%; remaining = 70%. Clothes = 30% of 70% = 21%. Savings = 70% − 21% = 49% = ₹26,460 ⇒ 1% = ₹540. Food + Clothes = 20% + 21% = 41% = 41 × 540 = ₹22,140.", "ans_idx": 1}, {"id": 62, "question": "Ravi spends 48% of his monthly income on food, and 3/4 of the remaining on rent. If he saves ₹7,488 per month, which is equal to half of the balance, after spending on food and rent, find the difference between his monthly income and total expenditure on food and rent.", "tag": "IB SA 2025", "options": ["₹14,976", "₹14,796", "₹14,125", "₹14,245"], "answer_letter": "A", "solution": "Difference between monthly income and total expenditure on food and rent is simply the balance left after food and rent. Since savings (₹7,488) is half of that balance, the required balance = 2 × ₹7,488 = ₹14,976.", "ans_idx": 0}, {"id": 63, "question": "A person spends 20% of his monthly salary on food and a quarter of the remaining salary on charity. If he saves ₹9,600 per month, which is equal to half of the remaining amount after spending on food and donations, calculate his monthly salary.", "tag": "SSC CHSL 10/06/2022 (Morning)", "options": ["₹28,000", "₹32,000", "₹26,000", "₹30,000"], "answer_letter": "B", "solution": "After 20% on food, 80% remains. A quarter of 80% (20%) goes to charity, leaving 60%. Savings = half of 60% = 30% of salary = ₹9,600 ⇒ Monthly salary = 9,600 / 0.30 = ₹32,000.", "ans_idx": 1}, {"id": 64, "question": "Ramnarayan's salary was reduced by 3 1/8%, and then, the lower salary was increased by 7 2/5%. By what percent is his new salary more/less than his original salary (rounded off to two decimal points)?", "tag": "CPO 28/06/2024 Shift-2", "options": ["4.04% less", "4.04% more", "3.03% less", "3.03% more"], "answer_letter": "B", "solution": "3 1/8% = 3.125% = 1/32, and 7 2/5% = 7.4%. Multiplier = (1 − 0.03125) × (1 + 0.074) = 0.96875 × 1.074 = 1.0404375, which is 4.04% more than the original salary.", "ans_idx": 1}, {"id": 65, "question": "The expenditure of a household on food, clothing, and entertainment is in the ratio 2:4: 4. In the coming year, the cost of food is expected to fall by 10%, clothing to rise by 5%, and entertainment to fall by 15%. What is the percent change (increase or decrease) in the total household expenditure?", "tag": "CGL TIER I- 12/09/2025 -SHIFT 3", "options": ["5% decrease", "6% increase", "6% decrease", "5% increase"], "answer_letter": "C", "solution": "Let initial expenses be 20, 40, and 40 (total = 100). Changes: Food = −10% of 20 = −2; Clothing = +5% of 40 = +2; Entertainment = −15% of 40 = −6. Net change = −2 + 2 − 6 = −6, or 6% decrease.", "ans_idx": 2}, {"id": 66, "question": "A man spends 30% of his salary on rent, 20% on groceries, and 25% on other expenses. If he saves Rs. 9,000, what is his salary?", "tag": "CGL TIER I -26/09/2025-SHIFT 3", "options": ["Rs. 24,000", "Rs. 27,000", "Rs. 30,000", "Rs. 36,000"], "answer_letter": "D", "solution": "Total spent = 30% + 20% + 25% = 75%. Savings = 25% of salary = Rs. 9,000 ⇒ Total salary = 9,000 / 0.25 = Rs. 36,000.", "ans_idx": 3}, {"id": 67, "question": "X plans his expenditure, allocating 30% of his salary for house rent; 25% for food; 15% for medical expenses and 16% for others. If he can save ₹42,000 every month, find his monthly salary (in ₹).", "tag": "RRB NTPC GL 06/06/2025", "options": ["3,30,000", "3,00,000", "3,50,000", "4,20,000"], "answer_letter": "B", "solution": "Total spent = 30% + 25% + 15% + 16% = 86%. Savings = 14% of salary = ₹42,000 ⇒ Monthly salary = 42,000 / 0.14 = ₹3,00,000.", "ans_idx": 1}, {"id": 68, "question": "A person spent 60% of his salary on household expenses, 20% of his salary on rent and donated 80% of the remaining salary to a trust. If he has ₹20,000 left, what is his salary?", "tag": "SSC CHSL 01/07/ 2024", "options": ["₹5,00,000", "₹4,00,000", "₹50,000", "₹5,50,000"], "answer_letter": "A", "solution": "Spent on household and rent = 60% + 20% = 80%. Remaining = 20%. After donating 80% of the remaining, 20% of 20% = 4% is left. Given 4% of salary = ₹20,000 ⇒ Salary = ₹5,00,000.", "ans_idx": 0}, {"id": 69, "question": "A person spends 10% of his income on groceries, 10% on medicines, 20% on children's education, 15% on house rent, and saves the rest. If his monthly income is ₹30,000, find his savings.", "tag": "SSC CHSL 04/07/2024", "options": ["₹12,500", "₹16,500", "₹13,500", "₹15,500"], "answer_letter": "C", "solution": "Total spent = 10% + 10% + 20% + 15% = 55%. Savings = 45% of ₹30,000 = ₹13,500.", "ans_idx": 2}, {"id": 70, "question": "Geeta buys an apartment and pays EMI for it. Her monthly income is ₹80,000. She spends 15% on her children's education, 40% on household chores, sends 10% to GPF, saves 15% in savings bank account and pays the remaining amount as EMI. How much amount does she pay as EMI?", "tag": "SSC CHSL Tier II (26/06/2023)", "options": ["₹14,000", "₹16,000", "₹18,000", "₹20,000"], "answer_letter": "B", "solution": "Total allocated before EMI = 15% + 40% + 10% + 15% = 80%. Remaining for EMI = 20% of ₹80,000 = ₹16,000.", "ans_idx": 1}, {"id": 71, "question": "Rohan spends 24% of a sum on insurance policy, 36% on food, 18% on children's education and 14% on entertainment. He deposits the remaining amount of ₹504 in the bank. What total amount does he spend on food and insurance policy together?", "tag": "Higher Secondary 02/08/2022 (Shift-2)", "options": ["₹3,708", "₹3,087", "₹3,870", "₹3,780"], "answer_letter": "D", "solution": "Total spent = 24% + 36% + 18% + 14% = 92%. Remaining 8% = ₹504 ⇒ 1% = ₹63. Expenditure on food and insurance = 36% + 24% = 60% = 60 × 63 = ₹3,780.", "ans_idx": 3}, {"id": 72, "question": "Mr. X spends 25% of his income on house rent, 16% on food and medicines, three-fifths of the house rent on children's education, 12% on future investments, 12% on travel and entertainment, three-fourths of the amount spent on food and medicines on long-term savings, and the rest on miscellaneous expenses. If the difference between the expenditure on children's education and travel & entertainment is ₹4,260, find the miscellaneous expenditure.", "tag": "IB SA 2025", "options": ["₹12,500", "₹10,850", "₹11,360", "₹8,950"], "answer_letter": "C", "solution": "Rent = 25%, Food & Med = 16%, Education = (3/5)×25% = 15%, Investments = 12%, Travel & Ent = 12%, Long-term savings = (3/4)×16% = 12%. Total = 92%, so Miscellaneous = 8%. Given (15% − 12%) = 3% = ₹4,260 ⇒ 1% = ₹1,420. Miscellaneous = 8 × ₹1,420 = ₹11,360.", "ans_idx": 2}, {"id": 73, "question": "Radha has a monthly income of ₹80,000. She spends 40% of her income on household expenses, 20% on entertainment and 20% on education. The remaining amount is saved. Due to a 20% salary hike, her income increases. However, her household expenses also rise by 10%, her entertainment costs increase by 12% while her expenses on education remain unchanged. Radha decides to save any leftover income after adjusting these changes. What is the percentage increase in Radha's savings?", "tag": "IB SA 2025", "options": ["62%", "68%", "63%", "66%"], "answer_letter": "B", "solution": "Let initial income = 100; Household = 40, Ent = 20, Edu = 20, Savings = 20. New income = 120; New Household = 44, New Ent = 22.4, New Edu = 20 ⇒ New Expenses = 86.4, New Savings = 120 − 86.4 = 33.6. Percentage increase in savings = [(33.6 − 20) / 20] × 100% = 68%.", "ans_idx": 1}, {"id": 74, "question": "A reduction of 20% in the price of sugar enables a person to buy 5 kg more for ₹200. What is the original price per kg?", "tag": "CGL TIER 1-26/09/2025 - SHIFT 2", "options": ["₹20", "₹10", "₹5", "₹15"], "answer_letter": "B", "solution": "A 20% reduction on ₹200 saves ₹40, which buys 5 kg of sugar. Reduced price = 40 / 5 = ₹8/kg. Since ₹8 is 80% of the original price, original price = 8 / 0.80 = ₹10/kg.", "ans_idx": 1}, {"id": 75, "question": "A 25% decrease in the cost of flour enables a consumer to purchase an additional 3 kg for 360. What was the initial price per kg of the flour?", "tag": "PHASE XIII(GRAD) - 28/07/2025 -SHIFT 3", "options": ["₹30", "₹36", "₹40", "₹45"], "answer_letter": "C", "solution": "A 25% reduction on ₹360 saves ₹90, which buys 3 kg of flour. Reduced price = 90 / 3 = ₹30/kg. Since ₹30 is 75% of the initial price, initial price = 30 / 0.75 = ₹40/kg.", "ans_idx": 2}, {"id": 76, "question": "If the price of tea increases by 40%, by what percentage should the consumption of tea be reduced so that there is no increase in expenditure?", "tag": "SSC CHSL 04/07/2024", "options": ["28 4/7%", "15 2/9%", "35 2/9%", "31 3/5%"], "answer_letter": "A", "solution": "Required percentage reduction in consumption = [40 / (100 + 40)] × 100% = (40 / 140) × 100% = 28 4/7%.", "ans_idx": 0}, {"id": 77, "question": "If the price of rice is reduced by 24%, Alok is able to buy 10 kg more rice for ₹2,500. What is the reduced rate of rice per kg?", "tag": "SSC CHSL 08/07/ 2024", "options": ["₹75", "₹60", "₹25", "₹50"], "answer_letter": "B", "solution": "Reduced price of 10 kg = 24% of ₹2,500 = ₹600. Therefore, reduced rate of rice = 600 / 10 = ₹60/kg.", "ans_idx": 1}, {"id": 78, "question": "The price of tomatoes per kg increases by 300%, so a housewife reduces her consumption of tomatoes by 70%. By what percentage did her expenditure on tomatoes increase or decrease?", "tag": "SSC CGL 19/09/2024", "options": ["20% decrease", "20% increase", "30% decrease", "30% increase"], "answer_letter": "B", "solution": "Price increases by 300% (becomes 4 times) and consumption drops by 70% (becomes 0.30 times). New expenditure = 4 × 0.30 = 1.20 times the original, i.e., a 20% increase.", "ans_idx": 1}, {"id": 79, "question": "The price of rice is reduced by 25 percent, so a person is able to buy 30 kg more rice at the same cost. If the expenditure is ₹ 5400 then what was the original price per kg of rice?", "tag": "SSC CGL Tier II (08/08/2022)", "options": ["90 per kg", "60 per kg", "75 per kg", "50 per kg"], "answer_letter": "B", "solution": "25% of ₹5,400 = ₹1,350, which buys 30 kg at the reduced price. Reduced price = 1,350 / 30 = ₹45/kg. Original price = 45 / 0.75 = ₹60/kg.", "ans_idx": 1}, {"id": 80, "question": "When the price of sugar is increased by 30%, a person increases his expenditure on sugar by 12%. By what percentage should he reduce the consumption of sugar (even up to two decimal places)?", "tag": "SSC MTS 20/10/2021 (Afternoon)", "options": ["12.75%", "13.85%", "11.54%", "15.75%"], "answer_letter": "B", "solution": "New consumption / Old consumption = 112 / 130. Percentage reduction = [(130 − 112) / 130] × 100% = (18 / 130) × 100% ≈ 13.85%.", "ans_idx": 1}, {"id": 81, "question": "When the price of sugar is increased by 28%, a family reduces its consumption every month in such a way that the expenditure on sugar is only 12% more than what it was earlier. If earlier the family consumed 18.4 kg of sugar per month, what is the new consumption of sugar per month?", "tag": "SSC CPO 09/12/2019 (Evening)", "options": ["16.6 kg", "16.1 kg", "15.75 kg", "15.8 kg"], "answer_letter": "B", "solution": "New consumption = Old consumption × (112 / 128) = 18.4 × (7 / 8) = 16.1 kg.", "ans_idx": 1}, {"id": 82, "question": "In a manufacturing unit, it was noted that the price of raw materials increased by 25% and labor cost increased from 30% of the cost of raw materials to 38% of the cost of raw materials. What percentage of raw material consumption should be reduced so that the cost before the cost increase can be kept the same?", "tag": "SSC CGL 11/04/2022 (Evening)", "options": ["20.7%", "30.2%", "24.6%", "25.6%"], "answer_letter": "C", "solution": "Let initial raw material cost = 100; initial labor = 30 ⇒ total = 130. New raw material cost = 125; new labor = 38% of 125 = 47.5 ⇒ new total = 172.5. Required reduction = [(172.5 − 130) / 172.5] × 100% = (42.5 / 172.5) × 100% ≈ 24.6%.", "ans_idx": 2}, {"id": 83, "question": "A man spends 80% of his income. His income has increased by 25%, but his expenditure remains the same. By what percent have his savings increased?", "tag": "CGL TIER I - 21/09/2025 -SHIFT 1", "options": ["125%", "150%", "100%", "200%"], "answer_letter": "A", "solution": "Let Income = 100, Expenditure = 80, Savings = 20. New Income = 125, Expenditure = 80 ⇒ New Savings = 45. Percentage increase in savings = [(45 − 20) / 20] × 100% = 125%.", "ans_idx": 0}, {"id": 84, "question": "A man spends 75% of income. Expenses +20%, income +10%. Find % change in savings.", "tag": "CGL TIER I-24/09/2025-SHIFT 3", "options": ["30% decrease", "40% decrease", "10% decrease", "20% decrease"], "answer_letter": "D", "solution": "Let Income = 100, Expenditure = 75, Savings = 25. New Income = 110, New Expenditure = 75 × 1.20 = 90 ⇒ New Savings = 20. Percentage change = [(20 − 25) / 25] × 100% = 20% decrease.", "ans_idx": 3}, {"id": 85, "question": "A man spends 70% of his income. His income increases by 10% and his expenditure by 5%. What is the percentage increase in his savings?", "tag": "CGL TIER 1-25/09/2025-SHIFT 2", "options": ["21.67%", "31.67%", "41.67%", "51.67%"], "answer_letter": "A", "solution": "Let Income = 100, Expenditure = 70, Savings = 30. New Income = 110, New Expenditure = 70 × 1.05 = 73.5 ⇒ New Savings = 36.5. Percentage increase = (6.5 / 30) × 100% = 21.67%.", "ans_idx": 0}, {"id": 86, "question": "Raju spends 80% of his income. His income increased by 20%, while his expenditure increased by 10%. What is the percentage increase in his savings?", "tag": "SSC CHSL 05/07/2024", "options": ["60%", "48%", "30%", "40%"], "answer_letter": "A", "solution": "Let Income = 100, Expenditure = 80, Savings = 20. New Income = 120, New Expenditure = 88 ⇒ New Savings = 32. Percentage increase = [(32 − 20) / 20] × 100% = 60%.", "ans_idx": 0}, {"id": 87, "question": "In the year 2021, Ramesh's monthly income was ₹18,600 and his monthly expenditure was ₹12,400. In the year 2022, his income increased by 15 percent and expenditure increased by 8 percent. Calculate the percentage increase in his savings.", "tag": "SSC CGL 25/09/2024", "options": ["25%", "29%", "32%", "27%"], "answer_letter": "B", "solution": "Ratio of Income : Expenditure : Savings = 18,600 : 12,400 : 6,200 = 3 : 2 : 1. Using weighted change: 3(15%) = 2(8%) + 1(x%) ⇒ 45% = 16% + x% ⇒ x = 29%.", "ans_idx": 1}, {"id": 88, "question": "The ratio of Suresh's expenditure and savings is 3 : 1. His salary increases by 25%. If his savings increase by 10%, by what percentage will his expenditure increase?", "tag": "SSC CGL 12/09/2024", "options": ["40%", "10%", "30%", "20%"], "answer_letter": "C", "solution": "Ratio of Expenditure : Savings = 3 : 1, so Income = 4 units. Using weighted change: 4(25%) = 3(x%) + 1(10%) ⇒ 100% = 3x% + 10% ⇒ x = 30%.", "ans_idx": 2}, {"id": 89, "question": "A person saves 45% of his income. The next year, his income increases by 200%. He increases his savings by five times compared to the previous year's savings. By what percentage (correct to one decimal place) has his expenditure increased/decreased?", "tag": "SSC CHSL 09/07/ 2024", "options": ["Decrease, 63.4%", "Decrease, 36.4%", "Increase, 36.4%", "Increase, 63.4%"], "answer_letter": "C", "solution": "Let Income = 100, Savings = 45, Expenditure = 55. Next year, Income increases by 200% to 300, and Savings becomes 5 × 45 = 225. New Expenditure = 300 − 225 = 75. Percentage increase = [(75 − 55) / 55] × 100% = (20 / 55) × 100% ≈ 36.4% increase.", "ans_idx": 2}, {"id": 90, "question": "The monthly income of a person was ₹80,000 and his monthly expenses were ₹45,000. Next year his income increased by 16% and his expenses increased by 8%. Find the percentage increase in his savings (correct up to two decimal places).", "tag": "Higher Secondary 30/06/2023 (Shift - 2)", "options": ["25.35%", "26.29%", "30.25%", "44.36%"], "answer_letter": "B", "solution": "Income = 80,000, Expenses = 45,000, Savings = 35,000 (Ratio = 16 : 9 : 7). Weighted change: 16(16%) = 9(8%) + 7(x%) ⇒ 256 = 72 + 7x ⇒ x = 184 / 7 ≈ 26.29%.", "ans_idx": 1}, {"id": 91, "question": "If the tax on a commodity is decreased by 20% and its consumption is increased by 15%, what will be the effect on the tax revenue?", "tag": "RRB ALP 25/11/2024", "options": ["10% increase", "No change", "8% increase", "8% decrease"], "answer_letter": "D", "solution": "Net effect on tax revenue = 0.80 × 1.15 = 0.92, which is an 8% decrease.", "ans_idx": 3}, {"id": 92, "question": "On reducing the entry fee in a museum by 25%, the number of people visiting the museum increased by 50%, calculate the percentage increase or decrease in the admission fee collection.", "tag": "Higher Secondary 28/06/2023 (Shift-2)", "options": ["10% decrease", "12.5% decrease", "10% increase", "12.5% increase"], "answer_letter": "D", "solution": "Net effect on fee collection = 0.75 × 1.50 = 1.125, which is a 12.5% increase.", "ans_idx": 3}, {"id": 93, "question": "On increasing the price of an article by 5%, its sale decreases by 10%. What was the net effect on profits?", "tag": "SSC MTS 04/05/2023 (Evening)", "options": ["5% increase", "5.5% decrease", "5.5% increase", "5% decrease"], "answer_letter": "B", "solution": "Multiplier = 1.05 × 0.90 = 0.945, which represents a 5.5% decrease.", "ans_idx": 1}, {"id": 94, "question": "By reducing the price of a fan by 30%, its sales increase by 40%. By what percentage will his income decrease?", "tag": "SSC CHSL 17/03/2023 (2nd Shift)", "options": ["2% decrease", "5% decrease", "8% decrease", "3% decrease"], "answer_letter": "A", "solution": "Multiplier = 0.70 × 1.40 = 0.98, which represents a 2% decrease in income.", "ans_idx": 0}, {"id": 95, "question": "If x% of 280 = 15% of 240 + 20% of 310, then the value of x is:", "tag": "SSC CGL 17/07/2023 (1st shift)", "options": ["38", "35", "30", "40"], "answer_letter": "B", "solution": "2.8x = (0.15 × 240) + (0.20 × 310) = 36 + 62 = 98 ⇒ x = 98 / 2.8 = 35.", "ans_idx": 1}, {"id": 96, "question": "If 65% of 350 - ?% of 250 + 40% of 120 = 158, then find the value of '?'.", "tag": "SSC CGL 19/07/2023 (3rd shift)", "options": ["57", "63", "47", "54"], "answer_letter": "C", "solution": "65% of 350 − (?% of 250) + 40% of 120 = 158 ⇒ 227.5 − 2.5(?) + 48 = 158 ⇒ 2.5(?) = 117.5 ⇒ ? = 47.", "ans_idx": 2}, {"id": 97, "question": "If 20% of a number is subtracted from another and the second number is decreased by 70%, then what will be the ratio of the first number to the second number?", "tag": "Matriculation Level 27/06/2023 (Shift - 1)", "options": ["3:2", "4:3", "2:3", "3:4"], "answer_letter": "A", "solution": "Let first number be x and second be y. Given y − 0.20x = 0.70y ⇒ 0.20x = 0.30y ⇒ x : y = 3 : 2.", "ans_idx": 0}, {"id": 98, "question": "If 20% of (A + B) = 30% of (A - B), then what percentage of B is equal to A?", "tag": "SSC CGL Tier II (07/03/2023)", "options": ["400%", "300%", "500%", "100%"], "answer_letter": "C", "solution": "20%(A + B) = 30%(A − B) ⇒ 2A + 2B = 3A − 3B ⇒ A = 5B. Therefore, A is 500% of B.", "ans_idx": 2}, {"id": 99, "question": "If 25% of (P + Q) = 75% of (P - Q), then find the ratio P : Q.", "tag": "CGL TIER I-18/09/2025 - Shift 2", "options": ["1:2", "2:1", "1:3", "3:1"], "answer_letter": "B", "solution": "25%(P + Q) = 75%(P − Q) ⇒ P + Q = 3P − 3Q ⇒ 2P = 4Q ⇒ P : Q = 2 : 1.", "ans_idx": 1}, {"id": 100, "question": "If the numerator of a fraction is increased by 12% and its denominator is decreased by 8%, the value of the fraction becomes 56/69. Find the original fraction.", "tag": "SSC MTS 2024", "options": ["3/2", "4/3", "2/3", "3/4"], "answer_letter": "C", "solution": "Let fraction be x/y. Then (1.12x) / (0.92y) = 56/69 ⇒ (28/23)(x/y) = 56/69 ⇒ x/y = 2/3.", "ans_idx": 2}, {"id": 101, "question": "If the numerator of a fraction is increased by 140% and the denominator of the fraction is decreased by 20%, the resulting fraction is 12/7. Find the original fraction.", "tag": "SSC CHSL 17/03/2023 (1st Shift)", "options": ["4/9", "4/7", "7/6", "8/9"], "answer_letter": "B", "solution": "Let fraction be x/y. Then (2.40x) / (0.80y) = 12/7 ⇒ 3(x/y) = 12/7 ⇒ x/y = 4/7.", "ans_idx": 1}, {"id": 102, "question": "If the numerator of a fraction is increased by 50% and its denominator is decreased by 28%, the fraction becomes 25/36. Find the original fraction ?", "tag": "SSC CHSL 24/05/2022 (Evening)", "options": ["1/5", "2/3", "2/5", "1/3"], "answer_letter": "D", "solution": "Let fraction be x/y. Then (1.50x) / (0.72y) = 25/36 ⇒ (25/12)(x/y) = 25/36 ⇒ x/y = 1/3.", "ans_idx": 3}, {"id": 103, "question": "A man multiplied a number by 8/5 instead of 5/8. What is the percentage error in the calculation?", "tag": "SSC MTS 13/06/2023 (Afternoon)", "options": ["124%", "162%", "156%", "100%"], "answer_letter": "C", "solution": "Percentage error = [(8/5 − 5/8) / (5/8)] × 100% = [(39/40) / (25/40)] × 100% = (39 / 25) × 100% = 156%.", "ans_idx": 2}, {"id": 104, "question": "A number was mistakenly increased by 25% instead of being decreased by 20%. By what percent is the final result more than the correct value?", "tag": "CGL TIER I-21/09/2025-SHIFT 3", "options": ["56.25%", "50.5%", "45%", "60.25%"], "answer_letter": "A", "solution": "Let original number = 100. Correct value = 80; mistaken result = 125. Required percentage = [(125 − 80) / 80] × 100% = (45 / 80) × 100% = 56.25%.", "ans_idx": 0}, {"id": 105, "question": "A number was divided by 8 instead of multiplying by 8. As a result, an error occurred in the answer. What is the percentage difference (corrected to two decimal places) in the answer due to this wrong calculation?", "tag": "SSC MTS 08/10/2021 (Morning)", "options": ["48.67%", "67.33%", "98.44%", "72.00%"], "answer_letter": "C", "solution": "Let the number be 8. Correct answer = 64; wrong answer = 1. Percentage difference = [(64 − 1) / 64] × 100% = (63 / 64) × 100% ≈ 98.44%.", "ans_idx": 2}, {"id": 106, "question": "A number is mistakenly multiplied by 7/5 instead of 3/2, what is the percentage change in the resultant due to this mistake?", "tag": "SSC CHSL 15/04/2021 (Afternoon)", "options": ["6 2/3%", "7 2/3%", "3 2/3%", "5 2/3%"], "answer_letter": "A", "solution": "Percentage change = [(3/2 − 7/5) / (3/2)] × 100% = [(1/10) / (3/2)] × 100% = (1/15) × 100% = 6 2/3%.", "ans_idx": 0}, {"id": 107, "question": "Ravi scores 40% marks and fails by 30 marks. Sohan scores 50% marks and gets 20 marks more than the pass marks. Find the maximum marks of the exam.", "tag": "CHSL TIER I-14/11/2025 -SHIFT 1", "options": ["400", "450", "500", "550"], "answer_letter": "C", "solution": "Difference in marks = (50% − 40%) of Max Marks = 30 + 20 = 50 ⇒ 10% of Max Marks = 50 ⇒ Maximum Marks = 500.", "ans_idx": 2}, {"id": 108, "question": "To pass an examination, 40% marks are required. If a student scored 80 marks and failed by 40 marks, then what is the full marks in the examination?", "tag": "SSC CGL 20/07/2023 (4th shift)", "options": ["500", "600", "300", "400"], "answer_letter": "C", "solution": "Passing marks = 80 + 40 = 120, which is 40% of full marks. Full marks = 120 / 0.40 = 300.", "ans_idx": 2}, {"id": 109, "question": "In an examination a student got 32.2% marks and failed by 28 marks, while another student got 45% marks which is 36 marks more than the passing marks. What is the percentage of passing marks?", "tag": "SSC CGL 20/07/2023 (4th shift)", "options": ["37.5%", "37.8%", "36.6%", "38.8%"], "answer_letter": "B", "solution": "(45% − 32.2%) = 12.8% of total marks = 28 + 36 = 64 ⇒ 1% = 5 marks. Thus, 28 marks = 28 / 5 = 5.6%. Passing percentage = 32.2% + 5.6% = 37.8%.", "ans_idx": 1}, {"id": 110, "question": "John got 20% marks in an examination and failed by 10 marks. In the same test, Jack got 35% marks which were 20 more than the minimum passing marks. Find the percentage of minimum marks required to pass.", "tag": "SSC CGL 21/07/2023 (3rd shift)", "options": ["30%", "35%", "25%", "20%"], "answer_letter": "C", "solution": "(35% − 20%) = 15% of total marks = 10 + 20 = 30 ⇒ 1% = 2 marks. Thus, 10 marks = 5%. Minimum passing percentage = 20% + 5% = 25%.", "ans_idx": 2}, {"id": 111, "question": "Student A got 25 marks more than student B and A's marks were equal to 60 percent of the sum of their marks. How many marks are obtained by A and B separately respectively?", "tag": "SSC CHSL 14/03/2023 (3rd Shift)", "options": ["75, 100", "75, 50", "45, 120", "55, 80"], "answer_letter": "B", "solution": "Given A = 0.60(A + B) ⇒ 0.40A = 0.60B ⇒ A : B = 3 : 2. Since A − B = 1 unit = 25, A = 75 and B = 50.", "ans_idx": 1}, {"id": 112, "question": "Total number of students in a school is 1400, out of which 35% students are girls and rest are boys. If 80% of the boys and 90% of the girls passed in an annual examination, then the percentage of students who failed is:", "tag": "SSC CGL 24/08/2021 (Morning)", "options": ["17.4%", "21.5%", "15.8%", "16.5%"], "answer_letter": "D", "solution": "Girls = 35% (failed = 10% of 35% = 3.5%). Boys = 65% (failed = 20% of 65% = 13%). Total failed percentage = 3.5% + 13% = 16.5%.", "ans_idx": 3}, {"id": 113, "question": "15 kg of grapes, in which 90% of the content was water, were placed in the sun. In the presence of sunlight, the water content was reduced to such an extent that now only 85% of the total weight of the grapes was water. Find the total weight of grapes.", "tag": "SSC MTS 19/07/2022 (Evening)", "options": ["10 kg", "14 kg", "13 kg", "12 kg"], "answer_letter": "A", "solution": "Non-water pulp remains constant: 10% of 15 kg = 15% of reduced weight W ⇒ 1.5 = 0.15W ⇒ W = 10 kg.", "ans_idx": 0}, {"id": 114, "question": "A Solution contains 18% of salt, from which 25 kg of water is removed. The Quantity of salt remains 24% in that solution. Find the initial quantity of solution.", "tag": "", "options": ["100 kg", "110 kg", "98 kg", "95 kg"], "answer_letter": "A", "solution": "Quantity of salt remains constant: 18% of Initial Solution (X) = 24% of (X − 25) ⇒ 3X = 4(X − 25) ⇒ X = 100 kg.", "ans_idx": 0}, {"id": 115, "question": "Fresh fruit contains 90% water and dry fruit contains 20% water. How much dry fruit can be obtained from 20 kg of fresh fruits.", "tag": "", "options": ["2.4 kg", "2.2 kg", "2.5 kg", "2 kg"], "answer_letter": "C", "solution": "Pulp content remains constant: 10% of 20 kg = 80% of Dry Fruit (D) ⇒ 2 = 0.80D ⇒ D = 2.5 kg.", "ans_idx": 2}, {"id": 116, "question": "Fresh fruit contains 68% water and dry fruit contains 20% water. How much dry fruit can be obtained from 65 kg of fresh fruits.", "tag": "", "options": ["25 kg", "27 kg", "26 kg", "28 kg"], "answer_letter": "C", "solution": "Pulp content remains constant: 32% of 65 kg = 80% of Dry Fruit (D) ⇒ 20.8 = 0.80D ⇒ D = 26 kg.", "ans_idx": 2}, {"id": 117, "question": "In an election, 25% voters did not vote. Out of the votes polled, 20% were declared invalid. The winner secured 60% of the valid votes and defeated his rival by 2,400 votes. Find the total number of voters.", "tag": "CHSL TIER I - 28/11/2025 - SHIFT 3", "options": ["22,000", "16,000", "20,000", "30,000"], "answer_letter": "C", "solution": "Let total voters = X. Valid votes = X × 0.75 × 0.80 = 0.60X. Winner's margin = (60% − 40%) of 0.60X = 0.12X = 2,400 ⇒ X = 20,000.", "ans_idx": 2}, {"id": 118, "question": "In an election, 80% of eligible voters cast their votes. Of these votes, 5% were declared invalid. If a winning candidate received 11,400 votes, which accounted for 60% of the total valid votes, what was the total number of eligible voters enrolled in that election?", "tag": "CGL TIER I-13/09/2025 -SHIFT 2", "options": ["20,000", "22,500", "25,000", "27,500"], "answer_letter": "C", "solution": "Let eligible voters = X. Winner's votes = X × 0.80 × 0.95 × 0.60 = 11,400 ⇒ 0.456X = 11,400 ⇒ X = 25,000.", "ans_idx": 2}, {"id": 119, "question": "In an election between two candidates, 10% of the voters in the electoral roll did not cast their votes, while 10% of the votes cast were found invalid. The winning candidate got 56% of the valid votes and won by a margin of 1,458 votes. What is the total number of voters enrolled in the electoral rolls?", "tag": "SSC CGL 24/07/2023 (2nd shift)", "options": ["14,000", "15,000", "16,000", "13,000"], "answer_letter": "B", "solution": "Let total voters = X. Valid votes = 0.81X. Margin = (56% − 44%) of 0.81X = 0.12 × 0.81X = 1,458 ⇒ 0.0972X = 1,458 ⇒ X = 15,000.", "ans_idx": 1}, {"id": 120, "question": "In an election 8% of the voters did not cast their vote. Two candidates contested in which the winning candidate got 48% of the total votes polled and won by 1100 votes. Find the total number of voters in the election, considering that all the votes cast were valid.", "tag": "SSC CGL 02/12/2022 (1st Shift)", "options": ["25500", "26500", "27500", "28500"], "answer_letter": "C", "solution": "92% of total voters voted. Winner got 48% of total votes, so loser got 92% − 48% = 44% of total votes. Margin = 4% of total voters = 1,100 ⇒ Total voters = 27,500.", "ans_idx": 2}, {"id": 121, "question": "In the election between two candidates, 20% of the registered voters did not cast their vote and 40 votes were declared invalid. The winner received 42% of the registered votes and was declared the winner by 112 votes. What was the number of registered voters?", "tag": "SSC CHSL Tier II (26/06/2023)", "options": ["1500", "1200", "1800", "3800"], "answer_letter": "C", "solution": "Let registered voters = X. Polled = 0.80X, Valid = 0.80X − 40. Winner = 0.42X, so Loser = (0.80X − 40) − 0.42X = 0.38X − 40. Margin = 0.42X − (0.38X − 40) = 112 ⇒ 0.04X = 72 ⇒ X = 1,800.", "ans_idx": 2}, {"id": 122, "question": "In an election between two candidates, 12% of the voters did not cast a vote. The winner got 68% of the total votes and defeated his contestant by 2880 votes. What will be the total number of voters who voted in the election?", "tag": "SSC CGL 02/12/2022 (3rd Shift)", "options": ["5280", "8000", "4000", "6000"], "answer_letter": "A", "solution": "Let total voters = X. Polled = 0.88X. Winner = 0.68X, so Loser = 0.20X. Margin = 0.48X = 2,880 ⇒ X = 6,000. Voters who voted = 88% of 6,000 = 5,280.", "ans_idx": 0}, {"id": 123, "question": "In an election contested between two candidates, 15% of the total voters did not cast their votes and 100 votes were disqualified. The candidate who won the election by getting 45% of the total votes and won by a margin of 400 votes. Find the total number of voters.", "tag": "SSC CGL 09/12/2022 (2nd Shift)", "options": ["6,000", "3,000", "10,000", "3,500"], "answer_letter": "A", "solution": "Let total voters = X. Valid votes = 0.85X − 100. Winner = 0.45X, Loser = 0.40X − 100. Margin = 0.05X + 100 = 400 ⇒ 0.05X = 300 ⇒ X = 6,000.", "ans_idx": 0}, {"id": 124, "question": "In the election of two candidates, 10% of the voters did not cast their vote. Out of the votes cast, 10% votes were found invalid. The winning candidate got 54% of the valid votes and won by 1620 votes. Find the number of people in the electoral roll who have registered to vote.", "tag": "SSC CPO 09/11/2022 (Evening)", "options": ["25000", "26000", "24500", "25500"], "answer_letter": "A", "solution": "Let registered voters = X. Valid votes = 0.81X. Margin = (54% − 46%) of 0.81X = 0.08 × 0.81X = 1,620 ⇒ X = 25,000.", "ans_idx": 0}, {"id": 125, "question": "85% of the total number of people included in the electoral roll of a constituency cast their votes during the election. 10% of the votes cast were declared invalid. If the electoral roll included 3,00,000 people, and Dharam secured 1,37,700 valid votes, then what percentage of the total number of valid votes did Dharam get?", "tag": "SSC CGL 18/07/2023 (3rd shift)", "options": ["50.5%", "70.2%", "45.9%", "60.0%"], "answer_letter": "D", "solution": "Total valid votes = 3,00,000 × 0.85 × 0.90 = 2,29,500. Dharam's percentage = (1,37,700 / 2,29,500) × 100% = 60.0%.", "ans_idx": 3}, {"id": 126, "question": "In an election, 2% persons enrolled in the voter list did not participate and 500 votes were invalid. Two candidates A and B fought the election, and A defeated B by 200 votes. If 43% of the persons enrolled in the voter list casted their votes in favor of A, then what is the number of the total casted votes?", "tag": "SSC CGL 14/07/2023 (3rd shift)", "options": ["2450", "3000", "2800", "3250"], "answer_letter": "A", "solution": "Let enrolled voters = X. Valid votes = 0.98X − 500. A = 0.43X, so B = 0.55X − 500. Given A − B = 200 ⇒ 500 − 0.12X = 200 ⇒ 0.12X = 300 ⇒ X = 2,500. Total casted votes = 0.98 × 2,500 = 2,450.", "ans_idx": 0}, {"id": 127, "question": "In an election between two candidates, 80% of the voters cast their votes, out of which 53 votes were declared invalid. The winner gets 48% of the total voters on the list and wins by 1013 votes. What was the number of voters on the list?", "tag": "RPF SI 13/12/2024", "options": ["5600", "6500", "6000", "5000"], "answer_letter": "C", "solution": "Let total voters on list = X. Valid votes = 0.80X − 53. Winner = 0.48X, Loser = 0.32X − 53. Margin = 0.16X + 53 = 1,013 ⇒ 0.16X = 960 ⇒ X = 6,000.", "ans_idx": 2}, {"id": 128, "question": "Out of 80,000 registered voters, 25% did not vote in the first phase. Of those who voted, 12% of the votes were invalid. Due to a tie in the first phase, only the two leading candidates proceeded to the second phase of voting, where only 80% of the valid voters from the first phase came to vote again. In the second phase, one candidate got 30% of the votes and the other candidate got the remaining votes. By how many votes did the winner win in the second phase?", "tag": "IB ACIO 2025", "options": ["16896", "17896", "17986", "16986"], "answer_letter": "A", "solution": "1st phase valid votes = 80,000 × 0.75 × 0.88 = 52,800. 2nd phase voters = 80% of 52,800 = 42,240. Winner's margin in 2nd phase = (70% − 30%) of 42,240 = 40% of 42,240 = 16,896.", "ans_idx": 0}, {"id": 129, "question": "In an election between two candidates, 10% of the voters did not cast their vote and 5% of the votes polled were found invalid. The successful candidate got 55% of the valid votes and won by a majority of 1710 votes. How many voters were enrolled?", "tag": "SSC CHSL 26/05/2022 (3rd shift)", "options": ["19000", "21000", "20500", "20000"], "answer_letter": "D", "solution": "Let enrolled voters = X. Valid votes = X × 0.90 × 0.95 = 0.855X. Margin = (55% − 45%) of 0.855X = 0.0855X = 1,710 ⇒ X = 20,000.", "ans_idx": 3}, {"id": 130, "question": "At an election between three candidates P, Q and R, 20% of the votes polled were declared invalid. Out of the valid votes, P gets 30% votes. The remaining valid votes were shared by Q and R in the ratio 11:9, respectively. If P has received 150 votes less than R, then find total number of votes polled.", "tag": "IB ACIO Grade-II 20/02/2021", "options": ["12500", "9000", "15000", "4600"], "answer_letter": "A", "solution": "Let polled votes = X; valid = 0.80X. P gets 30% of valid; remaining 70% split 11:9 gives Q = 38.5% and R = 31.5% of valid. R − P = 1.5% of 0.80X = 0.012X = 150 ⇒ X = 12,500.", "ans_idx": 0}, {"id": 131, "question": "Three candidates P, Q and R contested an election. Out of the total votes on a voter list 20% did not vote and 25% of the polled votes were invalid. R got 3600 votes, which were 20% more than that of what Q got. If P got only 45% of the total votes, then find out the number of votes the winner got.", "tag": "", "options": ["19800", "36000", "44000", "18000"], "answer_letter": "A", "solution": "Let total voters = X. Valid votes = X × 0.80 × 0.75 = 0.60X. Since P got 0.45X, Q + R = 0.15X. Given R = 3,600 and Q = 3,600 / 1.2 = 3,000 ⇒ Q + R = 6,600 = 0.15X ⇒ X = 44,000. Winner (P) got 0.45 × 44,000 = 19,800.", "ans_idx": 0}, {"id": 132, "question": "In an election, there were three candidates: A, B and C. 10% of the eligible voters did not vote. Out of those who voted, 45% voted for A, 35% voted for B and the remaining 20% voted for C. 30% of the votes polled for A and 20% of the votes polled for B were later deemed invalid, while all the votes polled for C were deemed valid. If A got 882 more valid votes than B did, how many valid votes did C receive?", "tag": "SSC CHSL 27/05/2022", "options": ["5040", "5060", "5050", "5020"], "answer_letter": "A", "solution": "Let polled votes = P. A's valid = 0.70 × 0.45P = 0.315P. B's valid = 0.80 × 0.35P = 0.280P. Difference = 0.035P = 882 ⇒ P = 25,200. C's valid votes = 20% of 25,200 = 5,040.", "ans_idx": 0}, {"id": 133, "question": "In an election four candidates were there in the fray, out of which three were nominated from the three national parties and they got votes in a ratio of 2:3:4.The total votes polled were 1,89,000 and the fourth candidate got 18,000 votes. The votes obtained by the three candidates of the national parties are respectively: (assuming all votes valid)", "tag": "SSC CHSL 06/06/2022", "options": ["40,000, 60,000 and 80,000", "34,000, 51,000 and 68,000", "36,000,54,000 and 72,000", "38,000, 57,000 and 76,000"], "answer_letter": "D", "solution": "Votes for the 3 national party candidates = 1,89,000 − 18,000 = 1,71,000. Dividing 1,71,000 in ratio 2 : 3 : 4 (9 parts, 19,000 per part) gives 38,000, 57,000 and 76,000.", "ans_idx": 3}, {"id": 134, "question": "In a constituency, 55% of the total number of voters are males and the rest are females. If 40% of the males are illiterate and 40% of the females are literate, then by what percentage is the number of illiterate females more than that of the illiterate males (correct to one decimal place)?", "tag": "SSC CHSL 04/08/2021", "options": ["21.5%", "22.7%", "16.4%", "17.8%"], "answer_letter": "B", "solution": "Out of 100 voters: Males = 55 (Illiterate = 40% of 55 = 22); Females = 45 (Illiterate = 60% of 45 = 27). Required percentage = [(27 − 22) / 22] × 100% ≈ 22.7%.", "ans_idx": 1}, {"id": 135, "question": "In a constituency, 45% of the total number of voters are males and the rest are females. If 60% of the males are illiterate and 60% of the females are literate, then by what percentage is the number of illiterate females more than that of the literate males (correct to one decimal place)?", "tag": "SSC CGL 18/09/2024", "options": ["29.11%", "27.23%", "30.24%", "22.22%"], "answer_letter": "D", "solution": "Out of 100 voters: Males = 45 (Literate = 40% of 45 = 18); Females = 55 (Illiterate = 40% of 55 = 22). Required percentage = [(22 − 18) / 18] × 100% = 22.22%.", "ans_idx": 3}, {"id": 136, "question": "2/5th of the voters promised to vote for A and the rest promised to vote for B. Of these, on the last day 15% of the voters went back on their promise to vote for A and 25% of the voters went back on their promise to vote for B, and A lost by 200 votes. Then, the total number of voters is:", "tag": "MPPSC 2019", "options": ["10000", "11000", "9000", "9500"], "answer_letter": "A", "solution": "Initially A = 40%, B = 60%. Switched A→B: 15% of 40% = 6%. Switched B→A: 25% of 60% = 15%. Final A = 40 − 6 + 15 = 49%, Final B = 51%. Margin = 2% = 200 ⇒ Total voters = 10,000.", "ans_idx": 0}, {"id": 137, "question": "In an election between two candidates, y% of the voters did not cast their votes. Out of the votes cast, 10% were declared invalid, while all valid votes were cast in favour of either of the two candidates. The candidate who got 59.375% of the total valid votes polled was declared elected by 2,484 votes. If the number of people eligible to vote in that election was 16,000, then find the value of y.", "tag": "SSC CGL 09/09/2024", "options": ["7.5", "7.2", "8.4", "8"], "answer_letter": "D", "solution": "59.375% = 19/32, so loser got 13/32. Margin = (6/32) of valid = 2,484 ⇒ Valid = 13,248. Cast votes = 13,248 / 0.90 = 14,720. Percentage who voted = (14,720 / 16,000) × 100% = 92%, so y = 8%.", "ans_idx": 3}, {"id": 138, "question": "Three candidates X, Y and Z participated in an election. X got 30% more votes than Y, while Z got 25% more votes than Y. X also surpassed Z by 5,000 votes. If 71% of the voters voted and no invalid votes were cast, then what was the total number of voters in the voting list?", "tag": "SSC CGL 19/09/2024", "options": ["5,00,000", "4,50,000", "3,55,000", "4,05,000"], "answer_letter": "A", "solution": "Let Y = 100u, then X = 130u and Z = 125u. X − Z = 5u = 5,000 ⇒ u = 1,000. Total votes cast = 355u = 3,55,000 = 71% of voting list ⇒ Total voters = 3,55,000 / 0.71 = 5,00,000.", "ans_idx": 0}, {"id": 139, "question": "In an election, voters have the option to vote for one of the three candidates. They also have the option of selecting 'None Of The Above' (NOTA) to reject all the candidates. All three candidates together get 6 times the NOTA votes. The winner gets twice the votes of the second runner-up. The first runner-up gets 900 votes more than NOTA and defeats the second runner-up by 150 votes. Find the total number of votes cast.", "tag": "SSC CHSL 05/07/2024", "options": ["15177", "11577", "11025", "17715"], "answer_letter": "C", "solution": "Let NOTA = n. 1st runner-up = n + 900; 2nd runner-up = n + 750; Winner = 2(n + 750) = 2n + 1,500. Sum of 3 candidates = 4n + 3,150 = 6n ⇒ n = 1,575. Total votes cast = 7n = 7 × 1,575 = 11,025.", "ans_idx": 2}, {"id": 140, "question": "In an election between A and B, every fifth vote cast was marked as invalid by the machine. Among the remaining votes, A won the election from B by a margin of 2500 votes or by a margin of 10% of the total votes cast. If 90% of the invalid votes were in favour of B, then which of the following would have been the result of the election?", "tag": "SSC CPO 28/06/2024", "options": ["A would have won by 3%", "B would have won by 3%", "A would have won by 8%", "B would have won by 8%"], "answer_letter": "D", "solution": "Invalid = 20%, Valid = 80%. Among valid votes, A − B = 10% ⇒ A = 45%, B = 35%. Including invalid votes (90% of 20% = 18% for B, 2% for A), B gets 35% + 18% = 53% and A gets 45% (winning by 8% over 45%).", "ans_idx": 3}, {"id": 141, "question": "In an election between P, R and S, 1/10th of the total votes cast are invalid. The votes polled in favor of R and S are half of the total votes polled and they got equal number of votes. Due to a malfunction in the machine, half of S's votes and half of invalid votes are counted additionally in favor of R. What is the total percentage of votes received by R due to error?", "tag": "SSC CPO 28/06/2024", "options": ["42.50%", "41.55%", "37.55%", "38.50%"], "answer_letter": "A", "solution": "Invalid = 10%. R and S together get 50% (so R = 25%, S = 25%). Due to error, R gets an additional half of S's votes (12.5%) + half of invalid votes (5%) = 25% + 12.5% + 5% = 42.50%.", "ans_idx": 0}, {"id": 142, "question": "In an examination 45% of the students passed in History and 60% of the students passed in Hindi. If 8% of the students failed in both the subjects, what percentage of students passed in both the subjects?", "tag": "SSC CHSL 17/03/2023 (4th Shift)", "options": ["15%", "10%", "13%", "12%"], "answer_letter": "C", "solution": "Passed in at least one subject = 100% − 8% = 92%. Passed in both = 45% + 60% − 92% = 13%.", "ans_idx": 2}, {"id": 143, "question": "In a recruitment exam, candidates were tested for General Awareness (GA) and Mathematical Techniques (QT). In GA and QT 54% and 45% failed respectively, while 16% failed in both. If 136 candidates qualified in both the fields, what was the total number of candidates?", "tag": "SSC MTS 18/10/2021 (Evening)", "options": ["800", "640", "600", "850"], "answer_letter": "A", "solution": "Failed in at least one = 54% + 45% − 16% = 83%. Qualified in both = 100% − 83% = 17% = 136 ⇒ Total candidates = 136 / 0.17 = 800.", "ans_idx": 0}, {"id": 144, "question": "In an examination 53% of the students failed in Science and 48% failed in Mathematics. If 40% failed in both the subjects, what percentage passed in both the subjects?", "tag": "SSC CPO 13 March 2019 (Morning)", "options": ["51%", "39%", "49%", "43%"], "answer_letter": "B", "solution": "Failed in at least one = 53% + 48% − 40% = 61%. Passed in both = 100% − 61% = 39%.", "ans_idx": 1}, {"id": 145, "question": "In an examination 75% of the students passed in Science, 60% passed in Hindi and 25% failed in both. If 240 students passed both the exams. What is the total number of students who appeared for the exam?", "tag": "SSC CPO 13 March 2019 (Morning)", "options": ["300", "400", "500", "None of these"], "answer_letter": "B", "solution": "Passed in at least one = 100% − 25% = 75%. Passed in both = 75% + 60% − 75% = 60% = 240 ⇒ Total students = 240 / 0.60 = 400.", "ans_idx": 1}, {"id": 146, "question": "In a school exam, the total number of passed students in Physics and English both is 576. In that exam 60% of the total students passed in Physics and 70% of the total students passed in English. If the percentage of failed students is 33 1/3% of the percentage of students who passed in Physics, then find the total number of students.", "tag": "", "options": ["1252", "1134", "1152", "1172"], "answer_letter": "C", "solution": "Failed in both = (1/3) of 60% = 20%. Passed in at least one = 80%. Passed in both = 60% + 70% − 80% = 50% = 576 ⇒ Total students = 1,152.", "ans_idx": 2}, {"id": 147, "question": "In a class of 85 students, 40% speak Hindi and 40% speak English only. If the number of students who do not speak any language is equal to the number of students who speak both languages, then find the number of students who speak only Hindi.", "tag": "", "options": ["11", "21", "17", "19"], "answer_letter": "C", "solution": "Total = Hindi (40%) + English Only (40%) + None = 100% ⇒ None = 20%. Since Both = None = 20%, Only Hindi = 40% − 20% = 20%. Number of students speaking only Hindi = 20% of 85 = 17.", "ans_idx": 2}, {"id": 148, "question": "A company conducts a survey for Toyota and TATA. From the survey, it is known that the number of people who like both is equal to the number of people who do not like either. 630 people like only TATA and 48% like TATA. If there are 1,750 people in total in the survey, find the percentage of people who like only Toyota.", "tag": "", "options": ["30%", "40%", "50%", "80%"], "answer_letter": "B", "solution": "Total = 1,750. Likes TATA = 48% of 1,750 = 840. Only TATA = 630 ⇒ Both = 840 − 630 = 210 ⇒ None = 210. Only Toyota = 1,750 − 840 − 210 = 700. Required % = (700 / 1,750) × 100% = 40%.", "ans_idx": 1}, {"id": 149, "question": "In a school of 300 students, the number of students who read Math only is double the number who read Hindi only, and the number of students who read both is one-third the number who do not read either. If 24 students read both subjects: (A) Find the number of students who read only Hindi. (B) Find the number of students who read Math.", "tag": "", "options": ["68, 160", "48, 120", "80, 160", "68, 180"], "answer_letter": "A", "solution": "Both = 24 ⇒ None = 3 × 24 = 72. Remaining (Only Math + Only Hindi) = 300 − 24 − 72 = 204. Since Only Math = 2 × Only Hindi, Only Hindi = 204 / 3 = 68, and Only Math = 136. Total Math = 136 + 24 = 160.", "ans_idx": 0}, {"id": 150, "question": "There are 1,000 students in a school, in which 45% play cricket, 29% play hockey and 48% play badminton. 18% do not play any game, while 5% play all three games. If 6% play both cricket and hockey and 27% play both cricket and badminton, find the number of students who play only badminton.", "tag": "", "options": ["80", "140", "120", "100"], "answer_letter": "B", "solution": "At least one game = 82%. Using n(C∪H∪B): 82% = (45+29+48)% − (CH+CB+HB) + 5% ⇒ CH+CB+HB = 45%. Since CH = 6% and CB = 27%, HB = 12%. Only Badminton = 48% − 27% − 12% + 5% = 14% of 1,000 = 140.", "ans_idx": 1}, {"id": 151, "question": "In a survey of a college, it was found that 49% like reading Math, 52% like reading Physics and 50% like reading Chemistry. Also, 20% like reading both Math and Physics, 21% like reading both Math and Chemistry, and 23% like reading both Physics and Chemistry. If 5% like reading none of these 3 subjects, find the percentage of students who like reading only one subject among Math, Physics and Chemistry.", "tag": "", "options": ["74%", "34%", "47%", "67%"], "answer_letter": "C", "solution": "At least one = 95%. Using n(M∪P∪C): 95% = (49+52+50)% − (20+21+23)% + All ⇒ 95% = 151% − 64% + All ⇒ All = 8%. Exactly one subject = 151% − 2(64%) + 3(8%) = 47%.", "ans_idx": 2}, {"id": 152, "question": "In an examination a candidate had to sit for three papers A, B, and C. The candidate secured 75% marks in Paper A, 80% marks in Paper B, and 60% marks in Paper C. If the weightage assigned to Papers A, B, and C were 40%, 50% and 10%, respectively, then find the weighted percentage of marks obtained by the candidate, when all the three papers were taken together.", "tag": "SSC CGL (24/07/2023)", "options": ["77%", "72%", "74%", "76%"], "answer_letter": "D", "solution": "Weighted percentage = (75 × 0.40) + (80 × 0.50) + (60 × 0.10) = 30 + 40 + 6 = 76%.", "ans_idx": 3}, {"id": 153, "question": "Out of the total toffees, 1/10 are wasted. 35% of the rest are given to S and 1/8 of the total are given to N. If the toffees with N are 10 more than the wasted toffees, then how many toffees were given to S?", "tag": "SSC CGL 25/07/2023", "options": ["126", "110", "150", "135"], "answer_letter": "A", "solution": "Wasted = 10%, Remaining = 90%. S gets 35% of 90% = 31.5%. N gets 1/8 = 12.5%. Given N − Wasted = 2.5% = 10 ⇒ 1% = 4. Toffees given to S = 31.5 × 4 = 126.", "ans_idx": 0}, {"id": 154, "question": "In an exam of 180 marks, 75% marks are allotted to theory and the remaining to project work. Veena scored 60% marks in theory. What percentage of marks should she score in the project to achieve an aggregate of 62% marks in the subject?", "tag": "SSC CHSL 13/04/2021 (Evening)", "options": ["65%", "66%", "68%", "64%"], "answer_letter": "C", "solution": "0.75(60%) + 0.25(x%) = 62% ⇒ 45 + 0.25x = 62 ⇒ 0.25x = 17 ⇒ x = 68%.", "ans_idx": 2}, {"id": 155, "question": "In a school, the final grade of a subject for an academic year is calculated based on the grade that a student gets in his assignment, tests, and a final examination. The weightage of the assignment is 28%, the weightage of the test is 22% and the weightage of the final exam is 50%. If a student's assignment grade is 80, test grade is 75, exam grade is 86, then his overall grade for the year is.", "tag": "SSC CHSL 08/06/2022 (Morning)", "options": ["81.9", "80.5", "84.6", "90.2"], "answer_letter": "A", "solution": "Overall grade = (0.28 × 80) + (0.22 × 75) + (0.50 × 86) = 22.4 + 16.5 + 43 = 81.9.", "ans_idx": 0}, {"id": 156, "question": "In an engineering institute, a student's grades are evaluated on the basis of internal tests (30%), assignments (30%) and external exams (40%). If a student has secured 90% marks in internal tests, 95% in assignments and 75% marks in external examination, then what will be the overall grade of the student?", "tag": "SSC CHSL 27/05/2022 (Afternoon)", "options": ["86.25%", "85.25%", "86%", "85.50%"], "answer_letter": "D", "solution": "Overall grade = (0.30 × 90%) + (0.30 × 95%) + (0.40 × 75%) = 27% + 28.5% + 30% = 85.50%.", "ans_idx": 3}, {"id": 157, "question": "The ratio of the number of boys and the number of girls in a school is 5 : 2. If 87% of the boys and 80% of the girls passed in the annual examination, then what is the percentage of students who failed in the annual examination?", "tag": "SSC CPO 10/11/2022 (Morning)", "options": ["18%", "16%", "15%", "17%"], "answer_letter": "C", "solution": "Failed boys = 13%, Failed girls = 20%. Overall failed % = (5 × 13% + 2 × 20%) / 7 = 105% / 7 = 15%.", "ans_idx": 2}, {"id": 158, "question": "In a class, the ratio of the number of boys to the number of girls is 11 : 9. 30% of boys and 20% of girls passed a test Find the percentage of students who passed the examination.", "tag": "SSC CHSL 26/05/2022 (Afternoon)", "options": ["3.92%", "20%", "24.5%", "25.5%"], "answer_letter": "D", "solution": "Overall passed % = (11 × 30% + 9 × 20%) / (11 + 9) = 510% / 20 = 25.5%.", "ans_idx": 3}, {"id": 159, "question": "In a class, the ratio of rural and urban girl is 4 : 7. In an examination, the average percentage marks of rural and urban students are 65 and 63 respectively. What are the total average percentage points of the class (up to exactly two decimal places)?", "tag": "SSC CGL 17/08/2021 (Afternoon)", "options": ["65.87%", "73.63%", "63.73%", "64.37%"], "answer_letter": "C", "solution": "Overall average = (4 × 65 + 7 × 63) / (4 + 7) = (260 + 441) / 11 = 701 / 11 ≈ 63.73%.", "ans_idx": 2}, {"id": 160, "question": "In a class, 83 1/3% of the total number of students are girls and the rest are boys. If 60% boys and 80% girls are present, then what percentage of total students of the class are absent?", "tag": "SSC CGL TIER I I (12/09/2019)", "options": ["26 2/3%", "22 2/3%", "23 1/3%", "12 1/3%"], "answer_letter": "C", "solution": "83 1/3% = 5/6 (Girls = 5 parts, Boys = 1 part). Absent girls = 20%, Absent boys = 40%. Overall absent % = (5 × 20% + 1 × 40%) / 6 = 140% / 6 = 23 1/3%.", "ans_idx": 2}, {"id": 161, "question": "A software company has only 3 departments which have 20, 30 and 40 employees respectively. If the percentage of their working during weekends is 20%, 30% and 40% respectively, then what will be the percentage of work (approximately) of the whole company on that weekend?", "tag": "SSC CHSL 25/05/2022 (Evening)", "options": ["0.0032%", "3.2%", "0.032%", "32%"], "answer_letter": "D", "solution": "Overall percentage = (20×20 + 30×30 + 40×40) / (20 + 30 + 40) = 2,900 / 90 ≈ 32.22% ≈ 32%.", "ans_idx": 3}, {"id": 162, "question": "Rate of income tax is increased by 19%. Net income decreased by 1%. Find the rate of income tax.", "tag": "", "options": ["5%", "8%", "6%", "7%"], "answer_letter": "A", "solution": "19% of Tax = 1% of Net Income ⇒ Tax / Net Income = 1 / 19. Since Gross Income = Tax + Net Income = 20 parts, Rate of Income Tax = (1 / 20) × 100% = 5%.", "ans_idx": 0}, {"id": 163, "question": "Rate of income tax is increased by 15%. Net income decreased by 2%. Find the rate of income tax.", "tag": "", "options": ["200/7 %", "200/17 %", "300/7 %", "300/17 %"], "answer_letter": "B", "solution": "15% of Tax = 2% of Net Income ⇒ Tax / Net Income = 2 / 15. Gross Income = 2 + 15 = 17 parts. Rate of Income Tax = (2 / 17) × 100% = 200/17%.", "ans_idx": 1}, {"id": 164, "question": "Income of a man is increased by 6000 and payable tax is decreased from 18% to 15%. In both cases 25% income is tax free. Find initial income if payable tax is same in both cases.", "tag": "SSC CGL MAINS 2016", "options": ["80000", "90000", "30000", "20000"], "answer_letter": "C", "solution": "Since 25% is tax-free in both cases, 75% is taxable: 0.75 × I × 18% = 0.75 × (I + 6000) × 15% ⇒ 6I = 5(I + 6000) ⇒ I = Rs. 30,000.", "ans_idx": 2}, {"id": 165, "question": "Income of a person is increased by 2000. Tax rate decreases from 14% to 12%. Payable tax is same as before. If in 1st and 2nd condition 20% and 30% of income is tax free. Find his current income.", "tag": "", "options": ["8000", "4000", "10000", "6000"], "answer_letter": "A", "solution": "0.80 × I × 14% = 0.70 × (I + 2000) × 12% ⇒ 11.2I = 8.4(I + 2000) ⇒ 4I = 3I + 6000 ⇒ I = 6,000. Current income = 6,000 + 2,000 = Rs. 8,000.", "ans_idx": 0}, {"id": 166, "question": "Income of a person decreases by 3000 and rate of income tax increased from 15% to 18%. ratio of paid tax is 3 : 2. If 26.5% income is tax free. Find initial income.", "tag": "", "options": ["6750", "13988", "7766", "15228"], "answer_letter": "A", "solution": "Taxable fraction (73.5%) cancels in ratio: [I × 15%] / [(I − 3000) × 18%] = 3 / 2 ⇒ 5I / [6(I − 3000)] = 3 / 2 ⇒ 5I = 9I − 27,000 ⇒ 4I = 27,000 ⇒ I = Rs. 6,750.", "ans_idx": 0}, {"id": 167, "question": "An agent gets 5% commission on all sales up to Rs 10000 and 4% commission on all sales exceeding this amount. He gives Rs 28700 from his sales to his company after deducting his commission. Find his total sales.", "tag": "", "options": ["30,000", "60,000", "20,000", "10,000"], "answer_letter": "A", "solution": "If agent got 4% on all sales, he would get Rs. 100 less (1% of 10,000), and company would get 28,700 + 100 = 28,800, which is 96% of total sales. Total sales = 28,800 / 0.96 = Rs. 30,000.", "ans_idx": 0}, {"id": 168, "question": "A company gives 18% commission to his salesman on his total sales and above sales of Rs. 18,000 a bonus of 1%. If the salesman deposited Rs. 52,344 in the company account after deducting his commission from total sales then, find total sales.", "tag": "", "options": ["Rs. 54,400", "Rs. 64,400", "Rs. 65,400", "Rs. 60,400"], "answer_letter": "B", "solution": "If salesman got 19% on all sales, company would receive 52,344 − (1% of 18,000) = 52,164, which is 81% of total sales. Total sales = 52,164 / 0.81 = Rs. 64,400.", "ans_idx": 1}, {"id": 169, "question": "A salesman is offered a commission by the company of x% on the first sale of worth Rs. 2000 and y% on the part of sale exceeding it. If in the following months its sales are Rs. 4000 and Rs. 5000 and he earns a commission of Rs. 700 and Rs. 900 respectively. Find how much is y greater than x.", "tag": "", "options": ["10", "15", "20", "5"], "answer_letter": "D", "solution": "On the extra Rs. 1,000 sale (from 4,000 to 5,000), commission increases by 900 − 700 = Rs. 200 ⇒ y = 20%. Then for Rs. 4,000: 2000(x%) + 2000(20%) = 700 ⇒ 20x = 300 ⇒ x = 15%. Thus, y − x = 5.", "ans_idx": 3}, {"id": 170, "question": "A company allows 11% commission on total sales. But If the salesman is appointed on a fixed salary of Rs. 8200 and 5% commission on the sales more than Rs. 20000, then the salesman gets Rs. 1200 more. Find the total sales made by the salesman.", "tag": "", "options": ["100000", "110000", "120000", "130000"], "answer_letter": "A", "solution": "8200 + 0.05(S − 20,000) − 0.11S = 1,200 ⇒ 7,200 − 0.06S = 1,200 ⇒ 0.06S = 6,000 ⇒ S = Rs. 1,00,000.", "ans_idx": 0}, {"id": 171, "question": "A company allows 12% commission on total sales. But if the salesman is appointed on a fixed salary of Rs. 11,700 and 9% commission on the sales more than Rs. 30,000, the salesman gets Rs. 3,000 more. Find the total sales made by the salesman.", "tag": "", "options": ["Rs. 1.9 lakh", "Rs. 1.8 lakh", "Rs. 1.7 lakh", "Rs. 2 lakh"], "answer_letter": "D", "solution": "11,700 + 0.09(S − 30,000) − 0.12S = 3,000 ⇒ 9,000 − 0.03S = 3,000 ⇒ 0.03S = 6,000 ⇒ S = Rs. 2,00,000 (Rs. 2 lakh).", "ans_idx": 3}, {"id": 172, "question": "Two saleswomen, Kavitha and Kalyani, are allowed 12% and 15% commission, respectively on the total sales made by them. Kavitha gets 3% and Kalyani gets 5% extra bonus on the sales over Rs.20,000. If the difference in total earnings of both Kavitha and Kalyani is Rs.7,600, then Kavitha's total earning is:", "tag": "ICAR EXAM", "options": ["Rs. 19,200", "Rs. 21,600", "Rs. 17,800", "Rs. 23,400"], "answer_letter": "D", "solution": "Kavitha's earning = 0.15S − 600; Kalyani's earning = 0.20S − 1,000. Difference = 0.05S − 400 = 7,600 ⇒ 0.05S = 8,000 ⇒ S = 1,60,000. Kavitha's earning = 0.15(1,60,000) − 600 = Rs. 23,400.", "ans_idx": 3}, {"id": 173, "question": "A company allows 13% commission to its salesman on the total sales and a 30% bonus besides the commission on the net profit (where net profit = total profit - bonus) after charging such bonus. If the total sales and profit are Rs. 12,00,000 and Rs. 1,69,000 respectively, find the total earning of the salesman.", "tag": "", "options": ["Rs. 195005", "Rs. 195000", "Rs. 194400", "Rs. 195400"], "answer_letter": "B", "solution": "Sales commission = 13% of 12,00,000 = Rs. 1,56,000. Since Bonus = 30% of Net Profit, Total Profit = Net Profit + Bonus = 1.3 × Net Profit = 1,69,000 ⇒ Net Profit = 1,30,000 and Bonus = 39,000. Total earning = 1,56,000 + 39,000 = Rs. 1,95,000.", "ans_idx": 1}, {"id": 174, "question": "A vendor sells shirts at ₹500 each, earning a 2% commission, and ties at ₹150 each, with a 12% commission. If he sells 3 shirts and 4 ties per day, what will be his total commission earned in 30 days?", "tag": "CGL TIER I-12/09/2025-SHIFT 3", "options": ["₹2850", "₹3000", "₹3060", "₹3200"], "answer_letter": "C", "solution": "Daily commission = 3 × (2% of 500) + 4 × (12% of 150) = 3(10) + 4(18) = 30 + 72 = ₹102/day. In 30 days = 30 × 102 = ₹3,060.", "ans_idx": 2}, {"id": 175, "question": "A school organized a field trip for 100 students and 10 chaperones. Each student was given a snack pack containing items equal to 15% of the total number of students. Each chaperone received a snack pack with items equal to 25% of the total number of students. How many snack items were distributed in total?", "tag": "CGL TIER I-14/09/2025-SHIFT 1", "options": ["1750", "2000", "2250", "2500"], "answer_letter": "A", "solution": "Each student got 15% of 100 = 15 items (100 × 15 = 1,500). Each chaperone got 25% of 100 = 25 items (10 × 25 = 250). Total snack items = 1,500 + 250 = 1,750.", "ans_idx": 0}, {"id": 176, "question": "In a survey conducted at a university, it was found that 55% of the students like Mathematics, 45% like Physics, and 30% like both Mathematics and Physics. Among the remaining students, 25% prefer Computer Science, while the rest have no preference. If the total number of students surveyed is 800, how many students had no preference for any of the three subjects?", "tag": "CHSL TIER 1 -17/11/2025-SHIFT 1", "options": ["160", "200", "220", "180"], "answer_letter": "D", "solution": "Students liking Math or Physics = 55% + 45% − 30% = 70%. Remaining = 30%. Of these, 75% have no preference = 0.75 × 30% = 22.5% of 800 = 180.", "ans_idx": 3}, {"id": 177, "question": "Deepak spends 75% of his income, whereas Karan spends 80% of his income. Both of them save Rs. 7,500 each. The income of Sanjay is one-third of the sum of the income of Deepak and Karan. If Sanjay spends (7/9)th of his income, then find his savings.", "tag": "CHSL TIER I-18/11/2025 -SHIFT 1", "options": ["Rs. 5,500", "Rs. 5,900", "Rs. 5,000", "Rs. 5,700"], "answer_letter": "C", "solution": "Deepak's income = 7,500 / 0.25 = 30,000; Karan's income = 7,500 / 0.20 = 37,500. Sanjay's income = (30,000 + 37,500) / 3 = 22,500. Sanjay's savings = (2/9) × 22,500 = Rs. 5,000.", "ans_idx": 2}, {"id": 178, "question": "P, Q, R and S have different amounts. Q has 2.5 times the amount P has. S has 40% less than Q. The amount R has equals the average of all four persons. If the sum of the amounts of P and R is ₹4,800, find the amount R has.", "tag": "CHSL TIER I-19/11/2025- SHIFT 2", "options": ["₹5,200", "₹1,800", "₹4,200", "₹3,000"], "answer_letter": "D", "solution": "Let P = 2u; then Q = 5u and S = 0.6(5u) = 3u. Since R equals the average of all four, R = (2u + 5u + 3u) / 3 = (10/3)u. Given P + R = (16/3)u = 4,800 ⇒ u = 900. Thus, R = (10/3) × 900 = ₹3,000.", "ans_idx": 3}, {"id": 179, "question": "A quality control officer tracks the defect rates in 4 different machines in a textile factory. The first machine's defect rate is 1.8%, the second is 2.4%, and the third is 1.6%. The total defective output of the first three is 0.92 units. If the total number of defective units from all four machines is 4.12 and each machine's production is identical, find the defect percentage of the fourth machine.", "tag": "CHSL TIER I -21/11/2025-SHIFT 1", "options": ["1.52%", "1.58%", "1.667%", "1.73%"], "answer_letter": "C", "solution": "Defective units of 4th machine = 4.12 − 0.92 = 3.20 units. With identical machine output (192 units per machine), defect percentage of 4th machine = (3.20 / 192) × 100% = 1.667%.", "ans_idx": 2}, {"id": 180, "question": "A father gives 8% of his monthly income as pocket money to both his sons. The elder son gets 85% of the total amount paid to both the sons. He spends 90% of the amount and saves ₹17. How much is the father's monthly salary?", "tag": "SSC CGL 26/07/2023 (3rd shift)", "options": ["₹ 5,000", "₹ 4,500", "₹ 3,500", "₹ 2,500"], "answer_letter": "D", "solution": "Let father's salary = X. Elder son's savings = X × 0.08 × 0.85 × 0.10 = 17 ⇒ 0.0068X = 17 ⇒ X = ₹2,500.", "ans_idx": 3}, {"id": 181, "question": "The cost of 15 chairs is 20% more than the cost of 8 tables. If the cost of 2 tables is Rs. 2400, then what is the cost of 15 chairs?", "tag": "SSC CHSL 16/03/2023 (1st Shift)", "options": ["Rs. 10,320", "Rs. 12,380", "Rs. 11,520", "Rs. 10,780"], "answer_letter": "C", "solution": "Cost of 1 table = 2,400 / 2 = Rs. 1,200 ⇒ Cost of 8 tables = Rs. 9,600. Cost of 15 chairs = 120% of 9,600 = Rs. 11,520.", "ans_idx": 2}, {"id": 182, "question": "One number is reduced by 20% to get another number. To get the third number, the number obtained is increased by 200%. The difference between the third number and the original number is what percent more or less than the difference between the second and the third number?", "tag": "SSC CGL 12/12/2022 (2nd Shift)", "options": ["15.7% more", "15.7% less", "12.5% more", "12.5% less"], "answer_letter": "D", "solution": "Let original number N₁ = 100 ⇒ N₂ = 80 ⇒ N₃ = 80 × 3 = 240. |N₃ − N₁| = 140, and |N₃ − N₂| = 160. Required % = [(160 − 140) / 160] × 100% = 12.5% less.", "ans_idx": 3}, {"id": 183, "question": "If subtracting 180 by x%, increasing 60 by x% yields the same result, then by how much is the x% of 410 greater than (x+20)% of 210 (up to two decimal places)?", "tag": "SSC CHSL 16/04/2021 (Afternoon)", "options": ["36.57%", "37.57%", "31.67%", "39.46%"], "answer_letter": "D", "solution": "180(100 − x) = 60(100 + x) ⇒ 300 − 3x = 100 + x ⇒ x = 50. Now, 50% of 410 = 205, and 70% of 210 = 147. Required % = [(205 − 147) / 147] × 100% = (58 / 147) × 100% ≈ 39.46%.", "ans_idx": 3}, {"id": 184, "question": "If subtracting 110 by x% yields the same result as increasing 50 by x%, then x% of 650 is what percent more than (x + 20)% of 180? (in nearest integer)", "tag": "SSC CPO 23/11/2020 (Morning)", "options": ["80%", "90%", "136%", "154%"], "answer_letter": "C", "solution": "110(100 − x) = 50(100 + x) ⇒ 11(100 − x) = 5(100 + x) ⇒ 16x = 600 ⇒ x = 37.5. Now, 37.5% of 650 = 243.75, and 57.5% of 180 = 103.5. Required % = [(243.75 − 103.5) / 103.5] × 100% ≈ 136%.", "ans_idx": 2}, {"id": 185, "question": "A and B spent 60% and 75% of their incomes respectively. If A's savings are 20% more than B's savings, then A's income is what percent less than B's income?", "tag": "SSC CGL 05/03/2020 (Afternoon)", "options": ["20%", "10%", "15%", "25%"], "answer_letter": "D", "solution": "0.40A = 1.20 × (0.25B) = 0.30B ⇒ A / B = 3 / 4. Thus, A's income is (1/4) × 100% = 25% less than B's income.", "ans_idx": 3}, {"id": 186, "question": "The price of petrol rose by 5%. Before the hike, the price was Rs 82 per litre. A man travels 3045 km every month and his car gives mileage of 15 km per liter. By how much is the increase in the monthly expenditure on man's travel (to nearest Rs) due to increase in petrol prices?", "tag": "SSC CGL 12/04/2022 (Morning)", "options": ["832", "859", "758", "944"], "answer_letter": "A", "solution": "Monthly petrol consumption = 3045 / 15 = 203 litres. Increase in monthly expenditure = 203 × 82 × 0.05 = Rs. 832.3 ≈ Rs. 832.", "ans_idx": 0}, {"id": 187, "question": "The price of petrol shot up by 5%. Before the hike, the price was ₹82 per litre. A man travels 3045 km every month and his car gives a mileage of 15 km per litre. What is the increase in the monthly expenditure (to the nearest) on the man's travel due to the hike in the petrol price?", "tag": "SSC CGL TIERI 12/09/2025 - Shift 2", "options": ["₹820", "832", "845", "₹850"], "answer_letter": "B", "solution": "Monthly petrol consumption = 3045 / 15 = 203 litres. Increase in monthly expenditure = 203 × 82 × 0.05 = ₹832.3 ≈ ₹832.", "ans_idx": 1}, {"id": 188, "question": "Some students (only boys and girls) from different schools appeared for an Olympiad exam. 20% of the boys and 15% of the girls failed the exam. The number of boys who passed the exam was 70 more than that of the girls who passed the exam. A total of 90 students failed. Find the number of students that appeared for the exam.", "tag": "SSC CGL 11/04/2022", "options": ["350", "420", "500", "400"], "answer_letter": "C", "solution": "0.20B + 0.15G = 90 and 0.80B − 0.85G = 70. Multiplying the first equation by 4 gives 0.80B + 0.60G = 360. Subtracting the second gives 1.45G = 290 ⇒ G = 200, B = 300. Total students = 500.", "ans_idx": 2}, {"id": 189, "question": "In a picnic organized by a school, 2/3rd of the total number of boys and 3/5th of the total number of girls got permission to go. If the total number of boys in the school is 200 more than the number of girls and the number of girls who went to the picnic is 160 less than the number of boys who went to the picnic, find the total number of students in the school.", "tag": "", "options": ["800", "850", "1000", "1200"], "answer_letter": "C", "solution": "Given B − G = 200 and (2/3)B − (3/5)G = 160 ⇒ 10B − 9G = 2400. Substituting B = G + 200 gives 10G + 2000 − 9G = 2400 ⇒ G = 400 and B = 600. Total students = 1,000.", "ans_idx": 2}, {"id": 190, "question": "Every day a mango seller sells half of his stock, and 10% of the remaining stock spoils overnight. If 1,322 mangoes rotted over three nights, how many mangoes did he start with on the first day?", "tag": "", "options": ["24000", "16000", "40000", "32000"], "answer_letter": "B", "solution": "If he starts with 16,000: Night 1 spoils 10% of 8,000 = 800 (7,200 left). Night 2 spoils 10% of 3,600 = 360 (3,240 left). Night 3 spoils 10% of 1,620 = 162. Total spoiled = 800 + 360 + 162 = 1,322. Thus, initial stock = 16,000.", "ans_idx": 1}, {"id": 191, "question": "The price of an item decrease by 10% every year. If the difference between its prices at the end of the 4th year and 5th year is Rs. 52.65, then 90% of its price at the end of the 2nd year is?", "tag": "Delhi Police constable 11/12/2020", "options": ["540", "612", "585", "630"], "answer_letter": "C", "solution": "Difference between 4th and 5th year = P(0.9)⁴ − P(0.9)⁵ = P(0.9)⁴(0.1) = 52.65. We need 90% of 2nd year's price = 0.9 × P(0.9)² = P(0.9)³ = 52.65 / (0.9 × 0.1) = 52.65 / 0.09 = Rs. 585.", "ans_idx": 2}, {"id": 192, "question": "The price of an item increases by 20% every year. If the difference between its prices at the end of the 3rd year and 4th year is Rs. 259.20, then 40% of its price at the end of the 2nd year is?", "tag": "SSC CHSL 03/07/2019", "options": ["484", "432", "384", "472"], "answer_letter": "B", "solution": "Difference between 3rd and 4th year = P(1.2)³ × 0.2 = 259.20 ⇒ P(1.2)² = 259.20 / 0.24 = 1,080. Required 40% of 2nd year's price = 0.40 × 1,080 = Rs. 432.", "ans_idx": 1}, {"id": 193, "question": "The population of a city decreases by 4%, 12.5% and 10% in three consecutive years respectively. If the population of the city decreases by 3,000 during the 2nd year, then find the total decrement during the three years.", "tag": "", "options": ["8000", "5600", "6100", "6600"], "answer_letter": "C", "solution": "Let initial population = P. Decrease in 2nd year = P × 0.96 × 0.125 = 0.12P = 3,000 ⇒ P = 25,000. After 3 years, population = 25,000 × 0.96 × 0.875 × 0.90 = 18,900. Total decrement = 25,000 − 18,900 = 6,100.", "ans_idx": 2}, {"id": 194, "question": "From 2020 to 2021, the population of country A decreased by p% and the population of country B decreased by q%. Here 'p' is greater than 'q'. Let 'x' be the ratio of the population of country A to the population of country B in the given year. What is the percentage decrease in 'x' from 2020 to 2021?", "tag": "SSC CGL 06/12/2022 (2nd Shift)", "options": ["100(p - q) / (100 - q)", "100(p - q) / (100 + q)", "100(p - q) / (100 - p)", "100(p - q) / 100"], "answer_letter": "A", "solution": "x_new / x_old = (100 − p) / (100 − q). Percentage decrease in x = [1 − (100 − p)/(100 − q)] × 100 = 100(p − q) / (100 − q).", "ans_idx": 0}, {"id": 195, "question": "A, B and C donate 8%, 7% and 9% of their salaries respectively to a charitable trust. The salaries of A and B are equal and the difference in their donation is Rs. 259. The total donation of A and B together is Rs. 1,185 more than the donation of C. The total donation of A and C together is what percent of the total salary of A, B and C together?", "tag": "SSC CGL 04/03/2020 (Evening)", "options": ["6.2%", "5.8%", "6.4%", "7.1%"], "answer_letter": "B", "solution": "Let salary of A = B = S. (8% − 7%) of S = 259 ⇒ S = 25,900. Donation of A + B = 15% of 25,900 = 3,885. Donation of C = 3,885 − 1,185 = 2,700 = 9% of S_C ⇒ S_C = 30,000. Required % = [(2,072 + 2,700) / (25,900 + 25,900 + 30,000)] × 100% = (4,772 / 81,800) × 100% ≈ 5.8%.", "ans_idx": 1}, {"id": 196, "question": "A, B and C donate 10%, 8% and 9% of their salaries respectively to a charitable trust. The salaries of A and B are equal and the difference in their donation is Rs. 400. The total donation of A and B together is Rs. 900 more than the donation of C. find the total salary of C ?", "tag": "SSC CGL MAINS 16/11/2020", "options": ["30000", "27000", "36000", "25000"], "answer_letter": "A", "solution": "(10% − 8%) of S_A = 400 ⇒ S_A = S_B = 20,000. Donation of A + B = 18% of 20,000 = 3,600. Donation of C = 3,600 − 900 = 2,700 = 9% of S_C ⇒ S_C = Rs. 30,000.", "ans_idx": 0}, {"id": 197, "question": "The population of city B is 300% more than the population of city A. In the next two years, the population of A increases by x% per annum and the population of B decreases by the same percentage per annum. After 2 years, if the population of A and B becomes equal, then the value of x is ______.", "tag": "SSC CPO 13/12/2019 (Evening)", "options": ["66.66%", "40%", "25%", "33.33%"], "answer_letter": "D", "solution": "Given B = 4A. After 2 years: A(1 + x/100)² = 4A(1 − x/100)² ⇒ (100 + x) / (100 − x) = 2 ⇒ 100 + x = 200 − 2x ⇒ 3x = 100 ⇒ x = 33.33%.", "ans_idx": 3}, {"id": 198, "question": "The monthly salary of a person was Rs. 50,000. He spent on three items - personal and family expenses (E), taxes (T) and philanthropy (P) and the rest was his savings. E was 50% of the income, T was 20% of E and P was 15% of T. When his income increased by 40%, he maintained the average level of E, but T became 30% of E and P became 20% of T. By what percent is his new savings more or less than the earlier savings? (Up to one decimal place)", "tag": "SSC CPO 09/12/19(Morning)", "options": ["16.4% more", "8.2% more", "16.4% less", "8.2% less"], "answer_letter": "A", "solution": "Initial: Income = 100, E = 50, T = 10, P = 1.5 ⇒ Savings = 38.5. New: Income = 140, E = 70, T = 21, P = 4.2 ⇒ Savings = 44.8. Percentage increase = [(44.8 − 38.5) / 38.5] × 100% ≈ 16.4% more.", "ans_idx": 0}, {"id": 199, "question": "The monthly salary of a person was ₹75,000. He used to spend on family expenses (E), taxes (T), charity (C) and the rest was his savings. E was 60% of the income. T was 20% of E, and C was 15% of T. When his salary increased by 40%, he maintained the percentage level of E, but T became 30% of E, and C became 20% of T. What is the ratio of his earlier savings to his current savings?", "tag": "SSC CPO 24/11/2020 (Morning)", "options": ["337: 325", "655: 644", "644: 655", "325: 337"], "answer_letter": "B", "solution": "Initial: Income = 1000, E = 600, T = 120, C = 18 ⇒ Savings = 262. New: Income = 1400, E = 840, T = 252, C = 50.4 ⇒ Savings = 257.6. Ratio = 262 : 257.6 = 655 : 644.", "ans_idx": 1}, {"id": 200, "question": "A boy has some chocolates. He gives 25% of them and 5 more chocolates to his friends. Then he gives 50% of the remaining and 5 more chocolates to another friend. After that, he gives 50% of the remaining and 5 more chocolates to a new friend. Finally, he gives 50% of the rest to a fourth friend and is left with 5 chocolates. How many chocolates did he initially have?", "tag": "", "options": ["100", "150", "140", "90"], "answer_letter": "A", "solution": "Working backwards: before 4th friend = 5 × 2 = 10; before 3rd = (10 + 5) × 2 = 30; before 2nd = (30 + 5) × 2 = 70; initial chocolates = (70 + 5) / 0.75 = 100.", "ans_idx": 0}, {"id": 201, "question": "With reference to a number greater than one, the difference between itself and its reciprocal is 25% of the sum of itself and its reciprocal. By how much percentage (correct to one decimal place) is the fourth power of the number greater than its square?", "tag": "SSC CHSL 11/07/2019", "options": ["57.8%", "62.5%", "64.5%", "66.7%"], "answer_letter": "D", "solution": "(x − 1/x) / (x + 1/x) = 1/4 ⇒ (x² − 1) / (x² + 1) = 1/4 ⇒ 3x² = 5 ⇒ x² = 5/3. Required % = [(x⁴ − x²) / x²] × 100% = (x² − 1) × 100% = (2/3) × 100% ≈ 66.7%.", "ans_idx": 3}, {"id": 202, "question": "A family spends 30%, 20%, 17.5% and 12.5% of its monthly income on house rent, food and medicines, children's education and entertainment respectively. The remaining amount is divided into savings and donation in the ratio 3 : 2. The sum of expenditure on house rent and children's education is ₹39,900. After one year, if the expenditure on house rent and entertainment decreases by 5% and 2.5% respectively and the expenditure on children's education increases by 2.5% and the remaining expenditure except savings is same as the previous year, then find the savings amount per month in the current year.", "tag": "", "options": ["₹16,450", "₹15,470", "₹11,235", "₹14,100"], "answer_letter": "C", "solution": "Rent + Edu = 30% + 17.5% = 47.5% = ₹39,900 ⇒ Monthly income = ₹84,000. Remaining after expenses (80%) is 20%, split 3:2 into Savings (12%) and Donation (8%). Net change in expenses = −5%(30%) − 2.5%(12.5%) + 2.5%(17.5%) = −1.5% + 0.125% = −1.375%. Thus, current savings = (12% + 1.375%) of ₹84,000 = 13.375% of ₹84,000 = ₹11,235.", "ans_idx": 2}];
+
+    // 8 Mock Tests Configuration
+    const MOCK_CONFIGS = [
+      { id: 1, title: "Mock Test 1", startQ: 1, endQ: 25, durationMin: 15, subtitle: "Basic Percentage, Reverse Rule & Depreciation" },
+      { id: 2, title: "Mock Test 2", startQ: 26, endQ: 50, durationMin: 15, subtitle: "Successive Change, Mensuration (Area/Volume) & Population I" },
+      { id: 3, title: "Mock Test 3", startQ: 51, endQ: 75, durationMin: 15, subtitle: "Population Dynamics, Income-Salary Distribution & Price Reduction" },
+      { id: 4, title: "Mock Test 4", startQ: 76, endQ: 100, durationMin: 15, subtitle: "Price-Consumption, Income-Expenditure-Savings, Revenue & Fractions" },
+      { id: 5, title: "Mock Test 5", startQ: 101, endQ: 125, durationMin: 15, subtitle: "Fraction Changes, Calculation Error, Pass-Fail, Mixtures & Elections I" },
+      { id: 6, title: "Mock Test 6", startQ: 126, endQ: 150, durationMin: 15, subtitle: "Elections II (Multi-Candidate/Phases) & Venn Diagram Problems" },
+      { id: 7, title: "Mock Test 7", startQ: 151, endQ: 175, durationMin: 15, subtitle: "Weighted Average, Income Tax, Sales Commission & Field Trip" },
+      { id: 8, title: "Mock Test 8", startQ: 176, endQ: 202, durationMin: 17, subtitle: "Advanced Miscellaneous, Multi-Year Price/Population & Complex Ratios" }
+    ];
+
+    // Persistent Results Storage (Safe wrapper for sandboxed iframe)
+    const STORAGE_KEY = "percentage_8_mocks_results_v1";
+    let savedMockResults = {};
+    function loadSavedResults() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) savedMockResults = JSON.parse(raw) || {};
+      } catch (e) {
+        savedMockResults = {};
+      }
+    }
+    function saveResultsToStorage() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(savedMockResults));
+      } catch (e) {}
+    }
+
+    // Active Exam State
+    let activeMock = null;
+    let examQuestions = []; // Question order fixed; each item has shuffledOptions: [{text, origIdx}]
+    let qStates = []; // { status: 0..4, selectedShuffledIdx: null | 0..3 }
+    // Status codes: 0 = Not Visited, 1 = Not Answered, 2 = Answered, 3 = Marked for Review, 4 = Answered & Marked for Review
+    let currentQIndex = 0;
+    let remainingSeconds = 0;
+    let timerInterval = null;
+    let isPaused = false;
+    let currentAnalysisFilter = "all"; // 'all' | 'wrong' | 'unatt'
+    let lastSubmittedResult = null;
+
+    // Utility: Fisher-Yates Shuffle (used ONLY for the 4 options of each question)
+    function shuffleArray(arr) {
+      const copy = arr.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = copy[i];
+        copy[i] = copy[j];
+        copy[j] = temp;
+      }
+      return copy;
+    }
+
+    function formatTime(sec) {
+      const s = Math.max(0, Math.floor(sec));
+      const m = Math.floor(s / 60);
+      const rem = s % 60;
+      return String(m).padStart(2, "0") + ":" + String(rem).padStart(2, "0");
+    }
+
+    function showToast(message) {
+      const el = document.getElementById("toast-msg");
+      el.textContent = message;
+      el.classList.remove("hidden");
+      clearTimeout(el._hideTimer);
+      el._hideTimer = setTimeout(() => {
+        el.classList.add("hidden");
+      }, 2800);
+    }
+
+    // Fullscreen Helpers
+    function enterFullscreenSafe() {
+      try {
+        const elem = document.documentElement;
+        if (!document.fullscreenElement) {
+          if (elem.requestFullscreen) {
+            elem.requestFullscreen().catch(() => {});
+          } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+          }
+        }
+      } catch (e) {}
+      updateFullscreenButtonLabel();
+    }
+
+    function exitFullscreenSafe() {
+      try {
+        if (document.fullscreenElement) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen().catch(() => {});
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          }
+        }
+      } catch (e) {}
+      updateFullscreenButtonLabel();
+    }
+
+    function updateFullscreenButtonLabel() {
+      const btn = document.getElementById("btn-exit-fullscreen");
+      if (!btn) return;
+      if (document.fullscreenElement) {
+        btn.textContent = "Exit Fullscreen";
+      } else {
+        btn.textContent = "Exit Fullscreen";
+      }
+    }
+
+    document.addEventListener("fullscreenchange", updateFullscreenButtonLabel);
+
+    // View Switching
+    function showView(viewId) {
+      ["view-dashboard", "view-instructions", "view-exam", "view-analysis"].forEach(id => {
+        const el = document.getElementById(id);
+        if (id === viewId) {
+          el.classList.remove("hidden");
+        } else {
+          el.classList.add("hidden");
+        }
+      });
+    }
+
+    // ==================== DASHBOARD RENDERING ====================
+    function renderDashboard() {
+      const grid = document.getElementById("mock-cards-grid");
+      grid.innerHTML = "";
+
+      let completedCount = 0;
+      let totalAttemptedQs = 0;
+      let totalCorrectQs = 0;
+      let aggregateScore = 0;
+
+      MOCK_CONFIGS.forEach(cfg => {
+        const qCount = cfg.endQ - cfg.startQ + 1;
+        const maxMarks = qCount * 2;
+        const saved = savedMockResults[cfg.id];
+
+        if (saved) {
+          completedCount++;
+          totalAttemptedQs += saved.attemptedCount;
+          totalCorrectQs += saved.correctCount;
+          aggregateScore += saved.score;
+        }
+
+        const card = document.createElement("div");
+        card.className = "bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between";
+
+        const statusBadge = saved
+          ? `<span class="px-2 py-0.5 text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded">Completed • ${saved.score.toFixed(2)}/${maxMarks}</span>`
+          : `<span class="px-2 py-0.5 text-[11px] font-semibold bg-slate-100 text-slate-600 border border-slate-200 rounded">Not Attempted</span>`;
+
+        const savedStatsHtml = saved
+          ? `<div class="mt-3 pt-3 border-t border-slate-100 grid grid-cols-3 gap-1 text-[11px] text-slate-600">
+               <div>Correct: <strong class="text-emerald-600">${saved.correctCount}</strong></div>
+               <div>Wrong: <strong class="text-red-600">${saved.incorrectCount}</strong></div>
+               <div>Skipped: <strong class="text-slate-700">${saved.unattemptedCount}</strong></div>
+             </div>`
+          : `<div class="mt-3 pt-3 border-t border-slate-100 text-[11px] text-slate-500">
+               Scheme: +2 Correct, -0.5 Wrong, 0 Un-attempted
+             </div>`;
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-blue-700">Mock #${cfg.id}</span>
+              ${statusBadge}
+            </div>
+            <h3 class="text-base font-bold text-slate-900">${cfg.title} (Q.${cfg.startQ}–Q.${cfg.endQ})</h3>
+            <p class="text-xs text-slate-500 mt-1 line-clamp-2">${cfg.subtitle}</p>
+
+            <div class="mt-4 flex flex-wrap items-center gap-2 text-xs">
+              <span class="px-2.5 py-1 bg-slate-100 text-slate-700 rounded font-medium">${qCount} Questions</span>
+              <span class="px-2.5 py-1 bg-blue-50 text-blue-700 rounded font-medium">⏱ ${cfg.durationMin} Mins</span>
+              <span class="px-2.5 py-1 bg-slate-100 text-slate-700 rounded font-medium">${maxMarks} Marks</span>
+            </div>
+            ${savedStatsHtml}
+          </div>
+
+          <div class="mt-4 pt-2 flex items-center gap-2">
+            <button type="button" data-start-mock="${cfg.id}" class="flex-1 py-2 px-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-lg shadow-sm transition">
+              ${saved ? "Retake Mock Test" : "Start Mock Test"}
+            </button>
+            ${saved ? `<button type="button" data-view-analysis="${cfg.id}" class="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-lg transition">Analysis</button>` : ""}
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      // Update KPI strip
+      document.getElementById("kpi-completed").textContent = `${completedCount} / 8`;
+      document.getElementById("kpi-attempted-qs").textContent = `${totalAttemptedQs} of 202 questions attempted`;
+      document.getElementById("kpi-total-score").innerHTML = `${aggregateScore.toFixed(2)} <span class="text-sm font-normal text-slate-400">/ 404</span>`;
+      const acc = totalAttemptedQs > 0 ? ((totalCorrectQs / totalAttemptedQs) * 100).toFixed(1) + "%" : "—";
+      document.getElementById("kpi-accuracy").textContent = `Overall Accuracy: ${acc}`;
+
+      // Attach listeners to buttons
+      grid.querySelectorAll("[data-start-mock]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const mockId = parseInt(btn.getAttribute("data-start-mock"), 10);
+          openInstructionsForMock(mockId);
+        });
+      });
+
+      grid.querySelectorAll("[data-view-analysis]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const mockId = parseInt(btn.getAttribute("data-view-analysis"), 10);
+          const saved = savedMockResults[mockId];
+          if (saved) {
+            activeMock = MOCK_CONFIGS.find(m => m.id === mockId);
+            lastSubmittedResult = saved;
+            renderAnalysisView();
+            showView("view-analysis");
+          }
+        });
+      });
+    }
+
+    // ==================== INSTRUCTIONS VIEW ====================
+    function openInstructionsForMock(mockId) {
+      activeMock = MOCK_CONFIGS.find(m => m.id === mockId);
+      if (!activeMock) return;
+
+      const qCount = activeMock.endQ - activeMock.startQ + 1;
+      const maxMarks = (qCount * 2).toFixed(1);
+
+      document.getElementById("inst-header-title").textContent = `${activeMock.title.toUpperCase()} : GENERAL INSTRUCTIONS`;
+      document.getElementById("inst-mock-name").textContent = `${activeMock.title} (Questions ${activeMock.startQ} to ${activeMock.endQ})`;
+      document.getElementById("inst-mock-sub").textContent = `Focus: ${activeMock.subtitle}`;
+      document.getElementById("inst-q-count").textContent = String(qCount);
+      document.getElementById("inst-duration").textContent = `${activeMock.durationMin} Minutes`;
+      document.getElementById("inst-duration-inline").textContent = `${activeMock.durationMin} minutes`;
+      document.getElementById("inst-max-marks").textContent = maxMarks;
+      document.getElementById("chk-declaration").checked = true;
+
+      showView("view-instructions");
+    }
+
+    // ==================== LAUNCH & RUN MOCK EXAM ====================
+    function startActiveMockExam() {
+      if (!activeMock) return;
+      const decl = document.getElementById("chk-declaration");
+      if (!decl.checked) {
+        showToast("Please accept the declaration checkbox to start the mock test.");
+        return;
+      }
+
+      // Slice questions in fixed order (do NOT randomize question order)
+      // Randomize the 4 distractor options for each question on every launch/refresh
+      const rawSlice = MASTER_QUESTIONS.slice(activeMock.startQ - 1, activeMock.endQ);
+      examQuestions = rawSlice.map((q, idx) => {
+        const optionObjects = q.options.map((optText, origIdx) => ({
+          text: optText,
+          origIdx: origIdx
+        }));
+        return {
+          mockQNum: idx + 1,
+          globalId: q.id,
+          question: q.question,
+          tag: q.tag || "",
+          ansOrigIdx: q.ans_idx,
+          correctOptionText: q.options[q.ans_idx],
+          solution: q.solution,
+          shuffledOptions: shuffleArray(optionObjects)
+        };
+      });
+
+      qStates = examQuestions.map((_, idx) => ({
+        status: idx === 0 ? 1 : 0, // First question becomes Not Answered (1) upon visiting
+        selectedShuffledIdx: null
+      }));
+
+      currentQIndex = 0;
+      remainingSeconds = activeMock.durationMin * 60;
+      isPaused = false;
+
+      document.getElementById("exam-header-title").textContent = `Percentage ${activeMock.title} (Q.${activeMock.startQ}–Q.${activeMock.endQ})`;
+      document.getElementById("palette-mock-label").textContent = `${activeMock.title} • ${examQuestions.length} Qs`;
+
+      showView("view-exam");
+      enterFullscreenSafe();
+      renderCurrentExamQuestion();
+      renderQuestionPalette();
+      startCountdownTimer();
+    }
+
+    function startCountdownTimer() {
+      clearInterval(timerInterval);
+      updateTimerDisplay();
+      timerInterval = setInterval(() => {
+        if (isPaused) return;
+        remainingSeconds--;
+        updateTimerDisplay();
+        if (remainingSeconds <= 0) {
+          clearInterval(timerInterval);
+          finalizeAndSubmitExam("Auto-Submitted (Time Expired)");
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const el = document.getElementById("exam-timer");
+      el.textContent = formatTime(remainingSeconds);
+      if (remainingSeconds <= 60) {
+        el.classList.remove("text-amber-300");
+        el.classList.add("text-red-300", "animate-pulse");
+      } else {
+        el.classList.add("text-amber-300");
+        el.classList.remove("text-red-300", "animate-pulse");
+      }
+    }
+
+    function renderCurrentExamQuestion() {
+      const q = examQuestions[currentQIndex];
+      const st = qStates[currentQIndex];
+
+      document.getElementById("exam-q-num-label").textContent = `Question No. ${q.mockQNum} of ${examQuestions.length}`;
+      document.getElementById("exam-q-global-id").textContent = `(Problem #${q.globalId})`;
+
+      const tagEl = document.getElementById("exam-q-tag");
+      if (q.tag && q.tag.trim() !== "") {
+        tagEl.textContent = q.tag;
+        tagEl.classList.remove("hidden");
+      } else {
+        tagEl.textContent = "";
+        tagEl.classList.add("hidden");
+      }
+
+      document.getElementById("exam-q-text").textContent = q.question;
+
+      const optsContainer = document.getElementById("exam-options-list");
+      optsContainer.innerHTML = "";
+
+      const optionLabels = ["A", "B", "C", "D"];
+      q.shuffledOptions.forEach((optObj, sIdx) => {
+        const isSelected = st.selectedShuffledIdx === sIdx;
+        const row = document.createElement("label");
+        row.className = `flex items-center gap-3.5 p-3.5 rounded-lg border cursor-pointer transition ${
+          isSelected
+            ? "bg-blue-50/70 border-blue-600 text-slate-900"
+            : "bg-white hover:bg-slate-50 border-slate-200 text-slate-800"
+        }`;
+
+        row.innerHTML = `
+          <input type="radio" name="exam-mcq-option" value="${sIdx}" ${isSelected ? "checked" : ""} class="w-4 h-4 text-blue-600 border-slate-300 focus:ring-blue-500 shrink-0" />
+          <span class="w-6 h-6 rounded-full border ${isSelected ? "border-blue-600 bg-blue-600 text-white" : "border-slate-300 bg-slate-50 text-slate-600"} text-xs font-bold flex items-center justify-center shrink-0">
+            ${optionLabels[sIdx]}
+          </span>
+          <span class="text-sm sm:text-base font-normal leading-snug select-text">${optObj.text}</span>
+        `;
+
+        row.querySelector("input").addEventListener("change", () => {
+          // Do NOT jump to next question automatically; do NOT reveal answer
+          st.selectedShuffledIdx = sIdx;
+          // If it was Not Answered (1) or Not Visited (0), mark as Answered (2).
+          // If it was Marked for Review (3), mark as Answered & Marked for Review (4).
+          if (st.status === 3 || st.status === 4) {
+            st.status = 4;
+          } else {
+            st.status = 2;
+          }
+          renderCurrentExamQuestion();
+          renderQuestionPalette();
+        });
+
+        optsContainer.appendChild(row);
+      });
+
+      // Previous button state
+      document.getElementById("btn-prev-q").disabled = currentQIndex === 0;
+      document.getElementById("btn-next-q").textContent = currentQIndex === examQuestions.length - 1 ? "Save" : "Next";
+    }
+
+    function navigateToQuestion(newIndex) {
+      if (newIndex < 0 || newIndex >= examQuestions.length) return;
+      currentQIndex = newIndex;
+      const st = qStates[currentQIndex];
+      if (st.status === 0) {
+        st.status = st.selectedShuffledIdx !== null ? 2 : 1;
+      }
+      renderCurrentExamQuestion();
+      renderQuestionPalette();
+    }
+
+    function renderQuestionPalette() {
+      const grid = document.getElementById("palette-grid");
+      grid.innerHTML = "";
+
+      const counts = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 };
+
+      examQuestions.forEach((q, idx) => {
+        const st = qStates[idx];
+        counts[st.status] = (counts[st.status] || 0) + 1;
+
+        const btn = document.createElement("button");
+        btn.type = "button";
+        const statusClass =
+          st.status === 2
+            ? "status-answered"
+            : st.status === 1
+            ? "status-not-answered"
+            : st.status === 3
+            ? "status-review"
+            : st.status === 4
+            ? "status-ans-review"
+            : "status-not-visited";
+
+        btn.className = `tcs-badge ${statusClass} ${idx === currentQIndex ? "tcs-badge-active" : ""}`;
+        btn.textContent = String(q.mockQNum);
+        btn.addEventListener("click", () => navigateToQuestion(idx));
+        grid.appendChild(btn);
+      });
+
+      document.getElementById("count-not-visited").textContent = String(counts[0]);
+      document.getElementById("count-not-answered").textContent = String(counts[1]);
+      document.getElementById("count-answered").textContent = String(counts[2]);
+      document.getElementById("count-review").textContent = String(counts[3]);
+      document.getElementById("count-ans-review").textContent = String(counts[4]);
+    }
+
+    // Exam Navigation Controls
+    document.getElementById("btn-next-q").addEventListener("click", () => {
+      const st = qStates[currentQIndex];
+      if (st.selectedShuffledIdx !== null) {
+        if (st.status !== 4) st.status = 2;
+      } else {
+        if (st.status !== 3) st.status = 1;
+      }
+      if (currentQIndex < examQuestions.length - 1) {
+        navigateToQuestion(currentQIndex + 1);
+      } else {
+        renderQuestionPalette();
+        showToast("Response state updated for the last question.");
+      }
+    });
+
+    document.getElementById("btn-prev-q").addEventListener("click", () => {
+      if (currentQIndex > 0) {
+        navigateToQuestion(currentQIndex - 1);
+      }
+    });
+
+    document.getElementById("btn-clear-resp").addEventListener("click", () => {
+      const st = qStates[currentQIndex];
+      st.selectedShuffledIdx = null;
+      st.status = 1; // Not Answered
+      renderCurrentExamQuestion();
+      renderQuestionPalette();
+    });
+
+    document.getElementById("btn-mark-review").addEventListener("click", () => {
+      const st = qStates[currentQIndex];
+      if (st.selectedShuffledIdx !== null) {
+        st.status = 4; // Answered & Marked for Review
+      } else {
+        st.status = 3; // Marked for Review (Not Answered)
+      }
+      if (currentQIndex < examQuestions.length - 1) {
+        navigateToQuestion(currentQIndex + 1);
+      } else {
+        renderQuestionPalette();
+        showToast("Question marked for review.");
+      }
+    });
+
+    // Pause / Resume Controls
+    document.getElementById("btn-pause-exam").addEventListener("click", () => {
+      isPaused = true;
+      document.getElementById("pause-time-left").textContent = formatTime(remainingSeconds);
+      const ansCnt = qStates.filter(s => s.selectedShuffledIdx !== null).length;
+      document.getElementById("pause-answered-cnt").textContent = `${ansCnt} / ${examQuestions.length}`;
+      document.getElementById("modal-pause").classList.remove("hidden");
+    });
+
+    document.getElementById("btn-resume-exam").addEventListener("click", () => {
+      isPaused = false;
+      document.getElementById("modal-pause").classList.add("hidden");
+    });
+
+    document.getElementById("btn-abort-from-pause").addEventListener("click", () => {
+      clearInterval(timerInterval);
+      isPaused = false;
+      document.getElementById("modal-pause").classList.add("hidden");
+      exitFullscreenSafe();
+      renderDashboard();
+      showView("view-dashboard");
+    });
+
+    // Exit Fullscreen Button
+    document.getElementById("btn-exit-fullscreen").addEventListener("click", () => {
+      if (document.fullscreenElement) {
+        exitFullscreenSafe();
+        showToast("Exited fullscreen mode.");
+      } else {
+        exitFullscreenSafe();
+        showToast("Already in standard window mode.");
+      }
+    });
+
+    // Submit Confirmation Modal
+    function openSubmitConfirmation() {
+      const counts = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 };
+      qStates.forEach(st => {
+        counts[st.status] = (counts[st.status] || 0) + 1;
+      });
+      document.getElementById("sub-modal-total").textContent = String(examQuestions.length);
+      document.getElementById("sub-modal-ans").textContent = String(counts[2]);
+      document.getElementById("sub-modal-not-ans").textContent = String(counts[1]);
+      document.getElementById("sub-modal-rev").textContent = String(counts[3]);
+      document.getElementById("sub-modal-ans-rev").textContent = String(counts[4]);
+      document.getElementById("sub-modal-not-vis").textContent = String(counts[0]);
+      document.getElementById("modal-submit").classList.remove("hidden");
+    }
+
+    document.getElementById("btn-submit-exam").addEventListener("click", openSubmitConfirmation);
+    document.getElementById("btn-submit-mobile").addEventListener("click", openSubmitConfirmation);
+
+    document.getElementById("btn-cancel-submit").addEventListener("click", () => {
+      document.getElementById("modal-submit").classList.add("hidden");
+    });
+
+    document.getElementById("btn-confirm-submit").addEventListener("click", () => {
+      document.getElementById("modal-submit").classList.add("hidden");
+      finalizeAndSubmitExam("Manual Submission");
+    });
+
+    // ==================== EVALUATION & POST-SUBMISSION ANALYSIS ====================
+    function finalizeAndSubmitExam(submitReason) {
+      clearInterval(timerInterval);
+      isPaused = false;
+      document.getElementById("modal-pause").classList.add("hidden");
+      document.getElementById("modal-submit").classList.add("hidden");
+      exitFullscreenSafe();
+
+      const totalSec = activeMock.durationMin * 60;
+      const timeSpentSec = Math.max(0, totalSec - remainingSeconds);
+
+      let correctCount = 0;
+      let incorrectCount = 0;
+      let unattemptedCount = 0;
+      const reviewItems = []; // Store ONLY incorrect and un-attempted questions as strictly instructed
+
+      examQuestions.forEach((q, idx) => {
+        const st = qStates[idx];
+        const selIdx = st.selectedShuffledIdx;
+
+        if (selIdx === null) {
+          unattemptedCount++;
+          reviewItems.push({
+            mockQNum: q.mockQNum,
+            globalId: q.globalId,
+            question: q.question,
+            tag: q.tag,
+            outcome: "unattempted",
+            userAnswerText: "Not Attempted",
+            correctAnswerText: q.correctOptionText,
+            solution: q.solution
+          });
+        } else {
+          const chosenObj = q.shuffledOptions[selIdx];
+          if (chosenObj.origIdx === q.ansOrigIdx) {
+            correctCount++;
+          } else {
+            incorrectCount++;
+            reviewItems.push({
+              mockQNum: q.mockQNum,
+              globalId: q.globalId,
+              question: q.question,
+              tag: q.tag,
+              outcome: "incorrect",
+              userAnswerText: chosenObj.text,
+              correctAnswerText: q.correctOptionText,
+              solution: q.solution
+            });
+          }
+        }
+      });
+
+      const score = correctCount * 2.0 - incorrectCount * 0.5;
+      const attemptedCount = correctCount + incorrectCount;
+
+      const resultPayload = {
+        mockId: activeMock.id,
+        mockTitle: activeMock.title,
+        totalQuestions: examQuestions.length,
+        maxMarks: examQuestions.length * 2.0,
+        score: score,
+        correctCount: correctCount,
+        incorrectCount: incorrectCount,
+        unattemptedCount: unattemptedCount,
+        attemptedCount: attemptedCount,
+        timeSpentSec: timeSpentSec,
+        submitReason: submitReason,
+        reviewItems: reviewItems
+      };
+
+      savedMockResults[activeMock.id] = resultPayload;
+      saveResultsToStorage();
+      lastSubmittedResult = resultPayload;
+      currentAnalysisFilter = "all";
+
+      renderAnalysisView();
+      showView("view-analysis");
+    }
+
+    function renderAnalysisView() {
+      if (!lastSubmittedResult) return;
+      const res = lastSubmittedResult;
+
+      document.getElementById("analysis-title").textContent = `${res.mockTitle} - Score & Solution Analysis`;
+      document.getElementById("res-score").textContent = res.score.toFixed(2);
+      document.getElementById("res-max-score").textContent = `out of ${res.maxMarks.toFixed(1)}`;
+      document.getElementById("res-correct").textContent = String(res.correctCount);
+      document.getElementById("res-correct-marks").textContent = `+${(res.correctCount * 2).toFixed(2)} marks`;
+      document.getElementById("res-incorrect").textContent = String(res.incorrectCount);
+      document.getElementById("res-incorrect-marks").textContent = `-${(res.incorrectCount * 0.5).toFixed(2)} marks`;
+      document.getElementById("res-unattempted").textContent = String(res.unattemptedCount);
+
+      const acc = res.attemptedCount > 0 ? ((res.correctCount / res.attemptedCount) * 100).toFixed(1) + "%" : "0.0%";
+      document.getElementById("res-accuracy").textContent = acc;
+      document.getElementById("res-attempted").textContent = `${res.attemptedCount} of ${res.totalQuestions} attempted`;
+      document.getElementById("res-time").textContent = formatTime(res.timeSpentSec);
+      document.getElementById("res-submit-reason").textContent = res.submitReason;
+
+      // Update filter counts
+      const wrongItems = res.reviewItems.filter(i => i.outcome === "incorrect");
+      const unattItems = res.reviewItems.filter(i => i.outcome === "unattempted");
+      document.getElementById("cnt-filter-all").textContent = String(res.reviewItems.length);
+      document.getElementById("cnt-filter-wrong").textContent = String(wrongItems.length);
+      document.getElementById("cnt-filter-unatt").textContent = String(unattItems.length);
+
+      updateAnalysisFilterButtons();
+      renderFilteredSolutions();
+    }
+
+    function updateAnalysisFilterButtons() {
+      const map = {
+        all: document.getElementById("tab-filter-all"),
+        wrong: document.getElementById("tab-filter-wrong"),
+        unatt: document.getElementById("tab-filter-unatt")
+      };
+      Object.keys(map).forEach(k => {
+        if (k === currentAnalysisFilter) {
+          map[k].className = "px-3 py-1.5 text-xs font-semibold rounded-lg bg-blue-600 text-white transition";
+        } else {
+          map[k].className = "px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition";
+        }
+      });
+    }
+
+    function renderFilteredSolutions() {
+      const container = document.getElementById("analysis-solutions-list");
+      container.innerHTML = "";
+
+      if (!lastSubmittedResult) return;
+      let list = lastSubmittedResult.reviewItems;
+      if (currentAnalysisFilter === "wrong") {
+        list = list.filter(i => i.outcome === "incorrect");
+      } else if (currentAnalysisFilter === "unatt") {
+        list = list.filter(i => i.outcome === "unattempted");
+      }
+
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div class="bg-white border border-slate-200 rounded-xl p-8 text-center">
+            <p class="text-base font-bold text-slate-800">No Questions in This Filter</p>
+            <p class="text-xs text-slate-500 mt-1">All questions in this category were answered correctly!</p>
+          </div>
+        `;
+        return;
+      }
+
+      list.forEach(item => {
+        const isWrong = item.outcome === "incorrect";
+        const badgeHtml = isWrong
+          ? `<span class="px-2.5 py-0.5 text-[11px] font-bold bg-red-50 text-red-700 border border-red-200 rounded">Incorrect (-0.5 Mark)</span>`
+          : `<span class="px-2.5 py-0.5 text-[11px] font-bold bg-amber-50 text-amber-800 border border-amber-200 rounded">Un-attempted (0 Mark)</span>`;
+
+        const tagHtml = item.tag
+          ? `<span class="px-2 py-0.5 text-[11px] font-medium bg-slate-100 text-slate-600 border border-slate-200 rounded">${item.tag}</span>`
+          : "";
+
+        const card = document.createElement("div");
+        card.className = "bg-white border border-slate-200 rounded-xl p-5 shadow-sm";
+        card.innerHTML = `
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-slate-100">
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-bold text-slate-900">Q.${item.mockQNum}</span>
+              <span class="text-xs text-slate-400">(Problem #${item.globalId})</span>
+              ${tagHtml}
+            </div>
+            ${badgeHtml}
+          </div>
+
+          <p class="text-sm font-medium text-slate-900 leading-relaxed mb-4">${item.question}</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-xs">
+            <div class="p-3 rounded-lg border ${isWrong ? "bg-red-50/60 border-red-200 text-red-900" : "bg-slate-50 border-slate-200 text-slate-700"}">
+              <span class="block text-[11px] uppercase font-semibold opacity-75">Your Response:</span>
+              <strong class="text-sm mt-0.5 block">${item.userAnswerText}</strong>
+            </div>
+            <div class="p-3 rounded-lg border bg-emerald-50/70 border-emerald-200 text-emerald-900">
+              <span class="block text-[11px] uppercase font-semibold opacity-75">Correct Answer:</span>
+              <strong class="text-sm mt-0.5 block">${item.correctAnswerText}</strong>
+            </div>
+          </div>
+
+          <div class="bg-blue-50/50 border border-blue-200/80 rounded-lg p-3.5 text-xs sm:text-sm text-slate-800 leading-relaxed">
+            <strong class="text-blue-900 block text-xs uppercase tracking-wider mb-1">Step-by-Step Solution:</strong>
+            ${item.solution}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Filter Tab Listeners
+    document.getElementById("tab-filter-all").addEventListener("click", () => {
+      currentAnalysisFilter = "all";
+      updateAnalysisFilterButtons();
+      renderFilteredSolutions();
+    });
+    document.getElementById("tab-filter-wrong").addEventListener("click", () => {
+      currentAnalysisFilter = "wrong";
+      updateAnalysisFilterButtons();
+      renderFilteredSolutions();
+    });
+    document.getElementById("tab-filter-unatt").addEventListener("click", () => {
+      currentAnalysisFilter = "unatt";
+      updateAnalysisFilterButtons();
+      renderFilteredSolutions();
+    });
+
+    // Top-level Navigation Buttons
+    document.getElementById("btn-inst-back").addEventListener("click", () => {
+      renderDashboard();
+      showView("view-dashboard");
+    });
+    document.getElementById("btn-cancel-inst").addEventListener("click", () => {
+      renderDashboard();
+      showView("view-dashboard");
+    });
+    document.getElementById("btn-begin-exam").addEventListener("click", startActiveMockExam);
+
+    document.getElementById("btn-back-dashboard").addEventListener("click", () => {
+      renderDashboard();
+      showView("view-dashboard");
+    });
+
+    document.getElementById("btn-retake-mock").addEventListener("click", () => {
+      if (activeMock) {
+        openInstructionsForMock(activeMock.id);
+      }
+    });
+
+    document.getElementById("btn-reset-all").addEventListener("click", () => {
+      savedMockResults = {};
+      saveResultsToStorage();
+      renderDashboard();
+      showToast("All saved mock test progress has been reset.");
+    });
+
+    // Initialize App on Load
+    loadSavedResults();
+    renderDashboard();
+  </script>
+</body>
+</html>
