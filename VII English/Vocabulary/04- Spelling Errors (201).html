@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSC Spelling Errors Notes - 201 Words</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* Base font definition prioritizing Calibri as requested */
+        body {
+            font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+            background-color: #f3f4f6; /* Soft gray for premium feel */
+            color: #1f2937;
+        }
+
+        /* Hover animations and transitions */
+        .hover-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Essential Print Styles for physical paper perfection */
+        @media print {
+            body {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+                padding: 0 !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            /* Adjust grid for print to ensure it fits and flows correctly */
+            #wordGrid {
+                display: grid !important;
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 8px !important;
+            }
+            /* Make cards print friendly: dark text, rigid borders, no page breaks inside */
+            .word-card {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                background-color: #ffffff !important;
+                border: 1px solid #111111 !important; /* Dark solid border for print */
+                box-shadow: none !important;
+                transform: none !important; /* Disable hover scale on print */
+                padding: 10px !important;
+            }
+            .word-text {
+                color: #000000 !important;
+                font-weight: bold !important;
+            }
+            .word-num {
+                color: #333333 !important; /* Dark gray for the number */
+            }
+            header {
+                box-shadow: none !important;
+                border-bottom: 2px solid #000 !important;
+                background: none !important;
+                color: #000 !important;
+                padding-bottom: 10px !important;
+                margin-bottom: 20px !important;
+            }
+            .header-text {
+                color: #000000 !important;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen">
+
+    <header class="bg-gradient-to-r from-slate-900 to-indigo-900 shadow-xl sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-white tracking-tight header-text">
+                        English Spelling Errors
+                    </h1>
+                    <p class="mt-1 text-sm font-medium text-indigo-200 header-text">
+                        SSC CGL, CHSL, CPO 2026 • Toppers' Wisdom • 15 Days Marathon
+                    </p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20 no-print">
+                    <p class="text-white text-sm font-semibold">Total Verified Words: <span class="text-amber-400 text-lg">201</span></p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-2 header-text">Complete Verified Vocabulary List</h2>
+            <p class="text-gray-600">Correctly spelt target words extracted from the notes, meticulously checked for accuracy.</p>
+        </div>
+
+        <!-- Dynamic Grid Container -->
+        <div id="wordGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+            <!-- Words will be injected here via JavaScript -->
+        </div>
+        
+    </main>
+
+    <script>
+        // Exactly 201 extracted and verified words from the document source.
+        const words = [
+            "ephemeral", "transient", "transitory", "bankrupt", "pauper", 
+            "indigent", "penniless", "millionaire", "tycoon", "magnate", 
+            "stratigraphic", "aberrant", "kindergarten", "associate", "manageable", 
+            "lovable", "noticeable", "facsimile", "simile", "smile", 
+            "dilemma", "quandary", "enigmatic", "mysterious", "uncanny", 
+            "dumbbell", "apocryphal", "dubious", "assassinate", "epistemology", 
+            "accommodate", "artisan", "superannuation", "despotic", "personnel", 
+            "jejune", "boring", "bleak", "sullen", "gloomy", 
+            "recession", "vituperative", "scathing", "abusive", "accommodation", 
+            "palette", "palate", "millennium", "cholera", "embellish", 
+            "adorn", "beautify", "garnish", "phonology", "assassination", 
+            "forecast", "possession", "lackadaisical", "arraign", "equanimity", 
+            "calmness", "cigarette", "quarantine", "collectible", "collectable", 
+            "memento", "hypothesis", "hybrid", "therapist", "hypnosis", 
+            "hygienic", "ventriculoperitoneal", "nitrocellulose", "cumulative", "rehearsal", 
+            "parachute", "assembly", "privilege", "effervescence", "twelfth", 
+            "segued", "seamlessly", "ophthalmologist", "odyssey", "prophylaxis", 
+            "sycophant", "cytochrome", "acknowledge", "acquire", "absence", 
+            "connoisseur", "characteristics", "hierarchy", "chiaroscuro", "anniversary", 
+            "consistently", "insouciant", "porphyroblastic", "euphemism", "fractious", 
+            "willful", "supplication", "photolithography", "necessary", "embarrass", 
+            "occurrence", "committee", "possess", "until", "useful", 
+            "skilful", "fulfil", "welcome", "beautiful", "grateful", 
+            "careful", "beginning", "referred", "travelled", "colonel", 
+            "pusillanimous", "enthusiasm", "recalcitrant", "articulate", "vociferous", 
+            "amalgamation", "innocuous", "miscellaneous", "discipline", "governance", 
+            "deployments", "accountable", "aesthetic", "fascinated", "intrigued", 
+            "hypnotized", "engaging", "separate", "irresistible", "diploma", 
+            "lieutenant", "quizzical", "vacuum", "meticulous", "resuscitate", 
+            "periphery", "jaundice", "prudence", "currency", "hemoglobinopathy", 
+            "correspond", "ascetic", "accessories", "obstinate", "grandiloquence", 
+            "vogue", "polysemy", "intertextuality", "similitude", "postmodernism", 
+            "trisomy", "ubiquitous", "magnanimous", "obfuscate", "surreptitious", 
+            "epiphany", "resilience", "diversification", "recluse", "annotate", 
+            "extragalactic", "assess", "neutral", "environment", "exhilarate", 
+            "assets", "adversity", "unforeseen", "reconcile", "impetuous", 
+            "impertinent", "implication", "imperial", "playwright", "infrastructure", 
+            "stipulated", "opposition", "overrun", "meteorological", "anthropology", 
+            "ecosystems", "zoology", "stoichiometric", "affidavit", "relevant", 
+            "vicereine", "floccinaucinihilipilification", "defenestrate", "quintessence", "interference", 
+            "interrupt"
+        ];
+
+        // Ensure the exact count is respected
+        if(words.length !== 201) {
+            console.warn("Word count anomaly: " + words.length);
+        }
+
+        // Color coding palette for borders to make it visually premium
+        const colorPalette = [
+            "border-blue-500",
+            "border-rose-500",
+            "border-emerald-500",
+            "border-violet-500",
+            "border-amber-500",
+            "border-cyan-500",
+            "border-fuchsia-500"
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const gridContainer = document.getElementById('wordGrid');
+
+            words.forEach((word, index) => {
+                const colorClass = colorPalette[index % colorPalette.length];
+                
+                // Create Card Element
+                const card = document.createElement('div');
+                card.className = `word-card hover-card bg-white rounded-xl shadow-sm border-b-4 ${colorClass} p-4 flex flex-col justify-center items-center text-center`;
+                
+                // Content HTML
+                card.innerHTML = `
+                    <span class="word-num text-xs font-bold text-gray-400 mb-1 tracking-wider uppercase w-full text-left">No. ${index + 1}</span>
+                    <span class="word-text text-lg font-bold text-gray-800 break-words w-full">${word}</span>
+                `;
+                
+                gridContainer.appendChild(card);
+            });
+        });
+    </script>
+</body>
+</html>
