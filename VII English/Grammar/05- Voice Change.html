@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Active & Passive Voice - TCS/Eduquity Mock Test Series</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f4f6f9;
+      color: #1e293b;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* TCS Question Palette Styles */
+    .tcs-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 4px;
+      transition: all 0.15s ease-in-out;
+      user-select: none;
+      cursor: pointer;
+    }
+    
+    .q-palette-btn {
+      width: 38px;
+      height: 34px;
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.1s;
+      border-radius: 4px 4px 10px 10px;
+    }
+    .q-palette-btn:hover {
+      filter: brightness(0.92);
+      transform: translateY(-1px);
+    }
+    .q-palette-btn.active-q {
+      outline: 2px solid #0056b3;
+      outline-offset: 2px;
+      font-weight: 700;
+    }
+    
+    /* Status Colors */
+    .status-not-visited {
+      background-color: #e2e8f0;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+    }
+    .status-not-answered {
+      background-color: #e53e3e;
+      color: #ffffff;
+      border-radius: 12px 12px 0 0;
+    }
+    .status-answered {
+      background-color: #2e7d32;
+      color: #ffffff;
+      border-radius: 0 0 12px 12px;
+    }
+    .status-marked {
+      background-color: #7b1fa2;
+      color: #ffffff;
+      border-radius: 50%;
+    }
+    .status-ans-marked {
+      background-color: #7b1fa2;
+      color: #ffffff;
+      border-radius: 50%;
+      position: relative;
+    }
+    .status-ans-marked::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 9px;
+      height: 9px;
+      background-color: #2e7d32;
+      border: 1.5px solid #ffffff;
+      border-radius: 50%;
+    }
+    
+    /* Custom radio styling for exam options */
+    .option-label {
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border: 1px solid #cbd5e1;
+      background-color: #ffffff;
+    }
+    .option-label:hover {
+      background-color: #f1f5f9;
+      border-color: #94a3b8;
+    }
+    .option-label.selected {
+      background-color: #eff6ff;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px #2563eb;
+    }
+    
+    /* Timer flashing */
+    @keyframes timerAlert {
+      0%, 100% { color: #dc2626; background-color: #fee2e2; }
+      50% { color: #991b1b; background-color: #fecaca; }
+    }
+    .timer-critical {
+      animation: timerAlert 1s infinite;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 antialiased min-h-screen flex flex-col">
+
+  <!-- ================= APP HEADER ================= -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded bg-blue-700 text-white flex items-center justify-center font-bold text-lg shadow-inner">
+          SSC
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">Active & Passive Voice Mock Suite</h1>
+          <p class="text-xs text-slate-500 hidden sm:block">100 Selected Questions | TCS & Eduquity Exam Simulator</p>
+        </div>
+      </div>
+      
+      <div id="header-user-status" class="flex items-center space-x-4">
+        <!-- In Exam status will populate here -->
+        <button id="btn-show-rules" class="text-xs sm:text-sm font-medium text-blue-700 hover:text-blue-800 bg-blue-50 px-3 py-1.5 rounded border border-blue-200 hover:bg-blue-100 transition">
+          Rules Reference
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTAINER ================= -->
+  <main class="flex-1 flex flex-col">
+    
+    <!-- ================= VIEW 1: DASHBOARD ================= -->
+    <section id="view-dashboard" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-1">
+      
+      <!-- Welcome Banner -->
+      <div class="bg-gradient-to-r from-blue-800 to-indigo-900 rounded-xl p-6 sm:p-8 text-white shadow-md mb-8">
+        <div class="max-w-3xl">
+          <span class="inline-block px-3 py-1 bg-blue-600/60 text-blue-200 text-xs font-semibold tracking-wider uppercase rounded-full mb-3">
+            SSC CGL, Selection Post & Stenographer Pattern
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+            Master 100 Comprehensive Active & Passive Voice MCQs
+          </h2>
+          <p class="mt-2 text-sm sm:text-base text-blue-100 leading-relaxed">
+            Four specialized 25-question mock tests calibrated to exact exam specifications. Features authentic TCS/Eduquity interface, 15-minute countdown timer, +2 / -0.25 scoring, option shuffling, and dedicated post-exam analysis for incorrect & unattempted questions.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-4 text-xs font-medium text-blue-200">
+            <span class="flex items-center"><svg class="w-4 h-4 mr-1 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 4 Full Mocks</span>
+            <span class="flex items-center"><svg class="w-4 h-4 mr-1 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg> 15 Mins Count-down</span>
+            <span class="flex items-center"><svg class="w-4 h-4 mr-1 text-purple-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path></svg> +2 Correct | -0.25 Incorrect</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mock Tests Grid -->
+      <div class="mb-8">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-bold text-slate-800">Available Mock Tests</h3>
+          <span class="text-xs text-slate-500 font-medium">Click any test below to review instructions and start</span>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="mocks-list-container">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Quick Concept Guide Summary -->
+      <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+        <h3 class="text-base font-bold text-slate-900 mb-4 flex items-center">
+          <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          Syllabus & Concept Coverage Blueprint
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+          <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+            <h4 class="font-bold text-blue-800 mb-1">Mock 1: Tenses Masterclass</h4>
+            <p class="text-slate-600">All 12 tenses: Simple (Present/Past/Future), Continuous (Present/Past/Future), Perfect, and rare Perfect Continuous conversions.</p>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+            <h4 class="font-bold text-indigo-800 mb-1">Mock 2: Modals & Semi-Modals</h4>
+            <p class="text-slate-600">Can, Could, May, Might, Should, Must, Ought to; Modal Continuous (may be being); Modal Perfect (should have been); has/have/about/going to.</p>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+            <h4 class="font-bold text-purple-800 mb-1">Mock 3: Interrogatives & Imperatives</h4>
+            <p class="text-slate-600">Wh- questions, Who & By Whom, Auxiliaries (Did/Does/Was/Has), Commands & Let + be, Requests (Please), and Exclamations.</p>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+            <h4 class="font-bold text-teal-800 mb-1">Mock 4: Advanced Structures</h4>
+            <p class="text-slate-600">Causatives (made to, helped to), Impersonal Passive (It is believed), Fixed Prepositions (known to), Double Objects & Negative Subjects.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 2: PRE-TEST INSTRUCTIONS MODAL ================= -->
+    <div id="modal-instructions" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+      <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden border border-slate-200">
+        <div class="px-6 py-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+          <h3 class="text-base font-bold text-slate-800" id="inst-mock-title">Mock Test Instructions</h3>
+          <button id="btn-close-inst" class="text-slate-400 hover:text-slate-600 p-1 text-lg leading-none">&times;</button>
+        </div>
+        
+        <div class="p-6 overflow-y-auto space-y-4 text-sm text-slate-700 leading-relaxed">
+          <div class="bg-blue-50 border border-blue-200 rounded p-3 text-blue-900 text-xs">
+            <strong>Standard Examination Instructions:</strong> Please read the instructions carefully before starting the examination.
+          </div>
+          
+          <h4 class="font-bold text-slate-900 text-xs uppercase tracking-wider">Exam Parameters:</h4>
+          <ul class="list-disc pl-5 space-y-1 text-xs">
+            <li><strong>Total Questions:</strong> 25 Multiple Choice Questions.</li>
+            <li><strong>Total Time:</strong> 15 Minutes (900 seconds) countdown.</li>
+            <li><strong>Marking Scheme:</strong> <span class="text-green-700 font-bold">+2.00</span> for every correct answer; <span class="text-red-600 font-bold">-0.25</span> negative marking for every incorrect answer; <span class="text-slate-500 font-bold">0.00</span> for unattempted questions.</li>
+            <li><strong>Auto Submission:</strong> When the 15-minute timer expires, your test will be submitted automatically.</li>
+            <li><strong>Option Randomization:</strong> The four distractor options are randomly shuffled each session, preserving strict exam integrity.</li>
+          </ul>
+
+          <h4 class="font-bold text-slate-900 text-xs uppercase tracking-wider">Palette Color Legend:</h4>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <div class="flex items-center space-x-2">
+              <span class="w-6 h-6 status-not-visited flex items-center justify-center font-bold text-[10px] rounded">1</span>
+              <span>Not Visited</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="w-6 h-6 status-not-answered flex items-center justify-center font-bold text-[10px]">2</span>
+              <span>Not Answered</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="w-6 h-6 status-answered flex items-center justify-center font-bold text-[10px]">3</span>
+              <span>Answered</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="w-6 h-6 status-marked flex items-center justify-center font-bold text-[10px]">4</span>
+              <span>Marked for Review</span>
+            </div>
+            <div class="flex items-center space-x-2 col-span-2">
+              <span class="w-6 h-6 status-ans-marked flex items-center justify-center font-bold text-[10px]">5</span>
+              <span>Answered & Marked for Review</span>
+            </div>
+          </div>
+
+          <div class="border-t border-slate-200 pt-3">
+            <label class="flex items-start space-x-2 cursor-pointer">
+              <input type="checkbox" id="inst-agree-check" class="mt-0.5 rounded text-blue-600 focus:ring-blue-500">
+              <span class="text-xs text-slate-600">
+                I have read and understood all instructions. I confirm that I am ready to begin the test in full screen.
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="px-6 py-3 bg-slate-50 border-t border-slate-200 flex justify-end space-x-3">
+          <button id="btn-cancel-inst" class="px-4 py-2 text-xs font-semibold text-slate-600 bg-white border border-slate-300 rounded hover:bg-slate-100">
+            Cancel
+          </button>
+          <button id="btn-start-test-action" disabled class="px-5 py-2 text-xs font-semibold text-white bg-blue-600 rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed">
+            I am Ready to Begin
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= VIEW 3: EXAM INTERFACE (TCS / EDUQUITY) ================= -->
+    <section id="view-exam" class="hidden flex-1 flex flex-col bg-slate-100">
+      
+      <!-- Exam Sub-Header / TCS Profile Bar -->
+      <div class="bg-white border-b border-slate-300 px-4 py-2 flex flex-wrap items-center justify-between text-xs sm:text-sm">
+        <div class="flex items-center space-x-3 py-1">
+          <span class="font-bold text-slate-900" id="exam-test-name">Active & Passive Voice</span>
+          <span class="text-slate-300">|</span>
+          <span class="text-slate-600">Section: <strong>General English</strong></span>
+        </div>
+        
+        <div class="flex items-center space-x-4 py-1">
+          <!-- Timer Badge -->
+          <div class="flex items-center space-x-1.5 bg-slate-100 border border-slate-300 px-3 py-1 rounded font-mono font-bold text-slate-800" id="timer-display-box">
+            <span class="text-slate-500 font-sans text-xs font-normal">Time Left:</span>
+            <span id="exam-timer" class="text-sm">15:00</span>
+          </div>
+
+          <!-- Exit Fullscreen Button -->
+          <button id="btn-exit-fullscreen" class="text-xs bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium px-2.5 py-1 rounded border border-slate-300 transition" title="Toggle Fullscreen">
+            Exit Fullscreen
+          </button>
+
+          <!-- Pause Button -->
+          <button id="btn-pause-exam" class="text-xs bg-amber-100 hover:bg-amber-200 text-amber-800 font-medium px-2.5 py-1 rounded border border-amber-300 transition">
+            Pause
+          </button>
+        </div>
+      </div>
+
+      <!-- Exam Main Body (Split: Question on Left, Palette on Right) -->
+      <div class="flex-1 flex flex-col md:flex-row overflow-hidden relative">
+        
+        <!-- Question Pane (Left) -->
+        <div class="flex-1 flex flex-col bg-white border-r border-slate-300 overflow-y-auto">
+          
+          <!-- Question Top Details Bar -->
+          <div class="px-4 sm:px-6 py-2.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between text-xs">
+            <div class="flex items-center space-x-2">
+              <span class="font-bold text-slate-900 text-sm" id="current-q-label">Question No. 1</span>
+              <span id="current-q-examtag" class="text-[11px] text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200 font-medium"></span>
+            </div>
+            <div class="text-slate-500 space-x-2 text-[11px]">
+              <span>Marks for correct: <strong class="text-green-600">+2.00</strong></span>
+              <span>Negative Marks: <strong class="text-red-500">-0.25</strong></span>
+            </div>
+          </div>
+
+          <!-- Question Prompt & Options -->
+          <div class="p-4 sm:p-6 flex-1 overflow-y-auto">
+            <!-- Question Text -->
+            <div class="text-sm sm:text-base font-medium text-slate-900 mb-6 leading-relaxed select-none" id="q-prompt-text">
+              <!-- Prompt text injected here -->
+            </div>
+
+            <!-- Options Container -->
+            <div class="space-y-3" id="q-options-container">
+              <!-- Four Options injected here -->
+            </div>
+          </div>
+
+          <!-- Bottom Action Toolbar (Fixed within Left Pane) -->
+          <div class="px-4 sm:px-6 py-3 bg-slate-100 border-t border-slate-300 flex flex-wrap items-center justify-between gap-2 z-10">
+            <!-- Left Actions -->
+            <div class="flex items-center space-x-2">
+              <button id="btn-mark-review" class="tcs-btn bg-purple-700 hover:bg-purple-800 text-white shadow-sm">
+                Mark for Review & Next
+              </button>
+              <button id="btn-clear-response" class="tcs-btn bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 shadow-sm">
+                Clear Response
+              </button>
+            </div>
+
+            <!-- Right Actions -->
+            <div class="flex items-center space-x-2">
+              <button id="btn-prev-q" class="tcs-btn bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 shadow-sm">
+                Previous
+              </button>
+              <button id="btn-save-next" class="tcs-btn bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm font-semibold">
+                Save & Next
+              </button>
+              <button id="btn-submit-exam" class="tcs-btn bg-blue-700 hover:bg-blue-800 text-white shadow-sm font-semibold ml-2">
+                Submit Test
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Pane: Question Palette (TCS Style) -->
+        <div id="palette-drawer" class="w-full md:w-80 bg-slate-50 border-t md:border-t-0 md:border-l border-slate-300 flex flex-col h-auto md:h-full">
+          
+          <!-- Candidate Mini Card -->
+          <div class="p-3 bg-white border-b border-slate-200 flex items-center space-x-3">
+            <div class="w-10 h-10 rounded bg-slate-200 flex items-center justify-center text-slate-600 font-bold border border-slate-300">
+              <svg class="w-6 h-6 text-slate-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+            </div>
+            <div class="text-xs">
+              <div class="font-bold text-slate-800">Candidate: Aspirant</div>
+              <div class="text-slate-500">Subject: Active & Passive Voice</div>
+            </div>
+          </div>
+
+          <!-- Status Legend Counters -->
+          <div class="p-3 border-b border-slate-200 bg-slate-100 text-[11px] grid grid-cols-2 gap-2">
+            <div class="flex items-center space-x-1.5">
+              <span class="w-5 h-5 status-answered flex items-center justify-center font-bold text-white text-[10px]" id="count-answered">0</span>
+              <span class="text-slate-700">Answered</span>
+            </div>
+            <div class="flex items-center space-x-1.5">
+              <span class="w-5 h-5 status-not-answered flex items-center justify-center font-bold text-white text-[10px]" id="count-not-answered">0</span>
+              <span class="text-slate-700">Not Answered</span>
+            </div>
+            <div class="flex items-center space-x-1.5">
+              <span class="w-5 h-5 status-not-visited flex items-center justify-center font-bold text-slate-700 text-[10px]" id="count-not-visited">25</span>
+              <span class="text-slate-700">Not Visited</span>
+            </div>
+            <div class="flex items-center space-x-1.5">
+              <span class="w-5 h-5 status-marked flex items-center justify-center font-bold text-white text-[10px]" id="count-marked">0</span>
+              <span class="text-slate-700">Marked for Review</span>
+            </div>
+            <div class="flex items-center space-x-1.5 col-span-2">
+              <span class="w-5 h-5 status-ans-marked flex items-center justify-center font-bold text-white text-[10px]" id="count-ans-marked">0</span>
+              <span class="text-slate-700">Ans & Marked for Review</span>
+            </div>
+          </div>
+
+          <!-- Section Label -->
+          <div class="px-3 py-2 bg-blue-700 text-white font-bold text-xs uppercase tracking-wide">
+            Questions Palette
+          </div>
+
+          <!-- Scrollable Question Grid (Does not hide bottom buttons) -->
+          <div class="p-3 flex-1 overflow-y-auto max-h-[360px] md:max-h-full">
+            <div class="grid grid-cols-5 gap-2" id="palette-buttons-grid">
+              <!-- 25 Numbered buttons injected here -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= VIEW 4: SUBMIT CONFIRMATION MODAL ================= -->
+    <div id="modal-submit-confirm" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+      <div class="bg-white rounded-xl shadow-2xl max-w-lg w-full p-6 border border-slate-200">
+        <h3 class="text-base font-bold text-slate-800 mb-3">Exam Summary & Submission</h3>
+        <p class="text-xs text-slate-600 mb-4">
+          Are you sure you want to submit the test? Once submitted, you cannot change your answers.
+        </p>
+
+        <!-- Summary Table -->
+        <table class="w-full text-xs text-left border border-slate-200 rounded mb-5">
+          <tbody class="divide-y divide-slate-200">
+            <tr class="bg-slate-50"><td class="p-2 font-medium">Total Questions</td><td class="p-2 font-bold text-right">25</td></tr>
+            <tr><td class="p-2 font-medium text-emerald-700">Answered</td><td class="p-2 font-bold text-right" id="summary-answered">0</td></tr>
+            <tr><td class="p-2 font-medium text-red-600">Not Answered</td><td class="p-2 font-bold text-right" id="summary-not-answered">0</td></tr>
+            <tr><td class="p-2 font-medium text-purple-700">Marked for Review</td><td class="p-2 font-bold text-right" id="summary-marked">0</td></tr>
+            <tr><td class="p-2 font-medium text-slate-600">Not Visited</td><td class="p-2 font-bold text-right" id="summary-not-visited">0</td></tr>
+          </tbody>
+        </table>
+
+        <div class="flex justify-end space-x-3 text-xs">
+          <button id="btn-cancel-submit" class="px-4 py-2 font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 rounded">
+            Resume Test
+          </button>
+          <button id="btn-final-confirm-submit" class="px-5 py-2 font-bold text-white bg-blue-700 hover:bg-blue-800 rounded">
+            Confirm Submit
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= VIEW 5: PAUSE OVERLAY MODAL ================= -->
+    <div id="modal-pause-overlay" class="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+      <div class="bg-white rounded-xl p-8 max-w-md w-full text-center shadow-2xl">
+        <div class="w-14 h-14 mx-auto mb-4 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>
+        <h3 class="text-lg font-bold text-slate-800 mb-1">Test Paused</h3>
+        <p class="text-xs text-slate-500 mb-6">
+          The timer has been stopped and questions are hidden. Click Resume when you are ready to continue.
+        </p>
+        <button id="btn-resume-exam" class="w-full py-2.5 bg-blue-700 hover:bg-blue-800 text-white font-bold text-xs rounded transition">
+          Resume Test
+        </button>
+      </div>
+    </div>
+
+    <!-- ================= VIEW 6: SCORE & ANALYSIS REPORT ================= -->
+    <section id="view-results" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-1">
+      
+      <!-- Scorecard Header -->
+      <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-200 pb-5 mb-5 gap-4">
+          <div>
+            <span class="inline-block px-2.5 py-0.5 bg-blue-100 text-blue-800 font-semibold text-xs rounded mb-1" id="res-mock-badge">Mock Test 1</span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900">Scorecard & Performance Analysis</h2>
+            <p class="text-xs text-slate-500 mt-1">Detailed evaluation based on +2 for Correct, -0.25 for Incorrect</p>
+          </div>
+          
+          <div class="flex items-center space-x-3">
+            <button id="btn-retake-mock" class="px-4 py-2 bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200 font-semibold text-xs rounded transition">
+              Retake Mock (New Shuffle)
+            </button>
+            <button id="btn-return-dashboard" class="px-4 py-2 bg-blue-700 text-white hover:bg-blue-800 font-semibold text-xs rounded transition">
+              Back to Dashboard
+            </button>
+          </div>
+        </div>
+
+        <!-- Metric Cards -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div class="p-4 bg-slate-50 rounded-lg border border-slate-200 text-center">
+            <div class="text-xs text-slate-500 font-medium uppercase">Final Score</div>
+            <div class="text-2xl sm:text-3xl font-extrabold text-blue-700 mt-1" id="res-total-score">0.00 / 50</div>
+            <div class="text-[11px] text-slate-400 mt-0.5" id="res-percentage">0% Marks</div>
+          </div>
+          <div class="p-4 bg-emerald-50 rounded-lg border border-emerald-200 text-center">
+            <div class="text-xs text-emerald-700 font-medium uppercase">Correct (+2.00)</div>
+            <div class="text-2xl sm:text-3xl font-extrabold text-emerald-700 mt-1" id="res-correct-count">0</div>
+            <div class="text-[11px] text-emerald-600 mt-0.5" id="res-correct-marks">+0.00 Marks</div>
+          </div>
+          <div class="p-4 bg-rose-50 rounded-lg border border-rose-200 text-center">
+            <div class="text-xs text-rose-700 font-medium uppercase">Incorrect (-0.25)</div>
+            <div class="text-2xl sm:text-3xl font-extrabold text-rose-700 mt-1" id="res-incorrect-count">0</div>
+            <div class="text-[11px] text-rose-600 mt-0.5" id="res-incorrect-marks">-0.00 Marks</div>
+          </div>
+          <div class="p-4 bg-amber-50 rounded-lg border border-amber-200 text-center">
+            <div class="text-xs text-amber-700 font-medium uppercase">Unattempted</div>
+            <div class="text-2xl sm:text-3xl font-extrabold text-amber-700 mt-1" id="res-unattempted-count">0</div>
+            <div class="text-[11px] text-amber-600 mt-0.5">0.00 Marks</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Instruction-Specific Banner -->
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6 flex items-start space-x-3">
+        <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+        <div class="text-xs text-blue-900 leading-relaxed">
+          <strong>Review Policy:</strong> In strict compliance with exam review instructions, step-by-step grammatical solutions and correct answers are displayed <strong>ONLY for incorrect and unattempted questions</strong>. Correctly answered questions are verified below without distracting solution dumps.
+        </div>
+      </div>
+
+      <!-- Solutions Accordion / Cards List -->
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-base font-bold text-slate-900 mb-3 flex items-center justify-between">
+            <span>Detailed Solutions for Incorrect & Un-attempted Questions</span>
+            <span class="text-xs font-normal text-slate-500" id="res-sol-counter">0 Questions</span>
+          </h3>
+          <div id="solutions-container" class="space-y-4">
+            <!-- Solutions injected here -->
+          </div>
+        </div>
+
+        <!-- Correct Questions Brief Summary -->
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="text-sm font-bold text-emerald-800 mb-3 flex items-center">
+            <svg class="w-4 h-4 mr-1.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+            Correctly Answered Questions (+2.00 each)
+          </h3>
+          <div id="correct-summary-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-xs">
+            <!-- Correct questions list injected here -->
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================= VIEW 7: RULES REFERENCE MODAL ================= -->
+    <div id="modal-rules-reference" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+      <div class="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[85vh] flex flex-col overflow-hidden border border-slate-200">
+        <div class="px-6 py-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+          <h3 class="text-base font-bold text-slate-800">Active & Passive Voice - Quick Revision Guide</h3>
+          <button id="btn-close-rules" class="text-slate-400 hover:text-slate-600 p-1 text-lg leading-none">&times;</button>
+        </div>
+        
+        <div class="p-6 overflow-y-auto space-y-4 text-xs text-slate-700 leading-relaxed">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border border-slate-200 rounded">
+              <thead class="bg-slate-100 text-slate-800 font-bold border-b border-slate-200">
+                <tr><th class="p-2">Tense / Structure</th><th class="p-2">Active Voice</th><th class="p-2">Passive Voice</th></tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200">
+                <tr><td class="p-2 font-medium">Simple Present</td><td class="p-2">V1 / s, es / do, does</td><td class="p-2">is/am/are + V3</td></tr>
+                <tr><td class="p-2 font-medium">Present Continuous</td><td class="p-2">is/am/are + V-ing</td><td class="p-2">is/am/are + being + V3</td></tr>
+                <tr><td class="p-2 font-medium">Present Perfect</td><td class="p-2">has/have + V3</td><td class="p-2">has/have + been + V3</td></tr>
+                <tr><td class="p-2 font-medium">Simple Past</td><td class="p-2">V2 / did + V1</td><td class="p-2">was/were + V3</td></tr>
+                <tr><td class="p-2 font-medium">Past Continuous</td><td class="p-2">was/were + V-ing</td><td class="p-2">was/were + being + V3</td></tr>
+                <tr><td class="p-2 font-medium">Past Perfect</td><td class="p-2">had + V3</td><td class="p-2">had + been + V3</td></tr>
+                <tr><td class="p-2 font-medium">Simple Future</td><td class="p-2">will/shall + V1</td><td class="p-2">will/shall + be + V3</td></tr>
+                <tr><td class="p-2 font-medium">Future Perfect</td><td class="p-2">will have + V3</td><td class="p-2">will have been + V3</td></tr>
+                <tr><td class="p-2 font-medium">Modals (can/may/should)</td><td class="p-2">Modal + V1</td><td class="p-2">Modal + be + V3</td></tr>
+                <tr><td class="p-2 font-medium">Modal Perfect</td><td class="p-2">Modal + have + V3</td><td class="p-2">Modal + have been + V3</td></tr>
+                <tr><td class="p-2 font-medium">Imperative (Command)</td><td class="p-2">V1 + Object</td><td class="p-2">Let + Object + be + V3</td></tr>
+                <tr><td class="p-2 font-medium">Who Questions</td><td class="p-2">Who + Verb + Object?</td><td class="p-2">By whom + Aux + Obj + V3?</td></tr>
+                <tr><td class="p-2 font-medium">Causative (Make/Help)</td><td class="p-2">made/helped + bare inf</td><td class="p-2">was made / helped + to-infinitive</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="px-6 py-3 bg-slate-50 border-t border-slate-200 text-right">
+          <button id="btn-dismiss-rules" class="px-4 py-2 text-xs font-semibold text-slate-700 bg-white border border-slate-300 rounded hover:bg-slate-100">
+            Close Guide
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= EMBEDDED JAVASCRIPT ================= -->
+  <script>
+    // Embedded 4 Curated Mock Tests (100 Questions)
+    const MOCK_DATA = [{"id": 1, "title": "Mock Test 1: Tenses Masterclass", "subtitle": "Complete Tenses Coverage (Simple, Continuous, Perfect, Perfect Continuous in Present, Past & Future)", "duration_minutes": 15, "total_marks": 50, "questions": [{"id": 41, "question": "The gardener waters the plants every morning.", "exam_tag": "SSC CGL 18/09/2025 (Shift 3)", "options": {"a": "The plants water the gardener every morning.", "b": "The garden is watered by plants every morning.", "c": "The plants are watered by the gardener every morning.", "d": "The plants watering the gardener every morning."}, "answer": "c", "explanation": "The plants are watered by the gardener every morning. (Correct) (a) The plants water the gardener every morning. (Incorrect Verb) (b) The garden is watered by plants every morning. (Incorrect Sentence Structure) (d) The plants watering the gardener every morning. (Incorrect Verb)"}, {"id": 125, "question": "Convert the sentence from passive to active voice: The library books are issued by the librarian every Monday.", "exam_tag": "Higher Secondary 02/08/2025 (Shift - 2)", "options": {"a": "The librarian issues the library books every Monday.", "b": "The librarian has issued the library books every Monday.", "c": "The library books were being issued by the librarian every Monday.", "d": "The librarian was issuing the library books every Monday."}, "answer": "a", "explanation": "The librarian issues the library books every Monday. (Correct) (b) The librarian has issued the library books every Monday. (Incorrect Tense) Download Exam Preparation App (c) The library books were being issued by the librarian every Monday. (Incorrect Sentence Structure) (d) The librarian was issuing the library books every Monday. (Incorrect Tense)"}, {"id": 1, "question": "The renowned archaeologist is currently excavating an ancient Roman villa.", "exam_tag": "SSC CGL 12/09/2025 (Shift 1)", "options": {"a": "An ancient Roman villa has been currently excavated by the renowned archaeologist.", "b": "An ancient Roman villa is currently being excavated by the renowned archaeologist.", "c": "An ancient Roman villa was currently being excavated by the renowned archaeologist.", "d": "An ancient Roman villa is currently excavated by the renowned archaeologist."}, "answer": "b", "explanation": "An ancient Roman villa is currently being excavated by the renowned archaeologist. (Correct) (a) An ancient Roman villa has been currently excavated by the renowned archaeologist. (Incorrect Tense) (c) An ancient Roman villa was currently being excavated by the renowned archaeologist. (Incorrect Tense) (d) An ancient Roman villa is currently excavated by a renowned archaeologist. (\u2018Being\u2019 is missing)"}, {"id": 10, "question": "A new high-speed rail line is being constructed by the government across the country.", "exam_tag": "SSC CGL 13/09/2025 (Shift 2)", "options": {"a": "The government is constructing a new high-speed rail line across the country.", "b": "The government constructs a new high-speed rail line across the country.", "c": "The government constructed a new high-speed rail line across the country.", "d": "The government has constructed a new high-speed rail line across the country."}, "answer": "a", "explanation": "The government is constructing a new high-speed rail line across the country. (Correct) (b) The government constructs a new high-speed rail line across the country. (Incorrect Tense) (c) The government constructed a new high-speed rail line across the country. (Incorrect Tense) (d) The government has constructed a new high-speed rail line across the country. (Incorrect Tense)"}, {"id": 36, "question": "They have completed the project successfully.", "exam_tag": "SSC CGL 17/09/2025 (Shift 3)", "options": {"a": "The project has completed successfully by them.", "b": "The project was completed successfully by them.", "c": "The project has been completed successfully by them.", "d": "The project is being completed successfully by them."}, "answer": "c", "explanation": "The project has been completed successfully by them. (Correct) (a) The project has completed successfully by them. (Incorrect Tense) (b) The project was completed successfully by them. (Incorrect Tense) (d) The project is being completed successfully by them. (Incorrect Tense)"}, {"id": 139, "question": "Convert the sentence provided below from its passive voice structure to an active voice structure: The rules have been changed by the authorities.", "exam_tag": "Graduate Level 28/07/2025 (Shift - 3)", "options": {"a": "The authorities changed the rules.", "b": "The authorities have been changing the rules.", "c": "The authorities have changed the rules.", "d": "The authorities are changing the rules."}, "answer": "c", "explanation": "The authorities have changed the rules. (Correct) (a) The authorities changed the rules. (Incorrect Tense) (b) The authorities have been changing the rules. (Incorrect Tense) Download Exam Preparation App (d) The authorities are changing the rules. (Incorrect Tense)"}, {"id": 133, "question": "Change the following from active to passive: Policy analysts have been questioning the economic sustainability of large-scale public funding initiatives.", "exam_tag": "Graduate Level 25/07/2025 (Shift - 3)", "options": {"a": "The economic sustainability of large-scale public funding initiatives has been being questioned by policy analysts.", "b": "Public funding initiatives were questioned for sustainability by the policy analysts.", "c": "The sustainability of large-scale public funding initiatives has been questioned by analysts economically.", "d": "Analysts questioned the sustainability of large-scale public funding initiatives."}, "answer": "a", "explanation": "The economic sustainability of large-scale public funding initiatives has been being questioned by policy analysts. (Correct) (b) Public funding initiatives were questioned for sustainability by the policy analysts. (Incorrect Sentence Structure) (c) The sustainability of large-scale public funding initiatives has been questioned by analysts economically. (Incorrect Sentence Structure) (d) Analysts questioned the sustainability of large-scale public funding initiatives. (Incorrect Sentence Structure)"}, {"id": 146, "question": "Convert the sentence provided below from its passive voice structure to an active voice structure: Several policies have been being drafted by the legislative team.", "exam_tag": "Graduate Level 31/07/2025 (Shift - 3)", "options": {"a": "The legislative team has been drafting several policies.", "b": "The legislative team drafted several policies.", "c": "The legislative team has drafted several policies.", "d": "The legislative team drafts several policies."}, "answer": "a", "explanation": "The legislative team has been drafting several policies. (Correct) (b) The legislative team drafted several policies. (Incorrect Tense) (c) The legislative team has drafted several policies. (Incorrect Tense) (d) The legislative team drafts several policies. (Incorrect Tense)"}, {"id": 15, "question": "The sudden noise startled the sleeping birds in the trees.", "exam_tag": "SSC CGL 14/09/2025 (Shift 2)", "options": {"a": "The sleeping birds in the trees were startled by the sudden noise.", "b": "The sleeping birds in the trees had been startled by the sudden noise.", "c": "The sudden noise was startling the sleeping birds in the trees.", "d": "The sleeping birds in the trees are startled by the sudden noise."}, "answer": "a", "explanation": "The sleeping birds in the trees were startled by the sudden noise. (Correct) (b) The sleeping birds in the trees had been startled by the sudden noise. (Incorrect Tense) (c) The sudden noise was startling the sleeping birds in the trees. (Incorrect Sentence Structure) (d) The sleeping birds in the trees are startled by the sudden noise. (Incorrect Tense)"}, {"id": 26, "question": "The final report was approved by the committee after several revisions.", "exam_tag": "SSC CGL 16/09/2025 (Shift 1)", "options": {"a": "The committee has approved the final report after several revisions.", "b": "The committee approved the final report after several revisions.", "c": "The committee is approving the final report after several revisions.", "d": "The committee approves the final report after several revisions."}, "answer": "b", "explanation": "The committee approved the final report after several revisions. (Correct) (a) The committee has approved the final report after several revisions. (Incorrect Tense) (c) The committee is approving the final report after several revisions. (Incorrect Tense) (d) The committee approves the final report after several revisions. (Incorrect Tense)"}, {"id": 124, "question": "Transform the following sentence into active voice: The letter was posted by Rohan.", "exam_tag": "Higher Secondary 31/07/2025 (Shift - 2)", "options": {"a": "Rohan posts the letter.", "b": "Rohan had posted the letter.", "c": "Rohan posted the letter.", "d": "Rohan is posting the letter."}, "answer": "c", "explanation": "Rohan posted the letter. (Correct) (a) Rohan posts the letter. (Incorrect Tense) (b) Rohan had posted the letter. (Incorrect Tense) (d) Rohan is posting the letter. (Incorrect Tense)"}, {"id": 187, "question": "Select the correct passive form of the given sentence. \"He wrote the letter.\"", "exam_tag": "SSC Stenographer 07/08/2025 (Shift 1)", "options": {"a": "The letter was written by him.", "b": "The letter is written by him.", "c": "The letter wrote by him.", "d": "The letter had been wrote."}, "answer": "a", "explanation": "The letter was written by him. (Correct) (b) The letter is written by him. (Incorrect Tense) (c) The letter wrote by him. (Incorrect Tense) (d) The letter had been wrote. (Incorrect Sentence structure)"}, {"id": 17, "question": "The report was being written by the intern when the power failed.", "exam_tag": "SSC CGL 14/09/2025 (Shift 3)", "options": {"a": "The intern was writing the report when the power failed.", "b": "The intern wrote the report when the power failed.", "c": "The intern had been writing the report when the power failed.", "d": "The power failed while the report was being written by the intern."}, "answer": "a", "explanation": "The intern was writing the report when the power failed. (Correct) (b) The intern wrote the report when the power failed. (Incorrect Tense) (c) The intern had been writing the report when the power failed. (Incorrect Tense) (d) The power failed while the report was being written by the intern. (Incorrect Sentence Structure)"}, {"id": 105, "question": "Change the following from active to passive: The mechanic was fixing the bike when the owner arrived.", "exam_tag": "Higher Secondary 26/07/2025 (Shift - 2)", "options": {"a": "The bike is being fixed by the mechanic when the owner arrived.", "b": "The bike was being fixed by the mechanic when the owner arrived.", "c": "The bike had been fixed by the mechanic when the owner arrived.", "d": "The mechanic had fixed the bike when the owner arrived."}, "answer": "b", "explanation": "The bike was being fixed by the mechanic when the owner arrived. (Correct) (a) The bike is being fixed by the mechanic when the owner arrived. (Incorrect Tense) (c) The bike had been fixed by the mechanic when the owner arrived. (Incorrect Tense) (d) The mechanic had fixed the bike when the owner arrived. (Incorrect Sentence Structure)"}, {"id": 12, "question": "The experiment results had been carefully documented by the researchers.", "exam_tag": "SSC CGL 13/09/2025 (Shift 3)", "options": {"a": "The researchers carefully documented the experiment results.", "b": "The researchers had carefully documented the experiment results.", "c": "The researchers were carefully documenting the experiment results.", "d": "The experiment results were carefully documented by the researchers."}, "answer": "b", "explanation": "The researchers had carefully documented the experiment results. (Correct) (a) The researchers carefully documented the experiment results. (Incorrect Tense) (c) The researchers were carefully documenting the experiment results. (Incorrect Tense) (d) The experiment results were carefully documented by the researchers. (Incorrect Sentence Structure)"}, {"id": 99, "question": "Convert the sentence provided below from its passive voice structure to an active voice structure: The bridge had been repaired by engineers before the traffic resumed.", "exam_tag": "Higher Secondary 24/07/2025 (Shift - 2)", "options": {"a": "Engineers repaired the bridge before traffic resumed.", "b": "Engineers were repairing the bridge before traffic resumed.", "c": "Engineers had repaired the bridge before the traffic resumed.", "d": "Engineers have repaired the bridge before the traffic resumed."}, "answer": "c", "explanation": "Engineers had repaired the bridge before the traffic resumed. (Correct) (a) Engineers repaired the bridge before traffic resumed. (Incorrect Tense) (b) Engineers were repairing the bridge before traffic resumed. (Incorrect Tense) (d) Engineers have repaired the bridge before the traffic resumed. (Incorrect Tense)"}, {"id": 14, "question": "The research team had been analyzing the collected data for weeks before publishing the report.", "exam_tag": "SSC CGL 14/09/2025 (Shift 1)", "options": {"a": "The collected data had been being analyzed by the research team for weeks before the report was published.", "b": "The collected data had be analyzed by the research team for weeks before publishing the report.", "c": "The collected data had analyzed by the research team for weeks before the report was publishing.", "d": "The collected data had been analyzed by the research team for weeks before publishing the report."}, "answer": "a", "explanation": "The collected data had been being analyzed by the research team for weeks before the report was published. (Correct) (b) The collected data had be analyzed by the research team for weeks before publishing the report. (Incorrect Tense) (c) The collected data had analyzed by the research team for weeks before the report was publishing. (Incorrect Tense) (d) The collected data had been analyzed by the research team for weeks before publishing the report. (Incorrect Tense)"}, {"id": 143, "question": "Convert the sentence provided below from its passive voice structure to an active voice structure: The roads had been being repaired for months before the inspection.", "exam_tag": "Graduate Level 29/07/2025 (Shift - 3)", "options": {"a": "They were repairing the roads for months before the inspection.", "b": "They had been repairing the roads for months before the inspection.", "c": "They had repaired the roads for months before the inspection.", "d": "They had been repaired the roads for months."}, "answer": "b", "explanation": "They had been repairing the roads for months before the inspection. (Correct) (a) They were repairing the roads for months before the inspection. (Incorrect Tense) (c) They had repaired the roads for months before the inspection. (Incorrect Tense) (d) They had been repaired the roads for months. (Incorrect Tense)"}, {"id": 3, "question": "The council will consider the new zoning proposal next month.", "exam_tag": "SSC CGL 12/09/2025 (Shift 2)", "options": {"a": "The new zoning proposal would be considered by the council next month.", "b": "The new zoning proposal will be considered by the council next month.", "c": "The new zoning proposal has been considered by the council next month.", "d": "The new zoning proposal is being considered by the council next month."}, "answer": "b", "explanation": "The new zoning proposal will be considered by the council next month. (Correct) (a) The new zoning proposal would be considered by the council next month. (Incorrect Modal) (c) The new zoning proposal has been considered by the council next month. (Incorrect Tense) (d) The new zoning proposal is being considered by the council next month. (Incorrect Tense)"}, {"id": 47, "question": "The company will launch the new product next month.", "exam_tag": "SSC CGL 19/09/2025 (Shift 3)", "options": {"a": "The new product is launched next month.", "b": "The new product will be launched next month.", "c": "The new product has been launched next month.", "d": "The new product will being launched next month."}, "answer": "b", "explanation": "The new product will be launched next month. (Correct) (a) The new product is launched next month. (Incorrect Tense) (c) The new product has been launched next month. (Incorrect Tense) (d) The new product will being launched next month. (Incorrect Tense)"}, {"id": 100, "question": "Convert the sentence provided below from its passive voice structure to an active voice structure: The sports event will be organized by the committee next week.", "exam_tag": "Higher Secondary 24/07/2025 (Shift - 2)", "options": {"a": "The committee organizes the sports event next week.", "b": "The committee will organize the sports event next week.", "c": "The committee is organizing the sports event next week.", "d": "The committee has organized the sports event."}, "answer": "b", "explanation": "The committee will organize the sports event next week. (Correct) (a) The committee organizes the sports event next week. (Incorrect Tense) (c) The committee is organizing the sports event next week. (Incorrect Tense) (d) The committee has organized the sports event next week. (Incorrect Tense)"}, {"id": 33, "question": "The technicians will be installing the new fibre-optic cables all morning.", "exam_tag": "SSC CGL 17/09/2025 (Shift 2)", "options": {"a": "The new fibre-optic cables will be installed by the technicians all morning.", "b": "The new fibre-optic cables will have been installed by the technicians all morning.", "c": "The new fibre-optic cables will be being installed by the technicians all morning.", "d": "The new fibre-optic cables would be installed by the technicians all morning."}, "answer": "c", "explanation": "The new fibre-optic cables will be being installed by the technicians all morning. (Correct) (a) The new fibre-optic cables will be installed by the technicians all morning. (\u2018being\u2019 is missing) (b) The new fibre-optic cables will have been installed by the technicians all morning. (Incorrect Helping Verb) (d) The new fibre-optic cables would be installed by the technicians all morning. (Incorrect Modal)"}, {"id": 130, "question": "Change the following from active to passive: The review board will be assessing the long-term impact of the proposed legislation throughout the coming year.", "exam_tag": "Graduate Level 24/07/2025 (Shift - 3)", "options": {"a": "The long-term impact of the proposed legislation will be being assessed by the review board throughout the coming year.", "b": "The proposed legislation had been assessed by the review board throughout the coming year.", "c": "The review board had assessed the long-term impact throughout the coming year.", "d": "The long-term impact will have been assessed by the review board throughout the coming year."}, "answer": "a", "explanation": "The long-term impact of the proposed legislation will be being assessed by the review board throughout the coming year. (Correct) (b) The proposed legislation had been assessed by the review board throughout the coming year. (Incorrect Sentence Structure) (c) The review board had assessed the long-term impact throughout the coming year. (Incorrect Sentence Structure) (d) The long-term impact will have been assessed by the review board throughout the coming year. (Incomplete Sentence)"}, {"id": 9, "question": "The security team will have completed the final perimeter check by midnight.", "exam_tag": "SSC CGL 13/09/2025 (Shift 2)", "options": {"a": "The final perimeter check will have completed by the security team by midnight.", "b": "The final perimeter check will have been completed by the security team by midnight.", "c": "The final perimeter check will be completed by the security team by midnight.", "d": "The final perimeter check would have been completed by the security team by midnight."}, "answer": "b", "explanation": "The final perimeter check will have been completed by the security team by midnight. (Correct) (a) The final perimeter check will have completed by the security team by midnight. (\u2018been\u2019 is missing) (c) The final perimeter check will be completed by the security team by midnight. (Incorrect Modal) (d) The final perimeter check would have been completed by the security team by midnight. (Incorrect Modal)"}, {"id": 88, "question": "The engineers will have completed the bridge by the end of the year.", "exam_tag": "SSC CGL 26/09/2025 (Shift 2)", "options": {"a": "The bridge will be completed by the engineers by the end of the year.", "b": "The bridge is completed by the engineers by the end of the year.", "c": "The bridge would have been completed by the engineers by the end of the year.", "d": "The bridge will have been completed by the engineers by the end of the year."}, "answer": "d", "explanation": "The bridge will have been completed by the engineers by the end of the year. (Correct) (a) The bridge will be completed by the engineers by the end of the year. (Incorrect Verb) (b) The bridge is completed by the engineers by the end of the year. (Incorrect Tense) (c) The bridge would have been completed by the engineers by the end of the year. (Incorrect Modal)"}]}, {"id": 2, "title": "Mock Test 2: Modals & Semi-Modals", "subtitle": "Simple Modals, Modal Continuous, Modal Perfect, Perfect Continuous & Periphrastic Infinitives", "duration_minutes": 15, "total_marks": 50, "questions": [{"id": 24, "question": "The security team can internally monitor all network traffic.", "exam_tag": "SSC CGL 15/09/2025 (Shift 3)", "options": {"a": "All network traffic can be monitored internally by the security team.", "b": "All network traffic could be monitored internally by the security team.", "c": "All network traffic will be monitored internally by the security team.", "d": "All network traffic might be monitored internally by the security team."}, "answer": "a", "explanation": "All network traffic can be monitored internally by the security team. (Correct) (b) All network traffic could be monitored internally by the security team. (Incorrect Modal) (c) All network traffic will be monitored internally by the security team. (Incorrect Modal) (d) All network traffic might be monitored internally by the security team. (Incorrect Modal)"}, {"id": 55, "question": "The researchers may publish their findings next month.", "exam_tag": "SSC CGL 21/09/2025 (Shift 1)", "options": {"a": "Their findings might be published by the researchers next month.", "b": "Their findings may be published by the researchers next month.", "c": "Their findings are published by the researchers next month.", "d": "Their findings could be published by the researchers next month."}, "answer": "b", "explanation": "Their findings may be published by the researchers next month. (Correct) (a) Their findings might be published by the researchers next month. (Incorrect Modal) (c) Their findings are published by the researchers next month. (Incorrect Verb) (d) Their findings could be published by the researchers next month. (Incorrect Modal)"}, {"id": 152, "question": "Choose the correct active voice form of the sentence: The message may not be delivered by the soldiers.", "exam_tag": "Graduate Level 29/08/2025 (Shift - 1)", "options": {"a": "The soldiers may not deliver the message.", "b": "The soldiers may deliver the message.", "c": "The message may deliver the soldiers.", "d": "The soldiers might have delivered the message."}, "answer": "a", "explanation": "The soldiers may not deliver the message. (Correct) (b) The soldiers may deliver the message. (\u2018Not\u2019 is Missing) (c) The message may deliver the soldiers. (Incorrect Sentence Structure) (d) The soldiers might have delivered the message. (Incorrect Modal)"}, {"id": 173, "question": "Select the correct passive form of the given sentence. \"They can deliver the goods tomorrow.\"", "exam_tag": "SSC Stenographer 06/08/2025 (Shift 3)", "options": {"a": "The goods can be being delivered tomorrow.", "b": "The goods shall be delivering tomorrow.", "c": "The goods can deliver tomorrow.", "d": "The goods can be delivered tomorrow."}, "answer": "d", "explanation": "The goods can be delivered tomorrow. (Correct) (a) The goods can be being delivered tomorrow. (Incorrect Use of \u2018being\u2019) (b) The goods shall be delivering tomorrow. (Incorrect Verb) (c) The goods can deliver tomorrow. (Incorrect Verb)"}, {"id": 179, "question": "Select the correct active form. \"The truth must be told by you.\"", "exam_tag": "SSC Stenographer 06/08/2025 (Shift 3)", "options": {"a": "You must have told the truth.", "b": "You ought to tell the truth.", "c": "You must be telling the truth.", "d": "You must tell the truth."}, "answer": "d", "explanation": "You must tell the truth. (Correct) (a) You must have told the truth. (Incorrect Verb) (b) You ought to tell the truth. (Incorrect Modal) (c) You must be telling the truth. (Incorrect form of Verb)"}, {"id": 203, "question": "Select the correct passive form of the given sentence. \"The director should announce the results today.\"", "exam_tag": "SSC Stenographer 07/08/2025 (Shift 3)", "options": {"a": "The results should being announced.", "b": "The results should be announced today.", "c": "The results should be announce today.", "d": "The results should have been announced."}, "answer": "b", "explanation": "The results should be announced today. (Correct) (a) The results should being announced. (Incorrect Verb) (c) The results should be announce today. (Incorrect Verb) (d) The results should have been announced. (Incorrect Tense)"}, {"id": 215, "question": "Select the correct passive form of the given sentence. \"They ought to have completed the task.\"", "exam_tag": "SSC Stenographer 08/08/2025 (Shift 1)", "options": {"a": "The task ought have completed.", "b": "The task ought be completed.", "c": "The task ought to have been completed.", "d": "The task ought to completed."}, "answer": "c", "explanation": "The task ought to have been completed. (Correct) (a) The task ought have completed. (\u2018been\u2019 is missing) (b) The task ought be completed. (Incorrect Tense) (d) The task ought to completed. (Incorrect Tense)"}, {"id": 189, "question": "Select the correct active form. \"The article ought to have been revised by the editor.\"", "exam_tag": "SSC Stenographer 07/08/2025 (Shift 1)", "options": {"a": "The editor ought to have revised the article.", "b": "The editor ought to be revising the article.", "c": "The editor ought to revise the article.", "d": "The editor must have revised the article."}, "answer": "a", "explanation": "The editor ought to have revised the article. (Correct) (b) The editor ought to be revising the article. (Incorrect Tense) (c) The editor ought to revise the article. (Incorrect Tense) (d) The editor must have revised the article. (Incorrect Modal)"}, {"id": 190, "question": "Select the correct passive form of the given sentence. \"The mechanic may be checking the brakes now.\"", "exam_tag": "SSC Stenographer 07/08/2025 (Shift 1)", "options": {"a": "The brakes may checked now.", "b": "The brakes may be being checked now.", "c": "The brakes may be checking now.", "d": "The brakes may be check now."}, "answer": "b", "explanation": "The brakes may be being checked now. (Correct) (a) The brakes may checked now. (\u2018be being\u2019 is missing) (c) The brakes may be checking now. (Incorrect form of Verb) (d) The brakes may be check now. (Incorrect form of verb)"}, {"id": 201, "question": "Select the correct passive form of the given sentence. \"They might be repairing the engine now.\"", "exam_tag": "SSC Stenographer 07/08/2025 (Shift 3)", "options": {"a": "The engine might be repaired now.", "b": "The engine may be repairing now.", "c": "The engine might be being repaired now.", "d": "The engine might repaired now."}, "answer": "c", "explanation": "The engine might be being repaired now. (Correct) (a) The engine might be repaired now. (\u2018being\u2019 is missing) (b) The engine may be repairing now. (Incorrect form of Verb) (d) The engine might repaired now.( \u2018be being\u2019 is missing)"}, {"id": 220, "question": "Select the correct passive form of the given sentence. \"The principal might be watching the surveillance footage.\"", "exam_tag": "SSC Stenographer 08/08/2025 (Shift 2)", "options": {"a": "The surveillance footage is being watched.", "b": "The surveillance footage might watched.", "c": "The surveillance footage might be watched.", "d": "The surveillance footage might be being watched by the principal."}, "answer": "d", "explanation": "The surveillance footage might be being watched by the principal.(Correct) (a) The surveillance footage is being watched. (Incorrect Helping Verb) (b) The surveillance footage might watched.(\u201cbe being\u201d is missing) (c) The surveillance footage might be watched.(\u2018being\u2019 is missing)"}, {"id": 27, "question": "The authorities might have revoked his security clearance.", "exam_tag": "SSC CGL 16/09/2025 (Shift 2)", "options": {"a": "His security clearance might had been revoked.", "b": "His security clearance might be revoked by the authorities.", "c": "His security clearance might have been revoked by the authorities.", "d": "His security clearance might have revoked by the authorities."}, "answer": "c", "explanation": "His security clearance might have been revoked by the authorities. (Correct) (a) His security clearance might had been revoked. (Incorrect Verb) (b) His security clearance might be revoked by the authorities. (Incorrect Verb) (d) His security clearance might have revoked by the authorities. (\u2018been\u2019 is missing)"}, {"id": 43, "question": "They should have completed the assignment by now.", "exam_tag": "SSC CGL 19/09/2025 (Shift 1)", "options": {"a": "The assignment should completed by now.", "b": "The assignment should have been completed by now.", "c": "The assignment must have completed by now.", "d": "The assignment has been completed by now."}, "answer": "b", "explanation": "The assignment should have been completed by now. (Correct) (a) The assignment should completed by now. (Incorrect Tense) (c) The assignment must have completed by now. (Incorrect Tense) (d) The assignment has been completed by now. (Incorrect Tense)"}, {"id": 54, "question": "The stolen artwork might have been smuggled out of the country.", "exam_tag": "SSC CGL 20/09/2025 (Shift 3)", "options": {"a": "They might smuggle the stolen artwork out of the country.", "b": "Someone might has smuggled the stolen artwork out of the country.", "c": "The stolen artwork of the country might be smuggled by someone.", "d": "Someone might have smuggled the stolen artwork out of the country."}, "answer": "d", "explanation": "Someone might have smuggled the stolen artwork out of the country. (Correct) (a) They might smuggle the stolen artwork out of the country. (Incorrect Sentence Structure) (b) Someone might has smuggled the stolen artwork out of the country. (Incorrect Verb) (c) The stolen artwork of the country might be smuggled by someone. (Incorrect Sentence Structure)"}, {"id": 67, "question": "They must have submitted the final report before the deadline.", "exam_tag": "SSC CGL 23/09/2025 (Shift 1)", "options": {"a": "The final report must be submitted by them before the deadline.", "b": "The final report must have been submitted by them before the deadline.", "c": "The final report was submitted by them before the deadline.", "d": "The final report had to be submitted by them before the deadline."}, "answer": "b", "explanation": "The final report must have been submitted by them before the deadline. (Correct) (a) The final report must be submitted by them before the deadline. (Incorrect Helping Verb) (c) The final report was submitted by them before the deadline. (Incorrect Helping Verb) (d) The final report had to be submitted by them before the deadline. (Incorrect Helping Verb)"}, {"id": 72, "question": "The documents should have been reviewed by the manager before submission.", "exam_tag": "SSC CGL 23/09/2025 (Shift 3)", "options": {"a": "The manager should review the documents before submission.", "b": "The manager should have reviewed the documents before submission.", "c": "The manager might have reviewed the documents before submission.", "d": "The manager must review the documents before submission."}, "answer": "b", "explanation": "The manager should have reviewed the documents before submission. (Correct) (a) The manager should review the documents before submission. (Incorrect Tense) (c) The manager might have reviewed the documents before submission. (Incorrect Modal) (d) The manager must review the documents before submission. (Incorrect Modal)"}, {"id": 127, "question": "Change the following sentence from active to passive: The technicians might have been repairing the air-conditioning unit yesterday.", "exam_tag": "Higher Secondary 29/08/2025 (Shift - 2)", "options": {"a": "The technicians repaired the air-conditioning unit yesterday.", "b": "The air-conditioning unit might be repaired yesterday by the technicians.", "c": "The air-conditioning unit has been repaired yesterday by the technicians.", "d": "The air-conditioning unit might have been repaired yesterday by the technicians."}, "answer": "d", "explanation": "The air-conditioning unit might have been repaired yesterday by the technicians. (Correct) (a) The technicians repaired the air-conditioning unit yesterday. (Incorrect Sentence Structure) (b) The air-conditioning unit might be repaired yesterday by the technicians. (Incorrect Tense) (c) The air-conditioning unit has been repaired yesterday by the technicians. (Incorrect Tense)"}, {"id": 148, "question": "Change the following from active to passive: The investigators would have reopened the case had new leads been discovered.", "exam_tag": "Graduate Level 02/08/2025 (Shift - 3)", "options": {"a": "The case would have been reopened by the investigators had new leads been discovered.", "b": "The case would reopened by the investigators had new leads been discovered.", "c": "The case could be reopened by the investigators had new leads been discovered.", "d": "The case was under reopening by the investigators had new leads been discovered."}, "answer": "a", "explanation": "The case would have been reopened by the investigators had new leads been discovered. (Correct) (b) The case would be reopened by the investigators had new leads been discovered. (Incorrect Tense) (c) The case could be reopened by the investigators had new leads been discovered. (Incorrect Tense) (d) The case was under reopening by the investigators had new leads been discovered. (Incorrect Tense)"}, {"id": 162, "question": "Convert the sentence provided below from its passive voice structure to an active voice structure: All the entries must have been verified by the auditor before submission.", "exam_tag": "SSC Stenographer 06/08/2025 (Shift 1)", "options": {"a": "All the entries are to be verified before submission.", "b": "The auditor was verifying all entries before submission.", "c": "The auditor must have verified all the entries before submission.", "d": "All entries were verified by the auditor."}, "answer": "c", "explanation": "The auditor must have verified all the entries before submission. (Correct) (a) All the entries are to be verified before submission. (Incorrect Sentence Structure) (b) The auditor was verifying all entries before submission. (Incorrect Verb) (d) All entries were verified by the auditor. (Incorrect Sentence Structure)"}, {"id": 181, "question": "Select the correct passive form of the given sentence. \"We may have misunderstood the instructions.\"", "exam_tag": "SSC Stenographer 06/08/2025 (Shift 3)", "options": {"a": "The instructions may be misunderstood.", "b": "The instructions are being misunderstood.", "c": "The instructions may have misunderstood.", "d": "The instructions may have been misunderstood."}, "answer": "d", "explanation": "The instructions may have been misunderstood. (Correct) (a) The instructions may be misunderstood. (Incorrect Verb) (b) The instructions are being misunderstood. (Incorrect Verb) (c) The instructions may have misunderstood. (\u2018Been\u2019 is missing)"}, {"id": 224, "question": "Select the correct active form. \"This error could have been avoided by careful planning.\"", "exam_tag": "SSC Stenographer 08/08/2025 (Shift 2)", "options": {"a": "This error could be avoided by careful planning.", "b": "Someone could have avoided this error.", "c": "This error could not have been made.", "d": "Careful planning could have avoided this error."}, "answer": "d", "explanation": "Careful planning could have avoided this error. (Correct) (a) This error could be avoided by careful planning. (Incorrect Sentence Structure) (b) Someone could have avoided this error. (Incorrect Subject) (c) This error could not have been made. (Incorrect Sentence Structure)"}, {"id": 237, "question": "Select the correct passive form of the given sentence. \"She may have told them the truth.\"", "exam_tag": "SSC Stenographer 08/08/2025 (Shift 3)", "options": {"a": "The truth may have told to them.", "b": "The truth may have been told to them.", "c": "The truth may told them.", "d": "The truth has been told."}, "answer": "b", "explanation": "The truth may have been told to them. (Correct) (a) The truth may have told to them. (\u2018been\u2019 is missing) (c) The truth may told them. (Incorrect Verb) (d) The truth has been told. (Incorrect Helping Verb)"}, {"id": 196, "question": "Select the correct passive form of the given sentence. \"They should have been following the instructions carefully.\"", "exam_tag": "SSC Stenographer 07/08/2025 (Shift 2)", "options": {"a": "The instructions should be followed carefully.", "b": "The instructions should have been being followed carefully.", "c": "The instructions should have been followed carefully.", "d": "The instructions should followed carefully."}, "answer": "b", "explanation": "The instructions should have been being followed carefully. (Correct) (a) The instructions should be followed carefully. (Incorrect Verb) (c) The instructions should have been followed carefully. (\u2018being\u2019 is missing) (d) The instructions should followed carefully. (Verb is incomplete)"}, {"id": 45, "question": "You have to activate this data add-on pack manually.", "exam_tag": "SSC CGL 19/09/2025 (Shift 2)", "options": {"a": "This data add-on pack has to be activated by you manually.", "b": "You should manually activate this data add-on pack.", "c": "Activate this data add-on pack manually.", "d": "You have to be manually activated by this data add-on pack."}, "answer": "a", "explanation": "This data add-on pack has to be activated by you manually. (Correct) (b) You should manually activate this data add-on pack. (Incorrect Sentence Structure) (c) Activate this data add-on pack manually. (Incorrect Sentence Structure) (d) You have to be manually activated by this data add-on pack. (Incorrect Sentence Structure)"}, {"id": 63, "question": "The damaged server is about to be repaired by the technician.", "exam_tag": "SSC CGL 22/09/2025 (Shift 2)", "options": {"a": "The technician is to be repaired about the damaged server.", "b": "The damaged server is about repairing the technician.", "c": "The technician is about to repair the damaged server.", "d": "The damaged server will be repaired by the technician."}, "answer": "c", "explanation": "The technician is about to repair the damaged server. (Correct) (a) The technician is to be repaired about the damaged server. (Incorrect Sentence Structure) (b) The damaged server is about repairing the technician. (Incorrect Sentence Structure) (d) The damaged server will be repaired by the technician. (Incorrect Tense)"}]}, {"id": 3, "title": "Mock Test 3: Interrogatives & Imperatives", "subtitle": "Wh- Questions, Who/By Whom, Yes/No Auxiliaries, Imperatives, Requests & Exclamations", "duration_minutes": 15, "total_marks": 50, "questions": [{"id": 5, "question": "Why did the committee reject the proposed amendments?", "exam_tag": "SSC CGL 12/09/2025 (Shift 3)", "options": {"a": "Why were the proposed amendments rejected by the committee?", "b": "Why have the proposed amendments been rejected by the committee?", "c": "Why are the proposed amendments being rejected by the committee?", "d": "Why did the proposed amendments be rejected by the committee?"}, "answer": "a", "explanation": "Why were the proposed amendments rejected by the committee? (Correct) (b) Why have the proposed amendments been rejected by the committee? (Incorrect Tense) (c) Why are the proposed amendments being rejected by the committee? (Incorrect Tense) (d) Why did the proposed amendments be rejected by the committee? (Incorrect Tense)"}, {"id": 59, "question": "Why can't you repair the car?", "exam_tag": "SSC CGL 21/09/2025 (Shift 3)", "options": {"a": "Why cannot the car be repaired by you?", "b": "Why can't the car be repaired by you?", "c": "Why the car cannot be repaired by you?", "d": "Why could not the car be repaired by you?"}, "answer": "b", "explanation": "Why can't the car be repaired by them? (Correct) (a) Why cannot the car be repaired by you? (Incorrect position of \u2018not\u2019) (c) Why the car cannot be repaired by you? (Incorrect position of \u2018can\u2019) (d) Why could not the car be repaired by you? (Incorrect Modal)"}, {"id": 104, "question": "What is the active voice of the following sentence? When was the theory of gravity discovered by Newton and later explained in detail by scientists?", "exam_tag": "Higher Secondary 25/07/2025 (Shift - 2)", "options": {"a": "When Newton discovers the theory of gravity and later scientists explained it in detail?", "b": "When did Newton discover the theory of gravity and later scientists explained it in detail?", "c": "When was the Newton discovered the theory of gravity and later it was explained by scientists?", "d": "When Newton discovered the theory of gravity and later explained by the scientists?"}, "answer": "b", "explanation": "When did Newton discover the theory of gravity and later scientists explained it in detail? (Correct) (a) When Newton discovers the theory of gravity and later scientists explained it in detail? (\u2018Did\u2019 is Missing) (c) When was Newton discovered the theory of gravity and later it was explained by scientists? (Incorrect Verb) (d) When Newton discovered the theory of gravity and later explained by the scientists? (\u2018Did\u2019 is Missing)"}, {"id": 209, "question": "Select the correct active form. \"Why was the match postponed by the organizers?\"", "exam_tag": "SSC Stenographer 07/08/2025 (Shift 3)", "options": {"a": "Why have the organizers postponed the match?", "b": "Why do the organizers postpone the match?", "c": "Why did the organizers postpone the match?", "d": "Why are the organizers postponing the match?"}, "answer": "c", "explanation": "Why did the organizers postpone the match? (Correct) (a) Why have the organizers postponed the match? (Incorrect Tense) (b) Why do the organizers postpone the match? (Incorrect Tense) (d) Why are the organizers postponing the match? (Incorrect Tense)"}, {"id": 128, "question": "Change the following sentence from passive to active: By whom was the final report approved for publication?", "exam_tag": "Higher Secondary 29/08/2025 (Shift - 2)", "options": {"a": "Who had approved the final report for publication?", "b": "Who approves the final report for publication?", "c": "Who approved the final report for publication?", "d": "Who has approved the final report for publication?"}, "answer": "c", "explanation": "Who approved the final report for publication? (Correct) (a) Who had approved the final report for publication? (Incorrect Tense) (b) Who approves the final report for publication? (Incorrect Tense) (d) Who has approved the final report for publication? (Incorrect Tense)"}, {"id": 213, "question": "Select the correct active form. \"By whom is this rule obeyed?\"", "exam_tag": "SSC Stenographer 08/08/2025 (Shift 1)", "options": {"a": "Who is obeying this rule?", "b": "Who does obey this rule?", "c": "Who obeys this rule?", "d": "Who has obeyed this rule?"}, "answer": "c", "explanation": "Who obeys this rule? (Correct) (a) Who is obeying this rule? (Incorrect Tense) (b) Who does obey this rule? (Incorrect Tense) (d) Who has obeyed this rule? (Incorrect Tense)"}, {"id": 11, "question": "Can the technician repair the faulty circuit before noon?", "exam_tag": "SSC CGL 13/09/2025 (Shift 3)", "options": {"a": "Could the faulty circuit have been repaired by the technician before noon?", "b": "Could the faulty circuit be repaired by the technician before noon?", "c": "Can the faulty circuit being repaired by the technician before noon?", "d": "Can the faulty circuit be repaired by the technician before noon?"}, "answer": "d", "explanation": "Can the faulty circuit be repaired by the technician before noon? (Correct) (a) Could the faulty circuit have been repaired by the technician before noon? (Incorrect Modal) (b) Could the faulty circuit be repaired by the technician before noon? (Incorrect Modal) (c) Can the faulty circuit being repaired by the technician before noon? (Incorrect Verb Form)"}, {"id": 20, "question": "Did the committee finalize the annual budget report?", "exam_tag": "SSC CGL 15/09/2025 (Shift 1)", "options": {"a": "Has the annual budget report been finalized by the committee?", "b": "Was the annual budget report being finalized by the committee?", "c": "Was the annual budget report finalized by the committee?", "d": "Is the annual budget report finalized by the committee?"}, "answer": "c", "explanation": "Was the annual budget report finalized by the committee? (Correct) (a) Has the annual budget report been finalized by the committee? (Incorrect Helping Verb) (b) Was the annual budget report being finalized by the committee? (Incorrect Verb) (d) Is the annual budget report finalized by the committee? (Incorrect Helping Verb)"}, {"id": 21, "question": "Did the board approve the company\u2019s revised financial policy ?", "exam_tag": "SSC CGL 15/09/2025 (Shift 2)", "options": {"a": "Was the company\u2019s revised financial policy approved from the board?", "b": "Has the company\u2019s revised financial policy been approved by the board?", "c": "Was the company\u2019s revised financial policy approved by the board?", "d": "Is the company\u2019s revised financial policy being approved by the board?"}, "answer": "c", "explanation": "Was the company\u2019s revised financial policy approved by the board? (Correct) (a) Was the company\u2019s revised financial policy approved from the board? (Incorrect Sentence Structure) (b) Has the company\u2019s revised financial policy been approved by the board? (Incorrect Helping Verb) (d) Is the company\u2019s revised financial policy being approved by the board? (Incorrect Helping Verb)"}, {"id": 29, "question": "Has the technician repaired the faulty circuit?", "exam_tag": "SSC CGL 16/09/2025 (Shift 3)", "options": {"a": "Is the faulty circuit repaired by the technician?", "b": "Has the faulty circuit been repaired by the technician?", "c": "Was the faulty circuit being repaired by the technician?", "d": "Had the faulty circuit repaired by the technician?"}, "answer": "b", "explanation": "Has the faulty circuit been repaired by the technician? (Correct) (a) Is the faulty circuit repaired by the technician? (Incorrect Helping Verb) (c) Was the faulty circuit being repaired by the technician? (Incorrect Helping Verb) (d) Had the faulty circuit repaired by the technician? (Incorrect Helping Verb)"}, {"id": 52, "question": "Was the new software developed by the internal team or outsourced?", "exam_tag": "SSC CGL 20/09/2025 (Shift 2)", "options": {"a": "Did the internal team develop the new software or outsource it?", "b": "Has the internal team developed the new software or outsourced it?", "c": "Is the internal team developing the new software or outsourcing it?", "d": "Did the outsourcing develop the new software for the team?"}, "answer": "a", "explanation": "Did the internal team develop the new software or outsource it? (Correct) (b) Has the internal team developed the new software or outsourced it? (Incorrect Verb) (c) Is the internal team developing the new software or outsourcing it? (Incorrect Verb) (d) Did the outsourcing develop the new software for the team? (Incorrect Sentence Structure)"}, {"id": 71, "question": "Do the authorities monitor the city traffic effectively ?", "exam_tag": "SSC CGL 23/09/2025 (Shift 3)", "options": {"a": "Is the city traffic monitored effectively by the authorities?", "b": "Is the city traffic being monitored effectively by the authorities?", "c": "Has the city traffic been monitored effectively by the authorities?", "d": "Do the city traffic monitored effectively by the authorities?"}, "answer": "a", "explanation": "Is the city traffic monitored effectively by the authorities? (Correct) (b) Is the city traffic being monitored effectively by the authorities? (Incorrect Tense) (c) Has the city traffic been monitored effectively by the authorities? (Incorrect Verb) (d) Do the city traffic monitored effectively by the authorities? (Incorrect Verb)"}, {"id": 75, "question": "Does the company provide health insurance to its employees?", "exam_tag": "SSC CGL 24/09/2025 (Shift 2)", "options": {"a": "Is health insurance provided to employees by the company?", "b": "Has health insurance been provided to employees by the company?", "c": "Was health insurance provided to employees by the company?", "d": "Do employees are provided health insurance by the company?"}, "answer": "a", "explanation": "Is health insurance provided to employees by the company? (Correct) (b) Has health insurance been provided to employees by the company? (Incorrect Verb) (c) Was health insurance provided to employees by the company? (Incorrect Verb) (d) Do employees are provided health insurance by the company? (IncorrecT Verb)"}, {"id": 204, "question": "Select the correct active form. \"Was your phone being charged by someone?\"", "exam_tag": "SSC Stenographer 07/08/2025 (Shift 3)", "options": {"a": "Has someone charged your phone?", "b": "Did someone charge your phone?", "c": "Was someone charging your phone?", "d": "Is someone charging your phone?"}, "answer": "c", "explanation": "Was someone charging your phone? (Correct) (a) Has someone charged your phone? (Incorrect Verb) (b) Did someone charge your phone? (Incorrect Verb) (d) Is someone charging your phone? (Incorrect Verb)"}, {"id": 208, "question": "Transform the following sentence into active voice: Were you instructed by them how to fill in the form?", "exam_tag": "SSC Stenographer 07/08/2025 (Shift 3)", "options": {"a": "Did you instruct them how to fill in the form?", "b": "Was he informed how to fill in the form by them?", "c": "Were they informing you how to fill in the form?", "d": "Did they instruct you how to fill in the form?"}, "answer": "d", "explanation": "Did they instruct you how to fill in the form? (Correct) (a) Did you instruct them how to fill in the form? (Incorrect Structure) (b) Was he informed how to fill in the form by them? (Incorrect Subject) (c) Were they informing you how to fill in the form? (Incorrect Tense)"}, {"id": 211, "question": "Select the correct active form. \"Has the file been uploaded by you?\"", "exam_tag": "SSC Stenographer 08/08/2025 (Shift 1)", "options": {"a": "Did you upload the file?", "b": "Had you uploaded the file?", "c": "Are you uploading the file?", "d": "Have you uploaded the file?"}, "answer": "d", "explanation": "Have you uploaded the file? (Correct) (a) Did you upload the file? (Incorrect Verb) (b) Had you uploaded the file? (Incorrect Verb) (c) Are you uploading the file? (Incorrect Verb)"}, {"id": 223, "question": "Select the correct active form. \"Was the culprit being chased by the police?\"", "exam_tag": "SSC Stenographer 08/08/2025 (Shift 2)", "options": {"a": "Had the police chased the culprit?", "b": "Did the police chase the culprit?", "c": "Was the police chasing the culprit?", "d": "Is the police chasing the culprit?"}, "answer": "c", "explanation": "Was the police chasing the culprit? (Correct) (a) Had the police chased the culprit? (Incorrect Tense) (b) Did the police chase the culprit? (Incorrect Tense) (d) Is the police chasing the culprit? (Incorrect Tense)"}, {"id": 235, "question": "Select the correct active form. \"Was the novel written by her?\"", "exam_tag": "SSC Stenographer 08/08/2025 (Shift 3)", "options": {"a": "Was she writing the novel?", "b": "Is she writing the novel?", "c": "Did she write the novel?", "d": "Has she written the novel?"}, "answer": "c", "explanation": "Did she write the novel? (Correct) (a) Was she writing the novel? (Incorrect Tense) (b) Is she writing the novel? (Incorrect Tense) (d) Has she written the novel? (Incorrect Tense)"}, {"id": 239, "question": "Are the students discussing the upcoming exam in the library?", "exam_tag": "Eduquity-based Pattern (EBP)", "options": {"a": "Is the upcoming exam being discussed by the students in the library?", "b": "Has the upcoming exam been discussed by the students in the library?", "c": "Was the upcoming exam being discussed by the students in the library?", "d": "What upcoming exam is being discussed by the students in the library?"}, "answer": "a", "explanation": "Is the upcoming exam being discussed by the students in the library? (Correct) (b) Has the upcoming exam been discussed by the students in Download Exam Preparation App the library? (Incorrect Tense) (c) Was the upcoming exam being discussed by the students in the library? (Incorrect Tense) (d) What upcoming exam is being discussed by the students in the library? (Incorrect Sentence Structure)"}, {"id": 240, "question": "Was the food finished by Kavya?", "exam_tag": "Eduquity-based Pattern (EBP)", "options": {"a": "Does Kavya finish the food?", "b": "Has Kavya finished the food?", "c": "Did Kavya finish the food?", "d": "Had Kavya finished the food?"}, "answer": "c", "explanation": "Did Kavya finish the food? (Correct) (a) Does Kavya finish the food? (Incorrect Helping Verb) (b) Has Kavya finished the food? (Incorrect Tense) (d) Had Kavya finished the food? (Incorrect Tense)"}, {"id": 119, "question": "Change the voice of the following sentence: Please let all the files be arranged neatly in the shelf and the old records be removed from the table.", "exam_tag": "Higher Secondary 30/07/2025 (Shift - 2)", "options": {"a": "Please arrange all the files neatly from the table and remove the old records in the shelf.", "b": "Please arrange all the files neatly in the shelf and remove the old records from the table.", "c": "Please remove all the files from the shelf and arrange the old records neatly.", "d": "Please arrange the files neatly and removed the old records."}, "answer": "b", "explanation": "Please arrange all the files neatly in the shelf and remove the old records from the table. (a) Please arrange all the files neatly from the table and remove the old records in the shelf. (Incorrect Word Order) (c) Please remove all the files from the shelf and arrange the old records neatly. (Incorrect Word Order) (d) Please arrange the files neatly and removed the old records. (Incomplete Sentence)"}, {"id": 217, "question": "Transform the following sentence into active voice: Let the mobile be charged.", "exam_tag": "SSC Stenographer 08/08/2025 (Shift 1)", "options": {"a": "Charge the mobile.", "b": "One must charge the mobile.", "c": "Someone should charge the mobile.", "d": "Will you charge the mobile?"}, "answer": "a", "explanation": "Charge the mobile. (Correct) (b) One must charge the mobile. (Incorrect Sentence Structure) (c) Someone should charge the mobile. (Incorrect Sentence Structure) (d) Will you charge the mobile? (Incorrect Sentence Structure)"}, {"id": 245, "question": "Open the window to let in some fresh air.", "exam_tag": "Eduquity-based Pattern (EBP)", "options": {"a": "You can open the window to let in some fresh air.", "b": "The window is to be open to let in some fresh air.", "c": "Let the window be opened to let in some fresh air.", "d": "Let the window open to let in some fresh air"}, "answer": "c", "explanation": "Let the window be opened to let in some fresh air. (Correct) (a) You can open the window to let in some fresh air. (Incorrect Sentence Structure) (b) The window is to be open to let in some fresh air. (Incorrect Sentence Structure) (d) Let the window open to let in some fresh air. ( Incorrect form of Verb)"}, {"id": 246, "question": "Let a statement addressing the recent controversy be issued by the company.", "exam_tag": "Eduquity-based Pattern (EBP)", "options": {"a": "The company is issuing a statement addressing the recent controversy.", "b": "Let the company issue a statement addressing the recent controversy.", "c": "The company can issue a statement addressing the recent controversy.", "d": "The company should issue a statement addressing the recent controversy."}, "answer": "b", "explanation": "Let the company issue a statement addressing the recent controversy. (Correct) (a) The company is issuing a statement addressing the recent controversy. (Incorrect Sentence Structure) (c) The company can issue a statement addressing the recent controversy. (Incorrect Sentence Structure) (d) The company should issue a statement addressing the recent controversy. (Incorrect Sentence Structure)"}, {"id": 234, "question": "Transform the following sentence into active voice: How beautifully has the picture been drawn by the artist!", "exam_tag": "SSC Stenographer 08/08/2025 (Shift 3)", "options": {"a": "How beautifully has the artist been drawn by the picture!", "b": "How beautifully has the artist been drew the picture!", "c": "How beautifully has the artist drew the picture!", "d": "How beautifully has the artist drawn the picture!"}, "answer": "d", "explanation": "How beautifully has the artist drawn the picture! (Correct) (a) How beautifully has the artist been drawn by the picture! (Incorrect structure) (b) How beautifully has the artist been drew the picture! (Incorrect Verb) (c) How beautifully has the artist drew the picture! (Incorrect form of Verb)"}]}, {"id": 4, "title": "Mock Test 4: Advanced & Special Structures", "subtitle": "Causatives (Made/Helped), Impersonal Passives, Double Objects, Fixed Prepositions & Negatives", "duration_minutes": 15, "total_marks": 50, "questions": [{"id": 35, "question": "The students were made to rewrite the essay twice.", "exam_tag": "SSC CGL 17/09/2025 (Shift 3)", "options": {"a": "The teacher made the students rewrite the essay twice.", "b": "The students made the teacher rewrite the essay twice.", "c": "The students rewrote the essay twice.", "d": "The teacher was making the students rewrite the essay twice."}, "answer": "a", "explanation": "The teacher made the students rewrite the essay twice. (Correct) (b) The students made the teacher rewrite the essay twice. (Incorrect Sentence Structure) (c) The students rewrote the essay twice. (Incorrect Sentence Structure) (d) The teacher was making the students rewrite the essay twice. (Incorrect Tense)"}, {"id": 49, "question": "She helped the students complete their assignments.", "exam_tag": "SSC CGL 20/09/2025 (Shift 1)", "options": {"a": "The students were helped to complete their assignments by her.", "b": "The students had been helped complete their assignments by her.", "c": "The students are helped complete their assignments by her.", "d": "The students will be helped to complete their assignments by her."}, "answer": "a", "explanation": "The students were helped to complete their assignments by her. (Correct) (b) The students had been helped complete their assignments by her. (Incorrect Tense) (c) The students are helped complete their assignments by her. (Incorrect Tense) (d) The students will be helped to complete their assignments by her. (Incorrect Tense)"}, {"id": 57, "question": "The teacher made the students complete the assignment on time.", "exam_tag": "SSC CGL 21/09/2025 (Shift 2)", "options": {"a": "The students were made to complete the assignment on time.", "b": "The assignment was completed by the students on time.", "c": "The students completed the assignment on time.", "d": "The teacher was making the students complete the assignment."}, "answer": "a", "explanation": "The students were made to complete the assignment on time. (Correct) (b) The assignment was completed by the students on time. (Incorrect Sentence Structure) (c) The students completed the assignment on time. (Incorrect Sentence Structure) (d) The teacher was making the students complete the assignment. (Incorrect Sentence Structure)"}, {"id": 94, "question": "The diligent technician made the broken machine function again.", "exam_tag": "SSC CGL 14/10/2025 (Shift 2)", "options": {"a": "The broken machine was made to function again by the diligent technician.", "b": "The diligent technician is causing the broken machine function again.", "c": "The diligent technician caused the broken machine to function again.", "d": "The broken machine functioned again because of the diligent technician."}, "answer": "a", "explanation": "The broken machine was made to function again by the diligent technician. (Correct) (b) The diligent technician is causing the broken machine function again. (Incorrect Verb) (c) The diligent technician caused the broken machine to function again. (Incorrect Verb) (d) The broken machine functioned again because of the diligent technician. (Incorrect Sentence Structure)"}, {"id": 123, "question": "Change the voice of the following sentence: The castle has been surrounded by deep ditches and strong barriers.", "exam_tag": "Higher Secondary 31/07/2025 (Shift - 2)", "options": {"a": "Deep ditches and strong barriers has surrounded the castle.", "b": "Deep ditches and strong barriers have surrounded the castle.", "c": "Deep ditches and strong barriers had surrounded by the castle.", "d": "Deep ditches and strong barriers have been surrounding the castle."}, "answer": "b", "explanation": "Deep ditches and strong barriers have surrounded the castle. (Correct) (a) Deep ditches and strong barriers has surrounded the castle. (Incorrect Tense) (c) Deep ditches and strong barriers had surrounded by the castle. (Incorrect Tense) (d) Deep ditches and strong barriers have been surrounding the castle. (Incorrect Tense)"}, {"id": 193, "question": "Select the correct active form. \"He is known to me.\"", "exam_tag": "SSC Stenographer 07/08/2025 (Shift 2)", "options": {"a": "I knew him.", "b": "I know him.", "c": "I had known him.", "d": "I know about him."}, "answer": "b", "explanation": "I know him. (Correct) (a) I knew him. (Incorrect tense) (c) I had known him. (Incorrect tense) (d) I know about him. (Incorrect use of \u2018about\u2019)"}, {"id": 51, "question": "The teacher gave the students a detailed explanation.", "exam_tag": "SSC CGL 20/09/2025 (Shift 2)", "options": {"a": "The students were given a detailed explanation by the teacher.", "b": "The students are given a detailed explanation by the teacher.", "c": "The students have been given a detailed explanation by the teacher.", "d": "The students will be given a detailed explanation by the teacher."}, "answer": "a", "explanation": "The students were given a detailed explanation by the teacher. (Correct) (b) The students are given a detailed explanation by the teacher. (Incorrect Tense) (c) The students have been given a detailed explanation by the teacher. (Incorrect Tense) (d) The students will be given a detailed explanation by the teacher. (Incorrect Tense) Download Exam Preparation App"}, {"id": 151, "question": "Choose the correct active form of the given sentence. A scholarship was awarded to Riya by the university.", "exam_tag": "Graduate Level 29/08/2025 (Shift - 1)", "options": {"a": "The university awarded a scholarship to Riya.", "b": "Riya will be awarded a scholarship by the university.", "c": "The university was awarding a scholarship to Riya.", "d": "The university has awarded a scholarship to Riya."}, "answer": "a", "explanation": "The university awarded a scholarship to Riya. (Correct) (b) Riya will be awarded a scholarship by the university. (Incorrect Sentence Structure) (c) The university was awarding a scholarship to Riya. (Incorrect Tense) (d) The university has awarded a scholarship to Riya. (Incorrect Tense)"}, {"id": 241, "question": "The courier gave my parcel to my neighbour in my absence.", "exam_tag": "Eduquity-based Pattern (EBP)", "options": {"a": "My parcel needs to be given to my neighbour by the courier in my absence.", "b": "My neighbour was given to my parcel by the courier in my absence.", "c": "My parcel had been given to my neighbour by the courier in my absence.", "d": "My parcel was given to my neighbour by the courier in my absence."}, "answer": "d", "explanation": "My parcel was given to my neighbour by the courier in my absence. (Correct) (a) My parcel needs to be given to my neighbour by the courier in my absence. (Incorrect Verb) (b) My neighbour was given to my parcel by the courier in my absence. (Incorrect Sentence Structure) (c) My parcel had been given to my neighbour by the courier in my absence. (Incorrect Helping Verb)"}, {"id": 79, "question": "Nobody has raised concerns about the accuracy of the new data.", "exam_tag": "SSC CGL 25/09/2025 (Shift 1)", "options": {"a": "Concerns have not been raised about the accuracy of the new data.", "b": "Concerns were not being raised about the accuracy of the new data.", "c": "Concerns are not raised about the accuracy of the new data.", "d": "Concerns must not be raised about the accuracy of the new data."}, "answer": "a", "explanation": "Concerns have not been raised about the accuracy of the new data. (Correct) (b) Concerns were not being raised about the accuracy of the new data. (Incorrect Tense) (c) Concerns are not raised about the accuracy of the new data. (Incorrect Helping Verb) (d) Concerns must not be raised about the accuracy of the new data. (Incorrect Helping Verb)"}, {"id": 84, "question": "The team has not submitted any documents yet.", "exam_tag": "SSC CGL 25/09/2025 (Shift 3)", "options": {"a": "Documents have not been submitted by any team yet.", "b": "No document has been submitted by the team yet.", "c": "No team submitted any documents yet.", "d": "Every team will have submitted the documents yet."}, "answer": "b", "explanation": "No document has been submitted by the team yet. (Correct) (a) Documents have not been submitted by any team yet. (Incorrect use of \u2018any\u2019) (c) No team can submit any documents yet. (Incorrect Verb) (d) Every team will have submitted the documents yet. (Incorrect Sentence Structure)"}, {"id": 85, "question": "They don\u2019t allow pets in this hotel.", "exam_tag": "SSC CGL 26/09/2025 (Shift 1)", "options": {"a": "Pets aren\u2019t allowed in this hotel.", "b": "Pets haven\u2019t been allowed in this hotel.", "c": "Pets weren\u2019t allowed in this hotel.", "d": "Pets shouldn\u2019t be allowed in this hotel."}, "answer": "a", "explanation": "Pets aren\u2019t allowed in this hotel. (Correct) (b) Pets haven\u2019t been allowed in this hotel. (Incorrect Tense) (c) Pets weren\u2019t allowed in this hotel. (Incorrect Tense) (d) Pets shouldn\u2019t be allowed in this hotel. (Incorrect Tense)"}, {"id": 229, "question": "Transform the following sentence into active voice: The glass was broken.", "exam_tag": "SSC Stenographer 08/08/2025 (Shift 3)", "options": {"a": "No one broke the glass.", "b": "Someone broke the glass.", "c": "He broken the glass.", "d": "He broke the glass."}, "answer": "b", "explanation": "Someone broke the glass. (Correct) (a) No one broke the glass. (Incorrect Pronoun) (c) He broken the glass. (Incorrect Pronoun) (d) He broke the glass. (Incorrect Pronoun)"}, {"id": 243, "question": "The mechanic did not fix the car yesterday.", "exam_tag": "Eduquity-based Pattern (EBP)", "options": {"a": "The car was not fixed by the mechanic yesterday.", "b": "The car had not been fixed by the mechanic yesterday.", "c": "The mechanic was not fixed by the car yesterday.", "d": "The car did not fix by the mechanic yesterday."}, "answer": "a", "explanation": "The car was not fixed by the mechanic yesterday. (Correct) (b) The car had not been fixed by the mechanic yesterday. (Incorrect Helping Verb) (c) The mechanic was not fixed by the car yesterday. (Incorrect Sentence Structure) (d) The car did not fix by the mechanic yesterday. (Incorrect Tense)"}, {"id": 6, "question": "It is believed that the ancient scrolls were hidden by the monks in a secret chamber.", "exam_tag": "SSC CGL 12/09/2025 (Shift 3)", "options": {"a": "The monks hid the ancient scrolls in a secret chamber.", "b": "The monks are believed to have hidden the ancient scrolls in a secret chamber.", "c": "The ancient scrolls were hiding the monks in a secret chamber.", "d": "In a secret chamber, the monks had hidden the ancient scrolls."}, "answer": "b", "explanation": "The monks are believed to have hidden the ancient scrolls in a secret chamber. (Correct) (a) The monks hid the ancient scrolls in a secret chamber. (Incorrect Sentence Structure) (c) The ancient scrolls were hiding the monks in a secret chamber. (Incorrect Sentence Structure) (d) In a secret chamber, the monks had hidden the ancient scrolls. (Incorrect Sentence Structure)"}, {"id": 8, "question": "It has been widely presumed by analysts that the market will stabilize next quarter.", "exam_tag": "SSC CGL 13/09/2025 (Shift 1)", "options": {"a": "Analysts have widely presumed that the market will stabilize next quarter.", "b": "Analysts are widely presuming that the market will stabilize next quarter.", "c": "Analysts had widely presumed that the market will stabilize next quarter.", "d": "That the market will stabilize next quarter has been widely presumed by analysts."}, "answer": "a", "explanation": "Analysts have widely presumed that the market will stabilize next quarter. (Correct) (b) Analysts are widely presuming that the market will stabilize next quarter. (Incorrect Tense) Download Exam Preparation App (c) Analysts had widely presumed that the market will stabilize next quarter. (Incorrect Tense) (d) That the market will stabilize next quarter has been widely presumed by analysts. (Incorrect Sentence Structure)"}, {"id": 16, "question": "It was reported that confidential data had been stolen by unidentified hackers from the government server.", "exam_tag": "SSC CGL 14/09/2025 (Shift 2)", "options": {"a": "Unidentified hackers reportedly stole confidential data from the government server.", "b": "Confidential data reportedly was stolen from the government server.", "c": "The government server reportedly lost data to hackers.", "d": "Reporters said hackers had stolen the data."}, "answer": "a", "explanation": "Unidentified hackers reportedly stole confidential data from the government server. (Correct) (b) Confidential data reportedly was stolen from the government server. (Incorrect Sentence Structure) (c) The government server reportedly lost data to hackers. (Incorrect Sentence Structure) (d) Reporters said hackers had stolen the data. (Incorrect Sentence Structure)"}, {"id": 19, "question": "The artifact was thought to have been stolen from the museum during the renovation.", "exam_tag": "SSC CGL 15/09/2025 (Shift 1)", "options": {"a": "The artifact thought it was stolen during the renovation.", "b": "Historians thought the artifact had been stolen during the renovation.", "c": "It was thought that the artifact had been stolen from the museum.", "d": "Investigators thought the artifact was stolen during the renovation."}, "answer": "b", "explanation": "Historians thought the artifact had been stolen during the renovation. (Correct) (a) The artifact thought it was stolen during the renovation. (Incorrect Sentence Structure) (c) It was thought that the artifact had been stolen from the museum. (Incorrect Sentence Structure) (d) Investigators thought the artifact was stolen during the renovation. (Incorrect Sentence Structure)"}, {"id": 44, "question": "The findings are understood to have been verified by independent auditors.", "exam_tag": "SSC CGL 19/09/2025 (Shift 1)", "options": {"a": "Independent auditors understood the findings to verify themselves.", "b": "Independent auditors are understood to have verified the findings.", "c": "It was understood that auditors have verified findings.", "d": "The findings have been understood by auditors to verify them."}, "answer": "b", "explanation": "Independent auditors are understood to have verified the findings. (Correct) (a) Independent auditors understood the findings to verify themselves. (Incorrect Sentence Structure) (c) It was understood that auditors have verified findings. (Incorrect Sentence Structure) (d) The findings have been understood by auditors to verify them. (Incorrect Sentence Structure)"}, {"id": 50, "question": "The missing equipment was reported to have been discovered by workers near the construction site.", "exam_tag": "SSC CGL 20/09/2025 (Shift 1)", "options": {"a": "Workers are reported to have discovered the missing equipment near the construction site.", "b": "Workers reported to discover the missing equipment near the construction site.", "c": "It was reported that workers discover the missing equipment near the construction site.", "d": "The construction site is reported to discover the missing equipment."}, "answer": "a", "explanation": "Workers are reported to have discovered the missing equipment near the construction site. (Correct) (b) Workers reported to discover the missing equipment near the construction site. (Incorrect Verb) (c) It was reported that workers discover the missing equipment near the construction site. (Incorrect Sentence Structure) (d) The construction site is reported to discover the missing equipment. (Incorrect Sentence Structure)"}, {"id": 70, "question": "The documents were believed to have been misplaced by the clerical staff.", "exam_tag": "SSC CGL 23/09/2025 (Shift 2)", "options": {"a": "The clerical staff had misplaced the documents, it was believed.", "b": "It was believed that the clerical staff misplaced the documents.", "c": "The clerical staff were believed to misplace the documents.", "d": "It was believed that the documents were misplaced by the clerical staff."}, "answer": "b", "explanation": "It was believed that the clerical staff misplaced the documents. (Correct) (a) The clerical staff had misplaced the documents, it was believed. (Incorrect Sentence Structure) (c) The clerical staff were believed to misplace the documents. (Incorrect Sentence Structure) (d) It was believed that the documents were misplaced by the clerical staff. (Incorrect Sentence Structure)"}, {"id": 86, "question": "The meeting was reported to have been postponed due to unforeseen circumstances.", "exam_tag": "SSC CGL 26/09/2025 (Shift 1)", "options": {"a": "The news reported that the meeting had been postponed due to unforeseen circumstances.", "b": "It was reported that the meeting had been postponed due to unforeseen circumstances.", "c": "The meeting was reported as postponed due to unforeseen circumstances.", "d": "Officials reported that the meeting had been postponed due to unforeseen circumstances."}, "answer": "d", "explanation": "Officials reported that the meeting had been postponed due to unforeseen circumstances. (Correct) (a) The news reported that the meeting had been postponed due to unforeseen circumstances. (Incorrect Sentence Structure) (b) It was reported that the meeting had been postponed due to unforeseen circumstances. (Incorrect Sentence Structure) (c) The meeting was reported as postponed due to unforeseen circumstances. (Incorrect Sentence Structure)"}, {"id": 163, "question": "Transform the following sentence into active voice. The royal sword is said to have been transferred to a new museum where it would have been preserved properly.", "exam_tag": "SSC Stenographer 06/08/2025 (Shift 2)", "options": {"a": "Someone is said to transfer the royal sword to a new museum where they would have preserved it properly.", "b": "Someone is said to have transferred the royal sword to a new museum which they would have preserved it properly.", "c": "Someone is said to have transferred the royal sword to a new museum where they would preserve it properly.", "d": "Someone is said to have transferred the royal sword to a new museum where they would have preserved it properly."}, "answer": "d", "explanation": "Someone is said to have transferred the royal sword to a new museum where they would have preserved it properly. Download Exam Preparation App (Correct) (a) Someone is said to transfer the royal sword to a new museum where they would have preserved it properly. (Incorrect Tense) (b) Someone is said to have transferred the royal sword to a new museum which they would have preserved it properly. (Incorrect Sentence Structure) (c) Someone is said to have transferred the royal sword to a new museum where they would preserve it properly. (Incorrect Tense)"}, {"id": 165, "question": "Change the following from active to passive: People believe that the company will launch the new product before the end of this fiscal year.", "exam_tag": "SSC Stenographer 06/08/2025 (Shift 2)", "options": {"a": "The company believes to launch the product before the end of the fiscal year.", "b": "The new product is believed to be launched before the fiscal year ends.", "c": "It has been believed that the new product will launch this year.", "d": "It is believed that the company will launch the new product before the end of this fiscal year."}, "answer": "d", "explanation": "It is believed that the company will launch the new product before the end of this fiscal year. (Correct) (a) The company believes to launch the product before the end of the fiscal year. (Incorrect Sentence Structure) (b) The new product is believed to be launched] before the fiscal year ends. (Incorrect Tense) (c) It has been believed that the new product will launch this year. (Incorrect Tense)"}, {"id": 238, "question": "The scientist conducted a series of ground-breaking experiments, revealing new insights into the nature of dark matter", "exam_tag": "Eduquity-based Pattern (EBP)", "options": {"a": "A series of ground-breaking experiments are conducted by the scientist, revealing new insights into the nature of dark matter", "b": "A series of ground-breaking insights were conducted by the scientist, revealing new experiments into the nature of dark matter.", "c": "A series of ground-breaking experiments have been conducted by the scientist, revealing new insights into the nature of dark matter", "d": "A series of ground-breaking experiments were conducted by the scientist, revealing new insights into the nature of dark matter."}, "answer": "d", "explanation": "A series of ground-breaking experiments were conducted by the scientist, revealing new insights into the nature of dark matter. (Correct) (a) A series of ground-breaking experiments are conducted by the scientist, revealing new insights into the nature of dark matter. (Incorrect Tense) (b) A series of ground-breaking insights were conducted by the scientist, revealing new experiments into the nature of dark matter. (Incorrect Sentence Structure) (c) A series of ground-breaking experiments have been conducted by the scientist, revealing new insights into the nature of dark matter. (Incorrect Tense)"}]}];
+
+    // Application State
+    const AppState = {
+      currentView: 'dashboard',
+      selectedMock: null,
+      examSession: {
+        mockId: null,
+        mockTitle: '',
+        questions: [], // 25 questions with shuffled options
+        answers: {},   // questionIndex -> selected option key ('a', 'b', etc.)
+        status: {},    // questionIndex -> NOT_VISITED, NOT_ANSWERED, ANSWERED, MARKED, ANS_MARKED
+        currentIndex: 0,
+        timerSeconds: 900,
+        timerInterval: null,
+        isPaused: false
+      }
+    };
+
+    // Palette Status Constants
+    const STATUS = {
+      NOT_VISITED: 'NOT_VISITED',
+      NOT_ANSWERED: 'NOT_ANSWERED',
+      ANSWERED: 'ANSWERED',
+      MARKED: 'MARKED',
+      ANS_MARKED: 'ANS_MARKED'
+    };
+
+    // DOM Elements
+    const elements = {
+      viewDashboard: document.getElementById('view-dashboard'),
+      viewExam: document.getElementById('view-exam'),
+      viewResults: document.getElementById('view-results'),
+      mocksContainer: document.getElementById('mocks-list-container'),
+      
+      // Instructions modal
+      modalInstructions: document.getElementById('modal-instructions'),
+      instMockTitle: document.getElementById('inst-mock-title'),
+      instAgreeCheck: document.getElementById('inst-agree-check'),
+      btnStartTestAction: document.getElementById('btn-start-test-action'),
+      btnCloseInst: document.getElementById('btn-close-inst'),
+      btnCancelInst: document.getElementById('btn-cancel-inst'),
+
+      // Rules modal
+      btnShowRules: document.getElementById('btn-show-rules'),
+      modalRules: document.getElementById('modal-rules-reference'),
+      btnCloseRules: document.getElementById('btn-close-rules'),
+      btnDismissRules: document.getElementById('btn-dismiss-rules'),
+
+      // Exam UI
+      examTestName: document.getElementById('exam-test-name'),
+      examTimer: document.getElementById('exam-timer'),
+      timerDisplayBox: document.getElementById('timer-display-box'),
+      btnExitFullscreen: document.getElementById('btn-exit-fullscreen'),
+      btnPauseExam: document.getElementById('btn-pause-exam'),
+      currentQLabel: document.getElementById('current-q-label'),
+      currentQExamTag: document.getElementById('current-q-examtag'),
+      qPromptText: document.getElementById('q-prompt-text'),
+      qOptionsContainer: document.getElementById('q-options-container'),
+      paletteGrid: document.getElementById('palette-buttons-grid'),
+      
+      // Bottom buttons
+      btnMarkReview: document.getElementById('btn-mark-review'),
+      btnClearResponse: document.getElementById('btn-clear-response'),
+      btnPrevQ: document.getElementById('btn-prev-q'),
+      btnSaveNext: document.getElementById('btn-save-next'),
+      btnSubmitExam: document.getElementById('btn-submit-exam'),
+
+      // Pause modal
+      modalPauseOverlay: document.getElementById('modal-pause-overlay'),
+      btnResumeExam: document.getElementById('btn-resume-exam'),
+
+      // Submit modal
+      modalSubmitConfirm: document.getElementById('modal-submit-confirm'),
+      btnCancelSubmit: document.getElementById('btn-cancel-submit'),
+      btnFinalConfirmSubmit: document.getElementById('btn-final-confirm-submit'),
+      summaryAnswered: document.getElementById('summary-answered'),
+      summaryNotAnswered: document.getElementById('summary-not-answered'),
+      summaryMarked: document.getElementById('summary-marked'),
+      summaryNotVisited: document.getElementById('summary-not-visited'),
+
+      // Palette count badges
+      countAnswered: document.getElementById('count-answered'),
+      countNotAnswered: document.getElementById('count-not-answered'),
+      countNotVisited: document.getElementById('count-not-visited'),
+      countMarked: document.getElementById('count-marked'),
+      countAnsMarked: document.getElementById('count-ans-marked'),
+
+      // Results UI
+      resMockBadge: document.getElementById('res-mock-badge'),
+      resTotalScore: document.getElementById('res-total-score'),
+      resPercentage: document.getElementById('res-percentage'),
+      resCorrectCount: document.getElementById('res-correct-count'),
+      resCorrectMarks: document.getElementById('res-correct-marks'),
+      resIncorrectCount: document.getElementById('res-incorrect-count'),
+      resIncorrectMarks: document.getElementById('res-incorrect-marks'),
+      resUnattemptedCount: document.getElementById('res-unattempted-count'),
+      resSolCounter: document.getElementById('res-sol-counter'),
+      solutionsContainer: document.getElementById('solutions-container'),
+      correctSummaryList: document.getElementById('correct-summary-list'),
+      btnRetakeMock: document.getElementById('btn-retake-mock'),
+      btnReturnDashboard: document.getElementById('btn-return-dashboard')
+    };
+
+    // Initialize Dashboard Cards
+    function renderDashboard() {
+      elements.mocksContainer.innerHTML = '';
+      
+      MOCK_DATA.forEach((mock) => {
+        let bestScoreText = '';
+        try {
+          const saved = localStorage.getItem(`mock_score_${mock.id}`);
+          if (saved) {
+            const data = JSON.parse(saved);
+            bestScoreText = `<span class="inline-block px-2 py-0.5 bg-green-100 text-green-800 text-[11px] font-bold rounded">Last Score: ${data.score.toFixed(2)}/50 (${data.accuracy}%)</span>`;
+          }
+        } catch (e) {}
+
+        const card = document.createElement('div');
+        card.className = "bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between";
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                Mock Test ${mock.id}
+              </span>
+              ${bestScoreText}
+            </div>
+            <h4 class="text-base font-bold text-slate-900 leading-snug">${mock.title}</h4>
+            <p class="text-xs text-slate-500 mt-1 mb-3">${mock.subtitle}</p>
+            
+            <div class="flex items-center space-x-3 text-xs text-slate-600 bg-slate-50 p-2.5 rounded border border-slate-100 mb-4">
+              <span><strong>${mock.questions.length}</strong> MCQs</span>
+              <span>•</span>
+              <span><strong>15</strong> Mins</span>
+              <span>•</span>
+              <span><strong>50</strong> Max Marks</span>
+            </div>
+          </div>
+          
+          <button data-mock-id="${mock.id}" class="btn-open-mock w-full py-2 px-4 bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs rounded transition flex items-center justify-center">
+            Start Mock Test
+            <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </button>
+        `;
+        elements.mocksContainer.appendChild(card);
+      });
+
+      // Attach card button listeners
+      document.querySelectorAll('.btn-open-mock').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const mId = parseInt(e.currentTarget.getAttribute('data-mock-id'));
+          openInstructionsModal(mId);
+        });
+      });
+    }
+
+    // Open Pre-Test Instructions
+    function openInstructionsModal(mockId) {
+      const mock = MOCK_DATA.find(m => m.id === mockId);
+      if (!mock) return;
+      AppState.selectedMock = mock;
+      elements.instMockTitle.textContent = `${mock.title} - Instructions`;
+      elements.instAgreeCheck.checked = false;
+      elements.btnStartTestAction.disabled = true;
+      elements.modalInstructions.classList.remove('hidden');
+    }
+
+    // Agreement Checkbox Handler
+    elements.instAgreeCheck.addEventListener('change', () => {
+      elements.btnStartTestAction.disabled = !elements.instAgreeCheck.checked;
+    });
+
+    // Close Instructions Handler
+    const closeInst = () => elements.modalInstructions.classList.add('hidden');
+    elements.btnCloseInst.addEventListener('click', closeInst);
+    elements.btnCancelInst.addEventListener('click', closeInst);
+
+    // Rules Reference Modal Handlers
+    elements.btnShowRules.addEventListener('click', () => elements.modalRules.classList.remove('hidden'));
+    elements.btnCloseRules.addEventListener('click', () => elements.modalRules.classList.add('hidden'));
+    elements.btnDismissRules.addEventListener('click', () => elements.modalRules.classList.add('hidden'));
+
+    // Start Test Action
+    elements.btnStartTestAction.addEventListener('click', () => {
+      closeInst();
+      startExam(AppState.selectedMock);
+    });
+
+    // Option Randomization Helper
+    function shuffleArray(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    // Start Exam Setup
+    function startExam(mock) {
+      // Enter Fullscreen automatically upon beginning test as required
+      try {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(() => {});
+        }
+      } catch (err) {}
+
+      AppState.examSession.mockId = mock.id;
+      AppState.examSession.mockTitle = mock.title;
+      AppState.examSession.currentIndex = 0;
+      AppState.examSession.timerSeconds = 15 * 60; // 15 mins (900 seconds)
+      AppState.examSession.isPaused = false;
+      AppState.examSession.answers = {};
+      AppState.examSession.status = {};
+
+      // Prepare questions with randomized options per session
+      // Question order 1 to 25 is preserved; only distractor options order is randomized!
+      AppState.examSession.questions = mock.questions.map((q, idx) => {
+        // Collect options as array of objects: { originalKey: 'a', text: '...' }
+        const rawOpts = [
+          { originalKey: 'a', text: q.options.a },
+          { originalKey: 'b', text: q.options.b },
+          { originalKey: 'c', text: q.options.c },
+          { originalKey: 'd', text: q.options.d }
+        ];
+        const shuffled = shuffleArray(rawOpts);
+        
+        // Initialize status
+        AppState.examSession.status[idx] = idx === 0 ? STATUS.NOT_ANSWERED : STATUS.NOT_VISITED;
+
+        return {
+          id: q.id,
+          question: q.question,
+          exam_tag: q.exam_tag,
+          original_answer: q.answer,
+          explanation: q.explanation,
+          shuffledOptions: shuffled // Array of { originalKey, text }
+        };
+      });
+
+      // Switch views
+      elements.viewDashboard.classList.add('hidden');
+      elements.viewResults.classList.add('hidden');
+      elements.viewExam.classList.remove('hidden');
+
+      elements.examTestName.textContent = mock.title;
+
+      // Start Countdown Timer
+      startTimer();
+
+      // Render Question 0
+      renderQuestion(0);
+      renderPalette();
+      updatePaletteCounts();
+    }
+
+    // Countdown Timer Function
+    function startTimer() {
+      if (AppState.examSession.timerInterval) {
+        clearInterval(AppState.examSession.timerInterval);
+      }
+
+      function updateTimerDisplay() {
+        const total = AppState.examSession.timerSeconds;
+        const mins = Math.floor(total / 60);
+        const secs = total % 60;
+        const formatted = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        elements.examTimer.textContent = formatted;
+
+        // Visual warning under 2 mins
+        if (total <= 120) {
+          elements.timerDisplayBox.classList.add('timer-critical');
+        } else {
+          elements.timerDisplayBox.classList.remove('timer-critical');
+        }
+
+        if (total <= 0) {
+          clearInterval(AppState.examSession.timerInterval);
+          autoSubmitTest();
+        }
+      }
+
+      updateTimerDisplay();
+      AppState.examSession.timerInterval = setInterval(() => {
+        if (!AppState.examSession.isPaused) {
+          AppState.examSession.timerSeconds--;
+          updateTimerDisplay();
+        }
+      }, 1000);
+    }
+
+    // Auto-submit when timer expires
+    function autoSubmitTest() {
+      // Close any open modals
+      elements.modalPauseOverlay.classList.add('hidden');
+      elements.modalSubmitConfirm.classList.add('hidden');
+      
+      calculateAndShowResults(true);
+    }
+
+    // Fullscreen Toggle
+    elements.btnExitFullscreen.addEventListener('click', () => {
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {});
+        elements.btnExitFullscreen.textContent = "Enter Fullscreen";
+      } else {
+        document.documentElement.requestFullscreen().catch(() => {});
+        elements.btnExitFullscreen.textContent = "Exit Fullscreen";
+      }
+    });
+
+    document.addEventListener('fullscreenchange', () => {
+      elements.btnExitFullscreen.textContent = document.fullscreenElement ? "Exit Fullscreen" : "Enter Fullscreen";
+    });
+
+    // Pause Test Handler
+    elements.btnPauseExam.addEventListener('click', () => {
+      AppState.examSession.isPaused = true;
+      elements.modalPauseOverlay.classList.remove('hidden');
+    });
+
+    elements.btnResumeExam.addEventListener('click', () => {
+      AppState.examSession.isPaused = false;
+      elements.modalPauseOverlay.classList.add('hidden');
+    });
+
+    // Render Question
+    function renderQuestion(index) {
+      AppState.examSession.currentIndex = index;
+      const q = AppState.examSession.questions[index];
+      
+      elements.currentQLabel.textContent = `Question No. ${index + 1}`;
+      elements.currentQExamTag.textContent = q.exam_tag || "SSC 2025 Pattern";
+      elements.qPromptText.textContent = q.question;
+
+      // Update question status to NOT_ANSWERED if previously NOT_VISITED
+      if (AppState.examSession.status[index] === STATUS.NOT_VISITED) {
+        AppState.examSession.status[index] = STATUS.NOT_ANSWERED;
+      }
+
+      // Render Options
+      elements.qOptionsContainer.innerHTML = '';
+      const selectedKey = AppState.examSession.answers[index]; // original key e.g. 'a'
+
+      const optLetters = ['A', 'B', 'C', 'D'];
+      q.shuffledOptions.forEach((opt, optIdx) => {
+        const isSelected = selectedKey === opt.originalKey;
+        
+        const optDiv = document.createElement('div');
+        optDiv.className = `option-label p-3.5 rounded-lg flex items-start space-x-3 text-xs sm:text-sm ${isSelected ? 'selected' : ''}`;
+        optDiv.innerHTML = `
+          <input type="radio" name="exam_option" id="opt_${optIdx}" value="${opt.originalKey}" ${isSelected ? 'checked' : ''} class="mt-0.5 text-blue-600 focus:ring-blue-500">
+          <label for="opt_${optIdx}" class="flex-1 cursor-pointer flex items-start space-x-2">
+            <span class="font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded text-xs border border-slate-200">${optLetters[optIdx]}</span>
+            <span class="text-slate-800 leading-snug">${opt.text}</span>
+          </label>
+        `;
+
+        // Selection handler: "Do NOT mark any answer on option-selection or in-between the test. Do NOT add any hint or un-desired text or content on main exam interface."
+        optDiv.addEventListener('click', () => {
+          AppState.examSession.answers[index] = opt.originalKey;
+          // Re-render options styling only
+          document.querySelectorAll('.option-label').forEach(el => el.classList.remove('selected'));
+          optDiv.classList.add('selected');
+          optDiv.querySelector('input').checked = true;
+
+          // If was marked, change to ANS_MARKED, else ANSWERED
+          if (AppState.examSession.status[index] === STATUS.MARKED || AppState.examSession.status[index] === STATUS.ANS_MARKED) {
+            AppState.examSession.status[index] = STATUS.ANS_MARKED;
+          } else {
+            AppState.examSession.status[index] = STATUS.ANSWERED;
+          }
+          renderPalette();
+          updatePaletteCounts();
+        });
+
+        elements.qOptionsContainer.appendChild(optDiv);
+      });
+
+      // Update Prev Button State
+      elements.btnPrevQ.disabled = index === 0;
+      elements.btnPrevQ.classList.toggle('opacity-50', index === 0);
+      elements.btnPrevQ.classList.toggle('cursor-not-allowed', index === 0);
+
+      renderPalette();
+      updatePaletteCounts();
+    }
+
+    // Render Question Palette
+    function renderPalette() {
+      elements.paletteGrid.innerHTML = '';
+      const total = AppState.examSession.questions.length;
+
+      for (let i = 0; i < total; i++) {
+        const btn = document.createElement('button');
+        const st = AppState.examSession.status[i] || STATUS.NOT_VISITED;
+        
+        let statusClass = 'status-not-visited';
+        if (st === STATUS.NOT_ANSWERED) statusClass = 'status-not-answered';
+        else if (st === STATUS.ANSWERED) statusClass = 'status-answered';
+        else if (st === STATUS.MARKED) statusClass = 'status-marked';
+        else if (st === STATUS.ANS_MARKED) statusClass = 'status-ans-marked';
+
+        btn.className = `q-palette-btn ${statusClass} ${i === AppState.examSession.currentIndex ? 'active-q' : ''}`;
+        btn.textContent = i + 1;
+        btn.title = `Question ${i + 1} (${st})`;
+
+        btn.addEventListener('click', () => {
+          renderQuestion(i);
+        });
+
+        elements.paletteGrid.appendChild(btn);
+      }
+    }
+
+    // Update Palette Counts
+    function updatePaletteCounts() {
+      let ans = 0, notAns = 0, notVis = 0, marked = 0, ansMarked = 0;
+      const total = AppState.examSession.questions.length;
+      
+      for (let i = 0; i < total; i++) {
+        const st = AppState.examSession.status[i] || STATUS.NOT_VISITED;
+        if (st === STATUS.ANSWERED) ans++;
+        else if (st === STATUS.NOT_ANSWERED) notAns++;
+        else if (st === STATUS.NOT_VISITED) notVis++;
+        else if (st === STATUS.MARKED) marked++;
+        else if (st === STATUS.ANS_MARKED) ansMarked++;
+      }
+
+      elements.countAnswered.textContent = ans;
+      elements.countNotAnswered.textContent = notAns;
+      elements.countNotVisited.textContent = notVis;
+      elements.countMarked.textContent = marked;
+      elements.countAnsMarked.textContent = ansMarked;
+
+      // Summary modal updates
+      elements.summaryAnswered.textContent = ans + ansMarked;
+      elements.summaryNotAnswered.textContent = notAns;
+      elements.summaryMarked.textContent = marked + ansMarked;
+      elements.summaryNotVisited.textContent = notVis;
+    }
+
+    // Toolbar Action: Next / Save & Next
+    elements.btnSaveNext.addEventListener('click', () => {
+      const curr = AppState.examSession.currentIndex;
+      const hasAnswer = AppState.examSession.answers[curr] !== undefined;
+      
+      if (hasAnswer) {
+        if (AppState.examSession.status[curr] === STATUS.MARKED || AppState.examSession.status[curr] === STATUS.ANS_MARKED) {
+          AppState.examSession.status[curr] = STATUS.ANS_MARKED;
+        } else {
+          AppState.examSession.status[curr] = STATUS.ANSWERED;
+        }
+      } else {
+        if (AppState.examSession.status[curr] !== STATUS.MARKED) {
+          AppState.examSession.status[curr] = STATUS.NOT_ANSWERED;
+        }
+      }
+
+      if (curr < AppState.examSession.questions.length - 1) {
+        renderQuestion(curr + 1);
+      } else {
+        // Last question reached: update palette and counts
+        renderPalette();
+        updatePaletteCounts();
+      }
+    });
+
+    // Toolbar Action: Previous
+    elements.btnPrevQ.addEventListener('click', () => {
+      const curr = AppState.examSession.currentIndex;
+      if (curr > 0) {
+        renderQuestion(curr - 1);
+      }
+    });
+
+    // Toolbar Action: Clear Response
+    elements.btnClearResponse.addEventListener('click', () => {
+      const curr = AppState.examSession.currentIndex;
+      delete AppState.examSession.answers[curr];
+      AppState.examSession.status[curr] = STATUS.NOT_ANSWERED;
+      renderQuestion(curr);
+    });
+
+    // Toolbar Action: Mark for Review & Next
+    elements.btnMarkReview.addEventListener('click', () => {
+      const curr = AppState.examSession.currentIndex;
+      const hasAnswer = AppState.examSession.answers[curr] !== undefined;
+      
+      AppState.examSession.status[curr] = hasAnswer ? STATUS.ANS_MARKED : STATUS.MARKED;
+
+      if (curr < AppState.examSession.questions.length - 1) {
+        renderQuestion(curr + 1);
+      } else {
+        renderPalette();
+        updatePaletteCounts();
+      }
+    });
+
+    // Toolbar Action: Submit Test (Opens Modal)
+    elements.btnSubmitExam.addEventListener('click', () => {
+      updatePaletteCounts();
+      elements.modalSubmitConfirm.classList.remove('hidden');
+    });
+
+    elements.btnCancelSubmit.addEventListener('click', () => {
+      elements.modalSubmitConfirm.classList.add('hidden');
+    });
+
+    elements.btnFinalConfirmSubmit.addEventListener('click', () => {
+      elements.modalSubmitConfirm.classList.add('hidden');
+      calculateAndShowResults(false);
+    });
+
+    // Calculate Score & Show Analysis
+    function calculateAndShowResults(isAutoSubmitted) {
+      if (AppState.examSession.timerInterval) {
+        clearInterval(AppState.examSession.timerInterval);
+      }
+
+      // Exit fullscreen if active
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {});
+      }
+
+      let correctCount = 0;
+      let incorrectCount = 0;
+      let unattemptedCount = 0;
+
+      const questions = AppState.examSession.questions;
+      const answers = AppState.examSession.answers;
+
+      const incorrectOrUnattempted = [];
+      const correctList = [];
+
+      questions.forEach((q, idx) => {
+        const studentAns = answers[idx]; // 'a', 'b', etc. or undefined
+        const isCorrect = studentAns === q.original_answer;
+
+        if (studentAns === undefined) {
+          unattemptedCount++;
+          incorrectOrUnattempted.push({
+            qNum: idx + 1,
+            question: q,
+            studentAns: null,
+            status: 'Unattempted'
+          });
+        } else if (isCorrect) {
+          correctCount++;
+          correctList.push({
+            qNum: idx + 1,
+            question: q,
+            studentAns: studentAns
+          });
+        } else {
+          incorrectCount++;
+          incorrectOrUnattempted.push({
+            qNum: idx + 1,
+            question: q,
+            studentAns: studentAns,
+            status: 'Incorrect'
+          });
+        }
+      });
+
+      // Marks calculation: +2 for correct, -0.25 for incorrect
+      const correctMarks = correctCount * 2.0;
+      const negativeMarks = incorrectCount * 0.25;
+      const totalScore = Math.max(0, correctMarks - negativeMarks);
+      const totalPossible = questions.length * 2.0; // 50.0
+      const percentage = ((totalScore / totalPossible) * 100).toFixed(1);
+      const accuracy = (correctCount + incorrectCount > 0) 
+        ? ((correctCount / (correctCount + incorrectCount)) * 100).toFixed(1) 
+        : "0.0";
+
+      // Save to localStorage
+      try {
+        localStorage.setItem(`mock_score_${AppState.examSession.mockId}`, JSON.stringify({
+          score: totalScore,
+          accuracy: accuracy,
+          date: new Date().toISOString()
+        }));
+      } catch (e) {}
+
+      // Populate Scorecard Elements
+      elements.resMockBadge.textContent = `${AppState.examSession.mockTitle} ${isAutoSubmitted ? '(Auto-Submitted)' : ''}`;
+      elements.resTotalScore.textContent = `${totalScore.toFixed(2)} / 50.00`;
+      elements.resPercentage.textContent = `${percentage}% Score | ${accuracy}% Accuracy`;
+      elements.resCorrectCount.textContent = correctCount;
+      elements.resCorrectMarks.textContent = `+${correctMarks.toFixed(2)} Marks`;
+      elements.resIncorrectCount.textContent = incorrectCount;
+      elements.resIncorrectMarks.textContent = `-${negativeMarks.toFixed(2)} Marks`;
+      elements.resUnattemptedCount.textContent = unattemptedCount;
+
+      // "Provide the solution/answer for ONLY incorrect & un-attempted questions on submission."
+      elements.resSolCounter.textContent = `${incorrectOrUnattempted.length} Questions requiring review`;
+      elements.solutionsContainer.innerHTML = '';
+
+      if (incorrectOrUnattempted.length === 0) {
+        elements.solutionsContainer.innerHTML = `
+          <div class="bg-emerald-50 border border-emerald-200 rounded-lg p-6 text-center text-emerald-800">
+            <h4 class="font-bold text-lg mb-1">Outstanding! 100% Correct Responses!</h4>
+            <p class="text-xs">You answered all 25 questions accurately. No incorrect or unattempted questions require review.</p>
+          </div>
+        `;
+      } else {
+        incorrectOrUnattempted.forEach(item => {
+          const q = item.question;
+          const solCard = document.createElement('div');
+          solCard.className = `bg-white rounded-lg border ${item.status === 'Incorrect' ? 'border-rose-200' : 'border-amber-200'} p-5 shadow-sm space-y-3`;
+          
+          let studentAnsBadge = item.status === 'Incorrect' 
+            ? `<span class="px-2 py-0.5 bg-rose-100 text-rose-800 font-bold rounded text-xs">Your Answer: (${item.studentAns}) - Incorrect</span>`
+            : `<span class="px-2 py-0.5 bg-amber-100 text-amber-800 font-bold rounded text-xs">Unattempted</span>`;
+
+          const correctOptText = q.shuffledOptions.find(o => o.originalKey === q.original_answer)?.text || "";
+
+          solCard.innerHTML = `
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-slate-800 text-xs">Question ${item.qNum}</span>
+              <div class="space-x-2">
+                ${studentAnsBadge}
+                <span class="px-2 py-0.5 bg-slate-100 text-slate-600 rounded text-[11px] font-medium">${q.exam_tag || "SSC 2025"}</span>
+              </div>
+            </div>
+
+            <p class="text-xs sm:text-sm font-semibold text-slate-900 leading-relaxed">${q.question}</p>
+
+            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 text-xs space-y-1">
+              <div class="text-emerald-700 font-bold">
+                ✓ Correct Answer: (${q.original_answer}) ${correctOptText}
+              </div>
+            </div>
+
+            <!-- Grammatical Explanation -->
+            <div class="bg-blue-50/70 p-3.5 rounded-lg border border-blue-100 text-xs text-blue-950 leading-relaxed">
+              <div class="font-bold text-blue-900 mb-1 flex items-center">
+                <svg class="w-3.5 h-3.5 mr-1 text-blue-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                Grammar Rule & Explanation:
+              </div>
+              <p class="whitespace-pre-line">${q.explanation}</p>
+            </div>
+          `;
+
+          elements.solutionsContainer.appendChild(solCard);
+        });
+      }
+
+      // Populate Correctly Answered Checklist
+      elements.correctSummaryList.innerHTML = '';
+      if (correctList.length === 0) {
+        elements.correctSummaryList.innerHTML = `<span class="text-slate-400 col-span-3">No questions answered correctly.</span>`;
+      } else {
+        correctList.forEach(item => {
+          const badge = document.createElement('div');
+          badge.className = "flex items-center space-x-2 p-2 bg-emerald-50/80 rounded border border-emerald-100 text-emerald-900";
+          badge.innerHTML = `
+            <span class="font-bold text-emerald-700">Q${item.qNum}</span>
+            <span class="truncate">✓ Option (${item.studentAns})</span>
+          `;
+          elements.correctSummaryList.appendChild(badge);
+        });
+      }
+
+      // Switch to Results View
+      elements.viewExam.classList.add('hidden');
+      elements.viewResults.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Retake Mock
+    elements.btnRetakeMock.addEventListener('click', () => {
+      elements.viewResults.classList.add('hidden');
+      startExam(AppState.selectedMock);
+    });
+
+    // Return to Dashboard
+    elements.btnReturnDashboard.addEventListener('click', () => {
+      elements.viewResults.classList.add('hidden');
+      elements.viewExam.classList.add('hidden');
+      elements.viewDashboard.classList.remove('hidden');
+      renderDashboard();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Initial Render
+    renderDashboard();
+  </script>
+</body>
+</html>
