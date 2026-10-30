@@ -1,0 +1,2245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SSC 2025 Music PYQs - 6 Mock Tests Dashboard (TCS / Eduquity Interface)</title>
+  <style>
+    :root {
+      --tcs-navy: #1b365d;
+      --tcs-blue: #0f62fe;
+      --tcs-header: #224373;
+      --tcs-subheader: #eef3f9;
+      --bg-light: #f4f6f9;
+      --surface: #ffffff;
+      --border: #d0d7de;
+      --text-main: #1f2937;
+      --text-muted: #4b5563;
+      --ans-green: #2da44e;
+      --not-ans-red: #d1242f;
+      --review-purple: #6e40c9;
+      --not-visited-gray: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      font-size: 14px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      transition: all 0.15s ease;
+    }
+
+    button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    /* View Containers */
+    .view-section {
+      display: none;
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    .view-section.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /*Exam View locked to 100vh so main buttons never scroll off screen*/
+    #view-exam.active {
+      height: 100vh;
+      max-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Top System Banner */
+    .top-system-bar {
+      background: var(--tcs-navy);
+      color: #ffffff;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #102442;
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-badge {
+      background: #ffffff;
+      color: var(--tcs-navy);
+      font-weight: 700;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .brand-title h1 {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    /* DASHBOARD STYLES */
+    .dashboard-container {
+      max-width: 1220px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 20px 48px;
+    }
+
+    .dash-hero {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .dash-hero-left h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--tcs-navy);
+      margin-bottom: 6px;
+    }
+
+    .dash-hero-left p {
+      color: var(--text-muted);
+      font-size: 13.5px;
+    }
+
+    .dash-stats-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      background: var(--tcs-subheader);
+      border: 1px solid #cdd9e8;
+      border-radius: 6px;
+      padding: 8px 14px;
+      text-align: center;
+      min-width: 115px;
+    }
+
+    .stat-pill .lbl {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+      display: block;
+    }
+
+    .stat-pill .val {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--tcs-navy);
+    }
+
+    .mocks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 18px;
+    }
+
+    .mock-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .mock-card:hover {
+      border-color: #8bb0e8;
+      box-shadow: 0 4px 12px rgba(27,54,93,0.08);
+    }
+
+    .mock-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .mock-card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--tcs-navy);
+    }
+
+    .mock-status-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: #f3f4f6;
+      color: #4b5563;
+      border: 1px solid #e5e7eb;
+      white-space: nowrap;
+    }
+
+    .mock-status-badge.completed {
+      background: #dcfce7;
+      color: #166534;
+      border-color: #bbf7d0;
+    }
+
+    .mock-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .mock-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin-bottom: 16px;
+      font-size: 12px;
+    }
+
+    .mock-meta-item span {
+      color: var(--text-muted);
+    }
+
+    .mock-meta-item strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .mock-card-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      background: var(--tcs-navy);
+      color: #ffffff;
+      font-weight: 600;
+      padding: 9px 16px;
+      border-radius: 5px;
+      font-size: 13px;
+      flex: 1;
+      text-align: center;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: #254a80;
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--tcs-navy);
+      border: 1px solid var(--tcs-navy);
+      font-weight: 600;
+      padding: 9px 14px;
+      border-radius: 5px;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background: var(--tcs-subheader);
+    }
+
+    /* INTRO / INSTRUCTIONS SCREEN (TCS iON Style) */
+    .intro-wrapper {
+      max-width: 980px;
+      width: 100%;
+      margin: 24px auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .intro-header {
+      background: var(--tcs-subheader);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .intro-header h2 {
+      font-size: 17px;
+      color: var(--tcs-navy);
+      font-weight: 700;
+    }
+
+    .intro-body {
+      padding: 22px 24px;
+      max-height: calc(100vh - 230px);
+      overflow-y: auto;
+    }
+
+    .intro-summary-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin-bottom: 18px;
+      font-size: 13px;
+    }
+
+    .intro-summary-bar div strong {
+      color: var(--tcs-navy);
+    }
+
+    .intro-section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--tcs-navy);
+      margin: 14px 0 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .intro-list {
+      padding-left: 20px;
+      color: var(--text-main);
+      font-size: 13.5px;
+    }
+
+    .intro-list li {
+      margin-bottom: 7px;
+    }
+
+    .palette-legend-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 16px;
+      font-size: 13px;
+    }
+
+    .palette-legend-table th,
+    .palette-legend-table td {
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    .palette-legend-table th {
+      background: #f1f5f9;
+      font-weight: 600;
+    }
+
+    .sym-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 26px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 4px;
+    }
+
+    .sym-not-visited {
+      background: #f3f4f6;
+      color: #1f2937;
+      border: 1px solid #9ca3af;
+    }
+
+    .sym-not-answered {
+      background: var(--not-ans-red);
+      color: #ffffff;
+      border-radius: 12px 12px 2px 2px;
+    }
+
+    .sym-answered {
+      background: var(--ans-green);
+      color: #ffffff;
+      border-radius: 2px 2px 12px 12px;
+    }
+
+    .sym-review {
+      background: var(--review-purple);
+      color: #ffffff;
+      border-radius: 50%;
+    }
+
+    .sym-ans-review {
+      background: var(--review-purple);
+      color: #ffffff;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .sym-ans-review::after {
+      content: '';
+      position: absolute;
+      bottom: 1px;
+      right: 1px;
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      border: 1px solid #fff;
+    }
+
+    .intro-footer {
+      background: #f8fafc;
+      border-top: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .declaration-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-main);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .declaration-label input {
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .intro-btn-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* MAIN EXAM INTERFACE (TCS / EDUQUITY LIGHT THEME) */
+    .exam-top-bar {
+      background: var(--tcs-navy);
+      color: #ffffff;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-shrink: 0;
+      border-bottom: 1px solid #102442;
+    }
+
+    .exam-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .exam-mock-name {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .exam-section-pill {
+      background: #2d5186;
+      color: #ffffff;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .exam-top-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .timer-badge {
+      background: #ffffff;
+      color: #111827;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #cbd5e1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timer-badge.warning {
+      background: #fef2f2;
+      color: #dc2626;
+      border-color: #f87171;
+    }
+
+    .btn-top-ctrl {
+      background: #ffffff;
+      color: var(--tcs-navy);
+      border: 1px solid #cbd5e1;
+      padding: 5px 11px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .btn-top-ctrl:hover {
+      background: #e2e8f0;
+    }
+
+    .exam-workspace {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+      background: var(--surface);
+      overflow: hidden;
+    }
+
+    /* Left Question Area */
+    .question-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+      border-right: 1px solid var(--border);
+      background: #ffffff;
+    }
+
+    .question-meta-bar {
+      background: var(--tcs-subheader);
+      border-bottom: 1px solid var(--border);
+      padding: 9px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .q-number-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--tcs-navy);
+    }
+
+    .q-meta-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .exam-tag-badge {
+      font-size: 11px;
+      font-weight: 600;
+      color: #374151;
+      background: #e5e7eb;
+      border: 1px solid #d1d5db;
+      padding: 2px 8px;
+      border-radius: 3px;
+      letter-spacing: 0.2px;
+    }
+
+    .marks-info-badge {
+      font-size: 12px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    .marks-info-badge .pos {
+      color: #15803d;
+    }
+
+    .marks-info-badge .neg {
+      color: #b91c1c;
+    }
+
+    .question-scroll-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 24px;
+    }
+
+    .question-stem {
+      font-size: 15.5px;
+      font-weight: 500;
+      color: #111827;
+      line-height: 1.6;
+      white-space: pre-line;
+      margin-bottom: 18px;
+    }
+
+    .question-image-box {
+      margin: 12px 0 18px;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #ffffff;
+      display: inline-block;
+    }
+
+    .question-image-box img {
+      max-width: 240px;
+      height: auto;
+      display: block;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 780px;
+    }
+
+    .option-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 11px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: background-color 0.12s ease, border-color 0.12s ease;
+      user-select: none;
+    }
+
+    .option-row:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    .option-row.selected {
+      background: #eff6ff;
+      border-color: #2563eb;
+    }
+
+    .option-row input[type="radio"] {
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      accent-color: #1d4ed8;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .option-text {
+      font-size: 14.5px;
+      color: #1f2937;
+      line-height: 1.45;
+    }
+
+    /* Bottom Action Bar inside Question Column (Always Pinned) */
+    .question-action-bar {
+      background: #f8fafc;
+      border-top: 1px solid var(--border);
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .action-left-group,
+    .action-right-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-exam {
+      padding: 8px 14px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #1f2937;
+    }
+
+    .btn-exam:hover:not(:disabled) {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
+    .btn-exam.review {
+      background: #f3e8ff;
+      color: #5b21b6;
+      border-color: #c084fc;
+    }
+
+    .btn-exam.review:hover:not(:disabled) {
+      background: #e9d5ff;
+    }
+
+    .btn-exam.save-next {
+      background: #1d4ed8;
+      color: #ffffff;
+      border-color: #1e40af;
+    }
+
+    .btn-exam.save-next:hover:not(:disabled) {
+      background: #1e40af;
+    }
+
+    .btn-exam.submit-main {
+      background: var(--ans-green);
+      color: #ffffff;
+      border-color: #1f7a37;
+    }
+
+    .btn-exam.submit-main:hover:not(:disabled) {
+      background: #238636;
+    }
+
+    /* Right-side Small Question Palette */
+    .palette-sidebar {
+      width: 265px;
+      flex-shrink: 0;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .candidate-box {
+      padding: 10px 12px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .candidate-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--tcs-subheader);
+      color: var(--tcs-navy);
+      font-weight: 700;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #cbd5e1;
+    }
+
+    .candidate-info .name {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .candidate-info .sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .palette-status-summary {
+      padding: 8px 10px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #374151;
+    }
+
+    .status-item.full-width {
+      grid-column: span 2;
+    }
+
+    .mini-sym {
+      width: 22px;
+      height: 20px;
+      font-size: 10.5px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .palette-header-label {
+      background: var(--tcs-header);
+      color: #ffffff;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 6px 12px;
+      flex-shrink: 0;
+    }
+
+    /* Independent Scrolling for Question Palette */
+    .palette-grid-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 10px;
+      background: #eef3f9;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 7px;
+    }
+
+    .q-pal-btn {
+      height: 32px;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      user-select: none;
+    }
+
+    .q-pal-btn.current-q {
+      outline: 2px solid #111827;
+      outline-offset: 1px;
+    }
+
+    .palette-footer {
+      padding: 10px 12px;
+      background: #ffffff;
+      border-top: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .palette-footer button {
+      width: 100%;
+    }
+
+    /* Hide right-side palette on mobile phone interface as required */
+    @media (max-width: 768px) {
+      .palette-sidebar {
+        display: none !important;
+      }
+      .question-scroll-area {
+        padding: 14px 14px;
+      }
+      .exam-top-bar {
+        padding: 8px 10px;
+      }
+      .question-action-bar {
+        padding: 8px 10px;
+      }
+      .btn-exam {
+        padding: 7px 10px;
+        font-size: 12px;
+      }
+    }
+
+    /* RESULTS & ANALYSIS VIEW */
+    .result-container {
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 20px 56px;
+    }
+
+    .scorecard-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin-bottom: 22px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .scorecard-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+      margin-bottom: 18px;
+    }
+
+    .scorecard-top h2 {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--tcs-navy);
+    }
+
+    .scorecard-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+      gap: 12px;
+    }
+
+    .metric-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 12px 14px;
+      text-align: center;
+    }
+
+    .metric-card.highlight {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+    }
+
+    .metric-card .m-label {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .metric-card .m-val {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--tcs-navy);
+    }
+
+    .metric-card .m-val.green { color: #15803d; }
+    .metric-card .m-val.red { color: #b91c1c; }
+    .metric-card .m-val.gray { color: #4b5563; }
+
+    .solutions-header-bar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .solutions-header-bar h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--tcs-navy);
+    }
+
+    .solutions-header-bar p {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab {
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-size: 12.5px;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      color: var(--text-main);
+    }
+
+    .filter-tab.active {
+      background: var(--tcs-navy);
+      color: #ffffff;
+      border-color: var(--tcs-navy);
+    }
+
+    .solution-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 14px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+
+    .sol-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .sol-q-num {
+      font-weight: 700;
+      color: var(--tcs-navy);
+      font-size: 14px;
+    }
+
+    .sol-status-pill {
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 4px;
+    }
+
+    .sol-status-pill.incorrect {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    .sol-status-pill.unattempted {
+      background: #f3f4f6;
+      color: #374151;
+      border: 1px solid #d1d5db;
+    }
+
+    .sol-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .sol-opt {
+      padding: 8px 12px;
+      border-radius: 5px;
+      border: 1px solid #e2e8f0;
+      font-size: 13px;
+      background: #f8fafc;
+    }
+
+    .sol-opt.correct-opt {
+      background: #dcfce7;
+      border-color: #86efac;
+      color: #14532d;
+      font-weight: 600;
+    }
+
+    .sol-opt.user-wrong-opt {
+      background: #fee2e2;
+      border-color: #fca5a5;
+      color: #7f1d1d;
+      font-weight: 600;
+    }
+
+    .sol-explanation-box {
+      background: #f8fafc;
+      border-left: 3px solid var(--tcs-navy);
+      padding: 10px 14px;
+      border-radius: 0 6px 6px 0;
+      font-size: 13px;
+      color: #1e293b;
+      margin-top: 10px;
+    }
+
+    /* MODALS (Pause & Submit Confirmation) */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      max-width: 480px;
+      width: 100%;
+      padding: 22px 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .modal-box h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--tcs-navy);
+      margin-bottom: 8px;
+    }
+
+    .modal-box p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .modal-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 18px;
+      background: #f8fafc;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      font-size: 13px;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- VIEW 1: SINGLE HTML DASHBOARD LISTING ALL 6 MOCKS -->
+  <section id="view-dashboard" class="view-section active">
+    <header class="top-system-bar">
+      <div class="brand-title">
+        <span class="brand-badge">TCS / Eduquity CBT</span>
+        <h1>SSC 2025 Music PYQs — Complete 6 Mock Tests Portal</h1>
+      </div>
+      <div style="font-size: 12.5px; font-weight: 600;">
+        139 Verified PYQs • Light Theme Exam Engine
+      </div>
+    </header>
+
+    <div class="dashboard-container">
+      <div class="dash-hero">
+        <div class="dash-hero-left">
+          <h2>All Music Questions Asked by SSC in 2025 (New Pattern)</h2>
+          <p>Select any of the 6 Mock Tests below to read the candidate instructions and begin the timed Computer Based Test (CBT).</p>
+        </div>
+        <div class="dash-stats-row">
+          <div class="stat-pill">
+            <span class="lbl">Total PYQs</span>
+            <span class="val">139 MCQs</span>
+          </div>
+          <div class="stat-pill">
+            <span class="lbl">Marking Scheme</span>
+            <span class="val">+2 / -0.25</span>
+          </div>
+          <div class="stat-pill">
+            <span class="lbl">Completed</span>
+            <span class="val" id="dash-completed-count">0 / 6</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mocks-grid" id="mocks-grid-container"></div>
+    </div>
+  </section>
+
+  <!-- VIEW 2: INITIAL INTRODUCTORY / INSTRUCTIONS INTERFACE BEFORE STARTING TEST -->
+  <section id="view-intro" class="view-section">
+    <header class="top-system-bar">
+      <div class="brand-title">
+        <span class="brand-badge">Instructions</span>
+        <h1 id="intro-top-title">Mock Test Instructions</h1>
+      </div>
+      <button type="button" class="btn-top-ctrl" id="btn-intro-back-top">← All 6 Mocks Dashboard</button>
+    </header>
+
+    <div class="intro-wrapper">
+      <div class="intro-header">
+        <h2 id="intro-mock-heading">General Instructions — Please Read Carefully</h2>
+        <span class="mock-status-badge" id="intro-q-range-badge">Questions 1–25</span>
+      </div>
+
+      <div class="intro-body">
+        <div class="intro-summary-bar">
+          <div>Total Questions: <strong id="intro-total-q">25 MCQs</strong></div>
+          <div>Time Allotted: <strong id="intro-duration-text">15 Minutes (900 Seconds)</strong></div>
+          <div>Correct Answer: <strong style="color:#15803d;">+2.00 Marks</strong></div>
+          <div>Wrong Answer: <strong style="color:#b91c1c;">-0.25 Marks</strong></div>
+          <div>Unattempted: <strong>0 Marks</strong></div>
+        </div>
+
+        <div class="intro-section-title">1. Test Rules & Navigation</div>
+        <ul class="intro-list">
+          <li>The countdown timer in the top right corner displays the remaining time available for you to complete the examination. When the timer reaches zero, the examination will <strong>submit automatically</strong>.</li>
+          <li>Only <strong>one question</strong> is displayed on the screen at a time. The four distractor options are randomized on each session/refresh while keeping the question sequence fixed.</li>
+          <li>Selecting an option does not jump to the next question automatically or reveal answers during the test. Click <strong>Next</strong> (Save &amp; Next) or <strong>Mark for Review &amp; Next</strong> to record your status and move forward.</li>
+          <li>Clicking <strong>I am ready to begin</strong> will automatically launch the exam in Fullscreen mode. You can exit fullscreen anytime using the <strong>Exit Fullscreen</strong> button.</li>
+          <li>Upon submission, your detailed scorecard and solutions/explanations for <strong>incorrect and un-attempted questions</strong> will be displayed for analysis.</li>
+        </ul>
+
+        <div class="intro-section-title">2. Question Palette Symbols (Right Sidebar on Desktop)</div>
+        <table class="palette-legend-table">
+          <thead>
+            <tr>
+              <th style="width:70px;">Symbol</th>
+              <th>Meaning of Symbol in Question Palette</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="sym-box sym-not-visited">1</span></td>
+              <td>You have <strong>NOT visited</strong> the question yet.</td>
+            </tr>
+            <tr>
+              <td><span class="sym-box sym-not-answered">2</span></td>
+              <td>You have visited the question but have <strong>NOT answered</strong> it.</td>
+            </tr>
+            <tr>
+              <td><span class="sym-box sym-answered">3</span></td>
+              <td>You have <strong>Answered</strong> the question (will be evaluated for +2 / -0.25).</td>
+            </tr>
+            <tr>
+              <td><span class="sym-box sym-review">4</span></td>
+              <td>You have <strong>NOT answered</strong> the question, but have marked it for review.</td>
+            </tr>
+            <tr>
+              <td><span class="sym-box sym-ans-review">5</span></td>
+              <td>You have <strong>Answered</strong> the question AND marked it for review (will be evaluated on submission).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="intro-footer">
+        <label class="declaration-label" for="chk-declaration">
+          <input type="checkbox" id="chk-declaration" />
+          <span>I have read and understood all the instructions. I agree that in case of any dispute or timer expiry, the test will auto-submit and evaluate my saved responses according to the +2.00 / -0.25 marking scheme.</span>
+        </label>
+        <div class="intro-btn-row">
+          <button type="button" class="btn-secondary" id="btn-intro-back">← Back to Dashboard</button>
+          <button type="button" class="btn-primary" id="btn-start-exam" style="max-width: 280px;" disabled>I am ready to begin →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIEW 3: MAIN TCS / EDUQUITY EXAM INTERFACE -->
+  <section id="view-exam" class="view-section">
+    <header class="exam-top-bar">
+      <div class="exam-title-group">
+        <span class="exam-mock-name" id="exam-header-title">Mock Test 1</span>
+        <span class="exam-section-pill" id="exam-header-subtitle">General Awareness: Indian Music PYQs</span>
+      </div>
+      <div class="exam-top-controls">
+        <div class="timer-badge" id="exam-timer-box">
+          <span>Time Left:</span>
+          <span id="exam-timer-display">15:00</span>
+        </div>
+        <button type="button" class="btn-top-ctrl" id="btn-pause-exam">Pause</button>
+        <button type="button" class="btn-top-ctrl" id="btn-exit-fullscreen">Exit Fullscreen</button>
+        <button type="button" class="btn-top-ctrl" id="btn-exam-dashboard">Dashboard</button>
+      </div>
+    </header>
+
+    <div class="exam-workspace">
+      <!-- Left Main Question Area -->
+      <div class="question-column">
+        <div class="question-meta-bar">
+          <div class="q-number-label" id="exam-q-num-label">Question No. 1 of 25</div>
+          <div class="q-meta-right">
+            <span class="exam-tag-badge" id="exam-q-tag" style="display:none;">SSC CGL - 2025</span>
+            <span class="marks-info-badge">Marks: <span class="pos">+2.00</span>, <span class="neg">-0.25</span></span>
+          </div>
+        </div>
+
+        <div class="question-scroll-area" id="question-scroll-container">
+          <div class="question-stem" id="exam-q-text"></div>
+          <div class="question-image-box" id="exam-q-img-box" style="display:none;">
+            <img id="exam-q-img" src="" alt="Musical Instrument Figure" />
+          </div>
+          <div class="options-list" id="exam-options-container"></div>
+        </div>
+
+        <!-- Bottom Action Bar (Never hidden) -->
+        <div class="question-action-bar">
+          <div class="action-left-group">
+            <button type="button" class="btn-exam" id="btn-prev-q">Previous</button>
+            <button type="button" class="btn-exam review" id="btn-review-next">Mark for Review &amp; Next</button>
+            <button type="button" class="btn-exam" id="btn-clear-q">Clear</button>
+          </div>
+          <div class="action-right-group">
+            <button type="button" class="btn-exam save-next" id="btn-next-q">Next</button>
+            <button type="button" class="btn-exam submit-main" id="btn-submit-bottom">Submit</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Question Number Palette (Hidden on Mobile Phones via CSS) -->
+      <aside class="palette-sidebar" aria-label="Question Number Palette">
+        <div class="candidate-box">
+          <div class="candidate-avatar">SSC</div>
+          <div class="candidate-info">
+            <div class="name">Candidate</div>
+            <div class="sub" id="palette-mock-label">Mock Test 1</div>
+          </div>
+        </div>
+
+        <div class="palette-status-summary">
+          <div class="status-item">
+            <span class="mini-sym sym-answered" id="count-answered">0</span>
+            <span>Answered</span>
+          </div>
+          <div class="status-item">
+            <span class="mini-sym sym-not-answered" id="count-not-answered">0</span>
+            <span>Not Answered</span>
+          </div>
+          <div class="status-item">
+            <span class="mini-sym sym-not-visited" id="count-not-visited">25</span>
+            <span>Not Visited</span>
+          </div>
+          <div class="status-item">
+            <span class="mini-sym sym-review" id="count-review">0</span>
+            <span>Marked</span>
+          </div>
+          <div class="status-item full-width">
+            <span class="mini-sym sym-ans-review" id="count-ans-review">0</span>
+            <span>Answered &amp; Marked for Review</span>
+          </div>
+        </div>
+
+        <div class="palette-header-label">Question Palette (Scroll to View All)</div>
+
+        <div class="palette-grid-scroll">
+          <div class="palette-grid" id="palette-buttons-grid"></div>
+        </div>
+
+        <div class="palette-footer">
+          <button type="button" class="btn-exam submit-main" id="btn-submit-palette">Submit</button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- VIEW 4: POST-SUBMISSION SCORE & SOLUTIONS ANALYSIS -->
+  <section id="view-result" class="view-section">
+    <header class="top-system-bar">
+      <div class="brand-title">
+        <span class="brand-badge">Result &amp; Analysis</span>
+        <h1 id="result-header-title">Mock Test Analysis</h1>
+      </div>
+      <div style="display:flex; gap:8px;">
+        <button type="button" class="btn-top-ctrl" id="btn-retake-mock">Retake This Mock</button>
+        <button type="button" class="btn-top-ctrl" id="btn-result-dashboard">← All 6 Mocks Dashboard</button>
+      </div>
+    </header>
+
+    <div class="result-container">
+      <div class="scorecard-panel">
+        <div class="scorecard-top">
+          <div>
+            <h2 id="result-mock-title">Mock Test 1 — Performance Scorecard</h2>
+            <p style="font-size:12.5px; color:var(--text-muted);" id="result-subtitle-meta"></p>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button type="button" class="btn-secondary" id="btn-retake-mock-2">Retake Mock</button>
+            <button type="button" class="btn-primary" id="btn-result-dashboard-2">Back to Dashboard</button>
+          </div>
+        </div>
+
+        <div class="scorecard-metrics">
+          <div class="metric-card highlight">
+            <div class="m-label">Final Score</div>
+            <div class="m-val" id="res-final-score">0.00 / 50</div>
+          </div>
+          <div class="metric-card">
+            <div class="m-label">Attempted</div>
+            <div class="m-val" id="res-attempted">0 / 25</div>
+          </div>
+          <div class="metric-card">
+            <div class="m-label">Correct (+2)</div>
+            <div class="m-val green" id="res-correct">0</div>
+          </div>
+          <div class="metric-card">
+            <div class="m-label">Incorrect (-0.25)</div>
+            <div class="m-val red" id="res-incorrect">0</div>
+          </div>
+          <div class="metric-card">
+            <div class="m-label">Un-attempted (0)</div>
+            <div class="m-val gray" id="res-unattempted">0</div>
+          </div>
+          <div class="metric-card">
+            <div class="m-label">Accuracy</div>
+            <div class="m-val" id="res-accuracy">0%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solutions-header-bar">
+        <div>
+          <h3>Solutions &amp; Explanations (Incorrect &amp; Un-attempted Questions Only)</h3>
+          <p id="res-omitted-note">As per test rules, solutions are displayed exclusively for incorrect and un-attempted questions.</p>
+        </div>
+        <div class="filter-tabs">
+          <button type="button" class="filter-tab active" data-filter="all" id="tab-filter-all">All Incorrect &amp; Un-attempted</button>
+          <button type="button" class="filter-tab" data-filter="incorrect" id="tab-filter-incorrect">Incorrect Only</button>
+          <button type="button" class="filter-tab" data-filter="unattempted" id="tab-filter-unattempted">Un-attempted Only</button>
+        </div>
+      </div>
+
+      <div id="solutions-list-container"></div>
+    </div>
+  </section>
+
+  <!-- PAUSE MODAL -->
+  <div class="modal-backdrop" id="modal-pause">
+    <div class="modal-box">
+      <h3>Examination Paused</h3>
+      <p>Your countdown timer is currently paused. Click <strong>Resume Test</strong> below to continue answering questions.</p>
+      <div class="modal-actions">
+        <button type="button" class="btn-primary" id="btn-resume-exam">Resume Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBMIT CONFIRMATION MODAL -->
+  <div class="modal-backdrop" id="modal-submit">
+    <div class="modal-box">
+      <h3>Submit Mock Test?</h3>
+      <p>Please review your attempt summary below before final submission:</p>
+      <div class="modal-summary-grid" id="submit-modal-summary"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn-secondary" id="btn-cancel-submit">Return to Test</button>
+        <button type="button" class="btn-primary" id="btn-confirm-submit" style="background:var(--ans-green);">Confirm &amp; Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const ALL_QUESTIONS = [{"id": 1, "q": "Raga Shankara is a Hindustani classical raga performed at a specific time. During which part of the day is it traditionally rendered, conveying a meditative and devotional mood?", "options": ["Morning", "Afternoon", "Evening", "Night"], "ans": "Night", "tag": "DP - 2025", "exp": "Raga Shankara is performed during the night, specifically in the second pahar of the night (typically between 9:00 PM to 12:00 AM or 10:00 PM to 1:00 AM). It belongs to the Bilawal Thaat and is associated with the energy of Lord Shiva."}, {"id": 2, "q": "Raga Bageshree is typically performed during which time, conveying moods of longing, devotion, and serenity in Hindustani classical music?", "options": ["Morning", "Noon", "Evening", "Night"], "ans": "Night", "tag": "DP - 2025", "exp": "Raga Bageshree is typically performed during the night (specifically in the second pahar of the night, around 9:00 PM to midnight) and belongs to the Kafi Thaat."}, {"id": 3, "q": "Sopana Sangeetham is a classical music tradition associated with temple rituals. From which Indian state does this devotional music style originate?", "options": ["Kerala", "Karnataka", "Tamil Nadu", "Odisha"], "ans": "Kerala", "tag": "DP - 2025", "exp": "Sopana Sangeetham is a devotional classical music tradition originating from Kerala. 'Sopana' translates to steps, as it is traditionally sung on the steps (sopanams) leading to the sanctum sanctorum of Kerala temples."}, {"id": 4, "q": "Raga Jaunpuri in Hindustani classical music is derived from which thaat, often performed in late morning sessions and conveying gentle, devotional moods?", "options": ["Bilawal", "Kafi", "Asavari", "Bhairav"], "ans": "Asavari", "tag": "DP - 2025", "exp": "Raga Jaunpuri is derived from the Asavari Thaat. It is performed in the late morning and conveys a sense of emotional depth and devotion."}, {"id": 5, "q": "In Hindustani classical music, Raga Yaman is derived from which thaat, characterized by Tivra Ma, and often performed in evening concerts with serene and devotional melodies?", "options": ["Bilawal", "Kalyan", "Bhairav", "Kafi"], "ans": "Kalyan", "tag": "DP - 2025", "exp": "Raga Yaman is derived from the Kalyan Thaat, characterized by Tivra Ma (sharp fourth), and is traditionally performed during the first pahar of the night (evening)."}, {"id": 6, "q": "Which of the following is true about 'Raga Bhairav'?", "options": ["It is sung in the evening", "It is sung during the night", "It is sung in the morning", "It is sung at midnight"], "ans": "It is sung in the morning", "tag": "DP - 2025", "exp": "Raga Bhairav is derived from the Bhairav Thaat and is performed in the early morning. Known as the 'King of Morning Ragas', it evokes a devotional, majestic, and serious mood associated with Lord Shiva."}, {"id": 7, "q": "Which style of music is associated with the Carnatic tradition?", "options": ["Khayal", "Dhrupad", "Kriti", "Tappa"], "ans": "Kriti", "tag": "DP - 2025", "exp": "Kriti is a principal musical form associated with the Carnatic music tradition of South India, whereas Khayal, Dhrupad, and Tappa belong to the Hindustani music tradition of North India."}, {"id": 8, "q": "Who is regarded as the grand theorist of Carnatic music?", "options": ["Muthuswami Dikshitar", "Venkat Mukhi Swami", "Thyagaraja", "Shyama Shastri"], "ans": "Venkat Mukhi Swami", "tag": "DP - 2025", "exp": "Venkatamakhi (Venkat Mukhi Swami) is regarded as the grand theorist of Carnatic music. In his 17th-century treatise Chaturdandi Prakashika, he formulated the 72 Melakarta raga classification system."}, {"id": 9, "q": "Who composed the 'Sangeeta Ratnakara' in the 13th century, a key text in both Hindustani and Carnatic music traditions?", "options": ["Tansen", "Swathi Thirunal", "Sarangadeva", "Jayadeva"], "ans": "Sarangadeva", "tag": "DP - 2025", "exp": "Sarangadeva composed the Sangeeta Ratnakara (divided into seven chapters called Saptadhyayi) in the 13th century while serving as a court scholar for King Singhana II (Singhadeva II) of the Yadava dynasty at Devagiri."}, {"id": 10, "q": "What is the basic unit of rhythm in Hindustani classical music?", "options": ["Tala", "Swara", "Raga", "Alap"], "ans": "Tala", "tag": "DP - 2025", "exp": "Tala is the rhythmic cycle or basic framework of rhythm in Indian classical music. Swara refers to musical notes/pitch, Raga is the melodic framework, and Alap is the unmetered introductory improvisation."}, {"id": 11, "q": "How many main talas are there in Carnatic Music?", "options": ["Five", "Seven", "Six", "Eight"], "ans": "Seven", "tag": "DP - 2025", "exp": "There are 7 main Talas (Suladi Sapta Talas) in Carnatic music: Dhruva, Mathya, Rupaka, Jhampa, Triputa, Ata, and Eka."}, {"id": 12, "q": "The title of \"Aftab-e-Mausiqi\" was awarded to Faiyaz Khan. He is associated with which Gharana of classical music?", "options": ["Gwalior Gharana", "Kirana Gharana", "Patiala Gharana", "Agra Gharana"], "ans": "Agra Gharana", "tag": "DP - 2025", "exp": "Ustad Faiyaz Khan, honoured with the title 'Aftab-e-Mausiqi' (Sun of Music), was the foremost exponent of the Agra Gharana."}, {"id": 13, "q": "Dhrupad is one of the oldest vocal styles in Indian classical music. Which musical tradition is it associated with, emphasizing austere and meditative renditions of ragas?", "options": ["Khayal", "Carnatic music", "Hindustani music", "Folk music"], "ans": "Hindustani music", "tag": "DP - 2025", "exp": "Dhrupad is the oldest surviving major vocal style of Hindustani classical music (North India), known for its austere, majestic, and meditative rendition of ragas."}, {"id": 14, "q": "Which classical music tradition did Ravi Shankar represent as a global ambassador?", "options": ["Hindustani classical music", "Carnatic classical music", "Both Hindustani and Carnatic Music", "Sufi music"], "ans": "Hindustani classical music", "tag": "DP - 2025", "exp": "Pandit Ravi Shankar was a legendary Sitar virtuoso of the Maihar Gharana who represented Hindustani classical music globally."}, {"id": 15, "q": "The thaat system in Hindustani classical music organizes parent scales. Which musician formalized this system, creating 10 thaats and standardizing teaching methods in early 20th century?", "options": ["Tansen", "Vishnu Narayan Bhatkhande", "Ravi Shankar", "Allauddin Khan"], "ans": "Vishnu Narayan Bhatkhande", "tag": "DP - 2025", "exp": "Pandit Vishnu Narayan Bhatkhande formalized the 10-Thaat system in Hindustani classical music and standardized modern musical notation and pedagogy in the early 20th century."}, {"id": 16, "q": "Which vocal form is associated with Hindustani music?", "options": ["Khayal", "Varnam", "Kirtan", "Kriti"], "ans": "Khayal", "tag": "DP - 2025", "exp": "Khayal is a major vocal form of Hindustani classical music, whereas Varnam, Kirtan (Kritan), and Kriti are associated with Carnatic music."}, {"id": 17, "q": "\"Dhrupad\" is a style of singing in:", "options": ["Rabindra Sangeet", "Hindustani classical music", "Western classical music", "Carnatic music"], "ans": "Hindustani classical music", "tag": "DP - 2025", "exp": "Dhrupad is an ancient and prominent vocal style in Hindustani classical music."}, {"id": 18, "q": "Who was the Bhakti saint who preached 'Nirguna' bhakti (formless God) and whose verses are in the 'Bijak'?", "options": ["Surdas", "Tulsidas", "Kabir", "Ramananda"], "ans": "Kabir", "tag": "DP - 2025", "exp": "Kabir Das was a prominent Nirguna Bhakti saint (worshipping a formless God) and disciple of Ramananda. His verses and couplets (dohe) are compiled in the 'Bijak'."}, {"id": 19, "q": "Which of the following classical musicians is known as the \"Sarod Samrat\"?", "options": ["Ustad Amjad Ali Khan", "Ustad Bade Ghulam Ali Khan", "Dr. Balamuralikrishna", "Ravi Shankar"], "ans": "Ustad Amjad Ali Khan", "tag": "DP - 2025", "exp": "Ustad Amjad Ali Khan of the Senia Bangash Gharana is famously known as the 'Sarod Samrat' (Emperor of the Sarod)."}, {"id": 20, "q": "Pandit Ravi Shankar, renowned globally for his performances and compositions, was primarily associated with which Indian classical musical instrument?", "options": ["Tabla", "Sitar", "Sarod", "Santoor"], "ans": "Sitar", "tag": "DP - 2025", "exp": "Pandit Ravi Shankar was a world-renowned exponent of the Sitar and was awarded the Bharat Ratna in 1999."}, {"id": 21, "q": "Who is known as the founder of the Chishti Sufi order in India, spreading teachings of love, compassion, and spiritual harmony?", "options": ["Nizamuddin Auliya", "Moinuddin Chishti", "Qutbuddin Bakhtiyar Kaki", "Amir Khusro"], "ans": "Moinuddin Chishti", "tag": "DP - 2025", "exp": "Khwaja Moinuddin Chishti established the Chishti Sufi order in India (at Ajmer) in the late 12th century, preaching love, devotion, and harmony."}, {"id": 22, "q": "Which region is associated with Hindustani music?", "options": ["South India", "North India", "East India", "West India"], "ans": "North India", "tag": "DP - 2025", "exp": "Hindustani classical music is primarily associated with North India, while Carnatic classical music is practiced in South India."}, {"id": 23, "q": "Sitar gained global popularity through the efforts of which musician, who introduced Indian classical music to international audiences in the 20th century?", "options": ["Pandit Ravi Shankar", "Ustad Bismillah Khan", "Ali Akbar Khan", "L. Subramaniam"], "ans": "Pandit Ravi Shankar", "tag": "DP - 2025", "exp": "Pandit Ravi Shankar popularized the Sitar and Hindustani classical music across international audiences in the 20th century."}, {"id": 24, "q": "Which folk music form is associated with devotional songs in praise of deities?", "options": ["Qawwali", "Dandiya", "Bhajan", "Baul"], "ans": "Bhajan", "tag": "DP - 2025", "exp": "Bhajan is a devotional song form in Indian music sung in praise of Hindu deities."}, {"id": 25, "q": "The famous raga \"Megh Malhar\" is believed to ________.", "options": ["Cure diseases", "Bring rain", "Scare animals", "Induce sleep"], "ans": "Bring rain", "tag": "DP - 2025", "exp": "'Megh' means clouds; Raga Megh Malhar is a monsoon raga in Hindustani classical music traditionally believed to have the power to bring rain."}, {"id": 26, "q": "Which form of folk music is associated with the region of Bengal?", "options": ["Baul", "Dandiya", "Bhajan", "Lavani"], "ans": "Baul", "tag": "DP - 2025", "exp": "Baul is a mystic folk music tradition carried by wandering minstrels in the Bengal region (West Bengal and Bangladesh)."}, {"id": 27, "q": "Which of the following is not a part of the 7 basic notes (Saptak) in Indian classical music?", "options": ["Sa", "Re", "Ga", "None of the Above"], "ans": "None of the Above", "tag": "DP - 2025", "exp": "The 7 basic notes (Saptak Swaras) are Sa (Shadja), Re (Rishabha), Ga (Gandhara), Ma (Madhyama), Pa (Panchama), Dha (Dhaivata), and Ni (Nishada). Since Sa, Re, and Ga are all part of the Saptak, 'None of the Above' is correct."}, {"id": 28, "q": "The folk music \"Lavani\" is popular in which Indian state?", "options": ["Kerala", "Maharashtra", "Punjab", "Haryana"], "ans": "Maharashtra", "tag": "DP - 2025", "exp": "Lavani is a popular genre of traditional song and dance in Maharashtra, performed to the beats of the Dholki."}, {"id": 29, "q": "Who composed \"Vande Mataram\"?", "options": ["Rabindranath Tagore", "Bankim Chandra Chattopadhyay", "Subramania Bharati", "Kavi Pradeep"], "ans": "Bankim Chandra Chattopadhyay", "tag": "DP - 2025", "exp": "Bankim Chandra Chattopadhyay composed India's National Song 'Vande Mataram' (included in his 1882 novel Anandamath). It was adopted by the Constituent Assembly on 24 January 1950."}, {"id": 30, "q": "Which folk music style is associated with Punjab, known for energetic dance, high tempo rhythms, and performance during harvest or festive occasions?", "options": ["Bihu", "Lavani", "Bhangra", "Baul"], "ans": "Bhangra", "tag": "DP - 2025", "exp": "Bhangra is a high-energy folk music and dance form of Punjab, traditionally performed during the Vaisakhi harvest season and festive occasions."}, {"id": 31, "q": "In Carnatic music, which type of composition is most commonly performed during a concert, focusing on a fixed melody and rhythm?", "options": ["Varnam", "Kriti", "Raga Alapana", "Tillana"], "ans": "Kriti", "tag": "SSC CGL 23/09/2025 (SHIFT-2)", "exp": "Kriti (consisting of Pallavi, Anupallavi, and Charanam) forms the main fixed-melody and rhythmic composition at the heart of a Carnatic music concert."}, {"id": 32, "q": "Fill in the blanks:\nThe composition \"Guru Bin Kaise Gun Gaaye\" is set to the rhythmic cycle known as ______.", "options": ["Jhaptaal", "Keharwa", "Teentaal", "Roopak"], "ans": "Teentaal", "tag": "SSC CGL 19/09/2025 (SHIFT-1)", "exp": "The famous Hindustani classical bandish 'Guru Bin Kaise Gun Gaaye' is set to Teentaal, a 16-beat (matra) rhythmic cycle divided into four sections of 4 beats each (4-4-4-4)."}, {"id": 33, "q": "Which of the following pairs of Kashmiri music and its description is correctly matched?", "options": ["Chakri - Classical form using Santoor and Hafiz Nagma", "Sufiana Music - Folk style sung with Garaha and Rabab", "Hafiz Nagma - Dance based on musical notes of Sufiana music", "Rouf - Instrumental duet performed with Santoor and Sitar"], "ans": "Hafiz Nagma - Dance based on musical notes of Sufiana music", "tag": "SSC CGL 16/09/2025 (SHIFT-3)", "exp": "Hafiz Nagma is a traditional Kashmiri dance performed to the accompaniment and musical notes of Sufiana Kalam (Sufiana music). Chakri is a folk music form, and Rouf is a women's folk dance."}, {"id": 34, "q": "Fill in the blanks:\nIn Teen Taal of Hindustani Classical Music, the Khali is marked on the ________ matra.", "options": ["1", "5", "9", "13"], "ans": "9", "tag": "SSC CGL 12/09/2025 (SHIFT-3)", "exp": "Teen Taal has 16 matras divided into 4 vibhags (4+4+4+4). Taali (clap) falls on the 1st (Sam), 5th, and 13th matras, while Khali (empty wave of the hand) falls on the 9th matra."}, {"id": 35, "q": "In Raga Vivodha, Pt. Somnath defined a raga through Devamaya svarupa (ethos). Which of the following denotes its tonal structure?", "options": ["Talanga", "Rupa", "Swarlakshana", "Jati"], "ans": "Swarlakshana", "tag": "SSC CGL 17/09/2025 (SHIFT-1)", "exp": "In his 1609 treatise Raga Vivodha, Pandit Somnath described two forms of a raga: Devamaya Swarupa (its ethos/emotional deity form) and Nadamaya Swarupa or Swarlakshana (its tonal/sound structure)."}, {"id": 36, "q": "What is the term for a structured musical composition in Hindustani classical music?", "options": ["Kriti", "Bandish", "Gamaka", "Rasa"], "ans": "Bandish", "tag": "SSC CGL 13/09/2025 (SHIFT-2)", "exp": "A Bandish is a fixed, structured melodic composition in Hindustani classical vocal or instrumental music set to a specific raga and tala."}, {"id": 37, "q": "Who is credited with developing the modern notation system for Hindustani classical music and documenting compositions in the Kramik Pustak Maalika?", "options": ["Ustad Allauddin Khan of Maihar Gharana", "Pandit Vishnu Digambar Paluskar of Gwalior", "Pandit Vishnu Narayan Bhatkhande of Bombay", "Saint Tyagaraja of Carnatic Tradition"], "ans": "Pandit Vishnu Narayan Bhatkhande of Bombay", "tag": "SSC CGL 16/09/2025 (SHIFT-2)", "exp": "Pandit Vishnu Narayan Bhatkhande developed the widely used Bhatkhande notation system, classified ragas into 10 Thaats, and compiled traditional bandishes in the 6-volume 'Hindustani Sangeet Paddhati: Kramik Pustak Malika'."}, {"id": 38, "q": "Which of the following best describes Achal and Chal swaras in Indian classical music?", "options": ["All swaras have fixed pitch in both systems", "Sa and Pa are fixed; others have variants like Komal or Teevra", "Komal and Teevra swaras are used only in Carnatic music", "Ga and Ni are always sung in Shuddha form in all styles"], "ans": "Sa and Pa are fixed; others have variants like Komal or Teevra", "tag": "SSC CGL 17/09/2025 (SHIFT-2)", "exp": "Shadja (Sa) and Panchama (Pa) are Achal Swaras (fixed/immovable notes that remain pure). The remaining five notes (Re, Ga, Ma, Dha, Ni) are Chal Swaras (movable notes), having Komal (flat for Re, Ga, Dha, Ni) or Teevra (sharp for Ma) variants."}, {"id": 39, "q": "Which of the following correctly reflects the evolution of Indian classical music?", "options": ["Jatis evolved from ragas as per ancient texts", "72-mela system was given by Bharata in 13th century", "Folk music originally used mela and grama scales", "Ragas evolved from jatis; 72-mela was by Venkatamakhi"], "ans": "Ragas evolved from jatis; 72-mela was by Venkatamakhi", "tag": "SSC CGL 12/09/2025 (SHIFT-2)", "exp": "Historically, classical Ragas evolved from ancient Jatis (described in Bharata's Natya Shastra and Matanga's Brihaddeshi), and the 72-Melakarta scheme in Carnatic music was formulated by Venkatamakhi in the 17th century."}, {"id": 40, "q": "Fill in the blanks:\nIn Carnatic music, a laghu with five beats is known as _____ jati.", "options": ["Tishra", "Chaturashra", "Khanda", "Mishra"], "ans": "Khanda", "tag": "SSC CGL 12/09/2025 (SHIFT-1)", "exp": "In Carnatic rhythm, the 5 Jatis of a Laghu are: Tishra (3 beats), Chaturashra (4 beats), Khanda (5 beats), Mishra (7 beats), and Sankeerna (9 beats)."}, {"id": 41, "q": "Which musical instrument from Sikkim is believed to have been the first created for the deity Tetlara Lahadongna, and is associated with mythological origins?", "options": ["Niyara Hongsing ke", "Simikla Koom (Binayo)", "Yema Dhol", "Nagara of Yeba"], "ans": "Simikla Koom (Binayo)", "tag": "SSC CGL 16/09/2025 (SHIFT-1)", "exp": "In Sikkimese (Limbu) mythology, Simikla Koom (Binayo, a bamboo jaw harp) was the first instrument crafted for the deity Tetlara Lahadongna by her brothers Sawakemba, Samdang Khewa, and Lingdang Khewa."}, {"id": 42, "q": "Which musical form is described as having a 'sombre atmosphere' and emphasizing rhythm?", "options": ["Khyal", "Dhrupad", "Thumri", "Tappa"], "ans": "Dhrupad", "tag": "SSC CGL 24/09/2025 (SHIFT-3)", "exp": "Dhrupad is characterized by a solemn, sombre, and devotional atmosphere with strict adherence to raga purity and rhythmic precision (layakari)."}, {"id": 43, "q": "Which of the following is NOT a type of raga-based performance?", "options": ["Thumri", "Dhrupad", "Prabandha", "Sonata"], "ans": "Sonata", "tag": "SSC CGL 24/09/2025 (SHIFT-1)", "exp": "Thumri, Dhrupad, and Prabandha are Indian raga-based vocal forms, whereas Sonata is a Western classical musical structure."}, {"id": 44, "q": "Which of the following statements best defines Ghana Vadya in the context of Indian traditional music?", "options": ["Tuned melodic instruments played with strings and bow", "Percussion instruments requiring precise tuning before use", "Solid, non-tunable instruments primarily used for rhythm in folk music", "Wind instruments made of bamboo or reed used in classical traditions"], "ans": "Solid, non-tunable instruments primarily used for rhythm in folk music", "tag": "SSC CGL 14/09/2025 (SHIFT-3)", "exp": "Ghana Vadya (idiophones) are solid percussion instruments that do not require tuning prior to playing and produce sound when struck together or with a beater (e.g., Manjira, Jhanj, Ghatam, Kartal)."}, {"id": 45, "q": "Margi Sangita in ancient Indian music was rooted in:", "options": ["Folk music", "Vedic traditions", "Courtly entertainment", "Western-influence"], "ans": "Vedic traditions", "tag": "SSC CGL 14/09/2025 (SHIFT-1)", "exp": "Ancient Indian music was classified into Margi (sacred/celestial music rooted in Vedic traditions and Sama Veda chants meant for spiritual liberation) and Desi (regional secular/folk traditions)."}, {"id": 46, "q": "Which of the following correctly describes the musical form Svarajati?", "options": ["A bhajan form used only in temples", "A dance item without fixed structure", "A vocal form later adapted for dance", "A film-based item with fast rhythm"], "ans": "A vocal form later adapted for dance", "tag": "SSC CGL 18/09/2025 (SHIFT-1)", "exp": "Svarajati in Carnatic music originated as an instructional vocal composition (with Pallavi, Anupallavi, and Charanams) before the Varnam and was later adapted into dance repertoires like Bharatanatyam."}, {"id": 47, "q": "Fill in the blanks:\nA raga that contains six notes is classified under the _____ jaati.", "options": ["Audav", "Sampoorna", "Shadav", "Tishra"], "ans": "Shadav", "tag": "SSC CGL 13/09/2025 (SHIFT-3)", "exp": "By note count (Jaati), ragas are classified into Audav (5 notes/pentatonic), Shadav (6 notes/hexatonic), and Sampoorna (7 notes/heptatonic)."}, {"id": 48, "q": "The term 'svaravalis' refers to what in the context of Indian classical music?", "options": ["A specific type of raga", "A melody composed using the seven notes of the scale", "Ornamentation and embellishment of a raga", "A rhythmic cycle used in carnatic music"], "ans": "A melody composed using the seven notes of the scale", "tag": "SSC CGL 18/09/2025 (SHIFT-3)", "exp": "Svaravalis (such as Sarali Varisai, Janta Varisai) are foundational melodic exercises and patterns composed using the seven swaras of a scale to train beginners."}, {"id": 49, "q": "Which type of folk song in Haryana is popularly known as 'Ragani', despite having no connection with the classical Raga-Ragini system?", "options": ["Seasonal Songs", "Marriage Ritual Songs", "Folk Songs", "Lullabies"], "ans": "Folk Songs", "tag": "SSC CGL 19/09/2025 (SHIFT-3)", "exp": "In Haryana, traditional folk songs and folk theatre narratives (associated with Saang/Swang and popularized by Pandit Lakhmi Chand) are popularly called 'Ragani'."}, {"id": 50, "q": "Which classical musical treatise, composed in the 13th century CE by Sharangadeva in Maharashtra, is considered a foundational text in Indian musicology?", "options": ["Natya Shastra", "Sangeet Sudha", "Sangeet Ratnakara", "Abhinaya Darpana"], "ans": "Sangeet Ratnakara", "tag": "SSC CGL 17/09/2025 (SHIFT-3)", "exp": "Sangeet Ratnakara ('Ocean of Music and Dance') was composed by Sharangadeva in the 13th century CE at Devagiri (Daulatabad, Maharashtra)."}, {"id": 51, "q": "Which of the following best describes Annamacharya's contribution to Indian devotional music?", "options": ["Composed Sanskrit hymns on caste rituals.", "Wrote over 32,000 songs promoting devotion and equality", "Restricted songs to temples and priests only", "Focused only on melody, not on social reform"], "ans": "Wrote over 32,000 songs promoting devotion and equality", "tag": "SSC CGL 13/09/2025 (SHIFT-1)", "exp": "Saint Tallapaka Annamacharya (15th-century Telugu saint-poet and Pada-kavita Pitamaha) composed around 32,000 Sankirtanas in praise of Lord Venkateswara, championing devotion and social equality."}, {"id": 52, "q": "Which of the following best reflects Kerala's musical instrument heritage?", "options": ["Ravana-Hatta originated in Kerala and spread northward", "Kerala's music uses only wind instruments like Turi and Kombu", "Kerala's instruments are recent and mostly Western-influenced", "Drums like Timila and Maddalam are mentioned in Silappadikaram and still used today"], "ans": "Drums like Timila and Maddalam are mentioned in Silappadikaram and still used today", "tag": "SSC CGL 15/09/2025 (SHIFT-1)", "exp": "Ancient percussion instruments of Kerala such as the Timila and Maddalam are referenced in the Sangam epic Silappadikaram and remain central to Kerala's temple ensembles (Panchavadyam) today."}, {"id": 53, "q": "Which of the following best describes traditional Rajasthani music?", "options": ["Focuses only on temple rituals", "Uses electric sounds as the base", "Tied to nature, life, and stories", "Known only for classical ragas"], "ans": "Tied to nature, life, and stories", "tag": "SSC CGL 15/09/2025 (SHIFT-2)", "exp": "Traditional Rajasthani folk music (performed by communities like Manganiyars, Langas, and Bhopas) is deeply woven around desert nature, seasonal cycles, water, daily life, and heroic ballads."}, {"id": 54, "q": "'Bihu-geet', a popular form of folk music, belongs to which Indian state?", "options": ["Kerala", "Assam", "Uttarakhand", "Odisha"], "ans": "Assam", "tag": "SSC MTS - 2025", "exp": "Bihu-geet is the traditional folk music of Assam, performed during the Bihu festival."}, {"id": 55, "q": "Jayadeva of Bengal is famous for composing which of the following works?", "options": ["Mahabhashya", "Kirtan-Ghosha", "Surya Siddhanta", "Gita Govinda"], "ans": "Gita Govinda", "tag": "SSC MTS - 2025", "exp": "12th-century poet Jayadeva composed the Sanskrit lyrical poem 'Gita Govinda' (comprising 12 chapters and 24 Ashtapadis) depicting the divine love of Radha and Krishna."}, {"id": 56, "q": "The sad plays and songs popular in 19th-century Bihar's Bhojpur region are known as ________.", "options": ["Chaiti", "Tappa", "Biraha", "Hori"], "ans": "Biraha", "tag": "SSC MTS - 2025", "exp": "Biraha (from 'viraha', meaning separation) is an emotional folk song and theatrical ballad genre popular in the Bhojpuri-speaking regions of Bihar and eastern Uttar Pradesh expressing the sorrow of separation."}, {"id": 57, "q": "Which of the following statement is correct regarding thumri?\ni. The thumri is very lyrical in its structure and presentation.\nii. Thumri is a love song and hence the textual beauty is very important.", "options": ["Only I", "Only II", "Both I and II", "Neither I nor II"], "ans": "Both I and II", "tag": "SSC MTS - 2025", "exp": "Both statements are correct. Thumri is a semi-classical Hindustani vocal form that is highly lyrical and romantic in nature, placing great emphasis on expressive rendering of the text (bol-banav)."}, {"id": 58, "q": "Which Indian region is known for the monastic music tradition that includes sacred chants with drumbeats called 'Yang'?", "options": ["Kerala", "Goa", "Ladakh", "Gujarat"], "ans": "Ladakh", "tag": "SSC MTS - 2025", "exp": "Ladakh is known for its Tibetan Buddhist monastic music tradition, which features 'Yang'—sacred, deep-voiced rhythmic chanting accompanied by monastic drums and cymbals."}, {"id": 59, "q": "Which of the following is correct regarding Gitam?\ni. It is the simplest type of composition.\nii. It is very simple in construction, with an easy and melodious flow of music.", "options": ["Only I", "Only II", "Both I and II", "Neither I nor II"], "ans": "Both I and II", "tag": "SSC MTS - 2025", "exp": "Both statements are correct. In Carnatic music, Gitam (Geetham) is the simplest introductory musical composition (Abhyasa Gana) taught after basic swara exercises, featuring one syllable per swara and an easy, melodious flow."}, {"id": 60, "q": "Which of the following is a Tat Vadya?", "options": ["Painjani", "Nageri", "Karna", "Ektara"], "ans": "Ektara", "tag": "SSC MTS - 2025", "exp": "Tat Vadya (or Tantu Vadya) refers to stringed instruments. Ektara ('one string') is a Tat Vadya, whereas Painjani is a Ghana Vadya (ankle bells), Nageri is an Avanaddha Vadya (drum), and Karna is a Sushir Vadya (wind)."}, {"id": 61, "q": "'Neuleu' songs are performed with music in which Indian state?", "options": ["Assam", "Nagaland", "Karnataka", "Uttarakhand"], "ans": "Nagaland", "tag": "SSC MTS - 2025", "exp": "Hereileu and Neuleu are traditional folk songs of the Naga tribes (especially the Zeliangrong community) in Nagaland, narrating legendary and historical events."}, {"id": 62, "q": "The monastic orchestra that uses the instrument 'Gyaling' (oboe) is associated with _______.", "options": ["Goa", "Ladakh", "Punjab", "Bihar"], "ans": "Ladakh", "tag": "SSC MTS - 2025", "exp": "The Gyaling (a double-reed shawm/oboe) is a key wind instrument played in the Buddhist monastic orchestras of Ladakh and the Himalayan region."}, {"id": 63, "q": "It is said that South Indian Music, as known today, flourished in ________ the capital city of the Yadavas in the middle ages.", "options": ["Hampi", "Kaveripattinam", "Deogiri", "Bidar"], "ans": "Deogiri", "tag": "SSC MTS - 2025", "exp": "Deogiri (Devagiri / modern Daulatabad) was the capital of the Yadava dynasty where Sharangadeva wrote the Sangeeta Ratnakara in the 13th century, a pivotal milestone in the flourishing of South Indian music."}, {"id": 64, "q": "Daskathia is a form of ballad singing prevalent in ________.", "options": ["Punjab", "Tamil Nadu", "Maharashtra", "Odisha"], "ans": "Odisha", "tag": "SSC MTS - 2025", "exp": "Daskathia is a traditional form of ballad singing and folk theatre from Odisha performed by two artists (Gayaka and Palia) using wooden clappers called 'Kathi' or 'RamTali'."}, {"id": 65, "q": "'Burrakatha', a traditional ballad that primarily narrates mythological stories, is a folk art of which Indian state?", "options": ["Kerala", "Bihar", "Madhya Pradesh", "Andhra Pradesh"], "ans": "Andhra Pradesh", "tag": "SSC MTS - 2025", "exp": "Burrakatha is a traditional oral storytelling and ballad art form native to Andhra Pradesh (and Telangana), performed by a three-member troupe."}, {"id": 66, "q": "In the context of 'Rasiya' folk songs of Uttar Pradesh, what does the word 'bumb' refer to?", "options": ["Mini guitars", "Soft flutes", "Heavy cymbals", "Large drums"], "ans": "Large drums", "tag": "SSC MTS - 2025", "exp": "In the Braj region of Uttar Pradesh (especially during Holi in Bharatpur and Mathura), 'Bumb' (or Bam) refers to huge kettle drums played alongside Rasiya folk songs (Bumb Rasiya)."}, {"id": 67, "q": "During which occasion is the 'Pathori Geet' of Chhattisgarh traditionally sung?", "options": ["Birth of a child", "Holi celebration", "Worship of Goddess Lakshmi", "Bidding farewell to a newly-wed bride"], "ans": "Bidding farewell to a newly-wed bride", "tag": "SSC MTS - 2025", "exp": "In Chhattisgarh, 'Pathoni' / 'Pathori Geet' is a traditional ceremonial song sung while sending off (bidding farewell to) the bride to her husband's home."}, {"id": 68, "q": "'Jhumti' song is associated with which Indian state/UT?", "options": ["Jharkhand", "Andhra Pradesh", "Lakshadweep", "Andaman and Nicobar"], "ans": "Jharkhand", "tag": "SSC MTS - 2025", "exp": "Jhumti (and Jhumta / Jhumair) folk songs are traditional to Jharkhand."}, {"id": 69, "q": "'Sanjha', a melodious folk song usually sung by young girls in groups, is associated with which Indian state?", "options": ["Kerala", "Punjab", "Telangana", "Madhya Pradesh"], "ans": "Madhya Pradesh", "tag": "SSC MTS - 2025", "exp": "'Sanjha' is a traditional evening folk song sung by young unmarried girls in groups during Pitrupaksha, predominantly in the Malwa region of Madhya Pradesh."}, {"id": 70, "q": "'Pankhida', sung by peasants while working in the fields, is a traditional song of which Indian state?", "options": ["Karnataka", "Rajasthan", "Telangana", "Manipur"], "ans": "Rajasthan", "tag": "SSC MTS - 2025", "exp": "'Pankhida' (meaning lover) is a lively folk song of Rajasthan sung by peasants while working in the fields, accompanied by the Algoza and Manjira."}, {"id": 71, "q": "The legendary classical vocalist Kesarbai Kerkar was associated with which Gharana?", "options": ["Patiala Gharana", "Kirana Gharana", "Banaras Gharana", "Jaipur-Atrauli Gharana"], "ans": "Jaipur-Atrauli Gharana", "tag": "SSC MTS - 2025", "exp": "Surshri Kesarbai Kerkar was a celebrated Hindustani classical vocalist of the Jaipur-Atrauli Gharana and a disciple of its founder, Ustad Alladiya Khan."}, {"id": 72, "q": "'Padavali Kirtans', sung in devotional gatherings, are traditionally associated with which Indian state?", "options": ["Haryana", "West Bengal", "Karnataka", "Telangana"], "ans": "West Bengal", "tag": "SSC MTS - 2025", "exp": "Padavali Kirtan is a devotional musical tradition of West Bengal rooted in Gaudiya Vaishnavism, celebrating the divine love of Radha and Krishna."}, {"id": 73, "q": "The Jaipur-Atrauli Gharana, known for its complex and melodic style, was founded by whom?", "options": ["Ustad Amir Khan", "Ustad Vilayat Khan", "Ustad Alladiya Khan", "Pandit Bhimsen Joshi"], "ans": "Ustad Alladiya Khan", "tag": "SSC MTS - 2025", "exp": "The Jaipur-Atrauli Gharana was founded in the late 19th century by Ustad Alladiya Khan."}, {"id": 74, "q": "The raga 'Sorathi' derives its name from the region located in _____.", "options": ["Punjab", "Tripura", "Gujarat", "Jammu and Kashmir"], "ans": "Gujarat", "tag": "", "exp": "Raga Sorathi (or Sorath) derives its name from the Sorath (Saurashtra) region located in Gujarat."}, {"id": 75, "q": "In Haripala's \"Sangeeta Sudhakara\", written in the ______ century A.D., the terms Carnatic and Hindustani are found for the first time.", "options": ["6", "14", "18", "8"], "ans": "14", "tag": "SSC MTS - 2025", "exp": "In the 14th century A.D., Haripala Deva's treatise 'Sangeeta Sudhakara' first made the explicit distinction between the 'Carnatic' (South Indian) and 'Hindustani' (North Indian) styles of Indian classical music."}, {"id": 76, "q": "'Bhawaiya' folk songs, sung solo or in chorus, are traditionally associated with which Indian state?", "options": ["Rajasthan", "Kerala", "West Bengal", "Andhra Pradesh"], "ans": "West Bengal", "tag": "SSC MTS - 2025", "exp": "Bhawaiya is a popular folk music genre from North Bengal (Cooch Behar, Jalpaiguri in West Bengal) and Assam's Goalpara region."}, {"id": 77, "q": "Which Gharana is the classical singer Shruti Sadolikar associated with?", "options": ["Jaipur-Atrauli Gharana", "Bhendibazaar Gharana", "Agra Gharana", "Patiala Gharana"], "ans": "Jaipur-Atrauli Gharana", "tag": "SSC MTS - 2025", "exp": "Shruti Sadolikar Katkar is a noted Hindustani classical vocalist of the Jaipur-Atrauli Gharana."}, {"id": 78, "q": "In which Indian state are 'Chhopati' folk songs traditionally performed?", "options": ["Manipur", "Jharkhand", "Uttarakhand", "West Bengal"], "ans": "Uttarakhand", "tag": "SSC MTS - 2025", "exp": "Chhopati is a traditional romantic dialogue folk song and dance performed in the Garhwal (Jaunsar-Bawar / Rawain) region of Uttarakhand."}, {"id": 79, "q": "Which of the following is a Sushir Vadya?", "options": ["Dimdi", "Santoor", "Jhanja", "Gagana"], "ans": "Gagana", "tag": "SSC MTS - 2025", "exp": "Gagana (a bamboo jaw harp from Assam played using wind/mouth resonance) is classified under Sushir Vadya (wind instrument) here, whereas Dimdi is an Avanaddha Vadya (drum), Santoor is a Tat Vadya (string), and Jhanja is a Ghan Vadya (cymbal)."}, {"id": 80, "q": "In which Indian state are 'Chhopati' folk songs traditionally performed?", "options": ["Manipur", "Jharkhand", "Uttarakhand", "West Bengal"], "ans": "Uttarakhand", "tag": "SSC MTS - 2025", "exp": "Chhopati folk songs are traditionally performed in the Garhwal region of Uttarakhand."}, {"id": 81, "q": "Which of the following is a Ghan Vadya?", "options": ["Das-kathi", "Naal", "Jantar", "Magudi"], "ans": "Das-kathi", "tag": "SSC MTS - 2025", "exp": "Das-kathi (wooden clappers used in Odisha's Daskathia ballad singing) is a Ghan Vadya (solid percussion instrument). Naal is an Avanaddha Vadya (drum), Jantar is a Tat Vadya (string), and Magudi (Been) is a Sushir Vadya (wind)."}, {"id": 82, "q": "The raga 'Bilaval', named after Veraval, is traditionally associated with which Indian state?", "options": ["Kerala", "Gujarat", "Sikkim", "Uttar Pradesh"], "ans": "Gujarat", "tag": "SSC MTS - 2025", "exp": "Raga Bilaval (or Velavali), connected with the coastal town of Veraval, is historically associated with Gujarat."}, {"id": 83, "q": "What is the name of the devotional philosophy promoted by Shankardeva?", "options": ["Dvaita Vedanta", "Advaita Vedanta", "Achintya Bheda Abheda", "Eka Sarana Nama Dharma"], "ans": "Eka Sarana Nama Dharma", "tag": "SSC MTS - 2025", "exp": "15th–16th century Assamese saint-scholar Srimanta Sankardeva propagated 'Eka Sarana Nama Dharma' (supreme surrender to one God, Krishna, through congregational singing/Kirtan and Borgeets)."}, {"id": 84, "q": "The advent of Purandaradasa, in the year ______, marked a very important landmark in the development of Carnatic music.", "options": ["1218", "1310", "1576", "1484"], "ans": "1484", "tag": "SSC MTS - 2025", "exp": "Purandara Dasa (born in 1484 CE), revered as the 'Pitamaha' (Father) of Carnatic Music, standardized the foundational graded lessons (Swaravalis, Alankaras, Geethams) of Carnatic music."}, {"id": 85, "q": "In structure dhrupad has ____ parts and the dhrupad proper is a song in ____ parts.", "options": ["2, 4", "5, 4", "6, 8", "8, 8"], "ans": "2, 4", "tag": "SSC MTS - 2025", "exp": "In performance structure, Dhrupad consists of 2 main sections—the unmetered Alap (including Jod and Jhala) and the metered composition (Dhrupad proper/Bandish)—and the Dhrupad proper is a song composed in 4 parts (tuks): Sthayi, Antara, Sanchari, and Abhoga."}, {"id": 86, "q": "Who is the composer of treatise of music Brihaddesi?", "options": ["Matanga", "Sharangadeva", "Haripala", "Ramamatya"], "ans": "Matanga", "tag": "SSC MTS - 2025", "exp": "Sage Matanga Muni composed the Sanskrit musicological treatise 'Brihaddeshi' (around the 6th–8th century CE), which was the first text to formally define the term 'Raga'."}, {"id": 87, "q": "Which of the following is a Sushir Vadya?", "options": ["Hath ghanti", "Pena", "Bargu", "Sagna"], "ans": "Bargu", "tag": "SSC MTS - 2025", "exp": "Bargu (a traditional horn/trumpet wind instrument of Rajasthan) is a Sushir Vadya. Hath ghanti (hand bell) is a Ghan Vadya, and Pena is a Tat/Tantu Vadya (string instrument from Manipur)."}, {"id": 88, "q": "'Dohe' songs of Chhattisgarh are sung during ____.", "options": ["Weddings", "Diwali", "Funerals", "Child birth"], "ans": "Diwali", "tag": "SSC MTS - 2025", "exp": "In Chhattisgarh, 'Raut Nacha' / 'Dohe' couplets are traditionally sung and performed by the Yadava/Raut community during the Diwali (Dev Uthani Ekadashi) festivities."}, {"id": 89, "q": "Ustad Zakir Hussain, a famous Indian musician, is a maestro of which musical instrument?", "options": ["Sitar", "Tabla", "Flute", "Violin"], "ans": "Tabla", "tag": "SSC MTS - 2025", "exp": "Ustad Zakir Hussain (son of Ustad Allah Rakha) was a world-renowned Tabla virtuoso of the Punjab Gharana."}, {"id": 90, "q": "Which musical instrument is shown in the figure given below?", "img": "data:image/png;base64,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", "options": ["Pakhawaj", "Jhanj", "Algoza", "Sindhi Sarangi"], "ans": "Sindhi Sarangi", "tag": "SSC MTS - 2025", "exp": "The figure depicts the Sindhi Sarangi, a bowed string instrument (Tat Vadya) with sympathetic strings, widely played by the Langa folk musicians of Rajasthan."}, {"id": 91, "q": "Which of the following group of musical instruments are known as Aerophones?", "options": ["Ghan Vadya", "Tat Vadya", "Avanaddha Vadya", "Sushir Vadya"], "ans": "Sushir Vadya", "tag": "", "exp": "Aerophones (wind instruments where sound is produced by vibrating columns of air, such as Bansuri, Shehnai, Nadaswaram) are classified as Sushir Vadya in the Indian system."}, {"id": 92, "q": "In 'Burrakatha', the lead singer plays which instrument?", "options": ["Flute", "Guitar", "Veena", "Tambura"], "ans": "Tambura", "tag": "SSC MTS - 2025", "exp": "In Burrakatha (Andhra Pradesh), the main storyteller/lead performer (Kathakudu) narrates the story, dances, and plays the Tambura (Burra) slung over the shoulder."}, {"id": 93, "q": "'Asem', a traditional musical instrument of Nagaland, belongs to which category?", "options": ["Flute", "Guitar", "Drum", "Harmonium"], "ans": "Drum", "tag": "SSC MTS - 2025", "exp": "'Asem' is a traditional folk drum (Avanaddha Vadya) of Nagaland fashioned from hollowed wood and stretched animal hide."}, {"id": 94, "q": "Which instrument is associated with U. Srinivas?", "options": ["Sitar", "Mandolin", "Tambura", "Nadaswaram"], "ans": "Mandolin", "tag": "SSC MTS - 2025", "exp": "Uppalapu Srinivas (Mandolin Srinivas) was a Carnatic classical prodigy and maestro who adapted the electric Mandolin to Carnatic classical music."}, {"id": 95, "q": "Which of the following is a Tat Vadya?", "options": ["Para", "Dandia", "Dilruba", "Flute"], "ans": "Dilruba", "tag": "SSC MTS - 2025", "exp": "Dilruba is a bowed stringed instrument, making it a Tat Vadya (chordophone). Para is a drum (Avanaddha Vadya), Dandia is a Ghan Vadya, and Flute is a Sushir Vadya."}, {"id": 96, "q": "Which of the following group of musical instruments are known as Membranophones?", "options": ["Ghan Vadya", "Tat Vadya", "Avanaddha Vadya", "Sushir Vadya"], "ans": "Avanaddha Vadya", "tag": "SSC MTS - 2025", "exp": "Membranophones (percussion instruments with stretched animal skin/membranes such as Tabla, Mridangam, Pakhawaj) are called Avanaddha Vadya."}, {"id": 97, "q": "'Bhankora' musical instrument is related with which of the following state?", "options": ["Tamil Nadu", "Rajasthan", "Kerala", "Uttarakhand"], "ans": "Uttarakhand", "tag": "SSC MTS - 2025", "exp": "The Bhankora is a long copper folk horn/trumpet (Sushir Vadya / aerophone) traditionally played during ceremonial and religious occasions in the Garhwal region of Uttarakhand."}, {"id": 98, "q": "Which string instrument is central to the Manganiyar musical tradition of Rajasthan?", "options": ["Sarinda", "Kamaicha", "Ravanhatta", "Dotara"], "ans": "Kamaicha", "tag": "DP - 2025", "exp": "The Kamaicha is a bowed lute with a large circular resonator that is central to the Manganiyar community's folk music tradition in western Rajasthan."}, {"id": 99, "q": "Which instrument is used in Hindustani music and is a stringed instrument?", "options": ["Tabla", "Sitar", "Mridangam", "Flute"], "ans": "Sitar", "tag": "DP - 2025", "exp": "The Sitar is a plucked stringed instrument (Tat Vadya) central to Hindustani classical music. Tabla and Mridangam are drums, and the Flute is a wind instrument."}, {"id": 100, "q": "Which Mizo musical instrument, made of curved wooden pieces and played with a wooden hammer, is used only at memorial stone ceremonies and not taken into homes?", "options": ["Bengbung", "Darbu", "Khuang", "Talhkhuang"], "ans": "Talhkhuang", "tag": "SSC CGL - 2025", "exp": "Talhkhuang is a traditional Mizo xylophone-like percussion instrument made of three curved wooden slabs struck with a wooden mallet; by custom, it is only played during Lungdawh (memorial stone erection ceremonies) and never brought inside houses."}, {"id": 101, "q": "Which traditional wind instrument, characterized by its ornate curved hornpipe design and ceremonial use in the folk music of Himachal Pradesh?", "options": ["Bhopal", "Narsingha", "Hulki", "Kangarange"], "ans": "Narsingha", "tag": "SSC CGL - 2025", "exp": "The Narsingha (Ransingha) is a traditional S-shaped or C-shaped brass/copper hornpipe (wind instrument) played during temple rituals, weddings, and folk ceremonies in Himachal Pradesh."}, {"id": 102, "q": "What is the primary instrument used in the performance of Burrakatha in Andhra Pradesh?", "options": ["Dholak", "Tambura", "Noot", "Rabab"], "ans": "Tambura", "tag": "SSC CGL - 2025", "exp": "The Tambura (whose hollow shell is called 'Burra' in Telugu, giving Burrakatha its name) is the primary instrument played by the lead narrator in Burrakatha."}, {"id": 103, "q": "Lavani is a rhythmic and sensual folk dance form from Maharashtra. What is the traditional percussion instrument used to accompany it?", "options": ["Mridangam", "Tabla", "Dholki", "Nagada"], "ans": "Dholki", "tag": "SSC CGL - 2025", "exp": "Lavani is traditionally performed to the driving, energetic beats of the Dholki, a two-headed barrel drum."}, {"id": 104, "q": "Which of the following pairs of musical forms/artists and their characteristics is correctly matched?", "options": ["Rampur Saheswan Gharana - Fast note patterns, technically demanding", "Thumri (Banaras Style) - Known for lyrical khayals followed by Tarana", "Tappa - Prominent exponent of lyrical love songs (Thumri)", "Rasoolan Devi - Slow, expressive, emphasizes mood over strict grammar"], "ans": "Rasoolan Devi - Slow, expressive, emphasizes mood over strict grammar", "tag": "SSC CPO - 2025", "exp": "Rasoolan Bai (Devi) of the Banaras Gharana was a legendary exponent of Purab Ang Thumri, which is characterized by slow tempo, emotional expressiveness (bhava), and prioritizing mood over strict raga rules."}, {"id": 105, "q": "In the context of Indian devotional music, which of the following correctly describes the contribution of Lal Ded (Lalleshwari)?", "options": ["She composed classical bhajans in Braj language dedicated to Krishna.", "She was a Kashmiri mystic who conveyed philosophy through vakh verses.", "She pioneered the Carnatic kriti form using Sanskrit hymns.", "She was a temple dancer known for composing dhrupad compositions."], "ans": "She was a Kashmiri mystic who conveyed philosophy through vakh verses.", "tag": "SSC CPO - 2025", "exp": "Lal Ded (Lalleshwari, 14th century) was a Kashmiri Shaivite mystic poet whose four-line poetic verses, called 'Vakhs', profoundly shaped Kashmiri devotional literature and music."}, {"id": 106, "q": "Fill in the blanks:\nDuring the modern period, Pt. V.N. Bhatkhande and Pt. V.D. Paluskar contributed significantly to Hindustani classical music by introducing a systematized ______.", "options": ["Bhakti Movement", "Stage Performance Culture", "Notation System", "Raga-Ragini Paintings"], "ans": "Notation System", "tag": "SSC CPO - 2025", "exp": "Pandit Vishnu Narayan Bhatkhande and Pandit Vishnu Digambar Paluskar revolutionized Hindustani music education in the modern era by introducing systematized musical notation systems and music schools."}, {"id": 107, "q": "Fill in the blank: In Indian classical music notation, a swara with a dot above the letter (e.g., Ṡ) represents the ______ saptak.", "options": ["Madhya Saptak", "Mandra Saptak", "Taar Saptak", "Shuddha Saptak"], "ans": "Taar Saptak", "tag": "SSC CPO - 2025", "exp": "In the Bhatkhande notation system, a dot above a swara indicates the Taar Saptak (higher octave), a dot below indicates the Mandra Saptak (lower octave), and no dot indicates the Madhya Saptak (middle octave)."}, {"id": 108, "q": "Which of these ragas is traditionally associated with the early morning and evokes a peaceful, meditative mood?", "options": ["Raga Bageshree", "Raga Hamsadhwani", "Raga Bhairav", "Raga Marwa"], "ans": "Raga Bhairav", "tag": "SSC CPO - 2025", "exp": "Raga Bhairav is an early morning raga that evokes a peaceful, serious, and meditative devotional mood. Raga Bageshree and Hamsadhwani are evening/night ragas, while Raga Marwa is sung at dusk/sunset."}, {"id": 109, "q": "In which state is the folk music of Lotia performed?", "options": ["Maharashtra", "Rajasthan", "Uttar Pradesh", "Manipur"], "ans": "Rajasthan", "tag": "SSC CPO - 2025", "exp": "Lotia is a regional folk music tradition of Rajasthan sung during the Chaitra month festival while women carry water-filled pots (Lotas) and kalash from ponds and wells."}, {"id": 110, "q": "Which folk music form from Rajasthan is sophisticated and similar to Thumri or Ghazal?", "options": ["Maand", "Panihari", "Garba", "Baul"], "ans": "Maand", "tag": "SSC CPO - 2025", "exp": "Maand is a sophisticated semi-classical folk singing style of Rajasthan (famous in royal courts, e.g., 'Kesariya Balam'), regarded as close in emotional nuance and ornamentation to Thumri or Ghazal."}, {"id": 111, "q": "What is the central theme of Mando music from Goa?", "options": ["Religious devotion", "War and heroism", "Love and historical narratives", "Nature and philosophy"], "ans": "Love and historical narratives", "tag": "SSC CPO - 2025", "exp": "Mando is a slow, lyrical Konkani musical form from Goa (blending Indian and Western influences) whose central themes are love, longing, tragedy, social injustice, and historical/political narratives."}, {"id": 112, "q": "Which type of music is linked to the trinity of Shyama Shastri, Tyagaraja, and Muthuswami Dikshitar?", "options": ["Hindustani classical music", "Bhakti devotional music", "Carnatic classical music", "Folk music of South India"], "ans": "Carnatic classical music", "tag": "SSC CPO - 2025", "exp": "Tyagaraja, Muthuswami Dikshitar, and Syama Sastri (all born in Tiruvarur in the 18th century) are revered as the Trinity of Carnatic classical music."}, {"id": 113, "q": "Which term refers to a melodic framework in Indian classical music that consists of ascending (arohana) and descending (avarohana) notes?", "options": ["Talam", "Alap", "Raga", "Swara"], "ans": "Raga", "tag": "SSC CPO - 2025", "exp": "A Raga is the melodic framework in Indian classical music defined by a specific scale of ascending (Arohana) and descending (Avarohana) swaras and characteristic phrases (Pakad)."}, {"id": 114, "q": "Which instrument is commonly used as a prop during the performance of Pandavani in Chhattisgarh?", "options": ["Tambura", "Tabla", "Harmonium", "Manjira"], "ans": "Tambura", "tag": "SSC CPO - 2025", "exp": "In Pandavani (the folk ballad of Chhattisgarh narrating the Mahabharata, popularized by Teejan Bai), the performer holds a decorated Tambura (Ektara) in hand, using it both for drone accompaniment and as a visual prop (representing Bhima's mace or Arjuna's bow)."}, {"id": 115, "q": "Which Hindustani classical gharana, founded by Ustad Alladiya Khan, is known for its melodic complexity and features exponents like Kesarbai Kerkar and Kishori Amonkar?", "options": ["Gwalior Gharana", "Agra Gharana", "Jaipur-Atrauli Gharana", "Kirana Gharana"], "ans": "Jaipur-Atrauli Gharana", "tag": "SSC CPO - 2025", "exp": "Founded by Ustad Alladiya Khan, the Jaipur-Atrauli Gharana is celebrated for complex vakra (zigzag) ragas and rhythmic intricacy, with stalwarts like Kesarbai Kerkar, Mogubai Kurdikar, and Kishori Amonkar."}, {"id": 116, "q": "Which of the following statements about traditional and semi-classical Indian music forms are correct?\n1. Kajri is sung by women in Uttar Pradesh during the monsoon, often with night-long group dancing.\n2. Qawwali, introduced by Turkish Sufis, is performed only as solo singing without chorus.\n3. Tappa from Punjab features rapid, jumpy notes inspired by camel riders' songs.\n4. Amir Khusro helped shape Qawwali in India as a Sufi devotional form.", "options": ["1, 2, and 3 only", "1, 3, and 4 only", "2, 3, and 4 only", "1, 2, and 4 only"], "ans": "1, 3, and 4 only", "tag": "SSC CPO - 2025", "exp": "Statements 1, 3, and 4 are correct. Statement 2 is incorrect because Qawwali is fundamentally a group/chorus Sufi devotional performance (a lead Qawwal accompanied by a party/chorus and rhythmic clapping), not solo-only."}, {"id": 117, "q": "Who is a renowned Santoor player from India, often credited with popularizing the instrument worldwide?", "options": ["Shiv Kumar Sharma", "Zakir Hussain", "Bhajan Sopori", "Hariprasad Chaurasia"], "ans": "Shiv Kumar Sharma", "tag": "SSC CPO - 2025", "exp": "Pandit Shivkumar Sharma elevated the Kashmiri folk Santoor into a premier concert instrument of Hindustani classical music worldwide."}, {"id": 118, "q": "Which one of these classical musicians is credited with popularizing the Sitar in the global music scene?", "options": ["Pandit Ravi Shankar", "Ustad Vilayat Khan", "Pandit Nikhil Banerjee", "Ustad Allauddin Khan"], "ans": "Pandit Ravi Shankar", "tag": "SSC CPO - 2025", "exp": "Pandit Ravi Shankar popularized the Sitar on the global stage through international collaborations, concerts, and recordings."}, {"id": 119, "q": "Which genre of music is commonly associated with Kathak?", "options": ["Carnatic music", "Hindustani music", "Folk music", "Western classical music"], "ans": "Hindustani music", "tag": "SSC CPO - 2025", "exp": "Kathak, the classical dance form of North India, is accompanied by Hindustani classical and semi-classical music (such as Dhrupad, Thumri, Tarana, and Dadra)."}, {"id": 120, "q": "Which instrument is commonly associated with ceremonial music in Northern India, especially in marriages and temple festivals?", "options": ["Bansuri", "Shehnai", "Santoor", "Sarod"], "ans": "Shehnai", "tag": "SSC CPO - 2025", "exp": "The Shehnai (a double-reed wind instrument / Sushir Vadya) is revered as a 'Mangal Vadya' (auspicious instrument) played at North Indian weddings, religious processions, and temple festivals."}, {"id": 121, "q": "Which of the following Assamese songs is a 'lullaby'?", "options": ["Bihu Geet", "Bon-geet", "Biyanaam", "Nichukoni-geet"], "ans": "Nichukoni-geet", "tag": "SSC CHSL - 2025", "exp": "Nichukoni-geet (orisori/soothing songs) are traditional Assamese lullabies sung to soothe and put children to sleep. Biyanaam are marriage songs, and Bihu Geet/Bon-geet are festive/pastoral songs."}, {"id": 122, "q": "Singhaji, a saint-poet of Madhya Pradesh, is remembered for his devotional compositions in which style?", "options": ["Khayal", "Tarana", "Nirguni", "Dhrupad"], "ans": "Nirguni", "tag": "SSC CHSL - 2025", "exp": "Sant Singhaji (16th century), revered as the 'Kabir of Nimar' in Madhya Pradesh, composed devotional bhajans in the Nirguni style (devotion to a formless God)."}, {"id": 123, "q": "The 'Vamsi', a traditional instrument of Tamil Nadu, is a ________.", "options": ["Flute", "Drum", "Sarod", "Manjira"], "ans": "Flute", "tag": "SSC CHSL - 2025", "exp": "Vamsi (Venu / Pullanguzhal) is a traditional bamboo transverse flute (wind instrument / Sushir Vadya) used in Tamil Nadu and Carnatic music."}, {"id": 124, "q": "'Abhang Vanis' are folk songs of which state?", "options": ["Manipur", "West Bengal", "Maharashtra", "Tamil Nadu"], "ans": "Maharashtra", "tag": "SSC CHSL - 2025", "exp": "Abhangs (Abhang Vanis) are devotional poetic songs composed in praise of Lord Vitthala (Vithoba) by Varkari saints like Dnyaneshwar, Namdev, Eknath, and Tukaram in Maharashtra."}, {"id": 125, "q": "'Dewar Geet' sung as entertainment songs, are associated with which Indian state?", "options": ["Goa", "Maharashtra", "Haryana", "Chhattisgarh"], "ans": "Chhattisgarh", "tag": "SSC CHSL - 2025", "exp": "Dewar Geet (and Dewar Nacha) are traditional folk entertainment songs and dances performed by the nomadic Dewar community of Chhattisgarh."}, {"id": 126, "q": "'Mangal' folk songs are traditionally related to which Indian state?", "options": ["Goa", "Maharashtra", "Uttarakhand", "Telangana"], "ans": "Uttarakhand", "tag": "SSC CHSL - 2025", "exp": "Mangal Geet (Mangal songs) are auspicious ceremonial folk songs sung during weddings and rites of passage in Uttarakhand (including the Garhwal, Kumaon, and Jaunsari traditions)."}, {"id": 127, "q": "'Adharatiya' is a traditional folk song of which Indian state?", "options": ["Telangana", "Jharkhand", "Punjab", "Maharashtra"], "ans": "Jharkhand", "tag": "SSC CHSL - 2025", "exp": "Adharatiya (literally 'sung at midnight') is a traditional Nagpuri/Jharkhand folk song form performed during the second half of the night."}, {"id": 128, "q": "Narayanrao Rajhauns, also known as Bal Gandharva, was a celebrated exponent of which state's musical tradition?", "options": ["Gujarat", "Rajasthan", "Maharashtra", "Meghalaya"], "ans": "Maharashtra", "tag": "SSC CHSL - 2025", "exp": "Narayan Shripad Rajhans (famously titled 'Bal Gandharva' by Lokmanya Tilak) was one of the greatest Marathi Natya Sangeet (musical theatre) singers and stage actors of Maharashtra."}, {"id": 129, "q": "'Bhopa', a form of folk music, is traditional to which Indian state?", "options": ["Sikkim", "Odisha", "Rajasthan", "Tamil Nadu"], "ans": "Rajasthan", "tag": "SSC CHSL - 2025", "exp": "Bhopa (and Bhopi) priest-singers of Rajasthan perform traditional narrative folk ballads (such as Pabuji ki Phad and Devnarayan ki Phad) in front of painted scroll cloths using the Ravanhatta or Jantar."}, {"id": 130, "q": "'Mando', a slow verse and refrain composition dealing with love, tragedy and both social injustice and political resistance. It is related to which Indian state?", "options": ["Goa", "Uttarakhand", "Bihar", "Tamil Nadu"], "ans": "Goa", "tag": "SSC CHSL - 2025", "exp": "Mando is the signature Konkani musical and dance form of Goa that evolved during the 19th and 20th centuries."}, {"id": 131, "q": "Which musical instrument is commonly associated with Indian classical music?", "options": ["Guitar", "Sitar", "Piano", "Violin"], "ans": "Sitar", "tag": "SSC PHASE XIII - 25/07/2025 (SHIFT-1)", "exp": "Among the given options, the Sitar is an indigenous Indian classical stringed instrument most iconically associated with Indian classical music."}, {"id": 132, "q": "Carnatic music is mainly practiced in which part of India?", "options": ["Western India", "Northern India", "Southern India", "Eastern India"], "ans": "Southern India", "tag": "SSC PHASE XIII - 24/07/2025 (SHIFT-1)", "exp": "Carnatic classical music is practiced across Southern India (Tamil Nadu, Karnataka, Andhra Pradesh, Telangana, and Kerala)."}, {"id": 133, "q": "Which of the following is a classical form of Indian music?", "options": ["Bhangra", "Kuchipudi", "Hindustani", "Garba"], "ans": "Hindustani", "tag": "SSC PHASE XIII - 24/07/2025 (SHIFT-1)", "exp": "Hindustani (along with Carnatic) is one of the two main classical music traditions of India. Bhangra and Garba are folk dance/music forms, while Kuchipudi is a classical dance form."}, {"id": 134, "q": "The Baul music tradition belongs to which state?", "options": ["Rajasthan", "West Bengal", "Gujarat", "Tamil Nadu"], "ans": "West Bengal", "tag": "SSC PHASE XIII - 30/07/2025 (SHIFT-1)", "exp": "Baul is a mystic folk song tradition originating from West Bengal (and Bangladesh)."}, {"id": 135, "q": "Raga Miya Malhar is known for its association with which renowned musician?", "options": ["Tansen", "Swargadeo Rudra Singha", "Ravi Shankar", "Amir Khusro"], "ans": "Tansen", "tag": "SSC PHASE XIII - 31/07/2025 (SHIFT-1)", "exp": "Raga Miyan ki Malhar (Miya Malhar), along with Miyan ki Todi and Miyan ki Sarang, was created by Mian Tansen, one of the Navaratnas in Emperor Akbar's court."}, {"id": 136, "q": "The Basic notes in Indian classical music are called _____.", "options": ["Ragas", "Talas", "Swaras", "Alankars"], "ans": "Swaras", "tag": "SSC PHASE XIII - 01/08/2025 (SHIFT-1)", "exp": "The seven fundamental musical notes (Sa, Re, Ga, Ma, Pa, Dha, Ni) in Indian classical music are called Swaras."}, {"id": 137, "q": "Consider the following statements regarding the structure of Carnatic music compositions and choose the correct option:\nStatement 1: Varnam is typically performed at the end of Carnatic concert to summarize key ragas.\nStatement 2: Alapana involves improvisational elaboration of a raga without rhythm (tala).", "options": ["Both 1 and 2 are correct", "Neither 1 nor 2 is correct", "Only 2", "Only 1"], "ans": "Only 2", "tag": "SSC STENO - 2025", "exp": "Statement 1 is incorrect because Varnam is traditionally performed at the very beginning of a Carnatic concert as a warm-up piece. Statement 2 is correct because Raga Alapana is an unmetered, improvisational exploration of a raga without tala."}, {"id": 138, "q": "Consider the following statements and choose correct option:\nStatement 1: Kriti is a highly structured musical composition in Carnatic tradition.\nStatement 2: Thillana often concludes a Carnatic recital and emphasizes rhythmic syllables.", "options": ["Both 1 and 2 are correct", "Only 1", "Only 2", "Neither 1 nor 2 is correct"], "ans": "Both 1 and 2 are correct", "tag": "SSC STENO - 2025", "exp": "Both statements are correct. Kriti is the principal structured composition in Carnatic concerts, and Thillana is a lively, rhythmic piece using solfa/rhythmic syllables (jatis) performed towards the conclusion of a recital."}, {"id": 139, "q": "In which state is the folk music tradition of 'Zikir' popular?", "options": ["Assam", "Gujarat", "Odisha", "Rajasthan"], "ans": "Assam", "tag": "SSC STENO - 2025", "exp": "Zikir (and Jari) are Sufi devotional folk songs popular in Assam, composed in the 17th century by the Sufi saint Shah Milan (popularly known as Ajan Fakir)."}];
+
+    // 6 Mock Tests Definition (First 5 tests: 25 Qs & 15 mins = 900s; 6th test: 14 Qs & 8m 24s = 504s proportional to 25Q-15Mins)
+    const MOCK_CONFIGS = [
+      {
+        id: 1,
+        title: "Mock Test 1 (PYQs #1 – #25)",
+        shortTitle: "Mock Test 1",
+        startIdx: 0,
+        endIdx: 25,
+        questionCount: 25,
+        durationSec: 15 * 60, // 900 seconds (15:00)
+        durationLabel: "15 Mins (15:00)",
+        desc: "Covers Hindustani & Carnatic Ragas, 10 Thaats, Sangeeta Ratnakara, Talas, Gharanas, Bhakti & Sufi Music (DP 2025 PYQs)."
+      },
+      {
+        id: 2,
+        title: "Mock Test 2 (PYQs #26 – #50)",
+        shortTitle: "Mock Test 2",
+        startIdx: 25,
+        endIdx: 50,
+        questionCount: 25,
+        durationSec: 15 * 60,
+        durationLabel: "15 Mins (15:00)",
+        desc: "Covers Folk Music (Baul, Lavani, Bhangra, Ragani), Teen Taal, Swaras, Jatis, Ghana Vadya & Classical Treatises (DP & SSC CGL 2025 PYQs)."
+      },
+      {
+        id: 3,
+        title: "Mock Test 3 (PYQs #51 – #75)",
+        shortTitle: "Mock Test 3",
+        startIdx: 50,
+        endIdx: 75,
+        questionCount: 25,
+        durationSec: 15 * 60,
+        durationLabel: "15 Mins (15:00)",
+        desc: "Covers Annamacharya, Kerala & Rajasthani Heritage, Monastic Music of Ladakh, Regional Folk Songs & Gharanas (SSC CGL & MTS 2025 PYQs)."
+      },
+      {
+        id: 4,
+        title: "Mock Test 4 (PYQs #76 – #100)",
+        shortTitle: "Mock Test 4",
+        startIdx: 75,
+        endIdx: 100,
+        questionCount: 25,
+        durationSec: 15 * 60,
+        durationLabel: "15 Mins (15:00)",
+        desc: "Covers Instrument Classifications (Tat, Sushir, Avanaddha, Ghan Vadya), Dhrupad Structure, Sindhi Sarangi & Mizo Instruments (SSC MTS, DP & CGL 2025 PYQs)."
+      },
+      {
+        id: 5,
+        title: "Mock Test 5 (PYQs #101 – #125)",
+        shortTitle: "Mock Test 5",
+        startIdx: 100,
+        endIdx: 125,
+        questionCount: 25,
+        durationSec: 15 * 60,
+        durationLabel: "15 Mins (15:00)",
+        desc: "Covers Narsingha, Burrakatha, Lavani, Lal Ded, Bhatkhande Notation, Rajasthan & Goa Folk Music, Trinity & Exponents (SSC CGL, CPO & CHSL 2025 PYQs)."
+      },
+      {
+        id: 6,
+        title: "Mock Test 6 (PYQs #126 – #139)",
+        shortTitle: "Mock Test 6",
+        startIdx: 125,
+        endIdx: 139,
+        questionCount: 14,
+        durationSec: 14 * 36, // 504 seconds = 8 mins 24 secs (strictly proportional to 25Q-15Mins = 36s/Q)
+        durationLabel: "8 Mins 24 Secs (08:24)",
+        desc: "Covers Uttarakhand, Jharkhand, Maharashtra, Rajasthan, Goa & Assam Folk Music, Miya Malhar & Carnatic Statements (SSC CHSL, Phase XIII & Steno 2025 PYQs)."
+      }
+    ];
+
+    // State Management
+    const mockResults = {}; // keyed by mockId
+    let activeMock = null;
+    let activeQuestions = []; // fixed order of questions, each with randomized options
+    let questionStates = [];  // { status: 'not_visited'|'not_answered'|'answered'|'review'|'ans_review', selectedOption: null | string }
+    let currentQIndex = 0;
+    let remainingSeconds = 0;
+    let timerInterval = null;
+    let isPaused = false;
+    let currentResultFilter = 'all';
+
+    // Load saved results from localStorage safely
+    function loadSavedResults() {
+      try {
+        const raw = localStorage.getItem('ssc_music_2025_mock_results');
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          Object.assign(mockResults, parsed);
+        }
+      } catch (e) {
+        // Ignore storage error in restricted iframe
+      }
+    }
+
+    function saveResultsToStorage() {
+      try {
+        localStorage.setItem('ssc_music_2025_mock_results', JSON.stringify(mockResults));
+      } catch (e) {
+        // Ignore storage error
+      }
+    }
+
+    // Fisher-Yates shuffle for randomizing options on each test start/refresh
+    function shuffleArray(arr) {
+      const copy = arr.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = copy[i];
+        copy[i] = copy[j];
+        copy[j] = tmp;
+      }
+      return copy;
+    }
+
+    function formatTime(sec) {
+      const s = Math.max(0, Math.floor(sec));
+      const m = Math.floor(s / 60);
+      const rem = s % 60;
+      return String(m).padStart(2, '0') + ':' + String(rem).padStart(2, '0');
+    }
+
+    function showView(viewId) {
+      document.querySelectorAll('.view-section').forEach(sec => {
+        sec.classList.remove('active');
+      });
+      const target = document.getElementById(viewId);
+      if (target) target.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    // Render Main Dashboard
+    function renderDashboard() {
+      stopTimer();
+      const grid = document.getElementById('mocks-grid-container');
+      grid.innerHTML = '';
+
+      let completedCount = 0;
+      MOCK_CONFIGS.forEach(cfg => {
+        const res = mockResults[cfg.id];
+        if (res) completedCount++;
+
+        const maxMarks = (cfg.questionCount * 2).toFixed(0);
+        const statusBadgeHtml = res
+          ? `<span class="mock-status-badge completed">Completed • ${res.score.toFixed(2)} / ${maxMarks}</span>`
+          : `<span class="mock-status-badge">Not Attempted</span>`;
+
+        const card = document.createElement('div');
+        card.className = 'mock-card';
+        card.innerHTML = `
+          <div>
+            <div class="mock-card-top">
+              <div class="mock-card-title">${cfg.title}</div>
+              ${statusBadgeHtml}
+            </div>
+            <p class="mock-desc">${cfg.desc}</p>
+            <div class="mock-meta-grid">
+              <div class="mock-meta-item"><span>Questions:</span> <strong>${cfg.questionCount} MCQs</strong></div>
+              <div class="mock-meta-item"><span>Timer:</span> <strong>${cfg.durationLabel}</strong></div>
+              <div class="mock-meta-item"><span>Marking:</span> <strong>+2.00 / -0.25</strong></div>
+              <div class="mock-meta-item"><span>Max Marks:</span> <strong>${maxMarks}.00</strong></div>
+            </div>
+          </div>
+          <div class="mock-card-actions">
+            <button type="button" class="btn-primary btn-open-intro" data-mock-id="${cfg.id}">
+              ${res ? 'Retake Mock Test' : 'Start Mock Test'}
+            </button>
+            ${res ? `<button type="button" class="btn-secondary btn-view-analysis" data-mock-id="${cfg.id}">View Analysis</button>` : ''}
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      document.getElementById('dash-completed-count').textContent = `${completedCount} / ${MOCK_CONFIGS.length}`;
+
+      grid.querySelectorAll('.btn-open-intro').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const mId = parseInt(btn.getAttribute('data-mock-id'), 10);
+          openIntroScreen(mId);
+        });
+      });
+
+      grid.querySelectorAll('.btn-view-analysis').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const mId = parseInt(btn.getAttribute('data-mock-id'), 10);
+          openSavedResult(mId);
+        });
+      });
+    }
+
+    // Open Introductory Instructions View for Selected Mock
+    function openIntroScreen(mockId) {
+      const cfg = MOCK_CONFIGS.find(m => m.id === mockId);
+      if (!cfg) return;
+      activeMock = cfg;
+
+      document.getElementById('intro-top-title').textContent = `${cfg.title} — Candidate Instructions`;
+      document.getElementById('intro-mock-heading').textContent = `${cfg.title} — General Instructions`;
+      document.getElementById('intro-q-range-badge').textContent = `PYQs #${cfg.startIdx + 1} to #${cfg.endIdx}`;
+      document.getElementById('intro-total-q').textContent = `${cfg.questionCount} MCQs (Max Marks: ${cfg.questionCount * 2})`;
+      document.getElementById('intro-duration-text').textContent = `${cfg.durationLabel}`;
+
+      const chk = document.getElementById('chk-declaration');
+      chk.checked = false;
+      document.getElementById('btn-start-exam').disabled = true;
+
+      showView('view-intro');
+    }
+
+    // Enter Fullscreen safely
+    function enterFullscreenSafe() {
+      try {
+        const el = document.documentElement;
+        if (!document.fullscreenElement) {
+          if (el.requestFullscreen) {
+            el.requestFullscreen().catch(() => {});
+          } else if (el.webkitRequestFullscreen) {
+            el.webkitRequestFullscreen();
+          }
+        }
+      } catch (e) {
+        // Ignore fullscreen errors in sandboxed iframes
+      }
+    }
+
+    function exitFullscreenSafe() {
+      try {
+        if (document.fullscreenElement && document.exitFullscreen) {
+          document.exitFullscreen().catch(() => {});
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      } catch (e) {
+        // Ignore
+      }
+    }
+
+    // Start Exam Session
+    function startExamSession() {
+      if (!activeMock) return;
+      enterFullscreenSafe();
+
+      // Slice fixed question order for this mock, and randomize options for each question
+      const rawSlice = ALL_QUESTIONS.slice(activeMock.startIdx, activeMock.endIdx);
+      activeQuestions = rawSlice.map((q, idx) => ({
+        ...q,
+        mockQNumber: idx + 1,
+        shuffledOptions: shuffleArray(q.options)
+      }));
+
+      questionStates = activeQuestions.map((_, idx) => ({
+        status: idx === 0 ? 'not_answered' : 'not_visited',
+        selectedOption: null
+      }));
+
+      currentQIndex = 0;
+      remainingSeconds = activeMock.durationSec;
+      isPaused = false;
+
+      document.getElementById('exam-header-title').textContent = activeMock.title;
+      document.getElementById('palette-mock-label').textContent = activeMock.shortTitle;
+
+      showView('view-exam');
+      renderCurrentQuestion();
+      renderPalette();
+      startTimer();
+    }
+
+    // Timer Logic
+    function stopTimer() {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+    }
+
+    function updateTimerUI() {
+      const disp = document.getElementById('exam-timer-display');
+      const box = document.getElementById('exam-timer-box');
+      disp.textContent = formatTime(remainingSeconds);
+      if (remainingSeconds <= 120) {
+        box.classList.add('warning');
+      } else {
+        box.classList.remove('warning');
+      }
+    }
+
+    function startTimer() {
+      stopTimer();
+      updateTimerUI();
+      timerInterval = setInterval(() => {
+        if (isPaused) return;
+        remainingSeconds--;
+        updateTimerUI();
+        if (remainingSeconds <= 0) {
+          stopTimer();
+          finalizeAndSubmitExam(true);
+        }
+      }, 1000);
+    }
+
+    // Render Current Question (One at a time, no hints or answer reveal)
+    function renderCurrentQuestion() {
+      const qObj = activeQuestions[currentQIndex];
+      const st = questionStates[currentQIndex];
+
+      if (st.status === 'not_visited') {
+        st.status = 'not_answered';
+      }
+
+      document.getElementById('exam-q-num-label').textContent =
+        `Question No. ${currentQIndex + 1} of ${activeQuestions.length}`;
+
+      const tagEl = document.getElementById('exam-q-tag');
+      if (qObj.tag && qObj.tag.trim() !== '') {
+        tagEl.textContent = qObj.tag;
+        tagEl.style.display = 'inline-block';
+      } else {
+        tagEl.style.display = 'none';
+      }
+
+      document.getElementById('exam-q-text').textContent = qObj.q;
+
+      const imgBox = document.getElementById('exam-q-img-box');
+      const imgEl = document.getElementById('exam-q-img');
+      if (qObj.img) {
+        imgEl.src = qObj.img;
+        imgBox.style.display = 'inline-block';
+      } else {
+        imgEl.src = '';
+        imgBox.style.display = 'none';
+      }
+
+      const optsContainer = document.getElementById('exam-options-container');
+      optsContainer.innerHTML = '';
+
+      const optionLetters = ['A', 'B', 'C', 'D'];
+      qObj.shuffledOptions.forEach((optText, optIdx) => {
+        const isSelected = st.selectedOption === optText;
+        const row = document.createElement('label');
+        row.className = 'option-row' + (isSelected ? ' selected' : '');
+        row.innerHTML = `
+          <input type="radio" name="mcq-option" value="${ optIdx }" ${isSelected ? 'checked' : ''} />
+          <span class="option-text"><strong>(${optionLetters[optIdx]})</strong> ${escapeHtml(optText)}</span>
+        `;
+        row.addEventListener('click', () => {
+          questionStates[currentQIndex].selectedOption = optText;
+          // Do not auto-advance or mark answer during test; only highlight selection
+          renderCurrentQuestion();
+        });
+        optsContainer.appendChild(row);
+      });
+
+      document.getElementById('btn-prev-q').disabled = (currentQIndex === 0);
+      document.getElementById('question-scroll-container').scrollTop = 0;
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // Update Question Status when leaving question via Next or Palette
+    function commitCurrentStatus(markForReview) {
+      const st = questionStates[currentQIndex];
+      const hasAns = st.selectedOption !== null && st.selectedOption !== undefined;
+      if (markForReview) {
+        st.status = hasAns ? 'ans_review' : 'review';
+      } else {
+        st.status = hasAns ? 'answered' : 'not_answered';
+      }
+    }
+
+    // Render Right-Side Question Palette
+    function renderPalette() {
+      const grid = document.getElementById('palette-buttons-grid');
+      grid.innerHTML = '';
+
+      let cAnswered = 0;
+      let cNotAnswered = 0;
+      let cNotVisited = 0;
+      let cReview = 0;
+      let cAnsReview = 0;
+
+      questionStates.forEach((st, idx) => {
+        if (st.status === 'answered') cAnswered++;
+        else if (st.status === 'not_answered') cNotAnswered++;
+        else if (st.status === 'not_visited') cNotVisited++;
+        else if (st.status === 'review') cReview++;
+        else if (st.status === 'ans_review') cAnsReview++;
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        let symClass = 'sym-not-visited';
+        if (st.status === 'answered') symClass = 'sym-answered';
+        else if (st.status === 'not_answered') symClass = 'sym-not-answered';
+        else if (st.status === 'review') symClass = 'sym-review';
+        else if (st.status === 'ans_review') symClass = 'sym-ans-review';
+
+        btn.className = `q-pal-btn ${symClass}${idx === currentQIndex ? ' current-q' : ''}`;
+        btn.textContent = idx + 1;
+        btn.addEventListener('click', () => {
+          // If leaving current question without clicking Next, keep its status or update if option selected
+          const curSt = questionStates[currentQIndex];
+          if (curSt.status === 'not_answered' && curSt.selectedOption !== null) {
+            curSt.status = 'answered';
+          }
+          currentQIndex = idx;
+          renderCurrentQuestion();
+          renderPalette();
+        });
+        grid.appendChild(btn);
+      });
+
+      document.getElementById('count-answered').textContent = cAnswered;
+      document.getElementById('count-not-answered').textContent = cNotAnswered;
+      document.getElementById('count-not-visited').textContent = cNotVisited;
+      document.getElementById('count-review').textContent = cReview;
+      document.getElementById('count-ans-review').textContent = cAnsReview;
+    }
+
+    // Open Submit Modal
+    function openSubmitModal() {
+      // Ensure current question selection is reflected
+      const curSt = questionStates[currentQIndex];
+      if (curSt.status === 'not_answered' && curSt.selectedOption !== null) {
+        curSt.status = 'answered';
+      }
+      renderPalette();
+
+      let cAnswered = 0, cNotAnswered = 0, cNotVisited = 0, cReview = 0, cAnsReview = 0;
+      questionStates.forEach(st => {
+        if (st.status === 'answered') cAnswered++;
+        else if (st.status === 'not_answered') cNotAnswered++;
+        else if (st.status === 'not_visited') cNotVisited++;
+        else if (st.status === 'review') cReview++;
+        else if (st.status === 'ans_review') cAnsReview++;
+      });
+
+      const summaryEl = document.getElementById('submit-modal-summary');
+      summaryEl.innerHTML = `
+        <div>Total Questions: <strong>${activeQuestions.length}</strong></div>
+        <div>Answered: <strong style="color:#15803d;">${cAnswered + cAnsReview}</strong></div>
+        <div>Not Answered: <strong style="color:#b91c1c;">${cNotAnswered}</strong></div>
+        <div>Not Visited: <strong>${cNotVisited}</strong></div>
+        <div>Marked for Review: <strong>${cReview}</strong></div>
+        <div>Time Remaining: <strong>${formatTime(remainingSeconds)}</strong></div>
+      `;
+      document.getElementById('modal-submit').classList.add('active');
+    }
+
+    // Finalize & Evaluate Exam (+2 for Correct, -0.25 for Incorrect)
+    function finalizeAndSubmitExam(autoSubmitted) {
+      stopTimer();
+      document.getElementById('modal-submit').classList.remove('active');
+      document.getElementById('modal-pause').classList.remove('active');
+      exitFullscreenSafe();
+
+      // Commit current question if an option was selected
+      if (questionStates[currentQIndex] && questionStates[currentQIndex].selectedOption !== null) {
+        if (questionStates[currentQIndex].status === 'not_answered') {
+          questionStates[currentQIndex].status = 'answered';
+        }
+      }
+
+      let correctCount = 0;
+      let incorrectCount = 0;
+      let unattemptedCount = 0;
+
+      const detailedItems = activeQuestions.map((qObj, idx) => {
+        const userChoice = questionStates[idx].selectedOption;
+        let outcome = 'unattempted';
+        if (userChoice === null || userChoice === undefined) {
+          unattemptedCount++;
+          outcome = 'unattempted';
+        } else if (userChoice === qObj.ans) {
+          correctCount++;
+          outcome = 'correct';
+        } else {
+          incorrectCount++;
+          outcome = 'incorrect';
+        }
+        return {
+          mockQNumber: idx + 1,
+          globalId: qObj.id,
+          q: qObj.q,
+          img: qObj.img || null,
+          tag: qObj.tag || '',
+          options: qObj.shuffledOptions,
+          ans: qObj.ans,
+          exp: qObj.exp,
+          userChoice: userChoice,
+          outcome: outcome
+        };
+      });
+
+      const totalScore = (correctCount * 2.0) - (incorrectCount * 0.25);
+      const attemptedCount = correctCount + incorrectCount;
+      const accuracy = attemptedCount > 0 ? ((correctCount / attemptedCount) * 100) : 0;
+      const timeSpentSec = Math.max(0, activeMock.durationSec - remainingSeconds);
+
+      const resultObj = {
+        mockId: activeMock.id,
+        mockTitle: activeMock.title,
+        questionCount: activeMock.questionCount,
+        maxMarks: activeMock.questionCount * 2,
+        score: totalScore,
+        attempted: attemptedCount,
+        correct: correctCount,
+        incorrect: incorrectCount,
+        unattempted: unattemptedCount,
+        accuracy: accuracy,
+        timeSpentSec: timeSpentSec,
+        autoSubmitted: !!autoSubmitted,
+        items: detailedItems
+      };
+
+      mockResults[activeMock.id] = resultObj;
+      saveResultsToStorage();
+      renderResultView(resultObj);
+    }
+
+    function openSavedResult(mockId) {
+      const res = mockResults[mockId];
+      if (!res) return;
+      activeMock = MOCK_CONFIGS.find(m => m.id === mockId);
+      renderResultView(res);
+    }
+
+    function renderResultView(res) {
+      document.getElementById('result-header-title').textContent = `${res.mockTitle} — Score & Analysis`;
+      document.getElementById('result-mock-title').textContent = `${res.mockTitle} — Performance Scorecard`;
+      document.getElementById('result-subtitle-meta').textContent =
+        `${res.autoSubmitted ? 'Time Expired (Auto-Submitted)' : 'Submitted by Candidate'} • Time Taken: ${formatTime(res.timeSpentSec)} • Marking: +2.00 Correct, -0.25 Incorrect`;
+
+      document.getElementById('res-final-score').textContent = `${res.score.toFixed(2)} / ${res.maxMarks}`;
+      document.getElementById('res-attempted').textContent = `${res.attempted} / ${res.questionCount}`;
+      document.getElementById('res-correct').textContent = `${res.correct} (+${(res.correct * 2).toFixed(2)})`;
+      document.getElementById('res-incorrect').textContent = `${res.incorrect} (-${(res.incorrect * 0.25).toFixed(2)})`;
+      document.getElementById('res-unattempted').textContent = `${res.unattempted}`;
+      document.getElementById('res-accuracy').textContent = `${res.accuracy.toFixed(1)}%`;
+
+      document.getElementById('res-omitted-note').textContent =
+        `Showing solutions ONLY for Incorrect (${res.incorrect}) & Un-attempted (${res.unattempted}) questions. Your ${res.correct} Correct question(s) are excluded as per test instructions.`;
+
+      currentResultFilter = 'all';
+      updateFilterTabsUI();
+      renderSolutionsList(res);
+      showView('view-result');
+    }
+
+    function updateFilterTabsUI() {
+      document.querySelectorAll('.filter-tab').forEach(btn => {
+        if (btn.getAttribute('data-filter') === currentResultFilter) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    // Provide the solution/answer ONLY for incorrect & un-attempted questions on submission
+    function renderSolutionsList(res) {
+      const container = document.getElementById('solutions-list-container');
+      container.innerHTML = '';
+
+      const filtered = res.items.filter(item => {
+        // Never show correct questions here (strictly ONLY incorrect & un-attempted)
+        if (item.outcome === 'correct') return false;
+        if (currentResultFilter === 'incorrect') return item.outcome === 'incorrect';
+        if (currentResultFilter === 'unattempted') return item.outcome === 'unattempted';
+        return item.outcome === 'incorrect' || item.outcome === 'unattempted';
+      });
+
+      if (filtered.length === 0) {
+        const emptyBox = document.createElement('div');
+        emptyBox.className = 'solution-card';
+        emptyBox.style.textAlign = 'center';
+        emptyBox.style.padding = '32px 20px';
+        emptyBox.innerHTML = `
+          <h4 style="color:var(--tcs-navy); font-size:16px; margin-bottom:6px;">No Questions in This Filter</h4>
+          <p style="color:var(--text-muted); font-size:13.5px;">
+            ${res.correct === res.questionCount
+              ? 'Congratulations! You answered all questions correctly (100% score), so there are no incorrect or un-attempted questions to review.'
+              : 'No questions match the selected filter tab.'}
+          </p>
+        `;
+        container.appendChild(emptyBox);
+        return;
+      }
+
+      const letters = ['A', 'B', 'C', 'D'];
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'solution-card';
+
+        const statusBadge = item.outcome === 'incorrect'
+          ? `<span class="sol-status-pill incorrect">Incorrect (-0.25 Marks)</span>`
+          : `<span class="sol-status-pill unattempted">Un-attempted (0 Marks)</span>`;
+
+        const tagHtml = item.tag
+          ? `<span class="exam-tag-badge">${escapeHtml(item.tag)}</span>`
+          : '';
+
+        const imgHtml = item.img
+          ? `<div class="question-image-box" style="margin:10px 0;"><img src="${item.img}" alt="Question Figure" /></div>`
+          : '';
+
+        const optsHtml = item.options.map((opt, oIdx) => {
+          let cls = 'sol-opt';
+          let suffix = '';
+          if (opt === item.ans) {
+            cls += ' correct-opt';
+            suffix = ' ✓ (Correct Answer)';
+          } else if (item.outcome === 'incorrect' && opt === item.userChoice) {
+            cls += ' user-wrong-opt';
+            suffix = ' ✗ (Your Selection)';
+          }
+          return `<div class="${cls}"><strong>(${letters[oIdx]})</strong> ${escapeHtml(opt)}${suffix}</div>`;
+        }).join('');
+
+        card.innerHTML = `
+          <div class="sol-card-head">
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span class="sol-q-num">Q${item.mockQNumber} (PYQ #${item.globalId})</span>
+              ${tagHtml}
+            </div>
+            ${statusBadge}
+          </div>
+          <div class="question-stem" style="font-size:14.5px; margin-bottom:10px;">${escapeHtml(item.q)}</div>
+          ${imgHtml}
+          <div class="sol-options-grid">${optsHtml}</div>
+          <div class="sol-explanation-box">
+            <strong>Correct Answer:</strong> ${escapeHtml(item.ans)}<br/>
+            <strong>Solution / Factual Note:</strong> ${escapeHtml(item.exp)}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Event Listeners Setup
+    window.addEventListener('DOMContentLoaded', () => {
+      loadSavedResults();
+      renderDashboard();
+
+      // Intro Screen Controls
+      const chkDec = document.getElementById('chk-declaration');
+      const btnStartExam = document.getElementById('btn-start-exam');
+      chkDec.addEventListener('change', () => {
+        btnStartExam.disabled = !chkDec.checked;
+      });
+
+      btnStartExam.addEventListener('click', () => {
+        if (!chkDec.checked) return;
+        startExamSession();
+      });
+
+      document.getElementById('btn-intro-back').addEventListener('click', () => {
+        showView('view-dashboard');
+        renderDashboard();
+      });
+
+      document.getElementById('btn-intro-back-top').addEventListener('click', () => {
+        showView('view-dashboard');
+        renderDashboard();
+      });
+
+      // Main Exam Navigation Controls
+      document.getElementById('btn-prev-q').addEventListener('click', () => {
+        if (currentQIndex > 0) {
+          const curSt = questionStates[currentQIndex];
+          if (curSt.status === 'not_answered' && curSt.selectedOption !== null) {
+            curSt.status = 'answered';
+          }
+          currentQIndex--;
+          renderCurrentQuestion();
+          renderPalette();
+        }
+      });
+
+      document.getElementById('btn-next-q').addEventListener('click', () => {
+        commitCurrentStatus(false);
+        if (currentQIndex < activeQuestions.length - 1) {
+          currentQIndex++;
+        }
+        renderCurrentQuestion();
+        renderPalette();
+      });
+
+      document.getElementById('btn-review-next').addEventListener('click', () => {
+        commitCurrentStatus(true);
+        if (currentQIndex < activeQuestions.length - 1) {
+          currentQIndex++;
+        }
+        renderCurrentQuestion();
+        renderPalette();
+      });
+
+      document.getElementById('btn-clear-q').addEventListener('click', () => {
+        questionStates[currentQIndex].selectedOption = null;
+        questionStates[currentQIndex].status = 'not_answered';
+        renderCurrentQuestion();
+        renderPalette();
+      });
+
+      // Top Exam Buttons: Pause, Exit Fullscreen, Dashboard
+      document.getElementById('btn-pause-exam').addEventListener('click', () => {
+        isPaused = true;
+        document.getElementById('modal-pause').classList.add('active');
+      });
+
+      document.getElementById('btn-resume-exam').addEventListener('click', () => {
+        isPaused = false;
+        document.getElementById('modal-pause').classList.remove('active');
+      });
+
+      document.getElementById('btn-exit-fullscreen').addEventListener('click', () => {
+        exitFullscreenSafe();
+      });
+
+      document.getElementById('btn-exam-dashboard').addEventListener('click', () => {
+        stopTimer();
+        exitFullscreenSafe();
+        showView('view-dashboard');
+        renderDashboard();
+      });
+
+      // Submit Buttons
+      document.getElementById('btn-submit-bottom').addEventListener('click', openSubmitModal);
+      document.getElementById('btn-submit-palette').addEventListener('click', openSubmitModal);
+
+      document.getElementById('btn-cancel-submit').addEventListener('click', () => {
+        document.getElementById('modal-submit').classList.remove('active');
+      });
+
+      document.getElementById('btn-confirm-submit').addEventListener('click', () => {
+        finalizeAndSubmitExam(false);
+      });
+
+      // Result View Controls
+      document.getElementById('btn-retake-mock').addEventListener('click', () => {
+        if (activeMock) openIntroScreen(activeMock.id);
+      });
+      document.getElementById('btn-retake-mock-2').addEventListener('click', () => {
+        if (activeMock) openIntroScreen(activeMock.id);
+      });
+
+      document.getElementById('btn-result-dashboard').addEventListener('click', () => {
+        showView('view-dashboard');
+        renderDashboard();
+      });
+      document.getElementById('btn-result-dashboard-2').addEventListener('click', () => {
+        showView('view-dashboard');
+        renderDashboard();
+      });
+
+      // Filter Tabs in Result View
+      document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          currentResultFilter = tab.getAttribute('data-filter');
+          updateFilterTabsUI();
+          if (activeMock && mockResults[activeMock.id]) {
+            renderSolutionsList(mockResults[activeMock.id]);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
