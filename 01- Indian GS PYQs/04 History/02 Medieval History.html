@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medieval Indian History - 6 Mock Tests (TCS iON / Eduquity CBT Interface)</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f1f5f9;
+      color: #0f172a;
+    }
+    /* Custom Scrollbars for Question Area and Right Palette */
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #e2e8f0;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #94a3b8;
+      border-radius: 3px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #64748b;
+    }
+    /* TCS iON / Eduquity Palette Button Styles */
+    .pal-btn {
+      width: 34px;
+      height: 30px;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.12s ease;
+      position: relative;
+      user-select: none;
+    }
+    .pal-not-visited {
+      background-color: #e2e8f0;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+    }
+    .pal-not-answered {
+      background-color: #ef4444;
+      color: #ffffff;
+      border: 1px solid #dc2626;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    .pal-answered {
+      background-color: #16a34a;
+      color: #ffffff;
+      border: 1px solid #15803d;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+    .pal-review {
+      background-color: #7e22ce;
+      color: #ffffff;
+      border: 1px solid #6b21a8;
+      border-radius: 9999px;
+    }
+    .pal-answered-review {
+      background-color: #7e22ce;
+      color: #ffffff;
+      border: 1px solid #6b21a8;
+      border-radius: 9999px;
+    }
+    .pal-answered-review::after {
+      content: '';
+      position: absolute;
+      bottom: 1px;
+      right: 1px;
+      width: 8px;
+      height: 8px;
+      background-color: #22c55e;
+      border: 1px solid #ffffff;
+      border-radius: 9999px;
+    }
+    .pal-current {
+      outline: 2px solid #0284c7;
+      outline-offset: 2px;
+      transform: scale(1.05);
+    }
+    
+    /* Offline-safe utility fallback classes so layout & visibility work even without CDN */
+    .hidden { display: none !important; }
+    .flex { display: flex; }
+    .grid { display: grid; }
+    .flex-col { flex-direction: column; }
+    .flex-1 { flex: 1 1 0%; }
+    .shrink-0 { flex-shrink: 0; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .overflow-hidden { overflow: hidden; }
+    .overflow-y-auto { overflow-y: auto; }
+    .h-screen { height: 100vh; }
+    .w-screen { width: 100vw; }
+    .min-h-screen { min-height: 100vh; }
+    @media (min-width: 768px) {
+      #rightPaletteAside.md\:flex { display: flex !important; width: 19rem; }
+    }
+
+    /* Strict mobile hiding for right-side question palette */
+    @media (max-width: 767px) {
+      #rightPaletteAside {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- ==================== VIEW 1: MAIN DASHBOARD ==================== -->
+  <div id="dashboardView" class="min-h-screen flex flex-col bg-slate-100">
+    <!-- Top Official CBT Banner -->
+    <header class="bg-[#1e3a8a] text-white shadow-md border-b border-blue-900">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center font-bold text-lg tracking-wider">
+            CBT
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-semibold uppercase tracking-wider bg-amber-400 text-slate-900 px-2 py-0.5 rounded">TCS iON / Eduquity Standard</span>
+              <span class="text-xs text-blue-200">SSC / Railway / UPSC / State PCS</span>
+            </div>
+            <h1 class="text-xl sm:text-2xl font-bold mt-0.5">Medieval Indian History - Complete 6 Mock Test Portal</h1>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 text-xs sm:text-sm bg-blue-950/60 px-3.5 py-2 rounded-lg border border-blue-800">
+          <div>
+            <span class="text-blue-300 block text-[11px] uppercase">Total Mocks</span>
+            <span class="font-bold text-white">6 Tests</span>
+          </div>
+          <div class="h-6 w-px bg-blue-800"></div>
+          <div>
+            <span class="text-blue-300 block text-[11px] uppercase">Total Questions</span>
+            <span class="font-bold text-white">378 MCQs</span>
+          </div>
+          <div class="h-6 w-px bg-blue-800"></div>
+          <div>
+            <span class="text-blue-300 block text-[11px] uppercase">Total Duration</span>
+            <span class="font-bold text-white">378 Mins</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Dashboard Container -->
+    <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <!-- Introductory Notice Card -->
+      <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-4 sm:p-5 mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-base sm:text-lg font-bold text-slate-800 flex items-center gap-2">
+            <span>Select a Mock Test Below to View Instructions & Begin</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-600 mt-1">
+            All 6 mocks are listed in sequential order. Questions remain in fixed exam sequence while the 4 options randomize on every attempt/refresh. Strict countdown timer (1 minute per question) and automatic fullscreen mode are enabled upon starting each test.
+          </p>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <span id="completedMocksCountBadge" class="text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-300 px-3 py-1.5 rounded-lg">
+            Completed: 0 / 6
+          </span>
+        </div>
+      </div>
+
+      <!-- 6 Mocks List in Order -->
+      <div id="mocksListContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+        <!-- Populated dynamically by JS -->
+      </div>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-3 px-4 text-center text-xs text-slate-500">
+      Computer Based Test (CBT) Examination Portal - All 378 Factual Questions Verified (English Only)
+    </footer>
+  </div>
+
+  <!-- ==================== VIEW 2: MOCK INTRODUCTORY / INSTRUCTIONS INTERFACE ==================== -->
+  <div id="introView" class="hidden min-h-screen flex-col bg-slate-100">
+    <!-- Top Header -->
+    <header class="bg-[#1e3a8a] text-white px-4 sm:px-6 py-3 flex items-center justify-between shadow-sm">
+      <div class="flex items-center gap-3">
+        <span id="introMockBadge" class="bg-amber-400 text-slate-950 text-xs font-bold px-2.5 py-1 rounded">MOCK 01</span>
+        <h1 id="introMockTitle" class="text-base sm:text-lg font-bold truncate">Delhi Sultanate</h1>
+      </div>
+      <button id="backToDashboardFromIntroBtn" type="button" class="text-xs sm:text-sm font-medium bg-white/10 hover:bg-white/20 text-white px-3 py-1.5 rounded border border-white/20 transition">
+        &larr; Back to Main Dashboard
+      </button>
+    </header>
+
+    <!-- Instructions Content -->
+    <div class="flex-1 max-w-4xl w-full mx-auto p-4 sm:p-6 flex flex-col">
+      <div class="bg-white rounded-xl border border-slate-300 shadow-sm flex-1 flex flex-col overflow-hidden">
+        <div class="bg-slate-50 border-b border-slate-200 px-5 py-3.5 flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h2 class="text-base sm:text-lg font-bold text-slate-800">General Instructions - Please Read Carefully</h2>
+            <p id="introMockSubtitle" class="text-xs text-slate-500 mt-0.5"></p>
+          </div>
+          <div class="flex items-center gap-2 text-xs font-semibold">
+            <span id="introQuestionsBadge" class="bg-blue-50 text-blue-800 border border-blue-200 px-2.5 py-1 rounded">101 Questions</span>
+            <span id="introDurationBadge" class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-1 rounded">101 Minutes</span>
+          </div>
+        </div>
+
+        <div class="p-5 sm:p-6 space-y-5 overflow-y-auto custom-scroll text-xs sm:text-sm text-slate-700 leading-relaxed">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-50 p-3.5 rounded-lg border border-slate-200">
+            <div>
+              <span class="text-[11px] uppercase text-slate-500 block">Mock Number</span>
+              <span id="introStatNumber" class="font-bold text-slate-900 text-sm">Mock 01</span>
+            </div>
+            <div>
+              <span class="text-[11px] uppercase text-slate-500 block">Total Questions</span>
+              <span id="introStatQuestions" class="font-bold text-slate-900 text-sm">101 MCQs</span>
+            </div>
+            <div>
+              <span class="text-[11px] uppercase text-slate-500 block">Time Allotted</span>
+              <span id="introStatTime" class="font-bold text-slate-900 text-sm">101 Minutes</span>
+            </div>
+            <div>
+              <span class="text-[11px] uppercase text-slate-500 block">Question Order</span>
+              <span class="font-bold text-slate-900 text-sm">Fixed (Options Shuffled)</span>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-slate-900 mb-2">1. Test Rules & Timing:</h3>
+            <ul class="list-disc pl-5 space-y-1.5">
+              <li>The countdown timer in the top right corner of the screen displays the remaining time available for you to complete the examination. When the timer reaches zero, the examination will <strong>submit automatically</strong>.</li>
+              <li>One Multiple Choice Question (MCQ) is displayed on the screen at a time with four options. Selecting an option does <strong>not</strong> reveal the answer during the test and does <strong>not</strong> automatically jump to the next question.</li>
+              <li>Upon clicking <strong>Start Mock Test</strong>, the browser will automatically enter Fullscreen mode. You can exit fullscreen at any time using the <strong>Exit Fullscreen</strong> button on the top bar.</li>
+              <li>You can pause the countdown timer if required using the <strong>Pause</strong> button in the header.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-slate-900 mb-2">2. Question Number Palette Symbols (Right Panel on Desktop):</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 bg-slate-50 p-3.5 rounded-lg border border-slate-200">
+              <div class="flex items-center gap-3">
+                <span class="pal-btn pal-not-visited shrink-0">1</span>
+                <span>You have <strong>not visited</strong> the question yet.</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="pal-btn pal-not-answered shrink-0">2</span>
+                <span>You have <strong>not answered</strong> the question.</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="pal-btn pal-answered shrink-0">3</span>
+                <span>You have <strong>answered</strong> the question.</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="pal-btn pal-review shrink-0">4</span>
+                <span>You have <strong>NOT answered</strong> the question, but marked it for review.</span>
+              </div>
+              <div class="flex items-center gap-3 sm:col-span-2">
+                <span class="pal-btn pal-answered-review shrink-0">5</span>
+                <span>You have <strong>answered</strong> the question and <strong>marked it for review</strong> (will be evaluated on submission).</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-slate-900 mb-2">3. Navigating & Answering a Question:</h3>
+            <ul class="list-disc pl-5 space-y-1.5">
+              <li>Click on an option to select your answer. To deselect your chosen answer, click the <strong>Clear</strong> button at the bottom.</li>
+              <li>Use <strong>Next</strong> and <strong>Previous</strong> to move between questions sequentially, or click any question number in the scrollable right-hand Question Palette.</li>
+              <li>Use <strong>Mark for Review &amp; Next</strong> to flag the current question for review and advance to the next question.</li>
+              <li>Upon submission, your score will be displayed along with detailed solutions/answers <strong>exclusively for incorrect and un-attempted questions</strong>.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bottom Declaration & Start Bar -->
+        <div class="bg-slate-50 border-t border-slate-200 px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <label class="flex items-start sm:items-center gap-2.5 cursor-pointer select-none text-xs sm:text-sm text-slate-800 font-medium">
+            <input id="declarationCheckbox" type="checkbox" checked class="mt-0.5 sm:mt-0 w-4 h-4 accent-blue-700 rounded cursor-pointer" />
+            <span>I have read and understood all instructions and am ready to begin the mock test.</span>
+          </label>
+          <div class="flex items-center gap-3 justify-end">
+            <button id="cancelIntroBtn" type="button" class="px-4 py-2 text-xs sm:text-sm font-semibold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-100 transition">
+              Dashboard
+            </button>
+            <button id="beginExamBtn" type="button" class="px-6 py-2.5 text-xs sm:text-sm font-bold text-white bg-blue-700 hover:bg-blue-800 rounded-lg shadow transition">
+              I am ready to begin &rarr;
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== VIEW 3: MAIN TCS / EDUQUITY EXAM INTERFACE ==================== -->
+  <div id="examView" class="hidden h-screen w-screen overflow-hidden flex-col bg-white select-none">
+    <!-- Top CBT Header -->
+    <header class="shrink-0 bg-[#1e3a8a] text-white px-3 sm:px-5 py-2 flex items-center justify-between gap-2 border-b border-blue-950">
+      <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+        <button id="examBackToDashBtn" type="button" class="text-[11px] sm:text-xs bg-white/10 hover:bg-white/20 text-white px-2.5 py-1 rounded border border-white/20 shrink-0 transition" title="Return to Dashboard">
+          &larr; Dashboard
+        </button>
+        <span id="examHeaderMockCode" class="bg-amber-400 text-slate-950 text-[11px] font-bold px-2 py-0.5 rounded shrink-0">MOCK 01</span>
+        <h1 id="examHeaderTitle" class="text-xs sm:text-base font-bold truncate">Delhi Sultanate</h1>
+      </div>
+
+      <!-- Right Controls: Timer, Pause, Exit Fullscreen -->
+      <div class="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+        <div class="flex items-center gap-1.5 bg-slate-900/90 border border-slate-700 px-2.5 sm:px-3 py-1 rounded text-xs sm:text-sm font-mono font-bold">
+          <span class="text-slate-300 font-sans text-[11px] hidden sm:inline">Time Left:</span>
+          <span id="timerDisplay" class="text-amber-300 tracking-wider">101:00</span>
+        </div>
+        <button id="pauseExamBtn" type="button" class="px-2.5 sm:px-3 py-1 text-xs font-semibold bg-amber-500 hover:bg-amber-600 text-slate-950 rounded transition">
+          Pause
+        </button>
+        <button id="exitFullscreenBtn" type="button" class="px-2.5 sm:px-3 py-1 text-xs font-semibold bg-slate-700 hover:bg-slate-600 text-white border border-slate-500 rounded transition">
+          Exit Fullscreen
+        </button>
+      </div>
+    </header>
+
+    <!-- Middle Split Container: Left Question Panel + Right Question Palette -->
+    <div class="flex-1 flex overflow-hidden">
+      <!-- Left / Center Question Panel -->
+      <div class="flex-1 flex flex-col overflow-hidden bg-white">
+        <!-- Question Number & Exam Tag Subheader -->
+        <div class="shrink-0 bg-slate-100 border-b border-slate-300 px-4 sm:px-6 py-2.5 flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <span id="examQuestionCounter" class="text-xs sm:text-sm font-bold text-slate-800">Question No. 1 of 101</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <!-- Exam tag in smaller text ONLY if any exists -->
+            <span id="examQuestionTag" class="hidden text-[11px] font-medium text-slate-600 bg-white border border-slate-300 px-2 py-0.5 rounded"></span>
+          </div>
+        </div>
+
+        <!-- Scrollable Question & Options Area -->
+        <div id="questionScrollArea" class="flex-1 overflow-y-auto custom-scroll p-4 sm:p-6 md:p-8">
+          <div class="max-w-4xl">
+            <div id="examQuestionText" class="text-sm sm:text-base md:text-lg font-medium text-slate-900 leading-relaxed whitespace-pre-line mb-6">
+              Question text loads here...
+            </div>
+
+            <div id="examOptionsContainer" class="space-y-3">
+              <!-- 4 Radio Options injected via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Fixed Bottom Action Buttons Bar (Never Hidden) -->
+        <div class="shrink-0 bg-slate-100 border-t border-slate-300 px-3 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-2">
+          <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
+            <button id="prevQuestionBtn" type="button" class="px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold bg-white hover:bg-slate-200 text-slate-800 border border-slate-300 rounded shadow-sm disabled:opacity-40 disabled:cursor-not-allowed transition">
+              Previous
+            </button>
+            <button id="markReviewNextBtn" type="button" class="px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold bg-purple-700 hover:bg-purple-800 text-white rounded shadow-sm transition">
+              Mark for Review &amp; Next
+            </button>
+            <button id="clearResponseBtn" type="button" class="px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold bg-white hover:bg-slate-200 text-slate-800 border border-slate-300 rounded shadow-sm transition">
+              Clear
+            </button>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button id="nextQuestionBtn" type="button" class="px-4 sm:px-5 py-2 text-xs sm:text-sm font-bold bg-blue-700 hover:bg-blue-800 text-white rounded shadow-sm transition">
+              Next
+            </button>
+            <button id="mainSubmitBtn" type="button" class="px-4 sm:px-5 py-2 text-xs sm:text-sm font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded shadow-sm transition">
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right-Side Question Number Palette (Hidden on mobile phone interface) -->
+      <aside id="rightPaletteAside" class="hidden md:flex md:w-72 lg:w-80 shrink-0 border-l border-slate-300 bg-slate-50 flex-col overflow-hidden">
+        <!-- Candidate & Status Legend Header -->
+        <div class="shrink-0 p-3 bg-white border-b border-slate-200">
+          <div class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Question Palette Summary</div>
+          <div class="grid grid-cols-2 gap-x-2 gap-y-1.5 text-[11px] text-slate-700">
+            <div class="flex items-center gap-1.5">
+              <span id="statAnsweredCount" class="pal-btn pal-answered !w-6 !h-5 !text-[10px]">0</span>
+              <span>Answered</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span id="statNotAnsweredCount" class="pal-btn pal-not-answered !w-6 !h-5 !text-[10px]">0</span>
+              <span>Not Answered</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span id="statNotVisitedCount" class="pal-btn pal-not-visited !w-6 !h-5 !text-[10px]">0</span>
+              <span>Not Visited</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span id="statReviewCount" class="pal-btn pal-review !w-6 !h-5 !text-[10px]">0</span>
+              <span>Marked Review</span>
+            </div>
+            <div class="flex items-center gap-1.5 col-span-2">
+              <span id="statAnsReviewCount" class="pal-btn pal-answered-review !w-6 !h-5 !text-[10px]">0</span>
+              <span>Answered &amp; Marked for Review</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Palette Section Header -->
+        <div class="shrink-0 bg-blue-900 text-white px-3 py-1.5 text-xs font-semibold flex items-center justify-between">
+          <span>Choose a Question</span>
+          <span id="paletteSubCount" class="text-[11px] text-blue-200">101 Questions</span>
+        </div>
+
+        <!-- Scrollable Question Number Grid -->
+        <div id="paletteScrollContainer" class="flex-1 overflow-y-auto custom-scroll p-3">
+          <div id="paletteGrid" class="grid grid-cols-5 gap-2 justify-items-center">
+            <!-- Number buttons injected via JS -->
+          </div>
+        </div>
+
+        <!-- Palette Footer Submit Button -->
+        <div class="shrink-0 p-3 bg-slate-100 border-t border-slate-300">
+          <button id="paletteSubmitBtn" type="button" class="w-full py-2 text-xs sm:text-sm font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded shadow transition">
+            Submit Mock Test
+          </button>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ==================== VIEW 4: RESULT & ANALYSIS SCREEN ==================== -->
+  <div id="resultView" class="hidden min-h-screen flex-col bg-slate-100">
+    <!-- Top Result Banner -->
+    <header class="bg-[#1e3a8a] text-white px-4 sm:px-6 py-4 shadow-md">
+      <div class="max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div>
+          <div class="flex items-center gap-2">
+            <span id="resultMockBadge" class="bg-amber-400 text-slate-950 text-xs font-bold px-2.5 py-0.5 rounded">MOCK 01</span>
+            <span id="resultSubmitReasonBadge" class="text-xs bg-blue-800 text-blue-100 px-2.5 py-0.5 rounded border border-blue-700">Submitted</span>
+          </div>
+          <h1 id="resultMockTitle" class="text-lg sm:text-2xl font-bold mt-1">Delhi Sultanate - Score &amp; Analysis</h1>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <button id="retakeCurrentMockBtn" type="button" class="px-4 py-2 text-xs sm:text-sm font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/25 rounded-lg transition">
+            Retake This Mock
+          </button>
+          <button id="resultToDashboardBtn" type="button" class="px-4 py-2 text-xs sm:text-sm font-bold bg-amber-400 hover:bg-amber-300 text-slate-950 rounded-lg shadow transition">
+            Main Dashboard (All 6 Mocks)
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 space-y-6">
+      <!-- Scorecard Summary Grid -->
+      <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-5 sm:p-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-slate-200">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900">Final Examination Scorecard</h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+              Time Taken: <span id="resultTimeTaken" class="font-semibold text-slate-800">0m 0s</span> &bull;
+              Accuracy: <span id="resultAccuracy" class="font-semibold text-slate-800">0%</span>
+            </p>
+          </div>
+          <div class="flex items-center gap-4 bg-blue-50 border border-blue-200 px-4 py-3 rounded-xl">
+            <div>
+              <span class="text-[11px] uppercase tracking-wider text-blue-700 font-semibold block">Final Score</span>
+              <span id="resultScoreFraction" class="text-2xl sm:text-3xl font-extrabold text-blue-900">0 / 101</span>
+            </div>
+            <div class="h-10 w-px bg-blue-200"></div>
+            <div>
+              <span class="text-[11px] uppercase tracking-wider text-blue-700 font-semibold block">Percentage</span>
+              <span id="resultPercentage" class="text-2xl sm:text-3xl font-extrabold text-blue-900">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 Breakdown Cards -->
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 pt-5">
+          <div class="bg-slate-50 border border-slate-200 rounded-lg p-3.5">
+            <span class="text-xs text-slate-500 font-medium block">Total Questions</span>
+            <span id="cardTotalQ" class="text-xl font-bold text-slate-900 mt-1 block">0</span>
+          </div>
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-3.5">
+            <span class="text-xs text-blue-700 font-medium block">Attempted</span>
+            <span id="cardAttemptedQ" class="text-xl font-bold text-blue-900 mt-1 block">0</span>
+          </div>
+          <div class="bg-emerald-50 border border-emerald-200 rounded-lg p-3.5">
+            <span class="text-xs text-emerald-700 font-medium block">Correct Answers</span>
+            <span id="cardCorrectQ" class="text-xl font-bold text-emerald-800 mt-1 block">0</span>
+          </div>
+          <div class="bg-red-50 border border-red-200 rounded-lg p-3.5">
+            <span class="text-xs text-red-700 font-medium block">Incorrect Answers</span>
+            <span id="cardIncorrectQ" class="text-xl font-bold text-red-800 mt-1 block">0</span>
+          </div>
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-3.5 col-span-2 sm:col-span-1">
+            <span class="text-xs text-amber-800 font-medium block">Un-attempted</span>
+            <span id="cardUnattemptedQ" class="text-xl font-bold text-amber-900 mt-1 block">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Solutions Section (ONLY Incorrect & Un-attempted Questions) -->
+      <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="bg-slate-50 border-b border-slate-200 px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h3 class="text-base sm:text-lg font-bold text-slate-900">
+              Solutions &amp; Answer Key (Incorrect &amp; Un-attempted Questions Only)
+            </h3>
+            <p class="text-xs text-slate-500 mt-0.5">
+              As per exam rules, solutions are displayed exclusively for questions that were answered incorrectly or left un-attempted.
+            </p>
+          </div>
+          <!-- Filter Tabs for Incorrect & Un-attempted -->
+          <div class="flex items-center gap-1.5 bg-slate-200/80 p-1 rounded-lg text-xs font-semibold shrink-0">
+            <button id="filterAllReviewBtn" type="button" class="px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition">
+              All (<span id="countAllReview">0</span>)
+            </button>
+            <button id="filterIncorrectBtn" type="button" class="px-3 py-1.5 rounded-md text-slate-700 hover:text-slate-900 transition">
+              Incorrect (<span id="countIncorrectReview">0</span>)
+            </button>
+            <button id="filterUnattemptedBtn" type="button" class="px-3 py-1.5 rounded-md text-slate-700 hover:text-slate-900 transition">
+              Un-attempted (<span id="countUnattemptedReview">0</span>)
+            </button>
+          </div>
+        </div>
+
+        <div id="solutionsListContainer" class="divide-y divide-slate-200 p-4 sm:p-6 space-y-4">
+          <!-- Populated dynamically with ONLY incorrect and un-attempted questions -->
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ==================== MODAL 1: PAUSE OVERLAY ==================== -->
+  <div id="pauseModal" class="hidden fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm items-center justify-center p-4">
+    <div class="bg-white rounded-xl max-w-md w-full p-6 shadow-2xl border border-slate-200 text-center">
+      <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center mx-auto mb-3 font-bold text-xl">
+        &#10074;&#10074;
+      </div>
+      <h3 class="text-lg font-bold text-slate-900">Examination Paused</h3>
+      <p class="text-xs sm:text-sm text-slate-600 mt-2">
+        Your countdown timer is currently paused. Click <strong>Resume Test</strong> when you are ready to continue from the current question.
+      </p>
+      <div class="mt-6 flex items-center justify-center gap-3">
+        <button id="abortToDashFromPauseBtn" type="button" class="px-4 py-2 text-xs sm:text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition">
+          Exit to Dashboard
+        </button>
+        <button id="resumeExamBtn" type="button" class="px-6 py-2 text-xs sm:text-sm font-bold text-white bg-blue-700 hover:bg-blue-800 rounded-lg shadow transition">
+          Resume Test
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 2: SUBMIT CONFIRMATION ==================== -->
+  <div id="submitModal" class="hidden fixed inset-0 z-50 bg-slate-900/75 backdrop-blur-sm items-center justify-center p-4">
+    <div class="bg-white rounded-xl max-w-lg w-full p-6 shadow-2xl border border-slate-200">
+      <h3 class="text-lg font-bold text-slate-900">Confirm Test Submission</h3>
+      <p class="text-xs sm:text-sm text-slate-600 mt-1">
+        Are you sure you want to submit this mock test? Please review your attempt summary below:
+      </p>
+
+      <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-2.5 bg-slate-50 p-3.5 rounded-lg border border-slate-200 text-xs">
+        <div class="p-2 bg-white rounded border border-slate-200">
+          <span class="text-slate-500 block">Total Questions</span>
+          <span id="modalTotalQ" class="text-base font-bold text-slate-900">0</span>
+        </div>
+        <div class="p-2 bg-emerald-50 rounded border border-emerald-200">
+          <span class="text-emerald-700 block">Answered</span>
+          <span id="modalAnsweredQ" class="text-base font-bold text-emerald-800">0</span>
+        </div>
+        <div class="p-2 bg-red-50 rounded border border-red-200">
+          <span class="text-red-700 block">Not Answered</span>
+          <span id="modalNotAnsweredQ" class="text-base font-bold text-red-800">0</span>
+        </div>
+        <div class="p-2 bg-purple-50 rounded border border-purple-200">
+          <span class="text-purple-700 block">Marked for Review</span>
+          <span id="modalReviewQ" class="text-base font-bold text-purple-800">0</span>
+        </div>
+        <div class="p-2 bg-purple-50 rounded border border-purple-200">
+          <span class="text-purple-700 block">Answered &amp; Marked</span>
+          <span id="modalAnsReviewQ" class="text-base font-bold text-purple-800">0</span>
+        </div>
+        <div class="p-2 bg-slate-100 rounded border border-slate-300">
+          <span class="text-slate-600 block">Not Visited</span>
+          <span id="modalNotVisitedQ" class="text-base font-bold text-slate-800">0</span>
+        </div>
+      </div>
+
+      <div class="mt-6 flex items-center justify-end gap-3">
+        <button id="cancelSubmitModalBtn" type="button" class="px-4 py-2 text-xs sm:text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition">
+          Return to Test
+        </button>
+        <button id="confirmSubmitModalBtn" type="button" class="px-6 py-2 text-xs sm:text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg shadow transition">
+          Submit Final Answers
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 3: LEAVE TEST CONFIRMATION ==================== -->
+  <div id="leaveModal" class="hidden fixed inset-0 z-50 bg-slate-900/75 backdrop-blur-sm items-center justify-center p-4">
+    <div class="bg-white rounded-xl max-w-md w-full p-6 shadow-2xl border border-slate-200">
+      <h3 class="text-lg font-bold text-slate-900">Return to Main Dashboard?</h3>
+      <p class="text-xs sm:text-sm text-slate-600 mt-2">
+        Leaving the active test will discard your current unsubmitted progress for this mock. Do you want to return to the dashboard?
+      </p>
+      <div class="mt-6 flex items-center justify-end gap-3">
+        <button id="cancelLeaveModalBtn" type="button" class="px-4 py-2 text-xs sm:text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition">
+          Stay in Test
+        </button>
+        <button id="confirmLeaveModalBtn" type="button" class="px-5 py-2 text-xs sm:text-sm font-bold text-white bg-red-600 hover:bg-red-700 rounded-lg shadow transition">
+          Leave Test
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== EMBEDDED MOCK DATA & APPLICATION LOGIC ==================== -->
+  <script>
+    const MOCKS_DATA = [{"id": "mock-1", "number": "01", "title": "Delhi Sultanate", "subtitle": "Mamluk, Khalji, Tughlaq, Sayyid & Lodi Dynasties", "durationMinutes": 101, "totalQuestions": 101, "questions": [{"id": 1, "q": "With reference to Indian history, consider the following statements: 1. The first Mongol invasion of India happened during the reign of Jalal-ud-din Khalji. 2. During the reign of Ala-ud-din Khalji, one Mongol assault marched up to Delhi and besieged the city. 3. Muhammad-bin-Tughlaq temporarily lost portions of north-west of his kingdom to Mongols. Which of the statements given above is/are correct?", "options": ["1 and 2", "2 only", "1 and 3", "3 only"], "answer": "2 only", "tag": ""}, {"id": 2, "q": "With reference to Indian history, who of the following were known as 'Kulah-Daran'?", "options": ["Arab merchants", "Qalandars", "Persian calligraphists", "Sayyids"], "answer": "Sayyids", "tag": ""}, {"id": 3, "q": "At which of the following places was diamond mining carried out during the Delhi Sultanate period?", "options": ["Awadh", "Khambhat", "Panna", "Lakhnauti"], "answer": "Panna", "tag": ""}, {"id": 4, "q": "Qutb Minar was originally four-storied. Who among the following Delhi Sultans raised the height to the structure by adding the fifth storey?", "options": ["Balban", "Alauddin Khalji", "Muhammad Tughlaq", "Firoz Shah Tughlaq"], "answer": "Firoz Shah Tughlaq", "tag": ""}, {"id": 5, "q": "Consider the following statements: 1. It was during the reign of Iltutmish that Chengiz Khan reached the Indus in pursuit of the fugitive Khwarezm prince. 2. It was during the reign of Muhammad bin Tughluq that Taimur occupied Multan and crossed the Indus. 3. It was during the reign of Deva Raya II of Vijayanagara Empire that Vasco da Gama reached the coast of Kerala. Which of the statements given above is/are correct?", "options": ["1 only", "1 and 2", "3 only", "2 and 3"], "answer": "1 only", "tag": ""}, {"id": 6, "q": "Who among the following has described the medieval Indian postal system as of two kinds-the horse-post called 'Uluq' and the foot-post called 'Dawa'?", "options": ["Al-Biruni", "Duarte Barbosa", "Ibn Battuta", "Seydi Ali Reis"], "answer": "Ibn Battuta", "tag": ""}, {"id": 7, "q": "Which of the following were features of the postal system of India as described by Ibn Battuta? 1. The foot post carries a ringing bell in one hand. 2. The horse post is called uluq, stationed at a distance of every four miles. 3. The foot post or dawa has one station at every four kos of distance. 4. The foot post is quicker than horse post.", "options": ["1, 2 and 4", "1 and 2 only", "2 and 3 only", "1, 3 and 4"], "answer": "1, 2 and 4", "tag": ""}, {"id": 8, "q": "Which of the following was NOT one of the three important political powers that grew during the first phase (AD 750-AD 1000) in India?", "options": ["Chahmanas (Chauhan)", "Palas", "Rashtrakutas", "Pratiharas"], "answer": "Chahmanas (Chauhan)", "tag": ""}, {"id": 9, "q": "The historic Tosham Fort dates back to the early medieval period and is located in which state?", "options": ["Haryana", "Rajasthan", "Punjab", "Uttar Pradesh"], "answer": "Haryana", "tag": ""}, {"id": 10, "q": "Which ruler laid the foundation of the Yadava rule after gaining independent status in AD 1187?", "options": ["Somesvara IV", "Simhana", "Jaitugi", "Bhillama V"], "answer": "Bhillama V", "tag": ""}, {"id": 11, "q": "Which Rajput ruler defeated Muhammad Ghori in the First Battle of Tarain?", "options": ["Hem Chandra Vikramaditya", "Rana Sanga", "Bappa Rawal", "Prithviraj Chauhan"], "answer": "Prithviraj Chauhan", "tag": ""}, {"id": 12, "q": "The early Delhi Sultans, were preferring to appoint (in administration) their special slaves purchased for military service, called bandagan in _______ language.", "options": ["Arabic", "Persian", "Urdu", "Sanskrit"], "answer": "Persian", "tag": ""}, {"id": 13, "q": "From the 11th through the 18th centuries, what type of literature was the most prominent in medieval India?", "options": ["Specialised scientific writings", "Devotional poetry", "Theatrical historical performances", "Elaborate philosophical discussions"], "answer": "Devotional poetry", "tag": ""}, {"id": 14, "q": "Under the reign of Islamic rulers, which among the following used to be a private building?", "options": ["Katra", "Bridges", "Sarai", "Diwan-i-khas"], "answer": "Diwan-i-khas", "tag": ""}, {"id": 15, "q": "In which of the following battles did Muhammad of Ghor defeat Jayachandra of Gahadavala dynasty in 1194 AD?", "options": ["First battle of Tarain", "Battle of Chandawar", "Battle of Anhilwara", "Second battle of Tarain"], "answer": "Battle of Chandawar", "tag": ""}, {"id": 16, "q": "In the 11th century, under Mahmud of Ghazni, Ghazni, a small town in _______ became the capital of the vast empire of the Ghaznavids.", "options": ["Egypt", "Persia", "Afghanistan", "Turkey"], "answer": "Afghanistan", "tag": ""}, {"id": 17, "q": "In which year Timur's invasion of Delhi took place?", "options": ["1398", "1221", "1492", "1526"], "answer": "1398", "tag": ""}, {"id": 18, "q": "The famous Arabic scholar Al Biruni came into contact with India through _______ in the eleventh century A.D.", "options": ["Abdullah Shah Ghazi", "Mahmud Ghaznavi", "Al-Walid I", "Muhammad Bin Qasim"], "answer": "Mahmud Ghaznavi", "tag": ""}, {"id": 19, "q": "When did the Mongol ruler Genghis Khan die?", "options": ["1219", "1210", "1235", "1227"], "answer": "1227", "tag": ""}, {"id": 20, "q": "In reference to the Delhi Sultanate, what was the 'Group of Forty'?", "options": ["They were mostly powerful Turkish slaves of Iltutmish, who took power in the interregnum following Sultana Raziyya's killing.", "They were forty military archers who distinguished themselves by their bravery in the Delhi Sultanate.", "They were forty banjara leaders who transferred military supplies in times of war.", "They were forty Rajput nobles who planned a coup to dethrone Qutb ud Din Aibak in 1210."], "answer": "They were mostly powerful Turkish slaves of Iltutmish, who took power in the interregnum following Sultana Raziyya's killing.", "tag": ""}, {"id": 21, "q": "During the Sultanate of Delhi, the term 'Ulema' was associated with _______.", "options": ["Learned theologians and Jurists", "Commander-in-chief", "Postal officer", "Village Revenue officer"], "answer": "Learned theologians and Jurists", "tag": ""}, {"id": 22, "q": "Who among the following rulers ruled before Prithviraj Chauhan over Delhi?", "options": ["Ghiyasuddin Balban", "Ananga Pala", "Jalaluddin Khalji", "Qutbuddin Aibak"], "answer": "Ananga Pala", "tag": ""}, {"id": 23, "q": "What is the correct chronological order of the rulers given below? (1) Taimur (2) Mahmud Ghazni (3) Genghis Khan (4) Muhammad Ghori", "options": ["2, 4, 1, 3", "2, 3, 4, 1", "2, 4, 3, 1", "4, 2, 3, 1"], "answer": "2, 4, 3, 1", "tag": ""}, {"id": 24, "q": "Chand Bardai's famous literary work _______, mentions Prithviraj Chauhan's love story and heroic deeds.", "options": ["Harakeli Nataka", "Abhidhana Chintamani", "Prithviraj Raso", "Rajamartanda"], "answer": "Prithviraj Raso", "tag": ""}, {"id": 25, "q": "During the Delhi Sultanate period, which one of the following taxes was levied on treasure looted in war?", "options": ["Kharaj", "Jizyah", "Zakat", "Khams"], "answer": "Khams", "tag": ""}, {"id": 26, "q": "During the rule of the Tomar and Chauhan dynasties, what was the name given to the coins struck at Delhi?", "options": ["Rupees", "Dehliwal", "Dinar", "Tanka"], "answer": "Dehliwal", "tag": ""}, {"id": 27, "q": "Who among the Chahamana rulers inflicted a defeat on Sultan Muhammad Ghori in 1191 A.D.?", "options": ["Ajayaraja II", "Vigraharaja IV", "Prithviraja III", "Vigraharaja V"], "answer": "Prithviraja III", "tag": ""}, {"id": 28, "q": "The use of the true arch and dome as architectural elements in India was first brought by which of the following?", "options": ["Ghaznavids", "Delhi Sultanate", "Rashtrakutas", "Chalukyas"], "answer": "Delhi Sultanate", "tag": ""}, {"id": 29, "q": "In the Delhi Sultanate, what was the main duty of the 'Muqtis' in their assigned Iqta?", "options": ["To manage high quality of horses", "To manage trade and commerce", "To construct forts and palaces", "To lead military campaigns and maintain law and order"], "answer": "To lead military campaigns and maintain law and order", "tag": ""}, {"id": 30, "q": "Which one of the following pairs of ruler and length of their reign, is correctly matched?", "options": ["Muhammad Tughluq - Ruled for 15 years", "Raziyya - Ruled for 4 years", "Alauddin Khalji - Ruled for 10 years", "Ghiyasuddin Balban - Ruled for 35 years"], "answer": "Raziyya - Ruled for 4 years", "tag": ""}, {"id": 31, "q": "Under whose rule did the Chahalgani, a council of forty influential nobles, come into existence?", "options": ["Ghiyasuddin Balban", "Shamsuddin Iltutmish", "Alauddin Khalji of the Khalji dynasty", "Founder of the Delhi Sultanate, Qutbuddin Aibak"], "answer": "Shamsuddin Iltutmish", "tag": ""}, {"id": 32, "q": "Which was the first dynasty of the Delhi Sultanate?", "options": ["Mamluk dynasty", "Tughlaq dynasty", "Khilji dynasty", "Lodi dynasty"], "answer": "Mamluk dynasty", "tag": ""}, {"id": 33, "q": "Which ruler ascended the throne of the Delhi Sultanate in the 13th century as its first and only female sovereign?", "options": ["Noor Jahan", "Raziyya Sultan", "Rani Durgavati", "Chand Bibi"], "answer": "Raziyya Sultan", "tag": ""}, {"id": 34, "q": "Which medieval historian recorded that Raziyya Sultan displayed greater administrative ability than her male siblings?", "options": ["Minhaj-i-Siraj", "Ziauddin Barani", "Al-Biruni", "Ibn Battuta"], "answer": "Minhaj-i-Siraj", "tag": ""}, {"id": 35, "q": "The Iqta system of land revenue administration was introduced by:", "options": ["Balban", "Muhammad bin Tughlaq", "Shamsuddin Iltutmish", "Alauddin Khalji"], "answer": "Shamsuddin Iltutmish", "tag": ""}, {"id": 36, "q": "Which Sufi saint lived during the reign of Iltutmish?", "options": ["Bahauddin Zaqaria", "Salim Chisti", "Nizamuddin Aulia", "Gesu Daraj"], "answer": "Bahauddin Zaqaria", "tag": ""}, {"id": 37, "q": "Mamluk Dynasty was ended by which of the following rulers?", "options": ["Qutb-ud-din Aibak", "Timur", "Ghiyas-ud-din Tughluq", "Jalal-ud-din Firuz Khilji"], "answer": "Jalal-ud-din Firuz Khilji", "tag": ""}, {"id": 38, "q": "Who headed the Diwan-i-Arz and was responsible for managing soldiers, branding horses, and administering war provisions?", "options": ["Amir-i-Dad", "Ariz-i-Mumalik", "Naib", "Dabir-i-Khas"], "answer": "Ariz-i-Mumalik", "tag": ""}, {"id": 39, "q": "'Adhai Din Ka Jhonpra' in Ajmer was built in the period of which of the following dynasties?", "options": ["Slave Dynasty", "Tughlaq dynasty", "Lodhi dynasty", "Khalji dynasty"], "answer": "Slave Dynasty", "tag": ""}, {"id": 40, "q": "Which of the following Delhi sultans introduced two coins, namely silver tanka and copper jital?", "options": ["Qutbuddin Aibak", "Bahlul Lodi", "Ghiyasuddin Balban", "Iltutmish"], "answer": "Iltutmish", "tag": ""}, {"id": 41, "q": "Who among the following was the daughter of Iltumish, a ruler of Slave Mamluk dynasty?", "options": ["Kubra Noorzai", "Harkha", "Razia Sultan", "Shafiqa Ziayee"], "answer": "Razia Sultan", "tag": ""}, {"id": 42, "q": "Who was appointed as the governor of Bengal by Sultan Balban after the revolt and subsequent death of Tughril Beg?", "options": ["Zafar Khan", "Bughra Khan", "Khizr Khan", "Mahmud Khan"], "answer": "Bughra Khan", "tag": ""}, {"id": 43, "q": "Which of the following Sultans of Delhi primarily adopted a policy of consolidation rather than expansion?", "options": ["Ibrahim Lodi", "Balban", "Alauddin Khalji", "Bahlol Lodi"], "answer": "Balban", "tag": ""}, {"id": 44, "q": "Balban followed the tradition of 'Sijda and Pabos' from which of following traditions?", "options": ["Persian", "Roman", "Mongol", "Chinese"], "answer": "Persian", "tag": ""}, {"id": 45, "q": "Who among the following Delhi Sultanate rulers took the policy of 'blood and iron' to deal with the Mewati community?", "options": ["Qutubuddin Aibak", "Rajiya", "Balban", "Iltutmish"], "answer": "Balban", "tag": ""}, {"id": 46, "q": "Who started the practice of celebrating Nauroz during the Delhi Sultanate period?", "options": ["Sikandar Sur", "Shamsuddin Iltutmish", "Ghiyasuddin Balban", "Ghiyasuddin Tughlaq"], "answer": "Ghiyasuddin Balban", "tag": ""}, {"id": 47, "q": "Qutub Minar is an example of _______ architecture.", "options": ["Indo-Islamic", "Dravidian", "Sufi", "Mauryan"], "answer": "Indo-Islamic", "tag": ""}, {"id": 48, "q": "Quwwat al-Islam mosque and minaret, built during the last decade of the _______ century.", "options": ["eleventh", "thirteenth", "fourteenth", "twelfth"], "answer": "twelfth", "tag": ""}, {"id": 49, "q": "What is the approximate height (in metres) of the Qutub Minar situated in Delhi?", "options": ["75", "77", "73", "71"], "answer": "73", "tag": ""}, {"id": 50, "q": "Who among the following was the Wazir of Sultan Iltutmish?", "options": ["Sai'd Fakhr-I-Mudabbir", "Malik Naik", "Nizam ul-Mulk Junaidi", "Nusrat Khan"], "answer": "Nizam ul-Mulk Junaidi", "tag": ""}, {"id": 51, "q": "Who was the Founder of Khilji Dynasty?", "options": ["Nasir-ud-din Khusrav Shah", "Jalal-ud-din Firoz Khilji", "Qutb-ud-din Mubarak Shah", "Ala-ud-din-Khilji"], "answer": "Jalal-ud-din Firoz Khilji", "tag": ""}, {"id": 52, "q": "Which of the following rulers mobilise a large standing army in Delhi due to the Mongol invasion, which posed a huge administrative challenge? I. Alauddin Khalji II. Muhammad Tughluq", "options": ["Only I", "Only II", "Both I and II", "Neither I nor II"], "answer": "Both I and II", "tag": ""}, {"id": 53, "q": "Under whose administration were the Banjaras employed for carrying foodgrains from the countryside to urban markets?", "options": ["Muhammad bin Tughluq", "Alauddin Khalji", "Sher Shah Suri", "Babur"], "answer": "Alauddin Khalji", "tag": ""}, {"id": 54, "q": "Which ruler of the Delhi Sultanate introduced strict price-control measures and administrative regulations in the markets?", "options": ["Ghiyasuddin Balban", "Firoz Shah Tughlaq", "Alauddin Khalji", "Shamsuddin Iltutmish"], "answer": "Alauddin Khalji", "tag": ""}, {"id": 55, "q": "Which city was the target of Alauddin's first successful Turkish expedition into southern India in AD 1294?", "options": ["Kara", "Devagiri", "Awadh", "Bhilsa (Vidisa)"], "answer": "Devagiri", "tag": ""}, {"id": 56, "q": "What official post, meaning 'Master of Ceremonies', was Alauddin Khalji appointed to initially, under Jalaluddin Khalji?", "options": ["Arizi-i-Mumalik", "Sadr-us-Sudur", "Amir-i-Tuzuk", "Wazir-i-Mumalik"], "answer": "Amir-i-Tuzuk", "tag": ""}, {"id": 57, "q": "Alauddin Khilji's reign is marked by his successful defense against which foreign invader?", "options": ["Timur", "Mongols", "Babur", "Mahmud of Ghazni"], "answer": "Mongols", "tag": ""}, {"id": 58, "q": "Consider the following statements: 1. Alauddin Khilji instituted the 'Daag' system of branding horses to prevent fraud in the cavalry. 2. Muhammad bin Tughlaq is known for his transfer of the capital from Delhi to Daulatabad. 3. The Iqta system was abolished by Balban to strengthen central control. Which of the statements above is/are correct?", "options": ["1 and 2 only", "2 and 3 only", "1, 2, and 3", "1 and 3 only"], "answer": "1 and 2 only", "tag": ""}, {"id": 59, "q": "Which of the following was the military department during the reign of Alauddin Khilji?", "options": ["Diwan-i-wizarat", "Diwan-i-arz", "Diwan-i-insha", "Diwan-i-risalat"], "answer": "Diwan-i-arz", "tag": ""}, {"id": 60, "q": "Alauddin Khilji introduced the Dagh and Huliyah systems to control the army. What was Huliyah associated with?", "options": ["Soldier's salary", "Horse branding", "Soldier's description", "Land revenue"], "answer": "Soldier's description", "tag": ""}, {"id": 61, "q": "Who among the following appointed a superintendent (Shahna-i-Mandi) for the effective implementation of market reforms?", "options": ["Raziya Sultana", "Muhammad Ghori", "Alauddin Khilji", "Ulugh Khan"], "answer": "Alauddin Khilji", "tag": ""}, {"id": 62, "q": "How many types of taxes were in the reign of the ruler Alauddin Khalji?", "options": ["3", "5", "6", "2"], "answer": "3", "tag": ""}, {"id": 63, "q": "Which officer under Alauddin Khilji was required to maintain a register of merchants to ensure an adequate supply of goods?", "options": ["Nazir", "Rais Parwana", "Muhtasib", "Shahna-i-Mandi"], "answer": "Shahna-i-Mandi", "tag": ""}, {"id": 64, "q": "Which Delhi Sultanate ruler was associated with the expedition of Bhilsa (Vidisha) in AD 1292?", "options": ["Iltutmish", "Alauddin Khilji", "Ghazi Malik", "Ulugh Khan"], "answer": "Alauddin Khilji", "tag": ""}, {"id": 65, "q": "Which monument of Khilji dynasty in Delhi has the utilization of red sandstone?", "options": ["Moti Masjid", "Victoria memorial", "Charminar", "Alai Darwaza"], "answer": "Alai Darwaza", "tag": ""}, {"id": 66, "q": "During which dynasty did the Mongols, led by Qutlugh Khwaja, besiege Delhi and inflict significant damage?", "options": ["Khalji Dynasty", "Sayyid Dynasty", "Mughal Dynasty", "Suri Dynasty"], "answer": "Khalji Dynasty", "tag": ""}, {"id": 67, "q": "Alauddin Khilji introduced the Dagh and Huliyah systems to control the army. What was Huliyah associated with?", "options": ["Soldier's salary", "Horse branding", "Soldier's description", "Land revenue"], "answer": "Soldier's description", "tag": ""}, {"id": 68, "q": "Zafar khan was a famous General of which of the following rulers of the Delhi Sultanate?", "options": ["Alauddin Khilji", "Iltutmish", "Muhammad bin Tughluq", "Balban"], "answer": "Alauddin Khilji", "tag": ""}, {"id": 69, "q": "Who among the following classical poets of the Sultanate period in India popularized Qawwali, a form of music which derived its name from the Arabic word 'qaul', meaning 'to speak'?", "options": ["Jalal al-Din Muhammad Rumi", "Amir Khusrau", "Nizam al-Din Awliya", "Shams al-Din Muhammad Hafiz"], "answer": "Amir Khusrau", "tag": ""}, {"id": 70, "q": "Who among the following Delhi Sultans controlled the prices of food; horses, ponies, cattle and slaves; cloth and fruit; and articles for domestic consumption and personal use?", "options": ["Ghiyasuddin Tughluq", "Khizr Khan", "Alauddin Khalji", "Ghiyasuddin Balban"], "answer": "Alauddin Khalji", "tag": ""}, {"id": 71, "q": "Who among the following Delhi sultans accidentally died during a game of polo in the year 1210?", "options": ["Jalaluddin Khilji", "Firuz Shah Tughluq", "Ibrahim Lodi", "Qutbuddin Aibak"], "answer": "Qutbuddin Aibak", "tag": ""}, {"id": 72, "q": "Which of the following pair regarding the Ruler of Delhi sultanate - period of their rule is correct? I. Ghiyasuddin Balban - 1266-1287 II. Firuz Shah Tughluq - 1351-1388", "options": ["Only I", "Only II", "Both I and II", "Neither I nor II"], "answer": "Both I and II", "tag": ""}, {"id": 73, "q": "Which Delhi Sultan appointed people from humble professions to high administrative posts?", "options": ["Muhammad Tughlaq", "Ruknuddin Firuz", "Minhaj-us-Siraj", "Ghiyasuddin Balban"], "answer": "Muhammad Tughlaq", "tag": ""}, {"id": 74, "q": "Who founded a separate department called 'Diwan-i-amir-i-kohi' to improve agriculture?", "options": ["Alauddin Khalji", "Muhammad Tughlaq", "Firoz Tughlaq", "Sher Shah Suri"], "answer": "Muhammad Tughlaq", "tag": ""}, {"id": 75, "q": "What was the name of the new department opened by Muhammad Tughlaq for the development of agriculture?", "options": ["Diwan-i-Risalat", "Diwan-i-Qaza", "Diwan-i-Kohi", "Diwan-i-Wizarat"], "answer": "Diwan-i-Kohi", "tag": ""}, {"id": 76, "q": "Ibn Battuta, who visited India during Delhi Sultanate, originally belonged to which country?", "options": ["Russia", "Morocco", "England", "Egypt"], "answer": "Morocco", "tag": ""}, {"id": 77, "q": "Who was the Sultan of Delhi at the time of the establishment of Vijayanagara Empire?", "options": ["Nasiruddin Mahmud", "Iltutmish", "Mohammad bin Tughlaq", "Alauddin Khilji"], "answer": "Mohammad bin Tughlaq", "tag": ""}, {"id": 78, "q": "The Begumpuri mosque was built during the reign of which of the following rulers of the Delhi Sultanate?", "options": ["Sikandar Lodhi", "Firuz Shah Tughlaq", "Bahlul Lodhi", "Muhammad Tughlaq"], "answer": "Muhammad Tughlaq", "tag": ""}, {"id": 79, "q": "Who among the following was the first sultan of Delhi Sultanate to visit the Ajmer shrine of Khwaja Muinuddin Chishti?", "options": ["Ghiyasuddin Balban", "Jalaluddin Khalji", "Muhammad bin Tughlaq", "Khizr Khan"], "answer": "Muhammad bin Tughlaq", "tag": ""}, {"id": 80, "q": "Who invaded India during the rule of Tughlaq Dynasty?", "options": ["Timur", "Chengiz Khan", "Muhammad Ghori", "Mahmud of Ghazni"], "answer": "Timur", "tag": ""}, {"id": 81, "q": "Who among the following was the successor of Muhammad-Bin Tughlaq to the throne?", "options": ["Ghiyath-ud-din Tughlaq Shah II", "Abu Bakr Shah Tughlaq", "Nasir-ud-Din Mahmud Shah Tughlaq", "Firuz Shah Tughlaq"], "answer": "Firuz Shah Tughlaq", "tag": ""}, {"id": 82, "q": "Who amongst the following raised the banner of revolt against Nasiruddin Khusrau?", "options": ["Nasiruddin Tughlaq", "Muhammad bin Tughlaq", "Feroz Shah Tughlaq", "Ghiyasuddin Tughlaq"], "answer": "Ghiyasuddin Tughlaq", "tag": ""}, {"id": 83, "q": "Who among the following appointed Aziz Khummar a wine distiller to high administrative post?", "options": ["Alauddin Khalji", "Muhammad Tughluq", "Jalaluddin Khalji", "Firuz Shah Tughluq"], "answer": "Muhammad Tughluq", "tag": ""}, {"id": 84, "q": "Ziyauddin Barani wrote his chronicle first in 1356 and another version _______ years later.", "options": ["three", "eight", "two", "five"], "answer": "two", "tag": ""}, {"id": 85, "q": "Who among the following rulers ruled for the maximum period?", "options": ["Alauddin Khilji", "Muhammad bin Tughluq", "Bahlol Lodi", "Balban"], "answer": "Bahlol Lodi", "tag": ""}, {"id": 86, "q": "After the Tughlaqs, which two dynasties ruled Agra until 1526?", "options": ["Sur and Khaljis", "Tughlaqs and Mughals", "Khiljis and Lodis", "Sayyids and Lodis"], "answer": "Sayyids and Lodis", "tag": ""}, {"id": 87, "q": "Sayyid Dynasty was founded by which of the following rulers in Delhi?", "options": ["Khizr Khan", "Mubarak Shah", "Muhammad Shah", "Alauddin Alam Shah"], "answer": "Khizr Khan", "tag": ""}, {"id": 88, "q": "In one of his famous works, Yahya bin Ahmad Sirhindi claims that the founder of the _______ was a descendant of the Prophet Muhammad", "options": ["Sayyid Dynasty", "Tughlaq Dynasty", "Ghaznavid Dynasty", "Ghurid Dynasty"], "answer": "Sayyid Dynasty", "tag": ""}, {"id": 89, "q": "The author of Tarikh-i-Mubarak Shahi, Yahya Sirhindi claims that the founder of _______ dynasty of Delhi sultanate was a descendant of Prophet Muhammad.", "options": ["Mamluk", "Khalji", "Sayyid", "Lodhi"], "answer": "Sayyid", "tag": ""}, {"id": 90, "q": "Which of the following dynasties of the Delhi Sultanate finally annexed Jaunpur into the empire of Delhi Sultanate?", "options": ["Lodi dynasty", "Khalji dynasty", "Tughlaq dynasty", "Sayyid dynasty"], "answer": "Lodi dynasty", "tag": ""}, {"id": 91, "q": "Who among the following was the last sultan of Delhi sultanate?", "options": ["Firoz Shah Tughlaq", "Sikandar Lodi", "Muhammad Bin Tughlaq", "Ibrahim Lodi"], "answer": "Ibrahim Lodi", "tag": ""}, {"id": 92, "q": "Which of the following dynasties of Delhi Sultanate founded Agra city?", "options": ["Lodi dynasty", "Khalji dynasty", "Sayyid dynasty", "Tughluq dynasty"], "answer": "Lodi dynasty", "tag": ""}, {"id": 93, "q": "Which of the following mosques/masjids was built during the reign of Lodi dynasty of the Delhi Sultanate?", "options": ["Begumpuri mosque, Delhi", "Quwwat al-Islam, Delhi", "Lal Masjid, Delhi", "Moth ki Masjid, Delhi"], "answer": "Moth ki Masjid, Delhi", "tag": ""}, {"id": 94, "q": "'Double Dome' feature of Indo-Islamic architecture was introduced by which dynasty of Delhi Sultanate?", "options": ["Slave Dynasty", "Khilji Dynasty", "Tughlaq Dynasty", "Lodi Dynasty"], "answer": "Lodi Dynasty", "tag": ""}, {"id": 95, "q": "Bahlol Lodi was succeeded by his son _______ under the title of Sultan Sikandar Shah in 1489.", "options": ["Nizam Khan", "Khizr Khan", "Bahlul Shah", "Sher Shah"], "answer": "Nizam Khan", "tag": ""}, {"id": 96, "q": "The _____ sultanate is ruled by the Sharqi dynasty.", "options": ["Agra", "Delhi", "Jaunpur", "Bharatpur"], "answer": "Jaunpur", "tag": ""}, {"id": 97, "q": "The author of Tarikh-i-Mubarak Shahi, Yahya Sirhindi claims that the founder of ________ dynasty of Delhi sultanate was a descendant of Prophet Muhammad.", "options": ["Mamluk", "Khalji", "Sayyid", "Lodhi"], "answer": "Sayyid", "tag": ""}, {"id": 98, "q": "In which battle was Ibrahim Lodhi defeated by Babur?", "options": ["Battle of Khanwa", "Battle of Panipat (1526)", "Battle of Chausa", "Battle of Ghagra"], "answer": "Battle of Panipat (1526)", "tag": ""}, {"id": 99, "q": "Name the Lodhi ruler shifted the capital from Delhi to Agra?", "options": ["Sikandar Lodhi", "Ibrahim Lodhi", "Bahlul Lodhi", "Daulat Khan Lodhi"], "answer": "Sikandar Lodhi", "tag": ""}, {"id": 100, "q": "Which department, headed by Dabir-i-Khas, handled royal correspondence and official communication during the Delhi Sultanate?", "options": ["Diwan-i-Insha", "Diwan-i-Arz", "Barid-i-Mumalik", "Diwan-i-Riyasat"], "answer": "Diwan-i-Insha", "tag": ""}, {"id": 101, "q": "The Battle of Plassey (1757) marked the beginning of British rule in India. Which earlier battle marked the decline of the Delhi Sultanate?", "options": ["Battle of Panipat (1526)", "Battle of Talikota (1565)", "Battle of Khanwa (1527)", "Battle of Tarain (1192)"], "answer": "Battle of Panipat (1526)", "tag": ""}]}, {"id": "mock-2", "number": "02", "title": "Vijayanagara Empire & Bahmanis", "subtitle": "Sangama, Saluva, Tuluva, Aravidu & Bahmani Sultanate", "durationMinutes": 58, "totalQuestions": 58, "questions": [{"id": 1, "q": "Who among the following laid the foundation of the Vijayanagara Empire?", "options": ["Harihara and Bukka", "Krishnadeva Raya", "Rama Raya", "Virupaksha Raya"], "answer": "Harihara and Bukka", "tag": "NDA - II-2022"}, {"id": 2, "q": "Krishnadevaraya, a king of Vijayanagara, composed a work on statecraft known as Amuktamalyada in", "options": ["Telugu", "Kannada", "Tamil", "Sanskrit"], "answer": "Telugu", "tag": "CAPF - 2025"}, {"id": 3, "q": "Who among the following travellers reported the use of seed drill on the Karnataka coast which is considered to be the earliest reference of the presence of the device in India?", "options": ["Duarte Barbosa", "Abdur Razzaq", "Afanasy Nikitin", "Niccolo Conti"], "answer": "Duarte Barbosa", "tag": "CAPF - 2025"}, {"id": 4, "q": "With reference to the \"Amara-Nayaka system\", which one of the following statements is not correct?", "options": ["It was a major political innovation of the Vijayanagara Empire.", "They were military commanders, who were given territories to govern and collect taxes and other dues from peasants, craftspersons and traders in the area.", "They retained part of the revenue for personal use and to maintain stipulated contingent of horses and elephants.", "They were not allowed to use their share of revenue for the maintenance of temples."], "answer": "They were not allowed to use their share of revenue for the maintenance of temples.", "tag": "CDS-II-2025"}, {"id": 5, "q": "Which of the following temples are constructed by Krishnadeva Raya?\n1. Krishnadeva Temple\n2. Hazara Rama Temple\n3. Vitthalaswami Temple\n4. Tiruvengalanatha Temple", "options": ["2 and 3 only", "1, 2 and 3 only", "1 and 4 only", "1, 2, 3 and 4"], "answer": "1, 2 and 3 only", "tag": "GEOSCIENTIST 2025"}, {"id": 6, "q": "Abdur Razzak, the traveler to Vijayanagar, had referred to the presence of a number of flower merchants in Vijayanagar and noted a particular flower that seemed as necessary as food to the people of that part. Which variety of flower was being referred to by Abdur Razzak?", "options": ["Jasmine", "Lotus", "Hibiscus", "Rose"], "answer": "Rose", "tag": "CAPF - 2024"}, {"id": 7, "q": "Consider the following statements about Mahanavami dibba, a massive platform:\n1. It is situated on one of the highest points in the city of Vijayanagara\n2. Virupaksha temple is located on it\nWhich of the above statements is/are correct?", "options": ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"], "answer": "1 only", "tag": "CAPF - 2024"}, {"id": 8, "q": "The Battle of Rakshasi-Tangadi is popularly known as the", "options": ["Battle of Talikota", "Battle of Khanwa", "Battle of Panipat", "Battle of Dharmat"], "answer": "Battle of Talikota", "tag": "CAPF - 2022"}, {"id": 9, "q": "Which of the following statements about Amaranayakas of Vijayanagara are correct?\n1. The Amaranayakas were military commanders who were given territories to govern by the Raya.\n2. In lieu of their service and also to maintain their contingents, they were paid in cash.\n3. They maintained stipulated contingents and elephants.\n4. They used to send tribute to the king annually and personally appeared in the royal court with gifts to express their loyalty.", "options": ["1, 2 and 3 only", "1, 3 and 4 only", "2 and 4 only", "1, 2, 3 and 4"], "answer": "1, 3 and 4 only", "tag": "CAPF - 2021"}, {"id": 10, "q": "Consider the following pairs:\n1. Gajapati - Name of a powerful Dynasty in Orissa\n2. Ashvapati - Deccan Sultans\n3. Narapati - Rayas of Vijayanagara\nWhich of the above pairs is/are correctly matched?", "options": ["1 only", "2 only", "1, 2 and 3", "None of the above"], "answer": "1, 2 and 3", "tag": "CDS - II - 2024"}, {"id": 11, "q": "Who among the following was not a court poet of king Krishnadevaraya?", "options": ["Timmana", "Dhurjati", "Mallana", "Siddheshvara"], "answer": "Siddheshvara", "tag": "CDS-I-2024"}, {"id": 12, "q": "Which one of the following is the language of the famous political treatise Amuktmalyada?", "options": ["Sanskrit", "Tamil", "Kannada", "Telugu"], "answer": "Telugu", "tag": "CDS - II - 2023"}, {"id": 13, "q": "Abdur Razzaq, an ambassador of the ruler of Persia, was sent to Calicut in the fifteenth century. He was greatly impressed by the:", "options": ["Fortifications of Calicut", "Climatic conditions of the coastal town", "High quality spices of the place", "Musical traditions of the place"], "answer": "Fortifications of Calicut", "tag": "CDS - II - 2023"}, {"id": 14, "q": "Which two rivers flow in the region between Gulbarga and Vijayanagara Hampi?", "options": ["Narmada and Godavari", "Mahanadi and Godavari", "Kaveri and Periyar", "Krishna and Tungabhadra"], "answer": "Krishna and Tungabhadra", "tag": "CDS-I-2023"}, {"id": 15, "q": "Which one of the following works was composed by Krishnadevaraya on statecraft in Telugu?", "options": ["Amuktamalyada", "Jambavati Kalyanam", "Rayavachakamu", "Satyavadu Parinaya"], "answer": "Amuktamalyada", "tag": "CDS-I-2022"}, {"id": 16, "q": "The Amara-Nayaka system was a major political innovation of which Indian imperial rulers?", "options": ["Cholas", "Chalukyas", "Guptas", "Vijayanagara"], "answer": "Vijayanagara", "tag": "CDS-I-2021"}, {"id": 17, "q": "Krishnadevaraya's capital city Vijayanagara was situated on the banks of", "options": ["Tungabhadra", "Krishna", "Godavari", "Mahanadi"], "answer": "Tungabhadra", "tag": "CISF AC - 2021"}, {"id": 18, "q": "Who of the following rulers of medieval India gave permission to the Portuguese to build a fort at Bhatkal?", "options": ["Krishnadevaraya", "Narasimha Saluva", "Muhammad Shah III", "Yusuf Adil Shah"], "answer": "Krishnadevaraya", "tag": "CSE-2024"}, {"id": 19, "q": "Who among the following rulers of Vijayanagara Empire constructed a large dam across Tungabhadra River and a canal-cum-aqueduct several kilometres long from the river to the capital city?", "options": ["Devaraya I", "Mallikarjuna", "Vira Vijaya", "Virupaksha"], "answer": "Devaraya I", "tag": "CSE-2023"}, {"id": 20, "q": "Which among the following statements about Vijayanagara are correct?\n1. Colin Mackenzie was the first Surveyor General of India to visit Vijayanagara.\n2. John Marshall was the first to take detailed photographs of the site.\n3. James Burgess was the first to undertake conservation of Hampi.", "options": ["1 only", "2 and 3 only", "1, 2 and 3", "1 and 2"], "answer": "1 only", "tag": "GEOSCIENTIST 2024"}, {"id": 21, "q": "The structure of Mahanavami Dibba is situated in which one of the following places?", "options": ["Ujjain", "Gaur", "Hampi", "Mandu"], "answer": "Hampi", "tag": "GEOSCIENTIST 2023"}, {"id": 22, "q": "Vijayanagara rulers claimed that they were ruling on behalf of", "options": ["Lord Murugan", "Lord Venkateshwara", "Shri Virupaksha", "Shri Vallabha"], "answer": "Shri Virupaksha", "tag": "NDA-II-2024"}, {"id": 23, "q": "Which of the following statements about Vijayanagara king Krishnadevaraya's expeditions are correct?\n1. In the early years of his reign he marched against the ruler of Orissa.\n2. In 1520 CE, he captured the fort of Raichur from Ismail Adil Khan.\n3. Krishnadevaraya restored Sultan Mahmud Shah to power and assumed the title of Yavana-rajya-sthapana-acharya.", "options": ["1 and 3 only", "2 and 3 only", "1, 2 and 3", "1 and 2 only"], "answer": "1, 2 and 3", "tag": "NDA-I-2024"}, {"id": 24, "q": "Consider the following statements regarding the royal center in Vijayanagara Empire:\n1. The royal center was located in the south-western part of the settlement.\n2. It included over 60 temples.\n3. About 30 building complexes at the site have been identified as palaces.\nWhich of the statements given above is/are correct?", "options": ["1 only", "2 only", "1, 2 and 3", "1 and 2 only"], "answer": "1, 2 and 3", "tag": "NDA-II-2023"}, {"id": 25, "q": "Consider the following statements about the Mahanavami Dibba:\n1. It was the name of a giant box of sweets distributed at the Mahanavami festival.\n2. It was the name of a massive platform with a base covered with relief carvings.\nWhich of the statements given above is/are correct?", "options": ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"], "answer": "2 only", "tag": "NDA-I-2021"}, {"id": 26, "q": "Which of the following sequences correctly arranges the Vijayanagara rulers in the order of their reign periods?", "options": ["Krishnadeva Raya -> Harihara I -> Devaraya II", "Harihara I -> Devaraya II -> Krishnadeva Raya", "Devaraya II -> Krishnadeva Raya -> Harihara I", "Devaraya II -> Harihara I -> Krishnadeva Raya"], "answer": "Harihara I -> Devaraya II -> Krishnadeva Raya", "tag": "SSC CGL 2025"}, {"id": 27, "q": "Which of the following works was composed by the Vijayanagara ruler Krishnadevaraya and is renowned for its poetic richness and devotion to Lord Vishnu?", "options": ["Ramacharitam", "Amuktamalyada", "Gita Govinda", "Manimekalai"], "answer": "Amuktamalyada", "tag": "SSC CGL 2025"}, {"id": 28, "q": "Which one of the following statements accurately describes a feature of the Vijayanagara Empire?", "options": ["The Hazara-Rama temple was a public temple for commoners", "The Lotus Mahal shows clear Persian (indo-islamic) architectural influence.", "The Mahanavami Dibba is topped by a stone super-structure.", "The city's sacred centre lay north of the Tungabhadra."], "answer": "The Lotus Mahal shows clear Persian (indo-islamic) architectural influence.", "tag": "SSC CGL 2025"}, {"id": 29, "q": "Which of the following statements is correct regarding Vijayanagara traditions?", "options": ["Rayas were called Ashvapati; Sultans were Narapati", "Rayas were called Gajapati; Sultans were Rajguru", "Rayas were called Narapati; Sultans were Ashvapati", "Both Rayas and Sultan were called Rajadhiraj"], "answer": "Rayas were called Narapati; Sultans were Ashvapati", "tag": "SSC CGL 2025"}, {"id": 30, "q": "In the traditional accounts of Vijayanagara, who were referred to as narapati or \"lord of men\"?", "options": ["Mughals", "Deccan Sultans", "Cholas", "Rayas"], "answer": "Rayas", "tag": "SSC CGL 2025"}, {"id": 31, "q": "Who was the leader defeated by Krishnadevaraya of Vijayanagara in the Battle of Raichur?", "options": ["Alauddin Khilji", "Ahmed Shah Bahmani", "Ibrahim Lodi", "Adil Shah of Bijapur"], "answer": "Adil Shah of Bijapur", "tag": "SSC STENO 2025"}, {"id": 32, "q": "Consider the following statements:\n1. The Vijayanagara Empire was established by Harihara-I and Bukka Raya-I.\n2. Krishnadevaraya, the greatest ruler of the Vijayanagara Empire, belonged to the Tuluva dynasty.\n3. The Battle of Talikota led to the decline of the Chola Empire.\nWhich of the statements above is/are correct?", "options": ["1, 2, and 3", "1 and 3 only", "1 and 2 only", "2 and 3 only"], "answer": "1 and 2 only", "tag": "IB ACIO - 2023-24"}, {"id": 33, "q": "The Virupaksha Temple in Hampi, is dedicated to", "options": ["Lord Shiva", "Goddess Durga", "Lord Indra", "Lord Brahma"], "answer": "Lord Shiva", "tag": "SSC CHSL 2025"}, {"id": 34, "q": "The term \"Amaram\" in Vijayanagara administration was associated with:", "options": ["Tax exemption", "Military fief", "Land redistribution", "Merchant guilds"], "answer": "Military fief", "tag": "SSC CPO 2025"}, {"id": 35, "q": "The founders of Vijayanagar empire, Harihara and Bukka Raya were the ministers of:", "options": ["Kampili", "Kadamba", "Western Chalukya", "Eastern Ganga"], "answer": "Kampili", "tag": "SSC MTS 2024"}, {"id": 36, "q": "In the traditional accounts of Vijayanagara, who were referred to as narapati or \"lord of men\"?", "options": ["Mughals", "Deccan Sultans", "Cholas", "Rayas"], "answer": "Rayas", "tag": "SSC CGL 2025"}, {"id": 37, "q": "Who among the following Portuguese travellers visited the Vijayanagar empire during the reign of Krishnadevaraya?", "options": ["Domingo Paes", "Nicolo de Conti", "Ludovico de Varthema", "Athanasius Nikitin"], "answer": "Domingo Paes", "tag": "SSC MTS 2024"}, {"id": 38, "q": "Which of the following was the last dynasty of the Vijayanagara Empire?", "options": ["Tuluva dynasty", "Saluva dynasty", "Sangam dynasty", "Aravidu dynasty"], "answer": "Aravidu dynasty", "tag": "SSC CHSL 2024"}, {"id": 39, "q": "Which of the following kings of Vijayanagara took the title of 'establisher of the Yavana kingdom'?", "options": ["Vira Narasimha Raya", "Achyuta Deva Raya", "Krishna Deva Raya", "Sada Siva Raya"], "answer": "Krishna Deva Raya", "tag": "SSC CPO 2024"}, {"id": 40, "q": "The Vijayanagara empire included people from different cultural regions. Which of the following regions was NOT a part of it?", "options": ["Tamil", "Karnataka", "Telugu", "Maratha"], "answer": "Maratha", "tag": "CGL Graduate Level 2024"}, {"id": 41, "q": "What was the dominant source of income in the Vijaynagar Empire?", "options": ["Mining", "Industrial duty", "Land revenue", "Import duty"], "answer": "Land revenue", "tag": "SSC Stenographer 2023"}, {"id": 42, "q": "Who among the following Vijaynagar rulers married his daughter to Firuz Shah Bahmani?", "options": ["Deva Raya II", "Deva Raya I", "Krishna Deva Raya", "Bukka I"], "answer": "Deva Raya I", "tag": "SSC CHSL 2023"}, {"id": 43, "q": "The founders of Vijayanagara Empire were the feudatories of which of the following dynasties?", "options": ["Hoysala", "Pandya", "Kakatiya", "Chola"], "answer": "Kakatiya", "tag": "SSC CHSL 2023"}, {"id": 44, "q": "Vijayanagara emperor Krishnadeva Raya founded a suburban township near Vijayanagara called Nagalapuram after his", "options": ["father", "teacher", "sister", "mother"], "answer": "mother", "tag": "SSC CGL 2023"}, {"id": 45, "q": "The local communities of merchants were known as _______ in the Vijayanagara empire.", "options": ["Rachavarus", "Narapattis", "Kudirai Chettis", "Gajapattis"], "answer": "Kudirai Chettis", "tag": "SSC CGL 2023"}, {"id": 46, "q": "The 'Pattanulkars' migrated from the Gujarat region to the Vijayanagar state. They were", "options": ["goldsmiths", "cotton traders", "silk weavers", "diamond makers"], "answer": "silk weavers", "tag": "SSC CGL 2023"}, {"id": 47, "q": "The Amara-Nayakas were _______ in the Vijayanagara Empire.", "options": ["forced laborers", "finance officers", "ordinary peasants", "military commanders"], "answer": "military commanders", "tag": "SSC CGL 2023"}, {"id": 48, "q": "While historians use the term Vijayanagara Empire and contemporaries of this empire described it as the _______", "options": ["Gajapati Samarajya", "Karnataka Samrajyamu", "Andhra Samarajyu", "Sthalapati Samrajya"], "answer": "Karnataka Samrajyamu", "tag": "SSC CGL 2023"}, {"id": 49, "q": "Raichur doab, the land between Krishna and Tungabhadra was a reason of conflict between the kings of Vijayanagar and _______.", "options": ["Malwa", "Golconda", "Bahamani", "Bengal"], "answer": "Bahamani", "tag": "Matric Level 2023"}, {"id": 50, "q": "Which battle led to the destruction of the Vijayanagara empire?", "options": ["Battle of Raichur", "Battle of Haldighati", "Battle of Talikota", "Battle of Arcot"], "answer": "Battle of Talikota", "tag": "SSC MTS 2023"}, {"id": 51, "q": "Provida style of architecture belongs to which empire?", "options": ["Vijayanagar Empire", "Gupta Empire", "Mauryan Empire", "Bahmani Empire"], "answer": "Vijayanagar Empire", "tag": "SSC MTS 2023"}, {"id": 52, "q": "The Anantraj Sagar Tank was built by the _______ rulers.", "options": ["Vijayanagara", "Maratha", "Pala", "Chola"], "answer": "Vijayanagara", "tag": "SSC CGL 2022"}, {"id": 53, "q": "Under the Bahmani kingdom, the provinces were administered by _______", "options": ["Amirs", "Afaquis", "Khalisa", "Tarafdars"], "answer": "Tarafdars", "tag": "SSC CPO 2024"}, {"id": 54, "q": "After the breakup of the Bahmani kingdom, how many independent states arose?", "options": ["3", "6", "4", "5"], "answer": "5", "tag": "SSC Stenographer 2023"}, {"id": 55, "q": "Who among the following Bahmani sultans transferred his capital from Gulbarga to Bidar?", "options": ["Ahmad Shah", "Humayun", "Mujahid Shah", "Firuz Shah"], "answer": "Ahmad Shah", "tag": "SSC CPO 2023"}, {"id": 56, "q": "In which of the following places is the Tomb of Ahmad Shah Al Wali Bahmani built?", "options": ["Fatehpur Sikri", "Agra", "Ashtoor", "Ajmer"], "answer": "Ashtoor", "tag": "Graduate Level 2023"}, {"id": 57, "q": "The craftspersons of Bidar were so famed for their inlay work in _______", "options": ["Gold and Bronze", "Bronze and Silver", "Gold and Copper", "Copper and Silver"], "answer": "Copper and Silver", "tag": "SSC CGL 2022"}, {"id": 58, "q": "Consider the following statements about a fort:\n1. It was originally known as Mankal.\n2. It was built on a hilltop in 1143.\nIn the above-mentioned sentences, which fort is being talked about?", "options": ["Chitradurg Fort", "Daulatabad Fort", "Fort Aguada", "Golconda Fort"], "answer": "Golconda Fort", "tag": "SSC MTS 2022"}]}, {"id": "mock-3", "number": "03", "title": "Mughals", "subtitle": "Babur, Humayun, Sher Shah, Akbar, Jahangir & Shah Jahan", "durationMinutes": 62, "totalQuestions": 62, "questions": [{"id": 1, "q": "Which one of the following is listed in the Ain-i Akbari as one of the 'Indian sciences' prescribed by Akbar for scholars to learn at school?", "options": ["Ayurveda", "Vyakarana", "Ganita", "Jyotisha"], "answer": "Vyakarana", "tag": "CDS-1-2025"}, {"id": 2, "q": "Which of the following statements about Akbar are correct?\n1. In 1560s, Akbar had the Fort of Agra constructed.\n2. In 1570s, Akbar decided to build a new capital at Fatehpur Sikri.\n3. Akbar also commissioned a white marble tomb of Shaikh Salim Chishti at Sikri.\n4. In 1585, Akbar decided to shift the capital back to Agra.", "options": ["1, 2 and 4", "1, 2 and 3", "2, 3 and 4", "3 and 4 only"], "answer": "1, 2 and 3", "tag": "CAPF-2021"}, {"id": 3, "q": "Consider the following statements:\n1. Under Akbar, the system of Zabt was established over a large area from Punjab to Awadh.\n2. In the seventeenth century North India, the system of Zabt lost much ground to the system of Kankut.\nWhich of the statements given above is/are correct?", "options": ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"], "answer": "1 only", "tag": "CAPF-2021"}, {"id": 4, "q": "Man Kautuhal, a work on music, was prepared under the aegis of", "options": ["Raja Man Singh of Gwalior", "Tansen", "Meera Bai", "Amir Khusrau"], "answer": "Raja Man Singh of Gwalior", "tag": "CDS-1-2024"}, {"id": 5, "q": "Which of the following terms were used in the Indo-Persian sources of the Mughal period to denote a peasant?\n1. Raiyat\n2. Asami\n3. Muzarian\n4. Majur", "options": ["1 and 2 only", "2 and 3 only", "1, 2 and 3 only", "1, 3 and 4 only"], "answer": "1, 2 and 3 only", "tag": "CDS-1-2022"}, {"id": 6, "q": "Akbar issued a Farman in 1598 permitting in the city of Cambay (Khambat), Gujarat, the construction of a", "options": ["Temple", "Church", "Synagogue", "Jain Upashraya"], "answer": "Church", "tag": "CDS-II-2021"}, {"id": 7, "q": "'Yogavasistha' was translated into Persian by Nizamuddin Panipati during the reign of:", "options": ["Akbar", "Humayun", "Shahjahan", "Aurangzeb"], "answer": "Akbar", "tag": "CSE-2022"}, {"id": 8, "q": "With reference to medieval India, which one of the following is the correct sequence in ascending order in terms of size?", "options": ["Paragana-Sarkar-Suba", "Sarkar-Paragana-Suba", "Suba-Sarkar-Paragana", "Paragana-Suba-Sarkar"], "answer": "Paragana-Sarkar-Suba", "tag": "CSE-2021"}, {"id": 9, "q": "Which one among the following statements about the Mansabdari system is correct?", "options": ["All army troopers were allotted mansabs.", "Mansabs were usually assigned on the basis of ancestry.", "Position and salary of mansabdars were indicated by a numerical designation called zat.", "Mansabdars were never paid in cash."], "answer": "Position and salary of mansabdars were indicated by a numerical designation called zat.", "tag": "NDA-1-2023"}, {"id": 10, "q": "Which one of the following statements about the Ain-i Akbari is not correct?", "options": ["It was written by Abu'l Fazl", "It is a part of a larger work called Akbar Nama.", "It describes the Mughal Empire as having a diverse population and a composite culture.", "It was later revised by Sadullah Khan on the orders of Shah Jahan."], "answer": "It was later revised by Sadullah Khan on the orders of Shah Jahan.", "tag": "NDA-1-2021"}, {"id": 11, "q": "Which one of the following pairs of Deccan Sultanates and their respective regions is not correctly matched?", "options": ["Nizam Shahis : Bijapur", "Barid Shahis : Bidar", "Qutb Shahis : Golkonda", "Imad Shahis : Berar"], "answer": "Nizam Shahis : Bijapur", "tag": "CAPF-2021"}, {"id": 12, "q": "Who was the revenue minister of Akbar?", "options": ["Birbal", "Mulla Do-Piyaza", "Maansingh", "Todar Mal"], "answer": "Todar Mal", "tag": "IB ACIO - 2023-24"}, {"id": 13, "q": "What was Akbar's policy of religious tolerance called?", "options": ["Zabt", "Sulh-i-Kul", "Din-i-Ilahi", "Iqta"], "answer": "Sulh-i-Kul", "tag": "IB ACIO - II - 2025"}, {"id": 14, "q": "Who was the Mughal ruler during the Battle of Haldighati?", "options": ["Shah Jahan", "Humayun", "Akbar", "Babur"], "answer": "Akbar", "tag": "IB ACIO - II - 2025"}, {"id": 15, "q": "When was the Battle of Tukaroi fought where Akbar defeated the Sultanate of Bengal and Bihar?", "options": ["1564", "1582", "1575", "1591"], "answer": "1575", "tag": "SSC MTS 2023"}, {"id": 16, "q": "Which of the following monuments is known for its 'Buland Darwaza', the highest gateway in the world?", "options": ["Red Fort", "Qutub Minar", "Fatehpur Sikri", "Humayun's Tomb"], "answer": "Fatehpur Sikri", "tag": "IB ACIO - II - 2025"}, {"id": 17, "q": "Under whose reign was the Gakkhar chief, Kamal Khan, granted the rank of Mansabdar?", "options": ["Emperor Babur", "Emperor Akbar", "Emperor Shah Jahan", "Emperor Aurangzeb"], "answer": "Emperor Akbar", "tag": "CHSL 2025"}, {"id": 18, "q": "Which of the following Mughal tombs deviates from the typical square 'hasht-bihisht' (eight-part) layout?", "options": ["Humayun's Tomb", "Akbar's Tomb (Sikandra)", "Itimad-ud-Daulah", "Safdarjung's Tomb"], "answer": "Akbar's Tomb (Sikandra)", "tag": "SSC CGL 2025"}, {"id": 19, "q": "Which among the following was NOT a Mughal provincial capital?", "options": ["Lahore", "Allahabad", "Ajmer", "Bidar"], "answer": "Bidar", "tag": "SSC CGL 2025"}, {"id": 20, "q": "Which of the following forts was built by Raja Rai Singh in 1588?", "options": ["Junagarh Fort", "Amer Fort", "Sonar Kila", "Kumbhal Garh"], "answer": "Junagarh Fort", "tag": "Higher Secondary 2024"}, {"id": 21, "q": "Which Mughal ruler was referred to as Insan-i-Kamil or 'Perfect Man'?", "options": ["Akbar", "Jahangir", "Babur", "Shah Alam II"], "answer": "Akbar", "tag": "SSC CGL 2025"}, {"id": 22, "q": "After overthrowing the Mughal authority, ____ proclaimed himself as the sovereign and established the Second Afghan dynasty.", "options": ["Emperor Humayun", "Sher Shah Suri", "Bahlul Khan Lodi", "Sikandar Shah Lodi"], "answer": "Sher Shah Suri", "tag": "SSC CGL 2025"}, {"id": 23, "q": "Consider the following statements regarding Mughal architectural features:\n1. Mughal buildings exhibit a synthesis of Persian, Islamic, Central Asian (Turkish), and indigenous Indian elements, giving rise to a distinct Indo-Islamic style.\n2. Structures of the Mughal period predominantly employed red sandstone along with white marble as principal construction materials.\nWhich of the statements given above is/are correct?", "options": ["Statement 1 only", "Statement 2 only", "Both statements 1 and 2", "Neither statement 1 nor 2"], "answer": "Both statements 1 and 2", "tag": "SSC CGL 2025"}, {"id": 24, "q": "Which of the following revenue systems was introduced by Akbar based on land measurement and classification?", "options": ["Zabti or Dahsala System", "Iqta System", "Mahalwari System", "Ryotwari System"], "answer": "Zabti or Dahsala System", "tag": "DDA MTS 2025"}, {"id": 25, "q": "Consider the following statements with reference to Bairam Khan:\n1. Akbar gave the title of Khan-i-Khana to Bairam Khan.\n2. This title was not given at the time of appointment of Bairam Khan as Vazir of Empire.\nWhich of the above statements is/are correct?", "options": ["Both 1 and 2", "Neither 1 nor 2", "Only 1", "Only 2"], "answer": "Both 1 and 2", "tag": "UPPCS - 2024"}, {"id": 26, "q": "Match List I with List II\nList-I (Father): a) Babar, b) Akbar, c) Shah Jahan, d) Jahangir\nList-II (Son): 1) Salim, 2) Khusrau, 3) Kamran, 4) Murad", "options": ["4, 1, 3, 2", "3, 1, 4, 2", "3, 1, 2, 4", "4, 2, 3, 1"], "answer": "3, 1, 4, 2", "tag": "BPSC PRE - 2025"}, {"id": 27, "q": "In the context of Mughal administration, who were referred to as Shaikhzadas or Hindustanis?", "options": ["Central Asian nobles of Turkic origin serving the Mughals", "Rajput converts elevated to noble ranks for loyalty", "Persian-trained officers recruited from Safavid Iran", "Indigenous Muslims who held administrative posts under Mughal rule"], "answer": "Indigenous Muslims who held administrative posts under Mughal rule", "tag": "SSC STENO 2025"}, {"id": 28, "q": "Which Mughal emperor did Maharana Pratap face in the Battle of Haldighati?", "options": ["Akbar", "Babur", "Aurangzeb", "Jahangir"], "answer": "Akbar", "tag": "SSC STENO 2025"}, {"id": 29, "q": "How did the administrative roles of rajas differ from those of zamindars under the Mughal system?", "options": ["Zamindars were subordinate tax officers under the rajas, appointed directly by the emperor.", "Rajas and zamindars performed identical roles but differed in their religious affiliations.", "Rajas governed broader regions and held a higher status, while zamindars primarily managed land revenue collection.", "Zamindars exercised complete political control, whereas rajas held only ceremonial titles."], "answer": "Rajas governed broader regions and held a higher status, while zamindars primarily managed land revenue collection.", "tag": "SSC STENO 2025"}, {"id": 30, "q": "Name the Mughal emperor known for promoting Persian art and literature?", "options": ["Humayun", "Shah Jahan", "Akbar", "Jahangir"], "answer": "Humayun", "tag": "SSC STENO 2025"}, {"id": 31, "q": "In which of the following volumes of Akbar Nama, Akbar's administration, household, army, the revenues and the geography of his empire is discussed by Abul Fazl?", "options": ["Both second and third volume", "Both first and second volume", "Only first volume", "Only third volume"], "answer": "Only third volume", "tag": "RRB NTPC UG 2025"}, {"id": 32, "q": "Under Akbar, who was responsible for revenue and financial supervision across the entire Mughal Empire?", "options": ["Subadar", "Vakil", "Mir Bakhshi", "Diwan-i-Kul"], "answer": "Diwan-i-Kul", "tag": "RRB NTPC UG 2025"}, {"id": 33, "q": "During the Mughal period, the Ain-i-Dahsala system was introduced by ____", "options": ["Akbar", "Aurangzeb", "Babur", "Shah Jahan"], "answer": "Akbar", "tag": "RRB NTPC UG 2025"}, {"id": 34, "q": "During the rule of which of the following Mughal rulers did Sunnis and Shias meet in one mosque and Christians and Jews in one church to pray, thus following the principle of 'universal peace' (sulh-i kul)?", "options": ["Akbar", "Jahangir", "Humayun", "Babar"], "answer": "Akbar", "tag": "RRB NTPC UG 2025"}, {"id": 35, "q": "Top-khanah' was the general name given to the military/artillery branch of which of the following?", "options": ["Ghurid Dynasty", "Vijayanagara Empire", "Delhi Sultanate", "Mughal Dynasty"], "answer": "Mughal Dynasty", "tag": "RRB NTPC 2025"}, {"id": 36, "q": "Which Mughal ruler took steps to restrain the practice of Sati and issued official orders (farmans) in this regard?", "options": ["Emperor Babur", "Emperor Humayun", "Emperor Akbar", "Emperor Aurangzeb"], "answer": "Emperor Akbar", "tag": "SSC CPO 2025"}, {"id": 37, "q": "Which Mughal ruler undertook a military expedition against Kashmir, and during which year was this campaign conducted?", "options": ["Babur - 1531", "Humayun - 1538", "Akbar - 1586", "Jahangir - 1617"], "answer": "Akbar - 1586", "tag": "SSC CHSL 2025"}, {"id": 38, "q": "Consider the following statements:\n1. Akbar abolished Jizya, the tax on non-Muslims, in 1564.\n2. The Mansabdari system, a grading of civil and military officials, was introduced by Shah Jahan.\n3. Aurangzeb was the last of the prominent Mughal emperors and his reign marked the beginning of the decline of the Mughal Empire.\nWhich of the statements above is/are correct?", "options": ["1, 2, and 3", "2 and 3 only", "1 and 2 only", "1 and 3 only"], "answer": "1 and 3 only", "tag": "IB ACIO - 2023-24"}, {"id": 39, "q": "Who built the tomb of Itimad-ud-Daulah, often called the 'Baby Taj' of India?", "options": ["Shah Jahan", "Nur Jahan", "Akbar", "Aurangzeb"], "answer": "Nur Jahan", "tag": "IB ACIO - II - 2025"}, {"id": 40, "q": "The Red Fort (Lal Qila) at Delhi was built during the reign of which Mughal ruler?", "options": ["Shah Jahan", "Babur", "Akbar", "Aurangzeb"], "answer": "Shah Jahan", "tag": "SSC CGL 2025"}, {"id": 41, "q": "The large-scale use of pietra dura (stone inlay work) along with the adoption of the double-dome technique in Indian architecture became prominent under which Mughal reign?", "options": ["founder who laid the Mughal base in India", "The ruler who developed Fatehpur Sikri as a capital", "The emperor celebrated for grand marble monuments", "The ruler known for extensive mosque construction"], "answer": "The emperor celebrated for grand marble monuments", "tag": "SSC CGL 2025"}, {"id": 42, "q": "Consider the following events and arrange them in chronological order:\n1. Murder of Abul Fazl\n2. Death of Sheikh Mubarak\n3. Death of Faizi\n4. Death of Daniyal", "options": ["2, 1, 4, 3", "3, 2, 1, 4", "2, 3, 1, 4", "2, 4, 3, 1"], "answer": "2, 3, 1, 4", "tag": "UPPCS - 2024"}, {"id": 43, "q": "Arrange the following events in correct chronological order starting from the earliest to the last event:\nI. First Battle of Panipat\nII. Battle of Khanwa\nIII. Battle of Ghagra\nIV. Battle of Chanderi", "options": ["I, II, III, IV", "I, III, II, IV", "I, II, IV, III", "I, III, IV, II"], "answer": "I, II, IV, III", "tag": "UKPCS 2025"}, {"id": 44, "q": "Who were the famous painters at Jahangir's court?\n1. Basawan\n2. Manohar\n3. Bishun Das\n4. Mansur", "options": ["Only 1, 2, 4", "Only 2, 3, 4", "Only 1, 3, 4", "All 1, 2, 3 and 4"], "answer": "Only 2, 3, 4", "tag": "UKPCS - 2025"}, {"id": 45, "q": "Which Mughal Emperor issued the Deccan campaign against the Marathas and spent significant time in the region?", "options": ["Shah Jahan", "Aurangzeb", "Jahangir", "Akbar"], "answer": "Aurangzeb", "tag": "SSC STENO 2025"}, {"id": 46, "q": "In which of the following years was the town of Madrasapatnam, which later expanded and developed into modern-day Chennai, purchased by the East India Company (EIC) from local kings?", "options": ["1658", "1639", "1690", "1620"], "answer": "1639", "tag": "SSC STENO 2025"}, {"id": 47, "q": "Which Mughal emperor is known for his extensive autobiography, Tuzuk-i-Jahangiri?", "options": ["Jahangir", "Akbar", "Shah Jahan", "Aurangzeb"], "answer": "Jahangir", "tag": "SSC STENO 2025"}, {"id": 48, "q": "During Shahjahan's rule, how many mansabdars out of 8000 were higher ranking mansabdars who received 61.5% of the total estimated revenue of the empire as salaries for themselves and their troopers?", "options": ["345", "445", "245", "545"], "answer": "445", "tag": "SSC STENO 2025"}, {"id": 49, "q": "Dating back to 1639-1640 CE, which construction, located in Chennai, India, is historically known as the primary English defense post?", "options": ["Fort St. George", "Fort St. David", "Sadras Dutch Fort", "Gingee Fort"], "answer": "Fort St. George", "tag": "RRB NTPC UG 2025"}, {"id": 50, "q": "Who was the first Portuguese governor in India, sent in 1505 to establish naval supremacy?", "options": ["De Souza", "Nino-da-Cunha", "De Almeida", "Albuquerque"], "answer": "De Almeida", "tag": "RRB NTPC UG 2025"}, {"id": 51, "q": "The Sisodiya ruler of Mewar, Amar Singh, accepted Mughal service during the reign of ____.", "options": ["Jahangir", "Shah Jahan", "Aurangzeb", "Akbar"], "answer": "Jahangir", "tag": "Matriculation Level 2024"}, {"id": 52, "q": "Who succeeded in securing trading concessions for the East India Company from Mughal Emperor Jahangir?", "options": ["John Mildenhall", "Captain Hawkins", "Captain Best", "Thomas Roe"], "answer": "Thomas Roe", "tag": "SSC Stenographer 2023"}, {"id": 53, "q": "Who among the following wrote the biography of Jahangir known as Iqbalnama-i Jahangiri?", "options": ["Mutamid Khan", "Inayat Khan", "Abdul Rahim Khan", "Abul Fazl"], "answer": "Mutamid Khan", "tag": "SSC MTS 2023"}, {"id": 54, "q": "Sarai Nurmahal is a centrally protected monument of India. It is situated in which state of india?", "options": ["Uttar Pradesh", "West Bengal", "Punjab", "Himachal Pradesh"], "answer": "Punjab", "tag": "SSC MTS 2022"}, {"id": 55, "q": "Mehrunnisa married Emperor Jahangir in ____.", "options": ["1620", "1602", "1611", "1603"], "answer": "1611", "tag": "SSC MTS 2022"}, {"id": 56, "q": "Identify the Mughal emperor who was imprisoned for the rest of his life in Agra after the war of succession among his sons.", "options": ["Aurangzeb", "Bahadur Shah I", "Shah Jahan", "Jahandar Shah"], "answer": "Shah Jahan", "tag": "Matriculation Level 2024"}, {"id": 57, "q": "Who among the following was chosen by Shahjahan as his successor to the Mughal throne?", "options": ["Murad Bakhsh", "Aurangzeb", "Shah Shuja", "Dara Shikoh"], "answer": "Dara Shikoh", "tag": "Higher Secondary 2024"}, {"id": 58, "q": "Who among the following has written the 'Badshah Nama'?", "options": ["Babur", "Abdul Hamid Lahori", "Inayat Khan", "Abul Fazl"], "answer": "Abdul Hamid Lahori", "tag": "SSC CGL 2023"}, {"id": 59, "q": "The mausoleum of the Taj Mahal was designed by ____.", "options": ["Bhaktiyar Lahori", "Mohammadisha", "Shah Jahan", "Ustad Ahmad Lahori"], "answer": "Ustad Ahmad Lahori", "tag": "SSC MTS 2023"}, {"id": 60, "q": "The art of decoration, called Pietra dura became popular during whose reign?", "options": ["Jahangir", "Sher Shah Suri", "Shah Jahan", "Akbar"], "answer": "Shah Jahan", "tag": "SSC CGL 2023"}, {"id": 61, "q": "Ahmadnagar was finally annexed by the Mughals in ____.", "options": ["1627", "1632", "1630", "1635"], "answer": "1632", "tag": "SSC CGL 2022"}, {"id": 62, "q": "Who among the following had been given the title of 'Sultan Buland Iqbal' by Shah Jahan?", "options": ["Shuja", "Murad", "Dara", "Aurangzeb"], "answer": "Dara", "tag": "SSC CPO 2020"}]}, {"id": "mock-4", "number": "04", "title": "Aurangzeb and Later Mughals", "subtitle": "Aurangzeb, Later Mughals, Regional Kingdoms & 18th Century", "durationMinutes": 53, "totalQuestions": 53, "questions": [{"id": 1, "q": "The Battle of Chinhat was fought between:", "options": ["Shivaji and Mughal forces near Naneghat in 1676", "the Marathas and Afghans in 1760 before the Third Battle of Panipat", "the rebels of 1857 and British forces", "Tipu Sultan and the Nizam in 1794"], "answer": "the rebels of 1857 and British forces", "tag": "GEOSCIENTIST 2025"}, {"id": 2, "q": "Which one among the following statements about the Mansabdari system is correct?", "options": ["All army troopers were allotted mansabs.", "Mansabs were usually assigned on the basis of ancestry.", "Position and salary of mansabdars were indicated by a numerical designation called zat.", "Mansabdars were never paid in cash"], "answer": "Position and salary of mansabdars were indicated by a numerical designation called zat.", "tag": "NDA-1-2023"}, {"id": 3, "q": "Which one of the following pairs of Deccan Sultanates and their respective regions is not correctly matched?", "options": ["Nizam Shahis : Bijapur", "Barid Shahis : Bidar", "Qutb Shahis : Golkonda", "Imad Shahis : Berar"], "answer": "Nizam Shahis : Bijapur", "tag": "CAPF-2021"}, {"id": 4, "q": "Which of the following statements about the Bundela rebellion against Aurangzeb are correct?\n1. Shivaji advised Chhatrasal to promote local risings against Aurangzeb\n2. Chhatrasal levied chauth like marathas\n3. In 1705, Aurangzeb decided to make peace with Chhatrasal and Chhatrasal was granted mansab of four-thousand", "options": ["1 and 2 only", "2 and 3 only", "1 and 3 only", "1, 2 and 3"], "answer": "1, 2 and 3", "tag": "CAPF-2024"}, {"id": 5, "q": "Who among the following assumed the title of Nizam-ul-Mulk Asaf Jah to set himself up as an independent ruler with his base in Hyderabad?", "options": ["Kartalab Khan", "Bahadur Shah", "Alivardi Khan", "Chin Qilich Khan"], "answer": "Chin Qilich Khan", "tag": "CAPF-2021"}, {"id": 6, "q": "Consider the following statements about Sawai Jai Singh's astronomical work:\n1. He learnt of the accuracy of European observations, and obtained de La Hire's tables from which he reproduced a refraction table.\n2. His astronomers also developed a telescope of their own to observe the lunar phases of Venus.\nWhich of the statements given above is/are correct?", "options": ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"], "answer": "Both 1 and 2", "tag": "CDS-1-2024"}, {"id": 7, "q": "Which of the following terms were used in the Indo-Persian sources of the Mughal period to denote a peasant?\n1. Raiyat\n2. Asami\n3. Muzarian\n4. Majur", "options": ["1 and 2 only", "2 and 3 only", "1, 2 and 3 only", "1, 3 and 4 only"], "answer": "1, 2 and 3 only", "tag": "CDS-1-2022"}, {"id": 8, "q": "Which Mughal ruler was responsible for the execution of Guru Tegh Bahadur in the year 1675?", "options": ["Jahangir", "Akbar", "Aurangzeb", "Shahjahan"], "answer": "Aurangzeb", "tag": "SSC CHSL 11/07/2024"}, {"id": 9, "q": "Under whose rule did the Mughal empire achieve its largest territorial limits?", "options": ["Shah Jahan", "Bahadur Shah II", "Akbar", "Aurangzeb"], "answer": "Aurangzeb", "tag": "SSC CPO 27/06/2024"}, {"id": 10, "q": "Which Mughal rulers' intervention in the succession and internal politics of the Rathor Rajputs of Marwar led to their rebellion?", "options": ["Aurangzeb", "Babur", "Akbar", "Shah Jahan"], "answer": "Aurangzeb", "tag": "Matriculation Level 24/06/2024"}, {"id": 11, "q": "Under which of the following Mughal emperors were the Marathas a major challenge to the sovereignty of the Mughals?", "options": ["Humayun", "Aurangzeb", "Jahangir", "Babur"], "answer": "Aurangzeb", "tag": "Graduate Level 24/06/2024"}, {"id": 12, "q": "Under whose reign was the maximum number of books in Persian on classical Indian Music written?", "options": ["Shah Jahan", "Jahangir", "Akbar", "Aurangzeb"], "answer": "Aurangzeb", "tag": "SSC CGL 20/07/2023"}, {"id": 13, "q": "Which Mughal Emperor has attempted to vandalise the Kailash Temple at Ellora?", "options": ["Aurangzeb", "Humayun", "Shah Jahan", "Babur"], "answer": "Aurangzeb", "tag": "SSC MTS 02/05/2023"}, {"id": 14, "q": "French possessions in India were restored after the Battle of Wandiwash by the Treaty of ______ signed in the year 1763 between Britain and France.", "options": ["Purandar", "Paris", "Tordesillas", "Surat"], "answer": "Paris", "tag": "SSC CPO 05/10/2023"}, {"id": 15, "q": "The seven years of war in the 18th century was fought between Britain and ________.", "options": ["Germany", "Portugal", "France", "Spain"], "answer": "France", "tag": "SSC CPO 05/10/2023"}, {"id": 16, "q": "Who was the Iranian ruler who attacked the city of Delhi and took away an immense amount of wealth in 1739?", "options": ["Ahmad Shah Qajar", "Nadir shah", "Ahmad Shah Abdali", "Abbas"], "answer": "Nadir shah", "tag": "SSC MTS 05/09/2023"}, {"id": 17, "q": "Which of the following is an example of colonial architectures in India?\nI. Gateway of India, Mumbai\nII. India Gate, New Delhi", "options": ["Both I and II", "Neither I nor II", "Only I", "Only II"], "answer": "Both I and II", "tag": "IB ACIO - 2023-24"}, {"id": 18, "q": "Arrange the following Mughal Rulers in chronological order of their reign.\n1. Akbar Shah II\n2. Bahadur Shah II\n3. Shah Alam II\n4. Muhammad Shah Rangila", "options": ["4, 3, 1, 2", "2, 1, 3, 4", "2, 3, 4, 1", "1, 2, 3, 4"], "answer": "4, 3, 1, 2", "tag": "IB ACIO - II - 16/09/2025"}, {"id": 19, "q": "Which title was given to Begum Akhtar?", "options": ["Queen of Ghazals", "Queen of Thumris", "Queen of Khayals", "Queen Of Qawwalis"], "answer": "Queen of Ghazals", "tag": "SSC GD 13/02/2025"}, {"id": 20, "q": "Which Mughal Emperor issued the Deccan campaign against the Marathas and spent significant time in the region?", "options": ["Shah Jahan", "Aurangzeb", "Jahangir", "Akbar"], "answer": "Aurangzeb", "tag": "SSC STENO 06/08/2025"}, {"id": 21, "q": "Which of the following correctly pairs a monument with its architectural style?", "options": ["Khajuraho Temples - French", "Qutub Minar - Indo-Islamic", "India Gate - Rajput", "Lotus Temple - Mughal"], "answer": "Qutub Minar - Indo-Islamic", "tag": "SSC STENO 06/08/2025"}, {"id": 22, "q": "The Battle of Samugarh was fought between Aurangzeb and which Mughal prince?", "options": ["Jahangir", "Murad Baksh", "Shah Jahan", "Dara Shikoh"], "answer": "Dara Shikoh", "tag": "SSC STENO 07/08/2025"}, {"id": 23, "q": "In which of the following years was Burhan-ul-Mulk appointed the Nazim of Awadh?", "options": ["1712", "1722", "1702", "1732"], "answer": "1722", "tag": "RRB NTPC 21/08/2025"}, {"id": 24, "q": "Pondicherry was captured by the Dutch in 1693 but was returned to the French company by the Treaty of Ryswick in ________.", "options": ["1704", "1741", "1697", "1699"], "answer": "1697", "tag": "RRB NTPC 22/08/2025"}, {"id": 25, "q": "Rohilla chief, Najib-ud-Daula, played a key role in the ________.", "options": ["Mysore wars", "Anglo-Maratha wars", "Third Battle of Panipat", "Decline of Bengal"], "answer": "Third Battle of Panipat", "tag": "RRB NTPC 02/09/2025"}, {"id": 26, "q": "Which foreign ruler invaded India in 1739, leading to the massacre of Delhi and further weakening the Mughal Empire?", "options": ["Ahmad Shah Abdali", "Nadir Shah", "Babur", "Sher Shah"], "answer": "Nadir Shah", "tag": "RRB NTPC 09/09/2025"}, {"id": 27, "q": "What was the capital of Awadh when it was established in 1722?", "options": ["Bareilly", "Faizabad", "Fatehpur", "Gorakhpur"], "answer": "Faizabad", "tag": "RRB NTPC 28/08/2025"}, {"id": 28, "q": "Who among the following Mughal rulers is considered to be the last powerful Mughal ruler?", "options": ["Aurangzeb", "Dara Shukoh", "Shah Jahan", "Bahadur Shah Zafar"], "answer": "Aurangzeb", "tag": "RRB NTPC 01/09/2025"}, {"id": 29, "q": "Which of the following architectures was built by Aurangzeb?", "options": ["Bibi-ka-Maqbara", "Humayun's tomb", "Taj Mahal", "Qutub Minar"], "answer": "Bibi-ka-Maqbara", "tag": "RRB NTPC 17/06/2025"}, {"id": 30, "q": "Alai Darwaja is a part of which of the following monuments of Islamic architecture?", "options": ["Taj Mahal, Agra", "Red Fort, Delhi", "Red Fort, Agra", "Qutub Minar, Delhi"], "answer": "Qutub Minar, Delhi", "tag": "RPF CONSTABLE 07/03/2025"}, {"id": 31, "q": "Who translated 'The Mahabharat' called 'Razmnama' into Persian language, during the Mughal Period?", "options": ["Dara Sikoh", "Abdul Rahim Khan", "Abul Fazl", "Faizi"], "answer": "Faizi", "tag": "RPF CONSTABLE 05/03/2025"}, {"id": 32, "q": "Which of the following events marked the formal end of the Mughal Empire after the First War of Independence?", "options": ["The fall of Delhi", "The exile of Bahadur Shah Zafar to Rangoon", "The British annexation of Bengal", "The signing of the Treaty of Lahore"], "answer": "The exile of Bahadur Shah Zafar to Rangoon", "tag": "RPF CONSTABLE 05/03/2025"}, {"id": 33, "q": "Nagaur was conquered and annexed by which house of Rajputs during late Mughal period?", "options": ["Mewar", "Amber", "Bikaner", "Jodhpur"], "answer": "Jodhpur", "tag": "SSC CHSL 2025"}, {"id": 34, "q": "How many astronomical observatories were constructed by Sawai Jai Singh, the ruler of Amber?", "options": ["Five", "Nine", "Ten", "Twelve"], "answer": "Five", "tag": "SSC CHSL 2025"}, {"id": 35, "q": "Which Rajputs refused to accept the authority of the Mughals for a long time?", "options": ["Rathore", "Kachhwaha", "Chauhan", "Sisodiya"], "answer": "Sisodiya", "tag": "SSC CHSL 2025"}, {"id": 36, "q": "In 1722, Sawai Raja Jai Singh was given the governorship of which of the following regions?", "options": ["Bengal", "Awadh", "Agra", "Odisha"], "answer": "Agra", "tag": "SSC CHSL 2025"}, {"id": 37, "q": "Which of the following Mughal Emperor was assassinated by his nobles?\nI. Farrukh Siyar\nII. Alamgir II", "options": ["Only I", "Only II", "Both I and II", "Neither I nor II"], "answer": "Both I and II", "tag": "SSC CHSL 2025"}, {"id": 38, "q": "In which of the following year the ruler of Iran, Nadir Shah, sacked and plundered the city of Delhi?", "options": ["1707", "1728", "1739", "1751"], "answer": "1739", "tag": "SSC CHSL 2025"}, {"id": 39, "q": "Which Mughal emperor ruled between 1713 and 1719?", "options": ["Ahmad Shah", "Farrukh Siyar", "Shah Alam II", "Alamgir II"], "answer": "Farrukh Siyar", "tag": "SSC CHSL 2025"}, {"id": 40, "q": "What was the new capital founded by Sawai Raja Jai Singh of Amber?", "options": ["Jaipur", "Udaipur", "Jodhpur", "Ajmer"], "answer": "Jaipur", "tag": "SSC CHSL 2025"}, {"id": 41, "q": "Who among the following became the Nawab of Bengal after Alivardi Khan?", "options": ["Mir Jafar", "Mir Qasim", "Murshid Quli Khan", "Sirajuddaulah"], "answer": "Sirajuddaulah", "tag": "SSC CHSL 2025"}, {"id": 42, "q": "Which one of the following was the only Rajput state that defied Mughal power?", "options": ["Mewar", "Amber", "Bikaner", "Marwar"], "answer": "Mewar", "tag": "SSC CHSL 2025"}, {"id": 43, "q": "The Fatwa-i-Alamgiri, a major compilation of Islamic law, was commissioned by:", "options": ["Shah Jahan", "Akbar", "Aurangzeb", "Jahangir"], "answer": "Aurangzeb", "tag": "SSC CPO 2025"}, {"id": 44, "q": "The title 'Zinda Pir' or 'Living Saint' was attributed to:", "options": ["Akbar", "Aurangzeb", "Babur", "Jahangir"], "answer": "Aurangzeb", "tag": "SSC CPO 2025"}, {"id": 45, "q": "Mir Qasim name is associated with which of the following battles of India?", "options": ["Battle of Kirkee", "Battle of Buxar", "Battle of Plassey", "Battle of Lahore"], "answer": "Battle of Buxar", "tag": "SSC CHSL 03/08/2023"}, {"id": 46, "q": "The Battle of Karnal is known for the invasion of which of the following aggressors against India?", "options": ["Nadir Shah", "Nasir Khan", "Ahmad Shah Abdali", "Shah Shuja"], "answer": "Nadir Shah", "tag": "SSC CHSL 14/08/2023"}, {"id": 47, "q": "Who was the Mughal emperor during the third battle of Panipat?", "options": ["Akbar II", "Shah Alam II", "Bahadur Shah I", "Bahadurshah Jafar"], "answer": "Shah Alam II", "tag": "SSC CGL 24/07/2023"}, {"id": 48, "q": "In which of these battles the involvement of the Mughal army was not there?", "options": ["Battle of Haldighati", "Battle of Buxar", "Second Battle of Panipat", "Battle of Aliwal"], "answer": "Battle of Aliwal", "tag": "SSC CPO 10/11/2022"}, {"id": 49, "q": "Which of the given statements is correct?\nI. When Alivardi Khan died in 1756, Siraj-ud-daulah became the nawab of Bengal.\nII. In 1757, Robert Clive led the company's army against Siraj-ud-daulah at Plassey", "options": ["Only II", "Only I", "Neither I nor II", "Both I and II"], "answer": "Both I and II", "tag": "SSC MTS 07/07/2022"}, {"id": 50, "q": "Which architectural style of India was distinguished by the use of overhanging balconies and arched cornices?", "options": ["Rajput", "Sikh", "Nagar", "Mughal"], "answer": "Rajput", "tag": "SSC MTS 11/05/2023"}, {"id": 51, "q": "Ananga Pala was a ruler of which dynasty?", "options": ["Rajput Dynasty", "Gurjara-Pratihara Dynasty", "Pallava Dynasty", "Khilji Dynasty"], "answer": "Rajput Dynasty", "tag": "SSC MTS 13/06/2023"}, {"id": 52, "q": "Which among the following forts was principal capital of Qutb Shahi dynasty in Hyderabad?", "options": ["Chiktan Fort", "Rajgad Fort", "Red Fort", "Golconda Fort"], "answer": "Golconda Fort", "tag": "SSC CHSL 16/03/2023"}, {"id": 53, "q": "Which of the following cities became the capital of Bengal in 1704?", "options": ["Howrah", "Murshidabad", "Kharagpur", "Kolkata"], "answer": "Murshidabad", "tag": "SSC CGL 12/12/2022"}]}, {"id": "mock-5", "number": "05", "title": "Marathas", "subtitle": "Shivaji, Peshwas, Anglo-Maratha Wars & European Powers", "durationMinutes": 52, "totalQuestions": 52, "questions": [{"id": 1, "q": "Among the Ashtapradhans of Shivaji, who among the following did not hold any military commands besides civil duties?", "options": ["Peshwa", "Amatya", "Sumanta", "Pandit Rao"], "answer": "Pandit Rao", "tag": "GEOSCIENTIST 2025"}, {"id": 2, "q": "Which naval forts were erected by Shivaji?\n1. Suvarnadurg\n2. Vijayadurg\n3. Sindhudurg\n4. Kolaba", "options": ["1, 2, 3 and 4", "1, 2 and 4 only", "3 and 4 only", "2 and 3 only"], "answer": "1, 2, 3 and 4", "tag": "CAPF-2024"}, {"id": 3, "q": "Which of the following statements about the Bundela rebellion against Aurangzeb are correct?\n1. Shivaji advised Chhatrasal to promote local risings against Aurangzeb.\n2. Chhatrasal levied chauth like Marathas.\n3. In 1705, Aurangzeb decided to make peace with Chhatrasal and Chhatrasal was granted mansab of four-thousand.", "options": ["1 and 2 only", "2 and 3 only", "1 and 3 only", "1, 2 and 3"], "answer": "1, 2 and 3", "tag": "CAPF-2024"}, {"id": 4, "q": "Which of the following pairs of years and historical events is correctly matched?", "options": ["1878: Second Anglo-Afghan War", "1885: Ilbert Bill Controversy", "1785: Fox's India Bill", "1898: Lord Curzon becomes the Viceroy"], "answer": "1878: Second Anglo-Afghan War", "tag": "CAPF-2022"}, {"id": 5, "q": "Consider the following statements about the administrative measures of Shivaji:\n1. The scheme of Ashta Pradhan (eight ministers) was completed and announced at the time of Shivaji's coronation with regulations and duties properly defined.\n2. Shivaji introduced Marathi in place of Persian and coined Sanskrit technical terms for administrative purposes.\nWhich of the statements given above is/are correct?", "options": ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"], "answer": "Both 1 and 2", "tag": "CDS-II-2024"}, {"id": 6, "q": "Which of the following statements is/are correct?\n1. Shivaji sent an ambassador to Bombay to negotiate an agreement with the English.\n2. His chief motive was to secure English aid against the Siddis of Danda-Rajpuri.\n3. He wanted a supply of grenades, mortars and other ammunition.", "options": ["1 only", "1 and 3 only", "2 and 3 only", "1, 2 and 3"], "answer": "1, 2 and 3", "tag": "CDS-II-2023"}, {"id": 7, "q": "Arrange the following events associated with Shivaji in chronological order:\n1. Attack on Afzal Khan\n2. Capture of Torna\n3. Attack on Shaista Khan\n4. Annexation of Javli", "options": ["2, 4, 1, 3", "4, 2, 1, 3", "1, 2, 3, 4", "3, 1, 2, 4"], "answer": "2, 4, 1, 3", "tag": "NDA-II-2023"}, {"id": 8, "q": "The First Anglo-Maratha War was concluded by which one of the following?", "options": ["The Treaty of Surat", "The Treaty of Purandar", "The Convention of Wadgaon", "The Treaty of Salbai"], "answer": "The Treaty of Salbai", "tag": "NDA-I-2023"}, {"id": 9, "q": "In the context of eighteenth century India, what was 'Dastak'?", "options": ["Signature", "Land document", "Trade permit", "Tax on textiles"], "answer": "Trade permit", "tag": "NDA-I-2023"}, {"id": 10, "q": "The Dutch were defeated by Marthanda Varma of Travancore Kingdom in the battle of:", "options": ["Wandiwash", "Rakshasi-Tangadi", "Pullalur", "Colachel"], "answer": "Colachel", "tag": "NDA-II-2022"}, {"id": 11, "q": "Which Maratha statesman signed the Treaty of Bassein on December 31, 1802?", "options": ["Baji Rao II", "Vithuji Holkar", "Daulat Rao Sindhia", "Madhava Rao Narayan"], "answer": "Baji Rao II", "tag": "CDS-I-2021"}, {"id": 12, "q": "Chronologically arrange the following treaties/conventions signed between the Marathas and the British (starting with the earliest):\n1. Treaty of Salbai\n2. Treaty of Purandar\n3. Convention of Wadgaon\n4. Treaty of Surat", "options": ["4-2-3-1", "4-3-2-1", "1-3-2-4", "1-2-3-4"], "answer": "4-2-3-1", "tag": "CDS-I-2021"}, {"id": 13, "q": "With reference to Indian history, consider the following statements:\n1. The Dutch established their factories/warehouses on the east coast on lands granted to them by Gajapati rulers.\n2. Alfonso de Albuquerque captured Goa from the Bijapur Sultanate.\n3. The English East India Company established a factory at Madras on a plot of land leased from a representative of the Vijayanagara empire.\nWhich of the statements given above are correct?", "options": ["1 and 2 only", "2 and 3 only", "1 and 3 only", "1, 2 and 3"], "answer": "2 and 3 only", "tag": "CSE-2022"}, {"id": 14, "q": "Who among the following rulers of medieval Gujarat surrendered Diu to Portuguese?", "options": ["Ahmad Shah", "Mahmud Begarha", "Bahadur Shah", "Muhammad Shah"], "answer": "Bahadur Shah", "tag": "CSE-2023"}, {"id": 15, "q": "The Treaty of Yandabo was concluded as part of which one of the following wars?", "options": ["First Anglo-Burmese War", "Second Anglo-Burmese War", "Anglo-Kuki War", "Anglo-Maratha War"], "answer": "First Anglo-Burmese War", "tag": "NDA-I-2023"}, {"id": 16, "q": "At which one of the following places did the Danes establish their settlement in India?", "options": ["Chinsura", "Karaikal", "Mahe", "Tranquebar"], "answer": "Tranquebar", "tag": "NDA-I-2023"}, {"id": 17, "q": "Which of the following statements is/are correct?\n1. The Dutch East India Company was formed after the formation of the British East India Company.\n2. Vasco da Gama reached Calicut in 1498.", "options": ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"], "answer": "Both 1 and 2", "tag": "NDA-II-2022"}, {"id": 18, "q": "Where in South India did the British East India Company construct a trading post in 1639?", "options": ["Cuddalore", "Madraspatam", "Kalahasti", "Karwar"], "answer": "Madraspatam", "tag": "NDA-II-2022"}, {"id": 19, "q": "Which one of the following battles could be seen as laying the formal foundation of the British Raj in India?", "options": ["Third Battle of Panipat", "Battle of Plassey", "Battle of Buxar", "Revolt of 1857"], "answer": "Battle of Plassey", "tag": "NDA-II-2022"}, {"id": 20, "q": "Which one of the following areas was acquired by the British under the Treaty of Deogaon, 1803?", "options": ["Cuttack", "Murshidabad", "Surat", "Calicut"], "answer": "Cuttack", "tag": "NDA-II-2022"}, {"id": 21, "q": "What does the term 'Kunbis' refer to in the context of Maratha society?", "options": ["A warrior caste of the Rajput clans", "A class of temple priests", "A group of peasant-pastoralists", "A community of merchant bankers"], "answer": "A group of peasant-pastoralists", "tag": "SSC CGL 2025"}, {"id": 22, "q": "After the death of Shivaji, which group came to hold effective political power in the Maratha state?", "options": ["Mughals", "Deshmukhs", "Kunbis", "Chitpavan Brahmanas"], "answer": "Chitpavan Brahmanas", "tag": "SSC CGL 2025"}, {"id": 23, "q": "Consider the following events of Modern Indian History:\n1. Death sentence to Raja Nand Kumar\n2. Treaty of Salbai\n3. Battle of Wandiwash (1760)\n4. Death of Tipu Sultan (1799)\nWhich of the following is the correct chronological order?", "options": ["2-3-4-1", "3-1-2-4", "2-4-1-3", "3-2-1-4"], "answer": "3-1-2-4", "tag": "BPSC PRE-2025"}, {"id": 24, "q": "In which of the following years was the Treaty of Bassein signed between the British East India Company and Baji Rao II, the Maratha Peshwa?", "options": ["1835", "1802", "1824", "1818"], "answer": "1802", "tag": "SSC GD 2025"}, {"id": 25, "q": "Given below are assertion and reason, read the statements and choose the correct option.\nAssertion: The Treaty of Paris (1763) limited French settlements in India to trading posts only.\nReason: The French could no longer station troops or fortify their factories after the treaty.", "options": ["Both Assertion (A) and Reason (R) are true, and R is not the correct explanation of A.", "Both Assertion (A) and Reason (R) are true, and R is the correct explanation of A.", "A is true, but R is false.", "A is false, but R is true."], "answer": "Both Assertion (A) and Reason (R) are true, and R is the correct explanation of A.", "tag": "SSC STENO 2025"}, {"id": 26, "q": "Which Maratha ruler founded the Maratha Empire in 1674, proclaiming himself Chhatrapati?", "options": ["Sambhaji", "Shahu", "Shivaji", "Bajirao I"], "answer": "Shivaji", "tag": "SSC STENO 2025"}, {"id": 27, "q": "The Dutch East India Company established its first factory in India in ______.", "options": ["Goa", "Calicut", "Pondicherry", "Petapuli"], "answer": "Petapuli", "tag": "RRB NTPC 2025"}, {"id": 28, "q": "Rohilla chief, Najib-ud-Daula, played a key role in the ______.", "options": ["Mysore wars", "Anglo-Maratha wars", "Third Battle of Panipat", "Decline of Bengal"], "answer": "Third Battle of Panipat", "tag": "RRB NTPC 2025"}, {"id": 29, "q": "The Chhatrapati Shivaji Terminus is a prime example of which of the following types of architectural style?", "options": ["Dravidian", "Gothic alone", "Indo-Saracenic", "Pure Mughal"], "answer": "Gothic alone", "tag": "RRB NTPC 2025"}, {"id": 30, "q": "The Nizam of Hyderabad accepted British subsidiary alliance under ______.", "options": ["Sir John Shore", "Lord Wellesley", "Lord Cornwallis", "Lord Hastings"], "answer": "Lord Wellesley", "tag": "RRB NTPC 2025"}, {"id": 31, "q": "The Third Battle of Panipat in 1761 was fought between Ahmad Shah Abdali and which Indian power?", "options": ["Rajputs", "British", "Marathas", "Mughals"], "answer": "Marathas", "tag": "RRB NTPC 2025"}, {"id": 32, "q": "What was the term for Anglo-Indian bureaucrats in the princely states?", "options": ["Non-Mulkis", "Mulkis", "Zamindars", "Jagirdars"], "answer": "Non-Mulkis", "tag": "RRB NTPC 2025"}, {"id": 33, "q": "Which power suffered a decisive defeat in the Malabar region during the Battle of Colachel in 1741?", "options": ["English East India Company", "Spanish East India Company", "Austrian East India Company", "Dutch East India Company"], "answer": "Dutch East India Company", "tag": "RRB NTPC 2025"}, {"id": 34, "q": "In which year did the Dutch East India Company establish its factory at Petapuli on the North Coromandel Coast?", "options": ["1606", "1532", "1699", "1457"], "answer": "1606", "tag": "RRB NTPC 2025"}, {"id": 35, "q": "Ujjain expanded under the patronage of which Maratha chief?", "options": ["Holkar", "Gaikwad", "Bhonsale", "Sindhia"], "answer": "Sindhia", "tag": "SSC CHSL 2025"}, {"id": 36, "q": "From which decade did the Maratha campaigns into Rajasthan put severe pressure on principalities and checked their further expansion?", "options": ["1560", "1680", "1620", "1740"], "answer": "1740", "tag": "SSC CHSL 2025"}, {"id": 37, "q": "Who was in the combined forces that attacked Tipu Sultan in 1792?\nI. The Marathas\nII. The Nizam of Hyderabad\nIII. The East India Company", "options": ["Only I and II", "Only II and III", "Only I and III", "I, II and III"], "answer": "I, II and III", "tag": "SSC CHSL 2025"}, {"id": 38, "q": "Which group provided the backbone of the Maratha army?", "options": ["Ur", "Zamindars", "Kunbis", "Mansabdar"], "answer": "Kunbis", "tag": "SSC CHSL 2025"}, {"id": 39, "q": "The First Anglo-Maratha War ended with which of the following treaty?", "options": ["Treaty of Surat", "Treaty of Seringpatanam", "Treaty of Salbai", "Treaty of Bassein"], "answer": "Treaty of Salbai", "tag": "SSC CHSL 2025"}, {"id": 40, "q": "Who succeeded Chhatrapati Shivaji Maharaj as the ruler of the Maratha Empire?", "options": ["Chhatrapati Shahu", "Chhatrapati Rajaram", "Chhatrapati Sambhaji", "Maharani Tarabai"], "answer": "Chhatrapati Sambhaji", "tag": "SSC CHSL 2025"}, {"id": 41, "q": "What was the name of the principal minister in the Maratha kingdom?", "options": ["Nawab", "Peshwa", "Diwan", "Subedar"], "answer": "Peshwa", "tag": "SSC CHSL 2025"}, {"id": 42, "q": "Twenty five percent of the land revenue collected by Marathas in the Deccan was:", "options": ["Bhoga", "Sardeshmukhi", "Chauth", "Bhaga"], "answer": "Chauth", "tag": "SSC MTS 2023"}, {"id": 43, "q": "Baji Rao I or Baji Rao Ballal was the son of:", "options": ["Peshwa Balaji Vishwanath", "Raghunath Rao", "Shivaji", "Madhav Rao"], "answer": "Peshwa Balaji Vishwanath", "tag": "SSC MTS 2023"}, {"id": 44, "q": "Who among the following was a famous ruler of the Maratha dynasty?", "options": ["Porus", "Chhatrapati Shivaji Maharaj", "Man Singh", "Prithviraj Chauhan"], "answer": "Chhatrapati Shivaji Maharaj", "tag": "SSC CHSL 2023"}, {"id": 45, "q": "Which Peshwa signed the treaty of Bassein with the East India Company?", "options": ["Raghunath Rao", "Narayan Rao", "Baji Rao II", "Madhav Rao"], "answer": "Baji Rao II", "tag": "SSC STENOGRAPHER 2023"}, {"id": 46, "q": "Who was the Iranian ruler who attacked the city of Delhi and took away an immense amount of wealth in 1739?", "options": ["Ahmad Shah Qajar", "Nadir shah", "Ahmad Shah Abdali", "Abbas"], "answer": "Nadir shah", "tag": "SSC MTS 2023"}, {"id": 47, "q": "Which of the following Anglo-Maratha wars resulted in merging the Peshwas' territories with the Bombay Presidency?", "options": ["Fourth", "Third", "Second", "First"], "answer": "Third", "tag": "SSC CHSL 2023"}, {"id": 48, "q": "The second Anglo-Mysore War came to an end by signing which of the following treaties?", "options": ["The Treaty of Arcot", "The Treaty of Madras", "The Treaty of Wandiwash", "The Treaty of Mangalore"], "answer": "The Treaty of Mangalore", "tag": "SSC CHSL 2023"}, {"id": 49, "q": "In which of these battles the involvement of the Mughal army was not there?", "options": ["Battle of Haldighati", "Battle of Buxar", "Second Battle of Panipat", "Battle of Aliwal"], "answer": "Battle of Aliwal", "tag": "SSC CPO 2022"}, {"id": 50, "q": "In which year did Tipu Sultan die defending his capital Seringapatam?", "options": ["1799", "1802", "1792", "1794"], "answer": "1799", "tag": "SSC MTS 2022"}, {"id": 51, "q": "Which of the following regions was annexed by the British East India Company through the Treaty of Yandabo (1826)?", "options": ["Assam", "Kashmir", "Odisha", "Ladakh"], "answer": "Assam", "tag": "SSC MTS 2021"}, {"id": 52, "q": "In 1818, the Holkar Dynasty signed the Treaty of Mandsaur with the ______.", "options": ["Danish", "Dutch", "British", "French"], "answer": "British", "tag": "SSC MTS 2021"}]}, {"id": "mock-6", "number": "06", "title": "Bhakti and Sufi Movements", "subtitle": "Sufi Silsilas, Alvars, Nayanars, Nirguna & Saguna Bhakti", "durationMinutes": 52, "totalQuestions": 52, "questions": [{"id": 1, "q": "The Sufi movement originated primarily as a reform movement against the corrupt practices of rulers during which system?", "options": ["Delhi Sultanate", "Caliphate system", "Mughal Empire", "Gupta Empire"], "answer": "Caliphate system", "tag": "UPSC / SSC"}, {"id": 2, "q": "The term 'Sufi' is derived from 'Suf'. What does 'Suf' refer to in this context?", "options": ["Pure devotion", "A specific musical instrument", "Woolen clothes worn by the saints", "The Persian language"], "answer": "Woolen clothes worn by the saints", "tag": "SSC / NCERT"}, {"id": 3, "q": "In Sufi mysticism, the relationship between an individual and God is often compared to a lover and beloved. What terms are used for the individual and God respectively?", "options": ["Aashiq and Mashuq", "Pir and Murid", "Wali and Khanqah", "Safa and Zikr"], "answer": "Aashiq and Mashuq", "tag": "UPSC / NCERT"}, {"id": 4, "q": "What was the main medium or method advocated by Sufism to display devotion and connect with God?", "options": ["Strict fasting", "Rigid religious rituals", "Music (Sama)", "Military expeditions"], "answer": "Music (Sama)", "tag": "SSC / NCERT"}, {"id": 5, "q": "Which of the following is NOT one of the required religious aesthetic practices (like Salat, Safa, Zikr) mentioned in Sufism for reaching God?", "options": ["Salat (Prayer)", "Safa (Cleanliness of heart)", "Fana (Complete devotion)", "Zakat (Mandatory taxation)"], "answer": "Zakat (Mandatory taxation)", "tag": "UPSC / SSC"}, {"id": 6, "q": "What does the practice of 'Zikr' signify in the Sufi movement?", "options": ["Talking about God and remembering Him", "Donating wealth to the poor", "Fasting for forty days", "Singing in a musical gathering"], "answer": "Talking about God and remembering Him", "tag": "SSC / NCERT"}, {"id": 7, "q": "A distinguishing feature of Sufi saints was their stance on wealth and power. Which of the following statements is true?", "options": ["They actively sought royal patronage.", "They accepted royal patronage but lived in poverty.", "They did not accept royal patronage and rejected worldly pleasures.", "They established their own empires in the Deccan."], "answer": "They did not accept royal patronage and rejected worldly pleasures.", "tag": "UPSC / SSC"}, {"id": 8, "q": "How many major Sufi orders (Silsilas) originally existed, and how many gained massive fame in India?", "options": ["14 orders total, 6 famous in India", "12 orders total, 4 famous in India", "10 orders total, 2 famous in India", "8 orders total, 4 famous in India"], "answer": "12 orders total, 4 famous in India", "tag": "SSC / NCERT"}, {"id": 9, "q": "Sufis were broadly divided into two categories based on their adherence to Islamic law. Those who followed the Islamic Sharia law strictly were known as:", "options": ["Be-shara", "Ba-shara", "Mast Qalandar", "Wali"], "answer": "Ba-shara", "tag": "UPSC / SSC"}, {"id": 10, "q": "The term 'Mast Qalandar' was historically associated with which category of Sufis?", "options": ["Ba-shara", "Those who established the Chishti order", "Be-shara (who did not strictly follow Islamic Sharia)", "Rulers who patronized Sufism"], "answer": "Be-shara (who did not strictly follow Islamic Sharia)", "tag": "SSC / NCERT"}, {"id": 11, "q": "Who is considered the founder of the Chishti Silsila globally?", "options": ["Khwaja Moinuddin Chishti", "Khwaja Abu Ishaq Shami Chishti", "Sheikh Nizamuddin Auliya", "Baba Farid"], "answer": "Khwaja Abu Ishaq Shami Chishti", "tag": "UPSC / SSC"}, {"id": 12, "q": "The term 'Chishti' in the name of the founder of the Chishti Silsila derives from:", "options": ["A specific type of woolen garment", "A musical instrument used in Sama", "The name of a place in Afghanistan (Chisht)", "A title given by the Caliphate"], "answer": "The name of a place in Afghanistan (Chisht)", "tag": "SSC / NCERT"}, {"id": 13, "q": "Who brought the Chishti Silsila to India?", "options": ["Khwaja Abu Ishaq Shami Chishti", "Sheikh Salim Chishti", "Sheikh Moinuddin Chishti", "Sheikh Qutbuddin Bakhtiyar Kaki"], "answer": "Sheikh Moinuddin Chishti", "tag": "UPSC / SSC / NCERT"}, {"id": 14, "q": "Which Sufi saint is widely revered as 'Garib Nawaz' (Helper of the Poor)?", "options": ["Sheikh Fariduddin Masud", "Sheikh Nizamuddin Auliya", "Sheikh Moinuddin Chishti", "Sheikh Nasiruddin Chiragh"], "answer": "Sheikh Moinuddin Chishti", "tag": "SSC / NCERT"}, {"id": 15, "q": "The Mughal Emperor Akbar donated a large vessel known as a 'Degh' at the dargah of Sheikh Moinuddin Chishti after his victory at:", "options": ["Panipat", "Chittorgarh", "Gujarat", "Malwa"], "answer": "Chittorgarh", "tag": "UPSC / SSC"}, {"id": 16, "q": "The famous Qutub Minar in Delhi is named after which Sufi saint?", "options": ["Qutb al-Din Aibak", "Qutbuddin Bakhtiyar Kaki", "Sheikh Moinuddin Chishti", "Khwaja Baqi Billah"], "answer": "Qutbuddin Bakhtiyar Kaki", "tag": "UPSC / SSC / NCERT"}, {"id": 17, "q": "Which Sufi saint was also known as 'Ganj-e-Shakar' or Baba Farid?", "options": ["Sheikh Fariduddin Masud", "Sheikh Nizamuddin Auliya", "Sheikh Nasiruddin Chiragh", "Sheikh Salim Chishti"], "answer": "Sheikh Fariduddin Masud", "tag": "SSC / NCERT"}, {"id": 18, "q": "Sheikh Fariduddin Masud (Baba Farid) established a Jamaat Khana at which of the following places?", "options": ["Ajmer", "Ghiyaspur", "Ajodhan", "Lahore"], "answer": "Ajodhan", "tag": "UPSC / SSC"}, {"id": 19, "q": "Which prominent Chishti saint was respectfully addressed as 'Mahbub-e-Ilahi'?", "options": ["Sheikh Nizamuddin Auliya", "Sheikh Salim Chishti", "Baba Farid", "Sheikh Nasiruddin Chiragh"], "answer": "Sheikh Nizamuddin Auliya", "tag": "UPSC / SSC / NCERT"}, {"id": 20, "q": "Where did Sheikh Nizamuddin Auliya set up his headquarters?", "options": ["Ajmer", "Ajodhan", "Ghiyaspur", "Agra"], "answer": "Ghiyaspur", "tag": "SSC / NCERT"}, {"id": 21, "q": "Sheikh Nizamuddin Auliya had a strained relationship with which ruler of the Delhi Sultanate, who died in a structural collapse upon his return from Bengal?", "options": ["Alauddin Khalji", "Ghiyasuddin Tughlaq", "Muhammad bin Tughlaq", "Iltutmish"], "answer": "Ghiyasuddin Tughlaq", "tag": "UPSC / SSC"}, {"id": 22, "q": "Who among the following was associated with Sheikh Nizamuddin Auliya and established the Chishti Silsila in the Deccan region?", "options": ["Amir Khusrau", "Burhanuddin Gharib", "Sheikh Salim Chishti", "Baba Farid"], "answer": "Burhanuddin Gharib", "tag": "UPSC / SSC"}, {"id": 23, "q": "Akbar named his son Salim (who later became Emperor Jahangir) after which prominent Sufi saint?", "options": ["Sheikh Moinuddin Chishti", "Sheikh Nizamuddin Auliya", "Sheikh Salim Chishti", "Qutbuddin Bakhtiyar Kaki"], "answer": "Sheikh Salim Chishti", "tag": "SSC / NCERT"}, {"id": 24, "q": "What term did Emperor Akbar affectionately use to call his son Salim?", "options": ["Mahbub", "Sheikhu Baba", "Garib Nawaz", "Wali"], "answer": "Sheikhu Baba", "tag": "SSC / NCERT"}, {"id": 25, "q": "In the context of Sufi administration in a Khanqah, who held the administrative authority and acted as the guru?", "options": ["Murid", "Wali", "Pir", "Caliph"], "answer": "Pir", "tag": "UPSC / SSC"}, {"id": 26, "q": "To differentiate themselves, what distinct clothing did the 'Pir' (Sufi master) wear?", "options": ["A silk robe", "A patched frock", "A golden turban", "A white cotton dhoti"], "answer": "A patched frock", "tag": "UPSC / NCERT"}, {"id": 27, "q": "Who was the founder of the Suhrawardi Silsila in India?", "options": ["Sheikh Bahauddin Zakariya", "Khwaja Baqi Billah", "Sheikh Ahmad Sirhindi", "Niyamatullah Qadiri"], "answer": "Sheikh Bahauddin Zakariya", "tag": "UPSC / SSC"}, {"id": 28, "q": "Unlike the Chishti Silsila, which of the following practices was a distinct feature of the Suhrawardi Silsila?", "options": ["They strongly advocated for music (Sama).", "They lived exclusively in extreme poverty.", "They rejected music and accepted royal service.", "They merged completely with Hindu Bhakti traditions."], "answer": "They rejected music and accepted royal service.", "tag": "UPSC / SSC / NCERT"}, {"id": 29, "q": "Who was the founder of the Naqshbandi Silsila in India?", "options": ["Khwaja Baqi Billah", "Sheikh Ahmad Sirhindi", "Niyamatullah Qadiri", "Sheikh Bahauddin Zakariya"], "answer": "Khwaja Baqi Billah", "tag": "UPSC / SSC"}, {"id": 30, "q": "Which famous saint belonged to the Naqshbandi Silsila, known for its strict orthodox adherence to Islamic fundamentals?", "options": ["Amir Khusrau", "Sheikh Ahmad Sirhindi", "Sheikh Fariduddin Masud", "Qutbuddin Bakhtiyar Kaki"], "answer": "Sheikh Ahmad Sirhindi", "tag": "UPSC / SSC"}, {"id": 31, "q": "The Bhakti Movement proposed devotion to God as an alternative to two other traditional paths. What were these two paths?", "options": ["Karma Marg and Yoga Marg", "Gyan Marg and Karma Marg", "Dharma Marg and Artha Marg", "Gyan Marg and Sanyas Marg"], "answer": "Gyan Marg and Karma Marg", "tag": "SSC / NCERT"}, {"id": 32, "q": "Where did the Bhakti movement first originate before spreading to other parts of India?", "options": ["Northern India", "Eastern India (Bengal)", "South India (Tamil Nadu)", "Western India (Maharashtra)"], "answer": "South India (Tamil Nadu)", "tag": "UPSC / SSC / NCERT"}, {"id": 33, "q": "In South India, the devotees of Lord Vishnu who propelled the Bhakti movement were known as:", "options": ["Nayanars", "Alvars", "Chishtis", "Lingayats"], "answer": "Alvars", "tag": "UPSC / SSC / NCERT"}, {"id": 34, "q": "The Nayanars were a group of South Indian saints primarily devoted to which deity?", "options": ["Lord Vishnu", "Lord Krishna", "Lord Rama", "Lord Shiva"], "answer": "Lord Shiva", "tag": "UPSC / SSC / NCERT"}, {"id": 35, "q": "Who among the following was a prominent saint responsible for spreading the Bhakti movement in Maharashtra?", "options": ["Guru Nanak", "Chaitanya Mahaprabhu", "Namdev", "Ramananda"], "answer": "Namdev", "tag": "SSC / NCERT"}, {"id": 36, "q": "Which Bhakti saint is credited with extensively spreading the movement in Eastern India (Bengal and Odisha) and popularizing Kirtan?", "options": ["Kabir", "Namdev", "Chaitanya Mahaprabhu", "Guru Nanak"], "answer": "Chaitanya Mahaprabhu", "tag": "UPSC / SSC"}, {"id": 37, "q": "Ramananda, a follower of Ramanujacharya, spread the Bhakti movement in North India. Who among the following were his famous disciples?", "options": ["Tulsidas and Surdas", "Kabir and Ravidas", "Namdev and Tukaram", "Mirabai and Andal"], "answer": "Kabir and Ravidas", "tag": "UPSC / SSC / NCERT"}, {"id": 38, "q": "What structural change did Ramananda bring to the Bhakti worship when he propagated it in North India?", "options": ["He completely banned idol worship.", "He substituted the worship of Lord Vishnu with Lord Rama.", "He merged it with the Suhrawardi Sufi order.", "He introduced Persian poetry into religious rituals."], "answer": "He substituted the worship of Lord Vishnu with Lord Rama.", "tag": "UPSC / SSC"}, {"id": 39, "q": "The Bhakti movement opposed certain social structures. Which of the following did the movement actively oppose?", "options": ["Women participating in religious affairs", "The rigid caste system and inequality", "Brahmin participation in devotion", "The use of regional languages"], "answer": "The rigid caste system and inequality", "tag": "SSC / NCERT"}, {"id": 40, "q": "The concept of 'Saguna' Bhakti implies devotion to:", "options": ["A formless God with no attributes", "God with distinct attributes and qualities (often idol worship)", "Sufi saints rather than deities", "Nature and planetary bodies only"], "answer": "God with distinct attributes and qualities (often idol worship)", "tag": "UPSC / SSC / NCERT"}, {"id": 41, "q": "Which of the following groups of saints strictly followed 'Nirguna' (formless) Bhakti?", "options": ["Tulsidas, Surdas, Mirabai", "Guru Nanak, Ravidas, Kabir", "Ramananda, Chaitanya Mahaprabhu", "Alvars and Nayanars"], "answer": "Guru Nanak, Ravidas, Kabir", "tag": "UPSC / SSC / NCERT"}, {"id": 42, "q": "The compilation of hymns composed by the Nayanar saints is collectively known as:", "options": ["Divya Prabandham", "Thirumurai", "Sabaq-e-Hindi", "Tutinama"], "answer": "Thirumurai", "tag": "UPSC / SSC"}, {"id": 43, "q": "The 'Divya Prabandham' is associated with the compilation of hymns of which group?", "options": ["Alvars", "Nayanars", "Chishti Saints", "Sikh Gurus"], "answer": "Alvars", "tag": "UPSC / SSC"}, {"id": 44, "q": "Who was the only female Alvar saint, often referred to as the 'Mira of the South'?", "options": ["Gargi", "Maitreyi", "Andal", "Akka Mahadevi"], "answer": "Andal", "tag": "UPSC / SSC / NCERT"}, {"id": 45, "q": "Saints like Kabir and Guru Nanak emphasized the one-ness of God and rejected idol worship. Their teachings contributed significantly to the foundation of:", "options": ["The Chishti order", "Vaishnavism", "Sikhism and Kabir Panth", "Shaivism"], "answer": "Sikhism and Kabir Panth", "tag": "SSC / NCERT"}, {"id": 46, "q": "In the context of the fusion of languages, Amir Khusrau created a new style of Persian integrated with Indian elements. What was this style called?", "options": ["Tutinama", "Sabaq-e-Hindi", "Divya Prabandham", "Hindavi"], "answer": "Sabaq-e-Hindi", "tag": "UPSC / SSC"}, {"id": 47, "q": "Which of the following Persian historians belonged to the strong school of Persian history writing in India?", "options": ["Ziauddin Barani, Afif, and Isami", "Amir Khusrau and Abul Fazl", "Ziya Nakhshabi", "Nusrat Shah"], "answer": "Ziauddin Barani, Afif, and Isami", "tag": "UPSC / SSC"}, {"id": 48, "q": "Who translated Sanskrit stories into Persian, popularizing the 'Tutinama' (Book of the Parrot)?", "options": ["Amir Khusrau", "Ziauddin Barani", "Ziya Nakhshabi", "Maladhar Basu"], "answer": "Ziya Nakhshabi", "tag": "UPSC / SSC"}, {"id": 49, "q": "Under the royal patronage of Muslim rulers, regional literature flourished. Who translated the Mahabharata and Ramayana into Bengali?", "options": ["Maladhar Basu", "Nusrat Shah of Bengal", "Chaitanya Mahaprabhu", "Amir Khusrau"], "answer": "Nusrat Shah of Bengal", "tag": "UPSC / SSC"}, {"id": 50, "q": "Who is credited with translating the Bhagavad Gita into Bengali during this period?", "options": ["Maladhar Basu", "Nusrat Shah", "Namdev", "Ramananda"], "answer": "Maladhar Basu", "tag": "UPSC / SSC"}, {"id": 51, "q": "The term 'Safa' in Sufi practices specifically emphasizes:", "options": ["Physical washing of hands and face", "The purity and cleanliness of the heart/mind from inside", "Donating a portion of income", "Wearing a patched frock"], "answer": "The purity and cleanliness of the heart/mind from inside", "tag": "SSC / NCERT"}, {"id": 52, "q": "Which language served as a prominent medium for Sufi literature before it intermixed with Sanskrit and regional languages in India?", "options": ["Prakrit", "Pali", "Persian", "Tamil"], "answer": "Persian", "tag": "SSC / NCERT"}]}];
+
+    // Application State
+    let completedHistory = {}; // mockId -> { score, total, percentage, timestamp, reviewItems, stats }
+    let activeMock = null;
+    let activeQuestions = []; // Questions in FIXED order, with shuffled options per question
+    let questionStates = []; // { visited: bool, selectedOption: string|null, markedForReview: bool }
+    let currentQIndex = 0;
+    let remainingSeconds = 0;
+    let totalSecondsAllocated = 0;
+    let timerInterval = null;
+    let isPaused = false;
+    let currentReviewFilter = 'all'; // 'all' | 'incorrect' | 'unattempted'
+
+    // Helper: Fisher-Yates Shuffle (used ONLY for the 4 distractor options, NEVER for questions)
+    function shuffleOptions(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    // Helper: Fullscreen Controls
+    function enterFullscreenSafe() {
+      try {
+        const el = document.documentElement;
+        if (!document.fullscreenElement) {
+          if (el.requestFullscreen) {
+            el.requestFullscreen().catch(() => {});
+          } else if (el.webkitRequestFullscreen) {
+            el.webkitRequestFullscreen();
+          }
+        }
+      } catch (e) {}
+    }
+
+    function exitFullscreenSafe() {
+      try {
+        if (document.fullscreenElement) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen().catch(() => {});
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          }
+        }
+      } catch (e) {}
+    }
+
+    // View Switcher
+    function showView(viewId) {
+      const views = ['dashboardView', 'introView', 'examView', 'resultView'];
+      views.forEach(id => {
+        const el = document.getElementById(id);
+        if (id === viewId) {
+          el.classList.remove('hidden');
+          el.classList.add('flex');
+        } else {
+          el.classList.add('hidden');
+          el.classList.remove('flex');
+        }
+      });
+    }
+
+    // Render Main Dashboard
+    function renderDashboard() {
+      const container = document.getElementById('mocksListContainer');
+      container.innerHTML = '';
+
+      const completedCount = Object.keys(completedHistory).length;
+      document.getElementById('completedMocksCountBadge').textContent = `Completed: ${completedCount} / ${MOCKS_DATA.length}`;
+
+      MOCKS_DATA.forEach((mock) => {
+        const hist = completedHistory[mock.id];
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition p-5 flex flex-col justify-between';
+
+        const statusBadgeHtml = hist
+          ? `<span class="text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-0.5 rounded-full">Completed &bull; ${hist.score}/${hist.total} (${hist.percentage}%)</span>`
+          : `<span class="text-xs font-semibold bg-slate-100 text-slate-600 border border-slate-200 px-2.5 py-0.5 rounded-full">Not Attempted</span>`;
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-extrabold uppercase tracking-wider bg-blue-900 text-white px-2.5 py-1 rounded">
+                Mock ${mock.number}
+              </span>
+              ${statusBadgeHtml}
+            </div>
+            <h3 class="text-lg font-bold text-slate-900">${mock.title}</h3>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">${mock.subtitle}</p>
+          </div>
+
+          <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-4 text-xs text-slate-600 font-medium">
+              <div>
+                <span class="text-slate-400 block text-[10px] uppercase">Questions</span>
+                <span class="font-bold text-slate-800">${mock.totalQuestions} MCQs</span>
+              </div>
+              <div class="h-6 w-px bg-slate-200"></div>
+              <div>
+                <span class="text-slate-400 block text-[10px] uppercase">Time Limit</span>
+                <span class="font-bold text-slate-800">${mock.durationMinutes} Mins</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+              ${hist ? `<button type="button" data-review-mock="${mock.id}" class="px-3 py-2 text-xs font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition">View Analysis</button>` : ''}
+              <button type="button" data-open-mock="${mock.id}" class="px-4 py-2 text-xs sm:text-sm font-bold text-white bg-[#1e3a8a] hover:bg-blue-800 rounded-lg shadow-sm transition">
+                ${hist ? 'Retake Mock' : 'Start Mock'} &rarr;
+              </button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      // Attach listeners to dashboard buttons
+      container.querySelectorAll('[data-open-mock]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const mockId = btn.getAttribute('data-open-mock');
+          openMockInstructions(mockId);
+        });
+      });
+
+      container.querySelectorAll('[data-review-mock]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const mockId = btn.getAttribute('data-review-mock');
+          openSavedResult(mockId);
+        });
+      });
+    }
+
+    // Open Introductory Interface for a Selected Mock
+    function openMockInstructions(mockId) {
+      const mock = MOCKS_DATA.find(m => m.id === mockId);
+      if (!mock) return;
+      activeMock = mock;
+
+      document.getElementById('introMockBadge').textContent = `MOCK ${mock.number}`;
+      document.getElementById('introMockTitle').textContent = `${mock.number}. ${mock.title}`;
+      document.getElementById('introMockSubtitle').textContent = mock.subtitle;
+      document.getElementById('introQuestionsBadge').textContent = `${mock.totalQuestions} Questions`;
+      document.getElementById('introDurationBadge').textContent = `${mock.durationMinutes} Minutes`;
+
+      document.getElementById('introStatNumber').textContent = `Mock ${mock.number}`;
+      document.getElementById('introStatQuestions').textContent = `${mock.totalQuestions} MCQs`;
+      document.getElementById('introStatTime').textContent = `${mock.durationMinutes} Minutes`;
+
+      const checkbox = document.getElementById('declarationCheckbox');
+      checkbox.checked = true;
+      document.getElementById('beginExamBtn').disabled = false;
+
+      showView('introView');
+      window.scrollTo(0, 0);
+    }
+
+    // Start the Exam from the Introductory Screen
+    function startExamSession() {
+      if (!activeMock) return;
+
+      // Request fullscreen automatically upon the beginning of the test
+      enterFullscreenSafe();
+
+      // Prepare questions: keep exact question sequence, randomize the 4 options for each question
+      activeQuestions = activeMock.questions.map(q => ({
+        id: q.id,
+        q: q.q,
+        options: shuffleOptions(q.options),
+        answer: q.answer,
+        tag: q.tag
+      }));
+
+      questionStates = activeQuestions.map((_, idx) => ({
+        visited: idx === 0,
+        selectedOption: null,
+        markedForReview: false
+      }));
+
+      currentQIndex = 0;
+      totalSecondsAllocated = activeMock.durationMinutes * 60;
+      remainingSeconds = totalSecondsAllocated;
+      isPaused = false;
+
+      document.getElementById('examHeaderMockCode').textContent = `MOCK ${activeMock.number}`;
+      document.getElementById('examHeaderTitle').textContent = activeMock.title;
+      document.getElementById('paletteSubCount').textContent = `${activeQuestions.length} Questions`;
+
+      showView('examView');
+      renderPaletteGrid();
+      renderCurrentQuestion();
+      updateTimerDisplay();
+      startCountdownTimer();
+    }
+
+    // Timer Logic
+    function startCountdownTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (isPaused) return;
+        remainingSeconds--;
+        updateTimerDisplay();
+        if (remainingSeconds <= 0) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+          finalizeAndSubmitExam('Time Expired - Auto Submitted');
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const mins = Math.floor(Math.max(0, remainingSeconds) / 60);
+      const secs = Math.max(0, remainingSeconds) % 60;
+      const mStr = String(mins).padStart(2, '0');
+      const sStr = String(secs).padStart(2, '0');
+      const timerEl = document.getElementById('timerDisplay');
+      timerEl.textContent = `${mStr}:${sStr}`;
+
+      if (remainingSeconds <= 60) {
+        timerEl.className = 'text-red-400 tracking-wider animate-pulse';
+      } else {
+        timerEl.className = 'text-amber-300 tracking-wider';
+      }
+    }
+
+    // Compute Palette Status Class for a Question
+    function getPaletteStatusClass(state) {
+      if (!state.visited) return 'pal-not-visited';
+      if (state.markedForReview && state.selectedOption !== null) return 'pal-answered-review';
+      if (state.markedForReview) return 'pal-review';
+      if (state.selectedOption !== null) return 'pal-answered';
+      return 'pal-not-answered';
+    }
+
+    // Render Right-Side Question Palette & Live Status Counts
+    function renderPaletteGrid() {
+      const grid = document.getElementById('paletteGrid');
+      grid.innerHTML = '';
+
+      let answered = 0;
+      let notAnswered = 0;
+      let notVisited = 0;
+      let reviewOnly = 0;
+      let ansReview = 0;
+
+      questionStates.forEach((st, idx) => {
+        if (!st.visited) {
+          notVisited++;
+        } else if (st.markedForReview && st.selectedOption !== null) {
+          ansReview++;
+        } else if (st.markedForReview) {
+          reviewOnly++;
+        } else if (st.selectedOption !== null) {
+          answered++;
+        } else {
+          notAnswered++;
+        }
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.id = `pal-btn-${idx}`;
+        btn.className = `pal-btn ${getPaletteStatusClass(st)} ${idx === currentQIndex ? 'pal-current' : ''}`;
+        btn.textContent = idx + 1;
+        btn.addEventListener('click', () => {
+          jumpToQuestion(idx);
+        });
+        grid.appendChild(btn);
+      });
+
+      document.getElementById('statAnsweredCount').textContent = answered;
+      document.getElementById('statNotAnsweredCount').textContent = notAnswered;
+      document.getElementById('statNotVisitedCount').textContent = notVisited;
+      document.getElementById('statReviewCount').textContent = reviewOnly;
+      document.getElementById('statAnsReviewCount').textContent = ansReview;
+    }
+
+    // Scroll active palette button into view inside the palette container
+    function scrollActivePaletteButtonIntoView() {
+      const activeBtn = document.getElementById(`pal-btn-${currentQIndex}`);
+      const scrollContainer = document.getElementById('paletteScrollContainer');
+      if (activeBtn && scrollContainer) {
+        const btnTop = activeBtn.offsetTop;
+        const btnBottom = btnTop + activeBtn.offsetHeight;
+        const viewTop = scrollContainer.scrollTop;
+        const viewBottom = viewTop + scrollContainer.clientHeight;
+        if (btnTop < viewTop + 16 || btnBottom > viewBottom - 16) {
+          scrollContainer.scrollTop = Math.max(0, btnTop - scrollContainer.clientHeight / 2);
+        }
+      }
+    }
+
+    // Render Current Question & 4 Options (without marking correctness or giving any hints)
+    function renderCurrentQuestion() {
+      const qObj = activeQuestions[currentQIndex];
+      const st = questionStates[currentQIndex];
+      st.visited = true;
+
+      document.getElementById('examQuestionCounter').textContent = `Question No. ${currentQIndex + 1} of ${activeQuestions.length}`;
+
+      const tagEl = document.getElementById('examQuestionTag');
+      if (qObj.tag && qObj.tag.trim() !== '') {
+        tagEl.textContent = qObj.tag;
+        tagEl.classList.remove('hidden');
+      } else {
+        tagEl.textContent = '';
+        tagEl.classList.add('hidden');
+      }
+
+      document.getElementById('examQuestionText').textContent = qObj.q;
+
+      const optsContainer = document.getElementById('examOptionsContainer');
+      optsContainer.innerHTML = '';
+
+      const optionLetters = ['A', 'B', 'C', 'D'];
+      qObj.options.forEach((optText, optIdx) => {
+        const isSelected = st.selectedOption === optText;
+        const row = document.createElement('label');
+        row.className = `flex items-start gap-3.5 p-3.5 sm:p-4 rounded-lg border cursor-pointer transition ${
+          isSelected
+            ? 'bg-blue-50/90 border-blue-600 ring-1 ring-blue-600'
+            : 'bg-white hover:bg-slate-50 border-slate-300'
+        }`;
+
+        const radio = document.createElement('input');
+        radio.type = 'radio';
+        radio.name = 'mcqOption';
+        radio.checked = isSelected;
+        radio.className = 'mt-1 w-4 h-4 accent-blue-700 shrink-0 cursor-pointer';
+        radio.addEventListener('change', () => {
+          selectOptionForCurrent(optText);
+        });
+
+        const badge = document.createElement('span');
+        badge.className = `w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 ${
+          isSelected ? 'bg-blue-700 text-white' : 'bg-slate-100 text-slate-700 border border-slate-300'
+        }`;
+        badge.textContent = optionLetters[optIdx];
+
+        const textSpan = document.createElement('span');
+        textSpan.className = 'text-xs sm:text-sm md:text-base text-slate-800 leading-relaxed select-text';
+        textSpan.textContent = optText;
+
+        row.appendChild(radio);
+        row.appendChild(badge);
+        row.appendChild(textSpan);
+        optsContainer.appendChild(row);
+      });
+
+      document.getElementById('prevQuestionBtn').disabled = currentQIndex === 0;
+      document.getElementById('questionScrollArea').scrollTop = 0;
+
+      renderPaletteGrid();
+      scrollActivePaletteButtonIntoView();
+    }
+
+    // Select an option (does NOT mark right/wrong and does NOT jump to next question)
+    function selectOptionForCurrent(optText) {
+      questionStates[currentQIndex].selectedOption = optText;
+      renderCurrentQuestion();
+    }
+
+    // Clear Response for Current Question
+    function clearCurrentResponse() {
+      questionStates[currentQIndex].selectedOption = null;
+      questionStates[currentQIndex].markedForReview = false;
+      renderCurrentQuestion();
+    }
+
+    // Jump to Question Index
+    function jumpToQuestion(targetIdx) {
+      if (targetIdx < 0 || targetIdx >= activeQuestions.length) return;
+      currentQIndex = targetIdx;
+      questionStates[currentQIndex].visited = true;
+      renderCurrentQuestion();
+    }
+
+    // Next Question (Save & Next)
+    function goNextQuestion() {
+      // Unmark review if moving via regular Next? In TCS iON, Save & Next clears review mark and saves status
+      questionStates[currentQIndex].markedForReview = false;
+      if (currentQIndex < activeQuestions.length - 1) {
+        currentQIndex++;
+        questionStates[currentQIndex].visited = true;
+      }
+      renderCurrentQuestion();
+    }
+
+    // Previous Question
+    function goPrevQuestion() {
+      if (currentQIndex > 0) {
+        currentQIndex--;
+        questionStates[currentQIndex].visited = true;
+        renderCurrentQuestion();
+      }
+    }
+
+    // Mark for Review & Next
+    function markForReviewAndNext() {
+      questionStates[currentQIndex].markedForReview = true;
+      if (currentQIndex < activeQuestions.length - 1) {
+        currentQIndex++;
+        questionStates[currentQIndex].visited = true;
+      }
+      renderCurrentQuestion();
+    }
+
+    // Pause / Resume Controls
+    function pauseExam() {
+      isPaused = true;
+      const modal = document.getElementById('pauseModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function resumeExam() {
+      isPaused = false;
+      const modal = document.getElementById('pauseModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Open Submit Confirmation Modal
+    function openSubmitConfirmationModal() {
+      let answered = 0;
+      let notAnswered = 0;
+      let notVisited = 0;
+      let reviewOnly = 0;
+      let ansReview = 0;
+
+      questionStates.forEach(st => {
+        if (!st.visited) notVisited++;
+        else if (st.markedForReview && st.selectedOption !== null) ansReview++;
+        else if (st.markedForReview) reviewOnly++;
+        else if (st.selectedOption !== null) answered++;
+        else notAnswered++;
+      });
+
+      document.getElementById('modalTotalQ').textContent = activeQuestions.length;
+      document.getElementById('modalAnsweredQ').textContent = answered;
+      document.getElementById('modalNotAnsweredQ').textContent = notAnswered;
+      document.getElementById('modalReviewQ').textContent = reviewOnly;
+      document.getElementById('modalAnsReviewQ').textContent = ansReview;
+      document.getElementById('modalNotVisitedQ').textContent = notVisited;
+
+      const modal = document.getElementById('submitModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeSubmitConfirmationModal() {
+      const modal = document.getElementById('submitModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Finalize & Submit Exam -> Calculate Score & Build Solutions ONLY for Incorrect & Un-attempted
+    function finalizeAndSubmitExam(submitReason) {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+      closeSubmitConfirmationModal();
+      resumeExam();
+
+      const timeSpentSeconds = Math.max(0, totalSecondsAllocated - remainingSeconds);
+      const spentMins = Math.floor(timeSpentSeconds / 60);
+      const spentSecs = timeSpentSeconds % 60;
+
+      let attemptedCount = 0;
+      let correctCount = 0;
+      let incorrectCount = 0;
+      let unattemptedCount = 0;
+      const reviewItems = []; // ONLY incorrect and un-attempted questions!
+
+      activeQuestions.forEach((qObj, idx) => {
+        const st = questionStates[idx];
+        const chosen = st.selectedOption;
+
+        if (chosen === null) {
+          unattemptedCount++;
+          reviewItems.push({
+            qNumber: idx + 1,
+            q: qObj.q,
+            options: qObj.options,
+            correctAnswer: qObj.answer,
+            userAnswer: null,
+            tag: qObj.tag,
+            status: 'unattempted'
+          });
+        } else {
+          attemptedCount++;
+          if (chosen === qObj.answer) {
+            correctCount++;
+            // Strictly DO NOT add correct questions to reviewItems!
+          } else {
+            incorrectCount++;
+            reviewItems.push({
+              qNumber: idx + 1,
+              q: qObj.q,
+              options: qObj.options,
+              correctAnswer: qObj.answer,
+              userAnswer: chosen,
+              tag: qObj.tag,
+              status: 'incorrect'
+            });
+          }
+        }
+      });
+
+      const totalQ = activeQuestions.length;
+      const percentage = Math.round((correctCount / totalQ) * 100);
+      const accuracy = attemptedCount > 0 ? Math.round((correctCount / attemptedCount) * 100) : 0;
+
+      // Save in session history
+      completedHistory[activeMock.id] = {
+        mockId: activeMock.id,
+        mockNumber: activeMock.number,
+        mockTitle: activeMock.title,
+        submitReason: submitReason || 'Submitted by Candidate',
+        score: correctCount,
+        total: totalQ,
+        attempted: attemptedCount,
+        correct: correctCount,
+        incorrect: incorrectCount,
+        unattempted: unattemptedCount,
+        percentage: percentage,
+        accuracy: accuracy,
+        timeTakenStr: `${spentMins}m ${spentSecs}s`,
+        reviewItems: reviewItems
+      };
+
+      renderResultScreen(completedHistory[activeMock.id]);
+    }
+
+    function openSavedResult(mockId) {
+      const saved = completedHistory[mockId];
+      if (!saved) return;
+      activeMock = MOCKS_DATA.find(m => m.id === mockId);
+      renderResultScreen(saved);
+    }
+
+    function renderResultScreen(resultData) {
+      document.getElementById('resultMockBadge').textContent = `MOCK ${resultData.mockNumber}`;
+      document.getElementById('resultSubmitReasonBadge').textContent = resultData.submitReason;
+      document.getElementById('resultMockTitle').textContent = `${resultData.mockNumber}. ${resultData.mockTitle} - Score & Analysis`;
+
+      document.getElementById('resultTimeTaken').textContent = resultData.timeTakenStr;
+      document.getElementById('resultAccuracy').textContent = `${resultData.accuracy}%`;
+      document.getElementById('resultScoreFraction').textContent = `${resultData.score} / ${resultData.total}`;
+      document.getElementById('resultPercentage').textContent = `${resultData.percentage}%`;
+
+      document.getElementById('cardTotalQ').textContent = resultData.total;
+      document.getElementById('cardAttemptedQ').textContent = resultData.attempted;
+      document.getElementById('cardCorrectQ').textContent = resultData.correct;
+      document.getElementById('cardIncorrectQ').textContent = resultData.incorrect;
+      document.getElementById('cardUnattemptedQ').textContent = resultData.unattempted;
+
+      document.getElementById('countAllReview').textContent = resultData.reviewItems.length;
+      document.getElementById('countIncorrectReview').textContent = resultData.incorrect;
+      document.getElementById('countUnattemptedReview').textContent = resultData.unattempted;
+
+      currentReviewFilter = 'all';
+      updateFilterButtonsUI();
+      renderFilteredSolutions(resultData.reviewItems);
+
+      showView('resultView');
+      window.scrollTo(0, 0);
+    }
+
+    function updateFilterButtonsUI() {
+      const btnMap = {
+        all: document.getElementById('filterAllReviewBtn'),
+        incorrect: document.getElementById('filterIncorrectBtn'),
+        unattempted: document.getElementById('filterUnattemptedBtn')
+      };
+      Object.keys(btnMap).forEach(k => {
+        if (k === currentReviewFilter) {
+          btnMap[k].className = 'px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition';
+        } else {
+          btnMap[k].className = 'px-3 py-1.5 rounded-md text-slate-700 hover:text-slate-900 transition';
+        }
+      });
+    }
+
+    function renderFilteredSolutions(allReviewItems) {
+      const container = document.getElementById('solutionsListContainer');
+      container.innerHTML = '';
+
+      const filtered = allReviewItems.filter(item => {
+        if (currentReviewFilter === 'all') return true;
+        return item.status === currentReviewFilter;
+      });
+
+      if (filtered.length === 0) {
+        const emptyDiv = document.createElement('div');
+        emptyDiv.className = 'py-10 text-center text-slate-500 text-sm';
+        emptyDiv.textContent = allReviewItems.length === 0
+          ? 'Outstanding! You answered all questions correctly. There are no incorrect or un-attempted questions to review.'
+          : `No ${currentReviewFilter} questions found in this mock attempt.`;
+        container.appendChild(emptyDiv);
+        return;
+      }
+
+      const optionLetters = ['A', 'B', 'C', 'D'];
+
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'pt-4 first:pt-0';
+
+        const statusBadge = item.status === 'incorrect'
+          ? `<span class="text-xs font-bold bg-red-100 text-red-800 border border-red-300 px-2.5 py-0.5 rounded">Incorrect</span>`
+          : `<span class="text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300 px-2.5 py-0.5 rounded">Un-attempted</span>`;
+
+        const tagHtml = item.tag && item.tag.trim() !== ''
+          ? `<span class="text-[11px] font-medium text-slate-500 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">${escapeHtml(item.tag)}</span>`
+          : '';
+
+        let optionsHtml = '';
+        item.options.forEach((opt, oIdx) => {
+          const isCorrectOpt = opt === item.correctAnswer;
+          const isUserWrongOpt = item.status === 'incorrect' && opt === item.userAnswer;
+
+          let boxStyle = 'bg-slate-50 border-slate-200 text-slate-700';
+          let rightLabel = '';
+
+          if (isCorrectOpt) {
+            boxStyle = 'bg-emerald-50 border-emerald-500 text-emerald-950 font-semibold';
+            rightLabel = `<span class="ml-auto text-[11px] font-bold bg-emerald-600 text-white px-2 py-0.5 rounded shrink-0">Correct Answer</span>`;
+          } else if (isUserWrongOpt) {
+            boxStyle = 'bg-red-50 border-red-400 text-red-900 font-medium';
+            rightLabel = `<span class="ml-auto text-[11px] font-bold bg-red-600 text-white px-2 py-0.5 rounded shrink-0">Your Answer</span>`;
+          }
+
+          optionsHtml += `
+            <div class="flex items-start gap-3 p-3 rounded-lg border text-xs sm:text-sm ${boxStyle}">
+              <span class="w-5 h-5 rounded-full bg-white/80 border border-current text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">
+                ${optionLetters[oIdx]}
+              </span>
+              <span class="leading-relaxed">${escapeHtml(opt)}</span>
+              ${rightLabel}
+            </div>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+            <div class="flex items-center gap-2">
+              <span class="text-xs sm:text-sm font-bold text-slate-900 bg-slate-200 px-2.5 py-0.5 rounded">Question #${item.qNumber}</span>
+              ${statusBadge}
+            </div>
+            ${tagHtml}
+          </div>
+          <div class="text-sm sm:text-base font-medium text-slate-900 whitespace-pre-line mb-3.5 leading-relaxed">${escapeHtml(item.q)}</div>
+          <div class="grid grid-cols-1 gap-2 mb-3">
+            ${optionsHtml}
+          </div>
+          <div class="bg-blue-50/80 border border-blue-200 rounded-lg px-3.5 py-2.5 text-xs sm:text-sm text-blue-950 flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <span class="font-bold text-blue-800">Verified Solution / Answer:</span>
+              <span class="font-semibold ml-1">${escapeHtml(item.correctAnswer)}</span>
+            </div>
+            <div class="text-xs text-slate-600">
+              Your Status: <strong>${item.status === 'incorrect' ? 'Selected "' + escapeHtml(item.userAnswer) + '"' : 'Not Attempted'}</strong>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // Event Listeners Initialization
+    window.addEventListener('DOMContentLoaded', () => {
+      renderDashboard();
+
+      // Intro Screen Controls
+      document.getElementById('backToDashboardFromIntroBtn').addEventListener('click', () => {
+        showView('dashboardView');
+      });
+      document.getElementById('cancelIntroBtn').addEventListener('click', () => {
+        showView('dashboardView');
+      });
+      document.getElementById('declarationCheckbox').addEventListener('change', (e) => {
+        document.getElementById('beginExamBtn').disabled = !e.target.checked;
+        document.getElementById('beginExamBtn').classList.toggle('opacity-50', !e.target.checked);
+      });
+      document.getElementById('beginExamBtn').addEventListener('click', () => {
+        if (!document.getElementById('declarationCheckbox').checked) return;
+        startExamSession();
+      });
+
+      // Exam Interface Controls
+      document.getElementById('prevQuestionBtn').addEventListener('click', goPrevQuestion);
+      document.getElementById('nextQuestionBtn').addEventListener('click', goNextQuestion);
+      document.getElementById('clearResponseBtn').addEventListener('click', clearCurrentResponse);
+      document.getElementById('markReviewNextBtn').addEventListener('click', markForReviewAndNext);
+
+      document.getElementById('pauseExamBtn').addEventListener('click', pauseExam);
+      document.getElementById('resumeExamBtn').addEventListener('click', resumeExam);
+      document.getElementById('abortToDashFromPauseBtn').addEventListener('click', () => {
+        if (timerInterval) clearInterval(timerInterval);
+        resumeExam();
+        exitFullscreenSafe();
+        renderDashboard();
+        showView('dashboardView');
+      });
+
+      document.getElementById('exitFullscreenBtn').addEventListener('click', () => {
+        if (document.fullscreenElement) {
+          exitFullscreenSafe();
+        } else {
+          enterFullscreenSafe();
+        }
+      });
+
+      document.addEventListener('fullscreenchange', () => {
+        const btn = document.getElementById('exitFullscreenBtn');
+        if (document.fullscreenElement) {
+          btn.textContent = 'Exit Fullscreen';
+        } else {
+          btn.textContent = 'Exit Fullscreen';
+        }
+      });
+
+      document.getElementById('mainSubmitBtn').addEventListener('click', openSubmitConfirmationModal);
+      document.getElementById('paletteSubmitBtn').addEventListener('click', openSubmitConfirmationModal);
+      document.getElementById('cancelSubmitModalBtn').addEventListener('click', closeSubmitConfirmationModal);
+      document.getElementById('confirmSubmitModalBtn').addEventListener('click', () => {
+        finalizeAndSubmitExam('Submitted by Candidate');
+      });
+
+      // Leave Exam to Dashboard Modal
+      document.getElementById('examBackToDashBtn').addEventListener('click', () => {
+        const leaveModal = document.getElementById('leaveModal');
+        leaveModal.classList.remove('hidden');
+        leaveModal.classList.add('flex');
+      });
+      document.getElementById('cancelLeaveModalBtn').addEventListener('click', () => {
+        const leaveModal = document.getElementById('leaveModal');
+        leaveModal.classList.add('hidden');
+        leaveModal.classList.remove('flex');
+      });
+      document.getElementById('confirmLeaveModalBtn').addEventListener('click', () => {
+        const leaveModal = document.getElementById('leaveModal');
+        leaveModal.classList.add('hidden');
+        leaveModal.classList.remove('flex');
+        if (timerInterval) clearInterval(timerInterval);
+        exitFullscreenSafe();
+        renderDashboard();
+        showView('dashboardView');
+      });
+
+      // Result Screen Controls
+      document.getElementById('resultToDashboardBtn').addEventListener('click', () => {
+        exitFullscreenSafe();
+        renderDashboard();
+        showView('dashboardView');
+      });
+      document.getElementById('retakeCurrentMockBtn').addEventListener('click', () => {
+        if (activeMock) {
+          openMockInstructions(activeMock.id);
+        }
+      });
+
+      // Filter Buttons on Result Screen
+      document.getElementById('filterAllReviewBtn').addEventListener('click', () => {
+        currentReviewFilter = 'all';
+        updateFilterButtonsUI();
+        if (activeMock && completedHistory[activeMock.id]) {
+          renderFilteredSolutions(completedHistory[activeMock.id].reviewItems);
+        }
+      });
+      document.getElementById('filterIncorrectBtn').addEventListener('click', () => {
+        currentReviewFilter = 'incorrect';
+        updateFilterButtonsUI();
+        if (activeMock && completedHistory[activeMock.id]) {
+          renderFilteredSolutions(completedHistory[activeMock.id].reviewItems);
+        }
+      });
+      document.getElementById('filterUnattemptedBtn').addEventListener('click', () => {
+        currentReviewFilter = 'unattempted';
+        updateFilterButtonsUI();
+        if (activeMock && completedHistory[activeMock.id]) {
+          renderFilteredSolutions(completedHistory[activeMock.id].reviewItems);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

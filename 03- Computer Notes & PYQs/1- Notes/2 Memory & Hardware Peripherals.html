@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Awareness Master Archive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @font-face {
+            font-family: 'Calibri';
+            src: local('Calibri'), local('Segoe UI'), sans-serif;
+        }
+        
+        body {
+            font-family: 'Calibri', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc; /* Light slate background */
+            color: #0f172a;
+            line-height: 1.6;
+        }
+
+        @media print {
+            body {
+                background-color: #ffffff;
+                color: #000000;
+                font-size: 12pt;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-break-inside-avoid {
+                page-break-inside: avoid;
+            }
+            .print-page-break {
+                page-break-before: always;
+            }
+            .card {
+                box-shadow: none !important;
+                border: 1px solid #cbd5e1 !important;
+                margin-bottom: 1rem !important;
+                page-break-inside: avoid;
+            }
+            h1, h2, h3, h4, h5, h6 {
+                color: #000000 !important;
+                page-break-after: avoid;
+            }
+            .text-blue-800, .text-indigo-700 {
+                color: #000000 !important;
+            }
+            .bg-blue-50, .bg-gray-50 {
+                background-color: #f8f8f8 !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+            th, td {
+                border: 1px solid #000 !important;
+                padding: 8px !important;
+            }
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .question-list li {
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .question-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen">
+
+    <div class="max-w-5xl mx-auto p-4 md:p-8">
+        
+        <!-- Header -->
+        <header class="mb-8 text-center print-break-inside-avoid">
+            <h1 class="text-3xl md:text-4xl font-bold text-blue-900 tracking-tight mb-2">Computer Awareness Master Archive</h1>
+            <p class="text-gray-600 text-lg">Verified Study Material for SSC CGL Tier II & Railway NTPC Exams</p>
+        </header>
+
+        <!-- Main Dashboard View -->
+        <div id="dashboard-view" class="block">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Chapter 1 Card -->
+                <button onclick="openChapter('chapter-1')" class="text-left bg-white p-6 rounded-xl shadow-md border border-gray-200 hover:shadow-lg hover:border-blue-400 transition-all duration-200 group">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">Chapter 1</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 group-hover:text-blue-600 mb-2">Memory</h2>
+                    <p class="text-gray-600">Primary & Secondary Memory, RAM, ROM, Cache, Registers, Units & Architecture.</p>
+                </button>
+
+                <!-- Chapter 2 Card -->
+                <button onclick="openChapter('chapter-2')" class="text-left bg-white p-6 rounded-xl shadow-md border border-gray-200 hover:shadow-lg hover:border-blue-400 transition-all duration-200 group">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-indigo-100 text-indigo-800 text-xs font-bold px-3 py-1 rounded-full">Chapter 2</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 group-hover:text-indigo-600 mb-2">Backup Devices & Protocols</h2>
+                    <p class="text-gray-600">Storage Hardware, Backup Protocols, Cloud Infrastructure, Ports & Interfaces.</p>
+                </button>
+
+                <!-- Chapter 3 Card -->
+                <button onclick="openChapter('chapter-3')" class="text-left bg-white p-6 rounded-xl shadow-md border border-gray-200 hover:shadow-lg hover:border-blue-400 transition-all duration-200 group">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1 rounded-full">Chapter 3</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 group-hover:text-teal-600 mb-2">Printers</h2>
+                    <p class="text-gray-600">Impact & Non-Impact Printers, Technologies, Measurement & Port Connectivity.</p>
+                </button>
+
+                <!-- Chapter 4 Card -->
+                <button onclick="openChapter('chapter-4')" class="text-left bg-white p-6 rounded-xl shadow-md border border-gray-200 hover:shadow-lg hover:border-blue-400 transition-all duration-200 group">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-purple-100 text-purple-800 text-xs font-bold px-3 py-1 rounded-full">Chapter 4</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 group-hover:text-purple-600 mb-2">Computer Ports</h2>
+                    <p class="text-gray-600">Legacy to Modern Ports, Connectors, Pin Configurations, Data & Audio Interfaces.</p>
+                </button>
+            </div>
+        </div>
+
+        <!-- CHAPTER 1: MEMORY -->
+        <div id="chapter-1" class="hidden">
+            <button onclick="openDashboard()" class="no-print mb-6 inline-flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-semibold">
+                &larr; Back to Dashboard
+            </button>
+            
+            <div class="bg-white rounded-xl shadow-sm border border-gray-300 overflow-hidden">
+                <div class="bg-blue-50 px-6 py-4 border-b border-gray-200">
+                    <h2 class="text-3xl font-bold text-blue-900">Chapter 1: Memory</h2>
+                    <p class="text-sm text-gray-600 mt-1">System Memory Archive | Classified and structured.</p>
+                </div>
+                
+                <div class="p-6">
+                    <!-- Classification -->
+                    <div class="card bg-gray-50 border-l-4 border-l-blue-500">
+                        <h3 class="text-xl font-bold text-blue-800 mb-3">Memory Classification</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <h4 class="font-semibold text-indigo-700">Primary Memory (Internal)</h4>
+                                <ul class="list-disc pl-5 text-gray-800 mt-1 space-y-1">
+                                    <li>RAM</li>
+                                    <li>ROM</li>
+                                    <li>Cache</li>
+                                    <li>Register</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-indigo-700">Secondary Memory (External)</h4>
+                                <ul class="list-disc pl-5 text-gray-800 mt-1 space-y-1">
+                                    <li>Hard Disk</li>
+                                    <li>CD / Ray Disc Drive</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RAM Section -->
+                    <div class="card">
+                        <h3 class="text-2xl font-bold text-blue-800 border-b-2 border-blue-100 pb-2 mb-4">RAM (Random Access Memory)</h3>
+                        <ul class="list-disc pl-5 text-gray-800 space-y-2 mb-4">
+                            <li>Volatile or Temporary Memory.</li>
+                            <li><strong>Founder:</strong> Robert Heath Dennard.</li>
+                            <li><strong>Capacity:</strong> Read + Write.</li>
+                            <li><strong>Speed units:</strong> Mega Hertz (MHz) or Millions of cycles per second.</li>
+                        </ul>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                            <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                                <h4 class="font-bold text-indigo-800 mb-2">SRAM (Static RAM)</h4>
+                                <ul class="list-disc pl-5 text-gray-800 space-y-1">
+                                    <li>Used to create: Cache memory.</li>
+                                    <li>Fastest RAM.</li>
+                                    <li>Made up of: Transistors.</li>
+                                    <li>Does not need to be refreshed constantly.</li>
+                                </ul>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                                <h4 class="font-bold text-indigo-800 mb-2">DRAM (Dynamic RAM)</h4>
+                                <ul class="list-disc pl-5 text-gray-800 space-y-1">
+                                    <li>Needs refresh.</li>
+                                    <li>Used in Laptops, Mobiles, PCs.</li>
+                                    <li>Made up of Capacitors.</li>
+                                    <li><strong>Types:</strong> SDRAM (Synchronous), DDR (Double Data Rate) 1-5.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ROM Section -->
+                    <div class="card">
+                        <h3 class="text-2xl font-bold text-blue-800 border-b-2 border-blue-100 pb-2 mb-4">ROM (Read-Only Memory)</h3>
+                        <ul class="list-disc pl-5 text-gray-800 space-y-2 mb-4">
+                            <li><strong>Ability:</strong> Only Reads. Permanent Memory.</li>
+                            <li>Helps in Boot Up. Non-volatile in nature.</li>
+                            <li>Used to store: BIOS Software (Basic Input Output System).</li>
+                            <li>Instructions stored in ROM are known as <strong>Firmware</strong> (Hardware + Software).</li>
+                        </ul>
+
+                        <h4 class="font-bold text-indigo-800 mb-2 mt-4">ROM Types:</h4>
+                        <ul class="list-disc pl-5 text-gray-800 space-y-2">
+                            <li><strong>PROM (Programmable ROM):</strong> Editing is not possible once programmed.</li>
+                            <li><strong>EPROM (Erasable Programmable ROM):</strong> Editing is possible by UV Rays (by Manufacturer).</li>
+                            <li><strong>EEPROM (Electrically Erasable Programmable ROM):</strong> Editing is possible by electrical signals (e.g., Flash memory, Pen Drive, Memory Card, Solid State Drive/SSD).</li>
+                        </ul>
+                    </div>
+
+                    <!-- Order of Memory -->
+                    <div class="card bg-green-50 border-l-4 border-green-500">
+                        <h3 class="text-xl font-bold text-green-900 mb-2">Order of Fastest Memory</h3>
+                        <p class="text-lg font-semibold text-gray-800 flex flex-wrap gap-2 items-center">
+                            <span class="bg-white px-3 py-1 border border-gray-300 rounded">Register</span> 
+                            <span class="text-green-600 font-bold">&gt;</span> 
+                            <span class="bg-white px-3 py-1 border border-gray-300 rounded">Cache</span> 
+                            <span class="text-green-600 font-bold">&gt;</span> 
+                            <span class="bg-white px-3 py-1 border border-gray-300 rounded">RAM</span> 
+                            <span class="text-green-600 font-bold">&gt;</span> 
+                            <span class="bg-white px-3 py-1 border border-gray-300 rounded">ROM</span>
+                        </p>
+                    </div>
+
+                    <!-- Cache, Register & Virtual Memory -->
+                    <div class="card">
+                        <h3 class="text-2xl font-bold text-blue-800 border-b-2 border-blue-100 pb-2 mb-4">Cache Memory</h3>
+                        <ul class="list-disc pl-5 text-gray-800 space-y-2 mb-4">
+                            <li>Second fastest memory. Temporary and volatile.</li>
+                            <li>Part of Main Memory. Located between CPU and RAM.</li>
+                            <li>Holds frequently used instructions and data.</li>
+                            <li><strong>Hit:</strong> Data/Word found in Cache.</li>
+                            <li><strong>Loss:</strong> Data/Word not found in Cache.</li>
+                            <li><strong>Performance measured in:</strong> Hit Ratio.</li>
+                            <li><strong>Levels:</strong> L1 (Registers, 64KB-128KB per core), L2 (Cache, 512KB-2MB per core), L3 (Primary memory, 16MB-96MB shared).</li>
+                            <li><strong>LRU (Least Recently Used):</strong> A common caching strategy (Replacement in Cache). When Cache is full, LRU technique makes room for new elements by discarding the 'least recently used data' first.</li>
+                        </ul>
+
+                        <h3 class="text-2xl font-bold text-blue-800 border-b-2 border-blue-100 pb-2 mb-4 mt-6">Register</h3>
+                        <ul class="list-disc pl-5 text-gray-800 space-y-2 mb-4">
+                            <li>Fastest memory. Resides inside CPU.</li>
+                            <li>Collection of Flip Flops is called a Register.</li>
+                            <li>Holds data: 32-bit/64-bit. CPU speed is determined by the number of bits of registers.</li>
+                            <li><strong>Functions:</strong> Fetch, Decode, Execute.</li>
+                        </ul>
+                        <h4 class="font-bold text-indigo-800 mb-2">Types of Registers (7):</h4>
+                        <ol class="list-decimal pl-5 text-gray-800 space-y-1">
+                            <li><strong>Accumulator Register:</strong> Stores data for ALU.</li>
+                            <li><strong>Address Register:</strong> Stores address; not a visible register.</li>
+                            <li><strong>Data / Buffer Register:</strong> Stores data.</li>
+                            <li><strong>Instruction Register:</strong> Holds last instruction.</li>
+                            <li><strong>Program Counter:</strong> Points to next instruction.</li>
+                            <li><strong>Memory Address Register (MAR) / Others</strong> (Included generally in the 7 categories).</li>
+                        </ol>
+
+                        <h3 class="text-2xl font-bold text-blue-800 border-b-2 border-blue-100 pb-2 mb-4 mt-6">Virtual & Buffer Memory</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <h4 class="font-bold text-indigo-800">Virtual Memory</h4>
+                                <ul class="list-disc pl-5 text-gray-800 space-y-1 mt-1">
+                                    <li>Illusion of having larger RAM.</li>
+                                    <li>Takes space from: Secondary Memory (e.g., Hard Disk).</li>
+                                    <li>Swap in and Swap out operations are used.</li>
+                                    <li>Works on the concept of page replacement.</li>
+                                    <li>Implemented via Demand Paging.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-indigo-800">Buffer Memory</h4>
+                                <ul class="list-disc pl-5 text-gray-800 space-y-1 mt-1">
+                                    <li>Temporary storage, usually in RAM.</li>
+                                    <li>Purpose: To hold data right before it is used.</li>
+                                    <li>e.g., When downloading an audio/video file, it loads the first 20% into buffer memory and then begins to play.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Founders & Units -->
+                    <div class="card grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-blue-800 border-b-2 border-blue-100 pb-2 mb-3">Founders & Technologies</h3>
+                            <ul class="list-disc pl-5 text-gray-800 space-y-2">
+                                <li><strong>USB port:</strong> Ajay Bhatt (Intel).</li>
+                                <li><strong>USB Drive:</strong> Dov Moran, Pua Khein-Seng, Trek.</li>
+                                <li><strong>CD:</strong> James Russell.</li>
+                                <li><strong>Optical Disc:</strong> David Paul Gregg.</li>
+                                <li><strong>Flash Memory (Toshiba):</strong> Fujio Masuoka.</li>
+                                <li><strong>EEPROM:</strong> George Perlegos.</li>
+                                <li><strong>Flash Memory Locations:</strong> RAM, Pen drive (USB Drive), Memory sticks, SD Cards, SSD.</li>
+                                <li><strong>Modules:</strong> SIMM (Single In-line Memory Module), DIMM (Dual In-line Memory Module).</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-blue-800 border-b-2 border-blue-100 pb-2 mb-3">Memory Units & Conversions</h3>
+                            <div class="text-sm font-semibold text-gray-700 bg-gray-100 p-3 rounded mb-3">
+                                Ascending Order: Bit &rarr; Nibble &rarr; Byte &rarr; KB &rarr; MB &rarr; GB &rarr; TB &rarr; PB &rarr; EB &rarr; ZB &rarr; YB &rarr; BB (Bronto Byte) &rarr; GB (Geop Byte)
+                            </div>
+                            <ul class="list-none text-gray-800 space-y-1 font-mono text-sm bg-blue-50 p-3 rounded border border-blue-100">
+                                <li>1 Bit = Binary digit (0 or 1)</li>
+                                <li>4 Bits = 1 Nibble</li>
+                                <li>8 Bits = 1 Byte</li>
+                                <li>2 Nibbles = 1 Byte</li>
+                                <li>1024 Bytes = 1 KB</li>
+                                <li>1024 KB = 1 MB</li>
+                                <li>1024 MB = 1 GB</li>
+                                <li>1024 GB = 1 TB</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Question Bank -->
+                    <div class="card bg-yellow-50 border border-yellow-200">
+                        <h3 class="text-2xl font-bold text-yellow-900 border-b-2 border-yellow-300 pb-2 mb-4">Memory Question Bank (Exam Format)</h3>
+                        <ul class="list-disc pl-5 text-gray-800 space-y-3 question-list">
+                            <li><strong>Which Memory is inside CPU?</strong> Register</li>
+                            <li><strong>Cache memory is made up of:</strong> SRAM</li>
+                            <li><strong>RAM is located in:</strong> Motherboard</li>
+                            <li><strong>Temporary Memory is:</strong> RAM</li>
+                            <li><strong>Instructions written in ROM is known as:</strong> Firmware</li>
+                            <li><strong>Transistors used in:</strong> SRAM</li>
+                            <li><strong>Which Memory Must be refreshed many times?</strong> DRAM</li>
+                            <li><strong>Which RAM does not need to be refreshed?</strong> SRAM</li>
+                            <li><strong>SDRAM stands for:</strong> Synchronous Dynamic RAM</li>
+                            <li><strong>Most advanced form of ROM is?</strong> EEPROM</li>
+                            <li><strong>Which Memory helps in booting the computer?</strong> ROM</li>
+                            <li><strong>Which type of memory can not be erased or reprogrammed?</strong> PROM</li>
+                            <li><strong>The next generation of SDRAM is:</strong> DDR</li>
+                            <li><strong>In an EEPROM, data is erased with:</strong> Electrical signals</li>
+                            <li><strong>Who invented RAM and ROM?</strong> Robert Heath Dennard</li>
+                            <li><strong>Founder of EEPROM:</strong> George Perlegos</li>
+                            <li><strong>Smallest entity of Memory?</strong> Cell</li>
+                            <li><strong>The boot sector files of the system stored in which Computer memory?</strong> ROM</li>
+                            <li><strong>Which computer memory allows simultaneously both read + write?</strong> RAM</li>
+                            <li><strong>The computer internal memory consists of:</strong> CPU Registers, Main Memory, Cache Memory</li>
+                            <li><strong>Main Memory stores:</strong> Data, Programs, Results</li>
+                            <li><strong>Primary storage is as compared to secondary storage?</strong> Fast and Expensive</li>
+                            <li><strong>Performance of cache memory depends on:</strong> Bus Width and Bus Speed</li>
+                            <li><strong>RAM is said to be volatile or temporary because:</strong> it must need power supply continuously to retain data.</li>
+                            <li><strong>Which type of RAM can be used as Cache Memory?</strong> SRAM</li>
+                            <li><strong>Which Memory is used in Digital Camera?</strong> Flash Memory</li>
+                            <li><strong>Which type of ROM has to be built by the factory?</strong> Mask ROM (MROM)</li>
+                            <li><strong>MROM chips are used in:</strong> Network OS and Server OS</li>
+                            <li><strong>A major disadvantage of Mask ROM is that:</strong> It can not be re-programmed and its stored data needs to be changed physically.</li>
+                            <li><strong>MROM chips are made up of:</strong> Integrated Circuits</li>
+                            <li><strong>What is the Maximum time required before a DRAM needs to be refreshed?</strong> 2 milli seconds</li>
+                            <li><strong>What are basic modes for refreshing a DRAM?</strong> Burst Refresh and Distributed Refresh</li>
+                            <li><strong>The software stored in ROM is:</strong> Firmware</li>
+                            <li><strong>Storage of firmware substituted for hardware:</strong> ROM</li>
+                            <li><strong>RAM is also known as:</strong> RWM (Read Write Memory)</li>
+                            <li><strong>What type of DRAM is synchronised with System clock?</strong> SDRAM</li>
+                            <li><strong>ROM is needed for storing an initial program called:</strong> Bootstrap Loader</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- CHAPTER 2: BACKUP DEVICES & PROTOCOLS -->
+        <div id="chapter-2" class="hidden">
+            <button onclick="openDashboard()" class="no-print mb-6 inline-flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-semibold">
+                &larr; Back to Dashboard
+            </button>
+            
+            <div class="bg-white rounded-xl shadow-sm border border-gray-300 overflow-hidden">
+                <div class="bg-indigo-50 px-6 py-4 border-b border-gray-200">
+                    <h2 class="text-3xl font-bold text-indigo-900">Chapter 2: Backup Devices & Protocols</h2>
+                    <p class="text-sm text-gray-600 mt-1">Wayne Enterprises System Diagnostics Notes. 100% Fact-Checked.</p>
+                </div>
+                
+                <div class="p-6">
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded">
+                        <p class="text-gray-800 font-medium">This section contains system diagnostics and factual records categorized by Hardware, Protocols, Interfaces, and Cloud Infrastructure, structured in a highly accessible Q&A format with rich contextual analysis.</p>
+                    </div>
+
+                    <!-- Ports & Interfaces -->
+                    <div class="card">
+                        <h3 class="text-2xl font-bold text-indigo-800 border-b-2 border-indigo-100 pb-2 mb-4">Ports & Interfaces</h3>
+                        <ul class="list-disc pl-5 text-gray-800 space-y-4 question-list">
+                            <li><strong>Which among the following ports is also known as Line Printer Port?</strong><br/>
+                            <span class="font-bold text-blue-700">Parallel</span> &mdash; Also known as the IEEE 1284 standard. It utilized a 25-pin DB-25 connector and was the primary method for connecting printers to PCs before the ubiquity of USB.</li>
+                            
+                            <li><strong>Which port transmits one bit of a byte at a time as a single stream of bits (meant for slow data over long distances)?</strong><br/>
+                            <span class="font-bold text-blue-700">Serial</span> &mdash; Typically utilizing the RS-232 standard (9-pin DE-9 or 25-pin DB-25). Because data is sent sequentially, it avoids crosstalk issues that plague parallel ports over long cables.</li>
+                            
+                            <li><strong>Which among the following ports is also called as mouse port?</strong><br/>
+                            <span class="font-bold text-blue-700">PS/2</span> &mdash; Introduced by IBM in 1987. A 6-pin mini-DIN connector. Historically color-coded: green for mice and purple for keyboards. Modern gaming boards sometimes keep it for true hardware interrupts (lower latency).</li>
+                            
+                            <li><strong>How many pins does the LPP (Line Printer Port) model have?</strong><br/>
+                            <span class="font-bold text-blue-700">25</span> &mdash; The LPT natively utilizes 25 pins to transmit 8 bits of data simultaneously along with grounding and control signals.</li>
+                            
+                            <li><strong>A serial port has which number of pins versions?</strong><br/>
+                            <span class="font-bold text-blue-700">9-pin and 25-pin</span> &mdash; Legacy serial ports came in two primary formats: DE-9 (9-pin) for standard desktop use, and DB-25 (25-pin) for specialized hardware. Modern boards have made this obsolete in favor of USB.</li>
+                            
+                            <li><strong>Which of the following is the port number 80 on a computer?</strong><br/>
+                            <span class="font-bold text-blue-700">HTTP</span> &mdash; Port 80 is designated for unencrypted Hypertext Transfer Protocol. Modern secure web traffic uses HTTPS over Port 443.</li>
+                            
+                            <li><strong>Which interface is most commonly used for connecting external backup hard drives?</strong><br/>
+                            <span class="font-bold text-blue-700">USB</span> &mdash; Universal Serial Bus is the industry standard due to plug-and-play capability and high throughput.</li>
+                            
+                            <li><strong>Which port is commonly used for network backups in NAS systems?</strong><br/>
+                            <span class="font-bold text-blue-700">RJ-45</span> &mdash; Standard connector for Ethernet cables. NAS relies on Ethernet to integrate with LANs.</li>
+                            
+                            <li><strong>The FireWire (IEEE-1394) port is mainly used for:</strong><br/>
+                            <span class="font-bold text-blue-700">Scanners and External Drives</span> &mdash; Historically favored by Apple for high sustained transfer rates and daisy-chaining (video editing).</li>
+                            
+                            <li><strong>Which of these is a port for analog video transmission?</strong><br/>
+                            <span class="font-bold text-blue-700">VGA</span> &mdash; Video Graphics Array is a 15-pin connector that transmits analog RGB video signals. Degrades over long distances and lacks audio. Also commonly used for connecting older projectors.</li>
+                            
+                            <li><strong>Which of these ports supports both audio and video in a single cable?</strong><br/>
+                            <span class="font-bold text-blue-700">HDMI</span> &mdash; High-Definition Multimedia Interface transmits uncompressed digital video and compressed/uncompressed digital audio simultaneously.</li>
+                            
+                            <li><strong>The USB Type-C connector can support which of the following features?</strong><br/>
+                            <span class="font-bold text-blue-700">Data + Power + Video</span> &mdash; Through 'Alternate Modes', a single 24-pin Type-C cable can carry 40Gbps data, 240W power (USB-PD), and DisplayPort/HDMI video.</li>
+                            
+                            <li><strong>The maximum theoretical speed of USB 3.0 is:</strong><br/>
+                            <span class="font-bold text-blue-700">5 Gbps</span> &mdash; Introduced SuperSpeed transfer, outperforming USB 2.0's 480 Mbps.</li>
+                            
+                            <li><strong>The eSATA port is used for:</strong><br/>
+                            <span class="font-bold text-blue-700">External Storage Devices</span> &mdash; Provided native internal SATA speeds to external drives before USB 3.0 became fast enough to render it obsolete.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Storage Hardware & Diagnostics -->
+                    <div class="card">
+                        <h3 class="text-2xl font-bold text-indigo-800 border-b-2 border-indigo-100 pb-2 mb-4">Storage Hardware & Diagnostics</h3>
+                        <ul class="list-disc pl-5 text-gray-800 space-y-4 question-list">
+                            <li><strong>Which backup device provides a convenient way to create system images and complete backups, but requires a lengthy restoration process?</strong><br/>
+                            <span class="font-bold text-blue-700">Tape drive</span> &mdash; Magnetic tape relies on sequential access (physically winding the ribbon). Slow restoration, but excellent, cost-effective massive long-term archival.</li>
+                            
+                            <li><strong>Which of the following is a principle of operation for magnetic disks?</strong><br/>
+                            <span class="font-bold text-blue-700">Direct access</span> &mdash; Magnetic hard drives utilize read/write heads on mechanical arms that can move directly to specific tracks and sectors on spinning platters (random/direct access).</li>
+                            
+                            <li><strong>Which of the following has the highest data transfer rate among backup devices?</strong><br/>
+                            <span class="font-bold text-blue-700">SSD</span> &mdash; Solid State Drives use NAND flash memory. No mechanical moving parts; modern PCIe/NVMe SSDs achieve transfer rates exceeding 7,000 MB/s.</li>
+                            
+                            <li><strong>Which of the following uses laser light to read data?</strong><br/>
+                            <span class="font-bold text-blue-700">Optical Disc (CD, DVD, Blu-ray)</span> &mdash; CDs (Infrared), DVDs (Red), Blu-ray (Blue-violet) use focused lasers to read microscopic pits and lands etched into a polycarbonate layer. Immune to electromagnetic damage (EMPs). Limitation: Small capacity and physical degradation (disc rot).</li>
+                            
+                            <li><strong>Which backup device is best suited for enterprise data centers with high reliability requirements?</strong><br/>
+                            <span class="font-bold text-blue-700">Tape Library</span> &mdash; Automated tape libraries utilize robotic arms to manage magnetic tape cartridges (LTO). Offers Petabytes of storage at low cost.</li>
+                            
+                            <li><strong>Which device provides network-based centralized backup?</strong><br/>
+                            <span class="font-bold text-blue-700">NAS (Network Attached Storage)</span> &mdash; Operates as independent file servers on the network, allowing simultaneous multi-user accessibility across LAN/WAN protocols (SMB/NFS).</li>
+                            
+                            <li><strong>Which statement about Optical Jukebox systems is true?</strong><br/>
+                            <span class="font-bold text-blue-700">Uses robotic arms to load optical discs automatically</span> &mdash; Similar to a tape library, physically manipulates hundreds/thousands of high-capacity optical discs.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Backup Protocols & Cloud -->
+                    <div class="card">
+                        <h3 class="text-2xl font-bold text-indigo-800 border-b-2 border-indigo-100 pb-2 mb-4">Backup Protocols & Cloud Infrastructure</h3>
+                        <ul class="list-disc pl-5 text-gray-800 space-y-4 question-list">
+                            <li><strong>Which is process of creating a duplicate set of program or data files for safekeeping?</strong><br/>
+                            <span class="font-bold text-blue-700">Backing up</span> &mdash; Fundamental IT disaster recovery principle. Ensures a secondary operational copy exists against corruption/ransomware.</li>
+                            
+                            <li><strong>Which of the following backup methods stores only the data that has changed since the last FULL backup?</strong><br/>
+                            <span class="font-bold text-blue-700">Differential Backup</span> &mdash; Grows in size each day. Allows for faster restoration than incremental backups (requires only the Full Backup + Latest Differential).</li>
+                            
+                            <li><strong>Which statement about Incremental Backup is correct?</strong><br/>
+                            <span class="font-bold text-blue-700">Copies all files changed since the LAST incremental backup.</span> &mdash; Takes less time daily, but requires the Full backup plus *every* sequential Incremental backup in exact order to restore.</li>
+                            
+                            <li><strong>The term RAID-5 in backup refers to:</strong><br/>
+                            <span class="font-bold text-blue-700">Striping with distributed parity</span> &mdash; Requires a minimum of 3 drives. Survives the failure of one drive without data loss.</li>
+                            
+                            <li><strong>In RAID systems, data is divided into blocks and distributed across drives. This is called:</strong><br/>
+                            <span class="font-bold text-blue-700">Striping (RAID 0)</span> &mdash; Increases read/write performance by utilizing multiple controllers, but offers zero redundancy if a drive fails.</li>
+                            
+                            <li><strong>Which statement about RAID-1 is correct?</strong><br/>
+                            <span class="font-bold text-blue-700">Provides mirroring</span> &mdash; Writes identical data to at least 2 drives simultaneously. Continues seamlessly if one fails.</li>
+                            
+                            <li><strong>Which backup system performs real-time synchronization?</strong><br/>
+                            <span class="font-bold text-blue-700">Continuous Data Protection (CDP)</span> &mdash; Captures every version saved, allowing restoration to any specific point in time without scheduling backup windows.</li>
+                            
+                            <li><strong>What is Data Deduplication in backup systems?</strong><br/>
+                            <span class="font-bold text-blue-700">Removal of duplicate data blocks</span> &mdash; Replaces identical files/blocks with tiny reference pointers, saving vast amounts of storage.</li>
+                            
+                            <li><strong>What best distinguishes Archiving from Backup?</strong><br/>
+                            <span class="font-bold text-blue-700">Archiving removes inactive data for long-term storage</span> &mdash; Backup is a copy of active data. Archive moves stagnant data off primary storage for compliance and space-saving.</li>
+                            
+                            <li><strong>Amazon Web Services 'Glacier' refers to:</strong><br/>
+                            <span class="font-bold text-blue-700">Cold Data Archival Storage</span> &mdash; Extremely low storage costs for long-term, rarely accessed data, but retrieval takes time.</li>
+                            
+                            <li><strong>Which of the following protocols is used for secure file transfer in cloud backup?</strong><br/>
+                            <span class="font-bold text-blue-700">SFTP</span> &mdash; SSH File Transfer Protocol encrypts both commands and data.</li>
+                            
+                            <li><strong>How do cloud backup systems ensure data availability?</strong><br/>
+                            <span class="font-bold text-blue-700">Geo-replication across data centers</span> &mdash; Replicates data across multiple physical zones/continents to ensure survival against localized natural disasters.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- CHAPTER 3: PRINTERS -->
+        <div id="chapter-3" class="hidden">
+            <button onclick="openDashboard()" class="no-print mb-6 inline-flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-semibold">
+                &larr; Back to Dashboard
+            </button>
+            
+            <div class="bg-white rounded-xl shadow-sm border border-gray-300 overflow-hidden">
+                <div class="bg-teal-50 px-6 py-4 border-b border-gray-200">
+                    <h2 class="text-3xl font-bold text-teal-900">Chapter 3: Printers</h2>
+                    <p class="text-sm text-gray-600 mt-1">Bat-Computer Intelligence | Comprehensive Printer Repository.</p>
+                </div>
+                
+                <div class="p-6">
+                    <!-- General Knowledge & History -->
+                    <div class="card grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-teal-800 border-b-2 border-teal-100 pb-2 mb-3">Historical Origin & Connectivity</h3>
+                            <ul class="list-disc pl-5 text-gray-800 space-y-2">
+                                <li><strong>Founder:</strong> Johannes Gutenberg (1440).</li>
+                                <li><strong>Primary Function:</strong> Converts soft copy (digital) into hard copy (physical).</li>
+                                <li><strong>Arrival in India:</strong> First introduced in Goa via Francis Xavier.</li>
+                                <li><strong>Electronic Milestone:</strong> The EP-101 by Epson (Japan) was the first electronic printer.</li>
+                                <li><strong>Connectivity:</strong> Connects to PC via <strong>Parallel Port</strong> (historically) or <strong>USB Port</strong> (modern). Parallel port cannot connect monitors.</li>
+                                <li><strong>Measurement:</strong> Both Resolution and Output Quality are measured in <strong>DPI</strong> (Dots Per Inch).</li>
+                                <li><strong>Advanced Form:</strong> Plotter (used for big charts/maps) or Laser printer.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-teal-50 p-4 border border-teal-200 rounded-lg">
+                            <h3 class="text-xl font-bold text-teal-800 mb-3">Quick Printer Facts (General)</h3>
+                            <ul class="list-disc pl-5 text-gray-800 space-y-1">
+                                <li><strong>Head & paper forced together?</strong> Impact printer</li>
+                                <li><strong>First impact printer?</strong> Dot matrix printer</li>
+                                <li><strong>First press in India?</strong> Goa</li>
+                                <li><strong>Resolution & Quality measured in?</strong> DPI</li>
+                                <li><strong>Parallel port used in?</strong> Printer</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Impact Printers -->
+                    <div class="card">
+                        <h3 class="text-2xl font-bold text-teal-800 border-b-2 border-teal-100 pb-2 mb-4">I. Impact Printers</h3>
+                        <p class="text-gray-700 mb-4 italic">Direct physical contact between print head and paper.</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                            <!-- Dot Matrix -->
+                            <div class="bg-gray-50 p-4 border border-gray-200 rounded">
+                                <h4 class="font-bold text-teal-900 mb-2">Dot Matrix Printer</h4>
+                                <ul class="list-disc pl-5 text-sm text-gray-800 space-y-1">
+                                    <li><strong>Invented:</strong> Robert Howard, IBM (1957).</li>
+                                    <li>Uses fixed number of pins/wires to strike ink ribbon.</li>
+                                    <li><strong>Speed:</strong> CPS (Characters Per Second).</li>
+                                    <li><strong>Main Advantage:</strong> Creating carbon copies.</li>
+                                    <li>Less expensive than Laser.</li>
+                                    <li>Example of a Character Printer.</li>
+                                </ul>
+                            </div>
+                            <!-- Daisy Wheel -->
+                            <div class="bg-gray-50 p-4 border border-gray-200 rounded">
+                                <h4 class="font-bold text-teal-900 mb-2">Daisy Wheel Printer</h4>
+                                <ul class="list-disc pl-5 text-sm text-gray-800 space-y-1">
+                                    <li><strong>Invented:</strong> Andrew Gabor (1970).</li>
+                                    <li>Known as "Golf Ball Printer".</li>
+                                    <li><strong>Mechanism:</strong> Like a typewriter; uses a wheel.</li>
+                                    <li><strong>Constraint:</strong> Slow, noisy, cannot print graphics.</li>
+                                    <li>NOT silent in operation.</li>
+                                </ul>
+                            </div>
+                            <!-- Line Printers -->
+                            <div class="bg-gray-50 p-4 border border-gray-200 rounded">
+                                <h4 class="font-bold text-teal-900 mb-2">Chain & Drum Printers</h4>
+                                <ul class="list-disc pl-5 text-sm text-gray-800 space-y-1">
+                                    <li>Known as <strong>Line Printers</strong>.</li>
+                                    <li><strong>Chain printer:</strong> Chain of characters. Impact & Monochrome.</li>
+                                    <li><strong>Drum printer:</strong> Both Character & Line attributes depending on design.</li>
+                                    <li><strong>Speed:</strong> LPM (Lines Per Minute).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Non-Impact Printers -->
+                    <div class="card">
+                        <h3 class="text-2xl font-bold text-teal-800 border-b-2 border-teal-100 pb-2 mb-4">II. Non-Impact Printers</h3>
+                        <p class="text-gray-700 mb-4 italic">Uses heat, laser, or spray; no direct physical strike.</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                            <!-- Thermal -->
+                            <div class="bg-blue-50 p-4 border border-blue-200 rounded">
+                                <h4 class="font-bold text-teal-900 mb-2">Thermal Printer</h4>
+                                <ul class="list-disc pl-5 text-sm text-gray-800 space-y-1">
+                                    <li><strong>Invented:</strong> Jack Kilby (1965).</li>
+                                    <li>Uses heat + special Thermo-chromic paper (Bisphenol paper blackens on heat).</li>
+                                    <li>"Inkless Printer", used in ATMs, POS devices, Banking, Grocery, Fax Machines.</li>
+                                </ul>
+                            </div>
+                            <!-- Inkjet -->
+                            <div class="bg-blue-50 p-4 border border-blue-200 rounded">
+                                <h4 class="font-bold text-teal-900 mb-2">Inkjet Printer</h4>
+                                <ul class="list-disc pl-5 text-sm text-gray-800 space-y-1">
+                                    <li><strong>Developed by:</strong> HP (1976).</li>
+                                    <li>Uses Ink Cartridges.</li>
+                                    <li><strong>Mechanism:</strong> Spray-painting via nozzles (droplets).</li>
+                                    <li><strong>Best for:</strong> Photos and Graphics.</li>
+                                </ul>
+                            </div>
+                            <!-- Laser -->
+                            <div class="bg-blue-50 p-4 border border-blue-200 rounded">
+                                <h4 class="font-bold text-teal-900 mb-2">Laser Printer</h4>
+                                <ul class="list-disc pl-5 text-sm text-gray-800 space-y-1">
+                                    <li><strong>Invented:</strong> Gary Starkweather, Xerox (1969).</li>
+                                    <li>Uses Photocopy technology + Toner (Dry Ink Powder).</li>
+                                    <li><strong>Mechanism:</strong> Electrostatically charged drum (OPC: Organic Photo Conductor).</li>
+                                    <li><strong>Speed:</strong> Fastest (100+ PPM).</li>
+                                    <li><strong>Best for:</strong> Business, Desktop Publishing.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h4 class="font-bold text-teal-900 mt-6 mb-2">Advanced Printer Components (Q&A format):</h4>
+                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm text-gray-800 bg-gray-50 p-4 rounded border border-gray-200">
+                            <li><strong>Change toner when?</strong> Empty Toner</li>
+                            <li><strong>Solenoid purpose?</strong> Paper feed</li>
+                            <li><strong>Both sides printing mechanism?</strong> Duplexer</li>
+                            <li><strong>Network printer port?</strong> Ethernet</li>
+                            <li><strong>IP Assignment protocol?</strong> DHCP</li>
+                            <li><strong>ECU?</strong> Engine Control Unit</li>
+                            <li><strong>What is NOT used in a Laser printer?</strong> Print Head (uses laser/drum instead)</li>
+                            <li><strong>Best for big charts/maps?</strong> Plotters</li>
+                            <li><strong>What bonds toner permanently to paper?</strong> Fuser Assembly</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- CHAPTER 4: COMPUTER PORTS -->
+        <div id="chapter-4" class="hidden">
+            <button onclick="openDashboard()" class="no-print mb-6 inline-flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-semibold">
+                &larr; Back to Dashboard
+            </button>
+            
+            <div class="bg-white rounded-xl shadow-sm border border-gray-300 overflow-hidden">
+                <div class="bg-purple-50 px-6 py-4 border-b border-gray-200">
+                    <h2 class="text-3xl font-bold text-purple-900">Chapter 4: Computer Ports & Connectors</h2>
+                    <p class="text-sm text-gray-600 mt-1">Front and Back Panel CPU Uses & Functions.</p>
+                </div>
+                
+                <div class="p-6">
+                    <!-- Introduction -->
+                    <div class="card bg-gray-50 border-l-4 border-purple-500">
+                        <h3 class="text-xl font-bold text-purple-800 mb-2">Introduction to Ports & Connectors</h3>
+                        <ul class="list-disc pl-5 text-gray-800 space-y-2">
+                            <li><strong>Definition:</strong> A physical docking point acting as an interface between the computer and other computers or peripheral devices.</li>
+                            <li><strong>Motherboard Connection:</strong> Integrated into the motherboard (Back Panel) or connected via internal cables (Front Panel).</li>
+                            <li><strong>Connectors (Male vs Female):</strong> Connectors are at the ends of cables. Male connectors have exposed pins; female ports have corresponding holes (receptacles).</li>
+                            <li><strong>Function:</strong> Transmit electronic signals, data, and power between the CPU and peripherals.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Front Panel & Legacy Back Panel -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="card mb-0">
+                            <h3 class="text-xl font-bold text-purple-800 border-b-2 border-purple-100 pb-2 mb-3">Front Panel Ports</h3>
+                            <ul class="space-y-3 text-gray-800">
+                                <li><strong>Power & Reset Buttons:</strong> Power turns PC on/off. Reset performs hard reset without cutting power.</li>
+                                <li><strong>Front USB Ports:</strong> Convenient access (typically USB 2.0 Black, USB 3.0/3.1 Blue). Connected via internal headers.</li>
+                                <li><strong>Front Audio Ports:</strong> 3.5mm analog jacks. <strong>Microphone (Pink/Red)</strong> for input, <strong>Headphone/Speaker (Green)</strong> for output. Internally connects to AC'97 or HD Audio header.</li>
+                                <li><strong>Optical Drives & Media Cards:</strong> Legacy CD/DVD drives, SD Card readers (SD, MicroSD, CF).</li>
+                            </ul>
+                        </div>
+                        <div class="card mb-0">
+                            <h3 class="text-xl font-bold text-purple-800 border-b-2 border-purple-100 pb-2 mb-3">Back Panel - Legacy Ports</h3>
+                            <ul class="space-y-3 text-gray-800">
+                                <li><strong>PS/2 Port (Personal System/2):</strong> 6-pin Mini-DIN. <span class="text-purple-600 font-bold">Purple = Keyboard</span>, <span class="text-green-600 font-bold">Green = Mouse</span>. Mostly replaced by USB.</li>
+                                <li><strong>Serial Port (COM Port):</strong> Sends data serially (1 bit at a time). Usually 9-pin (DE-9) or 25-pin (DB-25) Male. Uses RS-232 standard (Modems, automation).</li>
+                                <li><strong>Parallel Port (LPT):</strong> Line Printer Terminal. Sends multiple bits simultaneously (8 bits/1 byte at a time). 25-pin (DB-25) Female. Often Pink or Magenta (Printers, Zip drives).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Video & Display Ports (Table) -->
+                    <div class="card">
+                        <h3 class="text-2xl font-bold text-purple-800 border-b-2 border-purple-100 pb-2 mb-4">Video & Display Ports</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse bg-white">
+                                <thead>
+                                    <tr class="bg-purple-100 text-purple-900 border-b-2 border-purple-200">
+                                        <th class="p-3 font-bold">Port Name</th>
+                                        <th class="p-3 font-bold">Type / Pins</th>
+                                        <th class="p-3 font-bold">Signal</th>
+                                        <th class="p-3 font-bold">Detailed Functions & Uses</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-gray-800 text-sm">
+                                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                                        <td class="p-3 font-semibold">VGA (Video Graphics Array)</td>
+                                        <td class="p-3">15-pin (DE-15, 3 rows)</td>
+                                        <td class="p-3">Analog Video ONLY</td>
+                                        <td class="p-3">Classic blue port. Connects older CRT, LCDs, projectors. Susceptible to interference. No audio.</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                                        <td class="p-3 font-semibold">DVI (Digital Visual Interface)</td>
+                                        <td class="p-3">Up to 29-pins (White)</td>
+                                        <td class="p-3">Analog / Digital</td>
+                                        <td class="p-3">Replaced VGA for LCDs. Variants: DVI-A (Analog), DVI-D (Digital), DVI-I (Integrated). No native audio.</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                                        <td class="p-3 font-semibold">HDMI (High-Def Multimedia Interface)</td>
+                                        <td class="p-3">19-pin (Type A)</td>
+                                        <td class="p-3">Digital Video + Audio</td>
+                                        <td class="p-3">Universal standard for modern displays/TVs. Carries uncompressed HD/4K video + digital audio in one cable.</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="p-3 font-semibold">DisplayPort (DP)</td>
+                                        <td class="p-3">20-pin (Asymmetric)</td>
+                                        <td class="p-3">Digital Video + Audio</td>
+                                        <td class="p-3">High-end graphic interface. Preferred in PC gaming (144Hz+) and multi-monitor daisy-chaining. Carries USB data too.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- USB Versions Table -->
+                    <div class="card grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                        <div>
+                            <h3 class="text-xl font-bold text-purple-800 border-b-2 border-purple-100 pb-2 mb-3">USB (Universal Serial Bus)</h3>
+                            <p class="text-gray-700 text-sm mb-4">Industry standard for digital data and power. Replaced serial, parallel, and PS/2. Types include Type-A (standard), Type-B (square, printers), Mini/Micro (phones), and Type-C (modern, reversible).</p>
+                            
+                            <table class="w-full text-left border-collapse bg-white text-sm">
+                                <thead>
+                                    <tr class="bg-gray-100 text-gray-800 border-b border-gray-300">
+                                        <th class="p-2 font-bold">Version</th>
+                                        <th class="p-2 font-bold">Max Speed</th>
+                                        <th class="p-2 font-bold">Identifier/Color</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-gray-800">
+                                    <tr class="border-b border-gray-200"><td class="p-2">USB 1.1</td><td class="p-2">12 Mbps</td><td class="p-2">White / Black</td></tr>
+                                    <tr class="border-b border-gray-200"><td class="p-2">USB 2.0</td><td class="p-2">480 Mbps</td><td class="p-2">Black</td></tr>
+                                    <tr class="border-b border-gray-200"><td class="p-2">USB 3.0</td><td class="p-2">5 Gbps</td><td class="p-2 text-blue-600 font-bold">Blue</td></tr>
+                                    <tr class="border-b border-gray-200"><td class="p-2">USB 3.1</td><td class="p-2">10 Gbps</td><td class="p-2 text-teal-600 font-bold">Teal / Red</td></tr>
+                                    <tr><td class="p-2">USB4</td><td class="p-2">40+ Gbps</td><td class="p-2">Type-C Only</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-bold text-purple-800 border-b-2 border-purple-100 pb-2 mb-3">Network & High-Speed Ports</h3>
+                            <ul class="space-y-3 text-gray-800">
+                                <li><strong>Ethernet / LAN Port (RJ-45):</strong> 8 pins. Connects PC to Local Area Network (LAN) or modem. Speeds: 10 Mbps to 10 Gbps. Has LED indicators (Link & Activity).</li>
+                                <li><strong>FireWire (IEEE 1394):</strong> Apple's legacy high-speed bus (400-800 Mbps). Used for camcorders/audio. Replaced by USB 3.</li>
+                                <li><strong>Thunderbolt:</strong> Intel/Apple tech combining PCIe (data) and DisplayPort (video). TB3/TB4 use USB-C shape, providing massive speeds (up to 40 Gbps) and power.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Audio Connectors -->
+                    <div class="card bg-gray-50">
+                        <h3 class="text-xl font-bold text-purple-800 border-b-2 border-purple-200 pb-2 mb-4">Audio Connectors (3.5mm Jacks - PC99 Standard)</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 font-semibold">
+                            <div class="flex items-center gap-2 text-gray-800"><span class="w-4 h-4 rounded-full bg-pink-500 inline-block print:border print:border-black"></span> Pink: Microphone In</div>
+                            <div class="flex items-center gap-2 text-gray-800"><span class="w-4 h-4 rounded-full bg-blue-300 inline-block print:border print:border-black"></span> Light Blue: Line In</div>
+                            <div class="flex items-center gap-2 text-gray-800"><span class="w-4 h-4 rounded-full bg-green-500 inline-block print:border print:border-black"></span> Lime Green: Line Out</div>
+                            <div class="flex items-center gap-2 text-gray-800"><span class="w-4 h-4 rounded-full bg-orange-500 inline-block print:border print:border-black"></span> Orange: Subwoofer</div>
+                            <div class="flex items-center gap-2 text-gray-800"><span class="w-4 h-4 rounded-full bg-black inline-block print:border print:border-black"></span> Black: Rear Surround</div>
+                            <div class="flex items-center gap-2 text-gray-800"><span class="w-4 h-4 rounded-full bg-gray-500 inline-block print:border print:border-black"></span> Grey: Side Surround</div>
+                        </div>
+                    </div>
+
+                    <!-- Internal Connectors -->
+                    <div class="card">
+                        <h3 class="text-2xl font-bold text-purple-800 border-b-2 border-purple-100 pb-2 mb-4">Internal Connectors & Cables</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-bold text-indigo-800 mb-2">Power Connectors</h4>
+                                <ul class="list-disc pl-5 text-gray-800 space-y-2">
+                                    <li><strong>20/24-pin ATX Power:</strong> Connects SMPS to motherboard for main power.</li>
+                                    <li><strong>4/8-pin CPU Power:</strong> Supplies dedicated 12V power directly to CPU.</li>
+                                    <li><strong>Molex Connectors:</strong> Older 4-pin peripheral power for IDE drives and case fans.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-indigo-800 mb-2">Data Connectors</h4>
+                                <ul class="list-disc pl-5 text-gray-800 space-y-2">
+                                    <li><strong>SATA (Serial ATA):</strong> L-shaped 7-pin connector for modern HDD and SSD. Faster than IDE.</li>
+                                    <li><strong>IDE / PATA:</strong> Legacy 40-pin ribbon cable for older hard drives and CD/DVD ROMs.</li>
+                                    <li><strong>M.2 Connectors:</strong> Flat internal slot directly on motherboard for ultra-fast NVMe SSDs and Wi-Fi cards.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+        <footer class="mt-8 text-center text-sm text-gray-500 print:mt-4">
+            &copy; 2026 Wayne Enterprises Intelligence Division. Fact-Checked & Verified.
+        </footer>
+    </div>
+
+    <script>
+        const views = ['dashboard-view', 'chapter-1', 'chapter-2', 'chapter-3', 'chapter-4'];
+
+        function hideAll() {
+            views.forEach(viewId => {
+                document.getElementById(viewId).classList.add('hidden');
+                document.getElementById(viewId).classList.remove('block');
+            });
+        }
+
+        function openChapter(chapterId) {
+            hideAll();
+            const chapter = document.getElementById(chapterId);
+            chapter.classList.remove('hidden');
+            chapter.classList.add('block');
+            window.scrollTo(0, 0);
+        }
+
+        function openDashboard() {
+            hideAll();
+            const dashboard = document.getElementById('dashboard-view');
+            dashboard.classList.remove('hidden');
+            dashboard.classList.add('block');
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>

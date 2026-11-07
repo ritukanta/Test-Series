@@ -1,0 +1,2525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Odisha GK & History CBT Mock Test Portal (TCS / Eduquity Interface)</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>" />
+  <style>
+    :root {
+      --tcs-navy: #163a66;
+      --tcs-blue: #235a9f;
+      --tcs-light-blue: #e8f0fe;
+      --tcs-subheader: #f1f5f9;
+      --bg-page: #f4f6f9;
+      --bg-panel: #ffffff;
+      --text-primary: #1e293b;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --border-color: #cbd5e1;
+      --border-light: #e2e8f0;
+      --accent-primary: #1d4ed8;
+      --accent-hover: #1e40af;
+      --status-answered: #2e7d32;
+      --status-not-answered: #c62828;
+      --status-not-visited-bg: #f8fafc;
+      --status-not-visited-border: #94a3b8;
+      --status-review: #6a1b9a;
+      --btn-save: #15803d;
+      --btn-save-hover: #166534;
+      --btn-submit: #0284c7;
+      --btn-submit-hover: #0369a1;
+      --btn-warn: #d97706;
+      --btn-danger: #dc2626;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, "Segoe UI", Calibri, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.5;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Views Management */
+    .view-screen {
+      display: none !important;
+    }
+    .view-screen.active {
+      display: flex !important;
+    }
+
+    /* Top Global Portal Bar (Dashboard & Intro & Result Views) */
+    .portal-header {
+      background: linear-gradient(90deg, var(--tcs-navy) 0%, var(--tcs-blue) 100%);
+      color: #ffffff;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid #eab308;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .portal-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .portal-logo {
+      width: 38px;
+      height: 38px;
+      background: #ffffff;
+      color: var(--tcs-navy);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: -0.5px;
+      flex-shrink: 0;
+    }
+
+    .portal-title-group h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .portal-title-group p {
+      font-size: 0.78rem;
+      color: #dbeafe;
+    }
+
+    .portal-badge {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* =====================================================
+       VIEW 1: MAIN DASHBOARD (7 SEPARATE MOCK TESTS)
+       ===================================================== */
+    #dashboardView {
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .dashboard-container {
+      max-width: 1180px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 20px 48px;
+      flex: 1;
+    }
+
+    .intro-banner {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-color);
+      border-left: 5px solid var(--tcs-blue);
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .intro-banner-text h2 {
+      font-size: 1.15rem;
+      color: var(--tcs-navy);
+      margin-bottom: 6px;
+    }
+
+    .intro-banner-text p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      max-width: 760px;
+    }
+
+    .summary-stats-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .summary-stat-box {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 10px 16px;
+      text-align: center;
+      min-width: 110px;
+    }
+
+    .summary-stat-box .stat-val {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--tcs-navy);
+      display: block;
+    }
+
+    .summary-stat-box .stat-lbl {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .section-heading {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--tcs-navy);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 8px;
+    }
+
+    .mock-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 18px;
+    }
+
+    .mock-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+      position: relative;
+    }
+
+    .mock-card:hover {
+      border-color: var(--tcs-blue);
+      box-shadow: 0 4px 12px rgba(22, 58, 102, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .mock-card-top {
+      margin-bottom: 16px;
+    }
+
+    .mock-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .mock-code-badge {
+      background: var(--tcs-light-blue);
+      color: var(--tcs-navy);
+      border: 1px solid #bfdbfe;
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 3px 9px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .mock-status-pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: #f1f5f9;
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+    }
+
+    .mock-status-pill.completed {
+      background: #dcfce7;
+      color: #166534;
+      border-color: #86efac;
+    }
+
+    .mock-card-title {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .mock-card-sub {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    .mock-card-meta {
+      display: flex;
+      gap: 12px;
+      padding: 10px 12px;
+      background: #f8fafc;
+      border: 1px solid var(--border-light);
+      border-radius: 4px;
+      margin-bottom: 14px;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      flex-wrap: wrap;
+    }
+
+    .mock-card-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .mock-card-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-primary-tcs {
+      background: var(--tcs-blue);
+      color: #ffffff;
+      border: 1px solid var(--tcs-navy);
+      padding: 9px 16px;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      text-align: center;
+      transition: background 0.15s;
+    }
+
+    .btn-primary-tcs:hover {
+      background: var(--tcs-navy);
+    }
+
+    /* =====================================================
+       VIEW 2: INITIAL INTRODUCTORY / INSTRUCTIONS INTERFACE
+       ===================================================== */
+    #instructionsView {
+      flex-direction: column;
+      min-height: 100vh;
+      background: #ffffff;
+    }
+
+    .instructions-wrapper {
+      max-width: 960px;
+      width: 100%;
+      margin: 24px auto;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .instructions-top-bar {
+      background: var(--tcs-subheader);
+      border-bottom: 1px solid var(--border-color);
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .instructions-top-bar h2 {
+      font-size: 1.2rem;
+      color: var(--tcs-navy);
+    }
+
+    .instructions-meta-pills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .meta-pill {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--tcs-navy);
+    }
+
+    .instructions-body {
+      padding: 24px;
+      font-size: 0.92rem;
+      color: var(--text-primary);
+    }
+
+    .instructions-body h3 {
+      font-size: 1rem;
+      color: var(--tcs-navy);
+      margin: 16px 0 10px;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 6px;
+    }
+
+    .instructions-body h3:first-child {
+      margin-top: 0;
+    }
+
+    .instructions-list {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    .instructions-list li {
+      margin-bottom: 8px;
+      color: var(--text-secondary);
+    }
+
+    .palette-legend-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 18px;
+      font-size: 0.88rem;
+    }
+
+    .palette-legend-table th,
+    .palette-legend-table td {
+      border: 1px solid var(--border-color);
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    .palette-legend-table th {
+      background: var(--tcs-subheader);
+      font-weight: 700;
+      color: var(--tcs-navy);
+    }
+
+    .legend-icon {
+      display: inline-flex;
+      width: 28px;
+      height: 26px;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border-radius: 4px;
+    }
+
+    .icon-not-visited {
+      background: var(--status-not-visited-bg);
+      border: 1px solid var(--status-not-visited-border);
+      color: #334155;
+    }
+
+    .icon-not-answered {
+      background: var(--status-not-answered);
+      color: #ffffff;
+      border-radius: 10px 10px 2px 2px;
+    }
+
+    .icon-answered {
+      background: var(--status-answered);
+      color: #ffffff;
+      border-radius: 2px 2px 10px 10px;
+    }
+
+    .icon-review {
+      background: var(--status-review);
+      color: #ffffff;
+      border-radius: 50%;
+    }
+
+    .icon-ans-review {
+      background: var(--status-review);
+      color: #ffffff;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .icon-ans-review::after {
+      content: "✓";
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 12px;
+      height: 12px;
+      background: #22c55e;
+      color: #fff;
+      font-size: 8px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .declaration-box {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      padding: 14px 16px;
+      border-radius: 4px;
+      margin-top: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--text-primary);
+      cursor: pointer;
+    }
+
+    .declaration-box input[type="checkbox"] {
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .instructions-footer {
+      background: var(--tcs-subheader);
+      border-top: 1px solid var(--border-color);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* =====================================================
+       VIEW 3: ACTIVE EXAM INTERFACE (TCS / EDUQUITY LIGHT)
+       ===================================================== */
+    #examView {
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    /* Exam Top Bar */
+    .exam-top-bar {
+      background: var(--tcs-navy);
+      color: #ffffff;
+      height: 50px;
+      padding: 0 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      border-bottom: 1px solid #0f294a;
+    }
+
+    .exam-title-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      overflow: hidden;
+    }
+
+    .exam-title-area .test-name {
+      font-size: 1rem;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .exam-top-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .timer-box {
+      background: #ffffff;
+      color: #0f172a;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #94a3b8;
+    }
+
+    .timer-box.low-time {
+      background: #fef2f2;
+      color: #dc2626;
+      border-color: #f87171;
+      animation: pulseWarn 1s infinite;
+    }
+
+    @keyframes pulseWarn {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.75; }
+    }
+
+    .top-ctrl-btn {
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 5px 11px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+
+    .top-ctrl-btn:hover {
+      background: rgba(255, 255, 255, 0.26);
+    }
+
+    .top-ctrl-btn.mobile-submit-btn {
+      display: none;
+      background: var(--btn-submit);
+      border-color: #38bdf8;
+    }
+
+    /* Exam Subheader Section Strip */
+    .exam-section-strip {
+      background: var(--tcs-subheader);
+      border-bottom: 1px solid var(--border-color);
+      height: 36px;
+      padding: 0 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      font-size: 0.82rem;
+    }
+
+    .section-tab-active {
+      background: var(--tcs-blue);
+      color: #ffffff;
+      padding: 4px 12px;
+      border-radius: 3px;
+      font-weight: 700;
+      font-size: 0.78rem;
+    }
+
+    .marking-info {
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    /* Main Workspace (Left Question Area + Right Palette Sidebar) */
+    .exam-workspace {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    /* Left/Center Question Column */
+    .question-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+      background: #ffffff;
+      border-right: 1px solid var(--border-color);
+    }
+
+    .question-meta-bar {
+      padding: 10px 20px;
+      border-bottom: 1px solid var(--border-color);
+      background: #f8fafc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      gap: 10px;
+    }
+
+    .q-number-label {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--tcs-navy);
+    }
+
+    .exam-tag-badge {
+      font-size: 0.74rem;
+      font-weight: 600;
+      background: #fffbeb;
+      color: #b45309;
+      border: 1px solid #fcd34d;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    /* Scrollable Question & Options Container */
+    .question-scroll-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 22px 24px;
+    }
+
+    .question-stem {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 22px;
+      white-space: pre-line;
+      line-height: 1.6;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 820px;
+    }
+
+    .option-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: background 0.12s, border-color 0.12s;
+      user-select: none;
+    }
+
+    .option-row:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    .option-row.selected {
+      background: #eff6ff;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 1px var(--accent-primary);
+    }
+
+    .option-radio {
+      margin-top: 3px;
+      width: 17px;
+      height: 17px;
+      accent-color: var(--accent-primary);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .option-letter {
+      font-weight: 700;
+      color: var(--text-secondary);
+      min-width: 22px;
+      font-size: 0.95rem;
+    }
+
+    .option-text {
+      font-size: 0.96rem;
+      color: var(--text-primary);
+      flex: 1;
+    }
+
+    /* Fixed Bottom Control Bar in Question Column */
+    .question-bottom-bar {
+      background: var(--tcs-subheader);
+      border-top: 1px solid var(--border-color);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .bottom-left-btns,
+    .bottom-right-btns {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .cbt-btn {
+      padding: 8px 16px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      border-radius: 4px;
+      cursor: pointer;
+      border: 1px solid var(--border-color);
+      background: #ffffff;
+      color: var(--text-primary);
+      transition: all 0.15s;
+    }
+
+    .cbt-btn:hover:not(:disabled) {
+      background: #e2e8f0;
+    }
+
+    .cbt-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .cbt-btn.btn-review-next {
+      background: #f3e8ff;
+      color: #6b21a8;
+      border-color: #c084fc;
+    }
+
+    .cbt-btn.btn-review-next:hover:not(:disabled) {
+      background: #e9d5ff;
+    }
+
+    .cbt-btn.btn-clear {
+      background: #ffffff;
+      color: #334155;
+      border-color: #94a3b8;
+    }
+
+    .cbt-btn.btn-prev {
+      background: #ffffff;
+      color: var(--tcs-navy);
+      border-color: var(--tcs-blue);
+    }
+
+    .cbt-btn.btn-next {
+      background: var(--btn-save);
+      color: #ffffff;
+      border-color: #14532d;
+    }
+
+    .cbt-btn.btn-next:hover:not(:disabled) {
+      background: var(--btn-save-hover);
+    }
+
+    /* Right-Side Small Question Number Palette (Hidden on Mobile) */
+    .palette-sidebar {
+      width: 280px;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      min-height: 0;
+      height: 100%;
+    }
+
+    .candidate-strip {
+      padding: 10px 14px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .candidate-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--tcs-light-blue);
+      color: var(--tcs-navy);
+      border: 1px solid #93c5fd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .candidate-info-text {
+      font-size: 0.8rem;
+      line-height: 1.3;
+    }
+
+    .candidate-info-text strong {
+      display: block;
+      color: var(--text-primary);
+    }
+
+    .candidate-info-text span {
+      color: var(--text-muted);
+      font-size: 0.74rem;
+    }
+
+    /* Legend Summary Box */
+    .palette-legend-box {
+      padding: 10px 12px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 8px;
+      font-size: 0.73rem;
+      color: var(--text-secondary);
+      flex-shrink: 0;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-item.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .legend-count {
+      width: 24px;
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .palette-header-title {
+      background: var(--tcs-blue);
+      color: #ffffff;
+      padding: 6px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      flex-shrink: 0;
+    }
+
+    /* Independent Scrollable Container for Palette Buttons */
+    .palette-grid-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+      background: #eef2f6;
+      min-height: 0;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 7px;
+    }
+
+    .q-pal-btn {
+      height: 30px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--status-not-visited-border);
+      background: var(--status-not-visited-bg);
+      color: #1e293b;
+      border-radius: 3px;
+      position: relative;
+      transition: transform 0.1s;
+    }
+
+    .q-pal-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .q-pal-btn.current-q {
+      outline: 2px solid #0f172a;
+      outline-offset: 1px;
+    }
+
+    .q-pal-btn.st-not-answered {
+      background: var(--status-not-answered);
+      color: #ffffff;
+      border-color: #991b1b;
+      border-radius: 10px 10px 2px 2px;
+    }
+
+    .q-pal-btn.st-answered {
+      background: var(--status-answered);
+      color: #ffffff;
+      border-color: #1b5e20;
+      border-radius: 2px 2px 10px 10px;
+    }
+
+    .q-pal-btn.st-review {
+      background: var(--status-review);
+      color: #ffffff;
+      border-color: #4a148c;
+      border-radius: 50%;
+    }
+
+    .q-pal-btn.st-ans-review {
+      background: var(--status-review);
+      color: #ffffff;
+      border-color: #4a148c;
+      border-radius: 50%;
+    }
+
+    .q-pal-btn.st-ans-review::after {
+      content: "✓";
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 11px;
+      height: 11px;
+      background: #22c55e;
+      color: #ffffff;
+      font-size: 7px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .palette-footer {
+      padding: 10px 12px;
+      background: var(--tcs-subheader);
+      border-top: 1px solid var(--border-color);
+      flex-shrink: 0;
+    }
+
+    .btn-submit-exam {
+      width: 100%;
+      background: var(--btn-submit);
+      color: #ffffff;
+      border: 1px solid #0369a1;
+      padding: 9px 14px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .btn-submit-exam:hover {
+      background: var(--btn-submit-hover);
+    }
+
+    /* =====================================================
+       VIEW 4: POST-SUBMISSION SCORE & SOLUTIONS ANALYSIS
+       ===================================================== */
+    #resultView {
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .result-container {
+      max-width: 1060px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 20px 56px;
+      flex: 1;
+    }
+
+    .auto-submit-banner {
+      display: none;
+      background: #fef2f2;
+      border: 1px solid #f87171;
+      color: #991b1b;
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin-bottom: 18px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .score-summary-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    }
+
+    .score-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border-light);
+      margin-bottom: 20px;
+    }
+
+    .score-header-row h2 {
+      font-size: 1.3rem;
+      color: var(--tcs-navy);
+    }
+
+    .score-header-row p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    .result-action-btns {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .score-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+      gap: 14px;
+    }
+
+    .kpi-box {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .kpi-box .kpi-val {
+      font-size: 1.5rem;
+      font-weight: 800;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .kpi-box .kpi-lbl {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .kpi-score .kpi-val { color: var(--tcs-navy); }
+    .kpi-correct .kpi-val { color: #15803d; }
+    .kpi-wrong .kpi-val { color: #dc2626; }
+    .kpi-unattempted .kpi-val { color: #d97706; }
+
+    /* Solutions Filter & List (ONLY Incorrect & Un-attempted) */
+    .solutions-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      padding: 14px 18px;
+      border-radius: 6px;
+    }
+
+    .solutions-header-bar h3 {
+      font-size: 1.05rem;
+      color: var(--tcs-navy);
+    }
+
+    .solutions-note {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab-btn {
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      background: #f8fafc;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    .filter-tab-btn.active {
+      background: var(--tcs-blue);
+      color: #ffffff;
+      border-color: var(--tcs-navy);
+    }
+
+    .solutions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .solution-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 18px 20px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    }
+
+    .solution-card.card-incorrect {
+      border-left: 5px solid #dc2626;
+    }
+
+    .solution-card.card-unattempted {
+      border-left: 5px solid #d97706;
+    }
+
+    .sol-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .sol-q-num {
+      font-weight: 700;
+      color: var(--tcs-navy);
+      font-size: 0.92rem;
+    }
+
+    .sol-badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sol-status-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .sol-status-badge.st-wrong {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+    }
+
+    .sol-status-badge.st-unattempted {
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fde68a;
+    }
+
+    .sol-q-text {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 14px;
+      white-space: pre-line;
+    }
+
+    .sol-options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .sol-opt-item {
+      padding: 9px 12px;
+      border: 1px solid var(--border-light);
+      border-radius: 4px;
+      font-size: 0.88rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      background: #f8fafc;
+    }
+
+    .sol-opt-item.sol-correct-opt {
+      background: #dcfce7;
+      border-color: #22c55e;
+      color: #14532d;
+      font-weight: 700;
+    }
+
+    .sol-opt-item.sol-user-wrong-opt {
+      background: #fee2e2;
+      border-color: #ef4444;
+      color: #7f1d1d;
+      font-weight: 600;
+    }
+
+    .sol-answer-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      padding: 10px 14px;
+      border-radius: 4px;
+      font-size: 0.86rem;
+      color: #166534;
+    }
+
+    /* =====================================================
+       MODALS (PAUSE MODAL & SUBMIT CONFIRMATION) & TOAST
+       ===================================================== */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-dialog {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      max-width: 480px;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header {
+      background: var(--tcs-navy);
+      color: #ffffff;
+      padding: 14px 18px;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .modal-body {
+      padding: 20px 18px;
+      font-size: 0.92rem;
+      color: var(--text-primary);
+    }
+
+    .submit-summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 0.86rem;
+    }
+
+    .submit-summary-table th,
+    .submit-summary-table td {
+      border: 1px solid var(--border-color);
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    .submit-summary-table th {
+      background: #f8fafc;
+      color: var(--text-secondary);
+    }
+
+    .modal-footer {
+      background: var(--tcs-subheader);
+      border-top: 1px solid var(--border-color);
+      padding: 12px 18px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .toast-msg {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1e293b;
+      color: #ffffff;
+      padding: 9px 18px;
+      border-radius: 4px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      z-index: 2000;
+      display: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Hide right-side question palette on mobile phone interfaces as instructed */
+    @media (max-width: 768px) {
+      .palette-sidebar {
+        display: none !important;
+      }
+      .top-ctrl-btn.mobile-submit-btn {
+        display: inline-block;
+      }
+      .exam-top-bar {
+        height: auto;
+        padding: 8px 12px;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .question-scroll-area {
+        padding: 16px;
+      }
+      .question-bottom-bar {
+        padding: 10px 12px;
+      }
+      .cbt-btn {
+        padding: 7px 11px;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================
+       VIEW 1: MAIN DASHBOARD (7 MOCK TESTS IN ORDER 01 TO 07)
+       ========================================================= -->
+  <div id="dashboardView" class="view-screen active">
+    <header class="portal-header">
+      <div class="portal-brand">
+        <div class="portal-logo">CBT</div>
+        <div class="portal-title-group">
+          <h1>Odisha State Examinations — Mock Test Portal</h1>
+          <p>Standard TCS iON / Eduquity Computer Based Test Interface (Light Theme)</p>
+        </div>
+      </div>
+      <div class="portal-badge">OPSC | OSSC | OSSSC | State Exams</div>
+    </header>
+
+    <main class="dashboard-container">
+      <div class="intro-banner">
+        <div class="intro-banner-text">
+          <h2>Welcome to the Odisha General Knowledge & History Test Series</h2>
+          <p>
+            Select any of the 7 topic-wise mock tests below to review its introductory instructions and begin the examination.
+            Each mock test runs in an authentic TCS / Eduquity interface with a strict countdown timer (1 minute per question),
+            randomized options on every session, and post-submission solutions exclusively for incorrect and un-attempted questions.
+          </p>
+        </div>
+        <div class="summary-stats-row">
+          <div class="summary-stat-box">
+            <span class="stat-val">07</span>
+            <span class="stat-lbl">Mock Tests</span>
+          </div>
+          <div class="summary-stat-box">
+            <span class="stat-val">276</span>
+            <span class="stat-lbl">Total MCQs</span>
+          </div>
+          <div class="summary-stat-box">
+            <span class="stat-val" id="completedMocksCount">0 / 7</span>
+            <span class="stat-lbl">Attempted</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <span>Available Mock Tests (01 General Info to 07 Tribal & Social Movements in Odisha)</span>
+        <span style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">100% Verified Source Questions</span>
+      </div>
+
+      <div class="mock-grid" id="mockCardsGrid">
+        <!-- Populated by JS -->
+      </div>
+    </main>
+  </div>
+
+  <!-- =========================================================
+       VIEW 2: INITIAL INTRODUCTORY / INSTRUCTIONS SCREEN
+       ========================================================= -->
+  <div id="instructionsView" class="view-screen">
+    <header class="portal-header">
+      <div class="portal-brand">
+        <div class="portal-logo">CBT</div>
+        <div class="portal-title-group">
+          <h1 id="introHeaderTitle">Mock Test Instructions</h1>
+          <p>Please read the examination instructions carefully before starting the test</p>
+        </div>
+      </div>
+      <div class="portal-badge" id="introHeaderBadge">Mock 01</div>
+    </header>
+
+    <div class="instructions-wrapper">
+      <div class="instructions-top-bar">
+        <h2 id="introTestTitle">01 General Info</h2>
+        <div class="instructions-meta-pills">
+          <span class="meta-pill" id="introTotalQuestions">Total Questions: 37</span>
+          <span class="meta-pill" id="introTotalTime">Duration: 37 Minutes</span>
+          <span class="meta-pill">Question Order: Fixed</span>
+          <span class="meta-pill">Options: Randomized</span>
+        </div>
+      </div>
+
+      <div class="instructions-body">
+        <h3>General Instructions:</h3>
+        <ol class="instructions-list">
+          <li>The clock will be set at the server. The strict countdown timer in the top right corner of the screen will display the remaining time available for you to complete the examination (<strong id="introMinutesText">37 minutes</strong> for <strong id="introQuestionsText">37 questions</strong>). When the timer reaches zero, the examination will end and submit by itself.</li>
+          <li>One Multiple Choice Question (MCQ) with four options is displayed on the screen at a time. The screen will <strong>not</strong> jump to the next question automatically upon selecting an option.</li>
+          <li>No answers, hints, or scores are revealed during the test. Your final score and detailed analysis are displayed only upon test submission.</li>
+          <li>Upon submission, solutions and correct answers are provided <strong>exclusively for incorrect and un-attempted questions</strong> for focused revision.</li>
+          <li>The Question Number Palette displayed on the right side of the desktop screen has independent scrolling so that main navigation buttons remain visible at all times. Use the palette symbols below to track question status:</li>
+        </ol>
+
+        <table class="palette-legend-table">
+          <thead>
+            <tr>
+              <th style="width: 70px;">Symbol</th>
+              <th>Meaning of Symbol in Question Palette</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="legend-icon icon-not-visited">1</span></td>
+              <td>You have not visited the question yet.</td>
+            </tr>
+            <tr>
+              <td><span class="legend-icon icon-not-answered">2</span></td>
+              <td>You have visited the question but have not answered it.</td>
+            </tr>
+            <tr>
+              <td><span class="legend-icon icon-answered">3</span></td>
+              <td>You have answered the question.</td>
+            </tr>
+            <tr>
+              <td><span class="legend-icon icon-review">4</span></td>
+              <td>You have NOT answered the question, but have marked the question for review.</td>
+            </tr>
+            <tr>
+              <td><span class="legend-icon icon-ans-review">5</span></td>
+              <td>You have answered the question and marked it for review (will be evaluated for scoring).</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Navigating & Answering a Question:</h3>
+        <ul class="instructions-list">
+          <li>Click on an option to select your answer. To deselect your chosen answer, click on the <strong>Clear</strong> button.</li>
+          <li>Click on <strong>Next</strong> to save your current selection and move to the next question, or <strong>Previous</strong> to go back to the preceding question.</li>
+          <li>Click on <strong>Mark for Review &amp; Next</strong> to flag the current question for review and move to the next question.</li>
+          <li>The test will enter Fullscreen mode automatically upon starting. You can exit fullscreen anytime using the <strong>Exit Fullscreen</strong> button in the top bar.</li>
+        </ul>
+
+        <label class="declaration-box" for="declarationCheck">
+          <input type="checkbox" id="declarationCheck" checked />
+          <span>I have read and understood all the instructions. I agree that in case of any dispute, the rules of the examination interface shall prevail, and I am ready to begin the mock test.</span>
+        </label>
+      </div>
+
+      <div class="instructions-footer">
+        <button type="button" class="cbt-btn" id="backToDashboardFromIntroBtn">← Back to Main Dashboard</button>
+        <button type="button" class="btn-primary-tcs" style="width: auto; padding: 10px 26px;" id="beginExamBtn">I am ready to begin ➔</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       VIEW 3: ACTIVE EXAM INTERFACE (TCS / EDUQUITY LIGHT THEME)
+       ========================================================= -->
+  <div id="examView" class="view-screen">
+    <!-- Top Header Bar -->
+    <header class="exam-top-bar">
+      <div class="exam-title-area">
+        <span class="test-name" id="activeExamTitle">01 General Info</span>
+      </div>
+      <div class="exam-top-controls">
+        <div class="timer-box" id="timerBox">
+          <span>Time Left:</span>
+          <span id="timerDisplay">37:00</span>
+        </div>
+        <button type="button" class="top-ctrl-btn" id="pauseExamBtn">Pause</button>
+        <button type="button" class="top-ctrl-btn" id="exitFullscreenBtn">Exit Fullscreen</button>
+        <button type="button" class="top-ctrl-btn mobile-submit-btn" id="mobileSubmitBtn">Submit</button>
+      </div>
+    </header>
+
+    <!-- Subheader Section Strip -->
+    <div class="exam-section-strip">
+      <div>
+        <span class="section-tab-active" id="activeSectionBadge">Section: Odisha GK &amp; History</span>
+      </div>
+      <div class="marking-info">Single Choice MCQ | +1.0 Mark</div>
+    </div>
+
+    <!-- Main Split Workspace -->
+    <div class="exam-workspace">
+      <!-- Left/Center Question Panel -->
+      <div class="question-column">
+        <div class="question-meta-bar">
+          <span class="q-number-label" id="questionNumberHeader">Question No. 1 of 37</span>
+          <span class="exam-tag-badge" id="examTagBadge" style="display: none;"></span>
+        </div>
+
+        <div class="question-scroll-area" id="questionScrollArea">
+          <div class="question-stem" id="questionStemText">Loading question...</div>
+          <div class="options-list" id="optionsListContainer">
+            <!-- 4 Randomized Options Rendered Here -->
+          </div>
+        </div>
+
+        <!-- Fixed Bottom Navigation Bar -->
+        <div class="question-bottom-bar">
+          <div class="bottom-left-btns">
+            <button type="button" class="cbt-btn btn-review-next" id="markReviewNextBtn">Mark for Review &amp; Next</button>
+            <button type="button" class="cbt-btn btn-clear" id="clearResponseBtn">Clear</button>
+          </div>
+          <div class="bottom-right-btns">
+            <button type="button" class="cbt-btn btn-prev" id="prevQuestionBtn">Previous</button>
+            <button type="button" class="cbt-btn btn-next" id="nextQuestionBtn">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right-Side Question Number Palette (Hidden on mobile phones via CSS) -->
+      <aside class="palette-sidebar" aria-label="Question Number Palette">
+        <div class="candidate-strip">
+          <div class="candidate-avatar">CAND</div>
+          <div class="candidate-info-text">
+            <strong>Candidate</strong>
+            <span id="sidebarSubTitle">Mock Test Session</span>
+          </div>
+        </div>
+
+        <div class="palette-legend-box">
+          <div class="legend-item">
+            <span class="legend-count icon-answered" id="countAnswered">0</span>
+            <span>Answered</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-count icon-not-answered" id="countNotAnswered">0</span>
+            <span>Not Answered</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-count icon-not-visited" id="countNotVisited">0</span>
+            <span>Not Visited</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-count icon-review" id="countReview">0</span>
+            <span>Marked for Review</span>
+          </div>
+          <div class="legend-item full-width">
+            <span class="legend-count icon-ans-review" id="countAnsReview">0</span>
+            <span>Answered &amp; Marked for Review</span>
+          </div>
+        </div>
+
+        <div class="palette-header-title">Question Palette (Scrollable)</div>
+
+        <div class="palette-grid-scroll">
+          <div class="palette-grid" id="paletteGrid">
+            <!-- Numbered buttons 1..N -->
+          </div>
+        </div>
+
+        <div class="palette-footer">
+          <button type="button" class="btn-submit-exam" id="submitExamBtn">Submit</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       VIEW 4: POST-SUBMISSION RESULT & SOLUTIONS SCREEN
+       ========================================================= -->
+  <div id="resultView" class="view-screen">
+    <header class="portal-header">
+      <div class="portal-brand">
+        <div class="portal-logo">CBT</div>
+        <div class="portal-title-group">
+          <h1 id="resultHeaderTitle">Examination Result &amp; Solutions Analysis</h1>
+          <p>Post-Submission Scorecard &amp; Solutions for Incorrect and Un-attempted Questions</p>
+        </div>
+      </div>
+      <div class="portal-badge" id="resultHeaderBadge">Completed</div>
+    </header>
+
+    <main class="result-container">
+      <div class="auto-submit-banner" id="autoSubmitBanner">
+        ⏰ Time's Up! The allotted time for this mock test expired, and your responses were submitted automatically.
+      </div>
+
+      <div class="score-summary-card">
+        <div class="score-header-row">
+          <div>
+            <h2 id="resultTestTitle">01 General Info — Performance Summary</h2>
+            <p id="resultTimeTakenText">Time Taken: 00:00</p>
+          </div>
+          <div class="result-action-btns">
+            <button type="button" class="cbt-btn" id="retakeCurrentMockBtn">↻ Retake This Mock Test</button>
+            <button type="button" class="btn-primary-tcs" style="width: auto;" id="backToDashboardFromResultBtn">← Main Dashboard (All 7 Mocks)</button>
+          </div>
+        </div>
+
+        <div class="score-kpi-grid">
+          <div class="kpi-box kpi-score">
+            <span class="kpi-val" id="resScoreVal">0 / 37</span>
+            <span class="kpi-lbl">Final Score</span>
+          </div>
+          <div class="kpi-box">
+            <span class="kpi-val" id="resAccuracyVal">0%</span>
+            <span class="kpi-lbl">Accuracy</span>
+          </div>
+          <div class="kpi-box">
+            <span class="kpi-val" id="resAttemptedVal">0</span>
+            <span class="kpi-lbl">Attempted</span>
+          </div>
+          <div class="kpi-box kpi-correct">
+            <span class="kpi-val" id="resCorrectVal">0</span>
+            <span class="kpi-lbl">Correct Answers</span>
+          </div>
+          <div class="kpi-box kpi-wrong">
+            <span class="kpi-val" id="resWrongVal">0</span>
+            <span class="kpi-lbl">Incorrect Answers</span>
+          </div>
+          <div class="kpi-box kpi-unattempted">
+            <span class="kpi-val" id="resUnattemptedVal">0</span>
+            <span class="kpi-lbl">Un-attempted</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="solutions-header-bar">
+        <div>
+          <h3>Solutions &amp; Answer Key (Incorrect &amp; Un-attempted Questions Only)</h3>
+          <p class="solutions-note">As per examination rules, detailed solutions/answers are displayed exclusively for incorrect and un-attempted questions.</p>
+        </div>
+        <div class="filter-tabs">
+          <button type="button" class="filter-tab-btn active" id="filterAllBtn">All Incorrect &amp; Un-attempted (0)</button>
+          <button type="button" class="filter-tab-btn" id="filterWrongBtn">Incorrect Only (0)</button>
+          <button type="button" class="filter-tab-btn" id="filterUnattemptedBtn">Un-attempted Only (0)</button>
+        </div>
+      </div>
+
+      <div class="solutions-list" id="solutionsListContainer">
+        <!-- Populated on submission -->
+      </div>
+    </main>
+  </div>
+
+  <!-- =========================================================
+       PAUSE MODAL
+       ========================================================= -->
+  <div class="modal-backdrop" id="pauseModal">
+    <div class="modal-dialog">
+      <div class="modal-header">Examination Paused</div>
+      <div class="modal-body">
+        <p style="margin-bottom: 10px;">Your countdown timer has been paused. Questions are hidden while the examination is paused.</p>
+        <p style="color: var(--text-secondary); font-size: 0.85rem;">Click <strong>Resume Test</strong> below when you are ready to continue from where you left off.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="cbt-btn" id="abortToDashboardBtn">Abort &amp; Return to Dashboard</button>
+        <button type="button" class="btn-primary-tcs" style="width: auto;" id="resumeExamBtn">Resume Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       SUBMIT CONFIRMATION MODAL
+       ========================================================= -->
+  <div class="modal-backdrop" id="submitModal">
+    <div class="modal-dialog">
+      <div class="modal-header">Confirm Test Submission</div>
+      <div class="modal-body">
+        <p>Are you sure you want to submit this mock test? Here is a summary of your current responses:</p>
+        <table class="submit-summary-table">
+          <tbody>
+            <tr>
+              <th>Total Questions</th>
+              <td id="subModTotal">0</td>
+            </tr>
+            <tr>
+              <th>Answered (Saved)</th>
+              <td id="subModAnswered" style="color: #15803d; font-weight: 700;">0</td>
+            </tr>
+            <tr>
+              <th>Answered &amp; Marked for Review</th>
+              <td id="subModAnsReview" style="color: #6b21a8; font-weight: 700;">0</td>
+            </tr>
+            <tr>
+              <th>Not Answered</th>
+              <td id="subModNotAnswered" style="color: #dc2626; font-weight: 700;">0</td>
+            </tr>
+            <tr>
+              <th>Marked for Review (Unanswered)</th>
+              <td id="subModReview" style="color: #6b21a8; font-weight: 700;">0</td>
+            </tr>
+            <tr>
+              <th>Not Visited</th>
+              <td id="subModNotVisited" style="color: #475569; font-weight: 700;">0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="cbt-btn" id="cancelSubmitModalBtn">Return to Test</button>
+        <button type="button" class="btn-submit-exam" style="width: auto; padding: 8px 20px;" id="confirmSubmitExamBtn">Submit Final Exam</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-msg" id="toastMsg"></div>
+
+  <script>
+    // Embedded 7 Mock Tests Data (276 Verified Questions Total)
+    const MOCK_TESTS = [{"id":"mock-01","code":"01","title":"01 General Info","subtitle":"State Symbols, Census 2011, Polity, Administration & Firsts in Odisha","category":"Odisha General Awareness","questions":[{"id":1,"q":"Regarding the historical formation of states in India, on which exact date was the State of Odisha officially established?","opts":["1st April 1936","15th August 1947","26th January 1950","1st November 1956"],"ans":"1st April 1936","tag":""},{"id":2,"q":"Every Indian state identifies unique biological species as state symbols. Which of the following species is recognized as the official State Animal of Odisha?","opts":["Blackbuck","Sambar Deer","Indian Elephant","Bengal Tiger"],"ans":"Sambar Deer","tag":""},{"id":3,"q":"Identifying state symbols is crucial for regional knowledge. What is the designated State Bird of Odisha?","opts":["Great Hornbill","House Sparrow","Indian Roller","Sarus Crane"],"ans":"Indian Roller","tag":""},{"id":4,"q":"Odisha is known for its rich and distinct culinary heritage. Which of the following traditional dishes is recognized as the State Food of Odisha?","opts":["Dalma","Pakhala Bhata","Chhena Poda","Rasagola"],"ans":"Pakhala Bhata","tag":""},{"id":5,"q":"The State Emblem of Odisha carries deep historical and cultural significance. What does the official emblem primarily depict?","opts":["Jagannath Temple Chakra","Konark Horse Statue","Lion Capital of Ashoka","Lingaraj Temple Spire"],"ans":"Konark Horse Statue","tag":""},{"id":6,"q":"According to the official data released from the 2011 Census of India, what is the overall literacy rate of Odisha?","opts":["65.45%","72.87%","78.21%","82.14%"],"ans":"72.87%","tag":""},{"id":7,"q":"Based on the demographic records formulated in the 2011 Census, what is the exact male literacy rate in the state of Odisha?","opts":["76.34%","81.59%","85.22%","89.10%"],"ans":"81.59%","tag":""},{"id":8,"q":"Female education has seen gradual improvement over the decades. As per the 2011 Census findings, what is the female literacy rate in Odisha?","opts":["58.21%","60.55%","64.01%","68.90%"],"ans":"64.01%","tag":""},{"id":9,"q":"The sex ratio is a critical demographic indicator utilized by policymakers. What is the sex ratio of Odisha according to the 2011 Census?","opts":["943 females per 1,000 males","965 females per 1,000 males","979 females per 1,000 males","992 females per 1,000 males"],"ans":"979 females per 1,000 males","tag":""},{"id":10,"q":"Population growth is tracked carefully over ten-year intervals. What was the decadal growth rate of Odisha's population between 2001 and 2011?","opts":["11.25%","13.97%","17.64%","21.15%"],"ans":"13.97%","tag":""},{"id":11,"q":"Healthcare indicators are vital for evaluating state development. What is the recorded Infant Mortality Rate of Odisha?","opts":["24 per 1,000 live births","36 per 1,000 live births","42 per 1,000 live births","50 per 1,000 live births"],"ans":"36 per 1,000 live births","tag":""},{"id":12,"q":"For effective administrative purposes, Indian states are divided into smaller governance units. How many sub-divisions currently exist in the state of Odisha?","opts":["45","58","62","75"],"ans":"58","tag":""},{"id":13,"q":"At the grass-roots administrative level, development tasks are executed by blocks. How many community development blocks are there in Odisha?","opts":["289","314","350","382"],"ans":"314","tag":""},{"id":14,"q":"Urban local bodies manage civic amenities for larger cities. According to the state records provided, how many Municipal Corporations govern urban centers in Odisha?","opts":["4","5","6","8"],"ans":"6","tag":""},{"id":15,"q":"Urbanization is an ongoing socio-economic process in the state. How many recognized towns exist in Odisha as per the referenced records?","opts":["185","204","223","256"],"ans":"223","tag":""},{"id":16,"q":"Rural administration forms the absolute backbone of Odisha's overall governance. What is the total registered number of villages in the state?","opts":["45,102","48,250","51,313","55,420"],"ans":"51,313","tag":""},{"id":17,"q":"Representation in the lower house of the Indian Parliament is determined based on population. How many Lok Sabha constituencies are allocated to Odisha?","opts":["18","21","25","30"],"ans":"21","tag":""},{"id":18,"q":"The Council of States represents regional interests at the central legislative level. How many Rajya Sabha seats belong to Odisha?","opts":["8","10","12","15"],"ans":"10","tag":""},{"id":19,"q":"The State Legislative Assembly holds the power to draft and pass state-level laws. What is the total number of constituencies in the Odisha Vidhan Sabha?","opts":["117","135","147","160"],"ans":"147","tag":""},{"id":20,"q":"Agricultural education remains highly prominent in the state's academic sector. Where is the Odisha University of Agriculture and Technology situated?","opts":["Cuttack","Bhubaneswar","Sambalpur","Berhampur"],"ans":"Bhubaneswar","tag":""},{"id":21,"q":"Serving as one of the oldest and most prestigious educational institutions in the state, where is Ravenshaw University located?","opts":["Rourkela","Bhubaneswar","Puri","Cuttack"],"ans":"Cuttack","tag":""},{"id":22,"q":"Dedicated entirely to preserving and promoting arts and traditions, where is the Utkal University of Culture established?","opts":["Konark","Bhubaneswar","Cuttack","Balasore"],"ans":"Bhubaneswar","tag":""},{"id":23,"q":"Identifying key political figures from the state is essential for modern history. Who was the first person from Odisha to serve as a Central Minister?","opts":["Biju Patnaik","Dr. Harekrushna Mahtab","Janaki Ballabh Patnaik","Nabakrushna Choudhury"],"ans":"Dr. Harekrushna Mahtab","tag":""},{"id":24,"q":"Women have played highly significant roles in Odisha's political landscape. Who holds the distinction of being the first woman Chief Minister of Odisha?","opts":["Nandini Satpathy","Rama Devi","Sarojini Naidu","Pratibha Patil"],"ans":"Nandini Satpathy","tag":""},{"id":25,"q":"Odisha has produced several eminent legal minds throughout its history. Who was the first person from Odisha to become the Chief Justice of India?","opts":["Dipak Misra","Gopabandhu Das","Ranganath Mishra","Bira Kishore Ray"],"ans":"Ranganath Mishra","tag":""},{"id":26,"q":"Civil services represent a highly prestigious career path. Who was the first woman from Odisha to clear the Indian Administrative Service examination?","opts":["Pragya Paramita Das","Roopa Mishra","Aparajita Sarangi","Sujata Karthikeyan"],"ans":"Pragya Paramita Das","tag":""},{"id":27,"q":"Leading the lower house of Parliament requires immense political acumen. Who was the first politician from Odisha to serve as the Speaker of the Lok Sabha?","opts":["P. A. Sangma","Rabi Ray","Somnath Chatterjee","G. M. C. Balayogi"],"ans":"Rabi Ray","tag":""},{"id":28,"q":"High-altitude mountaineering requires extreme physical and mental endurance. Who holds the record as the first Odia mountaineer to summit Mount Everest?","opts":["Bachendri Pal","Kalpana Dash","Arunima Sinha","Santosh Yadav"],"ans":"Kalpana Dash","tag":""},{"id":29,"q":"Print media played a major organizational role in the Odia language movement. What was the name of the first newspaper published in Odisha?","opts":["Samaja","Dharitri","Utkal Deepika","Sambad"],"ans":"Utkal Deepika","tag":""},{"id":30,"q":"The establishment of printing infrastructure revolutionized literature access in the state. What was the first printing press established in Odisha?","opts":["Bhubaneswar Print House","Cuttack Mission Press","Utkal Sahitya Press","Berhampur Daily Press"],"ans":"Cuttack Mission Press","tag":""},{"id":31,"q":"Daily news circulation significantly changed public awareness regarding civic matters. What was the title of the first daily newspaper published in the Odia language?","opts":["Dainika Asha","Prajatantra","Khurda News","Odisha Times"],"ans":"Dainika Asha","tag":""},{"id":32,"q":"Broadcasting technologies reached the regional masses in the mid-20th century. Where was the first All India Radio station in Odisha established in 1948?","opts":["Akashvani Bhubaneswar","Akashvani Cuttack","Akashvani Sambalpur","Akashvani Jeypore"],"ans":"Akashvani Cuttack","tag":""},{"id":33,"q":"Inter-state railway connectivity improved significantly over the later years. Which train holds the distinction of being the first Odia superfast train?","opts":["Puri Express","Dhauli Express","Konark Express","Shatabdi Express"],"ans":"Konark Express","tag":""},{"id":34,"q":"Formal legal education in foreign institutions was pursued by very few in the early days. Who is recognized as the first Barrister of Odisha?","opts":["Madhusudan Das","Biswanath Mishra","Fakir Mohan Senapati","Radhanath Ray"],"ans":"Biswanath Mishra","tag":""},{"id":35,"q":"Geographical dimensions vary vastly among the different administrative divisions. Which district in Odisha is the largest in terms of total geographical area?","opts":["Sundargarh","Koraput","Mayurbhanj","Keonjhar"],"ans":"Mayurbhanj","tag":""},{"id":36,"q":"Odisha is home to several natural wonders and ecological sites. According to the state records provided, which is noted as the largest waterfall in Odisha?","opts":["Barehipani","Khandadhar","Joranda","Duduma"],"ans":"Duduma","tag":""},{"id":37,"q":"Geothermal features serve as rare and interesting tourist attractions globally. Which location is famous for being the largest hot spring in Odisha?","opts":["Taptapani","Atri","Deulajhari","Tarabalo"],"ans":"Atri","tag":""}]},{"id":"mock-02","code":"02","title":"02 Ancient History of Odisha","subtitle":"Historical Sources, Kalinga War, Kharavela, Mathara, Nala, Sailodbhava, Bhauma-Kara & Somavamsi Dynasties","category":"Odisha History","questions":[{"id":1,"q":"Which of the following is the ancient name for Odisha?","opts":["Anga","Gauda","Kamarupa","Kalinga"],"ans":"Kalinga","tag":"OSSC Excise SI 2021"},{"id":2,"q":"Which literary source mentions about Kalinga and Odra and its sacred River Baitarani and Goddess Viraja?","opts":["Vayu Purana","Manusmriti","The Mahabharata","None of these"],"ans":"The Mahabharata","tag":""},{"id":3,"q":"Which literary source mentioned Odisha as Kalinganagara situated on the West of Gomti river?","opts":["Brihaspati Smriti","Arthashastra","Ramayana","Avasyaka Niryukti"],"ans":"Ramayana","tag":"OSSC 2023"},{"id":4,"q":"Which among the following is a Buddhist literary source of Odisha's ancient history?","opts":["Kumbhakara Jataka","Avasyaka Niryukti","Brihat Samhita","Harshacharita"],"ans":"Kumbhakara Jataka","tag":""},{"id":5,"q":"Greek historian Pliny mentions Odisha by which name?","opts":["Kalinga","Kosala","Toshala","Udra"],"ans":"Kalinga","tag":""},{"id":6,"q":"Which of the following excavation site is not a part of 'Diamond Triangle' of Odishan archaeology?","opts":["Khandagiri","Udayagiri","Ratnagiri","Lalitgiri"],"ans":"Khandagiri","tag":""},{"id":7,"q":"Which of the following sites in Odisha have yielded copper plates that provide insights into its early history?","opts":["Talcher, Hindol and Dhenkanal","Sisupalgarh, Ratnagiri and Udayagiri","Jaugada, Dhauli and Konark","Baripada, Sambalpur and Bhubaneswar"],"ans":"Talcher, Hindol and Dhenkanal","tag":""},{"id":8,"q":"Who among the following rulers embraced Buddhism after the famous Kalinga war?","opts":["Ashoka","Bindusara","Chandragupta Maurya","Pulkeshin II"],"ans":"Ashoka","tag":""},{"id":9,"q":"Which of the following inscriptions provides information about the early history of Odisha?","opts":["Hathigumpha Inscription","Asanapat Stone Inscription","Narla Grant Inscription","All of the above"],"ans":"All of the above","tag":""},{"id":10,"q":"The earliest coins available in Odisha are","opts":["Punch-marked coins","Puri-Kushana coin","Nala coins","Gupta coins"],"ans":"Punch-marked coins","tag":"OSSC 2022"},{"id":11,"q":"Which of the following coins suggest that trade and commerce existed in Odisha?","opts":["Puri-Kushana coins","Nala coins","Punch-marked coins","Gupta coins"],"ans":"Gupta coins","tag":""},{"id":12,"q":"The Nala coins found in Western Odisha provide information about which historical period?","opts":["3rd-4th century AD","4th-5th century AD","5th-6th century AD","6th-7th century AD"],"ans":"5th-6th century AD","tag":""},{"id":13,"q":"Which of the following are considered archival sources of Odisha's history?","opts":["Utkala Dipika, Utkala Darpan, Asha, Mukuru, Sahakara","Rajatarangini, Arthashastra, Indica, Manusmriti","Jaugada Edict, Hathigumpha Inscription, Dhauli Edict","Brihadeshwara Temple, Sun Temple, Lingaraj Temple"],"ans":"Utkala Dipika, Utkala Darpan, Asha, Mukuru, Sahakara","tag":""},{"id":14,"q":"Which among the following prehistoric site in Odisha belongs to Neolithic era?","opts":["Baripada","Barabati","Udayagiri","All of these"],"ans":"Baripada","tag":""},{"id":15,"q":"Who constructed the Puri Jagannath temple?","opts":["Ananta Varman Chodoganga Deva","Rajaraja Deva","Narasimhadeva I","Kapilendradeva"],"ans":"Ananta Varman Chodoganga Deva","tag":"OSSC Excise SI 2021"},{"id":16,"q":"Jagannath Temple of Puri was constructed by which dynasty ruler?","opts":["Somavanshi dynasty","Ganga dynasty","Suryavanshi dynasty","Sailodbhava dynasty"],"ans":"Ganga dynasty","tag":"OSSC CGL 2022"},{"id":17,"q":"The capital of Kalinga according to Jain and Buddhist literature in ancient times was","opts":["Toshali","Dantapur","Kalinga Pattnam","Kosala"],"ans":"Dantapur","tag":""},{"id":18,"q":"Who were the rulers of Kalinga before the establishment of Maurya dynasty?","opts":["Rashtrakutas","Matharas","Nandas","Nalas"],"ans":"Nandas","tag":""},{"id":19,"q":"What does the Hathigumpha inscription, discovered at Udayagiri in Bhubaneswar, mention?","opts":["Military conquests of the Mauryan kings","Trade relations of Kalinga with South-East Asia","Mention about king Kharavela's reign","The construction of the Sun Temple at Konark"],"ans":"Mention about king Kharavela's reign","tag":""},{"id":20,"q":"King Ashoka became Buddhist after he was horrified with the tyranny of Kalinga war. It was in","opts":["258 BC","261 BC","200 BC","327 BC"],"ans":"261 BC","tag":"OPSC 2017, OSSC WEO 2022"},{"id":21,"q":"What was the capital of Kalinga after its annexation with Magadha empire?","opts":["Tosali","Samapa","Sisupalgarh","Dantapura"],"ans":"Tosali","tag":""},{"id":22,"q":"Hathigumpha inscription in Udayagiri near Bhubaneswar gives information about which dynasty of ancient Odisha?","opts":["Chedi dynasty","Ganga dynasty","Satvahana dynasty","None of the above"],"ans":"Chedi dynasty","tag":""},{"id":23,"q":"King Kharavela belonged to which clan?","opts":["Satavahana","Sunga","Chedi","Mauryan"],"ans":"Chedi","tag":"OSSC Excise SI Exam 2021, OSSC VAW 2016"},{"id":24,"q":"King Kharavela of Kalinga was an ardent follower of","opts":["Buddhism","Shaktism","Jainism","Shaivism"],"ans":"Jainism","tag":"OSSC Excise SI Exam 2021"},{"id":25,"q":"The Hathigumpha or elephant cave of the Udayagiri hill bears the inscriptions of which ruler?","opts":["King Kapilendradeva","King Narasimhadeva I","King Kharavela","King Anangabhima III"],"ans":"King Kharavela","tag":"OSSC Excise SI 2021"},{"id":26,"q":"Which inscription mentions that Kharavela belonged to the Mahameghvahana family of the Chedi clan?","opts":["Hathigumpha inscription","Draksharama inscription","Simhachalam inscription","Kondavidu inscription"],"ans":"Hathigumpha inscription","tag":""},{"id":27,"q":"Which Mathara king declared himself as Lord of the Kalinga?","opts":["Visakhavarman","Shaktivarman","Prabhanjanavarman","Umavarman"],"ans":"Umavarman","tag":""},{"id":28,"q":"Nala dynasty (4-5th century AD) was centered around which modern districts of Odisha?","opts":["Ganjam and Gajapati","Cuttack and Khordha","Malkangiri and Ganjam","Koraput and Kalahandi"],"ans":"Koraput and Kalahandi","tag":""},{"id":29,"q":"The Meghas ruled over which part of Kosala?","opts":["North Kosala","South Kosala","East Kosala","West Kosala"],"ans":"South Kosala","tag":""},{"id":30,"q":"After the downfall of Gupta Empire, many regional kingdoms emerged in Odisha from 6-9th century AD. Which is not one among them?","opts":["The Vigrahas","The Mudgalas","The Nagas","The Mandala states"],"ans":"The Nagas","tag":""},{"id":31,"q":"The territory of the Sailodbhava dynasty was known as","opts":["Kalinga dynasty","Kalinga mandala","Kongoda desh","Kangoda mandala"],"ans":"Kangoda mandala","tag":"OSSC 2024"},{"id":32,"q":"In which royal dynasty of early medieval Odisha, we find the rule of the queens?","opts":["Sailodbhava dynasty","Bhauma-Kara dynasty","Somavamsi dynasty","Satavahana dynasty"],"ans":"Bhauma-Kara dynasty","tag":""},{"id":33,"q":"For the first time Kalinga, Utkala, Kongodo and Kosala were unified by","opts":["Bhauma-Kara dynasty","Ganga dynasty","Sailodbhava dynasty","Somavamsi dynasty"],"ans":"Somavamsi dynasty","tag":""},{"id":34,"q":"The Somavamsis of Odisha are also known as","opts":["Kauravavamsis","Suryavamsis","Panduvamsis","Chandravamsis"],"ans":"Panduvamsis","tag":"OSSC WEO 2022"},{"id":35,"q":"Which of the following dynasties ruled over the Kalinga region of Odisha in 8th and 9th century AD?","opts":["Gupta","Nanda","Mathara","Bhauma-Kara"],"ans":"Bhauma-Kara","tag":"High School Teacher Exam 2022"},{"id":36,"q":"Consider the following statements regarding references to Kalinga and Utkala in ancient literature.\n1. Jaina texts such as Avasyaka Niryukti and Harivamsa mention Kalinga and Utkala.\n2. Buddhist texts like Digha Nikaya, Majjhima Nikaya and Mahaparinirvana Sutta contain descriptions of Kalinga and Utkala.\nWhich of the statements given above is/are correct?","opts":["Only 1","Only 2","Both 1 and 2","Neither 1 nor 2"],"ans":"Both 1 and 2","tag":"OSSC 2024"},{"id":37,"q":"According to the foreign accounts of Megasthenes in 'Indica', he primarily mentions which specific region of ancient Odisha?","opts":["Kongoda Region","Gangetic Kalinga Region","Udra Region","Kosala Region"],"ans":"Gangetic Kalinga Region","tag":""},{"id":38,"q":"The famous Chinese traveler Hiuen Tsang described the region of Odra in his accounts by which of the following terms?","opts":["Wu-cha","Kalinganagara","O-dra-de-sha","To-sa-li"],"ans":"Wu-cha","tag":""},{"id":39,"q":"The Rock Edicts of Ashoka that provide crucial information regarding the history and administration of Kalinga during the 3rd century BCE are found at which of these pairs of locations?","opts":["Udayagiri and Khandagiri","Dhauli and Jaugada","Ratnagiri and Lalitgiri","Sisupalgarh and Jaugada"],"ans":"Dhauli and Jaugada","tag":""},{"id":40,"q":"The Udayagiri and Khandagiri caves in Odisha were primarily constructed to serve as residences for the monks belonging to which religious tradition?","opts":["Buddhism","Ajivika","Jainism","Hinduism"],"ans":"Jainism","tag":""},{"id":41,"q":"A notable pictographic inscription from ancient Odisha has been discovered at Vikramkhol. In which present-day district is this site located?","opts":["Jharsuguda","Baripada","Sambalpur","Cuttack"],"ans":"Jharsuguda","tag":""},{"id":42,"q":"The earliest coins discovered in Odisha, known as Punch-marked coins, were predominantly manufactured using which of the following combinations of metals?","opts":["Pure Gold","Copper and Bronze","Silver and Copper","Iron and Lead"],"ans":"Silver and Copper","tag":""},{"id":43,"q":"During the Gupta period, the densely forested and tribal-dominated region of Odisha was specifically referred to by which of the following historical names?","opts":["Utkala","Mahakantara","Kongoda","Udra"],"ans":"Mahakantara","tag":""},{"id":44,"q":"Who among the following historical figures is credited as the founder of the Nanda Dynasty, which ruled over the region between 345-329 BC and built irrigation projects in Kalinga?","opts":["Dhanananda","Mahapadmananda","Chandragupta","Kharavela"],"ans":"Mahapadmananda","tag":""},{"id":45,"q":"Following the massive destruction of the Kalinga War, Emperor Ashoka underwent a profound transformation, changing his policy from 'Bheri Ghosa' to 'Dhamma Ghosa'. Who assisted him in this spiritual transition?","opts":["Upagupta","Bhadrabahu","Vasumitra","Moggaliputta Tissa"],"ans":"Upagupta","tag":""},{"id":46,"q":"The ancient city of Kalinganagari, which was rebuilt by King Kharavela to restore its former glory, was later destroyed by which natural calamity according to historical records?","opts":["Severe Earthquake","Massive Flooding","Devastating Cyclone","Tsunami"],"ans":"Devastating Cyclone","tag":""},{"id":47,"q":"Who among the following rulers was the original founder of the Mathara dynasty, a prominent ruling family in ancient Odisha?","opts":["Umavarman","Visakhavarman","Shaktivarman","Prabhanjanavarman"],"ans":"Visakhavarman","tag":""},{"id":48,"q":"The Nala dynasty, which rose to prominence in ancient Odisha between the 4th and 5th centuries AD, was founded by which of the following rulers?","opts":["Bhavadattavarman","Skandavarman","Vrishadhvaja","Arthapati"],"ans":"Vrishadhvaja","tag":""},{"id":49,"q":"The famous Parashurameshwara Shiva Temple located in Bhubaneswar, known for its exquisite early Odishan architecture, was constructed during the reign of which ancient dynasty?","opts":["Sailodbhava Dynasty","Bhauma-Kara Dynasty","Somavamsi Dynasty","Ganga Dynasty"],"ans":"Sailodbhava Dynasty","tag":""},{"id":50,"q":"The magnificent Lingaraj Temple in Bhubaneswar, a true masterpiece of ancient Odishan architecture, was built by which prominent ruler of the Somavamsi dynasty?","opts":["Janamejaya I","Yayati Keshari","Bhimaratha","Dharmaratha"],"ans":"Yayati Keshari","tag":""}]},{"id":"mock-03","code":"03","title":"03 Medieval History of Odisha","subtitle":"Eastern Ganga, Suryavamsi Gajapati, Bhoi, Karrani, Mughal & Maratha Rule in Odisha","category":"Odisha History","questions":[{"id":1,"q":"Which dynasty ruled Kalinga before the rise of the Eastern Ganga dynasty?","opts":["Somavamsis","Gajapatis","Karranis","Marathas"],"ans":"Somavamsis","tag":""},{"id":2,"q":"The founder of the Eastern Ganga dynasty was:","opts":["Kamarnava","Anantavarman Chodagangadeva","Kapilendra Deva","Mukunda Deva"],"ans":"Anantavarman Chodagangadeva","tag":""},{"id":3,"q":"Which among the following was the capital of Eastern Ganga dynasty?","opts":["Kalinganagara","Cuttack","Jajpur","Bhubaneswar"],"ans":"Kalinganagara","tag":""},{"id":4,"q":"What were the provinces known as in Odisha during the period of the Ganga dynasty?","opts":["Visayas","Dauvarika","Panchali","Bhoga"],"ans":"Visayas","tag":""},{"id":5,"q":"Which Ganga ruler shifted his capital from Kalinganagar to Abhinava Varanasi Kataka on the bank of Mahanadi?","opts":["Anangabhimadeva III","Bhanudeva IV","Narasingadeva III","Anantavarman Chodagangadeva"],"ans":"Anangabhimadeva III","tag":"OSSC CGL 2022"},{"id":6,"q":"Which ruler of the Ganga dynasty expanded the kingdom to the Godavari region?","opts":["Anantavarman Chodagangadeva","Narasimhadeva I","Rajaraja II","Bhanudeva IV"],"ans":"Anantavarman Chodagangadeva","tag":""},{"id":7,"q":"Name the ruler of the Eastern Ganga dynasty who patronised Jayadeva, the author of Gita Govinda?","opts":["Rajaraja II","Anangabhimadeva III","Bhanudeva IV","Kapilendra Deva"],"ans":"Rajaraja II","tag":"OSSC 2023"},{"id":8,"q":"Famous Konark Sun temple was built during the reign of:","opts":["King Narsimhadeva I","King Anangabhima III","King Bhanudeva IV","King Bhanudeva I"],"ans":"King Narsimhadeva I","tag":"OSSC Excise SI 2021"},{"id":9,"q":"Architectural style of the Ganga dynasty which was adopted for temple construction was:","opts":["Nagara","Dravidian","Vesara","Pallava"],"ans":"Nagara","tag":""},{"id":10,"q":"The tax which was levied on land during the Ganga dynasty was:","opts":["Bhelar","Voda","Paridarsana","Khajna"],"ans":"Bhelar","tag":""},{"id":11,"q":"Which of the following was not a tax during the Ganga dynasty's rule?","opts":["Chauth","Bheta","Voda","Paridarsana"],"ans":"Chauth","tag":""},{"id":12,"q":"Who among the following was the founder of the Suryavamsi Gajapati Empire?","opts":["Kapilendra Deva","Bhanu Deva IV","Prataprudra Deva","Purushottam Deva"],"ans":"Kapilendra Deva","tag":"OSSC HST 2024"},{"id":13,"q":"Name the Gajapati ruler who invited Sri Chaitanya to Odisha?","opts":["Prataparudra Deva","Purushottam Deva","Kapilendra Deva","Kakharua Deva"],"ans":"Prataparudra Deva","tag":""},{"id":14,"q":"The administrative unit 'Dandapata' under the Gajapatis was equivalent to which modern division?","opts":["Province","Village","District","State"],"ans":"Province","tag":""},{"id":15,"q":"Which language saw significant literary growth under the Gajapati rulers?","opts":["Odia","Sanskrit","Telugu","Prakrit"],"ans":"Odia","tag":""},{"id":16,"q":"Who was the last ruler of the Gajapati dynasty?","opts":["Kakharua Deva","Kapilendra Deva","Prataparudra Deva","Govinda Vidyadhara"],"ans":"Kakharua Deva","tag":""},{"id":17,"q":"Quli Qutb Shah invaded Odisha during the reign of which ruler?","opts":["Prataparudra Deva","Raghuji Bhonsle I","Narasimha Deva","Govinda Vidyadhara"],"ans":"Prataparudra Deva","tag":"OSSC 2024"},{"id":18,"q":"The terms Ghunta, Mana, and Bati used in the Gajapati dynasty denoted:","opts":["Different measurement units of land","Revenue officers","Different taxes","Provinces"],"ans":"Different measurement units of land","tag":""},{"id":19,"q":"The rise of 'Sarala Yuga' in Medieval Odisha is the most important contribution of which dynasty?","opts":["Gajapati dynasty","Ganga dynasty","Bhoi dynasty","The Mughals"],"ans":"Gajapati dynasty","tag":""},{"id":20,"q":"Name the founder of the Bhoi dynasty in Odisha:","opts":["Govinda Vidyadhar","Chakra Pratap","Janardhan Vidyadhar","Narasimha Jena"],"ans":"Govinda Vidyadhar","tag":""},{"id":21,"q":"Govinda Vidyadhar recognised the River Godavari as the boundary between Golkonda and Odisha by signing a treaty with whom?","opts":["Sultan of Golkonda","Sultan of Bengal","Sultan of Odisha","Sultan of Maratha"],"ans":"Sultan of Golkonda","tag":""},{"id":22,"q":"Who was the first Muslim ruler of Odisha?","opts":["Sulaiman Karrani","Alla-ud-din Bakhtiyar","Mohammad Sayyad","Qutub-ud-Din Aibak"],"ans":"Sulaiman Karrani","tag":"OSSC 2023"},{"id":23,"q":"Sulaiman Karrani appointed which of the following two governors of Odisha and Puri?","opts":["Lodi and Qutlu Khan","Nasir and Qutlu Khan","Mansingh and Qutlu Khan","Baqar and Taqi Khan"],"ans":"Lodi and Qutlu Khan","tag":""},{"id":24,"q":"Which Afghan ruler brought Odisha under Muslim rule in 1568?","opts":["Sulaiman Khan Karrani","Sher Shah Suri","Daud Khan Karrani","Kalapahar"],"ans":"Sulaiman Khan Karrani","tag":""},{"id":25,"q":"What major event led to Mughal control over Odisha?","opts":["Battle of Rajmahal (1576)","Treaty of Katak (1575)","Battle of Plassey (1757)","Anglo-Maratha War (1803)"],"ans":"Battle of Rajmahal (1576)","tag":""},{"id":26,"q":"Mughal emperor Akbar wrested Odisha from which of the following rulers during the years 1590-92?","opts":["Afghans","Portuguese","French","Dutch"],"ans":"Afghans","tag":"Odisha HST 2022"},{"id":27,"q":"Which Mughal emperor annexed Odisha into the Bengal Subah?","opts":["Akbar","Aurangzeb","Jahangir","Shah Jahan"],"ans":"Akbar","tag":""},{"id":28,"q":"Which Mughal emperor divided Odisha into five Sarkars?","opts":["Akbar","Jahangir","Shah Jahan","Aurangzeb"],"ans":"Akbar","tag":""},{"id":29,"q":"Under which Mughal emperor was Odisha made a separate Subah?","opts":["Jahangir","Akbar","Shah Jahan","Aurangzeb"],"ans":"Jahangir","tag":""},{"id":30,"q":"What was the administrative capital of Odisha under Shah Jahan?","opts":["Cuttack","Puri","Midnapore","Bhubaneswar"],"ans":"Cuttack","tag":""},{"id":31,"q":"The Pilgrimage tax was introduced for the first time in Odisha by:","opts":["Marathas","Mughals","Daud Karrani","Mukundadeva"],"ans":"Marathas","tag":""},{"id":32,"q":"Who was the first Naib Nazim of Bengal to govern Odisha?","opts":["Murshid Quli Khan I","Alivardi Khan","Sayyid Ahmad Murshid","Muhammad Taqi Khan"],"ans":"Murshid Quli Khan I","tag":""},{"id":33,"q":"Which Naib Nazim built Qadam Rasul in Balasore?","opts":["Muhammad Taqi Khan","Suja-ud-din Muhammad Khan","Murshid Quli Khan II","Sarfaraz Khan"],"ans":"Muhammad Taqi Khan","tag":"OSSC 2022"},{"id":34,"q":"Which Maratha ruler took over Odisha in 1751?","opts":["Raghuji Bhonsle I","Balaji Baji Rao","Shivaji Maharaj","Sadashiv Rao"],"ans":"Raghuji Bhonsle I","tag":""},{"id":35,"q":"Who was the last Maratha Subahdar of Odisha?","opts":["Sadashiv Rao","Bhawani Pandit","Sheo Bhatt Sathe","Rajaram Pandit"],"ans":"Sadashiv Rao","tag":""},{"id":36,"q":"Which of the following Odisha-type Nagara style temples are found at Bhubaneswar?\n1. Jagannath temple\n2. Lingaraja temple\n3. Sun temple\n4. Mukteswar temple\n5. Parasurameswara temple","opts":["2, 4 and 5","1, 2, 3 and 4","1, 3 and 4","2, 3, 4 and 5"],"ans":"2, 4 and 5","tag":"OPSC 2017"},{"id":37,"q":"Identify the correct statements about Maratha rule in Odisha.\n1. Pilgrimage tax was introduced for visiting tourists.\n2. The Marathas destroyed the Jagannath temple.\n3. Odisha was divided into Mughalbandi and Garhjat regions.","opts":["1 and 3","1 and 2","2 and 3","All of these"],"ans":"1 and 3","tag":""},{"id":38,"q":"Consider the following statements about the Ganga dynasty:\n1. Anantavarman Chodagangadeva expanded his kingdom from the Ganga to the Godavari.\n2. The Sun temple at Konark was built by Narasimha Deva I during this dynasty.\n3. The dynasty promoted Shaivism exclusively.\n\nWhich statements are correct?","opts":["1 and 2","2 and 3","1 and 3","All of these"],"ans":"1 and 2","tag":"OSSC 2022"},{"id":39,"q":"Which Ganga ruler was given the title 'Trikalingadhipati' after defeating the Somavamsis?","opts":["Anantavarman Vajrahasta V","Anantavarman Chodagangadeva","Kamarnava","Bhanudeva IV"],"ans":"Anantavarman Vajrahasta V","tag":""},{"id":40,"q":"Who built the Ananta Vasudeva Temple in Bhubaneswar?","opts":["Chandrikadevi","Anangabhimadeva III","Narasimhadeva I","Rajaraja II"],"ans":"Chandrikadevi","tag":""},{"id":41,"q":"Which Ganga ruler was betrayed by his minister Kapilesvara Routray during a campaign against the Reddis?","opts":["Bhanudeva IV","Anangabhimadeva III","Rajaraja II","Narasimhadeva I"],"ans":"Bhanudeva IV","tag":""},{"id":42,"q":"In the revenue system of the Ganga dynasty, the tax known as 'Voda' was primarily collected for which of the following purposes?","opts":["Irrigation","Customs Duty","Land Tax","Religious Pilgrimage"],"ans":"Irrigation","tag":""},{"id":43,"q":"The famous Odia poet Sarala Das, who wrote the Mahabharata in Odia, was patronised by which ruler?","opts":["Kapilendra Deva","Prataparudra Deva","Purushottam Deva","Mukundadeva"],"ans":"Kapilendra Deva","tag":""},{"id":44,"q":"During the reign of Prataprudra Deva, Odisha faced an invasion in 1508 AD by which ruler of Bengal?","opts":["Alauddin Husain Shah","Sulaiman Karrani","Daud Khan","Murshid Quli Khan"],"ans":"Alauddin Husain Shah","tag":""},{"id":45,"q":"Under the Suryavamsi Gajapati Empire, the provinces known as 'Dandapata' were governed by officials holding which title?","opts":["Parikhas or Rajas","Visayapatis","Nayakas","Dauvarikas"],"ans":"Parikhas or Rajas","tag":""},{"id":46,"q":"Who transformed the region of Kalinga into 'Ordra Desa' or 'Utkala'?","opts":["Mukundadeva","Govinda Vidyadhara","Kapilendra Deva","Chakra Pratap"],"ans":"Mukundadeva","tag":""},{"id":47,"q":"King Mukundadeva, before consolidating his rule in Odisha, originally belonged to which dynastic lineage?","opts":["Chalukyas","Rashtrakutas","Cholas","Pallavas"],"ans":"Chalukyas","tag":""},{"id":48,"q":"During the rule of the Karrani Dynasty, the administrative capital was shifted to Tandan from which earlier city?","opts":["Gaur","Cuttack","Kalinganagara","Jajpur"],"ans":"Gaur","tag":""},{"id":49,"q":"Which Mughal Emperor appointed Muhammed Baqar Khan as the Governor of Odisha?","opts":["Shah Jahan","Akbar","Jahangir","Aurangzeb"],"ans":"Shah Jahan","tag":""},{"id":50,"q":"How many Sarkars did Murshid Quli Khan divide the region of Odisha into during his tenure as Naib Nazim?","opts":["Six","Five","Four","Eight"],"ans":"Six","tag":""}]},{"id":"mock-04","code":"04","title":"04 Modern History of Odisha","subtitle":"European Settlements, British Conquest, Revenue Systems, 1857 Revolt & Post Na'anka Era","category":"Odisha History","questions":[{"id":1,"q":"Who were the first Europeans to enter Odisha?","opts":["English","Portuguese","Danish","French"],"ans":"Portuguese","tag":"OSSC CPGL 2023"},{"id":2,"q":"The Portuguese trade centre at Balasore was located near which river?","opts":["Mahanadi","Brahmani","Barabalanga","Rushikulya"],"ans":"Barabalanga","tag":""},{"id":3,"q":"Who was the Nawab of Cuttack who gave the Portuguese permission to establish a residence at Pipli in 1636?","opts":["Mutaqad Khan","Mirza Beg","Shah Jahan","Malik Kasim"],"ans":"Mutaqad Khan","tag":"OSSC 2022"},{"id":4,"q":"What was the significance of Thomas Colley's reference to Pipli in 1633 as the 'ancient randy voes'?","opts":["It was a Portuguese military stronghold.","It was the first English trade centre.","It was a Portuguese trading post.","It was the headquarters of the French East India Company."],"ans":"It was a Portuguese trading post.","tag":""},{"id":5,"q":"When did the British first establish their trade settlements in Odisha, and in which locations?","opts":["1633 at Hariharpur and Balasore","1620 at Cuttack and Bhadrak","1650 at Pipli and Balasore","1645 at Balasore and Bhadrak"],"ans":"1633 at Hariharpur and Balasore","tag":""},{"id":6,"q":"Which Mughal emperor was in power when the British established their first settlement in the Balasore district in Odisha?","opts":["Akbar","Jahangir","Shah Jahan","Aurangzeb"],"ans":"Shah Jahan","tag":""},{"id":7,"q":"Where did the Dutch establish their first factory in Odisha?","opts":["Balasore","Pipli","Cuttack","Hariharpur"],"ans":"Pipli","tag":"OSSC 2024"},{"id":8,"q":"In which year did the Danes establish their first trade factory in Balasore?","opts":["1630","1636","1645","1670"],"ans":"1636","tag":""},{"id":9,"q":"Which French ship first came to Balasore in 1673, and who was its commander?","opts":["L'Orient, Commander Xavier","Flamond, Commander Malik Kasim","La Couronne, Commander Thomas Colley","Le Saint-Louis, Commander Pierre Dupleix"],"ans":"Flamond, Commander Malik Kasim","tag":""},{"id":10,"q":"After which of the following wars/battles did Shah Alam II give the diwani rights to the East India Company, eventually leading to the conquest of Odisha by the British?","opts":["Second Anglo-Mysore War","First Anglo-Mysore War","Battle of Buxar","Battle of Plassey"],"ans":"Battle of Buxar","tag":"Odisha HST 2022"},{"id":11,"q":"Where did the French East India Company establish its first factory in Odisha in 1687?","opts":["Cuttack","Bhadrak","Balasore","Puri"],"ans":"Balasore","tag":""},{"id":12,"q":"Which Nizam gifted the Northern Circars to the British East India Company in exchange for their assistance?","opts":["Nizam of Hyderabad","Nizam of Bengal","Nizam of Oudh","Nizam of Berar"],"ans":"Nizam of Hyderabad","tag":"Odisha HST 2018"},{"id":13,"q":"Under which Governor General was British rule first established in Odisha?","opts":["Lord Dufferin","Lord Wellesley","Lord Linlithgow","Robert Clive"],"ans":"Lord Wellesley","tag":"Odisha HST 2018"},{"id":14,"q":"Robert Clive acquired the Diwani rights of Bengal, Bihar, and Odisha in 1765 from whom?","opts":["Hyder Ali","Shah Alam II","Shah Alam I","Aurangzeb"],"ans":"Shah Alam II","tag":""},{"id":15,"q":"Where did the absolute first British settlement in Odisha take place in 1633?","opts":["Puri","Harishpur","Cuttack","Bhubaneswar"],"ans":"Harishpur","tag":""},{"id":16,"q":"Colonel Harcourt led the military operation for capturing which regions from the Marathas?","opts":["Cuttack and Baleswar","Baleswar and Puri","Sambalpur and Cuttack","Cuttack and Puri"],"ans":"Cuttack and Puri","tag":""},{"id":17,"q":"When did the Barabati fort fall into the hands of the British, marking the end of Maratha rule in Odisha?","opts":["1798","1800","1803","1812"],"ans":"1803","tag":""},{"id":18,"q":"The Treaty of Deogaon is related to the annexation of which region?","opts":["Sambalpur","Cuttack","Puri","Ganjam"],"ans":"Cuttack","tag":""},{"id":19,"q":"Balasore was successfully captured by which of the following British Generals?","opts":["Captain Morgan","Lord Wellesley","Lord Cornwallis","Warren Hastings"],"ans":"Captain Morgan","tag":"OSSC 2023"},{"id":20,"q":"In which year was Sambalpur annexed under Lord Dalhousie's policy of the Doctrine of Lapse?","opts":["1849","1850","1847","1852"],"ans":"1849","tag":""},{"id":21,"q":"Under which British administrative region was Odisha's Cuttack Province placed?","opts":["Ganjam and Koraput","Bengal Presidency","Madras Presidency","Central Provinces"],"ans":"Bengal Presidency","tag":""},{"id":22,"q":"Which city became the new administrative headquarters of the Southern Division after it was moved from Puri by the British in 1816?","opts":["Balasore","Sambalpur","Cuttack","Bhubaneswar"],"ans":"Cuttack","tag":""},{"id":23,"q":"In which area was the Ryotwari system first implemented in Odisha?","opts":["Sambalpur","Ganjam plains","Puri","Cuttack"],"ans":"Ganjam plains","tag":""},{"id":24,"q":"Who were the key figures behind the introduction of the Ryotwari system in British India in 1820?","opts":["Holt Mackenzie and Alexander Read","Thomas Munro and Alexander Read","Lord Cornwallis and Robert Clive","Holt Mackenzie and Thomas Munro"],"ans":"Thomas Munro and Alexander Read","tag":""},{"id":25,"q":"Where was the Mahalwari system primarily implemented in Odisha?","opts":["Puri","Sambalpur","Ganjam","Cuttack"],"ans":"Sambalpur","tag":""},{"id":26,"q":"Who played a significant role in formalising the Mahalwari system across British territories?","opts":["Thomas Munro","Holt Mackenzie","Robert Clive","Alexander Read"],"ans":"Holt Mackenzie","tag":""},{"id":27,"q":"What do the terms Gauntias, Birtias, and Umras relate to in the context of Odisha's revenue system?","opts":["Types of land ownership","Revenue collectors under Mahalwari system","Types of land settlements","Categories of peasant farmers"],"ans":"Revenue collectors under Mahalwari system","tag":""},{"id":28,"q":"Who is called the great nationalist of Odisha during the 1857 revolt?","opts":["Jayee Rajguru","Vir Surendra Sai","Surendra Das","Bakshi Jagabandhu"],"ans":"Vir Surendra Sai","tag":"OSSC RHT Teacher 2019"},{"id":29,"q":"Vir Surendra Sai revolted against the Britishers from which region of Odisha?","opts":["Puri","Cuttack","Keonjhar","Sambalpur"],"ans":"Sambalpur","tag":"OSSC 2023"},{"id":30,"q":"Odisha was affected by the devastating Na'anka Famine during which of these years?","opts":["1866-67","1780-85","1832-36","1698-1701"],"ans":"1866-67","tag":""},{"id":31,"q":"The Post Na'anka Era brought a massive and transformative change in the field of:","opts":["Art and literature","Art and craft","Pottery and literature","Education and literature"],"ans":"Education and literature","tag":""},{"id":32,"q":"Who among the following was the first disciple of Mahima Gosain?","opts":["Sarala Das","Govinda Das","Bhima Bhoi","Madhusudan Das"],"ans":"Govinda Das","tag":"OSSC CGL 2022"},{"id":33,"q":"In which year did the Portuguese establish their very first trade mart at Pipli in Odisha?","opts":["1514","1636","1633","1687"],"ans":"1514","tag":""},{"id":34,"q":"According to the British administrative structure, the districts of Ganjam and Koraput were placed under the jurisdiction of which presidency?","opts":["Bengal Presidency","Madras Presidency","Central Provinces","Bombay Presidency"],"ans":"Madras Presidency","tag":""},{"id":35,"q":"When was the Cuttack province officially divided into the three individual districts of Balasore, Cuttack, and Puri?","opts":["1803","1816","1828","1849"],"ans":"1828","tag":""},{"id":36,"q":"The Permanent Settlement (Zamindari System) was formally introduced in 1793 by which Governor-General?","opts":["Lord Cornwallis","Thomas Munro","Holt Mackenzie","Lord Wellesley"],"ans":"Lord Cornwallis","tag":""},{"id":37,"q":"During British administration in Odisha, whom did the authorities officially appoint to control several 'Thanas'?","opts":["Gauntias","Daroghas","Birtias","Umras"],"ans":"Daroghas","tag":""},{"id":38,"q":"Who led the significant revolt against the British Sunset Law during the 1857 uprisings in Odisha?","opts":["Vir Surendra Sai","Rama Krushna Samanta Singhar","Jayee Rajguru","Bakshi Jagabandhu"],"ans":"Rama Krushna Samanta Singhar","tag":""},{"id":39,"q":"Following the devastating Na'anka Famine, the Cuttack Zilla High School was established in which year?","opts":["1866","1867","1876","1882"],"ans":"1867","tag":""},{"id":40,"q":"The Utkal Sabha, widely recognized as the first modern political organization in Odisha, was founded in:","opts":["1867","1876","1882","1869"],"ans":"1882","tag":""},{"id":41,"q":"Who served as the very first President of the Utkal Sabha following its inaugural meeting at the Cuttack Printing Press?","opts":["Gauri Shankar Ray","Chaudhari Kasinath Das","Madhusudan Das","Bhima Bhoi"],"ans":"Chaudhari Kasinath Das","tag":""},{"id":42,"q":"In the context of the socio-religious reform movements in Odisha, the Satya Mahima Dharma was established by whom?","opts":["Mahima Gosain","Bhima Bhoi","Govinda Das","Haranath Bhattacharya"],"ans":"Mahima Gosain","tag":""},{"id":43,"q":"Through the efforts of Christian Missions, who was responsible for translating and introducing the New Testament in the Odia language in 1809?","opts":["William Carey","Thomas Colley","Alexander Read","Captain Morgan"],"ans":"William Carey","tag":""},{"id":44,"q":"Where was Odisha's first printing press successfully established in the year 1837?","opts":["Puri","Balasore","Sambalpur","Cuttack"],"ans":"Cuttack","tag":""},{"id":45,"q":"The Utkal Brahmo Samaj was founded in Cuttack in 1869 by which of these prominent figures?","opts":["Haranath Bhattacharya","William Carey","Chaudhari Kasinath Das","Gauri Shankar Ray"],"ans":"Haranath Bhattacharya","tag":""}]},{"id":"mock-05","code":"05","title":"05 Freedom Struggle in Odisha","subtitle":"Swadeshi, Non-Cooperation, Salt Satyagraha, Prajamandal, Quit India Movement & Nationalist Leaders","category":"Odisha History","questions":[{"id":1,"q":"People in Odisha held protest meetings at which of the places during Swadeshi movement?","opts":["Balasore","Sambalpur","Puri","All of these"],"ans":"All of these","tag":""},{"id":2,"q":"When did the Khurda rebellion, also known as the Paika rebellion, take place?","opts":["1857","1817","1947","1757"],"ans":"1817","tag":""},{"id":3,"q":"Who founded the Satyabadi School with nationalist spirit in Odisha?","opts":["Acharya Harihar","Madhusudhan Rao","Gopabandhu Das","Kripasindhu Mishra"],"ans":"Gopabandhu Das","tag":"OPSC 2017"},{"id":4,"q":"In which year was Utkal Conference formed?","opts":["1903","1900","1910","1899"],"ans":"1903","tag":""},{"id":5,"q":"Who led the significant meeting held at Cuttack municipal hall on 20th August, 1905?","opts":["Madhusudan Das","Gopabandhu Das","Babu Janakinath Bose","Harekrushna Mahatab"],"ans":"Babu Janakinath Bose","tag":""},{"id":6,"q":"When did Gandhiji address a public meeting at Cuttack during the Non-Cooperation movement?","opts":["24th January, 1921","23rd March, 1921","27th March, 1921","3rd August, 1921"],"ans":"23rd March, 1921","tag":"OPSC ASO 2019"},{"id":7,"q":"Besides The Samaj, which other newspaper was instrumental in disseminating the Non-Cooperation movement's message?","opts":["Odisha Samachar","Utkal Sevak","Statesman","Pioneer"],"ans":"Utkal Sevak","tag":""},{"id":8,"q":"Where did the peasant revolt, strongly linked to the Non-Cooperation movement occur?","opts":["Khurda","Kanika Zamindari","Sambalpur","Koraput"],"ans":"Kanika Zamindari","tag":""},{"id":9,"q":"Which freedom fighter from Odisha joined the Non-Cooperation movement and also became the first woman to be a member of the Odisha Legislative Assembly?","opts":["Parbati Giri","Gandharvi Devi","Sarala Devi","Jambubati Devi"],"ans":"Sarala Devi","tag":""},{"id":10,"q":"What was the role of Ekram Rasool within the Utkal Provincial Congress Committee?","opts":["President","Secretary","Vice-President","Treasurer"],"ans":"Secretary","tag":""},{"id":11,"q":"Who led the Salt Satyagraha in Balasore district?","opts":["Surendra Nath Das","Narayan Birabar Samanta","Birakishore Das","Lakshmi Narayan Mishra"],"ans":"Surendra Nath Das","tag":""},{"id":12,"q":"When did the Salt Law was broken in Inchudi of Balasore?","opts":["6th April, 1930","14th April, 1930","10th April, 1930","13th April, 1930"],"ans":"13th April, 1930","tag":"OSSC 2023"},{"id":13,"q":"Where was the Odisha State's People's Conference organised in 1931?","opts":["Mayurbhanj","Balasore","Cuttack","None of these"],"ans":"Cuttack","tag":""},{"id":14,"q":"The first Odisha State's People's Conference was held under the Presidentship of","opts":["Balukeshwar Acharya","Bhubananda Das","Radhanath Rath","Govinda Chandra Mishra"],"ans":"Bhubananda Das","tag":""},{"id":15,"q":"During the Harijan tour in 1934 in Odisha, Gandhi travelled from which location to Puri?","opts":["Sambalpur","Jharsuguda","Cuttack","Bhubaneswar"],"ans":"Jharsuguda","tag":""},{"id":16,"q":"Who was appointed as the director of the Individual Civil Disobedience movement in Odisha?","opts":["H.K. Mahtab","Gopabandhu Das","Madhusudan Das","Rama Devi"],"ans":"H.K. Mahtab","tag":"OSSC 2023"},{"id":17,"q":"Who among the following became a martyr in Odisha during the Quit India movement?","opts":["Baji Raut","Birsa Munda","Laxman Naik","Raghu Dibakar"],"ans":"Laxman Naik","tag":""},{"id":18,"q":"During Quit India Movement, who among the following eminent Congress leaders of Odisha was arrested in Bombay and sent to the Ahmednagar jail?","opts":["Nilakantha Das","H.K. Mahatab","Madhusudan Das","Biswanath Das"],"ans":"H.K. Mahatab","tag":"OSSC WEO 2022"},{"id":19,"q":"Which type of tax or forced labour was imposed by the princes of Odisha on their subjects?","opts":["Rasad","Magan","Bethi","All of these"],"ans":"All of these","tag":""},{"id":20,"q":"With a rise of nationalism and the start of the Independence Movement, who of the following became the first political prisoner from the state of Orissa?","opts":["Godavari Misra","Jadumani Mangaraj","Rajkrushna Bose","Nilakantha Das"],"ans":"Jadumani Mangaraj","tag":"Odisha High School Teacher 2022"},{"id":21,"q":"Who had led the Prajamandal movement in the area of Dhenkanal?","opts":["Banamali Das","Baishnab Charan Pattanaik","Sarangdhar Das","Prananath Pattanaik"],"ans":"Baishnab Charan Pattanaik","tag":""},{"id":22,"q":"The first Congress ministry was made under the leadership of","opts":["Biswanath Das","Smt Rama Devi","Acharya Harihar Das","Smt Malati Choudhury"],"ans":"Biswanath Das","tag":""},{"id":23,"q":"After the resignation of the Congress ministry, under whom a coalition ministry was formed in November 1941?","opts":["Maharaja Paralakhemundi","Nityananda Kanungo","Acharya Harihar Das","Bodhram Dube"],"ans":"Maharaja Paralakhemundi","tag":""},{"id":24,"q":"Which of the following individuals was not a minister in the first Congress ministry of Odisha?","opts":["Nityananda Kanungo","Bodhram Dube","Madhusudan Das","Biswanath Das"],"ans":"Madhusudan Das","tag":""},{"id":25,"q":"When was the hero of Odisha, Laxman Naik executed?","opts":["21st August, 1942","23rd August, 1942","21st March, 1943","29th March, 1943"],"ans":"29th March, 1943","tag":"OSSC 2024"},{"id":26,"q":"Which of the following events in Odisha is similar to the Jallianwala Bagh incident in Punjab?","opts":["The Mathli Killing","The Massacre of Eram","Na'anka Famine","None of these"],"ans":"The Massacre of Eram","tag":""},{"id":27,"q":"Where in Odisha did the largest number of people died in a massacre?","opts":["Dhenkanal","Cuttack","Balasore","Puri"],"ans":"Balasore","tag":""},{"id":28,"q":"Eram is famous as 'Rakta Tirtha' for","opts":["Salt Satyagraha","Massacre at Melan Padia","Prajamandal movement","Laxman Naik rebellion"],"ans":"Massacre at Melan Padia","tag":""},{"id":29,"q":"Odisha became a separate province in the year","opts":["1925","1938","1939","1936"],"ans":"1936","tag":""},{"id":30,"q":"Sardar Vallabhbhai Patel came to Odisha for its merger in","opts":["1946","1947","1948","1949"],"ans":"1947","tag":"OSSC 2022"},{"id":31,"q":"Which state was not amalgamated into Odisha in 1948?","opts":["Mayurbhanj","Balasore","Cuttack","None of these"],"ans":"Mayurbhanj","tag":""},{"id":32,"q":"Which of the following activity is not related to Madhusudan Das?","opts":["Utkal Union Conference","Odisha Tenancy Bill","Bengal Legislative Council","Satyabadi School"],"ans":"Satyabadi School","tag":""},{"id":33,"q":"Which of the following prominent women attended the 1934 Balasore women's conference?","opts":["Indira Gandhi","Kasturba Gandhi","Kuntala Kumari","Annie Besant"],"ans":"Kasturba Gandhi","tag":""},{"id":34,"q":"Krushna Chandra Gajapati organised tenth session of Utkal Union Conference in","opts":["Cuttack","Balasore","Paralakhemundi","Inchudi"],"ans":"Paralakhemundi","tag":""},{"id":35,"q":"Who among the following was the sole delegate from Odisha in the First Round Table Conference?","opts":["Gopabandhu Das","Krushna Chandra Gajapati","Madhusudan Das","Rama Devi"],"ans":"Krushna Chandra Gajapati","tag":""},{"id":36,"q":"The achievements of Gopabandhu Das are in the fields of","opts":["Science","Law","National Movement","All of these"],"ans":"National Movement","tag":"OPSC 2024"},{"id":37,"q":"Who established 'Sevaghar' Ashram at Bari?","opts":["Sarala Devi","Rama Devi","Malati Devi","Sita Devi"],"ans":"Rama Devi","tag":""},{"id":38,"q":"'Navajeevan Mandal' at Tumbadiguda of Koraput was formed by Rama Devi in","opts":["1945","1946","1944","1947"],"ans":"1946","tag":""},{"id":39,"q":"Sarala Devi observed fast during 6th April to 13th April, 1921 for","opts":["Civil Disobedience movement","Non-Cooperation movement","Quit India movement","Swadeshi movement"],"ans":"Non-Cooperation movement","tag":""},{"id":40,"q":"Who enrolled women into Hindustani Seva Dal?","opts":["Malati Devi","Sarala Devi","Rama Devi","Krishnabala Sen"],"ans":"Malati Devi","tag":""},{"id":41,"q":"Who was the leader of the Paika rebellion of 1817?","opts":["Bakshi Jagabandhu","Madhusudan Das","Surendra Nath Das","Babu Janakinath Bose"],"ans":"Bakshi Jagabandhu","tag":""},{"id":42,"q":"Where was the Satyabadi Bana Bidyalaya founded by Gopabandhu Das on 12th August 1909?","opts":["Cuttack","Sakhigopal, Puri","Balasore","Sambalpur"],"ans":"Sakhigopal, Puri","tag":""},{"id":43,"q":"Who was the President of the First Conference of the Utkal Sammilani (Utkal Union Conference)?","opts":["Madhusudan Das","Gopabandhu Das","Sriram Chandra Bhanja","Krushna Chandra Gajapati"],"ans":"Sriram Chandra Bhanja","tag":""},{"id":44,"q":"Which prominent Odia leader left their teaching position at Calcutta University during the freedom struggle?","opts":["Pt. Nilakantha Das","Gopabandhu Das","Madhusudan Das","H.K. Mahtab"],"ans":"Pt. Nilakantha Das","tag":""},{"id":45,"q":"The Swaraj Sevak Sangh was formed by Odisha students in which city?","opts":["Puri","Cuttack","Balasore","Jharsuguda"],"ans":"Cuttack","tag":""},{"id":46,"q":"Which was the first Odia newspaper, started by Gaurishankar Ray in 1866?","opts":["Asha","Samaj","Utkal Deepika","Sambalpur Hitaishini"],"ans":"Utkal Deepika","tag":""},{"id":47,"q":"Who was the founder of the first Odia daily newspaper, 'Asha', in 1913?","opts":["Gopabandhu Das","Sashi Bhusan Rath","Nilamani Vidyaratna","Gaurishankar Ray"],"ans":"Sashi Bhusan Rath","tag":""},{"id":48,"q":"Who led the women's group in the Salt Satyagraha at Inchudi on 20th April, 1930?","opts":["Rama Devi and Malati Devi","Sarala Devi and Sita Devi","Parbati Giri and Jambubati Devi","Kasturba Gandhi and Rama Devi"],"ans":"Rama Devi and Malati Devi","tag":""},{"id":49,"q":"The Individual Civil Disobedience Movement in Odisha was launched following the decision of which session of the INC?","opts":["Lahore session","Haripura session","Ramgarh session","Tripuri session"],"ans":"Ramgarh session","tag":""},{"id":50,"q":"Who formed the Prajamandal Movement along with Sarangdhar Das in 1938?","opts":["H.K. Mahtab","Biswanath Das","Baishnab Charan Patnaik","Gopabandhu Das"],"ans":"H.K. Mahtab","tag":""},{"id":51,"q":"When was the Utkal University established?","opts":["1st April 1936","27th Nov 1943","8th Aug 1942","12th Aug 1909"],"ans":"27th Nov 1943","tag":""},{"id":52,"q":"Which literary work was written by Sita Devi Khadanga?","opts":["Bandira Atmakatha","Dharmapada","Mandira Prabesha","Abakasa Chinta"],"ans":"Mandira Prabesha","tag":""},{"id":53,"q":"Which Oriya-speaking regions were merged with Bihar instead of Odisha?","opts":["Mayurbhanj and Keonjhar","Seraikela and Kharsawan","Dhenkanal and Sambalpur","Koraput and Ganjam"],"ans":"Seraikela and Kharsawan","tag":""},{"id":54,"q":"Who among the following is known as the 'Grand old man of Odisha'?","opts":["Gopabandhu Das","Krushna Chandra Gajapati","Madhusudan Das","Fakir Mohan Senapati"],"ans":"Madhusudan Das","tag":""},{"id":55,"q":"Who was the first President of the Utkal Pradesh Congress Committee formed in 1921?","opts":["Harekrushna Mahtab","Madhusudan Das","Gopabandhu Das","Biswanath Das"],"ans":"Gopabandhu Das","tag":""},{"id":56,"q":"Which of the following books is NOT written by Gopabandhu Das?","opts":["Bandira Atmakatha","Dharmapada","Mandira Prabesha","Abakasa Chinta"],"ans":"Mandira Prabesha","tag":""},{"id":57,"q":"Who created the Atlee Sub-Committee and attended the 1st Round Table Conference from Odisha?","opts":["Krushna Chandra Gajapati Narayan Deo","Madhusudan Das","Gopabandhu Das","H.K. Mahtab"],"ans":"Krushna Chandra Gajapati Narayan Deo","tag":""},{"id":58,"q":"Rama Devi worked in which Ashram before establishing Navajeevan Mandal?","opts":["Sabarmati Ashram","Alak Ashram","Sevagram Ashram","Satyabadi Ashram"],"ans":"Alak Ashram","tag":""},{"id":59,"q":"Who was the first woman in Odisha to be imprisoned during the freedom struggle?","opts":["Rama Devi","Malati Devi","Sarala Devi","Sita Devi Khadanga"],"ans":"Sarala Devi","tag":""},{"id":60,"q":"The women's Satyagraha Committee was formed at which location?","opts":["Cuttack","Balasore","Puri","Sambalpur"],"ans":"Sambalpur","tag":""},{"id":61,"q":"The newspaper 'Sambalpur Hitaishini' was published by whom?","opts":["Gaurishankar Ray","Nilamani Vidyaratna","Sashi Bhusan Rath","Gopabandhu Das"],"ans":"Nilamani Vidyaratna","tag":""}]},{"id":"mock-06","code":"06","title":"06 Formation of Odisha","subtitle":"Odia Language Movement, Utkal Sammilani, Boundary Commission & Merger of Princely States","category":"Odisha History","questions":[{"id":1,"q":"What was the primary objective of the Odia Movement during the British era?","opts":["Unification of Odia-speaking regions","Economic exploitation of the eastern coast","Establishment of a separate independent nation","Integration with the Madras Presidency"],"ans":"Unification of Odia-speaking regions","tag":""},{"id":2,"q":"Who among the following was the founder of 'Utkal Sammilani'?","opts":["Madhusudan Das","Gopabandhu Das","Harekrushna Mahtab","Gaurishankar Ray"],"ans":"Madhusudan Das","tag":"OSSC WEO 2022"},{"id":3,"q":"In which of the following years was the 'Utkal Sammilani' founded to champion the cause of Odia-speaking people?","opts":["1903","1882","1909","1936"],"ans":"1903","tag":"OSSC WEO 2022"},{"id":4,"q":"Who among the following resolved that 'Swaraja Prapti' and not 'Desh Mishran' should be the ultimate goal of Utkal Sammilani?","opts":["Gopabandhu Das","Madhusudan Das","Radhanath Ray","Fakir Mohan Senapati"],"ans":"Gopabandhu Das","tag":"OSSC WEO 2023"},{"id":5,"q":"Who among the following played a pivotal role in the formation of the 'Utkal Sabha' in the year 1882?","opts":["Madhusudan Das & Gaurishankar Ray","Gopabandhu Das & Nilakantha Das","Harekrushna Mahtab & Biju Patnaik","Maharaja Krushna Chandra Gajapati & Radhanath Ray"],"ans":"Madhusudan Das & Gaurishankar Ray","tag":"OSSC WEO 2022"},{"id":6,"q":"When did Gopabandhu Das establish the Satyabadi Vana Bidyalaya at Sakhigopal, Puri?","opts":["1909","1903","1915","1920"],"ans":"1909","tag":"OSSC WEO 2022"},{"id":7,"q":"Which specific region did George Abraham Grierson's linguistic survey recognize as 'Natural Odisha' and 'Odia Country'?","opts":["Sambalpur and nearby areas","Cuttack and surrounding coastal belt","Ganjam and Gajapati districts","Balasore and Mayurbhanj regions"],"ans":"Sambalpur and nearby areas","tag":"OSSC 2023"},{"id":8,"q":"Who served as the Viceroy of British India when the unified Bihar-Odisha Province was formally constituted?","opts":["Viceroy Hardinge","Viceroy Curzon","Viceroy Minto","Viceroy Chelmsford"],"ans":"Viceroy Hardinge","tag":""},{"id":9,"q":"Odisha was officially separated from the Bihar province following the passage of which Government of India Act?","opts":["Government of India Act, 1935","Government of India Act, 1919","Indian Councils Act, 1909","Indian Independence Act, 1947"],"ans":"Government of India Act, 1935","tag":"Odisha High School Teacher 2022"},{"id":10,"q":"Who among the following was appointed as the Chairman of the Odisha Boundary Commission to demarcate the new province?","opts":["Sir Samuel O'Donnell","Sir John Hubback","Henry Ricketts","Lord Macaulay"],"ans":"Sir Samuel O'Donnell","tag":"OSSC 2024"},{"id":11,"q":"Who had the distinction of becoming the first Governor of the newly formed independent Odisha Province?","opts":["Sir John Hubback","Sir Samuel O'Donnell","Sir Hawthorne Lewis","Sir Chandulal Trivedi"],"ans":"Sir John Hubback","tag":"OSSC 2023"},{"id":12,"q":"The princely state of Mayurbhanj was finally integrated into the political boundary of Odisha in which of the following years?","opts":["January 1, 1949","January 1, 1948","August 15, 1947","January 26, 1950"],"ans":"January 1, 1949","tag":"OSSC 2023"},{"id":13,"q":"During the early phases of British administration, Odia-speaking territories were virtually fragmented and attached to which of the following four provinces?","opts":["Bengal, Madras, Central Provinces, & Bihar","Bengal, Bombay, Madras, & Assam","Bihar, Central Provinces, Punjab, & Bengal","Madras, United Provinces, Bihar, & Bengal"],"ans":"Bengal, Madras, Central Provinces, & Bihar","tag":""},{"id":14,"q":"Who among the following British officials formally proposed the merger of Sambalpur with the Odisha Division?","opts":["Henry Ricketts","Sir Samuel O'Donnell","George Abraham Grierson","Lord Dalhousie"],"ans":"Henry Ricketts","tag":""},{"id":15,"q":"Prior to the integration of the princely states, the provincial boundary of Odisha comprised how many regular districts?","opts":["6 districts","4 districts","13 districts","26 districts"],"ans":"6 districts","tag":""},{"id":16,"q":"Before the post-independence reorganization, how many Odia-speaking princely states remained outside the official provincial boundary of Odisha?","opts":["26 princely states","25 princely states","13 princely states","6 princely states"],"ans":"26 princely states","tag":""},{"id":17,"q":"On December 14, 1947, a crucial meeting was held in Cuttack with the rulers of princely states to discuss integration. Which three prominent leaders led this meeting?","opts":["Sardar Vallabhbhai Patel, V.P. Menon, and H.K. Mahtab","Jawaharlal Nehru, Sardar Patel, and Biju Patnaik","Mahatma Gandhi, H.K. Mahtab, and Gopabandhu Das","Lord Mountbatten, V.P. Menon, and Madhusudan Das"],"ans":"Sardar Vallabhbhai Patel, V.P. Menon, and H.K. Mahtab","tag":""},{"id":18,"q":"On January 1, 1948, exactly 25 out of the 26 princely states officially merged with the province of Odisha. Which state was the sole exception on this date?","opts":["Mayurbhanj","Keonjhar","Dhenkanal","Kalahandi"],"ans":"Mayurbhanj","tag":""},{"id":19,"q":"Following the formal merger of the Mayurbhanj princely state in 1949, the total number of districts in the state of Odisha expanded to what number?","opts":["13 districts","14 districts","30 districts","26 districts"],"ans":"13 districts","tag":""},{"id":20,"q":"Which of the following statements correctly represents the status of Mayurbhanj during the 1948 integration of states?","opts":["It initially opted out of the merger on January 1, 1948, but integrated later in 1949.","It was the first princely state to merge with Odisha in December 1947.","It was forcefully annexed by Sardar Vallabhbhai Patel after military action.","It remained an independent territory until the reorganization of states in 1956."],"ans":"It initially opted out of the merger on January 1, 1948, but integrated later in 1949.","tag":""}]},{"id":"mock-07","code":"07","title":"07 Tribal & Social Movements in Odisha","subtitle":"Paika Rebellion, Ghumasar & Bhuyan Uprisings, Anti-Posco & Social Reform Movements","category":"Odisha History","questions":[{"id":1,"q":"The Paika Rebellion, a significant tribal and social movement in Odisha that occurred in 1817, is noted as the state's first armed revolt. Under whose leadership did this historic rebellion take place?","opts":["Bakshi Jagabandhu","Jayee Rajguru","Dora Bisoi","Chakra Bisoi"],"ans":"Bakshi Jagabandhu","tag":"OSSC Investigator 2023"},{"id":2,"q":"In the context of the resistance movements in Odisha against the colonial administration, who among the following historical figures is considered as the first martyr of Odisha against British rule?","opts":["Jayee Rajguru","Bakshi Jagabandhu","Ratna Naik","Dharanidhar Naik"],"ans":"Jayee Rajguru","tag":"Odisha High School Teacher 2022"},{"id":3,"q":"Various tribal uprisings emerged in Odisha as a response to British policies. The prominent leader Dora Bisoi is primarily associated with which of the following resistance movements of Odisha?","opts":["Ghumasar Uprising","Paika Rebellion","Bhuyan Uprising","Anti-Posco Movement"],"ans":"Ghumasar Uprising","tag":""},{"id":4,"q":"The Bhuyan Uprising represents a crucial chapter in the tribal resistance of Odisha. This specific uprising took place under the leadership of which of the following pairs of leaders?","opts":["Ratna Naik and Dharanidhar Naik","Dora Bisoi and Chakra Bisoi","Bakshi Jagabandhu and Jayee Rajguru","Godavarish Mishra and Sarbananda Panda"],"ans":"Ratna Naik and Dharanidhar Naik","tag":"OSSC INEO 2022"},{"id":5,"q":"In recent history, the Anti-Posco Movement spanned from 2005 to 2017 in Odisha. What was the primary objective or aim of this significant social movement?","opts":["Preventing displacement due to a steel plant project","Demanding separate statehood for tribal regions","Protesting against agricultural taxation","Fighting for temple entry rights for all castes"],"ans":"Preventing displacement due to a steel plant project","tag":""},{"id":6,"q":"The Paika Rebellion of 1817 holds immense historical importance as Odisha's first armed revolt against British dominance. By what other name is this famous rebellion widely known in historical records?","opts":["Khurda Rebellion","Ghumasar Rebellion","Kalinga War","Bhuyan Mutiny"],"ans":"Khurda Rebellion","tag":""},{"id":7,"q":"During the outbreak of the Paika Rebellion in 1817, the British deployed military commanders to suppress the armed revolt. According to historical military records in the region, which of the following commanders played a key role in leading the British forces?","opts":["Lt. Colonel Harcourt","Major General Gabriel Wood","Lord Dalhousie","Robert Clive"],"ans":"Lt. Colonel Harcourt","tag":""},{"id":8,"q":"Prior to the British conquest, the Paikas held a specific social and professional status in the region. Under which historical rulers did the Paikas serve as the traditional military class?","opts":["Gajapati kings","Ganga dynasty rulers","Somavamshi kings","Suryavamshi empire"],"ans":"Gajapati kings","tag":""},{"id":9,"q":"Bakshi Jagabandhu, the prominent leader of the Paika Rebellion, was eventually captured by the colonial authorities. In which year was he imprisoned by the British forces?","opts":["1825","1817","1829","1835"],"ans":"1825","tag":""},{"id":10,"q":"Following his imprisonment by the colonial administration, the great leader Bakshi Jagabandhu spent his final years in captivity. In which year did he pass away while in British custody?","opts":["1829","1825","1835","1817"],"ans":"1829","tag":""},{"id":11,"q":"Literature often reflects historical struggles and cultural heritage. Who among the following authors wrote the famous Odia novel titled 'Athara Shaha satara', which translates to 'Eighteen Hundred Seventeen' and details the Paika Rebellion?","opts":["Godavarish Mishra","Fakir Mohan Senapati","Gopabandhu Das","Radhanath Ray"],"ans":"Godavarish Mishra","tag":""},{"id":12,"q":"The Ghumasar Uprising of 1835 was a significant tribal revolt against colonial exploitation. Following the initial leadership of Dora Bisoi, who later took over the command of this uprising?","opts":["Chakra Bisoi","Bakshi Jagabandhu","Ratna Naik","Dharanidhar Naik"],"ans":"Chakra Bisoi","tag":""},{"id":13,"q":"In the landmark legal battle of Sarbananda Panda Vs. State of Orissa (1993), the Supreme Court of India passed a significant judgment regarding fundamental social rights. What did the court specifically rule in this case?","opts":["All Hindus, irrespective of caste, have the right to enter temples.","Tribal lands cannot be acquired for industrial projects without local consent.","The Paika Rebellion must be officially recognized as the first war of independence.","Educational institutions must provide mandatory reservations for tribal students."],"ans":"All Hindus, irrespective of caste, have the right to enter temples.","tag":""}]}];
+
+    // Application State
+    let selectedMockIndex = 0;
+    let activeQuestions = []; // Fixed question sequence with randomized options for current session
+    let currentQIndex = 0;
+    let userSelections = []; // Selected option string or null per question
+    let questionStatus = []; // 'not-visited' | 'not-answered' | 'answered' | 'review' | 'ans-review'
+    let timerInterval = null;
+    let totalTimeSeconds = 0;
+    let remainingSeconds = 0;
+    let isPaused = false;
+    let currentResultFilter = "all"; // 'all' | 'wrong' | 'unattempted'
+    let sessionHistory = {}; // Stores last score per mock id in memory
+
+    // Utility: Show Toast Notification
+    let toastTimer = null;
+    function showToast(message) {
+      const el = document.getElementById("toastMsg");
+      el.textContent = message;
+      el.style.display = "block";
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        el.style.display = "none";
+      }, 2600);
+    }
+
+    // Utility: Switch Active Screen
+    function switchView(viewId) {
+      const views = ["dashboardView", "instructionsView", "examView", "resultView"];
+      views.forEach(id => {
+        const v = document.getElementById(id);
+        if (id === viewId) {
+          v.classList.add("active");
+        } else {
+          v.classList.remove("active");
+        }
+      });
+      window.scrollTo(0, 0);
+    }
+
+    // Utility: Format Seconds to MM:SS
+    function formatTime(sec) {
+      const s = Math.max(0, Math.floor(sec));
+      const mins = Math.floor(s / 60);
+      const rem = s % 60;
+      const mStr = mins < 10 ? "0" + mins : String(mins);
+      const sStr = rem < 10 ? "0" + rem : String(rem);
+      return mStr + ":" + sStr;
+    }
+
+    // Utility: Shuffle 4 Options while keeping fixed anchor phrases ("All of the above", "None of these", etc.) in their logical position if present at index 3
+    function randomizeOptions(opts) {
+      const copy = [...opts];
+      const anchorPatterns = [
+        /^all of the above$/i,
+        /^all of these$/i,
+        /^none of these$/i,
+        /^none of the above$/i,
+        /^both 1 and 2$/i,
+        /^neither 1 nor 2$/i
+      ];
+      const hasFixedAnchor = copy.some(o => anchorPatterns.some(rx => rx.test(o.trim())));
+      if (hasFixedAnchor) {
+        // If options 3 & 4 are "Both 1 and 2" / "Neither 1 nor 2", keep statement pairs intact or shuffle non-anchor options
+        const isBothNeither = copy.some(o => /^both 1 and 2$/i.test(o.trim()));
+        if (isBothNeither) {
+          return copy;
+        }
+        // Shuffle the first 3 distractor options while keeping "All of the above" / "None of these" at D
+        const firstThree = copy.slice(0, 3);
+        for (let i = firstThree.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [firstThree[i], firstThree[j]] = [firstThree[j], firstThree[i]];
+        }
+        return [...firstThree, copy[3]];
+      }
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    // Fullscreen Helpers (with safe try/catch for iframe sandboxes)
+    function enterExamFullscreen() {
+      try {
+        const docEl = document.documentElement;
+        if (!document.fullscreenElement) {
+          if (docEl.requestFullscreen) {
+            docEl.requestFullscreen().catch(() => {});
+          } else if (docEl.webkitRequestFullscreen) {
+            docEl.webkitRequestFullscreen();
+          }
+        }
+      } catch (e) {
+        // Ignored if blocked by iframe container permissions
+      }
+    }
+
+    function exitExamFullscreen() {
+      try {
+        if (document.fullscreenElement) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen().then(() => {
+              showToast("Exited Fullscreen Mode");
+            }).catch(() => {
+              showToast("Exited Fullscreen Mode");
+            });
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+            showToast("Exited Fullscreen Mode");
+          }
+        } else {
+          showToast("Already in standard window mode");
+        }
+      } catch (e) {
+        showToast("Exited Fullscreen Mode");
+      }
+    }
+
+    // =====================================================
+    // RENDER DASHBOARD (7 SEPARATE MOCK TESTS IN ORDER)
+    // =====================================================
+    function renderDashboard() {
+      const grid = document.getElementById("mockCardsGrid");
+      grid.innerHTML = "";
+
+      let completedCount = 0;
+      MOCK_TESTS.forEach((mock, idx) => {
+        const hist = sessionHistory[mock.id];
+        if (hist) completedCount++;
+
+        const card = document.createElement("div");
+        card.className = "mock-card";
+
+        const statusHtml = hist
+          ? `<span class="mock-status-pill completed">Last Score: ${hist.score} / ${hist.total}</span>`
+          : `<span class="mock-status-pill">Ready to Start</span>`;
+
+        card.innerHTML = `
+          <div class="mock-card-top">
+            <div class="mock-card-header">
+              <span class="mock-code-badge">Mock Test ${mock.code}</span>
+              ${statusHtml}
+            </div>
+            <div class="mock-card-title">${mock.title}</div>
+            <div class="mock-card-sub">${mock.subtitle}</div>
+          </div>
+          <div>
+            <div class="mock-card-meta">
+              <span>📋 <strong>${mock.questions.length}</strong> Questions</span>
+              <span>⏱️ <strong>${mock.questions.length}</strong> Minutes</span>
+              <span>🎯 <strong>${mock.questions.length}</strong> Marks</span>
+            </div>
+            <div class="mock-card-actions">
+              <button type="button" class="btn-primary-tcs" data-mock-idx="${idx}">
+                ${hist ? "Retake Mock Test ➔" : "Start Mock Test ➔"}
+              </button>
+            </div>
+          </div>
+        `;
+
+        const btn = card.querySelector("button");
+        btn.addEventListener("click", () => openInstructionsScreen(idx));
+        grid.appendChild(card);
+      });
+
+      document.getElementById("completedMocksCount").textContent = `${completedCount} / ${MOCK_TESTS.length}`;
+    }
+
+    // =====================================================
+    // OPEN INITIAL INTRODUCTORY / INSTRUCTIONS INTERFACE
+    // =====================================================
+    function openInstructionsScreen(mockIndex) {
+      selectedMockIndex = mockIndex;
+      const mock = MOCK_TESTS[mockIndex];
+      const qCount = mock.questions.length;
+
+      document.getElementById("introHeaderTitle").textContent = `${mock.title} — Introductory Instructions`;
+      document.getElementById("introHeaderBadge").textContent = `Mock ${mock.code}`;
+      document.getElementById("introTestTitle").textContent = mock.title;
+      document.getElementById("introTotalQuestions").textContent = `Total Questions: ${qCount}`;
+      document.getElementById("introTotalTime").textContent = `Duration: ${qCount} Minutes`;
+      document.getElementById("introMinutesText").textContent = `${qCount} minutes`;
+      document.getElementById("introQuestionsText").textContent = `${qCount} questions`;
+      document.getElementById("declarationCheck").checked = true;
+
+      switchView("instructionsView");
+    }
+
+    // =====================================================
+    // START EXAM SESSION
+    // =====================================================
+    function startExamSession() {
+      const decl = document.getElementById("declarationCheck");
+      if (!decl.checked) {
+        showToast("Please accept the declaration checkbox to start the test.");
+        return;
+      }
+
+      // Automatically enter fullscreen on beginning the test
+      enterExamFullscreen();
+
+      const mock = MOCK_TESTS[selectedMockIndex];
+      // Do NOT randomize questions; randomize ONLY the 4 options for each question
+      activeQuestions = mock.questions.map(q => ({
+        id: q.id,
+        q: q.q,
+        opts: randomizeOptions(q.opts),
+        ans: q.ans,
+        tag: q.tag || ""
+      }));
+
+      const totalQ = activeQuestions.length;
+      userSelections = new Array(totalQ).fill(null);
+      questionStatus = new Array(totalQ).fill("not-visited");
+      currentQIndex = 0;
+      questionStatus[0] = "not-answered";
+
+      totalTimeSeconds = totalQ * 60;
+      remainingSeconds = totalTimeSeconds;
+      isPaused = false;
+
+      document.getElementById("activeExamTitle").textContent = mock.title;
+      document.getElementById("activeSectionBadge").textContent = `Section: ${mock.title}`;
+      document.getElementById("sidebarSubTitle").textContent = `${totalQ} Qs | ${totalQ} Mins`;
+
+      buildQuestionPalette();
+      renderCurrentQuestion();
+      startCountdownTimer();
+      switchView("examView");
+    }
+
+    // =====================================================
+    // COUNTDOWN TIMER
+    // =====================================================
+    function startCountdownTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      updateTimerUI();
+
+      timerInterval = setInterval(() => {
+        if (isPaused) return;
+        remainingSeconds--;
+        updateTimerUI();
+
+        if (remainingSeconds <= 0) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+          finalizeExamSubmission(true);
+        }
+      }, 1000);
+    }
+
+    function updateTimerUI() {
+      const disp = document.getElementById("timerDisplay");
+      const box = document.getElementById("timerBox");
+      disp.textContent = formatTime(remainingSeconds);
+      if (remainingSeconds <= 120) {
+        box.classList.add("low-time");
+      } else {
+        box.classList.remove("low-time");
+      }
+    }
+
+    // =====================================================
+    // QUESTION PALETTE & CURRENT QUESTION RENDERING
+    // =====================================================
+    function buildQuestionPalette() {
+      const grid = document.getElementById("paletteGrid");
+      grid.innerHTML = "";
+      activeQuestions.forEach((q, idx) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "q-pal-btn";
+        btn.id = `pal-btn-${idx}`;
+        btn.textContent = String(idx + 1);
+        btn.addEventListener("click", () => jumpToQuestion(idx));
+        grid.appendChild(btn);
+      });
+      updatePaletteUI();
+    }
+
+    function updatePaletteUI() {
+      let cAnswered = 0;
+      let cNotAnswered = 0;
+      let cNotVisited = 0;
+      let cReview = 0;
+      let cAnsReview = 0;
+
+      questionStatus.forEach((st, idx) => {
+        if (st === "answered") cAnswered++;
+        else if (st === "not-answered") cNotAnswered++;
+        else if (st === "not-visited") cNotVisited++;
+        else if (st === "review") cReview++;
+        else if (st === "ans-review") cAnsReview++;
+
+        const btn = document.getElementById(`pal-btn-${idx}`);
+        if (btn) {
+          btn.className = "q-pal-btn";
+          if (st === "answered") btn.classList.add("st-answered");
+          else if (st === "not-answered") btn.classList.add("st-not-answered");
+          else if (st === "review") btn.classList.add("st-review");
+          else if (st === "ans-review") btn.classList.add("st-ans-review");
+
+          if (idx === currentQIndex) {
+            btn.classList.add("current-q");
+          }
+        }
+      });
+
+      document.getElementById("countAnswered").textContent = String(cAnswered);
+      document.getElementById("countNotAnswered").textContent = String(cNotAnswered);
+      document.getElementById("countNotVisited").textContent = String(cNotVisited);
+      document.getElementById("countReview").textContent = String(cReview);
+      document.getElementById("countAnsReview").textContent = String(cAnsReview);
+    }
+
+    function renderCurrentQuestion() {
+      const qObj = activeQuestions[currentQIndex];
+      const total = activeQuestions.length;
+
+      document.getElementById("questionNumberHeader").textContent = `Question No. ${currentQIndex + 1} of ${total}`;
+
+      const tagEl = document.getElementById("examTagBadge");
+      if (qObj.tag && qObj.tag.trim() !== "") {
+        tagEl.textContent = qObj.tag;
+        tagEl.style.display = "inline-block";
+      } else {
+        tagEl.style.display = "none";
+      }
+
+      document.getElementById("questionStemText").textContent = qObj.q;
+
+      const optionsContainer = document.getElementById("optionsListContainer");
+      optionsContainer.innerHTML = "";
+      const letters = ["A", "B", "C", "D"];
+      const currentSelection = userSelections[currentQIndex];
+
+      qObj.opts.forEach((optText, optIdx) => {
+        const isSelected = currentSelection === optText;
+        const row = document.createElement("div");
+        row.className = "option-row" + (isSelected ? " selected" : "");
+
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = "mcqOption";
+        radio.className = "option-radio";
+        radio.checked = isSelected;
+        radio.readOnly = true;
+
+        const letterSpan = document.createElement("span");
+        letterSpan.className = "option-letter";
+        letterSpan.textContent = `(${letters[optIdx]})`;
+
+        const textSpan = document.createElement("span");
+        textSpan.className = "option-text";
+        textSpan.textContent = optText;
+
+        row.appendChild(radio);
+        row.appendChild(letterSpan);
+        row.appendChild(textSpan);
+
+        // Selecting an option ONLY highlights selection; does NOT auto-advance or reveal answer
+        row.addEventListener("click", () => {
+          userSelections[currentQIndex] = optText;
+          // Update status if not marked for review
+          if (questionStatus[currentQIndex] === "review" || questionStatus[currentQIndex] === "ans-review") {
+            questionStatus[currentQIndex] = "ans-review";
+          } else {
+            questionStatus[currentQIndex] = "answered";
+          }
+          renderCurrentQuestion();
+          updatePaletteUI();
+        });
+
+        optionsContainer.appendChild(row);
+      });
+
+      document.getElementById("prevQuestionBtn").disabled = currentQIndex === 0;
+      updatePaletteUI();
+
+      // Scroll palette button into view smoothly inside the palette scroll container
+      const activePalBtn = document.getElementById(`pal-btn-${currentQIndex}`);
+      if (activePalBtn) {
+        activePalBtn.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      }
+    }
+
+    // Commit status of current question when navigating via Next / Previous / Jump
+    function commitCurrentQuestionStatus() {
+      const sel = userSelections[currentQIndex];
+      const curSt = questionStatus[currentQIndex];
+      if (curSt === "review" || curSt === "ans-review") {
+        questionStatus[currentQIndex] = sel !== null ? "ans-review" : "review";
+      } else {
+        questionStatus[currentQIndex] = sel !== null ? "answered" : "not-answered";
+      }
+    }
+
+    function jumpToQuestion(targetIdx) {
+      commitCurrentQuestionStatus();
+      currentQIndex = targetIdx;
+      if (questionStatus[currentQIndex] === "not-visited") {
+        questionStatus[currentQIndex] = "not-answered";
+      }
+      document.getElementById("questionScrollArea").scrollTop = 0;
+      renderCurrentQuestion();
+    }
+
+    function handleNextQuestion() {
+      commitCurrentQuestionStatus();
+      if (currentQIndex < activeQuestions.length - 1) {
+        currentQIndex++;
+        if (questionStatus[currentQIndex] === "not-visited") {
+          questionStatus[currentQIndex] = "not-answered";
+        }
+        document.getElementById("questionScrollArea").scrollTop = 0;
+        renderCurrentQuestion();
+      } else {
+        updatePaletteUI();
+        showToast("You are on the last question. Click Submit when ready.");
+      }
+    }
+
+    function handlePrevQuestion() {
+      if (currentQIndex > 0) {
+        commitCurrentQuestionStatus();
+        currentQIndex--;
+        if (questionStatus[currentQIndex] === "not-visited") {
+          questionStatus[currentQIndex] = "not-answered";
+        }
+        document.getElementById("questionScrollArea").scrollTop = 0;
+        renderCurrentQuestion();
+      }
+    }
+
+    function handleClearResponse() {
+      userSelections[currentQIndex] = null;
+      questionStatus[currentQIndex] = "not-answered";
+      renderCurrentQuestion();
+    }
+
+    function handleMarkForReviewAndNext() {
+      const sel = userSelections[currentQIndex];
+      questionStatus[currentQIndex] = sel !== null ? "ans-review" : "review";
+      if (currentQIndex < activeQuestions.length - 1) {
+        currentQIndex++;
+        if (questionStatus[currentQIndex] === "not-visited") {
+          questionStatus[currentQIndex] = "not-answered";
+        }
+        document.getElementById("questionScrollArea").scrollTop = 0;
+        renderCurrentQuestion();
+      } else {
+        updatePaletteUI();
+        showToast("Question marked for review. You are on the last question.");
+      }
+    }
+
+    // =====================================================
+    // PAUSE & SUBMIT MODALS
+    // =====================================================
+    function openPauseModal() {
+      isPaused = true;
+      document.getElementById("pauseModal").classList.add("open");
+    }
+
+    function closePauseModal() {
+      isPaused = false;
+      document.getElementById("pauseModal").classList.remove("open");
+    }
+
+    function openSubmitConfirmationModal() {
+      commitCurrentQuestionStatus();
+      updatePaletteUI();
+
+      let cAnswered = 0, cNotAnswered = 0, cNotVisited = 0, cReview = 0, cAnsReview = 0;
+      questionStatus.forEach(st => {
+        if (st === "answered") cAnswered++;
+        else if (st === "not-answered") cNotAnswered++;
+        else if (st === "not-visited") cNotVisited++;
+        else if (st === "review") cReview++;
+        else if (st === "ans-review") cAnsReview++;
+      });
+
+      document.getElementById("subModTotal").textContent = String(activeQuestions.length);
+      document.getElementById("subModAnswered").textContent = String(cAnswered);
+      document.getElementById("subModAnsReview").textContent = String(cAnsReview);
+      document.getElementById("subModNotAnswered").textContent = String(cNotAnswered);
+      document.getElementById("subModReview").textContent = String(cReview);
+      document.getElementById("subModNotVisited").textContent = String(cNotVisited);
+
+      document.getElementById("submitModal").classList.add("open");
+    }
+
+    function closeSubmitConfirmationModal() {
+      document.getElementById("submitModal").classList.remove("open");
+    }
+
+    // =====================================================
+    // FINALIZE SUBMISSION & SHOW SCORE + SOLUTIONS
+    // (SOLUTIONS STRICTLY FOR INCORRECT & UN-ATTEMPTED ONLY)
+    // =====================================================
+    function finalizeExamSubmission(isAutoSubmit) {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+      isPaused = false;
+      document.getElementById("pauseModal").classList.remove("open");
+      document.getElementById("submitModal").classList.remove("open");
+
+      const mock = MOCK_TESTS[selectedMockIndex];
+      const total = activeQuestions.length;
+      let correctCount = 0;
+      let wrongCount = 0;
+      let unattemptedCount = 0;
+
+      activeQuestions.forEach((q, idx) => {
+        const userAns = userSelections[idx];
+        if (userAns === null) {
+          unattemptedCount++;
+        } else if (userAns === q.ans) {
+          correctCount++;
+        } else {
+          wrongCount++;
+        }
+      });
+
+      const attemptedCount = correctCount + wrongCount;
+      const accuracy = attemptedCount > 0 ? ((correctCount / attemptedCount) * 100).toFixed(1) : "0.0";
+      const timeUsedSec = Math.max(0, totalTimeSeconds - remainingSeconds);
+
+      // Save in session history
+      sessionHistory[mock.id] = {
+        score: correctCount,
+        total: total
+      };
+
+      document.getElementById("autoSubmitBanner").style.display = isAutoSubmit ? "block" : "none";
+      document.getElementById("resultHeaderTitle").textContent = `${mock.title} — Result & Analysis`;
+      document.getElementById("resultHeaderBadge").textContent = `Score: ${correctCount} / ${total}`;
+      document.getElementById("resultTestTitle").textContent = `${mock.title} — Performance Summary`;
+      document.getElementById("resultTimeTakenText").textContent = `Time Taken: ${formatTime(timeUsedSec)} out of ${formatTime(totalTimeSeconds)}`;
+
+      document.getElementById("resScoreVal").textContent = `${correctCount} / ${total}`;
+      document.getElementById("resAccuracyVal").textContent = `${accuracy}%`;
+      document.getElementById("resAttemptedVal").textContent = String(attemptedCount);
+      document.getElementById("resCorrectVal").textContent = String(correctCount);
+      document.getElementById("resWrongVal").textContent = String(wrongCount);
+      document.getElementById("resUnattemptedVal").textContent = String(unattemptedCount);
+
+      // Update Filter Buttons
+      const totalReviewable = wrongCount + unattemptedCount;
+      document.getElementById("filterAllBtn").textContent = `All Incorrect & Un-attempted (${totalReviewable})`;
+      document.getElementById("filterWrongBtn").textContent = `Incorrect Only (${wrongCount})`;
+      document.getElementById("filterUnattemptedBtn").textContent = `Un-attempted Only (${unattemptedCount})`;
+
+      currentResultFilter = "all";
+      updateFilterTabActiveUI();
+      renderSolutionsList();
+      renderDashboard();
+      switchView("resultView");
+    }
+
+    function updateFilterTabActiveUI() {
+      document.getElementById("filterAllBtn").classList.toggle("active", currentResultFilter === "all");
+      document.getElementById("filterWrongBtn").classList.toggle("active", currentResultFilter === "wrong");
+      document.getElementById("filterUnattemptedBtn").classList.toggle("active", currentResultFilter === "unattempted");
+    }
+
+    function renderSolutionsList() {
+      const container = document.getElementById("solutionsListContainer");
+      container.innerHTML = "";
+      const letters = ["A", "B", "C", "D"];
+
+      // Strictly collect ONLY incorrect and un-attempted questions
+      const itemsToShow = [];
+      activeQuestions.forEach((q, idx) => {
+        const userAns = userSelections[idx];
+        const isUnattempted = userAns === null;
+        const isWrong = userAns !== null && userAns !== q.ans;
+
+        if (!isUnattempted && !isWrong) {
+          // Correctly answered questions are excluded as instructed
+          return;
+        }
+        if (currentResultFilter === "wrong" && !isWrong) return;
+        if (currentResultFilter === "unattempted" && !isUnattempted) return;
+
+        itemsToShow.push({ q, idx, userAns, isUnattempted, isWrong });
+      });
+
+      if (itemsToShow.length === 0) {
+        const emptyBox = document.createElement("div");
+        emptyBox.className = "solution-card";
+        emptyBox.style.textAlign = "center";
+        emptyBox.style.padding = "32px 20px";
+        emptyBox.innerHTML = `
+          <h4 style="color: var(--tcs-navy); margin-bottom: 6px; font-size: 1.05rem;">No Questions to Display in This Filter</h4>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">
+            ${currentResultFilter === "all"
+              ? "Congratulations! You answered every question correctly. There are no incorrect or un-attempted questions to review."
+              : "No questions match the selected filter criteria."}
+          </p>
+        `;
+        container.appendChild(emptyBox);
+        return;
+      }
+
+      itemsToShow.forEach(({ q, idx, userAns, isUnattempted }) => {
+        const card = document.createElement("div");
+        card.className = "solution-card " + (isUnattempted ? "card-unattempted" : "card-incorrect");
+
+        const tagHtml = q.tag
+          ? `<span class="exam-tag-badge">${q.tag}</span>`
+          : "";
+
+        const statusBadgeHtml = isUnattempted
+          ? `<span class="sol-status-badge st-unattempted">Un-attempted</span>`
+          : `<span class="sol-status-badge st-wrong">Incorrect</span>`;
+
+        let optsHtml = "";
+        q.opts.forEach((optText, optIdx) => {
+          const isCorrectOpt = optText === q.ans;
+          const isUserWrongOpt = !isUnattempted && optText === userAns && !isCorrectOpt;
+
+          let cls = "sol-opt-item";
+          let rightLabel = "";
+          if (isCorrectOpt) {
+            cls += " sol-correct-opt";
+            rightLabel = "<span>✓ Correct Answer</span>";
+          } else if (isUserWrongOpt) {
+            cls += " sol-user-wrong-opt";
+            rightLabel = "<span>✗ Your Answer</span>";
+          }
+
+          optsHtml += `
+            <div class="${cls}">
+              <span><strong>(${letters[optIdx]})</strong> ${optText}</span>
+              ${rightLabel}
+            </div>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="sol-top-row">
+            <span class="sol-q-num">Question No. ${idx + 1}</span>
+            <div class="sol-badges">
+              ${tagHtml}
+              ${statusBadgeHtml}
+            </div>
+          </div>
+          <div class="sol-q-text">${q.q}</div>
+          <div class="sol-options-grid">
+            ${optsHtml}
+          </div>
+          <div class="sol-answer-box">
+            <strong>Solution / Correct Answer:</strong> ${q.ans}
+            ${isUnattempted ? " <em>(You did not attempt this question)</em>" : ` <em>(Your selected option: ${userAns})</em>`}
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    // =====================================================
+    // WIRE UP ALL EVENT LISTENERS
+    // =====================================================
+    window.addEventListener("DOMContentLoaded", () => {
+      renderDashboard();
+
+      // Instructions view buttons
+      document.getElementById("backToDashboardFromIntroBtn").addEventListener("click", () => {
+        switchView("dashboardView");
+      });
+
+      document.getElementById("beginExamBtn").addEventListener("click", startExamSession);
+
+      // Active exam controls
+      document.getElementById("nextQuestionBtn").addEventListener("click", handleNextQuestion);
+      document.getElementById("prevQuestionBtn").addEventListener("click", handlePrevQuestion);
+      document.getElementById("clearResponseBtn").addEventListener("click", handleClearResponse);
+      document.getElementById("markReviewNextBtn").addEventListener("click", handleMarkForReviewAndNext);
+
+      document.getElementById("pauseExamBtn").addEventListener("click", openPauseModal);
+      document.getElementById("resumeExamBtn").addEventListener("click", closePauseModal);
+      document.getElementById("abortToDashboardBtn").addEventListener("click", () => {
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+        isPaused = false;
+        document.getElementById("pauseModal").classList.remove("open");
+        exitExamFullscreen();
+        switchView("dashboardView");
+      });
+
+      document.getElementById("exitFullscreenBtn").addEventListener("click", exitExamFullscreen);
+
+      document.getElementById("submitExamBtn").addEventListener("click", openSubmitConfirmationModal);
+      document.getElementById("mobileSubmitBtn").addEventListener("click", openSubmitConfirmationModal);
+      document.getElementById("cancelSubmitModalBtn").addEventListener("click", closeSubmitConfirmationModal);
+      document.getElementById("confirmSubmitExamBtn").addEventListener("click", () => {
+        finalizeExamSubmission(false);
+      });
+
+      // Result view buttons
+      document.getElementById("retakeCurrentMockBtn").addEventListener("click", () => {
+        openInstructionsScreen(selectedMockIndex);
+      });
+
+      document.getElementById("backToDashboardFromResultBtn").addEventListener("click", () => {
+        exitExamFullscreen();
+        switchView("dashboardView");
+      });
+
+      document.getElementById("filterAllBtn").addEventListener("click", () => {
+        currentResultFilter = "all";
+        updateFilterTabActiveUI();
+        renderSolutionsList();
+      });
+
+      document.getElementById("filterWrongBtn").addEventListener("click", () => {
+        currentResultFilter = "wrong";
+        updateFilterTabActiveUI();
+        renderSolutionsList();
+      });
+
+      document.getElementById("filterUnattemptedBtn").addEventListener("click", () => {
+        currentResultFilter = "unattempted";
+        updateFilterTabActiveUI();
+        renderSolutionsList();
+      });
+    });
+  </script>
+</body>
+</html>

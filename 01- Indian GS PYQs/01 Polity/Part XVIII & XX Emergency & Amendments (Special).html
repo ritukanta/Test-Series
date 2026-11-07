@@ -1,0 +1,3162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indian Polity Mock Test Portal | SSC & Railway Examination Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset & Base Styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f1f5f9;
+      color: #1e293b;
+      line-height: 1.5;
+      font-size: 14px;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Top Global Header */
+    .gov-banner {
+      background: #1e3a8a;
+      color: #ffffff;
+      padding: 8px 16px;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #fbbf24;
+    }
+    .gov-banner .brand-title {
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .gov-banner .brand-badge {
+      background: #2563eb;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .portal-nav {
+      background: #ffffff;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .portal-nav .portal-info h1 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .portal-nav .portal-info p {
+      font-size: 12px;
+      color: #64748b;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 5px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.15s ease-in-out;
+      text-decoration: none;
+      line-height: 1.2;
+    }
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .btn-primary {
+      background-color: #2563eb;
+      color: #ffffff;
+    }
+    .btn-primary:hover:not(:disabled) {
+      background-color: #1d4ed8;
+    }
+    .btn-secondary {
+      background-color: #ffffff;
+      border-color: #cbd5e1;
+      color: #334155;
+    }
+    .btn-secondary:hover:not(:disabled) {
+      background-color: #f8fafc;
+      border-color: #94a3b8;
+    }
+    .btn-warning {
+      background-color: #f59e0b;
+      color: #ffffff;
+    }
+    .btn-warning:hover:not(:disabled) {
+      background-color: #d97706;
+    }
+    .btn-success {
+      background-color: #16a34a;
+      color: #ffffff;
+    }
+    .btn-success:hover:not(:disabled) {
+      background-color: #15803d;
+    }
+    .btn-danger {
+      background-color: #dc2626;
+      color: #ffffff;
+    }
+    .btn-danger:hover:not(:disabled) {
+      background-color: #b91c1c;
+    }
+    .btn-sm {
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+
+    /* Main Container Views */
+    .view-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .hidden {
+      display: none !important;
+    }
+
+    /* DASHBOARD VIEW */
+    .dashboard-header {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+      color: #ffffff;
+      padding: 28px;
+      border-radius: 10px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    .dashboard-header h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .dashboard-header p {
+      color: #bfdbfe;
+      font-size: 14px;
+      max-width: 800px;
+    }
+    .dashboard-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .stat-pill {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(4px);
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .stat-pill .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #93c5fd;
+    }
+    .stat-pill .val {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-top: 2px;
+    }
+
+    /* Test Cards Grid */
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    .test-card {
+      background: #ffffff;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .test-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+      border-color: #cbd5e1;
+    }
+    .test-card-header {
+      padding: 20px;
+      border-bottom: 1px solid #f1f5f9;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .test-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-emergency {
+      background-color: #fee2e2;
+      color: #991b1b;
+    }
+    .badge-amendments {
+      background-color: #dbeafe;
+      color: #1e40af;
+    }
+    .badge-status {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .status-completed {
+      background-color: #dcfce7;
+      color: #166534;
+    }
+    .status-unattempted {
+      background-color: #f1f5f9;
+      color: #64748b;
+    }
+    .test-card-body {
+      padding: 20px;
+      flex: 1;
+    }
+    .test-card-body h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+    .test-card-body p {
+      color: #475569;
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+    .meta-specs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      background-color: #f8fafc;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      margin-bottom: 16px;
+    }
+    .spec-item {
+      text-align: center;
+    }
+    .spec-item .s-label {
+      font-size: 11px;
+      color: #64748b;
+      font-weight: 500;
+    }
+    .spec-item .s-val {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 2px;
+    }
+    .syllabus-bullets {
+      list-style: none;
+      font-size: 12px;
+      color: #475569;
+      margin-bottom: 16px;
+    }
+    .syllabus-bullets li {
+      padding-left: 16px;
+      position: relative;
+      margin-bottom: 4px;
+    }
+    .syllabus-bullets li::before {
+      content: "•";
+      position: absolute;
+      left: 4px;
+      color: #3b82f6;
+      font-weight: bold;
+    }
+    .test-card-footer {
+      padding: 16px 20px;
+      background-color: #f8fafc;
+      border-top: 1px solid #f1f5f9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Attempts History Section */
+    .history-card {
+      background: #ffffff;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      padding: 24px;
+      margin-top: 24px;
+    }
+    .history-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #0f172a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .table-responsive {
+      overflow-x: auto;
+    }
+    .custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      text-align: left;
+    }
+    .custom-table th {
+      background: #f8fafc;
+      padding: 10px 14px;
+      font-weight: 600;
+      color: #475569;
+      border-bottom: 2px solid #e2e8f0;
+    }
+    .custom-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #e2e8f0;
+      color: #1e293b;
+    }
+    .custom-table tr:hover td {
+      background-color: #f8fafc;
+    }
+
+    /* INTRODUCTORY / INSTRUCTIONS INTERFACE VIEW */
+    .intro-wrapper {
+      max-width: 960px;
+      margin: 20px auto;
+      background: #ffffff;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    .intro-header {
+      background: #f8fafc;
+      padding: 18px 24px;
+      border-bottom: 2px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .intro-header h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .intro-body {
+      padding: 24px 32px;
+      max-height: 70vh;
+      overflow-y: auto;
+      font-size: 13.5px;
+      color: #334155;
+    }
+    .intro-body h4 {
+      font-size: 15px;
+      color: #0f172a;
+      margin: 18px 0 8px 0;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .intro-body ol, .intro-body ul {
+      padding-left: 20px;
+      margin-bottom: 14px;
+    }
+    .intro-body li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+    .legend-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 16px 0;
+    }
+    .legend-table td {
+      padding: 8px 12px;
+      border: 1px solid #e2e8f0;
+      font-size: 12.5px;
+    }
+    .intro-footer {
+      background: #f8fafc;
+      padding: 16px 24px;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .declaration-check {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #1e293b;
+      cursor: pointer;
+    }
+    .declaration-check input {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    /* TCS / EDUQUITY EXAM INTERFACE (Light Themed ONLY) */
+    .exam-wrapper {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;
+      background: #ffffff;
+      overflow: hidden;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+    }
+    .exam-header {
+      background: #385a8a;
+      color: #ffffff;
+      padding: 8px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #273e61;
+      height: 52px;
+      flex-shrink: 0;
+    }
+    .exam-title-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .exam-title-bar h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.3px;
+    }
+    .exam-header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .timer-badge {
+      background: #ffffff;
+      color: #dc2626;
+      font-family: 'Roboto Mono', monospace;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 4px 12px;
+      border-radius: 4px;
+      border: 1px solid #b91c1c;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+    }
+    .candidate-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #f1f5f9;
+      font-size: 12px;
+    }
+    .candidate-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      border: 2px solid #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+
+    /* Sub-header / Section Bar */
+    .exam-sub-bar {
+      background: #f1f5f9;
+      border-bottom: 1px solid #cbd5e1;
+      padding: 6px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      height: 38px;
+      flex-shrink: 0;
+    }
+    .section-tab {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-bottom: none;
+      padding: 6px 14px;
+      font-weight: 600;
+      color: #1e3a8a;
+      border-radius: 4px 4px 0 0;
+      position: relative;
+      top: 6px;
+      box-shadow: 0 -1px 2px rgba(0,0,0,0.03);
+    }
+    .marking-info {
+      font-size: 12px;
+      color: #475569;
+    }
+    .marking-info .mark-pos {
+      color: #16a34a;
+      font-weight: 600;
+      margin-right: 6px;
+    }
+    .marking-info .mark-neg {
+      color: #dc2626;
+      font-weight: 600;
+    }
+
+    /* Exam Main Layout: Split into Question Area & Palette Area */
+    .exam-content {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    /* Question Workspace (Left Side) */
+    .question-workspace {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-right: 2px solid #cbd5e1;
+    }
+    .q-meta-strip {
+      padding: 8px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+    }
+    .exam-tag-pill {
+      font-size: 11px;
+      background: #e0e7ff;
+      color: #3730a3;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .q-body-scroll {
+      flex: 1;
+      padding: 24px 28px;
+      overflow-y: auto;
+    }
+    .q-statement {
+      font-size: 15px;
+      font-weight: 600;
+      color: #0f172a;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      white-space: pre-line;
+    }
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 850px;
+    }
+    .option-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: all 0.15s ease-in-out;
+    }
+    .option-item:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+    .option-item.selected {
+      background: #eff6ff;
+      border-color: #2563eb;
+    }
+    .option-item input[type="radio"] {
+      margin-top: 3px;
+      width: 17px;
+      height: 17px;
+      cursor: pointer;
+      accent-color: #2563eb;
+    }
+    .option-label-text {
+      font-size: 14px;
+      color: #1e293b;
+      line-height: 1.5;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    /* Fixed Bottom Action Bar */
+    .exam-action-bar {
+      height: 56px;
+      background: #f1f5f9;
+      border-top: 1px solid #cbd5e1;
+      padding: 8px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      gap: 8px;
+    }
+    .action-group-left, .action-group-center, .action-group-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Right Palette Sidebar */
+    .palette-sidebar {
+      width: 320px;
+      display: flex;
+      flex-direction: column;
+      background: #f8fafc;
+      flex-shrink: 0;
+      overflow: hidden;
+      border-left: 1px solid #e2e8f0;
+    }
+    .candidate-info-box {
+      padding: 10px 14px;
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .candidate-info-box img, .avatar-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 4px;
+      background: #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #1e3a8a;
+      border: 1px solid #cbd5e1;
+    }
+    .candidate-text {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .candidate-text strong {
+      color: #0f172a;
+    }
+
+    /* Palette Legend Box */
+    .palette-legend {
+      padding: 10px 14px;
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 11px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #334155;
+    }
+
+    /* TCS Question Palette Badges */
+    .p-badge {
+      width: 26px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #ffffff;
+      border-radius: 3px;
+      position: relative;
+    }
+    .p-badge.not-visited {
+      background-color: #94a3b8;
+      border: 1px solid #64748b;
+    }
+    .p-badge.not-answered {
+      background-color: #ef4444;
+      border: 1px solid #b91c1c;
+      clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
+      height: 25px;
+    }
+    .p-badge.answered {
+      background-color: #22c55e;
+      border: 1px solid #15803d;
+      clip-path: polygon(0 30%, 50% 0, 100% 30%, 100% 100%, 0 100%);
+      height: 25px;
+    }
+    .p-badge.marked {
+      background-color: #8b5cf6;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      border: 1px solid #6d28d9;
+    }
+    .p-badge.answered-marked {
+      background-color: #8b5cf6;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      border: 1px solid #6d28d9;
+    }
+    .p-badge.answered-marked::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 8px;
+      height: 8px;
+      background-color: #22c55e;
+      border-radius: 50%;
+      border: 1.5px solid #ffffff;
+    }
+
+    /* Question Grid Scrollable Container */
+    .palette-grid-header {
+      padding: 8px 14px;
+      background: #e2e8f0;
+      font-size: 12px;
+      font-weight: 700;
+      color: #334155;
+    }
+    .palette-grid-scroll {
+      flex: 1;
+      padding: 12px;
+      overflow-y: auto;
+      max-height: calc(100vh - 310px);
+    }
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+    .palette-btn {
+      height: 34px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: all 0.1s;
+    }
+    .palette-btn:hover {
+      filter: brightness(0.92);
+      transform: scale(1.04);
+    }
+    .palette-btn.active {
+      outline: 2.5px solid #1e3a8a;
+      outline-offset: 1px;
+    }
+
+    /* Modal / Popups */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(2px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+    }
+    .modal-box {
+      background: #ffffff;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 540px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      animation: modalSlide 0.2s ease-out;
+    }
+    @keyframes modalSlide {
+      from { transform: translateY(-15px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .modal-header {
+      background: #385a8a;
+      color: #ffffff;
+      padding: 14px 20px;
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .modal-body {
+      padding: 20px;
+      font-size: 13.5px;
+      color: #334155;
+    }
+    .modal-footer {
+      background: #f8fafc;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    /* Pause Overlay */
+    .pause-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.96);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 90;
+      text-align: center;
+      padding: 24px;
+    }
+    .pause-overlay h3 {
+      font-size: 22px;
+      color: #0f172a;
+      margin-bottom: 12px;
+    }
+    .pause-overlay p {
+      color: #64748b;
+      margin-bottom: 24px;
+      max-width: 420px;
+    }
+
+    /* ANALYSIS & SCORECARD VIEW */
+    .analysis-container {
+      max-width: 1000px;
+      margin: 24px auto;
+    }
+    .scorecard-banner {
+      background: linear-gradient(135deg, #1e3a8a 0%, #0284c7 100%);
+      color: #ffffff;
+      border-radius: 10px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .score-left h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .score-left p {
+      color: #bae6fd;
+      font-size: 13px;
+    }
+    .score-badge-large {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 16px 28px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .score-badge-large .s-num {
+      font-size: 36px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+    }
+    .score-badge-large .s-sub {
+      font-size: 12px;
+      color: #e0f2fe;
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .metric-card {
+      background: #ffffff;
+      padding: 16px 20px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .metric-card .m-title {
+      font-size: 12px;
+      color: #64748b;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .metric-card .m-val {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 4px;
+    }
+
+    /* Solutions Section: STRICT RULE (ONLY Incorrect & Unattempted) */
+    .solutions-wrapper {
+      background: #ffffff;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      padding: 24px;
+      margin-bottom: 30px;
+    }
+    .solutions-header {
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .solutions-header h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .solutions-badge {
+      background: #fee2e2;
+      color: #991b1b;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .solution-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 18px;
+      background: #ffffff;
+    }
+    .solution-card.type-incorrect {
+      border-left: 4px solid #ef4444;
+    }
+    .solution-card.type-unattempted {
+      border-left: 4px solid #94a3b8;
+    }
+    .sol-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .tag-wrong {
+      color: #b91c1c;
+      background: #fef2f2;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .tag-unatt {
+      color: #475569;
+      background: #f1f5f9;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .sol-question {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 12px;
+      white-space: pre-line;
+    }
+    .sol-options-breakdown {
+      margin-bottom: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 13px;
+    }
+    .sol-opt-row {
+      padding: 8px 12px;
+      border-radius: 5px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+    }
+    .sol-opt-row.is-correct {
+      background: #f0fdf4;
+      border-color: #86efac;
+      color: #166534;
+      font-weight: 600;
+    }
+    .sol-opt-row.user-wrong {
+      background: #fef2f2;
+      border-color: #fca5a5;
+      color: #991b1b;
+      font-weight: 600;
+    }
+    .sol-explanation-box {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-size: 13px;
+      color: #0369a1;
+      line-height: 1.5;
+    }
+    .sol-explanation-box strong {
+      color: #0c4a6e;
+    }
+
+    /* Mobile Responsive Rules */
+    @media (max-width: 840px) {
+      /* Per prompt: Hide palette for mobile phone interface */
+      .palette-sidebar {
+        display: none !important;
+      }
+      .exam-action-bar {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px;
+      }
+      .action-group-left, .action-group-center, .action-group-right {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Global Bar -->
+  <header class="gov-banner">
+    <div class="brand-title">
+      <span>GOVERNMENT EXAMINATION PORTAL</span>
+      <span class="brand-badge">EDUTECH MOCK ENGINE</span>
+    </div>
+    <div style="font-size: 11px; opacity: 0.9;">
+      TCS / Eduquity SSC-Railway Interface Simulator
+    </div>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav class="portal-nav">
+    <div class="portal-info">
+      <h1>Indian Polity Mock Test Dashboard</h1>
+      <p>Exam-oriented Practice Series: Emergency Provisions & Constitutional Amendments</p>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn-secondary btn-sm" id="btnNavHome">Dashboard Home</button>
+      <button class="btn btn-secondary btn-sm" id="btnClearHistory">Reset Scores</button>
+    </div>
+  </nav>
+
+  <!-- VIEW 1: DASHBOARD -->
+  <main id="viewDashboard" class="view-container">
+    <section class="dashboard-header">
+      <h2>Constitutional Law & Indian Polity Mock Tests</h2>
+      <p>Master Articles 352-360 (Part XVIII) and Article 368 (Part XX) with 100% factually verified, high-yield examination questions designed according to TCS & Eduquity SSC/Railway testing standards.</p>
+      <div class="dashboard-stats">
+        <div class="stat-pill">
+          <div class="label">Total Mock Tests</div>
+          <div class="val">2 Tests (60 MCQs)</div>
+        </div>
+        <div class="stat-pill">
+          <div class="label">Total Attempted</div>
+          <div class="val" id="dashTotalAttempted">0 / 2</div>
+        </div>
+        <div class="stat-pill">
+          <div class="label">Best Score</div>
+          <div class="val" id="dashBestScore">-- / 60</div>
+        </div>
+        <div class="stat-pill">
+          <div class="label">Marking Scheme</div>
+          <div class="val">+2.0 | -0.50</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Test Selection Cards Grid -->
+    <section class="test-grid">
+      <!-- Test 1: Emergency Provisions -->
+      <article class="test-card" id="cardTestEmergency">
+        <div class="test-card-header">
+          <span class="test-badge badge-emergency">Part XVIII: Articles 352-360</span>
+          <span class="badge-status status-unattempted" id="statusBadgeEmergency">Not Attempted</span>
+        </div>
+        <div class="test-card-body">
+          <h3>Mock Test 1: Emergency Provisions</h3>
+          <p>Comprehensive 30 questions covering National Emergency (Art 352), State Emergency/President's Rule (Art 356), and Financial Emergency (Art 360).</p>
+          <div class="meta-specs">
+            <div class="spec-item">
+              <div class="s-label">Questions</div>
+              <div class="s-val">30 MCQs</div>
+            </div>
+            <div class="spec-item">
+              <div class="s-label">Duration</div>
+              <div class="s-val">18 Mins</div>
+            </div>
+            <div class="spec-item">
+              <div class="s-label">Max Marks</div>
+              <div class="s-val">60 Marks</div>
+            </div>
+          </div>
+          <ul class="syllabus-bullets">
+            <li>Grounds of Proclamation: War, External Aggression, Armed Rebellion (44th CAA)</li>
+            <li>Effects on Fundamental Rights (Articles 358 & 359; Non-suspension of Arts 20 & 21)</li>
+            <li>Approval timeframes, majorities, and revocation mechanisms</li>
+            <li>Minerva Mills (1980) & S.R. Bommai (1994) landmark Supreme Court rulings</li>
+          </ul>
+        </div>
+        <div class="test-card-footer">
+          <button class="btn btn-primary" id="btnStartEmergency">Launch Test 1</button>
+          <button class="btn btn-secondary hidden" id="btnAnalysisEmergency">View Analysis</button>
+        </div>
+      </article>
+
+      <!-- Test 2: Constitutional Amendments -->
+      <article class="test-card" id="cardTestAmendments">
+        <div class="test-card-header">
+          <span class="test-badge badge-amendments">Part XX: Article 368</span>
+          <span class="badge-status status-unattempted" id="statusBadgeAmendments">Not Attempted</span>
+        </div>
+        <div class="test-card-body">
+          <h3>Mock Test 2: Constitutional Amendments</h3>
+          <p>Comprehensive 30 questions covering Amendment Procedures, Basic Structure Doctrine, 3 Types of Majorities, and Recent Amendments (100th to 106th).</p>
+          <div class="meta-specs">
+            <div class="spec-item">
+              <div class="s-label">Questions</div>
+              <div class="s-val">30 MCQs</div>
+            </div>
+            <div class="spec-item">
+              <div class="s-label">Duration</div>
+              <div class="s-val">18 Mins</div>
+            </div>
+            <div class="spec-item">
+              <div class="s-label">Max Marks</div>
+              <div class="s-val">60 Marks</div>
+            </div>
+          </div>
+          <ul class="syllabus-bullets">
+            <li>Procedure under Article 368 & source (South African Constitution)</li>
+            <li>Provisions amended by Simple vs Special vs State Ratification (1/2 States)</li>
+            <li>Basic Structure Doctrine (Kesavananda Bharati 1973) & presidential assent</li>
+            <li>Recent CAAs: 100th (LBA), 101st (GST), 103rd (EWS), 106th (Women Reservation)</li>
+          </ul>
+        </div>
+        <div class="test-card-footer">
+          <button class="btn btn-primary" id="btnStartAmendments">Launch Test 2</button>
+          <button class="btn btn-secondary hidden" id="btnAnalysisAmendments">View Analysis</button>
+        </div>
+      </article>
+    </section>
+
+    <!-- Past Performance / History Table -->
+    <section class="history-card">
+      <h3>
+        <span>Your Test Attempts & Score Records</span>
+        <span style="font-size: 12px; font-weight: normal; color: #64748b;">Saved in LocalStorage</span>
+      </h3>
+      <div class="table-responsive">
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>Date & Time</th>
+              <th>Mock Test</th>
+              <th>Score (/60)</th>
+              <th>Correct (+2)</th>
+              <th>Incorrect (-0.5)</th>
+              <th>Unattempted</th>
+              <th>Accuracy</th>
+              <th>Time Taken</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="historyTableBody">
+            <tr>
+              <td colspan="9" style="text-align: center; color: #94a3b8; padding: 24px;">No test attempts recorded yet. Click 'Launch Test' above to start your first mock.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- VIEW 2: INTRODUCTORY / INSTRUCTIONS SCREEN (Pre-Exam Interface) -->
+  <div id="viewIntro" class="view-container hidden">
+    <div class="intro-wrapper">
+      <div class="intro-header">
+        <div>
+          <h2 id="introTestTitle">Mock Test: General Instructions</h2>
+          <p style="font-size: 12px; color: #64748b;">Please read the following instructions carefully before starting the exam.</p>
+        </div>
+        <button class="btn btn-secondary btn-sm" id="btnIntroBack">Back to Dashboard</button>
+      </div>
+
+      <div class="intro-body">
+        <h4>General Examination Rules & Scheme</h4>
+        <ul>
+          <li><strong>Total Duration:</strong> <strong>18 Minutes</strong> (Strictly calculated as 36 seconds per question for 30 questions).</li>
+          <li><strong>Total Number of Questions:</strong> <strong>30 Multiple Choice Questions (MCQs)</strong>.</li>
+          <li><strong>Marking Scheme:</strong>
+            <ul>
+              <li><strong>+2.0 Marks</strong> for each correct response.</li>
+              <li><strong>-0.50 Marks</strong> penalty for each incorrect response (Negative Marking).</li>
+              <li><strong>0.00 Marks</strong> for unattempted questions.</li>
+            </ul>
+          </li>
+          <li>The countdown timer at the top right of the screen will show the remaining time available for you to complete the examination. When the timer reaches zero, the examination will end by itself and auto-submit.</li>
+        </ul>
+
+        <h4>Question Palette Color Codes (TCS / Eduquity Standard)</h4>
+        <p>The Question Palette displayed on the right side of the screen will show the status of each question using one of the following symbols:</p>
+        <table class="legend-table">
+          <tr>
+            <td style="width: 50px; text-align: center;"><span class="p-badge not-visited">1</span></td>
+            <td><strong>Not Visited:</strong> You have not visited the question yet.</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;"><span class="p-badge not-answered">2</span></td>
+            <td><strong>Not Answered:</strong> You have visited the question, but not answered it.</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;"><span class="p-badge answered">3</span></td>
+            <td><strong>Answered:</strong> You have answered the question.</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;"><span class="p-badge marked">4</span></td>
+            <td><strong>Marked for Review:</strong> You have NOT answered the question, but have marked it for review.</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;"><span class="p-badge answered-marked">5</span></td>
+            <td><strong>Answered & Marked for Review:</strong> You have answered the question and marked it for review. (This will be considered for evaluation).</td>
+          </tr>
+        </table>
+
+        <h4>Navigating to a Question</h4>
+        <ol>
+          <li>Click on the question number in the Question Palette to go directly to that question.</li>
+          <li>Click on <strong>Next</strong> to save your answer for the current question and then move to the next question.</li>
+          <li>Click on <strong>Previous</strong> to go back to the previous question.</li>
+          <li>Click on <strong>Mark for Review & Next</strong> to save your answer for the current question (if answered), mark it for review, and then go to the next question.</li>
+          <li>Click on <strong>Clear Response</strong> to deselect the chosen option.</li>
+        </ol>
+
+        <h4>Important Notice</h4>
+        <ul>
+          <li>Fullscreen mode will be requested upon clicking 'I am ready to begin'. You can exit fullscreen at any time using the 'Exit Fullscreen' button.</li>
+          <li>You can pause the test using the 'Pause' button if needed.</li>
+          <li><strong>Solutions & Answer Key:</strong> Per exam guidelines, detailed solutions will be provided <strong>ONLY for incorrect and unattempted questions</strong> upon submission for targeted revision.</li>
+        </ul>
+      </div>
+
+      <div class="intro-footer">
+        <label class="declaration-check">
+          <input type="checkbox" id="chkIntroDeclaration">
+          <span>I have read and understood all the instructions. I declare that I will abide by the rules of the examination.</span>
+        </label>
+        <button class="btn btn-success" id="btnIntroBegin" disabled>I am ready to begin</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- VIEW 3: LIVE EXAM INTERFACE (TCS / Eduquity SSC / Railway Style - Light Themed ONLY) -->
+  <div id="viewExam" class="exam-wrapper hidden">
+    <!-- Exam Top Header -->
+    <header class="exam-header">
+      <div class="exam-title-bar">
+        <span style="font-weight: 800; font-size: 14px; background: #2563eb; padding: 2px 8px; border-radius: 4px;">SSC / RAILWAY</span>
+        <h2 id="liveExamTitle">Mock Test: Emergency Provisions</h2>
+      </div>
+      <div class="exam-header-right">
+        <div class="timer-badge" id="examTimerDisplay">
+          <span style="font-size: 12px; font-weight: normal; color: #475569;">Time Left:</span>
+          <span id="timerText">18:00</span>
+        </div>
+        <div class="candidate-pill">
+          <div class="candidate-avatar">A</div>
+          <div>
+            <div style="font-weight: 700;">Aspirant</div>
+            <div style="font-size: 10px; opacity: 0.8;">Roll: 2026POL01</div>
+          </div>
+        </div>
+        <button class="btn btn-secondary btn-sm" id="btnExitFullscreen" title="Exit Fullscreen">Exit Fullscreen</button>
+        <button class="btn btn-warning btn-sm" id="btnPauseTest" title="Pause Test">Pause</button>
+      </div>
+    </header>
+
+    <!-- Sub-header / Section Bar -->
+    <div class="exam-sub-bar">
+      <div class="section-tab">General Studies: Indian Polity</div>
+      <div class="marking-info">
+        Marks for correct answer: <span class="mark-pos">+2.00</span> | Negative mark: <span class="mark-neg">-0.50</span>
+      </div>
+    </div>
+
+    <!-- Main Exam Body Area (Question + Palette) -->
+    <div class="exam-content">
+      <!-- Left Question Workspace -->
+      <section class="question-workspace">
+        <div class="q-meta-strip">
+          <span id="qNumberDisplay">Question No. 1</span>
+          <span class="exam-tag-pill" id="qTagDisplay">SSC CGL / Railway</span>
+        </div>
+
+        <div class="q-body-scroll">
+          <div class="q-statement" id="qStatementText">Loading question statement...</div>
+          <div class="options-list" id="optionsContainer">
+            <!-- Dynamic 4 Distractor Options rendered here -->
+          </div>
+        </div>
+
+        <!-- Fixed Bottom Action Controls -->
+        <footer class="exam-action-bar">
+          <div class="action-group-left">
+            <button class="btn btn-secondary btn-sm" id="btnPrevious">Previous</button>
+            <button class="btn btn-primary btn-sm" id="btnNext">Next</button>
+          </div>
+          <div class="action-group-center">
+            <button class="btn btn-secondary btn-sm" id="btnClearResponse">Clear</button>
+            <button class="btn btn-warning btn-sm" id="btnMarkReview">Mark for Review & Next</button>
+          </div>
+          <div class="action-group-right">
+            <button class="btn btn-success btn-sm" id="btnSubmitExam">Submit</button>
+          </div>
+        </footer>
+      </section>
+
+      <!-- Right Side Question Palette -->
+      <aside class="palette-sidebar">
+        <div class="candidate-info-box">
+          <div class="avatar-box">ASP</div>
+          <div class="candidate-text">
+            <strong>Candidate: Aspirant</strong><br>
+            <span style="color: #64748b;">Polity Mock Test Series</span>
+          </div>
+        </div>
+
+        <!-- Palette Legend -->
+        <div class="palette-legend">
+          <div class="legend-item">
+            <span class="p-badge answered" id="countAnswered">0</span> Answered
+          </div>
+          <div class="legend-item">
+            <span class="p-badge not-answered" id="countNotAnswered">0</span> Not Answered
+          </div>
+          <div class="legend-item">
+            <span class="p-badge not-visited" id="countNotVisited">30</span> Not Visited
+          </div>
+          <div class="legend-item">
+            <span class="p-badge marked" id="countMarked">0</span> Marked for Review
+          </div>
+          <div class="legend-item" style="grid-column: span 2;">
+            <span class="p-badge answered-marked" id="countAnsweredMarked">0</span> Ans & Marked for Review
+          </div>
+        </div>
+
+        <!-- Palette Header & Scrollable Question Grid -->
+        <div class="palette-grid-header">QUESTION PALETTE (30 QUESTIONS)</div>
+        <div class="palette-grid-scroll">
+          <div class="palette-grid" id="paletteButtonContainer">
+            <!-- 30 Palette Buttons Generated Dynamically -->
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Pause Modal Overlay -->
+    <div id="pauseOverlay" class="pause-overlay hidden">
+      <h3>Test Paused</h3>
+      <p>The countdown timer has been stopped. The question contents are hidden during pause. Click resume when you are ready to continue.</p>
+      <button class="btn btn-primary" id="btnResumeExam">Resume Test</button>
+    </div>
+  </div>
+
+
+  <!-- VIEW 4: ANALYSIS & SCORECARD (Post-Submission) -->
+  <div id="viewAnalysis" class="view-container hidden">
+    <div class="analysis-container">
+      <div class="scorecard-banner">
+        <div class="score-left">
+          <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; background: rgba(255,255,255,0.2); padding: 3px 8px; border-radius: 4px; font-weight: 600;">Test Result & Analysis</span>
+          <h2 id="analysisTestTitle" style="margin-top: 8px;">Mock Test 1: Emergency Provisions</h2>
+          <p id="analysisMetaText">Completed on Nov 6, 2026 | Total Questions: 30</p>
+        </div>
+        <div class="score-badge-large">
+          <div class="s-num" id="analysisScoreVal">48.5</div>
+          <div class="s-sub">OUT OF 60 MARKS</div>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="analytics-grid">
+        <div class="metric-card">
+          <div class="m-title">Accuracy</div>
+          <div class="m-val" id="analysisAccuracyVal">85.0%</div>
+        </div>
+        <div class="metric-card">
+          <div class="m-title">Attempted</div>
+          <div class="m-val" id="analysisAttemptedVal">28 / 30</div>
+        </div>
+        <div class="metric-card">
+          <div class="m-title">Correct (+2)</div>
+          <div class="m-val" style="color: #16a34a;" id="analysisCorrectVal">25</div>
+        </div>
+        <div class="metric-card">
+          <div class="m-title">Incorrect (-0.5)</div>
+          <div class="m-val" style="color: #dc2626;" id="analysisIncorrectVal">3</div>
+        </div>
+        <div class="metric-card">
+          <div class="m-title">Unattempted</div>
+          <div class="m-val" style="color: #64748b;" id="analysisUnattemptedVal">2</div>
+        </div>
+        <div class="metric-card">
+          <div class="m-title">Time Taken</div>
+          <div class="m-val" id="analysisTimeVal">12m 45s</div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display: flex; gap: 12px; margin-bottom: 24px;">
+        <button class="btn btn-primary" id="btnAnalysisToDash">Back to Dashboard</button>
+        <button class="btn btn-secondary" id="btnAnalysisRetake">Retake This Mock</button>
+      </div>
+
+      <!-- Solutions Area: STRICTLY for ONLY Incorrect & Un-attempted Questions -->
+      <section class="solutions-wrapper">
+        <div class="solutions-header">
+          <div>
+            <h3>Review & Solutions (Incorrect & Unattempted Questions)</h3>
+            <p style="font-size: 12px; color: #64748b; margin-top: 2px;">
+              Per exam rules, comprehensive solutions and pedagogical explanations are displayed <strong>ONLY for incorrect and unattempted questions</strong> for targeted revision.
+            </p>
+          </div>
+          <span class="solutions-badge" id="solutionsCountBadge">5 Questions</span>
+        </div>
+
+        <div id="solutionsCardContainer">
+          <!-- Populated dynamically -->
+        </div>
+      </section>
+    </div>
+  </div>
+
+
+  <!-- SUBMIT CONFIRMATION MODAL -->
+  <div id="submitModal" class="modal-backdrop hidden">
+    <div class="modal-box">
+      <div class="modal-header">Confirm Exam Submission</div>
+      <div class="modal-body">
+        <p style="margin-bottom: 14px; font-weight: 500;">Please review your attempt summary before final submission:</p>
+        <table class="legend-table" style="margin-bottom: 16px;">
+          <tr>
+            <td><strong>Total Questions</strong></td>
+            <td style="font-weight: 700;">30</td>
+          </tr>
+          <tr>
+            <td>Answered</td>
+            <td style="color: #16a34a; font-weight: 700;" id="sumModalAnswered">0</td>
+          </tr>
+          <tr>
+            <td>Not Answered</td>
+            <td style="color: #dc2626; font-weight: 700;" id="sumModalNotAnswered">0</td>
+          </tr>
+          <tr>
+            <td>Marked for Review (Unanswered)</td>
+            <td style="color: #7c3aed; font-weight: 700;" id="sumModalMarked">0</td>
+          </tr>
+          <tr>
+            <td>Answered & Marked for Review</td>
+            <td style="color: #7c3aed; font-weight: 700;" id="sumModalAnsMarked">0</td>
+          </tr>
+          <tr>
+            <td>Not Visited</td>
+            <td style="color: #64748b; font-weight: 700;" id="sumModalNotVisited">30</td>
+          </tr>
+        </table>
+        <p style="font-size: 12.5px; color: #dc2626; font-weight: 600;">
+          Are you sure you want to submit? You will not be able to change your responses after final submission.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-sm" id="btnCancelSubmit">Cancel & Resume</button>
+        <button class="btn btn-success btn-sm" id="btnConfirmSubmit">Confirm & Submit Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GENERAL IN-PAGE NOTICE MODAL (Replaces blocked alert()) -->
+  <div id="noticeModal" class="modal-backdrop hidden">
+    <div class="modal-box">
+      <div class="modal-header" id="noticeModalTitle">Examination Notice</div>
+      <div class="modal-body" id="noticeModalBody">Notice content</div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-sm" id="btnNoticeOk">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GENERAL IN-PAGE CONFIRM MODAL (Replaces blocked confirm()) -->
+  <div id="confirmActionModal" class="modal-backdrop hidden">
+    <div class="modal-box">
+      <div class="modal-header" id="confirmModalTitle">Please Confirm</div>
+      <div class="modal-body" id="confirmModalBody">Are you sure?</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-sm" id="btnConfirmCancel">Cancel</button>
+        <button class="btn btn-danger btn-sm" id="btnConfirmProceed">Proceed</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- EMBEDDED JAVASCRIPT LOGIC -->
+  <script>
+    (function() {
+      "use strict";
+
+      // 1. Raw Questions Data
+      const RAW_EMERGENCY_QUESTIONS = [
+  {
+    "id": 1,
+    "tag": "SSC CGL / Railway",
+    "question": "Under which Part of the Indian Constitution are the Emergency Provisions contained?",
+    "options": [
+      "Part XVIII",
+      "Part XX",
+      "Part XV",
+      "Part XVII"
+    ],
+    "answer": 0,
+    "explanation": "Emergency provisions are incorporated in Part XVIII of the Constitution of India, covering Articles 352 to 360."
+  },
+  {
+    "id": 2,
+    "tag": "SSC CPO / RRB NTPC",
+    "question": "The Emergency Provisions in the Indian Constitution are borrowed from which of the following sources?",
+    "options": [
+      "Government of India Act 1935 and Weimar Constitution of Germany",
+      "Constitution of the USA and Constitution of South Africa",
+      "Government of India Act 1919 and Irish Constitution",
+      "British Constitution and Canadian Constitution"
+    ],
+    "answer": 0,
+    "explanation": "Emergency provisions are borrowed from the Government of India Act 1935, while the suspension of Fundamental Rights during Emergency is borrowed from the Weimar Constitution of Germany."
+  },
+  {
+    "id": 3,
+    "tag": "UPSC CDS / SSC CGL",
+    "question": "Which Articles in the Indian Constitution deal with the Emergency Provisions?",
+    "options": [
+      "Article 352 to 360",
+      "Article 350 to 365",
+      "Article 368 to 378",
+      "Article 343 to 351"
+    ],
+    "answer": 0,
+    "explanation": "Articles 352 to 360 in Part XVIII of the Constitution deal with the three types of emergencies: National Emergency (352), State Emergency/President's Rule (356), and Financial Emergency (360)."
+  },
+  {
+    "id": 4,
+    "tag": "SSC CGL",
+    "question": "Under Article 352, on which of the following grounds can the President proclaim a National Emergency?",
+    "options": [
+      "War, External Aggression, or Armed Rebellion",
+      "War, Armed Rebellion, or Internal Disturbance",
+      "Financial Instability, War, or Communal Riots",
+      "External Aggression, Insurgency, or Civil Disobedience"
+    ],
+    "answer": 0,
+    "explanation": "Article 352 provides that a National Emergency can be declared on the grounds of War, External Aggression, or Armed Rebellion."
+  },
+  {
+    "id": 5,
+    "tag": "SSC MTS / RRB Group D",
+    "question": "Which Constitutional Amendment substituted the term 'Armed Rebellion' in place of 'Internal Disturbance' under Article 352?",
+    "options": [
+      "44th Constitutional Amendment Act, 1978",
+      "42nd Constitutional Amendment Act, 1976",
+      "38th Constitutional Amendment Act, 1975",
+      "24th Constitutional Amendment Act, 1971"
+    ],
+    "answer": 0,
+    "explanation": "The 44th Constitutional Amendment Act, 1978 replaced the vague phrase 'internal disturbance' with 'armed rebellion' to prevent future political misuse of emergency powers."
+  },
+  {
+    "id": 6,
+    "tag": "UPSC CAPF / SSC CGL",
+    "question": "By which Constitutional Amendment was it made mandatory for the President to declare a National Emergency only after receiving a written recommendation from the Cabinet?",
+    "options": [
+      "44th Constitutional Amendment Act, 1978",
+      "42nd Constitutional Amendment Act, 1976",
+      "52nd Constitutional Amendment Act, 1985",
+      "38th Constitutional Amendment Act, 1975"
+    ],
+    "answer": 0,
+    "explanation": "The 44th Constitutional Amendment Act of 1978 mandated that the President can declare a National Emergency only after receiving a written decision/recommendation from the Union Cabinet (Prime Minister and other Ministers of Cabinet rank)."
+  },
+  {
+    "id": 7,
+    "tag": "SSC CGL / Railway",
+    "question": "A proclamation of National Emergency under Article 352 must be approved by both Houses of Parliament within what timeframe from the date of its issue?",
+    "options": [
+      "Within 1 month",
+      "Within 2 months",
+      "Within 3 months",
+      "Within 6 months"
+    ],
+    "answer": 0,
+    "explanation": "Originally, the approval period was two months, but the 44th Constitutional Amendment Act of 1978 reduced this period to 1 month from the date of issue."
+  },
+  {
+    "id": 8,
+    "tag": "UPSC CDS / State PCS",
+    "question": "What type of majority is required in both Houses of Parliament for approving a proclamation of National Emergency?",
+    "options": [
+      "Special Majority (Majority of total membership and not less than 2/3rd members present and voting)",
+      "Simple Majority of members present and voting",
+      "Absolute Majority of total membership only",
+      "Special Majority with ratification by half of state legislatures"
+    ],
+    "answer": 0,
+    "explanation": "Under the 44th Constitutional Amendment Act, 1978, a proclamation of National Emergency or its continuance must be approved by both Houses of Parliament by a Special Majority."
+  },
+  {
+    "id": 9,
+    "tag": "SSC CGL",
+    "question": "Once approved by Parliament, for how long does a National Emergency remain in operation at a time?",
+    "options": [
+      "6 Months",
+      "1 Year",
+      "3 Years",
+      "Indefinitely without periodic approval"
+    ],
+    "answer": 0,
+    "explanation": "If approved by both Houses, a National Emergency continues for 6 months, and can be extended to an indefinite period with the approval of Parliament every 6 months."
+  },
+  {
+    "id": 10,
+    "tag": "UPSC CAPF / SSC CPO",
+    "question": "In which landmark case did the Supreme Court hold that the proclamation of National Emergency is subject to Judicial Review?",
+    "options": [
+      "Minerva Mills Case vs Union of India (1980)",
+      "Kesavananda Bharati Case (1973)",
+      "Golaknath Case (1967)",
+      "Maneka Gandhi Case (1978)"
+    ],
+    "answer": 0,
+    "explanation": "In Minerva Mills vs Union of India (1980), the Supreme Court ruled that a proclamation of National Emergency is subject to Judicial Review on the grounds of mala fides or improper justification."
+  },
+  {
+    "id": 11,
+    "tag": "RRB NTPC / SSC CGL",
+    "question": "Which Constitutional Amendment had earlier barred Judicial Review of the proclamation of Emergency, before being overturned?",
+    "options": [
+      "38th Constitutional Amendment Act, 1975",
+      "42nd Constitutional Amendment Act, 1976",
+      "24th Constitutional Amendment Act, 1971",
+      "44th Constitutional Amendment Act, 1978"
+    ],
+    "answer": 0,
+    "explanation": "The 38th Constitutional Amendment Act (1975) declared that the President's satisfaction in issuing an emergency proclamation was final and conclusive and beyond judicial review."
+  },
+  {
+    "id": 12,
+    "tag": "SSC CGL / State PCS",
+    "question": "How can a National Emergency be revoked by the Lok Sabha as per the 44th Amendment Act?",
+    "options": [
+      "By passing a resolution disapproving its continuance with a Simple Majority",
+      "By passing a resolution with a Special Majority in both Houses",
+      "By a joint sitting of Parliament with a two-thirds majority",
+      "Only by an impeachment resolution against the Prime Minister"
+    ],
+    "answer": 0,
+    "explanation": "Under the 44th Amendment Act 1978, if the Lok Sabha passes a resolution disapproving the continuation of the emergency by a Simple Majority, the President must revoke the proclamation."
+  },
+  {
+    "id": 13,
+    "tag": "UPSC CDS / SSC CGL",
+    "question": "Can the President revoke a National Emergency on his own without Parliamentary approval?",
+    "options": [
+      "Yes, the President can revoke it at any time without requiring Parliamentary approval",
+      "No, revocation always requires approval of both Houses of Parliament",
+      "No, revocation requires a 2/3rd majority resolution in Rajya Sabha",
+      "Yes, but only after completing a minimum period of 6 months"
+    ],
+    "answer": 0,
+    "explanation": "A proclamation of emergency may be revoked by the President at any time by a subsequent proclamation. Such a proclamation does not require parliamentary approval."
+  },
+  {
+    "id": 14,
+    "tag": "SSC CGL",
+    "question": "Which Article of the Constitution deals with the executive and legislative effects of a National Emergency on Centre-State relations?",
+    "options": [
+      "Article 353",
+      "Article 354",
+      "Article 358",
+      "Article 359"
+    ],
+    "answer": 0,
+    "explanation": "Article 353 outlines the effects of a proclamation of emergency, including the Union's power to give executive directions to states on any matter and Parliament's power to make laws on State List subjects."
+  },
+  {
+    "id": 15,
+    "tag": "SSC CPO / Railway",
+    "question": "During a National Emergency, what happens to the federal nature of the Indian political system?",
+    "options": [
+      "The federal system transforms into a Unitary system without formal constitutional amendment",
+      "The Constitution is formally dissolved and military rule takes over",
+      "State Governments are automatically abolished permanently",
+      "The system becomes a loose confederation of independent states"
+    ],
+    "answer": 0,
+    "explanation": "During a National Emergency, the normal federal structure is converted into a unitary one without a formal amendment of the Constitution."
+  },
+  {
+    "id": 16,
+    "tag": "UPSC CAPF / SSC CGL",
+    "question": "When Parliament makes laws on subjects in the State List during a National Emergency, for how long do these laws remain operative after the Emergency ceases to exist?",
+    "options": [
+      "6 Months",
+      "1 Year",
+      "3 Months",
+      "Immediately inoperative upon revocation"
+    ],
+    "answer": 0,
+    "explanation": "Under Article 250 and Article 353, laws made by Parliament on State subjects during an Emergency become inoperative six months after the emergency ceases to operate."
+  },
+  {
+    "id": 17,
+    "tag": "SSC CGL / RRB NTPC",
+    "question": "During the operation of a National Emergency, by how much time can the normal term of the Lok Sabha be extended by Parliament by law?",
+    "options": [
+      "For 1 year at a time, but not exceeding 6 months after the emergency has ceased to operate",
+      "For 2 years at a time, without any upper limit",
+      "For 6 months only, after which general elections are mandatory",
+      "For an indefinite period until a new government takes oath"
+    ],
+    "answer": 0,
+    "explanation": "While a proclamation of National Emergency is in operation, the life of the Lok Sabha may be extended beyond the normal 5 years by law of Parliament for 1 year at a time, but not beyond 6 months after the emergency ceases to operate."
+  },
+  {
+    "id": 18,
+    "tag": "SSC CGL / State PCS",
+    "question": "Which Article of the Constitution deals with the automatic suspension of Fundamental Rights guaranteed under Article 19?",
+    "options": [
+      "Article 358",
+      "Article 359",
+      "Article 356",
+      "Article 352"
+    ],
+    "answer": 0,
+    "explanation": "Article 358 deals with the suspension of the Fundamental Rights guaranteed by Article 19 as soon as a National Emergency is proclaimed."
+  },
+  {
+    "id": 19,
+    "tag": "UPSC CDS / SSC CGL",
+    "question": "Under Article 358, the Fundamental Rights guaranteed by Article 19 can ONLY be suspended on which grounds?",
+    "options": [
+      "War and External Aggression",
+      "Armed Rebellion only",
+      "Internal Disturbance and Financial Instability",
+      "Any ground on which emergency is proclaimed"
+    ],
+    "answer": 0,
+    "explanation": "As per the 44th Amendment Act, Article 19 can only be suspended when a National Emergency is declared on the grounds of War or External Aggression, and NOT in the case of Armed Rebellion."
+  },
+  {
+    "id": 20,
+    "tag": "SSC CGL / UPSC CAPF",
+    "question": "Which Fundamental Rights under Part III can NEVER be suspended even during a National Emergency under Article 359?",
+    "options": [
+      "Article 20 and Article 21",
+      "Article 14 and Article 19",
+      "Article 21 and Article 32",
+      "Article 25 and Article 26"
+    ],
+    "answer": 0,
+    "explanation": "The 44th Amendment Act 1978 restricted Article 359 by stating that the right to move the court for the enforcement of Fundamental Rights guaranteed by Article 20 (protection in respect of conviction for offences) and Article 21 (protection of life and personal liberty) can never be suspended."
+  },
+  {
+    "id": 21,
+    "tag": "RRB NTPC / SSC CGL",
+    "question": "How many times has a National Emergency been proclaimed in India so far?",
+    "options": [
+      "3 times (1962, 1971, 1975)",
+      "4 times (1962, 1965, 1971, 1975)",
+      "2 times (1971, 1975)",
+      "1 time (1975)"
+    ],
+    "answer": 0,
+    "explanation": "National Emergency has been declared three times in India: in 1962 (Indo-China War), 1971 (Indo-Pak War), and 1975 (Internal Disturbances)."
+  },
+  {
+    "id": 22,
+    "tag": "SSC CGL / Railway",
+    "question": "Who was the President of India when the third National Emergency was declared in June 1975 on grounds of 'Internal Disturbance'?",
+    "options": [
+      "Fakhruddin Ali Ahmed",
+      "V. V. Giri",
+      "Zakir Husain",
+      "Neelam Sanjiva Reddy"
+    ],
+    "answer": 0,
+    "explanation": "President Fakhruddin Ali Ahmed declared the third National Emergency on 25th June 1975 on the advice of Prime Minister Indira Gandhi."
+  },
+  {
+    "id": 23,
+    "tag": "SSC CGL / Static GK",
+    "question": "Which date has been officially designated by the Government of India as 'Samvidhan Hatya Diwas' to commemorate the 1975 Emergency?",
+    "options": [
+      "25th June",
+      "26th January",
+      "15th August",
+      "26th November"
+    ],
+    "answer": 0,
+    "explanation": "The Government of India declared 25th June as 'Samvidhan Hatya Diwas' in remembrance of the imposition of the Emergency on 25th June 1975."
+  },
+  {
+    "id": 24,
+    "tag": "UPSC CDS / SSC CGL",
+    "question": "Which Article of the Constitution imposes a duty upon the Union to protect every State against external aggression and internal disturbance?",
+    "options": [
+      "Article 355",
+      "Article 356",
+      "Article 354",
+      "Article 352"
+    ],
+    "answer": 0,
+    "explanation": "Article 355 states that it shall be the duty of the Union to protect every State against external aggression and internal disturbance and to ensure that the government of every State is carried on in accordance with the provisions of this Constitution."
+  },
+  {
+    "id": 25,
+    "tag": "SSC CPO / RRB NTPC",
+    "question": "A proclamation of President's Rule under Article 356 must be approved by Parliament within what time limit, and by which majority?",
+    "options": [
+      "Within 2 months by Simple Majority",
+      "Within 1 month by Special Majority",
+      "Within 2 months by Special Majority",
+      "Within 6 months by Simple Majority"
+    ],
+    "answer": 0,
+    "explanation": "A proclamation of President's Rule under Article 356 must be approved by both Houses of Parliament within two months from the date of its issue by a Simple Majority."
+  },
+  {
+    "id": 26,
+    "tag": "SSC CGL / State PCS",
+    "question": "What is the maximum period for which President's Rule (Article 356) can be extended in a State with periodic approvals?",
+    "options": [
+      "3 years",
+      "1 year",
+      "5 years",
+      "Indefinite period"
+    ],
+    "answer": 0,
+    "explanation": "If approved by both Houses, President's Rule continues for 6 months and can be extended for a maximum period of 3 years with parliamentary approval every 6 months."
+  },
+  {
+    "id": 27,
+    "tag": "SSC CGL / Railway",
+    "question": "In which State was President's Rule (Article 356) imposed for the very first time in independent India?",
+    "options": [
+      "Punjab (1951)",
+      "Uttar Pradesh (1968)",
+      "Kerala (1959)",
+      "Manipur (1969)"
+    ],
+    "answer": 0,
+    "explanation": "President's Rule was imposed for the first time in India in Punjab in 1951."
+  },
+  {
+    "id": 28,
+    "tag": "SSC CGL / UPSC CAPF",
+    "question": "Which two Indian States have NEVER been placed under President's Rule?",
+    "options": [
+      "Chhattisgarh and Telangana",
+      "Goa and Sikkim",
+      "Uttarakhand and Jharkhand",
+      "Meghalaya and Mizoram"
+    ],
+    "answer": 0,
+    "explanation": "Chhattisgarh and Telangana are the only two Indian States that have never been placed under President's Rule."
+  },
+  {
+    "id": 29,
+    "tag": "UPSC CDS / SSC CGL",
+    "question": "In which landmark 1994 judgment did the Supreme Court lay down strict guidelines to curtail the arbitrary misuse of Article 356?",
+    "options": [
+      "S. R. Bommai vs Union of India",
+      "Kesavananda Bharati vs State of Kerala",
+      "Shankari Prasad vs Union of India",
+      "Indra Sawhney vs Union of India"
+    ],
+    "answer": 0,
+    "explanation": "In S. R. Bommai case (1994), the Supreme Court ruled that the proclamation of President's Rule under Article 356 is subject to Judicial Review and laid down safeguards against its arbitrary misuse."
+  },
+  {
+    "id": 30,
+    "tag": "SSC CGL / Railway",
+    "question": "Consider the following statements regarding Financial Emergency under Article 360:\n1. It must be approved by Parliament within 2 months by a Simple Majority.\n2. India has never witnessed the imposition of a Financial Emergency till date.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "Both 1 and 2",
+      "1 only",
+      "2 only",
+      "Neither 1 nor 2"
+    ],
+    "answer": 0,
+    "explanation": "Both statements are correct. Proclamation of Financial Emergency under Article 360 requires parliamentary approval within 2 months by a Simple Majority, and no Financial Emergency has ever been declared in India."
+  }
+];
+      const RAW_AMENDMENT_QUESTIONS = [
+  {
+    "id": 1,
+    "tag": "SSC CGL / Railway",
+    "question": "Under which Part of the Indian Constitution is the procedure for Constitutional Amendment mentioned?",
+    "options": [
+      "Part XX",
+      "Part XVIII",
+      "Part IX",
+      "Part XIV"
+    ],
+    "answer": 0,
+    "explanation": "The procedure for amending the Indian Constitution is laid down in Part XX, under Article 368."
+  },
+  {
+    "id": 2,
+    "tag": "SSC CPO / RRB NTPC",
+    "question": "Which Article of the Indian Constitution specifically deals with the power of Parliament to amend the Constitution and procedure therefor?",
+    "options": [
+      "Article 368",
+      "Article 352",
+      "Article 360",
+      "Article 370"
+    ],
+    "answer": 0,
+    "explanation": "Article 368 in Part XX of the Constitution deals with the powers of Parliament to amend the Constitution and its procedure."
+  },
+  {
+    "id": 3,
+    "tag": "SSC CGL / UPSC CDS",
+    "question": "The procedure for amending the Constitution of India is borrowed from which country's constitution?",
+    "options": [
+      "Constitution of South Africa",
+      "Constitution of Germany (Weimar)",
+      "Constitution of the United States",
+      "Constitution of Canada"
+    ],
+    "answer": 0,
+    "explanation": "The provision for the amendment of the Constitution and the election of Rajya Sabha members was borrowed from the Constitution of South Africa."
+  },
+  {
+    "id": 4,
+    "tag": "UPSC CDS / State PCS",
+    "question": "In which landmark case did the Supreme Court rule that Parliament cannot amend those provisions which form the 'Basic Structure' of the Constitution?",
+    "options": [
+      "Kesavananda Bharati Case (1973)",
+      "Minerva Mills Case (1980)",
+      "Golaknath Case (1967)",
+      "Maneka Gandhi Case (1978)"
+    ],
+    "answer": 0,
+    "explanation": "In the Kesavananda Bharati Case (1973), the Supreme Court ruled that Parliament's constituent power under Article 368 does not enable it to alter the 'Basic Structure' of the Constitution."
+  },
+  {
+    "id": 5,
+    "tag": "SSC CGL",
+    "question": "Is the term 'Basic Structure' explicitly mentioned or defined anywhere in the Constitution of India?",
+    "options": [
+      "No, it is not mentioned in the Constitution but was propounded by the judiciary in 1973",
+      "Yes, it is defined under Article 368(4)",
+      "Yes, it is specified in the Preamble of the Constitution",
+      "Yes, it is enumerated in the Ninth Schedule"
+    ],
+    "answer": 0,
+    "explanation": "The doctrine of 'Basic Structure' is not mentioned in the text of the Constitution. It was developed and propounded by the Supreme Court in the Kesavananda Bharati case (1973) and evolved in subsequent judgments."
+  },
+  {
+    "id": 6,
+    "tag": "UPSC CAPF / SSC CGL",
+    "question": "Which of the following has been recognized by the Supreme Court as forming part of the 'Basic Structure' of the Constitution?",
+    "options": [
+      "Supremacy of Constitution, Judicial Review, Secularism, and Separation of Powers",
+      "Absolute veto power of the President over all bills",
+      "Unrestricted legislative power of Parliament over state subjects",
+      "Power of the Prime Minister to dissolve Rajya Sabha"
+    ],
+    "answer": 0,
+    "explanation": "The Basic Structure includes Judicial Review, Independent Judiciary, Separation of Powers, Federal Structure, Secularism, Supremacy of Constitution, and Rule of Law."
+  },
+  {
+    "id": 7,
+    "tag": "SSC CGL / Railway",
+    "question": "A Constitutional Amendment Bill can be introduced in which of the following legislative bodies?",
+    "options": [
+      "In either House of Parliament (Lok Sabha or Rajya Sabha), but not in State Legislatures",
+      "In Lok Sabha only, like a Money Bill",
+      "In State Legislative Assemblies as well as Parliament",
+      "Only in a Joint Sitting of both Houses of Parliament"
+    ],
+    "answer": 0,
+    "explanation": "An amendment of the Constitution can be initiated only by the introduction of a Bill in either House of Parliament (Lok Sabha or Rajya Sabha) and not in the State Legislatures."
+  },
+  {
+    "id": 8,
+    "tag": "SSC CPO / RRB NTPC",
+    "question": "Who can introduce a Constitutional Amendment Bill in Parliament?",
+    "options": [
+      "Either a Minister or a Private Member",
+      "Only a Minister of Cabinet rank",
+      "Only the Prime Minister or Law Minister",
+      "Only a nominated member of the Rajya Sabha"
+    ],
+    "answer": 0,
+    "explanation": "A Constitutional Amendment Bill can be introduced either by a Minister or by a private member (a member who is not a Minister)."
+  },
+  {
+    "id": 9,
+    "tag": "UPSC CDS / SSC CGL",
+    "question": "Does a Constitutional Amendment Bill require the prior recommendation of the President for its introduction?",
+    "options": [
+      "No, it does not require prior recommendation of the President",
+      "Yes, prior recommendation is mandatory in all cases",
+      "Yes, but only if introduced by a private member",
+      "Yes, but only if it amends Fundamental Rights"
+    ],
+    "answer": 0,
+    "explanation": "A Constitutional Amendment Bill does not require the prior permission or recommendation of the President of India for introduction in Parliament."
+  },
+  {
+    "id": 10,
+    "tag": "SSC CGL",
+    "question": "If there is a disagreement between Lok Sabha and Rajya Sabha regarding a Constitutional Amendment Bill, is there any provision for a Joint Sitting?",
+    "options": [
+      "No, there is no provision for holding a joint sitting for Constitutional Amendment Bills",
+      "Yes, the President can summon a joint sitting under Article 108",
+      "Yes, provided the dispute is regarding Fundamental Rights",
+      "Yes, if two-thirds of the State Assemblies request it"
+    ],
+    "answer": 0,
+    "explanation": "There is no provision for holding a joint sitting of both Houses of Parliament if there is a deadlock over the passage of a Constitutional Amendment Bill. Each House must pass the bill separately."
+  },
+  {
+    "id": 11,
+    "tag": "UPSC CAPF / SSC CGL",
+    "question": "Which Constitutional Amendment Act made it obligatory for the President to give his/her assent to a Constitutional Amendment Bill?",
+    "options": [
+      "24th Constitutional Amendment Act, 1971",
+      "42nd Constitutional Amendment Act, 1976",
+      "44th Constitutional Amendment Act, 1978",
+      "1st Constitutional Amendment Act, 1951"
+    ],
+    "answer": 0,
+    "explanation": "The 24th Constitutional Amendment Act of 1971 made it mandatory for the President to give his assent to a Constitutional Amendment Bill. The President cannot withhold assent nor return the bill for reconsideration (no veto)."
+  },
+  {
+    "id": 12,
+    "tag": "SSC CGL / Railway",
+    "question": "What is the requirement of 'Special Majority' under Article 368 of the Constitution?",
+    "options": [
+      "Majority of total membership of each House AND a majority of not less than 2/3rd of members present and voting",
+      "2/3rd majority of the total membership of the House only",
+      "Simple majority of members present and voting plus 50% state ratification",
+      "Absolute majority of Rajya Sabha and simple majority of Lok Sabha"
+    ],
+    "answer": 0,
+    "explanation": "As per Article 368, Special Majority requires: (1) a majority of the total membership of each House, and (2) a majority of not less than 2/3rd of the members of that House present and voting."
+  },
+  {
+    "id": 13,
+    "tag": "UPSC CDS / State PCS",
+    "question": "When a constitutional amendment relates to the federal structure of polity, what additional ratification is required?",
+    "options": [
+      "Ratification by the legislatures of at least half (1/2) of the States by Simple Majority",
+      "Ratification by all States by Special Majority",
+      "Ratification by at least 2/3rd of the States by Special Majority",
+      "A national referendum approved by 50% of the electorate"
+    ],
+    "answer": 0,
+    "explanation": "Provisions relating to the federal structure require a Special Majority of Parliament plus ratification by the legislatures of at least half (1/2) of the States by a Simple Majority."
+  },
+  {
+    "id": 14,
+    "tag": "SSC CGL",
+    "question": "Which of the following provisions can be amended by a Simple Majority of Parliament (outside the purview of Article 368)?",
+    "options": [
+      "Creation or abolition of Legislative Councils in States",
+      "Fundamental Rights",
+      "Directive Principles of State Policy",
+      "Election of the President and its manner"
+    ],
+    "answer": 0,
+    "explanation": "Creation or abolition of Legislative Councils in states (Article 169) is amended by a simple majority of Parliament and does not count as an amendment under Article 368."
+  },
+  {
+    "id": 15,
+    "tag": "SSC CPO / Railway",
+    "question": "Which of the following matters falls under the category of amendment by Simple Majority of Parliament?",
+    "options": [
+      "Admission or establishment of new States and alteration of state boundaries",
+      "Supreme Court and High Courts jurisdiction",
+      "Lists in the Seventh Schedule",
+      "Representation of States in Parliament"
+    ],
+    "answer": 0,
+    "explanation": "Admission or establishment of new states, formation of new states, and alteration of areas, boundaries or names of states (Articles 2, 3, 4) are amended by simple majority."
+  },
+  {
+    "id": 16,
+    "tag": "UPSC CAPF / SSC CGL",
+    "question": "Provisions relating to the 5th and 6th Schedules of the Constitution can be amended by which type of majority?",
+    "options": [
+      "Simple Majority of Parliament",
+      "Special Majority of Parliament under Article 368",
+      "Special Majority plus ratification by half of the states",
+      "Special Majority with 3/4th consent of tribal advisory councils"
+    ],
+    "answer": 0,
+    "explanation": "Amendments to the 2nd Schedule (emoluments), 5th Schedule (scheduled areas), and 6th Schedule (tribal areas) are passed by a Simple Majority of Parliament outside Article 368."
+  },
+  {
+    "id": 17,
+    "tag": "SSC CGL",
+    "question": "Which of the following provisions requires a Special Majority of Parliament under Article 368, but does NOT require State ratification?",
+    "options": [
+      "Directive Principles of State Policy (DPSP)",
+      "Election of the President and its manner",
+      "Any list in the Seventh Schedule",
+      "Article 368 itself"
+    ],
+    "answer": 0,
+    "explanation": "Fundamental Rights, Directive Principles of State Policy (DPSP), and Fundamental Duties can be amended by a Special Majority of Parliament alone (without needing state ratification)."
+  },
+  {
+    "id": 18,
+    "tag": "UPSC CDS / State PCS",
+    "question": "Which of the following provisions requires a Special Majority of Parliament PLUS ratification by at least half of the State Legislatures?",
+    "options": [
+      "Election of the President and its manner",
+      "Use of official language in Parliament",
+      "Quorum in Parliament",
+      "Salaries and allowances of Members of Parliament"
+    ],
+    "answer": 0,
+    "explanation": "Election of the President and its manner directly impacts the federal structure and therefore requires a Special Majority of Parliament plus ratification by at least 1/2 of the States."
+  },
+  {
+    "id": 19,
+    "tag": "SSC CGL / Railway",
+    "question": "If an amendment bill seeks to alter any list in the Seventh Schedule (Union, State, or Concurrent List), what procedure must be followed?",
+    "options": [
+      "Special Majority of Parliament + Ratification by at least half of the State Legislatures",
+      "Simple Majority of Parliament alone",
+      "Special Majority of Parliament alone without state ratification",
+      "Unanimous resolution passed by the Inter-State Council"
+    ],
+    "answer": 0,
+    "explanation": "Any list in the Seventh Schedule represents the federal division of powers, requiring a Special Majority of Parliament and ratification by at least half of the State Legislatures."
+  },
+  {
+    "id": 20,
+    "tag": "SSC CGL",
+    "question": "To amend Article 368 itself, which of the following procedures is mandated?",
+    "options": [
+      "Special Majority of Parliament + Ratification by at least half of the State Legislatures",
+      "Simple Majority of Parliament",
+      "Special Majority of Parliament only",
+      "Unanimous approval of both Houses of Parliament"
+    ],
+    "answer": 0,
+    "explanation": "Article 368 itself is included under the proviso to Article 368(2), meaning any amendment to Article 368 requires a Special Majority of Parliament plus ratification by at least half of the states."
+  },
+  {
+    "id": 21,
+    "tag": "UPSC CDS / SSC CGL",
+    "question": "Who made the famous remark regarding the Indian amendment process: 'This variety of amending process is wise, but rarely found'?",
+    "options": [
+      "K. C. Wheare",
+      "Granville Austin",
+      "Sir Ivor Jennings",
+      "Dr. B. R. Ambedkar"
+    ],
+    "answer": 0,
+    "explanation": "Constitutional expert K. C. Wheare remarked: 'This variety of amending process is wise, but rarely found' and noted that it strikes a good balance between rigidity and flexibility."
+  },
+  {
+    "id": 22,
+    "tag": "SSC CGL / State PCS",
+    "question": "Who described the amending process as 'one of the most ably conceived aspects of the Constitution, although it appears complicated, it is merely diverse'?",
+    "options": [
+      "Granville Austin",
+      "K. C. Wheare",
+      "A. V. Dicey",
+      "Lord Bryce"
+    ],
+    "answer": 0,
+    "explanation": "Renowned constitutional scholar Granville Austin stated: 'The amending process has proved itself one of the most ably conceived aspects of the Constitution. Although it appears complicated, it is merely diverse.'"
+  },
+  {
+    "id": 23,
+    "tag": "RRB NTPC / SSC CGL",
+    "question": "Which Constitutional Amendment is popularly known as the 'Mini-Constitution' due to the comprehensive and extensive changes it introduced?",
+    "options": [
+      "42nd Constitutional Amendment Act, 1976",
+      "44th Constitutional Amendment Act, 1978",
+      "24th Constitutional Amendment Act, 1971",
+      "73rd Constitutional Amendment Act, 1992"
+    ],
+    "answer": 0,
+    "explanation": "The 42nd Constitutional Amendment Act of 1976 is famously known as the 'Mini-Constitution' because it brought monumental and far-reaching changes to various parts of the Constitution."
+  },
+  {
+    "id": 24,
+    "tag": "SSC CGL / Railway",
+    "question": "The 100th Constitutional Amendment Act, 2015 is related to which of the following?",
+    "options": [
+      "Operationalization of the Land Boundary Agreement between India and Bangladesh",
+      "Introduction of Goods and Services Tax (GST)",
+      "Constitutional status to National Commission for Backward Classes",
+      "10% reservation for Economically Weaker Sections"
+    ],
+    "answer": 0,
+    "explanation": "The 100th Constitutional Amendment Act (2015) gave effect to the acquiring of certain territories by India and transfer of certain other territories to Bangladesh in pursuance of the 1974 Land Boundary Agreement."
+  },
+  {
+    "id": 25,
+    "tag": "SSC CGL / RRB NTPC",
+    "question": "Which Constitutional Amendment Act introduced the Goods and Services Tax (GST) across India?",
+    "options": [
+      "101st Constitutional Amendment Act, 2016",
+      "100th Constitutional Amendment Act, 2015",
+      "102nd Constitutional Amendment Act, 2018",
+      "103rd Constitutional Amendment Act, 2019"
+    ],
+    "answer": 0,
+    "explanation": "The 101st Constitutional Amendment Act, 2016 paved the way for the introduction of the unified Goods and Services Tax (GST) in India."
+  },
+  {
+    "id": 26,
+    "tag": "SSC CPO / UPSC CAPF",
+    "question": "The 102nd Constitutional Amendment Act, 2018 conferred constitutional status on which body?",
+    "options": [
+      "National Commission for Backward Classes (NCBC)",
+      "National Commission for Minorities (NCM)",
+      "National Commission for Scheduled Castes (NCSC)",
+      "Goods and Services Tax (GST) Council"
+    ],
+    "answer": 0,
+    "explanation": "The 102nd Constitutional Amendment Act (2018) granted constitutional status to the National Commission for Backward Classes (NCBC) by inserting Article 338B."
+  },
+  {
+    "id": 27,
+    "tag": "SSC CGL / Railway",
+    "question": "Which Constitutional Amendment Act provided a maximum of 10% reservation for Economically Weaker Sections (EWS) in civil posts and educational admissions?",
+    "options": [
+      "103rd Constitutional Amendment Act, 2019",
+      "102nd Constitutional Amendment Act, 2018",
+      "104th Constitutional Amendment Act, 2020",
+      "105th Constitutional Amendment Act, 2021"
+    ],
+    "answer": 0,
+    "explanation": "The 103rd Constitutional Amendment Act (2019) introduced 10% reservation for the Economically Weaker Sections (EWS) among citizens who are not covered under SC, ST, or OBC categories."
+  },
+  {
+    "id": 28,
+    "tag": "SSC CGL / UPSC CDS",
+    "question": "The 104th Constitutional Amendment Act, 2020 did which of the following regarding parliamentary nominations?",
+    "options": [
+      "Discontinued the nomination of Anglo-Indians to Lok Sabha and State Legislative Assemblies",
+      "Introduced 33% reservation for women in Parliament",
+      "Abolished nominated members in the Rajya Sabha",
+      "Increased the voting age from 18 to 21 years"
+    ],
+    "answer": 0,
+    "explanation": "The 104th Constitutional Amendment Act (2020) ended the provision for nominating two Anglo-Indian members to Lok Sabha and one to State Assemblies, while extending SC/ST reservations for another 10 years."
+  },
+  {
+    "id": 29,
+    "tag": "SSC CPO / State PCS",
+    "question": "What was the primary objective of the 105th Constitutional Amendment Act, 2021?",
+    "options": [
+      "Restoring the power of State Governments to identify Socially and Educationally Backward Classes (SEBCs)",
+      "Providing constitutional status to the GST appellate tribunal",
+      "Fixing the maximum strength of the Union Council of Ministers",
+      "Extending President's Rule duration in border states"
+    ],
+    "answer": 0,
+    "explanation": "The 105th Constitutional Amendment Act (2021) clarified and restored the power of State Governments and UTs to maintain their own list of Socially and Educationally Backward Classes (SEBCs)."
+  },
+  {
+    "id": 30,
+    "tag": "SSC CGL / Current Affairs",
+    "question": "The 106th Constitutional Amendment Act, 2023 (Nari Shakti Vandan Adhiniyam) provides for:",
+    "options": [
+      "1/3rd (33%) reservation of seats for women in Lok Sabha and State Legislative Assemblies",
+      "Equal property inheritance rights for daughters in ancestral property",
+      "Free compulsory higher education for girls up to post-graduation",
+      "50% reservation for women in Panchayati Raj institutions"
+    ],
+    "answer": 0,
+    "explanation": "The 106th Constitutional Amendment Act, 2023 reserves one-third (33%) of all seats for women in the Lok Sabha, the State Legislative Assemblies, and the Legislative Assembly of the National Capital Territory of Delhi."
+  }
+];
+
+      // App State
+      let currentTestId = "emergency"; // 'emergency' or 'amendments'
+      let activeQuestions = []; // Loaded questions with shuffled options
+      let currentQIndex = 0;
+      let timerInterval = null;
+      let timeRemaining = 18 * 60; // 18 minutes (36s * 30 = 1080s)
+      let isPaused = false;
+      let userResponses = {}; // qIndex -> { selectedOptionIndex: number | null, state: 'not_visited'|'not_answered'|'answered'|'marked'|'answered_marked' }
+      let testStartTime = null;
+
+      // In-page modal action callback
+      let pendingConfirmAction = null;
+      let pendingNoticeAction = null;
+
+      // DOM Elements
+      const viewDashboard = document.getElementById("viewDashboard");
+      const viewIntro = document.getElementById("viewIntro");
+      const viewExam = document.getElementById("viewExam");
+      const viewAnalysis = document.getElementById("viewAnalysis");
+
+      const btnNavHome = document.getElementById("btnNavHome");
+      const btnClearHistory = document.getElementById("btnClearHistory");
+
+      // Notice & Confirm Modals
+      const noticeModal = document.getElementById("noticeModal");
+      const noticeModalTitle = document.getElementById("noticeModalTitle");
+      const noticeModalBody = document.getElementById("noticeModalBody");
+      const btnNoticeOk = document.getElementById("btnNoticeOk");
+
+      const confirmActionModal = document.getElementById("confirmActionModal");
+      const confirmModalTitle = document.getElementById("confirmModalTitle");
+      const confirmModalBody = document.getElementById("confirmModalBody");
+      const btnConfirmCancel = document.getElementById("btnConfirmCancel");
+      const btnConfirmProceed = document.getElementById("btnConfirmProceed");
+
+      function showNoticeModal(title, message, callback) {
+        noticeModalTitle.textContent = title;
+        noticeModalBody.textContent = message;
+        pendingNoticeAction = callback || null;
+        noticeModal.classList.remove("hidden");
+      }
+
+      btnNoticeOk.addEventListener("click", function() {
+        noticeModal.classList.add("hidden");
+        if (typeof pendingNoticeAction === "function") {
+          pendingNoticeAction();
+          pendingNoticeAction = null;
+        }
+      });
+
+      function showConfirmModal(title, message, onConfirm) {
+        confirmModalTitle.textContent = title;
+        confirmModalBody.textContent = message;
+        pendingConfirmAction = onConfirm;
+        confirmActionModal.classList.remove("hidden");
+      }
+
+      btnConfirmCancel.addEventListener("click", function() {
+        confirmActionModal.classList.add("hidden");
+        pendingConfirmAction = null;
+      });
+
+      btnConfirmProceed.addEventListener("click", function() {
+        confirmActionModal.classList.add("hidden");
+        if (typeof pendingConfirmAction === "function") {
+          pendingConfirmAction();
+          pendingConfirmAction = null;
+        }
+      });
+
+      // Dashboard Elements
+      const btnStartEmergency = document.getElementById("btnStartEmergency");
+      const btnStartAmendments = document.getElementById("btnStartAmendments");
+      const btnAnalysisEmergency = document.getElementById("btnAnalysisEmergency");
+      const btnAnalysisAmendments = document.getElementById("btnAnalysisAmendments");
+      const statusBadgeEmergency = document.getElementById("statusBadgeEmergency");
+      const statusBadgeAmendments = document.getElementById("statusBadgeAmendments");
+      const dashTotalAttempted = document.getElementById("dashTotalAttempted");
+      const dashBestScore = document.getElementById("dashBestScore");
+      const historyTableBody = document.getElementById("historyTableBody");
+
+      // Intro Elements
+      const introTestTitle = document.getElementById("introTestTitle");
+      const btnIntroBack = document.getElementById("btnIntroBack");
+      const chkIntroDeclaration = document.getElementById("chkIntroDeclaration");
+      const btnIntroBegin = document.getElementById("btnIntroBegin");
+
+      // Exam Elements
+      const liveExamTitle = document.getElementById("liveExamTitle");
+      const timerText = document.getElementById("timerText");
+      const btnExitFullscreen = document.getElementById("btnExitFullscreen");
+      const btnPauseTest = document.getElementById("btnPauseTest");
+      const btnResumeExam = document.getElementById("btnResumeExam");
+      const pauseOverlay = document.getElementById("pauseOverlay");
+
+      const qNumberDisplay = document.getElementById("qNumberDisplay");
+      const qTagDisplay = document.getElementById("qTagDisplay");
+      const qStatementText = document.getElementById("qStatementText");
+      const optionsContainer = document.getElementById("optionsContainer");
+
+      const btnPrevious = document.getElementById("btnPrevious");
+      const btnNext = document.getElementById("btnNext");
+      const btnClearResponse = document.getElementById("btnClearResponse");
+      const btnMarkReview = document.getElementById("btnMarkReview");
+      const btnSubmitExam = document.getElementById("btnSubmitExam");
+
+      const paletteButtonContainer = document.getElementById("paletteButtonContainer");
+      const countAnswered = document.getElementById("countAnswered");
+      const countNotAnswered = document.getElementById("countNotAnswered");
+      const countNotVisited = document.getElementById("countNotVisited");
+      const countMarked = document.getElementById("countMarked");
+      const countAnsweredMarked = document.getElementById("countAnsweredMarked");
+
+      // Submit Modal Elements
+      const submitModal = document.getElementById("submitModal");
+      const btnCancelSubmit = document.getElementById("btnCancelSubmit");
+      const btnConfirmSubmit = document.getElementById("btnConfirmSubmit");
+      const sumModalAnswered = document.getElementById("sumModalAnswered");
+      const sumModalNotAnswered = document.getElementById("sumModalNotAnswered");
+      const sumModalMarked = document.getElementById("sumModalMarked");
+      const sumModalAnsMarked = document.getElementById("sumModalAnsMarked");
+      const sumModalNotVisited = document.getElementById("sumModalNotVisited");
+
+      // Analysis Elements
+      const analysisTestTitle = document.getElementById("analysisTestTitle");
+      const analysisMetaText = document.getElementById("analysisMetaText");
+      const analysisScoreVal = document.getElementById("analysisScoreVal");
+      const analysisAccuracyVal = document.getElementById("analysisAccuracyVal");
+      const analysisAttemptedVal = document.getElementById("analysisAttemptedVal");
+      const analysisCorrectVal = document.getElementById("analysisCorrectVal");
+      const analysisIncorrectVal = document.getElementById("analysisIncorrectVal");
+      const analysisUnattemptedVal = document.getElementById("analysisUnattemptedVal");
+      const analysisTimeVal = document.getElementById("analysisTimeVal");
+      const solutionsCountBadge = document.getElementById("solutionsCountBadge");
+      const solutionsCardContainer = document.getElementById("solutionsCardContainer");
+      const btnAnalysisToDash = document.getElementById("btnAnalysisToDash");
+      const btnAnalysisRetake = document.getElementById("btnAnalysisRetake");
+
+      // Storage Helpers
+      const STORAGE_KEY = "indian_polity_mock_history_v1";
+
+      function getHistory() {
+        try {
+          const data = localStorage.getItem(STORAGE_KEY);
+          return data ? JSON.parse(data) : [];
+        } catch (e) {
+          console.error("Failed to read localStorage:", e);
+          return [];
+        }
+      }
+
+      function saveHistory(record) {
+        try {
+          const list = getHistory();
+          list.unshift(record); // newest first
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+        } catch (e) {
+          console.error("Failed to write localStorage:", e);
+        }
+      }
+
+      function clearHistory() {
+        try {
+          localStorage.removeItem(STORAGE_KEY);
+          renderDashboard();
+        } catch (e) {
+          console.error("Failed to clear localStorage:", e);
+        }
+      }
+
+      // Switch Active View
+      function showView(view) {
+        viewDashboard.classList.add("hidden");
+        viewIntro.classList.add("hidden");
+        viewExam.classList.add("hidden");
+        viewAnalysis.classList.add("hidden");
+
+        if (view === "dashboard") viewDashboard.classList.remove("hidden");
+        else if (view === "intro") viewIntro.classList.remove("hidden");
+        else if (view === "exam") viewExam.classList.remove("hidden");
+        else if (view === "analysis") viewAnalysis.classList.remove("hidden");
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      // Dashboard Render
+      function renderDashboard() {
+        const history = getHistory();
+        dashTotalAttempted.textContent = `${new Set(history.map(h => h.testId)).size} / 2`;
+
+        if (history.length > 0) {
+          const best = Math.max(...history.map(h => h.score));
+          dashBestScore.textContent = `${best.toFixed(1)} / 60`;
+        } else {
+          dashBestScore.textContent = "-- / 60";
+        }
+
+        // Emergency Status
+        const emAttempt = history.find(h => h.testId === "emergency");
+        if (emAttempt) {
+          statusBadgeEmergency.className = "badge-status status-completed";
+          statusBadgeEmergency.textContent = `Completed (${emAttempt.score.toFixed(1)}/60)`;
+          btnAnalysisEmergency.classList.remove("hidden");
+          btnStartEmergency.textContent = "Retake Test 1";
+        } else {
+          statusBadgeEmergency.className = "badge-status status-unattempted";
+          statusBadgeEmergency.textContent = "Not Attempted";
+          btnAnalysisEmergency.classList.add("hidden");
+          btnStartEmergency.textContent = "Launch Test 1";
+        }
+
+        // Amendments Status
+        const amAttempt = history.find(h => h.testId === "amendments");
+        if (amAttempt) {
+          statusBadgeAmendments.className = "badge-status status-completed";
+          statusBadgeAmendments.textContent = `Completed (${amAttempt.score.toFixed(1)}/60)`;
+          btnAnalysisAmendments.classList.remove("hidden");
+          btnStartAmendments.textContent = "Retake Test 2";
+        } else {
+          statusBadgeAmendments.className = "badge-status status-unattempted";
+          statusBadgeAmendments.textContent = "Not Attempted";
+          btnAnalysisAmendments.classList.add("hidden");
+          btnStartAmendments.textContent = "Launch Test 2";
+        }
+
+        // History Table
+        if (history.length === 0) {
+          historyTableBody.innerHTML = `<tr><td colspan="9" style="text-align: center; color: #94a3b8; padding: 24px;">No test attempts recorded yet. Click 'Launch Test' above to start your first mock.</td></tr>`;
+        } else {
+          historyTableBody.innerHTML = history.map((item, idx) => `
+            <tr>
+              <td>${new Date(item.date).toLocaleString([], { dateStyle: 'short', timeStyle: 'short' })}</td>
+              <td><strong>${item.testName}</strong></td>
+              <td style="font-weight: 700; color: ${item.score >= 40 ? '#16a34a' : (item.score >= 25 ? '#2563eb' : '#dc2626')}">${item.score.toFixed(1)} / 60</td>
+              <td style="color: #16a34a; font-weight: 600;">${item.correctCount}</td>
+              <td style="color: #dc2626; font-weight: 600;">${item.incorrectCount}</td>
+              <td style="color: #64748b;">${item.unattemptedCount}</td>
+              <td>${item.accuracy}%</td>
+              <td>${item.timeTaken}</td>
+              <td>
+                <button class="btn btn-secondary btn-sm" onclick="window.viewPastAttempt(${idx})">View Solutions</button>
+              </td>
+            </tr>
+          `).join("");
+        }
+      }
+
+      // Expose to window for inline onclick in history table
+      window.viewPastAttempt = function(index) {
+        const history = getHistory();
+        if (history[index]) {
+          renderAnalysis(history[index]);
+          showView("analysis");
+        }
+      };
+
+      // Randomize options on each refresh / test launch, but do NOT randomize questions on refresh
+      function prepareQuestions(rawList) {
+        return rawList.map((q, qIdx) => {
+          const originalCorrectText = q.options[q.answer];
+          // Clone options
+          const shuffledOptions = [...q.options];
+          // Fisher-Yates shuffle
+          for (let i = shuffledOptions.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
+          }
+          const newCorrectIndex = shuffledOptions.indexOf(originalCorrectText);
+          return {
+            id: q.id,
+            qNum: qIdx + 1,
+            tag: q.tag,
+            question: q.question,
+            options: shuffledOptions,
+            answer: newCorrectIndex,
+            explanation: q.explanation
+          };
+        });
+      }
+
+      // Launch Introductory Screen
+      function launchIntro(testId) {
+        currentTestId = testId;
+        const title = testId === "emergency" 
+          ? "Mock Test 1: Emergency Provisions (Part XVIII, Articles 352-360)" 
+          : "Mock Test 2: Constitutional Amendments (Part XX, Article 368)";
+        introTestTitle.textContent = title;
+        chkIntroDeclaration.checked = false;
+        btnIntroBegin.disabled = true;
+        showView("intro");
+      }
+
+      chkIntroDeclaration.addEventListener("change", function() {
+        btnIntroBegin.disabled = !this.checked;
+      });
+
+      // Request Fullscreen
+      function requestFullscreenSafe() {
+        try {
+          const elem = document.documentElement;
+          if (elem.requestFullscreen) {
+            elem.requestFullscreen().catch(err => console.log("Fullscreen request declined:", err));
+          } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+          } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+          }
+        } catch (e) {
+          console.log("Fullscreen not supported or blocked:", e);
+        }
+      }
+
+      function exitFullscreenSafe() {
+        try {
+          if (document.exitFullscreen) {
+            document.exitFullscreen().catch(err => console.log("Exit fullscreen declined:", err));
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+          }
+        } catch (e) {
+          console.log("Exit fullscreen failed:", e);
+        }
+      }
+
+      // Start the Exam
+      btnIntroBegin.addEventListener("click", function() {
+        requestFullscreenSafe();
+        startExam();
+      });
+
+      function startExam() {
+        const raw = currentTestId === "emergency" ? RAW_EMERGENCY_QUESTIONS : RAW_AMENDMENT_QUESTIONS;
+        activeQuestions = prepareQuestions(raw);
+        currentQIndex = 0;
+        timeRemaining = 18 * 60; // 18 minutes (36s * 30 questions)
+        isPaused = false;
+        pauseOverlay.classList.add("hidden");
+        testStartTime = new Date();
+
+        // Reset responses
+        userResponses = {};
+        for (let i = 0; i < activeQuestions.length; i++) {
+          userResponses[i] = {
+            selectedOption: null,
+            state: "not_visited" // 'not_visited', 'not_answered', 'answered', 'marked', 'answered_marked'
+          };
+        }
+        // First question is immediately visited
+        userResponses[0].state = "not_answered";
+
+        liveExamTitle.textContent = currentTestId === "emergency"
+          ? "Mock Test 1: Emergency Provisions"
+          : "Mock Test 2: Constitutional Amendments";
+
+        startTimer();
+        buildPalette();
+        loadQuestion(0);
+        showView("exam");
+      }
+
+      // Timer Logic
+      function startTimer() {
+        if (timerInterval) clearInterval(timerInterval);
+        updateTimerDisplay();
+        timerInterval = setInterval(() => {
+          if (!isPaused) {
+            timeRemaining--;
+            updateTimerDisplay();
+            if (timeRemaining <= 0) {
+              clearInterval(timerInterval);
+              autoSubmitExam();
+            }
+          }
+        }, 1000);
+      }
+
+      function updateTimerDisplay() {
+        const mins = Math.floor(timeRemaining / 60);
+        const secs = timeRemaining % 60;
+        const formatted = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        timerText.textContent = formatted;
+        if (timeRemaining <= 180) { // less than 3 mins warning
+          timerText.style.color = "#dc2626";
+        } else {
+          timerText.style.color = "#1e293b";
+        }
+      }
+
+      // Pause & Resume
+      btnPauseTest.addEventListener("click", function() {
+        isPaused = true;
+        pauseOverlay.classList.remove("hidden");
+      });
+
+      btnResumeExam.addEventListener("click", function() {
+        isPaused = false;
+        pauseOverlay.classList.add("hidden");
+      });
+
+      btnExitFullscreen.addEventListener("click", function() {
+        exitFullscreenSafe();
+      });
+
+      // Build Right Palette
+      function buildPalette() {
+        paletteButtonContainer.innerHTML = "";
+        activeQuestions.forEach((q, idx) => {
+          const btn = document.createElement("button");
+          btn.className = "palette-btn not-visited";
+          btn.id = `paletteBtn_${idx}`;
+          btn.textContent = idx + 1;
+          btn.title = `Question ${idx + 1}`;
+          btn.addEventListener("click", () => {
+            navigateToQuestion(idx);
+          });
+          paletteButtonContainer.appendChild(btn);
+        });
+        updatePaletteCounts();
+      }
+
+      function updatePaletteCounts() {
+        let ans = 0, notAns = 0, notVis = 0, marked = 0, ansMarked = 0;
+
+        for (let i = 0; i < activeQuestions.length; i++) {
+          const st = userResponses[i].state;
+          const btn = document.getElementById(`paletteBtn_${i}`);
+          if (!btn) continue;
+
+          btn.className = `palette-btn ${st}`;
+          if (i === currentQIndex) btn.classList.add("active");
+
+          if (st === "answered") ans++;
+          else if (st === "not_answered") notAns++;
+          else if (st === "not_visited") notVis++;
+          else if (st === "marked") marked++;
+          else if (st === "answered_marked") ansMarked++;
+        }
+
+        countAnswered.textContent = ans;
+        countNotAnswered.textContent = notAns;
+        countNotVisited.textContent = notVis;
+        countMarked.textContent = marked;
+        countAnsweredMarked.textContent = ansMarked;
+
+        // Sync with submit modal counters as well
+        sumModalAnswered.textContent = ans;
+        sumModalNotAnswered.textContent = notAns;
+        sumModalMarked.textContent = marked;
+        sumModalAnsMarked.textContent = ansMarked;
+        sumModalNotVisited.textContent = notVis;
+      }
+
+      // Load Question into Workspace
+      function loadQuestion(index) {
+        currentQIndex = index;
+        const q = activeQuestions[index];
+
+        qNumberDisplay.textContent = `Question No. ${index + 1} of ${activeQuestions.length}`;
+        qTagDisplay.textContent = q.tag || "General Studies";
+        qStatementText.textContent = q.question;
+
+        // Render Options (No correct/incorrect indication!)
+        optionsContainer.innerHTML = "";
+        q.options.forEach((optText, optIdx) => {
+          const optLabel = document.createElement("label");
+          optLabel.className = "option-item";
+          if (userResponses[index].selectedOption === optIdx) {
+            optLabel.classList.add("selected");
+          }
+
+          const radio = document.createElement("input");
+          radio.type = "radio";
+          radio.name = `exam_option_q${index}`;
+          radio.value = optIdx;
+          radio.checked = userResponses[index].selectedOption === optIdx;
+
+          radio.addEventListener("change", () => {
+            userResponses[index].selectedOption = optIdx;
+            // Update selected class on UI
+            const allOpts = optionsContainer.querySelectorAll(".option-item");
+            allOpts.forEach(el => el.classList.remove("selected"));
+            optLabel.classList.add("selected");
+            // Do NOT jump to next question automatically!
+            // Do NOT mark any answer on option-selection or in-between the test!
+          });
+
+          const span = document.createElement("span");
+          span.className = "option-label-text";
+          span.textContent = `${String.fromCharCode(65 + optIdx)}. ${optText}`;
+
+          optLabel.appendChild(radio);
+          optLabel.appendChild(span);
+          optionsContainer.appendChild(optLabel);
+        });
+
+        // Update button states
+        btnPrevious.disabled = currentQIndex === 0;
+        btnNext.textContent = currentQIndex === activeQuestions.length - 1 ? "Next (End)" : "Next";
+
+        updatePaletteCounts();
+      }
+
+      // Navigation handler between questions
+      function navigateToQuestion(newIdx) {
+        if (newIdx < 0 || newIdx >= activeQuestions.length) return;
+
+        // Update state of the current question before leaving
+        const curResp = userResponses[currentQIndex];
+        if (curResp.selectedOption !== null) {
+          if (curResp.state !== "answered_marked" && curResp.state !== "marked") {
+            curResp.state = "answered";
+          }
+        } else {
+          if (curResp.state !== "marked") {
+            curResp.state = "not_answered";
+          }
+        }
+
+        // Mark destination as visited if was not_visited
+        if (userResponses[newIdx].state === "not_visited") {
+          userResponses[newIdx].state = "not_answered";
+        }
+
+        loadQuestion(newIdx);
+      }
+
+      // Action Buttons
+      btnNext.addEventListener("click", function() {
+        const curResp = userResponses[currentQIndex];
+        if (curResp.selectedOption !== null) {
+          if (curResp.state !== "answered_marked" && curResp.state !== "marked") {
+            curResp.state = "answered";
+          }
+        } else {
+          if (curResp.state !== "marked") {
+            curResp.state = "not_answered";
+          }
+        }
+
+        if (currentQIndex < activeQuestions.length - 1) {
+          navigateToQuestion(currentQIndex + 1);
+        } else {
+          updatePaletteCounts();
+        }
+      });
+
+      btnPrevious.addEventListener("click", function() {
+        if (currentQIndex > 0) {
+          navigateToQuestion(currentQIndex - 1);
+        }
+      });
+
+      btnClearResponse.addEventListener("click", function() {
+        userResponses[currentQIndex].selectedOption = null;
+        userResponses[currentQIndex].state = "not_answered";
+        const allOpts = optionsContainer.querySelectorAll(".option-item");
+        allOpts.forEach(el => {
+          el.classList.remove("selected");
+          const r = el.querySelector("input[type='radio']");
+          if (r) r.checked = false;
+        });
+        updatePaletteCounts();
+      });
+
+      btnMarkReview.addEventListener("click", function() {
+        const curResp = userResponses[currentQIndex];
+        if (curResp.selectedOption !== null) {
+          curResp.state = "answered_marked";
+        } else {
+          curResp.state = "marked";
+        }
+
+        if (currentQIndex < activeQuestions.length - 1) {
+          navigateToQuestion(currentQIndex + 1);
+        } else {
+          updatePaletteCounts();
+        }
+      });
+
+      // Submit Handling
+      btnSubmitExam.addEventListener("click", function() {
+        updatePaletteCounts();
+        submitModal.classList.remove("hidden");
+      });
+
+      btnCancelSubmit.addEventListener("click", function() {
+        submitModal.classList.add("hidden");
+      });
+
+      btnConfirmSubmit.addEventListener("click", function() {
+        submitModal.classList.add("hidden");
+        finishAndCalculateScore();
+      });
+
+      function autoSubmitExam() {
+        showNoticeModal(
+          "Time Expired",
+          "The 18-minute countdown timer has reached zero. Your test is now being submitted automatically.",
+          () => {
+            submitModal.classList.add("hidden");
+            finishAndCalculateScore();
+          }
+        );
+      }
+
+      // Score Calculation & Submission
+      function finishAndCalculateScore() {
+        if (timerInterval) clearInterval(timerInterval);
+        exitFullscreenSafe();
+
+        const timeSpentSecs = 18 * 60 - timeRemaining;
+        const spentMins = Math.floor(timeSpentSecs / 60);
+        const spentSecs = timeSpentSecs % 60;
+        const timeFormatted = `${spentMins}m ${spentSecs}s`;
+
+        let correct = 0;
+        let incorrect = 0;
+        let unattempted = 0;
+        let details = [];
+
+        activeQuestions.forEach((q, idx) => {
+          const resp = userResponses[idx];
+          // Considered answered if answered or answered_marked
+          const isAnswered = resp.selectedOption !== null && (resp.state === "answered" || resp.state === "answered_marked");
+          const selected = resp.selectedOption;
+          const isCorrect = isAnswered && (selected === q.answer);
+
+          if (isAnswered) {
+            if (isCorrect) {
+              correct++;
+            } else {
+              incorrect++;
+            }
+          } else {
+            unattempted++;
+          }
+
+          details.push({
+            qNum: idx + 1,
+            tag: q.tag,
+            question: q.question,
+            options: q.options,
+            correctAnswerIndex: q.answer,
+            selectedOptionIndex: selected,
+            status: isAnswered ? (isCorrect ? "correct" : "incorrect") : "unattempted",
+            explanation: q.explanation
+          });
+        });
+
+        // Marking: +2 for correct, -0.5 for incorrect
+        const rawScore = (correct * 2.0) - (incorrect * 0.50);
+        const attemptedTotal = correct + incorrect;
+        const accuracy = attemptedTotal > 0 ? ((correct / attemptedTotal) * 100).toFixed(1) : "0.0";
+
+        const testName = currentTestId === "emergency" 
+          ? "Mock Test 1: Emergency Provisions" 
+          : "Mock Test 2: Constitutional Amendments";
+
+        const record = {
+          date: new Date().toISOString(),
+          testId: currentTestId,
+          testName: testName,
+          score: rawScore,
+          maxScore: 60,
+          correctCount: correct,
+          incorrectCount: incorrect,
+          unattemptedCount: unattempted,
+          accuracy: accuracy,
+          timeTaken: timeFormatted,
+          details: details
+        };
+
+        saveHistory(record);
+        renderAnalysis(record);
+        showView("analysis");
+        renderDashboard();
+      }
+
+      // Render Analysis Screen
+      // STRICT REQUIREMENT: "Provide the solution/answer for ONLY incorrect & un-attempted questions on submission."
+      function renderAnalysis(record) {
+        analysisTestTitle.textContent = record.testName;
+        analysisMetaText.textContent = `Completed on ${new Date(record.date).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' })} | Total Questions: 30`;
+        analysisScoreVal.textContent = record.score.toFixed(1);
+        analysisAccuracyVal.textContent = `${record.accuracy}%`;
+        analysisAttemptedVal.textContent = `${record.correctCount + record.incorrectCount} / 30`;
+        analysisCorrectVal.textContent = record.correctCount;
+        analysisIncorrectVal.textContent = record.incorrectCount;
+        analysisUnattemptedVal.textContent = record.unattemptedCount;
+        analysisTimeVal.textContent = record.timeTaken;
+
+        // Filter ONLY Incorrect and Un-attempted questions!
+        const wrongOrSkipped = record.details.filter(d => d.status === "incorrect" || d.status === "unattempted");
+        solutionsCountBadge.textContent = `${wrongOrSkipped.length} Questions Requiring Revision`;
+
+        if (wrongOrSkipped.length === 0) {
+          solutionsCardContainer.innerHTML = `
+            <div style="text-align: center; padding: 40px 20px; background: #f0fdf4; border-radius: 8px; border: 1px solid #bbf7d0;">
+              <div style="font-size: 32px; margin-bottom: 10px;">🎉</div>
+              <h4 style="font-size: 18px; color: #166534; font-weight: 700;">Outstanding Performance! 100% Accuracy</h4>
+              <p style="color: #15803d; font-size: 14px; margin-top: 6px;">You answered all 30 questions correctly! There are zero incorrect or unattempted questions to review.</p>
+            </div>
+          `;
+        } else {
+          solutionsCardContainer.innerHTML = wrongOrSkipped.map(item => {
+            const isIncorrect = item.status === "incorrect";
+            const userChosenText = item.selectedOptionIndex !== null ? item.options[item.selectedOptionIndex] : "None";
+            const correctText = item.options[item.correctAnswerIndex];
+
+            return `
+              <div class="solution-card ${isIncorrect ? 'type-incorrect' : 'type-unattempted'}">
+                <div class="sol-meta">
+                  <span style="font-weight: 700; color: #1e3a8a;">Question ${item.qNum} <span style="font-weight: normal; color: #64748b;">(${item.tag || 'Polity'})</span></span>
+                  <span class="${isIncorrect ? 'tag-wrong' : 'tag-unatt'}">
+                    ${isIncorrect ? '❌ Incorrect Answer (-0.50)' : '⚪ Unattempted (0.00)'}
+                  </span>
+                </div>
+                <div class="sol-question">${item.question}</div>
+                <div class="sol-options-breakdown">
+                  ${isIncorrect ? `
+                    <div class="sol-opt-row user-wrong">
+                      <strong>Your Answer:</strong> ${String.fromCharCode(65 + item.selectedOptionIndex)}. ${userChosenText}
+                    </div>
+                  ` : `
+                    <div class="sol-opt-row" style="color: #64748b;">
+                      <strong>Your Status:</strong> Not Attempted
+                    </div>
+                  `}
+                  <div class="sol-opt-row is-correct">
+                    <strong>✓ Correct Answer:</strong> ${String.fromCharCode(65 + item.correctAnswerIndex)}. ${correctText}
+                  </div>
+                </div>
+                <div class="sol-explanation-box">
+                  <strong>Explanation & Theoretical Reference:</strong><br>
+                  ${item.explanation}
+                </div>
+              </div>
+            `;
+          }).join("");
+        }
+      }
+
+      // Event Listeners for Dashboard & Analysis
+      btnNavHome.addEventListener("click", () => {
+        if (!viewExam.classList.contains("hidden")) {
+          showConfirmModal(
+            "Leave Examination?",
+            "Are you sure you want to return to the Dashboard? Any unsaved live progress in this active attempt will be lost.",
+            () => {
+              if (timerInterval) clearInterval(timerInterval);
+              exitFullscreenSafe();
+              showView("dashboard");
+            }
+          );
+        } else {
+          showView("dashboard");
+        }
+      });
+
+      btnClearHistory.addEventListener("click", () => {
+        showConfirmModal(
+          "Reset Score Records?",
+          "Are you sure you want to clear all test attempt history and saved scores from localStorage?",
+          () => {
+            clearHistory();
+          }
+        );
+      });
+
+      btnStartEmergency.addEventListener("click", () => launchIntro("emergency"));
+      btnStartAmendments.addEventListener("click", () => launchIntro("amendments"));
+
+      btnAnalysisEmergency.addEventListener("click", () => {
+        const history = getHistory();
+        const em = history.find(h => h.testId === "emergency");
+        if (em) {
+          renderAnalysis(em);
+          showView("analysis");
+        }
+      });
+
+      btnAnalysisAmendments.addEventListener("click", () => {
+        const history = getHistory();
+        const am = history.find(h => h.testId === "amendments");
+        if (am) {
+          renderAnalysis(am);
+          showView("analysis");
+        }
+      });
+
+      btnIntroBack.addEventListener("click", () => showView("dashboard"));
+      btnAnalysisToDash.addEventListener("click", () => showView("dashboard"));
+      btnAnalysisRetake.addEventListener("click", () => launchIntro(currentTestId));
+
+      // Initial Load
+      renderDashboard();
+
+    })();
+  </script>
+</body>
+</html>

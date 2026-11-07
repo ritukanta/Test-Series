@@ -1,0 +1,2178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>State Legislature & Executive - Master Mock Test Series (82 MCQs)</title>
+  <style>
+    /* ==========================================================================
+       TCS iON / Eduquity Authentic Light-Themed Exam & Dashboard CSS
+       ========================================================================== */
+    :root {
+      --primary-color: #0b4f8a;
+      --primary-hover: #083b68;
+      --secondary-color: #2b78b5;
+      --accent-color: #e67e22;
+      --bg-light: #f4f6f9;
+      --card-bg: #ffffff;
+      --text-dark: #2c3e50;
+      --text-muted: #64748b;
+      --border-color: #dbe2ea;
+      
+      /* TCS Palette States */
+      --color-not-visited: #95a5a6;
+      --color-not-answered: #e74c3c;
+      --color-answered: #27ae60;
+      --color-review: #8e44ad;
+      --color-ans-review: #6c5ce7;
+      
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.5;
+      user-select: none;
+      -webkit-user-select: none;
+      overflow-x: hidden;
+    }
+
+    /* Common Top Bar */
+    .top-header {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: #ffffff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .top-header .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .top-header .brand-logo {
+      width: 38px;
+      height: 38px;
+      background: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1e3c72;
+      font-weight: 800;
+      font-size: 18px;
+      border: 2px solid #ffcc00;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .top-header .brand-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .top-header .brand-subtitle {
+      font-size: 11px;
+      color: #dbeafe;
+      font-weight: 400;
+    }
+
+    .top-header .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 7px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-light {
+      background: #ffffff;
+      color: #1e3c72;
+      border-color: #cbd5e1;
+    }
+    .btn-light:hover {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+
+    .btn-primary {
+      background: #1e3c72;
+      color: #ffffff;
+    }
+    .btn-primary:hover {
+      background: #152a50;
+    }
+
+    .btn-success {
+      background: #27ae60;
+      color: #ffffff;
+    }
+    .btn-success:hover {
+      background: #219653;
+    }
+
+    .btn-warning {
+      background: #e67e22;
+      color: #ffffff;
+    }
+    .btn-warning:hover {
+      background: #d35400;
+    }
+
+    .btn-danger {
+      background: #e74c3c;
+      color: #ffffff;
+    }
+    .btn-danger:hover {
+      background: #c0392b;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #1e3c72;
+      border-color: #1e3c72;
+    }
+    .btn-outline:hover {
+      background: #edf2f7;
+    }
+
+    /* Views */
+    .view-container {
+      display: none;
+      width: 100%;
+      min-height: calc(100vh - 60px);
+    }
+    .view-container.active {
+      display: block;
+    }
+
+    /* ==========================================================================
+       DASHBOARD STYLES
+       ========================================================================== */
+    .dashboard-wrapper {
+      max-width: 1200px;
+      margin: 25px auto;
+      padding: 0 20px 40px;
+    }
+
+    .dashboard-hero {
+      background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 12px rgba(30, 60, 114, 0.06);
+    }
+
+    .dashboard-hero h1 {
+      font-size: 24px;
+      color: #1e3c72;
+      margin-bottom: 8px;
+    }
+
+    .dashboard-hero p {
+      font-size: 14px;
+      color: #475569;
+      max-width: 850px;
+    }
+
+    .stats-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .stat-box {
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-box .stat-val {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1e3c72;
+    }
+
+    .stat-box .stat-lbl {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .test-grid-heading {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1e293b;
+      margin: 30px 0 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tests-cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 20px;
+    }
+
+    .test-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 22px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .test-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      border-color: #93c5fd;
+    }
+
+    .test-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: #1e3c72;
+    }
+
+    .test-card.t1::before { background: #2563eb; }
+    .test-card.t2::before { background: #0891b2; }
+    .test-card.t3::before { background: #7c3aed; }
+    .test-card.t4::before { background: #059669; }
+
+    .test-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .test-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 12px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      text-transform: uppercase;
+    }
+
+    .test-status-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 12px;
+      background: #f1f5f9;
+      color: #64748b;
+    }
+
+    .test-status-badge.completed {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .test-card h3 {
+      font-size: 17px;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+
+    .test-card p {
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+
+    .test-meta-info {
+      background: #f8fafc;
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin-bottom: 18px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    .test-meta-info span {
+      color: #64748b;
+    }
+    .test-meta-info strong {
+      color: #1e293b;
+      display: block;
+    }
+
+    .test-card-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .test-card-actions .btn {
+      flex: 1;
+    }
+
+    /* ==========================================================================
+       INTRODUCTORY INTERFACE STYLES
+       ========================================================================== */
+    .intro-wrapper {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .intro-card {
+      background: #ffffff;
+      border: 1px solid #dbe2ea;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .intro-card h2 {
+      font-size: 22px;
+      color: #1e3c72;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .instructions-list {
+      margin: 20px 0;
+      font-size: 14px;
+      color: #334155;
+    }
+
+    .instructions-list li {
+      margin-bottom: 12px;
+      margin-left: 20px;
+    }
+
+    .legend-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+
+    .legend-table th, .legend-table td {
+      border: 1px solid #e2e8f0;
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    .legend-table th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .symbol-sample {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 28px;
+      font-weight: 700;
+      font-size: 12px;
+      color: #ffffff;
+      border-radius: 4px;
+    }
+
+    .symbol-not-visited { background: var(--color-not-visited); }
+    .symbol-not-answered { background: var(--color-not-answered); clip-path: polygon(0 0, 100% 0, 100% 75%, 50% 100%, 0 75%); }
+    .symbol-answered { background: var(--color-answered); clip-path: polygon(0 25%, 50% 0, 100% 25%, 100% 100%, 0 100%); }
+    .symbol-review { background: var(--color-review); border-radius: 50%; }
+    .symbol-ans-review { background: var(--color-ans-review); border-radius: 50%; position: relative; }
+    .symbol-ans-review::after {
+      content: "";
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 8px;
+      height: 8px;
+      background: #2ecc71;
+      border-radius: 50%;
+      border: 1px solid #ffffff;
+    }
+
+    .terms-checkbox {
+      margin: 25px 0 20px;
+      padding: 15px;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 6px;
+      font-size: 13px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .terms-checkbox input {
+      margin-top: 3px;
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       TCS / EDUQUITY EXAM INTERFACE (LIGHT THEMED)
+       ========================================================================== */
+    .exam-wrapper {
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 58px);
+      background: #f4f6f9;
+      position: relative;
+    }
+
+    .exam-subbar {
+      background: #ffffff;
+      border-bottom: 1px solid #dbe2ea;
+      padding: 8px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    .exam-subbar .section-tag {
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid #bae6fd;
+    }
+
+    .exam-main-layout {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Left: Question Area */
+    .question-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+      border-right: 1px solid #dbe2ea;
+      overflow-y: auto;
+      padding: 0;
+      position: relative;
+    }
+
+    .question-header-bar {
+      background: #f8fafc;
+      padding: 10px 20px;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .q-number-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1e3c72;
+    }
+
+    .q-marks-badge {
+      font-size: 12px;
+      font-weight: 600;
+      color: #475569;
+      background: #f1f5f9;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .q-marks-badge .pos { color: #16a34a; }
+    .q-marks-badge .neg { color: #dc2626; }
+
+    .question-content-box {
+      padding: 24px 28px 100px; /* Space for fixed bottom bar */
+      flex: 1;
+    }
+
+    .exam-tag-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      color: #b45309;
+      background: #fef3c7;
+      padding: 2px 8px;
+      border-radius: 3px;
+      border: 1px solid #fde68a;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .question-text {
+      font-size: 16px;
+      color: #1e293b;
+      font-weight: 500;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      white-space: pre-line;
+    }
+
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .option-item:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    .option-item.selected {
+      background: #f0f7ff;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px #2563eb;
+    }
+
+    .option-radio {
+      margin-top: 3px;
+      width: 17px;
+      height: 17px;
+      accent-color: #1e3c72;
+      cursor: pointer;
+    }
+
+    .option-label {
+      font-weight: 700;
+      color: #1e3c72;
+      font-size: 14px;
+      min-width: 22px;
+    }
+
+    .option-text {
+      font-size: 14.5px;
+      color: #334155;
+      flex: 1;
+      line-height: 1.45;
+    }
+
+    /* Fixed Bottom Action Bar */
+    .bottom-action-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border-top: 1px solid #cbd5e1;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+      z-index: 20;
+    }
+
+    .action-group-left, .action-group-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Right: Question Palette Area */
+    .palette-panel {
+      width: 320px;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid #dbe2ea;
+      height: 100%;
+    }
+
+    .candidate-info-box {
+      padding: 12px 15px;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #f8fafc;
+    }
+
+    .candidate-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 4px;
+      background: #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #475569;
+      font-weight: 700;
+      font-size: 16px;
+      border: 1px solid #94a3b8;
+    }
+
+    .candidate-meta {
+      font-size: 12px;
+      line-height: 1.35;
+    }
+    .candidate-meta strong {
+      color: #0f172a;
+      font-size: 13px;
+    }
+    .candidate-meta span {
+      color: #64748b;
+      display: block;
+    }
+
+    /* Palette Summary Status Badges */
+    .palette-status-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      padding: 10px 12px;
+      background: #f8fafc;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 11px;
+    }
+
+    .palette-status-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .palette-status-count {
+      width: 24px;
+      height: 22px;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 11px;
+    }
+
+    .palette-scroll-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 15px;
+    }
+
+    .palette-scroll-container h4 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #64748b;
+      margin-bottom: 12px;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .palette-btn {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 4px;
+      border: 1px solid #cbd5e1;
+      background: var(--color-not-visited);
+      color: #ffffff;
+      cursor: pointer;
+      transition: transform 0.1s ease;
+    }
+
+    .palette-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .palette-btn.active {
+      box-shadow: 0 0 0 2px #1e293b, 0 0 0 4px #93c5fd;
+    }
+
+    .palette-btn.not-visited {
+      background: #ffffff;
+      color: #334155;
+      border-color: #cbd5e1;
+    }
+    .palette-btn.not-answered {
+      background: var(--color-not-answered);
+      border-color: #dc2626;
+      clip-path: polygon(0 0, 100% 0, 100% 75%, 50% 100%, 0 75%);
+    }
+    .palette-btn.answered {
+      background: var(--color-answered);
+      border-color: #16a34a;
+      clip-path: polygon(0 25%, 50% 0, 100% 25%, 100% 100%, 0 100%);
+    }
+    .palette-btn.marked-review {
+      background: var(--color-review);
+      border-color: #7c3aed;
+      border-radius: 50%;
+    }
+    .palette-btn.ans-marked-review {
+      background: var(--color-ans-review);
+      border-color: #4f46e5;
+      border-radius: 50%;
+      position: relative;
+    }
+    .palette-btn.ans-marked-review::after {
+      content: "";
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 7px;
+      height: 7px;
+      background: #22c55e;
+      border-radius: 50%;
+      border: 1px solid #ffffff;
+    }
+
+    /* Mobile Palette Toggle Floating Button */
+    .mobile-palette-toggle {
+      display: none;
+      position: fixed;
+      bottom: 70px;
+      right: 15px;
+      z-index: 50;
+      background: #1e3c72;
+      color: #ffffff;
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      cursor: pointer;
+      font-size: 18px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Modal Overlay (Pause / Submit) */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.65);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: 8px;
+      max-width: 480px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+      text-align: center;
+    }
+
+    .modal-card h3 {
+      font-size: 19px;
+      color: #1e293b;
+      margin-bottom: 12px;
+    }
+
+    .modal-card p {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .modal-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      font-size: 13px;
+    }
+    .modal-table td {
+      padding: 6px 12px;
+      border-bottom: 1px solid #e2e8f0;
+      text-align: left;
+    }
+    .modal-table td:last-child {
+      text-align: right;
+      font-weight: 700;
+      color: #1e3c72;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    /* ==========================================================================
+       ANALYSIS & RESULT SCREEN STYLES
+       ========================================================================== */
+    .result-wrapper {
+      max-width: 1050px;
+      margin: 25px auto;
+      padding: 0 20px 50px;
+    }
+
+    .result-header-card {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: #ffffff;
+      border-radius: 10px;
+      padding: 28px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(30, 60, 114, 0.15);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .result-title h2 {
+      font-size: 24px;
+      margin-bottom: 4px;
+    }
+    .result-title p {
+      color: #dbeafe;
+      font-size: 14px;
+    }
+
+    .score-badge-circle {
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.4);
+      border-radius: 10px;
+      padding: 16px 24px;
+      text-align: center;
+      backdrop-filter: blur(4px);
+    }
+
+    .score-badge-circle .num {
+      font-size: 32px;
+      font-weight: 800;
+      color: #ffeb3b;
+      line-height: 1;
+    }
+    .score-badge-circle .den {
+      font-size: 13px;
+      color: #ffffff;
+      opacity: 0.9;
+    }
+
+    .result-stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px;
+      margin-bottom: 30px;
+    }
+
+    .res-stat-card {
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .res-stat-card .val {
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .res-stat-card .lbl {
+      font-size: 12px;
+      color: #64748b;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .solutions-section-heading {
+      font-size: 19px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .solutions-note {
+      font-size: 13px;
+      color: #64748b;
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      padding: 10px 14px;
+      margin-bottom: 20px;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .solution-item-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    .solution-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .solution-status-tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .solution-status-tag.incorrect {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+    .solution-status-tag.unattempted {
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .solution-question-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 14px;
+      line-height: 1.5;
+      white-space: pre-line;
+    }
+
+    .solution-answers-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 13.5px;
+    }
+
+    .ans-box {
+      padding: 10px 14px;
+      border-radius: 6px;
+    }
+    .ans-box.user {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+    }
+    .ans-box.correct {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+      font-weight: 600;
+    }
+
+    .solution-explanation-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 14px;
+      font-size: 13.5px;
+      color: #334155;
+      line-height: 1.6;
+    }
+
+    .solution-explanation-box strong {
+      color: #1e3c72;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .no-solutions-placeholder {
+      background: #ffffff;
+      border: 2px dashed #86efac;
+      border-radius: 8px;
+      padding: 40px 20px;
+      text-align: center;
+      color: #166534;
+    }
+    .no-solutions-placeholder h3 {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    /* Responsive Queries */
+    @media (max-width: 768px) {
+      .top-header {
+        padding: 8px 12px;
+      }
+      .top-header .brand-subtitle {
+        display: none;
+      }
+      .palette-panel {
+        position: fixed;
+        right: -320px;
+        top: 58px;
+        bottom: 0;
+        z-index: 150;
+        box-shadow: -4px 0 15px rgba(0,0,0,0.15);
+        transition: right 0.25s ease;
+      }
+      .palette-panel.mobile-open {
+        right: 0;
+      }
+      .mobile-palette-toggle {
+        display: flex;
+      }
+      .bottom-action-bar {
+        padding: 8px 10px;
+      }
+      .bottom-action-bar .btn {
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+      .solution-answers-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-header">
+    <div class="brand">
+      <div class="brand-logo">GK</div>
+      <div>
+        <div class="brand-title">INDIAN POLITY MOCK EXAM PORTAL</div>
+        <div class="brand-subtitle">State Legislature & Executive • TCS / Eduquity Interface</div>
+      </div>
+    </div>
+    <div class="header-controls">
+      <button id="btnExitFullscreen" class="btn btn-light" style="display:none;" onclick="toggleFullscreen()">
+        Exit Fullscreen
+      </button>
+      <button id="btnHeaderDashboard" class="btn btn-light" onclick="navigateToDashboard()">
+        Dashboard
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       VIEW 1: MAIN DASHBOARD
+       ======================================================================== -->
+  <div id="dashboardView" class="view-container active">
+    <div class="dashboard-wrapper">
+      <div class="dashboard-hero">
+        <h1>State Legislature & Executive Test Series</h1>
+        <p>
+          Comprehensive 82-Question Test Series based on authentic previous years' questions (SSC CGL, CHSL, CPO, MTS, GD, RPF, RRB NTPC, UPSC CSE, CDS, CAPF, NDA, BPSC, UPPCS). Divided systematically into four targeted mock tests of 20, 20, 20, and 22 questions.
+        </p>
+        
+        <div class="stats-summary-grid">
+          <div class="stat-box">
+            <span class="stat-val" id="totalQuestionsCount">82</span>
+            <span class="stat-lbl">Total Questions</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val" id="testsCompletedCount">0 / 4</span>
+            <span class="stat-lbl">Tests Completed</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val" id="totalScoreAccumulated">0.0 / 164.0</span>
+            <span class="stat-lbl">Total Score Earned</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val" id="overallAccuracyRate">0%</span>
+            <span class="stat-lbl">Overall Accuracy</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-grid-heading">
+        <span>Available Mock Tests</span>
+        <button class="btn btn-outline" onclick="resetAllHistory()" style="font-size:12px; padding:4px 10px;">
+          Reset Test History
+        </button>
+      </div>
+
+      <div class="tests-cards-container">
+        <!-- Mock Test 1 -->
+        <div class="test-card t1">
+          <div>
+            <div class="test-card-header">
+              <span class="test-badge">Part 1</span>
+              <span id="badgeTest1" class="test-status-badge">Not Attempted</span>
+            </div>
+            <h3>Mock Test 1: Governor Powers & Bicameralism</h3>
+            <p>Constitutional Immunity (Art. 361), Discretionary Powers, Resignation, UT Legislatures, 104th & 106th Amendments, and Bicameral State systems.</p>
+          </div>
+          <div>
+            <div class="test-meta-info">
+              <div>
+                <span>Questions:</span>
+                <strong>20 MCQs (Q1–20)</strong>
+              </div>
+              <div>
+                <span>Max Marks:</span>
+                <strong>40.0 Marks</strong>
+              </div>
+              <div>
+                <span>Marking:</span>
+                <strong>+2.0 / -0.5</strong>
+              </div>
+              <div>
+                <span>Best Score:</span>
+                <strong id="bestScore1">--</strong>
+              </div>
+            </div>
+            <div class="test-card-actions">
+              <button class="btn btn-primary" onclick="startIntroForTest(1)">Start Test</button>
+              <a href="mock_test_1.html" class="btn btn-light" title="Open separate mock test HTML file">&#x2197; Standalone</a>
+              <button id="btnReview1" class="btn btn-light" style="display:none;" onclick="reviewTestSolutions(1)">Review</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mock Test 2 -->
+        <div class="test-card t2">
+          <div>
+            <div class="test-card-header">
+              <span class="test-badge">Part 2</span>
+              <span id="badgeTest2" class="test-status-badge">Not Attempted</span>
+            </div>
+            <h3>Mock Test 2: Executive Roles & Centre-State Relations</h3>
+            <p>Disqualification of MLAs (Art. 191/192), High Court Oath, Legislative Council 1/3rd ratio, Centre-State Relations (Art. 245-255), and Delhi UT powers.</p>
+          </div>
+          <div>
+            <div class="test-meta-info">
+              <div>
+                <span>Questions:</span>
+                <strong>20 MCQs (Q21–40)</strong>
+              </div>
+              <div>
+                <span>Max Marks:</span>
+                <strong>40.0 Marks</strong>
+              </div>
+              <div>
+                <span>Marking:</span>
+                <strong>+2.0 / -0.5</strong>
+              </div>
+              <div>
+                <span>Best Score:</span>
+                <strong id="bestScore2">--</strong>
+              </div>
+            </div>
+            <div class="test-card-actions">
+              <button class="btn btn-primary" onclick="startIntroForTest(2)">Start Test</button>
+              <a href="mock_test_2.html" class="btn btn-light" title="Open separate mock test HTML file">&#x2197; Standalone</a>
+              <button id="btnReview2" class="btn btn-light" style="display:none;" onclick="reviewTestSolutions(2)">Review</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mock Test 3 -->
+        <div class="test-card t3">
+          <div>
+            <div class="test-card-header">
+              <span class="test-badge">Part 3</span>
+              <span id="badgeTest3" class="test-status-badge">Not Attempted</span>
+            </div>
+            <h3>Mock Test 3: Council of Ministers & State Assembly</h3>
+            <p>15% Ministry ceiling (91st Amendment), Sarkaria Commission, Assembly strength rules, Advocate General (Art. 165), and Cabinet collective responsibility.</p>
+          </div>
+          <div>
+            <div class="test-meta-info">
+              <div>
+                <span>Questions:</span>
+                <strong>20 MCQs (Q41–60)</strong>
+              </div>
+              <div>
+                <span>Max Marks:</span>
+                <strong>40.0 Marks</strong>
+              </div>
+              <div>
+                <span>Marking:</span>
+                <strong>+2.0 / -0.5</strong>
+              </div>
+              <div>
+                <span>Best Score:</span>
+                <strong id="bestScore3">--</strong>
+              </div>
+            </div>
+            <div class="test-card-actions">
+              <button class="btn btn-primary" onclick="startIntroForTest(3)">Start Test</button>
+              <a href="mock_test_3.html" class="btn btn-light" title="Open separate mock test HTML file">&#x2197; Standalone</a>
+              <button id="btnReview3" class="btn btn-light" style="display:none;" onclick="reviewTestSolutions(3)">Review</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mock Test 4 -->
+        <div class="test-card t4">
+          <div>
+            <div class="test-card-header">
+              <span class="test-badge">Part 4</span>
+              <span id="badgeTest4" class="test-status-badge">Not Attempted</span>
+            </div>
+            <h3>Mock Test 4: Legislative Procedures & Quorum Rules</h3>
+            <p>Articles 167-188, J&K Reorganisation 2019, Ordinance power (Art. 213), Assembly Quorum (Art. 189), Minimum age (25 yrs), and Sikkim 32-seat exception.</p>
+          </div>
+          <div>
+            <div class="test-meta-info">
+              <div>
+                <span>Questions:</span>
+                <strong>22 MCQs (Q61–82)</strong>
+              </div>
+              <div>
+                <span>Max Marks:</span>
+                <strong>44.0 Marks</strong>
+              </div>
+              <div>
+                <span>Marking:</span>
+                <strong>+2.0 / -0.5</strong>
+              </div>
+              <div>
+                <span>Best Score:</span>
+                <strong id="bestScore4">--</strong>
+              </div>
+            </div>
+            <div class="test-card-actions">
+              <button class="btn btn-primary" onclick="startIntroForTest(4)">Start Test</button>
+              <a href="mock_test_4.html" class="btn btn-light" title="Open separate mock test HTML file">&#x2197; Standalone</a>
+              <button id="btnReview4" class="btn btn-light" style="display:none;" onclick="reviewTestSolutions(4)">Review</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       VIEW 2: INITIAL INTRODUCTORY INTERFACE
+       ======================================================================== -->
+  <div id="introView" class="view-container">
+    <div class="intro-wrapper">
+      <div class="intro-card">
+        <h2>
+          <span id="introTestTitle">Mock Test 1: General Instructions</span>
+          <button class="btn btn-light" onclick="navigateToDashboard()">Back to Dashboard</button>
+        </h2>
+
+        <div style="background:#f1f5f9; padding:12px 16px; border-radius:6px; margin-bottom:20px; font-size:13.5px; color:#1e293b;">
+          <strong>Exam Details:</strong> <span id="introQuestionsCount">20</span> Questions | Total Marks: <span id="introMarksCount">40.0</span> | Marking: <strong>+2.0</strong> for correct answer, <strong>-0.5</strong> for incorrect answer, <strong>0.0</strong> for unattempted.
+        </div>
+
+        <h4 style="font-size:15px; color:#1e3c72; margin-bottom:10px;">Please read the following instructions carefully:</h4>
+        <ul class="instructions-list">
+          <li><strong>No Timer Constraint:</strong> This test operates without any time limit so you can thoroughly analyze and master every question.</li>
+          <li><strong>Navigation:</strong> You can navigate between questions using the question-number palette on the right, or the 'Next' and 'Previous' buttons.</li>
+          <li><strong>Option Randomization:</strong> The options (A, B, C, D) are randomly arranged upon each attempt to ensure genuine understanding.</li>
+          <li><strong>Question Palette Symbols:</strong> The question palette displays the status of each question using the standard TCS / Eduquity symbols:</li>
+        </ul>
+
+        <table class="legend-table">
+          <thead>
+            <tr>
+              <th style="width: 80px;">Symbol</th>
+              <th>Status Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="symbol-sample symbol-not-visited">1</span></td>
+              <td>You have <strong>not visited</strong> the question yet.</td>
+            </tr>
+            <tr>
+              <td><span class="symbol-sample symbol-not-answered">2</span></td>
+              <td>You have <strong>not answered</strong> the question.</td>
+            </tr>
+            <tr>
+              <td><span class="symbol-sample symbol-answered">3</span></td>
+              <td>You have <strong>answered</strong> the question.</td>
+            </tr>
+            <tr>
+              <td><span class="symbol-sample symbol-review">4</span></td>
+              <td>You have <strong>marked the question for review</strong> (not answered).</td>
+            </tr>
+            <tr>
+              <td><span class="symbol-sample symbol-ans-review">5</span></td>
+              <td>You have <strong>answered and marked the question for review</strong>.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="terms-checkbox">
+          <input type="checkbox" id="chkIntroAccept">
+          <label for="chkIntroAccept">
+            I have read and understood all the instructions. I understand that the test will enter fullscreen mode upon clicking 'Begin Test'. Solutions and detailed explanations for <strong>incorrect and unattempted questions</strong> will be presented upon final submission.
+          </label>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <button class="btn btn-light" onclick="navigateToDashboard()">Cancel & Return</button>
+          <button id="btnBeginExam" class="btn btn-success" style="padding:10px 24px; font-size:15px;" onclick="beginActiveExam()">
+            Begin Mock Test &rarr;
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       VIEW 3: TCS / EDUQUITY ACTIVE EXAM INTERFACE
+       ======================================================================== -->
+  <div id="examView" class="view-container">
+    <div class="exam-wrapper">
+      <!-- Section / Subject Bar -->
+      <div class="exam-subbar">
+        <div>
+          <span class="section-tag" id="examSectionTitle">Section: Indian Polity - State Legislature</span>
+          <span style="margin-left:12px; color:#64748b; font-weight:normal;" id="examCurrentTestName">Mock Test 1</span>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button class="btn btn-light" style="padding:4px 10px; font-size:12px;" onclick="pauseExam()">Pause Test</button>
+          <button class="btn btn-light" style="padding:4px 10px; font-size:12px;" onclick="toggleFullscreen()">Exit Fullscreen</button>
+        </div>
+      </div>
+
+      <!-- Main Two-Column Exam Layout -->
+      <div class="exam-main-layout">
+        
+        <!-- Left: Question & Options Panel -->
+        <div class="question-panel">
+          <div class="question-header-bar">
+            <span class="q-number-title" id="lblQuestionNumber">Question No. 1</span>
+            <span class="q-marks-badge">
+              Marks: <span class="pos">+2.00</span> | <span class="neg">-0.50</span>
+            </span>
+          </div>
+
+          <div class="question-content-box">
+            <div id="examTagBadge" class="exam-tag-badge">SSC CGL</div>
+            <div id="questionText" class="question-text">
+              Question text goes here...
+            </div>
+
+            <div class="options-container" id="optionsContainer">
+              <!-- Options rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Bottom Action Bar (Fixed at bottom of question panel) -->
+          <div class="bottom-action-bar">
+            <div class="action-group-left">
+              <button class="btn btn-warning" onclick="markForReviewAndNext()">Mark for Review & Next</button>
+              <button class="btn btn-light" onclick="clearCurrentResponse()">Clear</button>
+            </div>
+            <div class="action-group-right">
+              <button id="btnPrev" class="btn btn-light" onclick="prevQuestion()">&larr; Previous</button>
+              <button id="btnNext" class="btn btn-primary" onclick="nextQuestion()">Next &rarr;</button>
+              <button class="btn btn-success" style="margin-left:10px;" onclick="openSubmitModal()">Submit</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Small Sized Question Number Palette -->
+        <div class="palette-panel" id="palettePanel">
+          <!-- Candidate Mini Profile -->
+          <div class="candidate-info-box">
+            <div class="candidate-avatar">SSC</div>
+            <div class="candidate-meta">
+              <strong>Candidate</strong>
+              <span>State Polity Mock Series</span>
+            </div>
+          </div>
+
+          <!-- Status Counters -->
+          <div class="palette-status-grid">
+            <div class="palette-status-item">
+              <div class="palette-status-count" style="background:var(--color-answered);"><span id="cntAnswered">0</span></div>
+              <span>Answered</span>
+            </div>
+            <div class="palette-status-item">
+              <div class="palette-status-count" style="background:var(--color-not-answered);"><span id="cntNotAnswered">0</span></div>
+              <span>Not Answered</span>
+            </div>
+            <div class="palette-status-item">
+              <div class="palette-status-count" style="background:var(--color-not-visited);"><span id="cntNotVisited">0</span></div>
+              <span>Not Visited</span>
+            </div>
+            <div class="palette-status-item">
+              <div class="palette-status-count" style="background:var(--color-review);"><span id="cntMarkedReview">0</span></div>
+              <span>Marked for Review</span>
+            </div>
+          </div>
+
+          <!-- Scrollable Palette Numbers -->
+          <div class="palette-scroll-container">
+            <h4>Question Palette</h4>
+            <div class="palette-grid" id="paletteButtonsContainer">
+              <!-- Palette buttons generated dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Floating Palette Toggle -->
+  <button class="mobile-palette-toggle" onclick="toggleMobilePalette()">
+    &#9776;
+  </button>
+
+  <!-- ========================================================================
+       MODAL 1: PAUSE TEST MODAL
+       ======================================================================== -->
+  <div id="pauseModal" class="modal-overlay">
+    <div class="modal-card">
+      <div style="font-size:42px; color:#e67e22; margin-bottom:10px;">&#10074;&#10074;</div>
+      <h3>Test Paused</h3>
+      <p>Your examination is temporarily paused. Your answers and question progress have been preserved. Take a moment and resume whenever you are ready.</p>
+      <div class="modal-actions">
+        <button class="btn btn-success" style="padding:10px 24px;" onclick="resumeExam()">Resume Mock Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 2: SUBMIT CONFIRMATION MODAL
+       ======================================================================== -->
+  <div id="submitModal" class="modal-overlay">
+    <div class="modal-card">
+      <h3>Submit Examination?</h3>
+      <p>Are you sure you want to finish and submit this test? You will not be able to change your answers once submitted.</p>
+      
+      <table class="modal-table">
+        <tr>
+          <td>Total Questions:</td>
+          <td id="modalTotalQ">20</td>
+        </tr>
+        <tr>
+          <td>Answered:</td>
+          <td id="modalAnsQ">0</td>
+        </tr>
+        <tr>
+          <td>Not Answered:</td>
+          <td id="modalNotAnsQ">0</td>
+        </tr>
+        <tr>
+          <td>Marked for Review:</td>
+          <td id="modalReviewQ">0</td>
+        </tr>
+      </table>
+
+      <div class="modal-actions">
+        <button class="btn btn-light" onclick="closeSubmitModal()">Cancel / Continue Test</button>
+        <button class="btn btn-danger" onclick="confirmSubmitExam()">Yes, Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       VIEW 4: RESULT & ANALYSIS VIEW
+       ======================================================================== -->
+  <div id="resultView" class="view-container">
+    <div class="result-wrapper">
+      <div class="result-header-card">
+        <div class="result-title">
+          <h2 id="resTestTitle">Mock Test 1: Analysis & Scorecard</h2>
+          <p id="resTimestamp">Completed on Nov 5, 2026</p>
+        </div>
+        <div class="score-badge-circle">
+          <div class="num" id="resNetScore">0.0</div>
+          <div class="den">Out of <span id="resMaxMarks">40.0</span> Marks</div>
+        </div>
+      </div>
+
+      <div class="result-stats-row">
+        <div class="res-stat-card">
+          <div class="val" style="color:#1e3c72;" id="resTotalQ">20</div>
+          <div class="lbl">Total Questions</div>
+        </div>
+        <div class="res-stat-card">
+          <div class="val" style="color:#16a34a;" id="resCorrectCount">0</div>
+          <div class="lbl">Correct (+2 ea)</div>
+        </div>
+        <div class="res-stat-card">
+          <div class="val" style="color:#dc2626;" id="resIncorrectCount">0</div>
+          <div class="lbl">Incorrect (-0.5 ea)</div>
+        </div>
+        <div class="res-stat-card">
+          <div class="val" style="color:#64748b;" id="resUnattemptedCount">0</div>
+          <div class="lbl">Unattempted</div>
+        </div>
+        <div class="res-stat-card">
+          <div class="val" style="color:#0284c7;" id="resAccuracy">0%</div>
+          <div class="lbl">Accuracy</div>
+        </div>
+      </div>
+
+      <div class="solutions-section-heading">
+        <span>Detailed Solutions & Rationales</span>
+        <div style="display:flex; gap:10px;">
+          <button class="btn btn-primary" onclick="retakeCurrentTest()">Retake Test</button>
+          <button class="btn btn-light" onclick="navigateToDashboard()">Back to Dashboard</button>
+        </div>
+      </div>
+
+      <div class="solutions-note">
+        <strong>Review Guideline:</strong> As per the exam rules, detailed solutions and correct answers are provided below for <strong>ONLY incorrect and unattempted questions</strong> to reinforce targeted learning and conceptual clarity.
+      </div>
+
+      <div id="solutionsListContainer">
+        <!-- Solutions rendered here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       EMBEDDED DATA & APPLICATION JAVASCRIPT
+       ======================================================================== -->
+  <script>
+    // Embedded Master Question Data (82 Questions)
+    const ALL_QUESTIONS = [{"id": 1, "test_id": 1, "exam_tag": "CSE – 2025", "question": "With reference to the Indian polity, consider the following statements:\nI. The Governor of a State is not answerable to any court for the exercise and performance of the powers and duties of his/her office.\nII. No criminal proceedings shall be instituted or continued against the Governor during his/her term of office.\nIII. Members of a State Legislature are not liable to any proceedings in any court in respect of anything said within the House.\nWhich of the statements given above are correct?", "options": ["I and II only", "II and III only", "I and III only", "I, II and III"], "answer": 3, "explanation": "All three statements are correct under constitutional provisions:\n• Statement I & II: Under Article 361(1) and 361(2), the Governor enjoys personal immunity from court proceedings for acts done in discharge of official duties, and no criminal proceedings can be instituted or continued against the Governor in any court during his/her term of office.\n• Statement III: Under Article 194(2), no member of the Legislature of a State is liable to any legal proceedings in any court in respect of anything said or any vote given by him/her in the Legislature or its committees."}, {"id": 2, "test_id": 1, "exam_tag": "CSE – 2025", "question": "Consider the following statements:\nI. The Constitution of India explicitly mentions that in certain spheres the Governor of a State acts in his/her own discretion.\nII. The President of India can, of his/her own, reserve a bill passed by a State Legislature for his/her consideration without it being forwarded by the Governor of the State concerned.\nWhich of the statements given above is/are correct?", "options": ["I only", "II only", "Both I and II", "Neither I nor II"], "answer": 0, "explanation": "Statement I is correct: Article 163(1) explicitly provides that the Council of Ministers aids and advises the Governor 'except in so far as he is by or under this Constitution required to exercise his functions or any of them in his discretion'.\nStatement II is incorrect: Under Articles 200 and 201, a state legislative bill reaches the President only when reserved and forwarded by the State Governor. The President has no constitutional power to reserve a state bill on their own initiative."}, {"id": 3, "test_id": 1, "exam_tag": "CBI – 2023", "question": "The Governor of a State may tender his/her resignation to:", "options": ["the President of India", "the Union Home Minister", "the Speaker of the Legislative Assembly", "the Advocate General of the State"], "answer": 0, "explanation": "According to Article 156(2) of the Constitution of India, the Governor may resign his office at any time by writing under his hand addressed to the President."}, {"id": 4, "test_id": 1, "exam_tag": "CBI – 2023", "question": "Which of the following statements is/are correct?\n1. Not all Union Territories have Legislative Assemblies.\n2. Union Territory of Puducherry has a Legislative Assembly.\nSelect the correct answer using the code given below:", "options": ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"], "answer": 2, "explanation": "Both statements are correct. Of the 8 Union Territories in India, only Delhi, Puducherry, and Jammu & Kashmir have provisions for Legislative Assemblies; the remaining five UTs do not have legislatures. Puducherry was provided with a Legislative Assembly and Council of Ministers under Article 239A and the Government of Union Territories Act, 1963."}, {"id": 5, "test_id": 1, "exam_tag": "CBI – 2023", "question": "Which one of the following Constitutional Amendment Acts further extended the reservation of seats for SCs and STs in the Lok Sabha and the State Assemblies from seventy years to eighty years?", "options": ["93rd Amendment Act", "101st Amendment Act", "102nd Amendment Act", "104th Amendment Act"], "answer": 3, "explanation": "The 104th Constitutional Amendment Act, 2019 amended Article 334 to extend the reservation of seats for Scheduled Castes (SCs) and Scheduled Tribes (STs) in the Lok Sabha and State Legislative Assemblies for another ten years (from 70 to 80 years, up to 25 January 2030), while discontinuing nominated seats for Anglo-Indians."}, {"id": 6, "test_id": 1, "exam_tag": "CDS – II – 2022", "question": "Which among the following is not the strength or chief benefit of Bicameralism?", "options": ["Second chambers check the first chambers and prevent majoritarian rule.", "It checks the powers of the executive.", "The second chambers can act as a constitutional safeguard.", "It often acts as a check on democratic rule, particularly when their members are non-elected or indirectly elected."], "answer": 3, "explanation": "Option (d) is a recognized limitation or criticism of bicameralism, not a strength or benefit. When upper chambers consist of indirectly elected or nominated members, they can obstruct or delay progressive legislation enacted by the directly elected representatives of the people."}, {"id": 7, "test_id": 1, "exam_tag": "CDS – II – 2022", "question": "Which of the following States has/have bicameral legislature?\n1. Andhra Pradesh\n2. Telangana\n3. Bihar\n4. Uttar Pradesh\nSelect the correct answer using the code given below:", "options": ["1 only", "1, 2 and 3 only", "3 and 4 only", "1, 2, 3 and 4"], "answer": 3, "explanation": "Currently, six states in India have bicameral legislatures: Andhra Pradesh, Telangana, Bihar, Uttar Pradesh, Maharashtra, and Karnataka. Hence, all four states listed (1, 2, 3, and 4) have a bicameral legislature."}, {"id": 8, "test_id": 1, "exam_tag": "CAPF – 2022", "question": "The landmark case of D. C. Wadhwa vs. State of Bihar in the Supreme Court is related to which one of the following powers of the Governor?", "options": ["To repromulgate ordinances", "To appoint a Chief Minister", "To grant pardon, etc.", "To revise the emoluments and allowances of the MLAs"], "answer": 0, "explanation": "In D.C. Wadhwa v. State of Bihar (1987), the Supreme Court ruled that the repeated repromulgation of ordinances by the Governor without placing them before the legislature is a colorable exercise of power and a fraud on the Constitution."}, {"id": 9, "test_id": 1, "exam_tag": "NDA – I – 2024", "question": "Under Article 191 of the Constitution of India, a person shall be disqualified for being chosen as, and for being, a member of the Legislative Assembly or Legislative Council of a state if the person holds any office of profit under:\n1. the Government of India.\n2. any State Government.\nSelect the correct answer using the code given below:", "options": ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"], "answer": 2, "explanation": "Under Article 191(1)(a) of the Indian Constitution, a person is disqualified from being chosen as, and for being, a member of the Legislative Assembly or Legislative Council of a State if he holds any office of profit under the Government of India or the Government of any State specified in the First Schedule, other than an office declared by the State Legislature by law not to disqualify its holder."}, {"id": 10, "test_id": 1, "exam_tag": "CDS – II – 2025", "question": "Which of the following statements as per the Constitution of India is/are correct?\n1. Provision for the reservation of seats for women in the Lok Sabha and the Rajya Sabha has been made vide 106th Amendment of the Constitution.\n2. There are provisions for the reservation of seats for women in the Legislative Assemblies and Legislative Councils of the States.\n3. There are provisions for the reservation of seats for women in Panchayats.\nSelect the answer using the code given below:", "options": ["1 and 2", "2 and 3", "1 only", "3 only"], "answer": 3, "explanation": "Only statement 3 is correct:\n• Statement 1 is incorrect: The 106th Amendment Act (2023) provides 33% reservation for women in Lok Sabha, State Legislative Assemblies, and NCT of Delhi Assembly, but NOT in Rajya Sabha.\n• Statement 2 is incorrect: The 106th Amendment does NOT provide reservation for women in State Legislative Councils (Vidhan Parishad).\n• Statement 3 is correct: Article 243D guarantees reservation of not less than one-third of the total number of seats for women in Panchayats."}, {"id": 11, "test_id": 1, "exam_tag": "RPF CONSTABLE 10/03/2025 AFTERNOON", "question": "Articles 153 to 167 in the Indian Constitution deal with which aspect of governance?", "options": ["The Judiciary", "The Union Executive", "The State Executive", "The Panchayati Raj System"], "answer": 2, "explanation": "Articles 153 to 167 in Part VI of the Constitution of India deal with the State Executive, which consists of the Governor, the Chief Minister, the Council of Ministers, and the Advocate General of the State."}, {"id": 12, "test_id": 1, "exam_tag": "SSC CGL 26/09/2024 (1st Shift)", "question": "Which of the following Articles and Parts of the Indian Constitution deal with the State Legislature?", "options": ["Articles 214 to 231 in Part VI", "Articles 168 to 212 in Part VI", "Articles 243 to 243-O in Part IX", "Articles 79 to 122 in Part V"], "answer": 1, "explanation": "Articles 168 to 212 in Part VI of the Constitution deal with the organization, composition, duration, officers, procedures, privileges, and powers of the State Legislature."}, {"id": 13, "test_id": 1, "exam_tag": "SSC STENO 07/08/2025 – MORNING", "question": "Which article provides for the appointment of Governors in India?", "options": ["Article 170", "Article 154", "Article 155", "Article 168"], "answer": 2, "explanation": "Article 155 states that 'The Governor of a State shall be appointed by the President by warrant under his hand and seal.' (Article 153 establishes the office of the Governor, and Article 154 vests executive power of the state in the Governor)."}, {"id": 14, "test_id": 1, "exam_tag": "RPF CONSTABLE 12/03/2025 AFTERNOON", "question": "Which of the following powers does the Governor NOT possess?", "options": ["Legislative powers", "Diplomatic powers", "Financial powers", "Executive powers"], "answer": 1, "explanation": "Diplomatic, military, and treaty-making powers are exclusively vested in the President of India (Union Executive). The Governor has executive, legislative, financial, and judicial powers, but possesses no diplomatic or military powers."}, {"id": 15, "test_id": 1, "exam_tag": "SSC STENO 07/08/2025 – EVENING", "question": "Which discretionary power allows a Governor to reserve a bill passed by the state legislature for the consideration of the President?", "options": ["To send a report to the President for the imposition of President's Rule.", "To reserve a bill for the President's consideration.", "To grant pardon in certain cases.", "To summon, prorogue, and dissolve the state legislative assembly"], "answer": 1, "explanation": "Under Article 200, when a bill is passed by the state legislature and presented to the Governor, the Governor may declare that he reserves the bill for the consideration of the President (and under Article 201, the President considers the bill)."}, {"id": 16, "test_id": 1, "exam_tag": "SSC STENO 08/08/2025 – AFTERNOON", "question": "Statement 1: Governor is state's constitutional head.\nStatement 2: He acts solely on Council's advice.\nWhich of the above statements holds true regarding Governor's executive powers?", "options": ["Both 1 and 2", "Only 1", "Only 2", "Neither 1 nor 2"], "answer": 1, "explanation": "Statement 1 is true: The Governor is the de jure (constitutional/nominal) head of the state. Statement 2 is false: Unlike the President, the Governor is not bound solely by ministerial advice because Article 163(1) explicitly grants the Governor discretionary powers to act independently in certain matters."}, {"id": 17, "test_id": 1, "exam_tag": "SSC GD 04/02/2025 EVENING", "question": "Which of the following does NOT come under the power of a Governor of a State in India?", "options": ["Obligatory power", "Discretionary power", "Executive power", "Legislative power"], "answer": 0, "explanation": "The powers of the Governor are broadly categorized into Executive powers, Legislative powers, Financial powers, Judicial powers, and Discretionary powers. There is no recognized constitutional power category titled 'Obligatory power'."}, {"id": 18, "test_id": 1, "exam_tag": "SSC GD 06/02/2025 AFTERNOON", "question": "According to the Constitution of India, who is considered as a real executive of a state?", "options": ["Deputy Chief Minister", "Chief Minister", "Speaker", "Governor"], "answer": 1, "explanation": "In India's parliamentary form of government at the state level, the Governor is the nominal/constitutional executive (de jure), while the Chief Minister is the real executive (de facto) who exercises effective governing power."}, {"id": 19, "test_id": 1, "exam_tag": "SSC GD 18/02/2025 EVENING", "question": "In a state, the Council of Ministers are collectively responsible to:", "options": ["State Legislative Assembly", "President", "Chief Minister", "Governor"], "answer": 0, "explanation": "Under Article 164(2) of the Indian Constitution, the Council of Ministers shall be collectively responsible to the Legislative Assembly of the State (Vidhan Sabha)."}, {"id": 20, "test_id": 1, "exam_tag": "SSC GD 05/02/2025 MORNING", "question": "Who among the following makes the rules for the more convenient transaction of the business of the State government?", "options": ["Chief Secretary of the State", "Chief Minister of the State", "Advocate General of the State", "Governor of the State"], "answer": 3, "explanation": "Article 166(3) mandates: 'The Governor shall make rules for the more convenient transaction of the business of the Government of the State, and for the allocation among Ministers of the said business in so far as it is not business with respect to which the Governor is by or under this Constitution required to act in his discretion.'"}, {"id": 21, "test_id": 2, "exam_tag": "SSC GD 19/02/2025 AFTERNOON", "question": "Who among the following decides on the questions of disqualifications of members of the State legislature in consultation with the Election Commission?", "options": ["Chief Secretary", "Chief Minister", "Chairman of the Legislative Council", "Governor"], "answer": 3, "explanation": "Under Article 192 of the Constitution, if any question arises whether a member of a House of the Legislature of a State has become subject to any disqualification under Article 191(1), the question is referred to the Governor, whose decision is final. Before giving any decision, the Governor must obtain the opinion of the Election Commission and act according to such opinion."}, {"id": 22, "test_id": 2, "exam_tag": "SSC GD 19/02/2025 MORNING", "question": "Who administers the oath of office to the Governor?", "options": ["Chief Minister", "Chief Justice of High Court", "Prime Minister", "President"], "answer": 1, "explanation": "Under Article 159, the oath of office and secrecy to the Governor is administered by the Chief Justice of the High Court exercising jurisdiction in relation to the State, or in his/her absence, the senior-most judge of that Court available."}, {"id": 23, "test_id": 2, "exam_tag": "SSC GD 12/02/2025 EVENING", "question": "According to the Indian Constitution, which of the following powers are NOT vested in Governor?", "options": ["Writs Issuing powers", "Discretionary powers", "Legislative powers", "Financial powers"], "answer": 0, "explanation": "The power to issue prerogative writs (Habeas Corpus, Mandamus, Prohibition, Quo Warranto, Certiorari) is a judicial power vested exclusively in the Supreme Court (Article 32) and High Courts (Article 226), and is not vested in the Governor."}, {"id": 24, "test_id": 2, "exam_tag": "SSC GD 12/02/2025 AFTERNOON", "question": "Who among the following nominates one-sixth members to the state legislative council of a state in India?", "options": ["President", "Chief Minister", "Governor", "State Election Commissioner"], "answer": 2, "explanation": "Under Article 171(3)(e) and 171(5), 1/6th of the total members of the State Legislative Council are nominated by the Governor from among persons having special knowledge or practical experience in literature, science, art, cooperative movement, and social service."}, {"id": 25, "test_id": 2, "exam_tag": "SSC STENO 25/02/2025 EVENING", "question": "Which of the following is NOT a function of a Chief Minister of an Indian state?", "options": ["Coordinates the functioning of inter-state public service commissions", "Guides the framing of the policies for the State", "Is the sole link between Council of Ministers and Governor", "Advises the Governor"], "answer": 0, "explanation": "Public Service Commissions are independent constitutional bodies established under Article 315. Coordinating inter-state public service commissions is not a function of the Chief Minister. The Chief Minister advises the Governor, acts as the primary channel of communication between the Council of Ministers and Governor (Article 167), and guides state policy."}, {"id": 26, "test_id": 2, "exam_tag": "SSC GD 21/02/2025 EVENING", "question": "According to the Constitution of India, who may reserve a bill passed by the state legislative assembly for the president’s consent?", "options": ["Opposition party in state legislative assembly", "Governor", "Chairperson of state legislative assembly", "Chief Minister"], "answer": 1, "explanation": "Under Article 200 of the Constitution, the Governor has the authority to reserve a bill passed by the State Legislative Assembly for the consideration and assent of the President."}, {"id": 27, "test_id": 2, "exam_tag": "SSC GD 07/02/2025 EVENING", "question": "According to the Indian Constitution, which of the following is NOT a power of the Governor?", "options": ["Dissolve the state legislature", "Vote during the no confidence motion", "Prorogue the state legislature", "Summon the state legislature"], "answer": 1, "explanation": "The Governor is an integral part of the State Legislature (Article 168) with powers to summon, prorogue, and dissolve the Legislative Assembly (Article 174), but the Governor is not an elected member of the house and has no right to sit or vote in any motion, including a no-confidence motion."}, {"id": 28, "test_id": 2, "exam_tag": "SSC GD 07/02/2025", "question": "The maximum strength of the legislative council of the state is fixed at ______ of the total strength of the State Legislative assembly.", "options": ["1/5th", "1/3rd", "1/2nd", "1/4th"], "answer": 1, "explanation": "Under Article 171(1), the total number of members in the Legislative Council of a State shall not exceed one-third of the total number of members in the Legislative Assembly of that State, provided that the total number of members shall in no case be less than 40."}, {"id": 29, "test_id": 2, "exam_tag": "SSC GD 04/02/2025 AFTERNOON", "question": "Who among the following has the power to dissolve the legislative assembly of a state?", "options": ["Chief Justice of High Court", "Chief Minister of the State", "Chief Secretary of the State", "Governor of the State"], "answer": 3, "explanation": "Under Article 174(2)(b) of the Constitution, the Governor has the power to dissolve the Legislative Assembly of the State (normally on the advice of the Chief Minister/Council of Ministers)."}, {"id": 30, "test_id": 2, "exam_tag": "RRB NTPC CBT – II – 13/10/2025 MORNING", "question": "Which of the following are aspects of the Centre-State legislative relation?\n1. Territorial extent of Central and state legislation\n2. Distribution of legislative subjects\n3. Parliamentary legislation in the state field\n4. Centre’s control over state legislation", "options": ["All 1, 2, 3 and 4", "Only 1 and 2", "Only 2 and 3", "Only 1, 2 and 3"], "answer": 0, "explanation": "Articles 245 to 255 in Part XI of the Constitution deal with Centre-State legislative relations, encompassing all four aspects:\n1. Territorial extent of central and state legislation (Article 245)\n2. Distribution of legislative subjects across Union, State, and Concurrent Lists (Article 246)\n3. Parliamentary legislation in the state field under special circumstances (Articles 249, 250, 252, 253)\n4. Centre's control over state legislation via Governor's reservation of bills (Articles 200, 201)."}, {"id": 31, "test_id": 2, "exam_tag": "SSC PHASE XIII 26/07/2025 Shift-1", "question": "What is the tenure of a Governor in an Indian state?", "options": ["3 years", "5 years", "6 years", "Until retirement"], "answer": 1, "explanation": "Under Article 156(3), a Governor holds office for a term of five years from the date on which he enters upon his office, subject to Article 156(1) under which the Governor holds office during the pleasure of the President."}, {"id": 32, "test_id": 2, "exam_tag": "BPSC PRE - 2025", "question": "What is true about the proceedings of the State Legislature?", "options": ["Business in the legislature shall be transacted only in official language of the state or in Hindi or in English.", "Advocate General has right to vote", "It can discuss the conduct of any judge of the High Court also", "Validity of proceedings shall not be called in question on the ground of any alleged irregularity"], "answer": 3, "explanation": "Under Article 212(1) of the Constitution: 'The validity of any proceedings in the Legislature of a State shall not be called in question on the ground of any alleged irregularity of procedure.' (Option A is incorrect because under Article 210, the Speaker/Chairman can permit members to speak in their mother tongue; Option B is false as Article 177 denies voting rights to the Advocate General; Option C is barred by Article 211)."}, {"id": 33, "test_id": 2, "exam_tag": "IB SA MTS – 2025", "question": "As of 2025, how many Union Territories are there in India, and how many of them have a Legislative Assembly as per the Constitution of India?", "options": ["8 Union Territories, 2 with Legislative Assemblies", "9 Union Territories, 3 with Legislative Assemblies", "8 Union Territories, 3 with Legislative Assemblies", "9 Union Territories, 2 with Legislative Assemblies"], "answer": 2, "explanation": "India currently has 8 Union Territories: Delhi, Puducherry, Jammu & Kashmir, Ladakh, Chandigarh, Lakshadweep, Andaman & Nicobar Islands, and Dadra & Nagar Haveli and Daman & Diu. Of these 8 UTs, exactly 3 have constitutional/statutory provisions for Legislative Assemblies: NCT of Delhi (Article 239AA), Puducherry (Article 239A), and Jammu & Kashmir (J&K Reorganisation Act, 2019)."}, {"id": 34, "test_id": 2, "exam_tag": "IB SA MTS – 2025", "question": "Why is the legislative power of Delhi different from that of other Union Territories with Assemblies?", "options": ["The Delhi Assembly has no Speaker.", "The Delhi Legislative Assembly has the power to legislate over subjects in the State List and Concurrent List, except for police, public order and land.", "The Delhi Assembly cannot pass laws on any subject.", "The Delhi Assembly is directly controlled by the Supreme Court of India."], "answer": 1, "explanation": "Under Article 239AA(3)(a) of the Constitution, the Legislative Assembly of the National Capital Territory of Delhi can make laws for the whole or any part of NCT with respect to matters in the State List and Concurrent List, EXCEPT matters with respect to Entries 1 (Public Order), 2 (Police), and 18 (Land) of the State List."}, {"id": 35, "test_id": 2, "exam_tag": "UPPCS PRE – 2024", "question": "Given below are two statements, one is labelled as Assertion (A) and the other as Reason (R):\nAssertion (A): According to the Constitution of India, the same person cannot function as the Governor of two or more States at the same time.\nReason (R): Article 153 of the Indian Constitution states that there shall be a Governor for each State.\nSelect the correct answer from the codes given below:", "options": ["Both (A) and (R) are true, but (R) is not the correct explanation of (A)", "(A) is false, but (R) is true", "Both (A) and (R) are true and (R) is the correct explanation of (A).", "(A) is true, but (R) is false."], "answer": 1, "explanation": "Assertion (A) is false because the 7th Constitutional Amendment Act of 1956 added a proviso to Article 153 stating: 'Provided that nothing in this article shall prevent the appointment of the same person as Governor for two or more States.' Reason (R) is true because Article 153 does provide that 'There shall be a Governor for each State.'"}, {"id": 36, "test_id": 2, "exam_tag": "RRB NTPC UG 08/09/2025 – MORNING", "question": "Which of the following changes would need the approval of at least half of all State Legislatures?", "options": ["Amending the Emergency provisions in Part XVIII", "Rewriting the Preamble’s text", "Changing the Guarantee of Fundamental Rights", "Altering the Union List of subjects"], "answer": 3, "explanation": "Under Article 368(2) proviso, amendments affecting the federal structure—including any of the Lists in the Seventh Schedule (Union, State, or Concurrent List), the representation of States in Parliament, the election of the President, the extent of executive power of the Union/States, or the Supreme Court and High Courts—require ratification by the legislatures of not less than one-half of the States."}, {"id": 37, "test_id": 2, "exam_tag": "RRB NTPC UG 08/09/2025 – AFTERNOON", "question": "Which of the following financial powers is NOT vested in the Governor of a state?", "options": ["Presenting the State Budget to the Legislature", "Administering the State Contingency Fund", "Giving assent to Money Bills", "Independently sanctioning taxes"], "answer": 3, "explanation": "Article 265 of the Constitution provides that 'No tax shall be levied or collected except by authority of law.' Therefore, taxes can only be levied or sanctioned through legislation passed by the legislature, not independently by the Governor."}, {"id": 38, "test_id": 2, "exam_tag": "RRB NTPC UG 19/08/2025 – MORNING", "question": "In which landmark case did the Supreme Court of India impose a three-month deadline for the President to give assent to State Bills reserved under Article 201?", "options": ["SR Bommai vs. Union of India (1994)", "Minerva Mills vs. Union of India (1980)", "Kesavananda Bharati vs. State of Kerala (1973)", "State of Tamil Nadu vs. Governor of Tamil Nadu (2023)"], "answer": 3, "explanation": "In State of Tamil Nadu vs. Governor of Tamil Nadu (2023), the Supreme Court emphasized that constitutional authorities cannot sit on bills indefinitely under Article 200 and Article 201, establishing guidance regarding timely gubernatorial and presidential assent."}, {"id": 39, "test_id": 2, "exam_tag": "RRB NTPC UG 07/08/2025 - MORNING", "question": "Which of the following is the Chief Minister of a state in India primarily responsible for?", "options": ["State Legislative Assembly", "President of India", "Supreme Court", "Governor of the State"], "answer": 0, "explanation": "Under Article 164(2) of the Indian Constitution, the Council of Ministers led by the Chief Minister is collectively responsible to the State Legislative Assembly (Vidhan Sabha)."}, {"id": 40, "test_id": 2, "exam_tag": "SSC CPO 27/06/2024 (2nd shift)", "question": "Which Article of the Indian Constitution mentions about the right of the Governor to address and to send messages to the House (or Houses) of the state legislature?", "options": ["Article 171", "Article 175", "Article 172", "Article 176"], "answer": 1, "explanation": "Article 175 grants the Governor the right to address either House of the State Legislature (or both Houses assembled together) and to send messages to the House or Houses. (Article 176 provides for Special Address by the Governor at the commencement of the first session after each general election and at the commencement of the first session of each year)."}, {"id": 41, "test_id": 3, "exam_tag": "RRB NTPC UG 21/08/2025 – EVENING", "question": "Which Constitutional Amendment Act abolished the provision for nominating members from the Anglo-Indian community to the State Legislative Assemblies?", "options": ["102nd Amendment Act, 2018", "105th Amendment Act, 2021", "101st Amendment Act, 2016", "104th Amendment Act, 2019"], "answer": 3, "explanation": "The 104th Constitutional Amendment Act, 2019 discontinued the nomination of Anglo-Indian members to the Lok Sabha (under Article 331) and to the State Legislative Assemblies (under Article 333)."}, {"id": 42, "test_id": 3, "exam_tag": "RRB NTPC UG 01/09/2025 - EVENING", "question": "Which of the following options correctly lists the composition of the State Executive in India?", "options": ["Governor, Deputy Minister and State Council of Advisors", "President, Governor and Chief Minister", "Governor, Chief Minister and State Legislative Assembly members", "Governor, Chief Minister and Council of Ministers"], "answer": 3, "explanation": "The State Executive consists of the Governor, the Chief Minister, the Council of Ministers, and the Advocate General of the State (Articles 153 to 167)."}, {"id": 43, "test_id": 3, "exam_tag": "RRB NTPC UG 14/08/2025 – AFTERNOON", "question": "What is the maximum strength of members in a State Legislative Assembly as per the Constitution of India?", "options": ["475", "435", "500", "450"], "answer": 2, "explanation": "According to Article 170(1) of the Constitution, the Legislative Assembly of each State shall consist of not more than 500 and not less than 60 members chosen by direct election from territorial constituencies in the State."}, {"id": 44, "test_id": 3, "exam_tag": "RRB NTPC UG 20/08/2025 – AFTERNOON", "question": "What was one recommendation of the Sarkaria Commission regarding Governors?", "options": ["Governors should be military officers.", "Governors should be elected by States.", "Governors should be non-partisan.", "Governors should only be politicians."], "answer": 2, "explanation": "The Sarkaria Commission (1983-1988) on Centre-State Relations recommended that a Governor should be an eminent person from outside the state, a detached figure not too intimately connected with local state politics, and an objective, non-partisan figure."}, {"id": 45, "test_id": 3, "exam_tag": "RRB NTPC UG 12/08/2025 – EVENING", "question": "As of July 2025, how many Indian States have a bicameral legislature (i.e. both, a Legislative Assembly and a Legislative Council)?", "options": ["Five", "Six", "Eight", "Seven"], "answer": 1, "explanation": "As of July 2025, exactly six Indian States have a bicameral legislature: Uttar Pradesh, Bihar, Maharashtra, Karnataka, Andhra Pradesh, and Telangana. (Jammu & Kashmir's Legislative Council was abolished in 2019)."}, {"id": 46, "test_id": 3, "exam_tag": "RRB NTPC UG 12/08/2025 – EVENING", "question": "In Indian State governments, to whom is the State Council of Ministers collectively responsible?", "options": ["State Legislative Assembly", "The Governor of the State", "Council of States", "Chief Justice of the concerned State"], "answer": 0, "explanation": "Under Article 164(2) of the Indian Constitution, the Council of Ministers shall be collectively responsible to the Legislative Assembly of the State."}, {"id": 47, "test_id": 3, "exam_tag": "RRB NTPC UG 22/08/2025 - AFTERNOON", "question": "According to constitutional provisions, what is the maximum permissible size of a State Council of Ministers, including the Chief Minister?", "options": ["10% of the total strength of the Legislative Assembly", "No specific limit is defined", "15% of the total strength of the Legislative Assembly", "20% of the total strength of the Legislative Assembly"], "answer": 2, "explanation": "Under Article 164(1A) (inserted by the 91st Amendment Act, 2003), the total number of Ministers, including the Chief Minister, in the Council of Ministers in a State shall not exceed 15% of the total number of members of the Legislative Assembly of that State, provided that the number of Ministers shall not be less than 12."}, {"id": 48, "test_id": 3, "exam_tag": "RRB NTPC UG 18/08/2025 – EVENING", "question": "Which of the following subjects is NOT under the control of the Delhi Legislative Assembly, according to the Constitution?", "options": ["Education", "Electricity", "Public order", "Public health"], "answer": 2, "explanation": "Under Article 239AA(3)(a), the Delhi Legislative Assembly cannot make laws on three subjects of the State List: Public Order (Entry 1), Police (Entry 2), and Land (Entry 18)."}, {"id": 49, "test_id": 3, "exam_tag": "RRB NTPC UG 12/08/2025 – MORING", "question": "Which level of government generally legislates on matters such as police, public health and agriculture in India?", "options": ["Union Government", "Local Bodies", "State Legislatures", "Inter-State Council"], "answer": 2, "explanation": "Police (Entry 2), Public Health and Sanitation (Entry 6), and Agriculture (Entry 14) are subjects enumerated in List II (State List) of the Seventh Schedule of the Constitution, on which the State Legislatures have exclusive power to make laws."}, {"id": 50, "test_id": 3, "exam_tag": "RRB NTPC UG 20/08/2025 – AFTERNOON", "question": "Who acts as the real executive head in a state?", "options": ["Advocate General", "Governor", "Speaker", "Chief Minister"], "answer": 3, "explanation": "The Chief Minister is the real executive head (de facto executive) of a state government, while the Governor acts as the nominal/constitutional head (de jure executive)."}, {"id": 51, "test_id": 3, "exam_tag": "RRB NTPC UG 28/08/2025 – EVENING", "question": "Which of the following is a feature of the State Legislative Council (Vidhan Parishad) in India?", "options": ["The people directly elect their members", "It has a fixed term of five years", "It can be dissolved like the Legislative Assembly", "It is a permanent body and cannot be dissolved"], "answer": 3, "explanation": "Under Article 172(2), the Legislative Council of a State is a permanent body and is not subject to dissolution. One-third of its members retire every second year."}, {"id": 52, "test_id": 3, "exam_tag": "RRB NTPC UG 02/09/2025 – EVENING", "question": "To be eligible for membership of a State Legislature, a candidate must meet which of the following qualifications as laid down in the Representation of the People Act, 1951?", "options": ["Be an elector (voter) in any State assembly constituency", "Have at least a graduate degree", "Be a permanent resident of the State for 15 years", "Pay income tax in the State"], "answer": 0, "explanation": "Under the Representation of the People Act, 1951, a person must be an elector for any Assembly constituency in that State to be qualified to be chosen to fill a seat in the Legislative Assembly or Legislative Council."}, {"id": 53, "test_id": 3, "exam_tag": "RRB NTPC UG 19/08/2025 - EVENING", "question": "Who presides over the sessions of the Vidhan Sabha in a State?", "options": ["The Governor of the State", "The Speaker elected by members", "The Deputy Speaker by rotation", "The Chief Minister of the State"], "answer": 1, "explanation": "Under Article 178 of the Indian Constitution, the members of the Legislative Assembly (Vidhan Sabha) elect from among themselves a Speaker, who presides over its sessions."}, {"id": 54, "test_id": 3, "exam_tag": "RRB NTPC UG 04/09/2025 – AFTERNOON", "question": "Which Constitutional Amendment has most recently extended the reservation of seats for Scheduled Castes (SCs) and Scheduled Tribes (STs) in the Lok Sabha and State Legislative Assemblies for another ten years?", "options": ["104th Amendment", "61st Amendment", "42nd Amendment", "15th Amendment"], "answer": 0, "explanation": "The 104th Constitutional Amendment Act, 2019 extended the reservation of seats for SCs and STs in the Lok Sabha and State Legislative Assemblies until 25 January 2030."}, {"id": 55, "test_id": 3, "exam_tag": "RRB NTPC 21/06/2025 EVENING", "question": "Which of the following Articles of the Indian Constitution states about the appointment of the Advocate General for the State?", "options": ["Article 163", "Article 162", "Article 164", "Article 165"], "answer": 3, "explanation": "Article 165 of the Indian Constitution provides for the appointment of the Advocate General for the State by the Governor. The person must be qualified to be appointed a Judge of a High Court."}, {"id": 56, "test_id": 3, "exam_tag": "RRB NTPC 02/03/2025 AFTERNOON", "question": "What does Article 164 of the Indian Constitution state about the appointment of the Chief Minister?", "options": ["The Chief Minister is elected by the legislative assembly of the state.", "The Chief Minister is appointed by the President of India.", "The Chief Minister is chosen through a referendum in the state.", "The Chief Minister shall be appointed by the Governor."], "answer": 3, "explanation": "Article 164(1) states: 'The Chief Minister shall be appointed by the Governor and the other Ministers shall be appointed by the Governor on the advice of the Chief Minister, and the Ministers shall hold office during the pleasure of the Governor.'"}, {"id": 57, "test_id": 3, "exam_tag": "RPF CONSTABLE 09/03/2025 MORNING", "question": "What is the maximum number of ministers, including the Chief Minister, allowed in a state council of ministers as per Article 164?", "options": ["10% of the total strength of the legislative assembly", "20% of the total strength of the legislative assembly", "15% of the total strength of the legislative assembly", "12% of the total strength of the legislative assembly"], "answer": 2, "explanation": "Under Article 164(1A) (91st Amendment Act, 2003), the total number of Ministers, including the Chief Minister, in the Council of Ministers in a State shall not exceed 15% of the total strength of the Legislative Assembly."}, {"id": 58, "test_id": 3, "exam_tag": "SSC CPO 29/06/2024 (1st shift)", "question": "Which Article of the Indian Constitution mentions that ‘All the executive action of the Government of a state shall be expressed to be taken in the name of the Governor’?", "options": ["Article 163(1)", "Article 165(1)", "Article 166(1)", "Article 164(1)"], "answer": 2, "explanation": "Article 166(1) states: 'All executive action of the Government of a State shall be expressed to be taken in the name of the Governor.'"}, {"id": 59, "test_id": 3, "exam_tag": "SSC CPO 28/06/2024 (2nd shift)", "question": "Which Article of the Indian Constitution mentions that ‘The Council of Ministers shall be collectively responsible to the Legislative Assembly of the state’?", "options": ["Article 164(3)", "Article 164(1)", "Article 164(2)", "Article 164(4)"], "answer": 2, "explanation": "Article 164(2) states: 'The Council of Ministers shall be collectively responsible to the Legislative Assembly of the State.'"}, {"id": 60, "test_id": 3, "exam_tag": "RRB NTPC 14/06/2025 MORNING", "question": "Under Article 164(3) of the Constitution of India, who administers the oath of office to the State Ministers?", "options": ["President of India", "Chief Minister of the State", "Governor of the State", "Speaker of the Legislative Assembly"], "answer": 2, "explanation": "Under Article 164(3), before a Minister enters upon his office, the Governor shall administer to him the oaths of office and of secrecy according to the forms set out in the Third Schedule."}, {"id": 61, "test_id": 4, "exam_tag": "SSC GD 13/02/2025 EVENING", "question": "Article 165 of the Constitution of India deals with the appointment of which of the following?", "options": ["Chief Minister", "Judges of the High Court", "Advocate General of the State", "Chief Justice of the High Court"], "answer": 2, "explanation": "Article 165 of the Constitution of India deals with the office, appointment, and duties of the Advocate General for the State, appointed by the Governor."}, {"id": 62, "test_id": 4, "exam_tag": "RPF CONSTABLE 10/03/2025 EVENING", "question": "Which of the following Articles states that the Chief Minister shall communicate to the Governor all decisions of the Council of Ministers?", "options": ["Article 168", "Article 163", "Article 167", "Article 164"], "answer": 2, "explanation": "Article 167(a) specifies that it shall be the duty of the Chief Minister of each State to communicate to the Governor of the State all decisions of the Council of Ministers relating to the administration of the affairs of the State and proposals for legislation."}, {"id": 63, "test_id": 4, "exam_tag": "SSC CPO 29/06/2024 (2nd shift)", "question": "Which Article of the Indian Constitution mentions the qualification for membership of the State Legislature?", "options": ["Article 171", "Article 180", "Article 173", "Article 179"], "answer": 2, "explanation": "Article 173 sets out the qualifications for membership of the State Legislature: citizenship of India, taking an oath under the Third Schedule, and minimum age (at least 25 years for the Legislative Assembly and at least 30 years for the Legislative Council)."}, {"id": 64, "test_id": 4, "exam_tag": "SSC CPO 28/06/2024 (1st shift)", "question": "Which Article of the Indian Constitution mentions about the right of the Advocate-General of a state to speak in the State Legislature?", "options": ["Article 183", "Article 179", "Article 177", "Article 181"], "answer": 2, "explanation": "Article 177 provides that every Minister and the Advocate-General for a State shall have the right to speak in, and otherwise take part in the proceedings of, the Legislative Assembly or Legislative Council, but shall not by virtue of this Article be entitled to vote."}, {"id": 65, "test_id": 4, "exam_tag": "RRB NTPC 12/06/2025 EVENING", "question": "What must State legislators do under Article 188 of the Constitution of India before taking their seats for the first time in state assembly?", "options": ["Take oath or affirmation", "Get CM's approval", "Declare assets", "Background check"], "answer": 0, "explanation": "Under Article 188 of the Constitution, every member of the Legislative Assembly or the Legislative Council of a State shall, before taking his seat, make and subscribe before the Governor, or some person appointed in that behalf by him, an oath or affirmation according to the form set out in the Third Schedule."}, {"id": 66, "test_id": 4, "exam_tag": "RRB NTPC 09/06/2025 EVENING", "question": "What special status did the Sixty-ninth Amendment Act, 1991 give to Delhi?", "options": ["Granted full Statehood to Delhi", "Designated Delhi as the National Capital Territory with a legislative assembly", "Made Delhi a Union Territory without a legislature", "Brought Delhi under the control of the President through the Governor"], "answer": 1, "explanation": "The 69th Constitutional Amendment Act, 1991 inserted Articles 239AA and 239AB, redesignating the Union Territory of Delhi as the 'National Capital Territory of Delhi' and creating a Legislative Assembly and Council of Ministers for it."}, {"id": 67, "test_id": 4, "exam_tag": "RRB NTPC 20/06/2025 EVENING", "question": "What is one of the key advantages of the parliamentary system in ensuring smooth governance?", "options": ["The executive has absolute power over the legislature.", "The judiciary controls both the legislature and the executive.", "The Prime Minister can dissolve the legislature at will.", "It ensures harmony and cooperation between the legislature and the executive"], "answer": 3, "explanation": "A principal advantage of the parliamentary system is the fusion of powers and continuous interdependence between the legislature and the executive, ensuring harmony, mutual cooperation, and prevention of deadlock between the two branches."}, {"id": 68, "test_id": 4, "exam_tag": "RRB NTPC 16/06/2025 MORNING", "question": "When appointing Governors of States and Lieutenant Governors of Union Territories, the President of India acts on the advice of which body?", "options": ["The Supreme Court of India", "The Union Council of ministers", "The State Legislatures", "The Election Commission"], "answer": 1, "explanation": "Under Article 74 of the Constitution, the President exercises executive powers on the aid and advice of the Union Council of Ministers headed by the Prime Minister. Hence, gubernatorial appointments are made on the advice of the Union Council of Ministers (Ministry of Home Affairs)."}, {"id": 69, "test_id": 4, "exam_tag": "RPF CONSTABLE 05/03/2025 AFTERNOON", "question": "Which of the following states has the lowest legislative assembly strength of 32 members?", "options": ["Mizoram", "Arunachal Pradesh", "Goa", "Sikkim"], "answer": 3, "explanation": "Sikkim has the lowest Legislative Assembly strength of 32 members (created under special constitutional provisions in Article 371F). Goa and Mizoram have 40 members each; Arunachal Pradesh has 60 members."}, {"id": 70, "test_id": 4, "exam_tag": "RPF CONSTABLE 02/03/2025 AFTERNOON", "question": "Which of the following conducts the election of state legislatures?", "options": ["Election Commission of India", "Parliament of India", "State Election Commission of the concerned State", "NITI Aayog"], "answer": 0, "explanation": "Under Article 324, the superintendence, direction, and control of the preparation of electoral rolls and conduct of elections to Parliament and to the Legislature of every State are vested in the Election Commission of India (ECI). (State Election Commissions conduct local body elections under Articles 243K and 243ZA)."}, {"id": 71, "test_id": 4, "exam_tag": "RPF CONSTABLE 07/03/2025 AFTERNOON", "question": "What is the maximum strength of the Legislative Assembly of a State as per Article 170 of the Indian Constitution?", "options": ["250", "350", "200", "500"], "answer": 3, "explanation": "Under Article 170(1), the Legislative Assembly of each State shall consist of not more than 500 and not less than 60 members chosen by direct election from territorial constituencies in the State."}, {"id": 72, "test_id": 4, "exam_tag": "SSC CGL 19/07/2023 (3rd shift)", "question": "As per Article 172 (2) _______ of a State shall NOT be subject to dissolution.", "options": ["Legislative Assembly", "Legislative Council", "House of People", "Council of States"], "answer": 1, "explanation": "Article 172(2) states: 'The Legislative Council of a State shall not be subject to dissolution, but as nearly as possible one-third of the members thereof shall retire, as soon as may be, on the expiration of every second year in accordance with the provisions made in that behalf by Parliament by law.'"}, {"id": 73, "test_id": 4, "exam_tag": "SSC CPO 28/06/2024 (3rd shift)", "question": "Which Article of the Indian Constitution mentions about the salaries and allowances of members of the Legislative Assembly and the Legislative Council of a state?", "options": ["Article 195", "Article 199", "Article 198", "Article 194"], "answer": 0, "explanation": "Article 195 deals with the salaries and allowances of members of the Legislative Assembly and the Legislative Council of a State. (Article 194 covers privileges, Article 198 deals with special procedure for Money Bills, and Article 199 defines Money Bills)."}, {"id": 74, "test_id": 4, "exam_tag": "SSC CPO 29/06/2024 (3rd shift)", "question": "What Article of the Indian Constitution provides that the State Governor has the authority to reserve a bill for the consideration of the President?", "options": ["Article 181", "Article 200", "Article 190", "Article 267"], "answer": 1, "explanation": "Article 200 of the Constitution provides that when a bill has been passed by the Legislative Assembly (and Council if bicameral), it shall be presented to the Governor, who may assent, withhold assent, return the bill for reconsideration, or reserve it for the consideration of the President."}, {"id": 75, "test_id": 4, "exam_tag": "SSC CHSL 15/03/2023 (4th Shift)", "question": "Which Article of the Indian constitution states that \"Governor has power to promulgate ordinances during recess of legislature\"?", "options": ["212", "214", "213", "210"], "answer": 2, "explanation": "Article 213 empowers the Governor to promulgate ordinances during the recess of the State Legislature when immediate action is necessary. (It corresponds to Article 123 for the President)."}, {"id": 76, "test_id": 4, "exam_tag": "SSC CPO 28/06/2024 (2nd shift)", "question": "Which of the following statements are correct regarding State Legislatures?\nA. Notwithstanding anything in part XVII, but subject to the provisions of Article 348, business in the Legislature of a State shall be transacted in the official language or languages of the State or in Hindi or in English.\nB. The Speaker of the Legislative Assembly or Chairman of the Legislative Council can permit any member to speak in his mother tongue.\nC. Only the Supreme Court is entitled to inquire into the proceedings of the State Legislature.", "options": ["B and C only", "A and C only", "A, B and C", "A and B only"], "answer": 3, "explanation": "Statements A and B are correct under Article 210 of the Constitution. Statement C is incorrect because under Article 212, NO court (neither Supreme Court nor High Courts) can inquire into the validity of any proceedings in the State Legislature on the ground of any alleged irregularity of procedure."}, {"id": 77, "test_id": 4, "exam_tag": "Matriculation Level 21/06/2024 (Shift- 4)", "question": "In which year was the Jammu and Kashmir Legislative Council abolished?", "options": ["2018", "2020", "2019", "2017"], "answer": 2, "explanation": "The Jammu and Kashmir Legislative Council was formally abolished in 2019 following the enactment of the Jammu and Kashmir Reorganisation Act, 2019, which bifurcated the state into two Union Territories (J&K and Ladakh)."}, {"id": 78, "test_id": 4, "exam_tag": "Matriculation Level 24/06/2024 (Shift-4)", "question": "One-third of the members of the State Legislature Council retire every _____ years.", "options": ["Sixth", "Fourth", "Fifth", "second"], "answer": 3, "explanation": "Under Article 172(2), the Legislative Council is not subject to dissolution, but as nearly as possible one-third of its members retire on the expiration of every second year. Each member has a 6-year tenure."}, {"id": 79, "test_id": 4, "exam_tag": "Higher Secondary 25/06/2024 (Shift-4)", "question": "Which of the following options is INCORRECT?\nIn order to become a member of Vidhan Sabha, a person must:", "options": ["Have his/her name in the voters’ list", "have attained the age of 21 years", "Be a citizen of India", "Not hold any office of profit"], "answer": 1, "explanation": "Option B is incorrect because under Article 173(b), a person must have attained the age of 25 years to be qualified for election to the Legislative Assembly (Vidhan Sabha). The age qualification of 21 years applies to elections for local bodies (Panchayats and Municipalities)."}, {"id": 80, "test_id": 4, "exam_tag": "Graduate Level 26/06/2024 (Shift-3)", "question": "Who elects the Presiding Officer (the speaker) in the State legislature?", "options": ["Council of Minsters", "Members of Vidhan Sabha", "Member of Vidhan Parishad", "Chief Minster"], "answer": 1, "explanation": "Under Article 178 of the Indian Constitution, the Speaker of the Legislative Assembly (Vidhan Sabha) is elected by the members of the Vidhan Sabha from amongst themselves."}, {"id": 81, "test_id": 4, "exam_tag": "Higher Secondary 27/06/2023 (Shift- 3)", "question": "In India, during a meeting of the Legislative Assembly or Council, if there is no quorum, it shall be the duty of the ________ to adjourn the House or suspend the meeting.", "options": ["Chairman/Governor", "Speaker/Chairman", "Governor/Chief Minister", "Speaker/Chief Minister"], "answer": 1, "explanation": "Under Article 189(4) of the Constitution, if at any time during a meeting of the Legislative Assembly or Legislative Council of a State there is no quorum (which is 10 members or 1/10th of total membership, whichever is greater), it shall be the duty of the Speaker (for Assembly) or Chairman (for Council), or person acting as such, either to adjourn the House or to suspend the meeting until there is a quorum."}, {"id": 82, "test_id": 4, "exam_tag": "SSC MTS 06/07/2022 (Morning)", "question": "The state legislative assembly has a strength of ____, with exceptions for smaller states.", "options": ["600 to 1000", "60 to 500", "50 to 400", "10 to 100"], "answer": 1, "explanation": "According to Article 170(1) of the Indian Constitution, the Legislative Assembly of each State shall consist of not more than 500 and not less than 60 members, with smaller states like Goa, Mizoram (40 members each), and Sikkim (32 members) having exceptions granted by Parliament."}];
+
+    // Application State
+    let currentTestId = 1;
+    let currentTestQuestions = [];
+    let currentQuestionIndex = 0;
+    let questionStates = []; // Array of { visited, answeredOption, markedForReview, shuffledOptions, correctOriginalIndex }
+    let testHistory = {}; // LocalStorage key 'polity_mock_history_v1'
+
+    // Load LocalStorage on Startup
+    function initLocalStorage() {
+      try {
+        const saved = localStorage.getItem('polity_mock_history_v1');
+        if (saved) {
+          testHistory = JSON.parse(saved);
+        }
+      } catch (e) {
+        console.warn("LocalStorage unavailable, using session memory", e);
+      }
+      updateDashboardStats();
+    }
+
+    function saveHistoryToStorage() {
+      try {
+        localStorage.setItem('polity_mock_history_v1', JSON.stringify(testHistory));
+      } catch (e) {
+        console.warn("Failed to write to LocalStorage", e);
+      }
+      updateDashboardStats();
+    }
+
+    // Dashboard View Updating
+    function updateDashboardStats() {
+      let completedTests = 0;
+      let totalScore = 0;
+      let maxScoreTotal = 164; // 20*2 + 20*2 + 20*2 + 22*2 = 40+40+40+44 = 164
+      let totalCorrectAll = 0;
+      let totalAttemptedAll = 0;
+
+      for (let t = 1; t <= 4; t++) {
+        const hist = testHistory[t];
+        const badge = document.getElementById('badgeTest' + t);
+        const bestScoreElem = document.getElementById('bestScore1'.replace('1', t));
+        const btnReview = document.getElementById('btnReview1'.replace('1', t));
+
+        if (hist) {
+          completedTests++;
+          totalScore += hist.score;
+          totalCorrectAll += hist.correct;
+          totalAttemptedAll += (hist.correct + hist.incorrect);
+
+          if (badge) {
+            badge.textContent = 'Completed';
+            badge.className = 'test-status-badge completed';
+          }
+          if (bestScoreElem) {
+            const maxT = (t === 4 ? 44 : 40);
+            bestScoreElem.textContent = `${hist.score.toFixed(1)} / ${maxT}`;
+          }
+          if (btnReview) {
+            btnReview.style.display = 'inline-flex';
+          }
+        } else {
+          if (badge) {
+            badge.textContent = 'Not Attempted';
+            badge.className = 'test-status-badge';
+          }
+          if (bestScoreElem) {
+            bestScoreElem.textContent = '--';
+          }
+          if (btnReview) {
+            btnReview.style.display = 'none';
+          }
+        }
+      }
+
+      document.getElementById('testsCompletedCount').textContent = `${completedTests} / 4`;
+      document.getElementById('totalScoreAccumulated').textContent = `${totalScore.toFixed(1)} / ${maxScoreTotal}`;
+      
+      const overallAcc = totalAttemptedAll > 0 ? Math.round((totalCorrectAll / totalAttemptedAll) * 100) : 0;
+      document.getElementById('overallAccuracyRate').textContent = `${overallAcc}%`;
+    }
+
+    function resetAllHistory() {
+      if (confirm("Are you sure you want to reset all saved mock test scores and analysis history?")) {
+        testHistory = {};
+        localStorage.removeItem('polity_mock_history_v1');
+        updateDashboardStats();
+        alert("All test history has been reset.");
+      }
+    }
+
+    // Navigation Between Views
+    function showView(viewId) {
+      document.querySelectorAll('.view-container').forEach(el => el.classList.remove('active'));
+      const target = document.getElementById(viewId);
+      if (target) target.classList.add('active');
+
+      const btnExit = document.getElementById('btnExitFullscreen');
+      if (viewId === 'examView') {
+        btnExit.style.display = 'inline-flex';
+      } else {
+        btnExit.style.display = 'none';
+      }
+
+      window.scrollTo(0, 0);
+    }
+
+    function navigateToDashboard() {
+      showView('dashboardView');
+      updateDashboardStats();
+    }
+
+    // ========================================================================
+    // INTRO VIEW LOGIC
+    // ========================================================================
+    function startIntroForTest(testId) {
+      currentTestId = testId;
+      const count = (testId === 4 ? 22 : 20);
+      const marks = count * 2;
+
+      document.getElementById('introTestTitle').textContent = `Mock Test ${testId}: General Instructions`;
+      document.getElementById('introQuestionsCount').textContent = count;
+      document.getElementById('introMarksCount').textContent = `${marks}.0`;
+      document.getElementById('chkIntroAccept').checked = false;
+
+      showView('introView');
+    }
+
+    function beginActiveExam() {
+      const chk = document.getElementById('chkIntroAccept');
+      if (!chk.checked) {
+        alert("Please confirm that you have read and understood all the instructions by ticking the checkbox.");
+        return;
+      }
+
+      // Enter Fullscreen automatically upon beginning test as required
+      try {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(err => {
+            console.log("Auto fullscreen request handled", err);
+          });
+        }
+      } catch (e) {}
+
+      setupTest(currentTestId);
+      showView('examView');
+    }
+
+    // ========================================================================
+    // EXAM LOGIC & OPTION RANDOMIZATION
+    // ========================================================================
+    function setupTest(testId) {
+      currentTestId = testId;
+      currentQuestionIndex = 0;
+
+      // Filter questions for this test (maintaining fixed question order as required)
+      currentTestQuestions = ALL_QUESTIONS.filter(q => q.test_id === testId);
+
+      // Randomize the options on each refresh, but do NOT randomize questions
+      questionStates = currentTestQuestions.map(q => {
+        // Create indexed options array: [{ originalIdx: 0, text: ...}, ...]
+        const optionsWithIdx = q.options.map((opt, idx) => ({
+          originalIdx: idx,
+          text: opt
+        }));
+
+        // Shuffle options using Fisher-Yates
+        for (let i = optionsWithIdx.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [optionsWithIdx[i], optionsWithIdx[j]] = [optionsWithIdx[j], optionsWithIdx[i]];
+        }
+
+        return {
+          visited: false,
+          selectedShuffledIndex: null, // index in shuffled options (0, 1, 2, 3)
+          markedForReview: false,
+          shuffledOptions: optionsWithIdx,
+          correctOriginalIndex: q.answer
+        };
+      });
+
+      // Mark the first question as visited
+      questionStates[0].visited = true;
+
+      // Update Header Titles
+      document.getElementById('examCurrentTestName').textContent = `Mock Test ${testId}`;
+      document.getElementById('examSectionTitle').textContent = `Section: Indian Polity (Part ${testId})`;
+
+      // Render Question Palette
+      renderPalette();
+      // Render First Question
+      renderCurrentQuestion();
+      updatePaletteCounters();
+    }
+
+    function renderPalette() {
+      const container = document.getElementById('paletteButtonsContainer');
+      container.innerHTML = '';
+
+      questionStates.forEach((state, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'palette-btn not-visited';
+        btn.textContent = idx + 1;
+        btn.id = `paletteBtn_${idx}`;
+        btn.onclick = () => jumpToQuestion(idx);
+        container.appendChild(btn);
+      });
+      updatePaletteButtons();
+    }
+
+    function updatePaletteButtons() {
+      questionStates.forEach((state, idx) => {
+        const btn = document.getElementById(`paletteBtn_${idx}`);
+        if (!btn) return;
+
+        btn.className = 'palette-btn';
+
+        if (idx === currentQuestionIndex) {
+          btn.classList.add('active');
+        }
+
+        const isAnswered = state.selectedShuffledIndex !== null;
+        const isMarked = state.markedForReview;
+
+        if (isAnswered && isMarked) {
+          btn.classList.add('ans-marked-review');
+        } else if (isMarked) {
+          btn.classList.add('marked-review');
+        } else if (isAnswered) {
+          btn.classList.add('answered');
+        } else if (state.visited) {
+          btn.classList.add('not-answered');
+        } else {
+          btn.classList.add('not-visited');
+        }
+      });
+      updatePaletteCounters();
+    }
+
+    function updatePaletteCounters() {
+      let ans = 0, notAns = 0, notVis = 0, rev = 0;
+
+      questionStates.forEach(s => {
+        const isAnswered = s.selectedShuffledIndex !== null;
+        if (s.markedForReview) {
+          rev++;
+        } else if (isAnswered) {
+          ans++;
+        } else if (s.visited) {
+          notAns++;
+        } else {
+          notVis++;
+        }
+      });
+
+      document.getElementById('cntAnswered').textContent = ans;
+      document.getElementById('cntNotAnswered').textContent = notAns;
+      document.getElementById('cntNotVisited').textContent = notVis;
+      document.getElementById('cntMarkedReview').textContent = rev;
+    }
+
+    function renderCurrentQuestion() {
+      const q = currentTestQuestions[currentQuestionIndex];
+      const state = questionStates[currentQuestionIndex];
+      state.visited = true;
+
+      // Update Question Number & Exam Tag
+      document.getElementById('lblQuestionNumber').textContent = `Question No. ${currentQuestionIndex + 1} of ${currentTestQuestions.length}`;
+      
+      const tagBadge = document.getElementById('examTagBadge');
+      if (q.exam_tag && q.exam_tag.trim()) {
+        tagBadge.textContent = q.exam_tag;
+        tagBadge.style.display = 'inline-block';
+      } else {
+        tagBadge.style.display = 'none';
+      }
+
+      // Update Question Text
+      document.getElementById('questionText').textContent = q.question;
+
+      // Update Options
+      const optionsContainer = document.getElementById('optionsContainer');
+      optionsContainer.innerHTML = '';
+
+      const letters = ['A', 'B', 'C', 'D'];
+      state.shuffledOptions.forEach((optObj, idx) => {
+        const item = document.createElement('div');
+        item.className = 'option-item' + (state.selectedShuffledIndex === idx ? ' selected' : '');
+        item.onclick = () => selectOption(idx);
+
+        const radio = document.createElement('input');
+        radio.type = 'radio';
+        radio.name = `exam_q_${currentQuestionIndex}`;
+        radio.className = 'option-radio';
+        radio.checked = (state.selectedShuffledIndex === idx);
+
+        const label = document.createElement('span');
+        label.className = 'option-label';
+        label.textContent = `(${letters[idx]})`;
+
+        const text = document.createElement('span');
+        text.className = 'option-text';
+        text.textContent = optObj.text;
+
+        item.appendChild(radio);
+        item.appendChild(label);
+        item.appendChild(text);
+        optionsContainer.appendChild(item);
+      });
+
+      // Update Prev / Next button states
+      document.getElementById('btnPrev').disabled = (currentQuestionIndex === 0);
+      document.getElementById('btnNext').textContent = (currentQuestionIndex === currentTestQuestions.length - 1 ? 'Next' : 'Next →');
+
+      updatePaletteButtons();
+    }
+
+    function selectOption(shuffledIdx) {
+      const state = questionStates[currentQuestionIndex];
+      // Do NOT mark any answer on option-selection or in-between the test!
+      state.selectedShuffledIndex = shuffledIdx;
+      renderCurrentQuestion();
+    }
+
+    function clearCurrentResponse() {
+      const state = questionStates[currentQuestionIndex];
+      state.selectedShuffledIndex = null;
+      renderCurrentQuestion();
+    }
+
+    function markForReviewAndNext() {
+      const state = questionStates[currentQuestionIndex];
+      state.markedForReview = true;
+      if (currentQuestionIndex < currentTestQuestions.length - 1) {
+        currentQuestionIndex++;
+      }
+      renderCurrentQuestion();
+    }
+
+    function nextQuestion() {
+      const state = questionStates[currentQuestionIndex];
+      // If moving next normally, remove standalone mark for review if desired or keep it
+      if (currentQuestionIndex < currentTestQuestions.length - 1) {
+        currentQuestionIndex++;
+        renderCurrentQuestion();
+      }
+    }
+
+    function prevQuestion() {
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        renderCurrentQuestion();
+      }
+    }
+
+    function jumpToQuestion(idx) {
+      if (idx >= 0 && idx < currentTestQuestions.length) {
+        currentQuestionIndex = idx;
+        renderCurrentQuestion();
+      }
+    }
+
+    // Toggle Palette on Mobile Phones
+    function toggleMobilePalette() {
+      const panel = document.getElementById('palettePanel');
+      panel.classList.toggle('mobile-open');
+    }
+
+    // Fullscreen Toggling
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          console.log("Fullscreen request failed", err);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    // Pause / Resume Exam
+    function pauseExam() {
+      document.getElementById('pauseModal').classList.add('active');
+    }
+    function resumeExam() {
+      document.getElementById('pauseModal').classList.remove('active');
+    }
+
+    // Submit Modal Logic
+    function openSubmitModal() {
+      let ans = 0, notAns = 0, rev = 0;
+      questionStates.forEach(s => {
+        if (s.selectedShuffledIndex !== null) ans++;
+        else notAns++;
+        if (s.markedForReview) rev++;
+      });
+
+      document.getElementById('modalTotalQ').textContent = currentTestQuestions.length;
+      document.getElementById('modalAnsQ').textContent = ans;
+      document.getElementById('modalNotAnsQ').textContent = notAns;
+      document.getElementById('modalReviewQ').textContent = rev;
+
+      document.getElementById('submitModal').classList.add('active');
+    }
+
+    function closeSubmitModal() {
+      document.getElementById('submitModal').classList.remove('active');
+    }
+
+    function confirmSubmitExam() {
+      closeSubmitModal();
+      calculateAndShowResults();
+    }
+
+    // ========================================================================
+    // RESULT ANALYSIS & TARGETED SOLUTIONS LOGIC
+    // ========================================================================
+    function calculateAndShowResults() {
+      let correct = 0;
+      let incorrect = 0;
+      let unattempted = 0;
+      const detailedResults = [];
+
+      questionStates.forEach((state, idx) => {
+        const q = currentTestQuestions[idx];
+        const hasAnswered = state.selectedShuffledIndex !== null;
+        let isCorrect = false;
+        let userSelectedText = null;
+        let correctOptionText = q.options[q.answer];
+
+        if (hasAnswered) {
+          const chosenObj = state.shuffledOptions[state.selectedShuffledIndex];
+          userSelectedText = chosenObj.text;
+          if (chosenObj.originalIdx === state.correctOriginalIndex) {
+            isCorrect = true;
+            correct++;
+          } else {
+            incorrect++;
+          }
+        } else {
+          unattempted++;
+        }
+
+        detailedResults.push({
+          questionId: q.id,
+          questionNumber: idx + 1,
+          examTag: q.exam_tag,
+          questionText: q.question,
+          isCorrect: isCorrect,
+          hasAnswered: hasAnswered,
+          userAnswer: userSelectedText,
+          correctAnswer: correctOptionText,
+          explanation: q.explanation
+        });
+      });
+
+      // Marking Scheme: +2 for correct, -0.5 for incorrect
+      const netScore = (correct * 2.0) - (incorrect * 0.5);
+      const maxMarks = currentTestQuestions.length * 2.0;
+      const totalAttempted = correct + incorrect;
+      const accuracy = totalAttempted > 0 ? Math.round((correct / totalAttempted) * 100) : 0;
+
+      // Save to testHistory in LocalStorage
+      testHistory[currentTestId] = {
+        testId: currentTestId,
+        score: Math.max(0, netScore),
+        correct: correct,
+        incorrect: incorrect,
+        unattempted: unattempted,
+        totalQuestions: currentTestQuestions.length,
+        maxMarks: maxMarks,
+        accuracy: accuracy,
+        timestamp: new Date().toLocaleString(),
+        results: detailedResults
+      };
+      saveHistoryToStorage();
+
+      // Display in Result View
+      displayResultsView(testHistory[currentTestId]);
+    }
+
+    function displayResultsView(hist) {
+      document.getElementById('resTestTitle').textContent = `Mock Test ${hist.testId}: Scorecard & Analysis`;
+      document.getElementById('resTimestamp').textContent = `Submitted on ${hist.timestamp}`;
+      document.getElementById('resNetScore').textContent = hist.score.toFixed(1);
+      document.getElementById('resMaxMarks').textContent = hist.maxMarks.toFixed(1);
+
+      document.getElementById('resTotalQ').textContent = hist.totalQuestions;
+      document.getElementById('resCorrectCount').textContent = hist.correct;
+      document.getElementById('resIncorrectCount').textContent = hist.incorrect;
+      document.getElementById('resUnattemptedCount').textContent = hist.unattempted;
+      document.getElementById('resAccuracy').textContent = `${hist.accuracy}%`;
+
+      // Render Solutions for ONLY Incorrect & Unattempted Questions
+      const solutionsContainer = document.getElementById('solutionsListContainer');
+      solutionsContainer.innerHTML = '';
+
+      const targetItems = hist.results.filter(r => !r.isCorrect);
+
+      if (targetItems.length === 0) {
+        solutionsContainer.innerHTML = `
+          <div class="no-solutions-placeholder">
+            <h3>&#10004; Perfect Performance!</h3>
+            <p>You answered all attempted questions correctly with 100% precision. There are no incorrect or unattempted questions to display.</p>
+          </div>
+        `;
+      } else {
+        targetItems.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'solution-item-card';
+
+          const statusClass = item.hasAnswered ? 'incorrect' : 'unattempted';
+          const statusText = item.hasAnswered ? 'Incorrectly Answered (-0.5 Marks)' : 'Unattempted (0 Marks)';
+
+          card.innerHTML = `
+            <div class="solution-header">
+              <span style="font-weight:700; color:#1e3c72; font-size:14px;">Question ${item.questionNumber}</span>
+              <div>
+                ${item.examTag ? `<span class="exam-tag-badge" style="margin-right:8px;">${item.examTag}</span>` : ''}
+                <span class="solution-status-tag ${statusClass}">${statusText}</span>
+              </div>
+            </div>
+            <div class="solution-question-text">${item.questionText}</div>
+            <div class="solution-answers-grid">
+              <div class="ans-box user">
+                <strong>Your Response:</strong><br>
+                ${item.hasAnswered ? item.userAnswer : '<em>Not Attempted</em>'}
+              </div>
+              <div class="ans-box correct">
+                <strong>Correct Answer:</strong><br>
+                ${item.correctAnswer}
+              </div>
+            </div>
+            <div class="solution-explanation-box">
+              <strong>Constitutional Rationale & Factual Analysis:</strong>
+              ${item.explanation.replace(/\n/g, '<br>')}
+            </div>
+          `;
+          solutionsContainer.appendChild(card);
+        });
+      }
+
+      showView('resultView');
+    }
+
+    function reviewTestSolutions(testId) {
+      const hist = testHistory[testId];
+      if (hist) {
+        displayResultsView(hist);
+      }
+    }
+
+    function retakeCurrentTest() {
+      startIntroForTest(currentTestId);
+    }
+
+    // Startup Initialization
+    window.addEventListener('DOMContentLoaded', () => {
+      initLocalStorage();
+    });
+  </script>
+</body>
+</html>

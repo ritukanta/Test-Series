@@ -1,0 +1,2055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSC &amp; Railway CBT Portal - Para Jumbles Mock Test Suite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --tcs-blue: #1e3a8a;
+      --tcs-dark-blue: #172554;
+      --tcs-light-blue: #eff6ff;
+      --tcs-accent: #2563eb;
+      --tcs-border: #cbd5e1;
+      --tcs-bg: #f8fafc;
+      --tcs-text: #1e293b;
+      --tcs-muted: #64748b;
+      --state-answered: #16a34a;
+      --state-not-answered: #dc2626;
+      --state-not-visited: #94a3b8;
+      --state-review: #7c3aed;
+      --state-ans-review: #7c3aed;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--tcs-bg);
+      color: var(--tcs-text);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Global Header */
+    .exam-header {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+      color: #ffffff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header-branding {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-badge {
+      background: #ffffff;
+      color: var(--tcs-blue);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .header-title-box h1 {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+    }
+
+    .header-title-box p {
+      font-size: 11px;
+      color: #bfdbfe;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .timer-pill {
+      background: #0f172a;
+      border: 1px solid #334155;
+      padding: 6px 14px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    .timer-pill.warning {
+      color: #ef4444;
+      background: #450a0a;
+      border-color: #b91c1c;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .hdr-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .hdr-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Candidate Mini Bar in Exam */
+    .candidate-bar {
+      background: #ffffff;
+      border-bottom: 1px solid var(--tcs-border);
+      padding: 8px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .cand-info {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .cand-name {
+      font-weight: 600;
+      color: var(--tcs-dark-blue);
+    }
+
+    .cand-meta {
+      color: var(--tcs-muted);
+    }
+
+    /* Views Container */
+    .view-screen {
+      display: none;
+      flex: 1;
+      width: 100%;
+    }
+
+    .view-screen.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* VIEW 1: DASHBOARD */
+    .dashboard-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      width: 100%;
+    }
+
+    .dash-hero {
+      background: #ffffff;
+      border: 1px solid var(--tcs-border);
+      border-radius: 8px;
+      padding: 24px 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .dash-hero h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--tcs-dark-blue);
+      margin-bottom: 8px;
+    }
+
+    .dash-hero p {
+      color: var(--tcs-muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .stat-card {
+      background: var(--tcs-light-blue);
+      border: 1px solid #bfdbfe;
+      border-radius: 6px;
+      padding: 12px 16px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--tcs-accent);
+      margin-bottom: 4px;
+    }
+
+    .stat-val {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--tcs-dark-blue);
+    }
+
+    .mocks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 20px;
+    }
+
+    .mock-card {
+      background: #ffffff;
+      border: 1px solid var(--tcs-border);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .mock-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-color: var(--tcs-accent);
+    }
+
+    .mock-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: #e0e7ff;
+      color: #3730a3;
+      margin-bottom: 12px;
+    }
+
+    .mock-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--tcs-dark-blue);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .mock-desc {
+      font-size: 13px;
+      color: var(--tcs-muted);
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .mock-details-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 12px;
+      color: #475569;
+      border-top: 1px solid #f1f5f9;
+      padding-top: 12px;
+      margin-bottom: 16px;
+    }
+
+    .mock-detail-item {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .btn-start-mock {
+      background: var(--tcs-accent);
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.2s;
+      width: 100%;
+    }
+
+    .btn-start-mock:hover {
+      background: #1d4ed8;
+    }
+
+    /* VIEW 2: INTRODUCTORY INSTRUCTIONS SCREEN */
+    .intro-container {
+      max-width: 900px;
+      margin: 20px auto;
+      background: #ffffff;
+      border: 1px solid var(--tcs-border);
+      border-radius: 8px;
+      padding: 24px 30px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      width: calc(100% - 40px);
+    }
+
+    .intro-header {
+      border-bottom: 2px solid var(--tcs-accent);
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+    }
+
+    .intro-header h2 {
+      font-size: 20px;
+      color: var(--tcs-dark-blue);
+    }
+
+    .intro-header p {
+      font-size: 13px;
+      color: var(--tcs-muted);
+    }
+
+    .instructions-body {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #334155;
+    }
+
+    .instructions-body h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--tcs-blue);
+      margin: 16px 0 8px;
+    }
+
+    .instructions-body ul, .instructions-body ol {
+      margin-left: 20px;
+      margin-bottom: 14px;
+    }
+
+    .palette-guide-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 12px;
+    }
+
+    .palette-guide-table td {
+      padding: 8px 10px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .symbol-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .symbol-chip.not-visited { background: #94a3b8; }
+    .symbol-chip.not-answered { background: #dc2626; border-radius: 14px 14px 4px 4px; }
+    .symbol-chip.answered { background: #16a34a; border-radius: 4px 4px 14px 14px; }
+    .symbol-chip.review { background: #7c3aed; border-radius: 50%; }
+    .symbol-chip.ans-review { background: #7c3aed; border-radius: 50%; position: relative; }
+    .symbol-chip.ans-review::after {
+      content: '';
+      position: absolute;
+      bottom: 1px;
+      right: 1px;
+      width: 8px;
+      height: 8px;
+      background: #16a34a;
+      border-radius: 50%;
+      border: 1px solid #ffffff;
+    }
+
+    .declaration-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .declaration-box input[type="checkbox"] {
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .intro-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 16px;
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: #475569;
+      padding: 9px 18px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      background: #f1f5f9;
+    }
+
+    .btn-primary {
+      background: var(--tcs-accent);
+      border: none;
+      color: #ffffff;
+      padding: 10px 24px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: #1d4ed8;
+    }
+
+    .btn-primary:disabled {
+      background: #94a3b8;
+      cursor: not-allowed;
+    }
+
+    /* VIEW 3: MAIN EXAM CBT INTERFACE (TCS / EDUQUITY STYLE) */
+    .cbt-container {
+      display: flex;
+      flex: 1;
+      height: calc(100vh - 90px);
+      overflow: hidden;
+      background: #f1f5f9;
+    }
+
+    .question-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+      border-right: 1px solid var(--tcs-border);
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .q-top-bar {
+      background: #ffffff;
+      border-bottom: 1px solid var(--tcs-border);
+      padding: 8px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .q-number-title {
+      font-weight: 700;
+      color: var(--tcs-dark-blue);
+      font-size: 14px;
+    }
+
+    .q-marks-tag {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .marking-scheme {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .exam-tag-badge {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      color: #64748b;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .q-scroll-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 24px;
+    }
+
+    .q-direction {
+      font-size: 12px;
+      color: #64748b;
+      font-style: italic;
+      margin-bottom: 12px;
+      border-left: 3px solid #94a3b8;
+      padding-left: 8px;
+    }
+
+    .q-text-content {
+      font-size: 14px;
+      color: #1e293b;
+      margin-bottom: 20px;
+      white-space: pre-line;
+      line-height: 1.6;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 14px 18px;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+      background: #ffffff;
+    }
+
+    .option-item:hover {
+      background: #f8fafc;
+      border-color: #93c5fd;
+    }
+
+    .option-item.selected {
+      background: #eff6ff;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px #2563eb;
+    }
+
+    .option-item input[type="radio"] {
+      margin-right: 12px;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      accent-color: var(--tcs-accent);
+    }
+
+    .option-item label {
+      cursor: pointer;
+      font-size: 14px;
+      flex: 1;
+      color: #1e293b;
+    }
+
+    .q-bottom-nav {
+      background: #ffffff;
+      border-top: 1px solid var(--tcs-border);
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-left, .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-cbt {
+      padding: 8px 14px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-review {
+      background: #faf5ff;
+      border-color: #d8b4fe;
+      color: #6b21a8;
+    }
+    .btn-review:hover { background: #f3e8ff; }
+
+    .btn-clear {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      color: #475569;
+    }
+    .btn-clear:hover { background: #f1f5f9; }
+
+    .btn-prev {
+      background: #ffffff;
+      border-color: #94a3b8;
+      color: #1e293b;
+    }
+    .btn-prev:hover { background: #f1f5f9; }
+
+    .btn-save-next {
+      background: var(--tcs-accent);
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .btn-save-next:hover { background: #1d4ed8; }
+
+    .btn-submit-exam {
+      background: #059669;
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .btn-submit-exam:hover { background: #047857; }
+
+    /* RIGHT PALETTE PANEL */
+    .palette-panel {
+      width: 310px;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border-left: 1px solid var(--tcs-border);
+    }
+
+    .palette-user-header {
+      background: #f8fafc;
+      border-bottom: 1px solid var(--tcs-border);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #bfdbfe;
+      color: #1e40af;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .user-details h4 {
+      font-size: 12px;
+      color: var(--tcs-dark-blue);
+      font-weight: 600;
+    }
+
+    .user-details p {
+      font-size: 11px;
+      color: var(--tcs-muted);
+    }
+
+    .palette-legend {
+      padding: 8px 12px;
+      border-bottom: 1px solid #e2e8f0;
+      background: #ffffff;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      font-size: 11px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-count {
+      font-weight: 700;
+      font-size: 11px;
+    }
+
+    .palette-scroll-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+    }
+
+    .palette-section-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+
+    .p-btn {
+      height: 34px;
+      border: 1px solid #cbd5e1;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.1s;
+      position: relative;
+    }
+
+    .p-btn.current {
+      box-shadow: 0 0 0 2px #0284c7;
+      font-weight: 700;
+    }
+
+    .p-btn.not-visited {
+      background: #e2e8f0;
+      color: #334155;
+      border-radius: 4px;
+    }
+
+    .p-btn.not-answered {
+      background: #ef4444;
+      color: #ffffff;
+      border-radius: 12px 12px 4px 4px;
+      border-color: #dc2626;
+    }
+
+    .p-btn.answered {
+      background: #16a34a;
+      color: #ffffff;
+      border-radius: 4px 4px 12px 12px;
+      border-color: #15803d;
+    }
+
+    .p-btn.review {
+      background: #7c3aed;
+      color: #ffffff;
+      border-radius: 50%;
+      border-color: #6d28d9;
+    }
+
+    .p-btn.ans-review {
+      background: #7c3aed;
+      color: #ffffff;
+      border-radius: 50%;
+      border-color: #6d28d9;
+    }
+
+    .p-btn.ans-review::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 7px;
+      height: 7px;
+      background: #22c55e;
+      border-radius: 50%;
+      border: 1px solid #ffffff;
+    }
+
+    /* Mobile Palette Toggle Floating Button */
+    .mobile-palette-toggle {
+      display: none;
+      position: fixed;
+      bottom: 70px;
+      right: 16px;
+      background: var(--tcs-accent);
+      color: #ffffff;
+      border: none;
+      border-radius: 30px;
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 40;
+      cursor: pointer;
+    }
+
+    /* VIEW 4: RESULTS & SCORE ANALYSIS */
+    .result-container {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 0 20px 40px;
+      width: 100%;
+    }
+
+    .scorecard-hero {
+      background: #ffffff;
+      border: 1px solid var(--tcs-border);
+      border-radius: 8px;
+      padding: 24px 30px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      margin-bottom: 24px;
+    }
+
+    .scorecard-hero h2 {
+      font-size: 20px;
+      color: var(--tcs-dark-blue);
+      margin-bottom: 6px;
+    }
+
+    .score-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .score-box {
+      border-radius: 6px;
+      padding: 12px 16px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+    }
+
+    .score-box.total {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+    }
+
+    .score-box.correct {
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+    }
+
+    .score-box.incorrect {
+      background: #fef2f2;
+      border-color: #fecaca;
+    }
+
+    .score-box.unattempted {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+
+    .score-box-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #64748b;
+      margin-bottom: 4px;
+    }
+
+    .score-box-val {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .score-box.correct .score-box-val { color: #15803d; }
+    .score-box.incorrect .score-box-val { color: #b91c1c; }
+    .score-box.total .score-box-val { color: #1d4ed8; }
+
+    /* Solution Review Controls */
+    .solution-section {
+      background: #ffffff;
+      border: 1px solid var(--tcs-border);
+      border-radius: 8px;
+      padding: 20px 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+
+    .sol-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .sol-header h3 {
+      font-size: 16px;
+      color: var(--tcs-dark-blue);
+    }
+
+    .sol-filter-btns {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      color: #475569;
+    }
+
+    .filter-btn.active {
+      background: var(--tcs-accent);
+      color: #ffffff;
+      border-color: var(--tcs-accent);
+    }
+
+    .solution-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .sol-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 16px 20px;
+      background: #ffffff;
+    }
+
+    .sol-card.incorrect-border {
+      border-left: 4px solid #dc2626;
+    }
+
+    .sol-card.unattempted-border {
+      border-left: 4px solid #94a3b8;
+    }
+
+    .sol-card.correct-border {
+      border-left: 4px solid #16a34a;
+    }
+
+    .sol-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .sol-status-tag {
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+    }
+
+    .sol-status-tag.correct { background: #dcfce7; color: #166534; }
+    .sol-status-tag.incorrect { background: #fee2e2; color: #991b1b; }
+    .sol-status-tag.unattempted { background: #f1f5f9; color: #475569; }
+
+    .sol-answers-compare {
+      background: #f8fafc;
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .ans-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ans-label {
+      width: 130px;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .ans-val-correct {
+      color: #16a34a;
+      font-weight: 600;
+    }
+
+    .ans-val-incorrect {
+      color: #dc2626;
+      font-weight: 600;
+    }
+
+    .sol-explanation-box {
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin-top: 10px;
+      font-size: 13px;
+      color: #1e3a8a;
+      line-height: 1.5;
+    }
+
+    .sol-explanation-box strong {
+      color: #172554;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* MODAL DIALOGS */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(2px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-dialog {
+      background: #ffffff;
+      border-radius: 8px;
+      max-width: 500px;
+      width: calc(100% - 40px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      overflow: hidden;
+      animation: modalFade 0.2s ease-out;
+    }
+
+    @keyframes modalFade {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-header {
+      background: var(--tcs-light-blue);
+      border-bottom: 1px solid #bfdbfe;
+      padding: 14px 20px;
+      font-weight: 700;
+      color: var(--tcs-dark-blue);
+      font-size: 15px;
+    }
+
+    .modal-body {
+      padding: 20px;
+      font-size: 13px;
+      color: #334155;
+    }
+
+    .submit-stats-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+    }
+
+    .submit-stats-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .modal-footer {
+      background: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .palette-panel {
+        position: fixed;
+        right: 0;
+        top: 80px;
+        bottom: 0;
+        z-index: 45;
+        box-shadow: -4px 0 12px rgba(0,0,0,0.15);
+        transform: translateX(100%);
+        transition: transform 0.25s ease;
+      }
+
+      .palette-panel.mobile-open {
+        transform: translateX(0);
+      }
+
+      .mobile-palette-toggle {
+        display: block;
+      }
+
+      .cbt-container {
+        height: auto;
+        min-height: calc(100vh - 120px);
+      }
+
+      .q-scroll-area {
+        padding: 14px 16px;
+      }
+
+      .header-title-box h1 {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Universal Header -->
+  <header class="exam-header">
+    <div class="header-branding">
+      <span class="logo-badge">SSC CBT</span>
+      <div class="header-title-box">
+        <h1 id="globalHeaderTitle">SSC Para Jumble Test Series - CBT Portal</h1>
+        <p id="globalHeaderSub">National Testing Interface &bull; Real Exam Environment</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="timer-pill" id="examTimerPill" style="display: none;">
+        <span>&#9201;</span>
+        <span id="timerDisplay">15:00</span>
+      </div>
+      <button class="hdr-btn" id="btnPause" style="display: none;">
+        <span>&#10074;&#10074;</span> Pause
+      </button>
+      <button class="hdr-btn" id="btnFullscreenToggle" style="display: none;">
+        <span>&#x26F6;</span> Fullscreen
+      </button>
+      <button class="hdr-btn" id="btnExitToDash" style="display: none;">
+        Dashboard
+      </button>
+    </div>
+  </header>
+
+  <!-- SCREEN 1: DASHBOARD -->
+  <div class="view-screen active" id="screenDashboard">
+    <div class="dashboard-container">
+      <div class="dash-hero">
+        <h2>SSC English Language: Top 100 Para Jumbles Test Series</h2>
+        <p>Curated from official recent TCS/Eduquity SSC exams (CGL 2025 Tier-I, Selection Post Phase-XIII, Stenographer 2025). 4 rigorous timed mock tests designed to maximize your sentence rearrangement accuracy.</p>
+        
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-label">Total Curated Questions</div>
+            <div class="stat-val">100 MCQs</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Mock Tests</div>
+            <div class="stat-val">4 Tests (25 Qs Each)</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Time &amp; Marking</div>
+            <div class="stat-val">15 Mins &bull; +2.0 / -0.25</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Test Interface</div>
+            <div class="stat-val">TCS iON CBT Light Theme</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mocks-grid" id="mocksListGrid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 2: INTRODUCTORY / INSTRUCTIONS SCREEN -->
+  <div class="view-screen" id="screenIntro">
+    <div class="intro-container">
+      <div class="intro-header">
+        <h2 id="introMockTitle">General Instructions for Examination</h2>
+        <p>Please read the instructions carefully before starting the test.</p>
+      </div>
+
+      <div class="instructions-body">
+        <h4>General Guidelines:</h4>
+        <ol>
+          <li>The total duration of this mock examination is <strong>15 minutes</strong>.</li>
+          <li>The test contains exactly <strong>25 Multiple Choice Questions (MCQs)</strong> on Para Jumbles / Sentence Rearrangement.</li>
+          <li>The clock has been set at the server. The countdown timer in the top right corner will display the remaining time available to you.</li>
+          <li>When the timer reaches zero, the examination will <strong>submit automatically</strong>. You will not be required to end or submit your examination.</li>
+        </ol>
+
+        <h4>Marking Scheme:</h4>
+        <ul>
+          <li><strong>+2.00 marks</strong> for each correct answer.</li>
+          <li><strong>-0.25 marks</strong> penalty for each incorrect answer (negative marking).</li>
+          <li><strong>0 marks</strong> for unattempted / unanswered questions.</li>
+        </ul>
+
+        <h4>Question Palette Status Legend:</h4>
+        <table class="palette-guide-table">
+          <tr>
+            <td style="width: 44px; text-align: center;"><span class="symbol-chip not-visited">1</span></td>
+            <td><strong>Not Visited:</strong> You have not visited the question yet.</td>
+          </tr>
+          <tr>
+            <td style="width: 44px; text-align: center;"><span class="symbol-chip not-answered">2</span></td>
+            <td><strong>Not Answered:</strong> You have visited the question, but have not answered it.</td>
+          </tr>
+          <tr>
+            <td style="width: 44px; text-align: center;"><span class="symbol-chip answered">3</span></td>
+            <td><strong>Answered:</strong> You have answered the question.</td>
+          </tr>
+          <tr>
+            <td style="width: 44px; text-align: center;"><span class="symbol-chip review">4</span></td>
+            <td><strong>Marked for Review:</strong> You have not answered the question, but marked it for review.</td>
+          </tr>
+          <tr>
+            <td style="width: 44px; text-align: center;"><span class="symbol-chip ans-review">5</span></td>
+            <td><strong>Answered &amp; Marked for Review:</strong> You have answered the question and also marked it for review. It will be evaluated.</td>
+          </tr>
+        </table>
+
+        <h4>Navigating &amp; Answering:</h4>
+        <ul>
+          <li>Click on the question number in the Question Palette on the right to navigate directly to that question.</li>
+          <li>To select your answer, click on one of the option radio buttons.</li>
+          <li>Click <strong>Save &amp; Next</strong> to save your answer and proceed to the next question.</li>
+          <li>Click <strong>Clear Response</strong> to deselect your chosen answer.</li>
+          <li>Click <strong>Mark for Review &amp; Next</strong> to mark for review and go to the next question.</li>
+        </ul>
+
+        <div class="declaration-box">
+          <input type="checkbox" id="chkIntroDeclaration">
+          <label for="chkIntroDeclaration" style="font-size: 13px; cursor: pointer;">
+            I have read and understood all the instructions given above. I ensure that I will attempt the mock exam with complete sincerity and focus under actual exam conditions.
+          </label>
+        </div>
+
+        <div class="intro-actions">
+          <button class="btn-secondary" id="btnIntroBack">Back to Dashboard</button>
+          <button class="btn-primary" id="btnIntroStartExam" disabled>I am ready to begin</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: CBT EXAM INTERFACE -->
+  <div class="view-screen" id="screenExam">
+    <!-- Candidate Sub-Header -->
+    <div class="candidate-bar">
+      <div class="cand-info">
+        <span class="cand-name" id="cbtExamTitleDisplay">Mock Test 1</span>
+        <span class="cand-meta">&bull; Section: English Comprehension (Para Jumble)</span>
+      </div>
+      <div class="cand-meta">
+        Candidate: <strong>Aspirant (Roll: 2025-CBT)</strong> &bull; System: <strong>LAB-04</strong>
+      </div>
+    </div>
+
+    <div class="cbt-container">
+      <!-- Left: Question & Options Pane -->
+      <div class="question-panel">
+        <div class="q-top-bar">
+          <div class="q-number-title" id="currentQNumberDisplay">Question No. 1</div>
+          <div class="q-marks-tag">
+            <span class="exam-tag-badge" id="currentExamTagDisplay">SSC CGL 2025</span>
+            <span class="marking-scheme">Marks: +2.00, -0.25</span>
+          </div>
+        </div>
+
+        <div class="q-scroll-area">
+          <div class="q-direction">Direction: Sentences of a paragraph are given below in jumbled order. Arrange the sentences in the correct order to form a meaningful and coherent paragraph.</div>
+          <div class="q-text-content" id="qStatementDisplay">Loading question...</div>
+          
+          <div class="options-list" id="optionsContainer">
+            <!-- Options injected by JS -->
+          </div>
+        </div>
+
+        <!-- Sticky Bottom Navigation Bar -->
+        <div class="q-bottom-nav">
+          <div class="nav-left">
+            <button class="btn-cbt btn-review" id="btnMarkReview">Mark for Review &amp; Next</button>
+            <button class="btn-cbt btn-clear" id="btnClearResponse">Clear</button>
+          </div>
+          <div class="nav-right">
+            <button class="btn-cbt btn-prev" id="btnPrev">Previous</button>
+            <button class="btn-cbt btn-save-next" id="btnSaveNext">Save &amp; Next</button>
+            <button class="btn-cbt btn-submit-exam" id="btnSubmitModalTrigger">Submit</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Question Palette Pane -->
+      <aside class="palette-panel" id="examPalettePanel">
+        <div class="palette-user-header">
+          <div class="user-avatar">SC</div>
+          <div class="user-details">
+            <h4>SSC Aspirant</h4>
+            <p>English Language</p>
+          </div>
+        </div>
+
+        <div class="palette-legend">
+          <div class="legend-item">
+            <span class="symbol-chip answered" style="width:20px;height:20px;font-size:10px;" id="cntAnswered">0</span>
+            <span>Answered</span>
+          </div>
+          <div class="legend-item">
+            <span class="symbol-chip not-answered" style="width:20px;height:20px;font-size:10px;" id="cntNotAnswered">0</span>
+            <span>Not Answered</span>
+          </div>
+          <div class="legend-item">
+            <span class="symbol-chip not-visited" style="width:20px;height:20px;font-size:10px;" id="cntNotVisited">25</span>
+            <span>Not Visited</span>
+          </div>
+          <div class="legend-item">
+            <span class="symbol-chip review" style="width:20px;height:20px;font-size:10px;" id="cntReview">0</span>
+            <span>Marked Review</span>
+          </div>
+          <div class="legend-item" style="grid-column: span 2;">
+            <span class="symbol-chip ans-review" style="width:20px;height:20px;font-size:10px;" id="cntAnsReview">0</span>
+            <span>Ans &amp; Marked for Review</span>
+          </div>
+        </div>
+
+        <div class="palette-scroll-container">
+          <div class="palette-section-title">Question Palette (25 Questions)</div>
+          <div class="palette-grid" id="paletteGridButtons">
+            <!-- 25 buttons dynamically generated -->
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Mobile Palette Toggle Button -->
+    <button class="mobile-palette-toggle" id="btnMobilePaletteToggle">
+      &#9776; Question Palette
+    </button>
+  </div>
+
+  <!-- SCREEN 4: RESULTS & SCORE ANALYSIS -->
+  <div class="view-screen" id="screenResult">
+    <div class="result-container">
+      <div class="scorecard-hero">
+        <h2 id="resMockTitle">Performance Analysis &amp; Scorecard</h2>
+        <p id="resExamSub">Examination Result Summary &bull; Auto-Evaluated</p>
+
+        <div class="score-summary-grid">
+          <div class="score-box total">
+            <div class="score-box-label">Final Score</div>
+            <div class="score-box-val" id="resScore">0.00 / 50.00</div>
+          </div>
+          <div class="score-box correct">
+            <div class="score-box-label">Correct (+2.0)</div>
+            <div class="score-box-val" id="resCorrect">0</div>
+          </div>
+          <div class="score-box incorrect">
+            <div class="score-box-label">Incorrect (-0.25)</div>
+            <div class="score-box-val" id="resIncorrect">0</div>
+          </div>
+          <div class="score-box unattempted">
+            <div class="score-box-label">Unattempted</div>
+            <div class="score-box-val" id="resUnattempted">0</div>
+          </div>
+          <div class="score-box">
+            <div class="score-box-label">Accuracy</div>
+            <div class="score-box-val" id="resAccuracy">0%</div>
+          </div>
+          <div class="score-box">
+            <div class="score-box-label">Time Taken</div>
+            <div class="score-box-val" id="resTimeTaken">00:00</div>
+          </div>
+        </div>
+
+        <div style="margin-top: 20px; display: flex; gap: 10px;">
+          <button class="btn-primary" id="btnRetakeMock">Retake This Mock</button>
+          <button class="btn-secondary" id="btnBackDashboardFromRes">Back to Dashboard</button>
+        </div>
+      </div>
+
+      <!-- Solutions Section -->
+      <div class="solution-section">
+        <div class="sol-header">
+          <div>
+            <h3>Detailed Solution &amp; Answer Key</h3>
+            <p style="font-size: 12px; color: var(--tcs-muted);">Showing step-by-step logic and sequence derivation</p>
+          </div>
+          <div class="sol-filter-btns">
+            <button class="filter-btn active" data-filter="inc_unatt" id="btnFilterIncUnatt">Incorrect &amp; Un-attempted Only</button>
+            <button class="filter-btn" data-filter="incorrect" id="btnFilterIncorrect">Incorrect Only</button>
+            <button class="filter-btn" data-filter="unattempted" id="btnFilterUnattempted">Un-attempted Only</button>
+            <button class="filter-btn" data-filter="all" id="btnFilterAll">All 25 Questions</button>
+          </div>
+        </div>
+
+        <div class="solution-list" id="solutionCardsList">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: PAUSE -->
+  <div class="modal-overlay" id="modalPause">
+    <div class="modal-dialog">
+      <div class="modal-header">Exam Paused</div>
+      <div class="modal-body">
+        <p>Your examination has been temporarily paused. The countdown timer is stopped and question details are hidden.</p>
+        <p style="margin-top: 10px; font-size: 12px; color: var(--tcs-muted);">Click the button below when you are ready to continue your test.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-primary" id="btnResumeExam">Resume Examination</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: SUBMIT CONFIRMATION -->
+  <div class="modal-overlay" id="modalSubmitConfirm">
+    <div class="modal-dialog">
+      <div class="modal-header">Confirm Exam Submission</div>
+      <div class="modal-body">
+        <p>Please review your attempt summary before final submission:</p>
+        <table class="submit-stats-table">
+          <tr>
+            <td>Total Questions</td>
+            <td style="text-align: right; font-weight: 700;">25</td>
+          </tr>
+          <tr>
+            <td style="color: #16a34a;">Answered</td>
+            <td style="text-align: right; font-weight: 700;" id="modalSumAnswered">0</td>
+          </tr>
+          <tr>
+            <td style="color: #dc2626;">Not Answered</td>
+            <td style="text-align: right; font-weight: 700;" id="modalSumNotAnswered">0</td>
+          </tr>
+          <tr>
+            <td style="color: #7c3aed;">Marked for Review</td>
+            <td style="text-align: right; font-weight: 700;" id="modalSumReview">0</td>
+          </tr>
+          <tr>
+            <td style="color: #94a3b8;">Not Visited</td>
+            <td style="text-align: right; font-weight: 700;" id="modalSumNotVisited">0</td>
+          </tr>
+        </table>
+        <p style="font-size: 12px; color: #dc2626; font-weight: 500;">Are you sure you want to end and submit the test now?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="btnCancelSubmitModal">Return to Test</button>
+        <button class="btn-cbt btn-submit-exam" id="btnConfirmSubmitModal">Yes, Final Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Embedded Data: 4 Mocks with 25 Questions each (100 total)
+    const ALL_MOCKS = [{"id": "mock1", "title": "Mock Test 1: SSC CGL 2025 Tier - I (Science, Technology & Systems)", "badge": "SSC CGL 2025 Tier - I", "desc": "25 High-yield Parajumbles on AI, Sensor Networks, Respiration, Natural Selection, Space Exploration, and Ecology.", "ids": [1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 26, 30], "questions": [{"num": 1, "orig_id": 1, "exam_tag": "SSC CGL 12/09/2025 (Shift 1)", "text": "1. Raw data from these sensors was then streamed to a central\nprocessing unit.\n2. Machine learning algorithms were deployed to identify\nanomalies in the data patterns.\n3. Environmental sensors were installed across the industrial\nfacility.\n4. Early detection of equipment malfunction became possible\ndue to this system.", "options": {"a": "3 - 1 - 2 - 4", "b": "1 - 3 - 2 - 4", "c": "3 - 2 - 1 - 4", "d": "2 - 1 - 3 - 4"}, "correct": "a", "correct_seq": "3-1-2-4", "explanation": "Sentence 3 describes the initial setup: installing sensors.\nSentence 1 explains what happens to the data from these\nsensors: it's streamed to a processing unit. Sentence 2 details\nthe next step in processing: applying machine learning.\nSentence 4 then states the beneficial outcome of this entire\nprocess: early detection of malfunctions.Going through the\noptions, option (a) has the correct sequence."}, {"num": 2, "orig_id": 2, "exam_tag": "SSC CGL 12/09/2025 (Shift 1)", "text": "1. They monitor seismic activity, atmospheric pressure, and\nground deformation.\n2. Predicting volcanic eruptions remains a complex scientific\nchallenge.\n3. Advanced sensor networks are crucial for collecting vital\nprecursory data.\n4. However, the exact timing and magnitude often elude precise\nforecasting.", "options": {"a": "2, 3, 1, 4", "b": "3, 1, 2, 4", "c": "2, 4, 3, 1", "d": "1, 3, 2, 4"}, "correct": "a", "correct_seq": "2, 3, 1, 4", "explanation": "Sentence 2 introduces the main topic: the challenge of\npredicting volcanic eruptions. Sentence 3 then states a key tool\nused in this process: advanced sensor networks. Sentence 1\nelaborates on what these sensors do: they monitor various\nactivities. Finally, sentence 4 provides a concluding thought,\nhighlighting the remaining difficulty despite the use of sensors.\nGoing through the options, option (a) has the correct sequence."}, {"num": 3, "orig_id": 3, "exam_tag": "SSC CGL 12/09/2025 (Shift 2)", "text": "1. This often leads to misunderstandings, frustration, and a\nbreakdown in teamwork.\n2. Semantic barriers, arising from different interpretations of\nwords or jargon, are particularly common.\n3. Effective communication is frequently hindered by various\nobstacles in the workplace.\n4. Overcoming these requires clarity in language, active\nlistening, and empathy for diverse perspectives.", "options": {"a": "3, 2, 1, 4", "b": "2, 1, 3, 4", "c": "3, 1, 2, 4", "d": "1, 3, 2, 4"}, "correct": "a", "correct_seq": "3, 2, 1, 4", "explanation": "Sentence 3 will be the starting line as it introduces the main idea\nof the parajumble, i.e. various obstacles in effective\ncommunication. And, sentence 2 then identifies a specific type\nof barrier: semantic barriers. So, sentence 2 will follow sentence\n3. Further, sentence 1 describes the negative consequence of\nthese barriers: misunderstandings and breakdown in teamwork.\nFinally, sentence 4 offers solutions to overcome these barriers.\nGoing through the options, option (a) has the correct sequence."}, {"num": 4, "orig_id": 4, "exam_tag": "SSC CGL 12/09/2025 (Shift 2)", "text": "1. Solar power, harnessing the sun's abundant radiation, is\nbecoming increasingly cost-effective and efficient.\n2. The world is actively seeking sustainable alternatives to finite\nfossil fuels for its energy needs.\n3. Wind energy, derived from atmospheric currents, provides\nanother clean and readily available source.\n4. These inexhaustible resources offer a promising pathway to\na future powered by clean, renewable energy.", "options": {"a": "2, 1, 3, 4", "b": "1, 3, 2, 4", "c": "2, 4, 1, 3", "d": "1, 2, 3, 4"}, "correct": "a", "correct_seq": "2, 1, 3, 4", "explanation": "Sentence 2 will be the starting line as it introduces the main idea\nof the parajumble, i.e. the search for sustainable energy\nalternatives. Sentence 1 then provides the first example of an\ninexhaustible resource: solar power. Sentence 3 offers another\nexample: wind energy. Finally, sentence 4 concludes by\nsummarising the collective potential of these inexhaustible\nresources. Going through the options, option (a) has the correct\nsequence."}, {"num": 5, "orig_id": 6, "exam_tag": "SSC CGL 12/09/2025 (Shift 3)", "text": "1. This allows the bird to remain almost perfectly still relative to\nthe flower.\n2. The hummingbird's wings beat at an incredibly high\nfrequency, often over 50 times per second.\n3. This unique ability enables them to efficiently extract nectar\nwhile hovering in mid-air.\n4. Such rapid wing movements create a stable platform,\ncounteracting any air currents.", "options": {"a": "2, 4, 1, 3", "b": "1, 3, 2, 4", "c": "3, 2, 4, 1", "d": "2, 1, 4, 3"}, "correct": "a", "correct_seq": "2, 4, 1, 3", "explanation": "Sentence 2 introduces the main subject, the hummingbird's rapid\nwing beats. Sentence 4 logically follows by explaining the effect\nof these rapid movements - creating a stable platform. Sentence\n1 then clarifies what this stable platform allows for \u2013 the bird to\nremain still. Finally, Sentence 3 concludes by stating the purpose\nof this unique ability - efficient nectar extraction while hovering.\nGoing through the options, option (a) has the correct sequence."}, {"num": 6, "orig_id": 7, "exam_tag": "SSC CGL 13/09/2025 (Shift 1)", "text": "1. Cyberpunk, for instance, envisions dystopian futures\ndominated by advanced technology and corporate control.\n2. Within science fiction, various subgenres have emerged,\neach exploring distinct themes and aesthetics.\n3. This thematic diversity allows the genre to appeal to a broad\nrange of readers and intellectual interests.\n4. Meanwhile, space opera focuses on grand interstellar\nconflicts and epic voyages across vast galaxies.", "options": {"a": "2, 1, 4, 3", "b": "1, 2, 3, 4", "c": "2, 3, 1, 4", "d": "4, 1, 2, 3"}, "correct": "a", "correct_seq": "2, 1, 4, 3", "explanation": "Sentence 2 introduces the idea of various subgenres within\nscience fiction. Sentence 1 then provides the first example,\nCyberpunk. Sentence 4 provides a second example, Space\nOpera, using \"Meanwhile\" to show a contrasting but related\nsubgenre. Finally, sentence 3 concludes by highlighting the\nbenefit of this diversity. Going through the options, option (a)\nhas the correct sequence."}, {"num": 7, "orig_id": 8, "exam_tag": "SSC CGL 13/09/2025 (Shift 1)", "text": "1. This enables organisms to adapt to changing environments\nand ensures the survival of species.\n2. Natural selection is a fundamental mechanism of evolution.\n3. It describes the process where individuals with traits best\nsuited to their environment are more likely to survive and\nreproduce.\n4. Over time, these advantageous traits become more common\nin the population.", "options": {"a": "3, 1, 2, 4", "b": "2, 3, 1, 4", "c": "2, 1, 3, 4", "d": "1, 2, 3, 4"}, "correct": "b", "correct_seq": "2, 3, 1, 4", "explanation": "Sentence 2 introduces the main topic: natural selection as a\nmechanism of evolution. Sentence 3 then defines what natural\nselection is. Sentence 1 explains the benefit of this process:\nadaptation and species survival. Finally, sentence 4 describes\nthe long-term outcome: advantageous traits becoming more\ncommon. Going through the options, option (b) has the correct\nsequence."}, {"num": 8, "orig_id": 9, "exam_tag": "SSC CGL 13/09/2025 (Shift 2)", "text": "1. This can manifest as filter bubbles, where individuals are only\nexposed to information confirming their existing beliefs.\n2. The algorithms of social media platforms often contribute to\nthe fragmentation of public opinion.\n3. Consequently, reaching a broad consensus on complex\nissues becomes increasingly difficult.\n4. These systems are designed to maximize engagement by\nfeeding users content similar to what they have previously\ninteracted with.", "options": {"a": "2, 4, 1, 3", "b": "1, 2, 4, 3", "c": "4, 1, 2, 3", "d": "2, 1, 4, 3"}, "correct": "a", "correct_seq": "2, 4, 1, 3", "explanation": "Sentence 2 will be the starting line as it introduces the main idea\nof the parajumble, i.e. algorithms contributing to public opinion\nfragmentation. And, sentence 4 states that these algorithms\nwork by maximising engagement with the similar type of\ncontent. So, sentence 4 will follow sentence 2. Further, sentence\n1 states that this leads to formation of filter bubbles, limiting\nexposure to information confirming their existing beliefs &\nsentence 3 states that it becomes difficult to reach a broad\nconsensus on complex issues. So, sentence 3 will follow\nsentence 1. Going through the options, option (a) has the correct\nsequence."}, {"num": 9, "orig_id": 10, "exam_tag": "SSC CGL 13/09/2025 (Shift 2)", "text": "1. Academic integrity, therefore, is paramount in upholding the\ntrustworthiness of these contributions.\n2. Scientific papers, doctoral theses, and scholarly articles all\nrepresent significant intellectual endeavors.\n3. These works collectively advance human understanding\nacross diverse fields.\n4. Any compromise in integrity, such as plagiarism or\nfalsification of data, undermines the entire edifice of\nknowledge.", "options": {"a": "2, 1, 3, 4", "b": "3, 1, 2, 4", "c": "1, 4, 2, 3", "d": "2, 3, 1, 4"}, "correct": "d", "correct_seq": "2, 3, 1, 4", "explanation": "Sentence 2 introduces various forms of academic work.\nSentence 3 describes the collective purpose of these works:\nadvancing human understanding. Sentence 1 then introduces\nthe necessity of academic integrity to maintain the\ntrustworthiness of these contributions. Finally, sentence 4\nexplains the negative consequence of a lack of integrity. Going\nthrough the options, option (d) has the correct sequence."}, {"num": 10, "orig_id": 11, "exam_tag": "SSC CGL 13/09/2025 (Shift 3)", "text": "1. Museums preserve cultural memory by safeguarding\nartefacts and stories.\n2. Through careful curation, they connect past experiences\nwith contemporary audiences.\n3. This continuity helps communities understand their roots\nand shared identity.\n4. Consequently, public support for museums strengthens\nwhen people see their relevance to daily life.", "options": {"a": "1, 2, 3, 4", "b": "2, 3, 1, 4", "c": "1, 3, 2, 4", "d": "3, 2, 4, 1"}, "correct": "a", "correct_seq": "1, 2, 3, 4", "explanation": "Sentence 1 1 will be the starting line as it introduces the main\nidea of the parajumble, i.e. Museums preserve cultural memory.\nAnd, sentence 2 states that through careful curation, they\nconnect past experiences with contemporary audiences. So,\nsentence 2 will follow sentence 1. Further, sentence 3 states the\nsignificance of this connection & sentence 4 talks about\nstrengthening of public support for museums because of their\nrelevance to daily life. So, sentence 4 will follow sentence 3.\nGoing through the options, option (a) has the correct sequence."}, {"num": 11, "orig_id": 12, "exam_tag": "SSC CGL 13/09/2025 (Shift 3)", "text": "1. Such initiatives often include public awareness campaigns\nand improved waste management infrastructure.\n2. Urban areas worldwide grapple with escalating levels of\nmunicipal solid waste.\n3. Addressing this crisis necessitates comprehensive strategies\ninvolving both policy-makers and citizens.\n4. Furthermore, promoting recycling and composting can\nsignificantly reduce landfill dependency.", "options": {"a": "2, 1, 3, 4", "b": "1, 3, 2, 4", "c": "2, 3, 1, 4", "d": "3, 2, 1, 4"}, "correct": "c", "correct_seq": "2, 3, 1, 4", "explanation": "Sentence 2 introduces the problem: escalating urban waste.\nSentence 3 states the need for strategies to address this crisis.\nSentence 1 then gives examples of what these strategies\ninclude. Finally, sentence 4 provides an additional specific action\n(promoting recycling and composting) that contributes to\nsolving the problem. Going through the options, option (c) has\nthe correct sequence."}, {"num": 12, "orig_id": 13, "exam_tag": "SSC CGL 14/09/2025 (Shift 1)", "text": "1. These large predatory fish are known for their speed and\nsharp teeth, making them apex predators in their marine\nhabitats.\n2. Sharks are a fascinating group of cartilaginous fish found in\noceans all over the world.\n3. Their skeletons are made of cartilage rather than bone, a\nfeature that distinguishes them from most other fish.\n4. From the massive whale shark, the largest fish in the world,\nto the small dwarf lanternshark, their diversity is remarkable.", "options": {"a": "2, 4, 3, 1", "b": "4, 3, 2, 1", "c": "3, 2, 1, 4", "d": "2, 1, 4, 3"}, "correct": "a", "correct_seq": "2, 4, 3, 1", "explanation": "Sentence 2 will be the starting line as it introduces the main\nsubject of the paragraph \u2014 sharks. Sentence 4 expands on their\ndiversity, providing examples of different shark species, which\nlogically follows the introduction. Sentence 3 then adds a\nscientific detail about their anatomy, explaining what makes\nthem unique among fish. Finally, Sentence 1 concludes the\nparagraph by describing their predatory nature and ecological\nrole. Going through the options, option (a) has the correct\nsequence."}, {"num": 13, "orig_id": 14, "exam_tag": "SSC CGL 14/09/2025 (Shift 1)", "text": "1. The invention of the printing press in the 15th century\nrevolutionized how knowledge was shared across Europe.\n2. This technological breakthrough made books more\naffordable and accessible to the general public.\n3. As a result, literacy rates began to rise, paving the way for\nintellectual movements such as the Renaissance and the\nReformation.\n4. Before this invention, manuscripts were copied by hand, a\nslow and expensive process limited to the elite.", "options": {"a": "4, 1, 2, 3", "b": "1, 4, 2, 3", "c": "4, 2, 1, 3", "d": "1, 2, 3, 4"}, "correct": "a", "correct_seq": "4, 1, 2, 3", "explanation": "Sentence 4 will be the starting line as it describes the situation\nbefore the main event, the invention of the printing press.\nSentence 1 follows naturally, introducing the revolutionary\nchange. Sentence 2 explains the direct impact of this invention,\nwhile Sentence 3 concludes by showing the long-term effects on\nsociety. Going through the options, option (a) has the correct\nsequence."}, {"num": 14, "orig_id": 15, "exam_tag": "SSC CGL 14/09/2025 (Shift 2)", "text": "1. This process, known as evaporation, plays a crucial role in\nregulating Earth's temperature and maintaining the water\ncycle.\n2. It occurs when water molecules at the surface gain enough\nenergy to escape into the atmosphere as vapor.\n3. The rate of evaporation depends on several factors such as\ntemperature, humidity, and wind speed.\n4. Evaporation is one of the key processes through which water\nmoves from oceans, lakes, and rivers into the air.", "options": {"a": "4, 2, 3, 1", "b": "2, 3, 4, 1", "c": "3, 2, 1, 4", "d": "4, 3, 2, 1"}, "correct": "a", "correct_seq": "4, 2, 3, 1", "explanation": "Sentence 4 introduces the main topic of the paragraph,\nevaporation as a key process in the water cycle. Sentence 2\nfollows by explaining how the process occurs. Sentence 3 then\nadds details about the factors influencing evaporation, and\nSentence 1 concludes by emphasizing its overall importance.\nGoing through the options, option (a) has the correct sequence."}, {"num": 15, "orig_id": 16, "exam_tag": "SSC CGL 14/09/2025 (Shift 2)", "text": "1. These systems use sensors and software to interpret their\nsurroundings, enabling them to make navigation decisions\nwithout human input.\n2. Autonomous vehicles are considered one of the most\ntransformative innovations in modern transportation.\n3. However, widespread adoption faces challenges related to\nsafety, regulation, and ethical decision-making.\n4. They promise to reduce accidents, improve traffic efficiency,\nand revolutionize urban mobility.", "options": {"a": "1, 2, 4, 3", "b": "2, 1, 4, 3", "c": "4, 3, 2, 1", "d": "2, 4, 1, 3"}, "correct": "b", "correct_seq": "2, 1, 4, 3", "explanation": "Sentence 2 will be the starting line as it introduces the main\nsubject of the parajumble i.e., autonomous vehicles as a major\ninnovation in transportation. Sentence 1 explains how these\nvehicles operate using sensors and software. Sentence 4\nhighlights the benefits they offer, and Sentence 3 concludes by\nmentioning the challenges in their implementation. Going\nthrough the options, option (b) has the correct sequence."}, {"num": 16, "orig_id": 17, "exam_tag": "SSC CGL 14/09/2025 (Shift 3)", "text": "1. Critics argue that such policies disproportionately affect\nvulnerable populations and can stifle economic growth.\n2. The debate around universal basic income (UBI) has\nintensified in recent years, drawing attention from various\nsectors.\n3. Proponents suggest UBI could alleviate poverty, reduce\ninequality, and provide a safety net in an automating world.\n4. It proposes a regular, unconditional cash payment to all\ncitizens, regardless of their income or employment status.", "options": {"a": "2, 4, 3, 1", "b": "4, 2, 1, 3", "c": "2, 3, 1, 4", "d": "3, 1, 2, 4"}, "correct": "a", "correct_seq": "2, 4, 3, 1", "explanation": "Sentence 2 will be the startling line as it introduces the main\nidea of the parajumble, i.e. the debate around universal basic\nincome. And, sentence 4 describes the concept of universal\nbasic income. So, sentence 4 will follow sentence 2. Further,\nsentence 3 presents the argument made by the proponents in\nfavour of UBI & sentence 1 presents the argument made by\ncritics against the UBI. So, sentence 1 will follow sentence 3.\nGoing through the options, option (a) has the correct sequence."}, {"num": 17, "orig_id": 18, "exam_tag": "SSC CGL 14/09/2025 (Shift 3)", "text": "1. The human brain, a marvel of biological engineering,\npossesses an astonishing capacity for learning and\nadaptation.\n2. Neuroplasticity, its ability to reorganise itself by forming new\nneural connections, underpins this remarkable faculty.\n3. This process allows us to acquire new skills, form\nmemories, and even recover from brain injuries.\n4. From childhood development to adult learning, this dynamic\nre-wiring occurs continuously.", "options": {"a": "1, 2, 3, 4", "b": "2, 1, 4, 3", "c": "1, 3, 2, 4", "d": "4, 1, 3, 2"}, "correct": "a", "correct_seq": "1, 2, 3, 4", "explanation": "Sentence 1 introduces the main subject: the brain's capacity for\nlearning and adaptation. Sentence 2 then introduces the key\nconcept of \"Neuroplasticity\" as the mechanism behind this\ncapacity. Sentence 3 explains the benefits and outcomes of\nneuroplasticity. Finally, sentence 4 provides the context for when\nthis process occurs. Going through the options, option (a) has\nthe correct sequence."}, {"num": 18, "orig_id": 19, "exam_tag": "SSC CGL 15/09/2025 (Shift 1)", "text": "1. This practice involves using genetic material to identify\nindividuals and establish relationships, offering\nunprecedented accuracy.\n2. Forensic science has been revolutionized by advancements\nin DNA profiling.\n3. Its applications range from solving cold cases and\nidentifying disaster victims to exonerating wrongly accused\nindividuals.\n4. Before DNA, forensic methods relied heavily on less precise\nevidence like fingerprints and eyewitness accounts.", "options": {"a": "2, 4, 1, 3", "b": "4, 2, 1, 3", "c": "2, 1, 4, 3", "d": "1, 2, 3, 4"}, "correct": "a", "correct_seq": "2, 4, 1, 3", "explanation": "Sentence 2 will be the starting line as it introduces the main\nsubject of the paragraph, i.e. advancements in DNA profiling\nrevolutionizing forensic science. Sentence 4 will follow next as it\nprovides a contrast by describing earlier, less precise methods\nused before DNA technology. Sentence 1 then explains what\nDNA profiling involves and highlights its accuracy. Finally,\nSentence 3 concludes by mentioning the wide range of\napplications of DNA profiling. Going through the options, option\n(a) has the correct sequence."}, {"num": 19, "orig_id": 20, "exam_tag": "SSC CGL 15/09/2025 (Shift 1)", "text": "1. These \"natural climate solutions\" leverage ecosystems'\ninherent ability to absorb and store carbon.\n2. Beyond simply reducing emissions, many conservation\nefforts now focus on sequestering existing carbon from the\natmosphere.\n3. Such initiatives often include reforestation, wetland\nrestoration, and sustainable agricultural practices.\n4. This approach is gaining traction as a vital complement to\ntransitioning away from fossil fuels.", "options": {"a": "2, 3, 1, 4", "b": "3, 1, 2, 4", "c": "2, 1, 3, 4", "d": "4, 2, 1, 3"}, "correct": "c", "correct_seq": "2, 1, 3, 4", "explanation": "Sentence 2 will be the starting line as it introduces the main idea\nthat conservation efforts now focus on sequestering carbon\nfrom the atmosphere. Sentence 1 will follow as it defines these\nefforts as \u201cnatural climate solutions\u201d and explains their\nmechanism. Sentence 3 comes next as it provides examples of\nsuch initiatives like reforestation and wetland restoration. Finally,\nSentence 4 concludes by highlighting the growing importance of\nthis approach as a complement to moving away from fossil\nfuels. Going through the options, option (c) has the correct\nsequence."}, {"num": 20, "orig_id": 21, "exam_tag": "SSC CGL 15/09/2025 (Shift 2)", "text": "1. For centuries, cartographers placed themselves at the center\nof the world map, revealing more about human ego than\ngeographic accuracy.\n2. The projection of power through maps demonstrates how\nknowledge can serve as an instrument of domination.\n3. Colonial empires redrew boundaries to reflect their influence,\nshaping political realities that persist even today.\n4. Thus, the act of mapping has always been less about\nlocation and more about perception.", "options": {"a": "1, 3, 2, 4", "b": "1, 2, 3, 4", "c": "4, 1, 3, 2", "d": "2, 1, 3, 4"}, "correct": "a", "correct_seq": "1, 3, 2, 4", "explanation": "Sentence 1 will be the starting line as it introduces the main\nsubject of the paragraph, i.e., how cartographers placed\nthemselves at the center of world maps, showing human ego\nrather than accuracy. Sentence 3 follows as it continues the idea\nby explaining how colonial empires redrew boundaries to assert\ntheir influence. Sentence 2 logically comes next because it\ngeneralizes this idea, highlighting that maps were used as\ninstruments of domination. Finally, sentence 4 concludes the\nparagraph by drawing an inference that mapping has always\nbeen more about perception than location. Going through the\noptions, option (a) has the correct sequence."}, {"num": 21, "orig_id": 22, "exam_tag": "SSC CGL 15/09/2025 (Shift 3)", "text": "1. This essential gas then diffuses into the bloodstream,\nbinding with haemoglobin in red blood cells.\n2. Respiration is a complex physiological process vital for\nsustaining human life.\n3. Simultaneously, carbon dioxide, a waste product, moves from\nthe blood into the alveoli to be exhaled.\n4. It begins with the inhalation of air, where oxygen travels\nthrough the airways to tiny air sacs called alveoli in the lungs.", "options": {"a": "2, 4, 1, 3", "b": "4, 1, 2, 3", "c": "2, 1, 4, 3", "d": "1, 3, 2, 4"}, "correct": "a", "correct_seq": "2, 4, 1, 3", "explanation": "Sentence 2 will be the starting line as it introduces the main idea\nof the parajumble, i.e. respiration is a vital physiological process.\nSentence 4 then describes the initial step of this process:\ninhalation and oxygen reaching the alveoli. So, sentence 4 will\nfollow sentence 2. Further, sentence 1 explains what happens\nnext with the oxygen, i.e. diffusion into the bloodstream. Finally,\nsentence 3 details the concurrent process of carbon dioxide\nremoval. Going through the options, option (a) has the correct\nsequence."}, {"num": 22, "orig_id": 23, "exam_tag": "SSC CGL 15/09/2025 (Shift 3)", "text": "1. Forest ecosystems act as natural regulators by absorbing\ncarbon dioxide, releasing oxygen, and supporting diverse\nforms of life.\n2. However, rapid deforestation caused by urban expansion,\nlogging, and agriculture has severely disrupted these\necological balances.\n3. This degradation not only accelerates climate change but\nalso threatens countless species with extinction.\n4. Protecting and restoring forests through sustainable\npractices is therefore essential to preserve biodiversity and\nmaintain global climate stability.", "options": {"a": "1, 3, 2, 4", "b": "2, 1, 3, 4", "c": "1, 2, 3, 4", "d": "2, 3, 1, 4"}, "correct": "c", "correct_seq": "1, 2, 3, 4", "explanation": "Sentence 1 will be the starting line as it introduces the main idea\nof the parajumble, i.e. the role of forest ecosystems as natural\nregulators. Sentence 2 then talks about the disruption of these\necological balances due to rapid deforestation. So, sentence 2\nwill follow sentence 1. Further, sentence 3 talks about negative\nimpact of this degradation & sentence 4 talks about protecting\nand restoring forests through sustainable practices. So,\nsentence 4 will follow sentence 3. Going through the options,\noption (c) has the correct sequence."}, {"num": 23, "orig_id": 24, "exam_tag": "SSC CGL 16/09/2025 (Shift 1)", "text": "1. These systems can identify spoken words and phrases and\nconvert them into written text.\n2. Speech recognition technology enables machines to interpret\nand process human language.\n3. With the help of machine learning algorithms, accuracy\nimproves as the system is exposed to more data.\n4. Applications like voice assistants and automated\ntranscription tools rely heavily on this technology.", "options": {"a": "2, 1, 3, 4", "b": "2, 4, 1, 3", "c": "1, 2, 3, 4", "d": "4, 3, 2, 1"}, "correct": "a", "correct_seq": "2, 1, 3, 4", "explanation": "Sentence 2 will be the starting line as it introduces the main\nsubject of the paragraph, i.e., speech recognition technology.\nSentence 1 follows next as it explains how these systems work\nby identifying spoken words and converting them into text.\nSentence 3 comes next, describing how machine learning\nimproves the system\u2019s accuracy over time. Finally, Sentence 4\nconcludes the paragraph by mentioning real-world applications\nlike voice assistants and transcription tools. Going through the\noptions, option (a) has the correct sequence."}, {"num": 24, "orig_id": 26, "exam_tag": "SSC CGL 16/09/2025 (Shift 2)", "text": "1. This leads to a complex web of interactions that influence\nlocal weather patterns.\n2. The Amazon rainforest plays a crucial role in regulating\nglobal climate.\n3. It releases vast amounts of moisture into the atmosphere\nthrough evapotranspiration.\n4. Deforestation, therefore, not only destroys biodiversity but\nalso threatens global climatic stability.", "options": {"a": "2 - 3 - 1 - 4", "b": "3 - 1 - 2 - 4", "c": "2 - 4 - 1 - 3", "d": "1 - 2 - 3 - 4"}, "correct": "a", "correct_seq": "2-3-1-4", "explanation": "Sentence 2 will be the starting line as it introduces the main idea\nof the parajumble, i.e. the crucial role of the Amazon rainforest.\nAnd, sentence 3 states that it releases vast amounts of moisture\nin the atmosphere through evapotranspiration. So, sentence 3\nwill follow sentence 2. Further, sentence 1 states that this leads\nto a complex web of interactions that influence weather patterns\n& sentence 4 talks about the impact of deforestation, i.e.\ndestruction of biodiversity and a threat to global climatic\nstability. So, sentence 4 will follow sentence 1. Going through\nthe options, option (a) has the correct sequence."}, {"num": 25, "orig_id": 30, "exam_tag": "SSC CGL 17/09/2025 (Shift 1)", "text": "1. This adaptability enables ecosystems to recover from\ndisturbances and maintain long-term stability.\n2. Ecosystem resilience refers to the capacity of a natural\nsystem to absorb stress and reorganize while undergoing\nchange.\n3. In the context of climate change, resilience is a crucial factor\ndetermining the survival of many species.\n4. It involves complex interactions among biotic and abiotic\ncomponents that allow systems to withstand external\npressures.", "options": {"a": "2, 4, 1, 3", "b": "4, 2, 1, 3", "c": "2, 1, 3, 4", "d": "3, 2, 4, 1"}, "correct": "a", "correct_seq": "2, 4, 1, 3", "explanation": "Sentence 2 will be the starting line as it contains the main\nsubject of the parajumble i.e. ecosystem resilience. Sentence 4\nstates that it involves complex interactions among biotic and\nabiotic components that allow systems to withstand external\npressures, explaining how resilience functions. So, 4 will follow\n2. Further, Sentence 1 mentions that this adaptability enables\necosystems to recover from disturbances and maintain\nlong-term stability, and Sentence 3 adds that resilience is crucial\nfor species\u2019 survival in the context of climate change. So, 3 will\nfollow 1. Going through the options, option (a) has the correct\nsequence."}]}, {"id": "mock2", "title": "Mock Test 2: SSC CGL 2025 Tier - I (Economics, Society & Environment)", "badge": "SSC CGL 2025 Tier - I", "desc": "25 Conceptual Parajumbles on Supply & Demand, Ethics, Climate Systems, Renewable Energy, and Social Media.", "ids": [31, 32, 33, 34, 35, 36, 37, 40, 41, 43, 44, 47, 50, 53, 55, 57, 59, 60, 62, 64, 69, 72, 78, 80, 97], "questions": [{"num": 1, "orig_id": 31, "exam_tag": "SSC CGL 17/09/2025 (Shift 2)", "text": "1. Furthermore, historical contexts often shape the\ndevelopment and interpretation of ethical frameworks.\n2. Ethics, as a branch of philosophy, systematically explores\nmoral principles that govern a person's behaviour.\n3. It delves into questions of right and wrong, good and bad, in\nboth individual actions and societal structures.\n4. This exploration is not static, as evolving cultural norms and\nscientific discoveries continuously challenge established\nmoral perspectives.", "options": {"a": "2, 3, 4, 1", "b": "3, 2, 1, 4", "c": "2, 1, 3, 4", "d": "4, 1, 2, 3"}, "correct": "a", "correct_seq": "2, 3, 4, 1", "explanation": "Sentence 2 will be the starting line as it introduces the main idea\nof the parajumble, i.e. \u2018Ethics is a branch of philosophy which\nexplores moral principles.\u2019 And, sentence 3 states that it delves\ninto questions of right and wrong, good and bad. So, sentence 3\nwill follow sentence 2. Further, sentence 4 states that this\nexploration is not static as evolving cultural norms and scientific\ndiscoveries continuously challenge established moral\nperspectives. So, sentence 4 will follow sentence 3. Sentence 1\nconcludes the parajumble by stating that historical contexts\noften shape the development and interpretation of ethical\nframeworks. Going through the options, option (a) has the\ncorrect sequence."}, {"num": 2, "orig_id": 32, "exam_tag": "SSC CGL 17/09/2025 (Shift 2)", "text": "1. The fragrance that rises from the earth after rain is cherished\nby many across cultures.\n2. This pleasant smell is known as petrichor, a term derived\nfrom Greek words meaning \u201cstone\u201d and \u201cthe blood of gods.\u201d\n3. This scent comes from plant oils and a compound called\ngeosmin released by soil bacteria.\n4. It evokes a deep sense of nostalgia and freshness,\nreminding people of renewal and calm after a storm.", "options": {"a": "2, 3, 1, 4", "b": "1, 2, 3, 4", "c": "1, 3, 2, 4", "d": "3, 1, 4, 2"}, "correct": "b", "correct_seq": "1, 2, 3, 4", "explanation": "Sentence 1 will be the starting line as it introduces the main idea\nof the parajumble, i.e. \u2018The fragrance that arises from Earth after\nrain\u2019. And, sentence 2 tells us the name of this scent and the\norigin of its name. So, sentence 2 will follow sentence 1. Further,\nsentence 3 states that this scent comes from a compound\ncalled geosmin released by soil bacteria & sentence 4 tells us\nthat it evokes a deep sense of nostalgia and freshness. So,\nsentence 4 will follow sentence 3. Going through the options,\noption (b) has the correct sequence."}, {"num": 3, "orig_id": 33, "exam_tag": "SSC CGL 17/09/2025 (Shift 3)", "text": "1. Such events cause widespread destruction and\ndisplacement.\n2. Global warming is increasing the frequency and intensity of\nextreme weather.\n3. Communities must develop better preparedness and\nresilience strategies.\n4. Examples include more powerful hurricanes and prolonged\ndroughts.", "options": {"a": "2 - 4 - 1 - 3", "b": "1 - 2 - 4 - 3", "c": "4 - 2 - 1 - 3", "d": "2 - 1 - 4 - 3"}, "correct": "a", "correct_seq": "2 - 4 - 1 - 3", "explanation": "Sentence 2 will be the starting line as it contains the main\nsubject of the parajumble, i.e. global warming and its impact on\nextreme weather. Sentence 4 follows as it provides examples of\nthe extreme weather events mentioned in sentence 2. Further,\nsentence 1 states the consequences of such events, leading\nnaturally to sentence 3, which presents the solution through\npreparedness and resilience strategies. Going through the\noptions, option (a) has the correct sequence."}, {"num": 4, "orig_id": 34, "exam_tag": "SSC CGL 17/09/2025 (Shift 3)", "text": "1. It refers to the ability to bounce back from adversity.\n2. Resilience is a critical psychological trait.\n3. Individuals with high resilience can cope better with stress\nand setbacks.\n4. Consequently, building resilience is important for mental\nwell-being.", "options": {"a": "2-1-3-4", "b": "1-2-3-4", "c": "3-1-2-4", "d": "2-3-1-4"}, "correct": "a", "correct_seq": "2 - 1 - 3 - 4", "explanation": "Sentence 2 will be the starting line as it contains the main\nsubject of the parajumble i.e. Resilience. And, Sentence 1 states\nthat resilience refers to the ability to bounce back from adversity.\nSo, 1 will follow 2. Further, Sentence 3 states that individuals\nwith high resilience can cope better with stress and setbacks &\nSentence 4 states that building resilience is important for mental\nwell-being. So, 4 will follow 3. Going through the options, option\n(a) has the correct sequence."}, {"num": 5, "orig_id": 35, "exam_tag": "SSC CGL 18/09/2025 (Shift 1)", "text": "1. Such algorithms power everything from search engines to\npersonalised recommendations.\n2. Machine learning, a subset of artificial intelligence, enables\nsystems to learn from data without explicit programming.\n3. This iterative learning process allows them to identify\npatterns and make predictions.\n4. Thus, understanding its principles has become vital in many\nmodern industries.", "options": {"a": "1, 2, 4, 3", "b": "2, 3, 1, 4", "c": "3, 2, 1, 4", "d": "4, 1, 2, 3"}, "correct": "b", "correct_seq": "2, 3, 1, 4", "explanation": "Sentence 2 will be the starting line as it introduces the main idea\nof the parajumble, i.e. Machine learning enables systems to\nlearn from data without explicit programming. And, sentence 3\nstates that this iterative learning process allows them to identify\npatterns and make predictions. So, sentence 3 will follow\nsentence 2. Further, sentence 1 states that such algorithms\npower everything from search engines to personalised\nrecommendations & sentence 4 states that understanding its\nprinciples has become vital in many modern industries. So,\nsentence 4 will follow sentence 1. Going through the options,\noption (b) has the correct sequence."}, {"num": 6, "orig_id": 36, "exam_tag": "SSC CGL 18/09/2025 (Shift 1)", "text": "1. Their unique anatomy allows them to thrive in diverse\naquatic environments.\n2. Amphibians, a class of vertebrates, represent a fascinating\nevolutionary link between fish and reptiles.\n3. This duality is evident in their life cycle, which often includes\nboth aquatic larval stages and terrestrial adult forms.\n4. However, many species are now facing severe threats due to\nhabitat loss and pollution.", "options": {"a": "2 - 1 - 3 - 4", "b": "1 - 2 - 4 - 3", "c": "3 - 1 - 2 - 4", "d": "2 - 3 - 1 - 4"}, "correct": "d", "correct_seq": "2 - 3 - 1 - 4", "explanation": "Sentence 2 will be the starting line as it introduces the main idea\nof the parajumble, i.e. Amphibians represent a fascinating\nevolutionary link between fish and reptiles. And, sentence 3\nstates that this dual nature is seen in their life cycle, which often\nincludes both aquatic larval and terrestrial adult forms. So,\nsentence 3 will follow sentence 2. Further, sentence 1 states\nthat they are able to thrive in diverse aquatic environments due\nto their unique anatomy. So, sentence 1 will follow sentence 3.\nHowever, sentence 4 states that many species are now facing\nsevere threats due to habitat loss and pollution. Going through\nthe options, option (d) has the correct sequence."}, {"num": 7, "orig_id": 37, "exam_tag": "SSC CGL 18/09/2025 (Shift 2)", "text": "1. The Internet of Things (IoT) connects everyday devices to the\ninternet, enabling them to communicate and share data.\n2. For instance, smart home systems allow users to control\nlights and appliances remotely.\n3. This interconnectivity improves efficiency, convenience, and\ndecision-making across industries.\n4. By analyzing the collected data, IoT systems can automate\ntasks and predict future needs.", "options": {"a": "1, 4, 3, 2", "b": "1, 3, 4, 2", "c": "1, 2, 3, 4", "d": "2, 4, 1, 3"}, "correct": "b", "correct_seq": "1, 3, 4, 2", "explanation": "Sentence 1 will be the starting line as it introduces the main\nsubject of the paragraph, i.e. the Internet of Things (IoT) and its\nfunction of connecting devices. Sentence 3 will follow as it\nexplains the benefits of this interconnectivity such as efficiency\nand convenience. Further, Sentence 4 elaborates on how these\nbenefits are achieved by describing data analysis and\nautomation. Finally, Sentence 2 provides an example of smart\nhome systems that illustrates the concept discussed earlier.\nGoing through the options, option (b) has the correct sequence."}, {"num": 8, "orig_id": 40, "exam_tag": "SSC CGL 18/09/2025 (Shift 3)", "text": "1. This led to a significant increase in demand for skilled\nworkers in computing fields.\n2. The advent of the internet fundamentally transformed global\ncommunication and commerce.\n3. New industries emerged, centred around e-commerce,\nsoftware development, and digital services.\n4. Consequently, educational institutions rapidly adapted their\ncurricula to meet these new needs.", "options": {"a": "2 - 3 - 1 - 4", "b": "3 - 2 - 4 - 1", "c": "2 - 1 - 3 - 4", "d": "1 - 3 - 2 - 4"}, "correct": "a", "correct_seq": "2 - 3 - 1 - 4", "explanation": "Sentence 2 will be the starting line as it introduces the main idea\nof the parajumble, i.e. \u2018The advent of the internet\u2019. And, sentence\n3 gives some examples of transformation such as emergence of\nnew industries related to e-commerce, software development\nand digital services. So, sentence 3 will follow sentence 2.\nFurther, sentence 1 talks about the impact of this\ntransformation, i.e. significant increase in demand for workers\nskilled in computing fields. So, sentence 1 will follow sentence 3.\nFinally, sentence 4 completes the parajumble by stating that\neducational institutions rapidly adapted their curricula to meet\nthese new needs. Going through the options, option (a) has the\ncorrect sequence."}, {"num": 9, "orig_id": 41, "exam_tag": "SSC CGL 19/09/2025 (Shift 1)", "text": "1. The digestive system breaks down food into nutrients that\nthe body can absorb.\n2. These nutrients provide the energy and materials needed for\ngrowth and repair.\n3. The process starts in the mouth, where enzymes in saliva\nbegin breaking down carbohydrates.\n4. The food then passes through the stomach and intestines,\nwhere further digestion and absorption occur.", "options": {"a": "1, 3, 4, 2", "b": "3, 1, 2, 4", "c": "3, 4, 1, 2", "d": "1, 4, 2, 3"}, "correct": "a", "correct_seq": "1, 3, 4, 2", "explanation": "Sentence 1 will be the starting line as it contains the main\nsubject of the parajumble i.e. the digestive system and its\nfunction. And, Sentence 3 states that the process starts in the\nmouth, so 3 will follow 1. Further, Sentence 4 describes the next\nstages in the stomach and intestines, and Sentence 2 states the\npurpose of digestion by explaining how nutrients provide energy\nand materials for growth and repair. So, 2 will follow 4. Going\nthrough the options, option (a) has the correct sequence."}, {"num": 10, "orig_id": 43, "exam_tag": "SSC CGL 19/09/2025 (Shift 2)", "text": "1. This incessant demand strains natural resources, from\nforests to freshwater, often beyond their regenerative\ncapacities.\n2. The escalating problem of excessive consumption is a\ndefining characteristic of modern industrial societies.\n3. It is driven by various factors, including aggressive\nmarketing, planned obsolescence, and societal pressures to\nacquire more.\n4. Ultimately, curbing excessive consumption is crucial for\nenvironmental sustainability and equitable resource\ndistribution globally.", "options": {"a": "3 - 1 - 2 - 4", "b": "1 - 2 - 4 - 3", "c": "2 - 3 - 1 - 4", "d": "2 - 4 - 1 - 3"}, "correct": "c", "correct_seq": "2 - 3 - 1 - 4", "explanation": "Sentence 2 introduces the main topic: excessive consumption\nas a problem in modern societies. Sentence 3 then explains the\ncauses of excessive consumption. Sentence 1 describes the\ndirect consequence of this excessive consumption: the straining\nof natural resources. Finally, sentence 4 provides a conclusion,\nstating the necessity of addressing this issue. Going through the\noptions, option (c) has the correct sequence."}, {"num": 11, "orig_id": 44, "exam_tag": "SSC CGL 19/09/2025 (Shift 2)", "text": "1. This can lead to increased consumer spending and business\ninvestment.\n2. Central banks often implement monetary policies to manage\ninflation and economic growth.\n3. Lowering interest rates is one such tool, making borrowing\ncheaper.\n4. However, these policies must be carefully balanced to avoid\noverheating the economy.", "options": {"a": "1 - 2 - 3 - 4", "b": "2 - 3 - 1 - 4", "c": "3 - 1 - 2 - 4", "d": "2 - 4 - 1 - 3"}, "correct": "b", "correct_seq": "2 - 3 - 1 - 4", "explanation": "Sentence 2 introduces the general topic of central banks and\nmonetary policies. Sentence 3 provides a specific example of a\nmonetary tool (lowering interest rates). Sentence 1 explains the\nimmediate positive effect of this tool. Finally, sentence 4 offers a\ncautionary note about the potential risks of such policies. Going\nthrough the options, option (b) has the correct sequence."}, {"num": 12, "orig_id": 47, "exam_tag": "SSC CGL 20/09/2025 (Shift 1)", "text": "1. It allows for the exchange of ideas and the challenging of\nassumptions.\n2. Open discourse is fundamental for a healthy democratic\nsociety.\n3. Without it, public debate can become stagnant and divisive.\n4. Engaging with diverse viewpoints broadens understanding\nand promotes empathy.", "options": {"a": "1 - 4 - 3 - 2", "b": "1 - 2 - 3 - 4", "c": "3 - 1 - 2 - 4", "d": "2 - 1 - 4 - 3"}, "correct": "d", "correct_seq": "2 - 1 - 4 - 3", "explanation": "Sentence 2 introduces the main idea: the importance of open\ndiscourse in a democracy. Sentence 1 explains the main benefit\nof this discourse: idea exchange and challenging assumptions.\nSentence 4 further talks about the benefit of this discourse:\nbroadened understanding and empathy. Finally, sentence 3\ndescribes the negative consequences of lacking open discourse.\nGoing through the options, option (d) has the correct sequence."}, {"num": 13, "orig_id": 50, "exam_tag": "SSC CGL 20/09/2025 (Shift 2)", "text": "1. These vibrant ecosystems are crucial for filtering water,\nprotecting coastlines, and providing nursery grounds for\nnumerous marine species.\n2. However, they face severe threats from climate change,\npollution, and unsustainable fishing practices.\n3. Coral reefs are often called the \"rainforests of the sea\" due to\ntheir immense biodiversity.\n4. Urgent global efforts are needed to protect these invaluable\nnatural wonders before it's too late.", "options": {"a": "3, 1, 2, 4", "b": "1, 3, 2, 4", "c": "3, 2, 1, 4", "d": "2, 1, 3, 4"}, "correct": "a", "correct_seq": "3, 1, 2, 4", "explanation": "Sentence 3 will be the starting line as it introduces the main\ntopic, coral reefs and their nickname \"rainforests of the sea.\"\nSentence 1 follows as it explains their importance in filtering\nwater, protecting coastlines, and supporting marine life.\nSentence 2 comes next since it highlights the serious threats\ncoral reefs face. Finally, Sentence 4 concludes the paragraph\nwith a call for urgent global action. Going through the options,\noption (a) has the correct sequence."}, {"num": 14, "orig_id": 53, "exam_tag": "SSC CGL 21/09/2025 (Shift 1)", "text": "1. This enables the machine to store and retrieve data quickly,\nwhich is essential for fast operation.\n2. Random Access Memory (RAM) plays a crucial role in a\ncomputer's overall performance.\n3. Unlike long-term storage, RAM holds data that the CPU needs\nto access immediately for active tasks.\n4. Without sufficient RAM, a computer would slow down\nsignificantly, regardless of its processor speed.", "options": {"a": "2, 3, 1, 4", "b": "3, 1, 2, 4", "c": "2, 4, 1, 3", "d": "1, 2, 3, 4"}, "correct": "a", "correct_seq": "2, 3, 1, 4", "explanation": "Sentence 2 introduces the main topic: the role of RAM. Sentence\n3 then explains what RAM does in contrast to other storage.\nSentence 1 elaborates on why RAM's function is crucial (quick\ndata access for fast operation). Finally, sentence 4 provides a\nconsequence of not having enough RAM. Going through the\noptions, option (a) has the correct sequence."}, {"num": 15, "orig_id": 55, "exam_tag": "SSC CGL 21/09/2025 (Shift 2)", "text": "1. Conversely, if supply exceeds demand, prices tend to fall as\nsellers compete for buyers.\n2. This principle states that the price for a good will settle\nwhere the quantity demanded equals the quantity supplied.\n3. The law of supply and demand is a foundational concept in\neconomics that describes the relationship between sellers\nand buyers.\n4. For example, if the demand for a product is high and the\nsupply is low, its price will typically rise.", "options": {"a": "1, 4, 2, 3", "b": "3, 4, 1, 2", "c": "2, 1, 4, 3", "d": "3, 2, 4, 1"}, "correct": "d", "correct_seq": "3, 2, 4, 1", "explanation": "Sentence 3 will be the starting line as it contains the main\nsubject of the parajumble i.e. the law of supply and demand.\nAnd, Sentence 2 states that this principle defines how prices\nsettle where quantity demanded equals quantity supplied. So, 2\nwill follow 3. Further, Sentence 4 gives an example of high\ndemand and low supply causing prices to rise, and Sentence 1\nprovides the contrasting scenario where supply exceeds\ndemand, causing prices to fall. So, 1 will follow 4. Going through\nthe options, option (d) has the correct sequence."}, {"num": 16, "orig_id": 57, "exam_tag": "SSC CGL 21/09/2025 (Shift 3)", "text": "1. Through photosynthesis, they convert sunlight into energy,\nforming the base of most food chains.\n2. Plants are essential to life on Earth, playing several\nindispensable roles.\n3. They also release oxygen into the atmosphere, a critical\ncomponent for animal respiration.\n4. Without plants, the intricate web of life as we know it would\nsimply collapse.", "options": {"a": "2, 1, 3, 4", "b": "1, 3, 2, 4", "c": "2, 4, 1, 3", "d": "3, 1, 2, 4"}, "correct": "a", "correct_seq": "2, 1, 3, 4", "explanation": "Sentence 2 introduces the main topic: the importance of plants.\nSentence 1 then describes their primary role: photosynthesis\nand energy production. Sentence 3 adds another crucial role:\noxygen production. Finally, sentence 4 concludes with the\nconsequence of the absence of plants. Going through the\noptions, option (a) has the correct sequence."}, {"num": 17, "orig_id": 59, "exam_tag": "SSC CGL 22/09/2025 (Shift 1)", "text": "1. This light is then converted into electrical signals by the\nretina.\n2. The brain interprets these signals, creating the images we\nsee.\n3. The human eye works by capturing light from the\nsurrounding environment.\n4. The lens of the eye focuses this incoming light.", "options": {"a": "1 - 2 - 3 - 4", "b": "2 - 1 - 4 - 3", "c": "3 - 4 - 1 - 2", "d": "4 - 3 - 2 - 1"}, "correct": "c", "correct_seq": "3 - 4 - 1 - 2", "explanation": "Sentence 3 will be the starting line as it contains the main\nsubject of the parajumble i.e. the human eye. And, Sentence 4\nstates that the lens focuses the incoming light, so 4 will follow 3.\nFurther, Sentence 1 states that the retina converts this light into\nelectrical signals, and Sentence 2 states that the brain interprets\nthese signals to create images. So, 2 will follow 1. Going through\nthe options, option (c) has the correct sequence."}, {"num": 18, "orig_id": 60, "exam_tag": "SSC CGL 22/09/2025 (Shift 1)", "text": "1. This process is known as the water cycle.\n2. Water from oceans, lakes, and rivers evaporates into the\natmosphere.\n3. It then cools and condenses to form clouds.\n4. Eventually, the water returns to Earth as precipitation.", "options": {"a": "4 - 1 - 2 - 3", "b": "1 - 2 - 3 - 4", "c": "2 - 3 - 4 - 1", "d": "3 - 4 - 1 - 2"}, "correct": "c", "correct_seq": "2 - 3 - 4 - 1", "explanation": "Sentence 2 will be the starting line as it describes the first step\nin the process, i.e., water evaporating from oceans, lakes, and\nrivers. Sentence 3 follows as it explains that the evaporated\nwater cools and condenses to form clouds. Sentence 4 comes\nnext, describing that water returns to Earth as precipitation.\nFinally, Sentence 1 summarizes the process by naming it the\nwater cycle. Going through the options, option (c) has the\ncorrect sequence."}, {"num": 19, "orig_id": 62, "exam_tag": "SSC CGL 22/09/2025 (Shift 2)", "text": "1. These interactions, such as predation, competition, and\nsymbiosis, define the community's structure.\n2. An ecosystem is a dynamic community where living\norganisms constantly interact with each other and their\nenvironment.\n3. Each species occupies a specific niche, influencing the flow\nof energy and nutrients throughout the system.\n4. Ultimately, the health and stability of an ecosystem depend\non the intricate balance of these diverse connections.", "options": {"a": "2, 4, 1, 3", "b": "1, 3, 2, 4", "c": "2, 1, 3, 4", "d": "3, 2, 4, 1"}, "correct": "c", "correct_seq": "2, 1, 3, 4", "explanation": "Sentence 2 introduces the main idea of an ecosystem as a\ndynamic community. Sentence 1 then elaborates on the specific\ntypes of interactions that occur within this community. Sentence\n3 explains the role of individual species within this structure.\nFinally, sentence 4 provides a concluding statement about the\noverall importance of these connections for ecosystem health.\nGoing through the options, option (c) has the correct sequence."}, {"num": 20, "orig_id": 64, "exam_tag": "SSC CGL 22/09/2025 (Shift 3)", "text": "1. However, this convenience comes with significant privacy\nrisks.\n2. Social media platforms have made it easier than ever to\nconnect with people worldwide.\n3. Users must therefore be cautious about the personal\ninformation they share online.\n4. Personal data can be collected and used in ways that users\ndid not intend.", "options": {"a": "2 - 4 - 1 - 3", "b": "2 - 1 - 4 - 3", "c": "3 - 4 - 1 - 2", "d": "2 - 3 - 1 - 4"}, "correct": "b", "correct_seq": "2 - 1 - 4 - 3", "explanation": "Sentence 2 will be the starting line as it introduces the main\nsubject of the parajumble i.e. social media and its convenience.\nSentence 1 follows, highlighting that this convenience comes\nwith significant privacy risks. Further, Sentence 4 explains how\npersonal data can be collected and misused, and Sentence 3\nconcludes by advising that users must be cautious about the\ninformation they share online. Going through the options, option\n(b) has the correct sequence."}, {"num": 21, "orig_id": 69, "exam_tag": "SSC CGL 23/09/2025 (Shift 2)", "text": "1. Artificial intelligence is transforming industries by\nautomating complex processes that once required human\nintelligence.\n2. However, the rapid development of AI has raised ethical\nconcerns regarding privacy, employment, and accountability.\n3. Governments and researchers are now focusing on\nestablishing regulations to ensure responsible AI usage.\n4. Despite the risks, the integration of AI into healthcare,\neducation, and finance continues to enhance efficiency and\ninnovation.", "options": {"a": "1, 4, 2, 3", "b": "2, 3, 1, 4", "c": "1, 2, 4, 3", "d": "3, 1, 2, 4"}, "correct": "c", "correct_seq": "1, 2, 4, 3", "explanation": "Sentence 1 will be the starting line as it contains the main\nsubject of the parajumble i.e. Artificial intelligence transforming\nindustries. Sentence 2 follows as it presents the concerns\narising from the rapid development of AI, such as privacy and\naccountability issues. Sentence 4 comes next as it highlights\nthat despite these risks, AI continues to enhance efficiency and\ninnovation across various sectors. Finally, Sentence 3 concludes\nthe paragraph by showing how governments and researchers\nare working to regulate AI responsibly. Going through the\noptions, option (c) has the correct sequence."}, {"num": 22, "orig_id": 72, "exam_tag": "SSC CGL 24/09/2025 (Shift 1)", "text": "1. As a result, the demand for renewable energy sources has\ngrown significantly in recent years.\n2. The excessive use of fossil fuels has led to environmental\ndegradation and global warming.\n3. Renewable sources like solar and wind power are now being\nadopted worldwide as cleaner alternatives.\n4. Governments and organisations are investing heavily in\nsustainable energy technologies.", "options": {"a": "2, 1, 4, 3", "b": "1, 2, 3, 4", "c": "2, 1, 3, 4", "d": "4, 3, 2, 1"}, "correct": "c", "correct_seq": "2, 1, 3, 4", "explanation": "Sentence 2 will be the starting line as it introduces the main idea\nof the parajumble, i.e. the excessive use of fossil fuels has led to\nenvironmental degradation and global warming. And, sentence 1\nstates that due to the negative impact of fossil fuels, the\ndemand for renewable energy sources has increased. So,\nsentence 1 will follow sentence 2. Further, sentence 3 states\nthat renewable sources like solar and wind energy are being\nadopted worldwide & sentence 4 states that governments and\norganisations are investing heavily in sustainable energy\ntechnologies. So, sentence 4 will follow sentence 3. Going\nthrough the options, option (c) has the correct sequence."}, {"num": 23, "orig_id": 78, "exam_tag": "SSC CGL 24/09/2025 (Shift 3)", "text": "1. They use organic compounds that emit light.\n2. OLEDs have transformed display technology.\n3. This creates thinner, more vibrant screens.\n4. Flexible screens are now pushing these limits further.", "options": {"a": "3, 4, 2, 1", "b": "2, 1, 3, 4", "c": "2, 4, 1, 3", "d": "3, 1, 2, 4"}, "correct": "b", "correct_seq": "2, 1, 3, 4", "explanation": "Sentence 2 introduces the main topic: OLEDs' impact on\ndisplays. Sentence 1 explains how OLEDs work. Sentence 3\ndescribes the benefits of OLEDs, i.e. thinner and more vibrant\nscreens. Finally, sentence 4 mentions the next step in this\ntechnology, i.e. flexible screens. Going through the options,\noption (b) has the correct sequence."}, {"num": 24, "orig_id": 80, "exam_tag": "SSC CGL 25/09/2025 (Shift 1)", "text": "1. These structures modify natural water flow and impact\naquatic habitats.\n2. Rivers are vital arteries for ecosystems and human\ncivilizations.\n3. However, dam construction presents significant\nenvironmental challenges.\n4. They provide fresh water, transport nutrients, and support\ndiverse biodiversity.", "options": {"a": "3 - 1 - 2 - 4", "b": "2 - 4 - 3 - 1", "c": "2 - 1 - 4 - 3", "d": "4 - 2 - 3 - 1"}, "correct": "b", "correct_seq": "2 - 4 - 3 - 1", "explanation": "Sentence 2 introduces the main topic: the importance of rivers.\nSentence 4 then elaborates on the positive roles rivers play.\nSentence 3 introduces a counterpoint: challenges posed by dam\nconstruction. Finally, sentence 1 explains the specific impact of\nthese structures (dams). Going through the options, option (b)\nhas the correct sequence."}, {"num": 25, "orig_id": 97, "exam_tag": "SSC CGL 14/10/2025 (Shift 2)", "text": "1. Overfishing remains one of the greatest threats to global fish\npopulations, disrupting marine ecosystems at an alarming\nrate.\n2. When adult fish are removed faster than they can reproduce,\nentire species face long-term decline.\n3. Sustainable fishing practices, such as regulated catch limits\nand protected breeding zones, help restore balance to marine\nenvironments.\n4. These measures not only support ecological stability but\nalso ensure that coastal communities can rely on fisheries\nfor future livelihoods.\n5. Recognising the delicate relationship between harvesting\nand replenishment is crucial for maintaining healthy fish\npopulations across the world.", "options": {"a": "1 - 5 - 2 - 4 - 3", "b": "2 - 1 - 3 - 5 - 4", "c": "1 - 2 - 5 - 3 - 4", "d": "5 - 1 - 2 - 3 - 4"}, "correct": "c", "correct_seq": "1 - 2 - 5 - 3 - 4", "explanation": "Sentence 1 introduces the main problem: overfishing and its\nimpact. Sentence 2 explains how overfishing leads to decline\nand continues the problem described in Sentence 1. Sentence 5\nthen provides a general understanding that follows from this\nproblem and its consequences. Sentence 3 introduces the\nsolution, i.e. sustainable fishing practices. Finally, Sentence 4\nstates the benefits of these solutions and concludes the\nparajumble by highlighting their positive impact. Going through\nthe options, option (c) has the correct sequence."}]}, {"id": "mock3", "title": "Mock Test 3: SSC Selection Post Phase XIII (Analytical & Process Sequences)", "badge": "SSC Selection Post Phase XIII", "desc": "25 Graduate & Higher Secondary Level Questions featuring Multi-step Protocols, Industrial Workflows, and Scientific Research.", "ids": [168, 170, 171, 194, 195, 197, 198, 202, 203, 204, 205, 206, 207, 209, 211, 212, 214, 215, 217, 218, 221, 224, 226, 227, 230], "questions": [{"num": 1, "orig_id": 168, "exam_tag": "Higher Secondary 25/07/2025 (Shift - 2)", "text": "Which of the given options is the most logical\nsequencing of the following sentences to form a meaningful\nparagraph?\n1. As a result, environmental damage continues despite\nexisting regulations.\n2. Many environmental laws exist to protect natural resources.\n3. Weak implementation of laws allows industries and\nindividuals to violate rules freely.\n4. Strict enforcement is necessary to ensure long-term\nenvironmental safety.", "options": {"a": "1 - 2 - 3 - 4", "b": "3 - 2 - 1 - 4", "c": "2 - 1 - 3 - 4", "d": "2 - 3 - 1 - 4"}, "correct": "d", "correct_seq": "2-3-1-4", "explanation": "Sentence 2 will be the starting line as it introduces the main idea\nby stating that many environmental laws exist to protect natural\nresources. And, sentence 3 explains the problem by stating that\nweak implementation of laws allows industries and individuals\nto violate rules freely. So, sentence 3 will follow sentence 2.\nFurther, sentence 1 states the consequence by mentioning that\nenvironmental damage continues despite existing regulations, &\nsentence 4 concludes the parajumble by emphasizing that strict\nenforcement is necessary to ensure long-term environmental\nsafety. So, sentence 4 will follow sentence 1. Going through the\noptions, option (d) has the correct sequence."}, {"num": 2, "orig_id": 170, "exam_tag": "Higher Secondary 25/07/2025 (Shift - 2)", "text": "Rearrange the parts of the sentence in the correct order.\nDeforestation\nP. causes soil erosion\nQ . in tropical and temperate regions\nR. and loss of biodiversity\nS. due to large-scale logging and land clearing", "options": {"a": "QPSR", "b": "QSRP", "c": "PRQS", "d": "QSPR"}, "correct": "c", "correct_seq": "PRQS", "explanation": "The given sentence starts with the subject \u2018Deforestation\u2019. Part P\ncontains the main verb (causes) and its object (soil erosion).\nPart R begins with the conjunction \u2018and\u2019 to complete the object.\nSo, R will follow P. Further, part Q specifies the regions affected\nby deforestation & part S states the reason for soil erosion and\nloss of biodiversity. So, S will follow Q . Hence, PRQS is the\ncorrect sequence."}, {"num": 3, "orig_id": 171, "exam_tag": "Higher Secondary 25/07/2025 (Shift - 2)", "text": "Rearrange the parts of the sentence in the correct order.\nStock markets\nP. experienced sharp fluctuations\nQ . due to sudden changes in interest rates\nR. affecting investor confidence\nS. across global exchanges", "options": {"a": "PQRS", "b": "SPQR", "c": "PSQR", "d": "QSRP"}, "correct": "c", "correct_seq": "PSQR", "explanation": "The given sentence starts with the subject \u2018Stock markets\u2019. Part\nP contains the main verb(experienced) and its object(sharp\nfluctuations). Part S tells us where the stock markets\nexperienced sharp fluctuations. So, S will follow P. Further, part Q\nstates reason for fluctuations & part R states that it affected\ninvestor confidence. So, R will follow Q . Hence, \u2018PSQR\u2019 is the\ncorrect sequence."}, {"num": 4, "orig_id": 194, "exam_tag": "Higher Secondary 30/07/2025 (Shift - 2)", "text": "Rearrange the parts of the sentence in the correct order:\nDiscipline\nP. helps individuals stay focused\nQ . even during difficult situations\nR. by encouraging consistent effort\nS. and responsible behaviour", "options": {"a": "PRSQ", "b": "SRPQ", "c": "PQRS", "d": "RPSQ"}, "correct": "c", "correct_seq": "PQRS", "explanation": "The given sentence starts with the subject \u2018Discipline\u2019. Part P\ncontains the verb \u2018helps\u2019 and conveys the idea that discipline\nhelps individuals stay focused. Part Q states the condition in\nwhich discipline helps individuals. So, Q will follow P. Further,\npart R states that discipline helps by encouraging consistent\neffort. Part S begins with the conjunction \u2018and\u2019 linking\n\u2018responsible behaviour\u2019 and \u2018consistent effort\u2019. So, S will follow R.\nHence, PQRS is the correct sequence."}, {"num": 5, "orig_id": 195, "exam_tag": "Higher Secondary 30/07/2025 (Shift - 2)", "text": "Rearrange the parts of the sentence in the correct order.\nUnchecked urban expansion\nP. leading to frequent flooding\nQ . in low-lying residential areas\nR. and inadequate drainage systems\nS. has resulted in severe waterlogging", "options": {"a": "SQRP", "b": "RSPQ", "c": "PSQR", "d": "QSPR"}, "correct": "b", "correct_seq": "RSPQ", "explanation": "The given sentence starts with the subject \u2018Unchecked urban\nexpansion\u2019. Part R contains a portion of the subject \u2018inadequate\ndrainage systems\u2019. Part S contains the verb \u2018has resulted\u2019 and\ntalks about severe waterlogging. So, S will follow R. Further, part\nP states a consequence of severe waterlogging & part Q\nspecifies the regions of frequent flooding. So, Q will follow P.\nHence, RSPQ is the correct sequence."}, {"num": 6, "orig_id": 197, "exam_tag": "Higher Secondary 31/07/2025 (Shift - 2)", "text": "Which of the given options is the most logical\nsequencing of the following sentences to form a meaningful\nparagraph?\n1. Therefore, remote work is emerging as a permanent fixture in\nthe corporate world.\n2. It is being implemented by tech startups, multinational\ncorporations and government agencies.\n3. Flexible working arrangements are redefining the traditional\noffice structure.\n4. This is because the work-from-home model improves\nwork-life balance and reduces commuting stress.", "options": {"a": "1 - 2 - 3 - 4", "b": "2 - 3 - 4 - 1", "c": "3 - 2 - 4 - 1", "d": "1 - 3 - 2 - 4"}, "correct": "c", "correct_seq": "3-2-4-1", "explanation": "Sentence 3 will be the starting line as it introduces the main idea\nof the parajumble, i.e. Flexible working arrangements are\nredefining the office structure. And, sentence 2 talks about the\nimplementation by startups and corporations. So, sentence 2\nwill follow sentence 3. Further, sentence 4 states the reason\nregarding work-life balance & sentence 1 states the conclusion\nthat remote work is emerging as a permanent fixture. So,\nsentence 1 will follow sentence 4. Going through the options,\noption (c) has the correct sequence."}, {"num": 7, "orig_id": 198, "exam_tag": "Higher Secondary 31/07/2025 (Shift - 2)", "text": "Which of the given options is the most logical\nsequencing of the following sentences to form a meaningful\nparagraph?\n1. Phenomena such as volcanic eruptions, mountain formation,\nand earthquakes occur where these massive sections\ninteract.\n2. Heat from the Earth's core creates convection currents in the\nmantle, causing these plates to drift and collide.\n3. The Earth's lithosphere is divided into several rigid tectonic\nplates that float on the semi-fluid asthenosphere.\n4. This movement is the primary cause of geological activity\nobserved along the boundaries of the continents.", "options": {"a": "3-2-4-1", "b": "1-3-2-4", "c": "1-4-2-3", "d": "2-3-4-1"}, "correct": "a", "correct_seq": "3-2-4-1", "explanation": "Sentence 3 will be the starting line as it introduces the main idea\nof the parajumble, i.e. The lithosphere is divided into tectonic\nplates. And, sentence 2 talks about the mechanism of heat and\ncurrents that cause these plates to drift. So, sentence 2 will\nfollow sentence 3. Further, sentence 4 states that this\nmovement is the primary cause of geological activity & sentence\n1 talks about specific phenomena like eruptions and\nearthquakes. So, sentence 1 will follow sentence 4. Going\nthrough the options, option (a) has the correct sequence."}, {"num": 8, "orig_id": 202, "exam_tag": "Higher Secondary 02/08/2025 (Shift - 2)", "text": "Which of the given options is the most logical\nsequencing of the following sentences to form a meaningful\nparagraph?\n1. They facilitate nutrient circulation through their movements\nand waste.\n2. Whales are magnificent creatures that help regulate the\nocean ecosystem.\n3. Unfortunately, many whale species are currently facing\nextinction.\n4. The main threats involve commercial hunting and ocean\npollution.", "options": {"a": "3 - 2 - 1 - 4", "b": "2 - 1 - 3 - 4", "c": "4 - 1 - 2 - 3", "d": "1 - 3 - 4 - 2"}, "correct": "b", "correct_seq": "2-1-3-4", "explanation": "Sentence 2 will be the starting line as it introduces the main idea\nof the parajumble, i.e. Whales are magnificent creatures that\nhelp regulate the ocean ecosystem. And, sentence 1 states that\nthey facilitate nutrient circulation. So, sentence 1 will follow\nsentence 2. Further, sentence 3 talks about many whale species\nfacing extinction & sentence 4 states the main threats involved.\nSo, sentence 4 will follow sentence 3. Going through the options,\noption (b) has the correct sequence."}, {"num": 9, "orig_id": 203, "exam_tag": "Higher Secondary 02/08/2025 (Shift - 2)", "text": "Which of the given options is the most logical\nsequencing of the following sentences to form a meaningful\nparagraph?\n1. They absorb carbon dioxide and release oxygen into the\natmosphere.\n2. Forests play a crucial role in maintaining the earth's climate.\n3. Yet, deforestation is occurring at an alarming rate globally.\n4. The primary drivers include agriculture expansion and illegal\nlogging.", "options": {"a": "3-2-1-4", "b": "2-1-3-4", "c": "4-1-2-3", "d": "1-3-4-2"}, "correct": "b", "correct_seq": "2-1-3-4", "explanation": "Sentence 2 will be the starting line as it introduces the main idea\nof the parajumble, i.e. Forests play a crucial role in maintaining\nthe earth's climate. And, sentence 1 states that they absorb\ncarbon dioxide and release oxygen. So, sentence 1 will follow\nsentence 2. Further, sentence 3 talks about deforestation\noccurring at an alarming rate & sentence 4 states the primary\ndrivers for this. So, sentence 4 will follow sentence 3. Going\nthrough the options, option (b) has the correct sequence."}, {"num": 10, "orig_id": 204, "exam_tag": "Higher Secondary 02/08/2025 (Shift - 2)", "text": "Which of the given options is the most logical\nsequencing of the following sentences to form a meaningful\nparagraph?\n1. Moreover, the constant exposure to curated lifestyles creates\nunrealistic expectations, leading to feelings of inadequacy.\n2. One of the most alarming issues is the correlation between\nheavy usage and increased rates of anxiety and depression in\nteenagers.\n3. The rise of social media has revolutionized communication\nbut has also introduced significant challenges to mental health.\n4. Additionally, cyberbullying has become a pervasive problem,\ncausing long-term psychological distress for victims.", "options": {"a": "3-2-1-4", "b": "2-1-4-3", "c": "4-1-3-2", "d": "1-4-3-2"}, "correct": "a", "correct_seq": "3-2-1-4", "explanation": "Sentence 3 will be the starting line as it introduces the main idea\nof the parajumble, i.e. The rise of social media has introduced\nchallenges to mental health. And, sentence 2 states one of the\nmost alarming issues. So, sentence 2 will follow sentence 3.\nFurther, sentence 1 talks about the negative impact of exposure\nto curated lifestyles & sentence 4 states an additional downside\nregarding cyberbullying. So, sentence 4 will follow sentence 1.\nGoing through the options, option (a) has the correct sequence."}, {"num": 11, "orig_id": 205, "exam_tag": "Higher Secondary 02/08/2025 (Shift - 2)", "text": "Which of the given options is the most logical\nsequencing of the following sentences to form a meaningful\nparagraph?\n1. In the 1960s, the discovery of seafloor spreading provided\nthe physical mechanism for this movement.\n2. He argued that the continents were once joined together in a\nsupercontinent he called Pangea.\n3. This geological evidence validated his hypothesis, which had\nbeen initially rejected by the scientific community.\n4. Alfred Wegener proposed the theory of continental drift in the\nearly 20th century.", "options": {"a": "1-4-3-2", "b": "4-2-1-3", "c": "2-3-1-4", "d": "3-1-4-2"}, "correct": "b", "correct_seq": "4-2-1-3", "explanation": "Sentence 4 will be the starting line as it introduces the main idea\nof the parajumble, i.e. Alfred Wegener proposed the theory of\ncontinental drift. And, sentence 2 tells us his specific argument\nabout Pangea and the joined continents. So, sentence 2 will\nfollow sentence 4. Further, sentence 1 states that in the 1960s,\nthe discovery of seafloor spreading provided the mechanism for\nthis movement & sentence 3 states that this evidence validated\nhis hypothesis. So, sentence 3 will follow sentence 1. Going\nthrough the options, option (b) has the correct sequence."}, {"num": 12, "orig_id": 206, "exam_tag": "Higher Secondary 02/08/2025 (Shift - 2)", "text": "Rearrange the parts of the sentence in the correct order.\nEducation\nP. empowering individuals\nQ . acts as a powerful tool\nR. within societies and communities\nS. and fostering critical thinking", "options": {"a": "PSRQ", "b": "QPSR", "c": "SPRQ", "d": "PQSR"}, "correct": "b", "correct_seq": "QPSR", "explanation": "The given sentence starts with the subject \u2018Education\u2019. Part Q\nbegins with the main verb \u2018acts\u2019 and conveys the idea that\neducation acts as a powerful tool. Part P begins with the\nparticiple \u2018empowering\u2019 that defines the tool & part S begins with\nthe conjunction \u2018and\u2019 linking the participle \u2018fostering\u2019 with\n\u2018empowering\u2019. So, S will follow P. Part R completes the sentence\nby talking about the scope of this effect within societies and\ncommunities. Hence, option (b) has the correct sequence."}, {"num": 13, "orig_id": 207, "exam_tag": "Higher Secondary 02/08/2025 (Shift - 2)", "text": "Rearrange the parts of the sentence in the correct order.\nTechnology\nP. bridging distances\nQ . functions as a catalyst\nR. between nations and continents\nS. and enabling collaboration", "options": {"a": "PSRQ", "b": "QPSR", "c": "SPRQ", "d": "PQSR"}, "correct": "b", "correct_seq": "QPSR", "explanation": "The given sentence starts with the subject \u2018Technology\u2019. Part Q\nbegins with the main verb \u2018functions\u2019 and conveys the idea that\ntechnology functions as a catalyst. Part P begins with the\nparticiple \u2018bridging\u2019 that defines the catalyst & part S begins with\nthe conjunction \u2018and\u2019 linking the participle \u2018enabling\u2019 with\n\u2018bridging\u2019. So, S will follow P. Part R completes the sentence by\ntalking about the reach of this effect between nations and\ncontinents. Hence, option (b) has the correct sequence."}, {"num": 14, "orig_id": 209, "exam_tag": "Higher Secondary 29/08/2025 (Shift - 2)", "text": "Rearrange the following sentence parts to form a\nmeaningful and grammatically correct paragraph:\nP. First, raw clay is harvested from the river banks.\nQ . The fired pots are inspected for cracks before glazing.\nR. The clay is then molded into shapes on the potter's wheel.\nS. The shapes are dried and placed in the kiln for firing.", "options": {"a": "P - R - S - Q", "b": "R - P - S - Q", "c": "P - S - R - Q", "d": "P - Q - R - S"}, "correct": "a", "correct_seq": "P-R-S-Q", "explanation": "Sentence P will be the starting line as it contains the first step of\nthe process i.e. harvesting clay. Sentence R states that the clay\nis then molded into shapes on the wheel. So, R will follow P.\nFurther, sentence S mentions that the shapes are dried and fired\nin the kiln. So, S will follow R. Finally, sentence Q talks about the\ninspection of the fired pots. Going through the options, option\n(a) has the correct sequence."}, {"num": 15, "orig_id": 211, "exam_tag": "Graduate Level 24/07/2025 (Shift - 3)", "text": "Rearrange the following sentences in correct order to\nmake a meaningful passage.\n1. The author drafted the initial manuscript.\n2. Illustrations were added to complement the text.\n3. The draft was edited for grammatical errors.\n4. The book was sent to the press for printing.", "options": {"a": "4 - 3 - 2 - 1", "b": "1 - 3 - 2 - 4", "c": "4 - 1 - 2 - 3", "d": "3 - 1 -4 - 2"}, "correct": "b", "correct_seq": "1-3-2-4", "explanation": "Sentence 1 will be the starting line as it mentions the first step in\ncreating a book. And, sentence 3 states the next step, i.e. the\ndraft was edited for grammatical errors. So, sentence 3 will\nfollow sentence 1. Further, sentence 2 states that illustrations\nwere added to complement the text & sentence 4 states the final\nstep of sending the book to the press. So, sentence 4 will follow\nsentence 2. Going through the options, option (b) has the correct\nsequence."}, {"num": 16, "orig_id": 212, "exam_tag": "Graduate Level 24/07/2025 (Shift - 3)", "text": "Rearrange the following sentences in correct order to\nmake a meaningful passage\n1. System anomalies are logged into the central maintenance\nserver.\n2. Incoming alerts are sorted by severity levels.\n3. Diagnostics are forwarded to specialized technical teams.\n4. Repair protocols are generated for immediate deployment.", "options": {"a": "2 - 1 - 3 - 4", "b": "1 - 2 - 4 - 3", "c": "3 - 1 - 2 - 4", "d": "4 - 3 - 2 - 1"}, "correct": "a", "correct_seq": "2-1-3-4", "explanation": "Sentence 2 will be the starting line as it introduces the main idea\nof the parajumble, i.e. Incoming alerts are sorted by severity\nlevels. And, sentence 1 states that system anomalies are logged\ninto the central maintenance server. So, sentence 1 will follow\nsentence 2. Further, sentence 3 states that diagnostics are\nforwarded to specialized technical teams. So, sentence 3 will\nfollow sentence 1. Finally, sentence 4 concludes the parajumble\nby stating that repair protocols are generated for immediate\ndeployment. Going through the options, option (a) has the\ncorrect sequence."}, {"num": 17, "orig_id": 214, "exam_tag": "Graduate Level 25/07/2025 (Shift - 3)", "text": "Rearrange the following sentences in correct order to\nmake a meaningful passage.\n1. The updated application is released to the app store.\n2. User feedback highlights a navigation bug.\n3. Developers rewrite the code to fix the issue.\n4. The beta version is tested by a focus group.", "options": {"a": "2 - 3 - 4 -1", "b": "2 - 4 - 3 - 1", "c": "3 - 2 - 4 - 1", "d": "1 - 3 - 2 - 4"}, "correct": "a", "correct_seq": "2-3-4-1", "explanation": "Sentence 2 will be the starting line as it introduces the problem\nthat initiates the process, i.e., \u2018User feedback highlights a\nnavigation bug.\u2019 And, sentence 3 states the next step after\nidentifying the bug, i.e., rewriting the code. So, sentence 3 will\nfollow sentence 2. Further, sentence 4 states the next step,\nwhich is testing the beta version & sentence 1 tells the final step\nof the release. So, sentence 1 will follow sentence 4. Going\nthrough the options, option (a) has the correct sequence."}, {"num": 18, "orig_id": 215, "exam_tag": "Graduate Level 25/07/2025 (Shift - 3)", "text": "Rearrange the following sentences in correct order to\nmake a meaningful passage\n1. The final audit report is sent to the regulatory authority.\n2. An AI system verifies the authenticity of the records.\n3. Transaction logs are collected from regional branches.\n4. Detailed statements are drafted after verification.", "options": {"a": "3 - 2 - 4 - 1", "b": "2 - 3 - 1 - 4", "c": "4 - 3 - 2 - 1", "d": "1 - 4 - 2 - 3"}, "correct": "a", "correct_seq": "3-2-4-1", "explanation": "Sentence 3 will be the starting line as it introduces the main idea\nof the parajumble, i.e. \u2018Transaction logs are collected from\nregional branches.\u2019 And, sentence 2 states the next step after\ncollection, i.e. verifying authenticity using AI. So, sentence 2 will\nfollow sentence 3. Further, sentence 4 states the next step,\nwhich is drafting detailed statements & sentence 1 tells the final\nstep of the process. So, sentence 1 will follow sentence 4. Going\nthrough the options, option (a) has the correct sequence."}, {"num": 19, "orig_id": 217, "exam_tag": "Graduate Level 26/07/2025 (Shift - 3)", "text": "Rearrange the following sentences in correct order to\nmake a meaningful passage.\n1. The packaged units were dispatched to the warehouse.\n2. Raw components were assembled on the conveyor belt.\n3. The assembly underwent a structural integrity test.\n4. Faulty parts were discarded by the automated arm.", "options": {"a": "2 - 3 - 4 - 1", "b": "2 - 4 - 3 - 1", "c": "3 - 2 - 4 - 1", "d": "1 - 3 - 2 - 4"}, "correct": "a", "correct_seq": "2 - 3 - 4 - 1", "explanation": "Sentence 2 will be the starting line as it describes the first step\nin the manufacturing process, i.e. assembly of raw components.\nAnd, sentence 3 states the next step in the process, i.e. the\nassembly undergoing a structural integrity test. Further,\nsentence 4 states the third step, i.e. discarding faulty parts by\nthe automated arm. Finally, sentence 1 states the last step in the\nprocess, i.e. dispatching the packaged units to the warehouse.\nGoing through the options, option (a) has the correct sequence."}, {"num": 20, "orig_id": 218, "exam_tag": "Graduate Level 26/07/2025 (Shift - 3)", "text": "Rearrange the following sentences in correct order to\nmake a meaningful passage\n1. The project plan is submitted to the steering committee.\n2. Risk assessment tools filter out unfeasible options.\n3. Requirement lists are collected from various stakeholders.\n4. Feasible strategies are outlined post-assessment.", "options": {"a": "3 - 2 - 4 - 1", "b": "2 - 3 - 1 - 4", "c": "4 - 3 - 2 - 1", "d": "1 - 4 - 2 - 3"}, "correct": "a", "correct_seq": "3 - 2 - 4 - 1", "explanation": "Sentence 3 will be the starting line as it states the first step in\nproject planning, i.e. collection of requirement lists. And,\nsentence 2 states the next step, i.e. filtering out unfeasible\noptions using risk assessment tools. So, sentence 2 will follow\nsentence 3. Further, sentence 4 states the next step after\nassessment, i.e. outlining feasible strategies. Finally, sentence 1\nstates the last step in the process, i.e. submission of the plan to\nthe steering committee. Going through the options, option (a)\nhas the correct sequence."}, {"num": 21, "orig_id": 221, "exam_tag": "Graduate Level 28/07/2025 (Shift - 3)", "text": "Rearrange the following sentences in correct order to\nmake a meaningful passage\n1. System stability is verified by the oversight committee.\n2. The algorithm is conceptually designed using advanced logic.\n3. Runtime errors are detected by the automated monitoring\ntools.\n4. Source code is deployed to the staging environment.", "options": {"a": "1 - 2 - 3 - 4", "b": "4 - 3 - 1 - 2", "c": "2 - 4 - 3 - 1", "d": "3 - 2 - 4 - 1"}, "correct": "c", "correct_seq": "2-4-3-1", "explanation": "Sentence 2 will be the starting line as it introduces the first step\nof the process, i.e. designing the algorithm. And, sentence 4\nstates the next step in the process, i.e. the source code is\ndeployed to the staging environment. So, sentence 4 will follow\nsentence 2. Further, sentence 3 states that runtime errors are\ndetected by automated tools & sentence 1 states that system\nstability is verified by the committee. So, sentence 1 will follow\nsentence 3. Going through the options, option (c) has the correct\nsequence."}, {"num": 22, "orig_id": 224, "exam_tag": "Graduate Level 29/07/2025 (Shift - 3)", "text": "Rearrange the following sentences in correct order to\nmake a meaningful passage\n1. Final results are published in international scientific reviews.\n2. Verified data is compiled into standardized digital formats.\n3. Hypotheses are tested using rigorous experimental protocols.\n4. Observations are recorded systematically in laboratory\njournals.", "options": {"a": "3 - 4 - 2 - 1", "b": "2 - 1 - 3 - 4", "c": "1 - 3 - 4 - 2", "d": "4 - 3 - 1 - 2"}, "correct": "a", "correct_seq": "3-4-2-1", "explanation": "Sentence 3 will be the starting line as it introduces the first step\nin the research process, i.e. testing hypotheses using protocols.\nAnd, sentence 4 states that observations are recorded during the\nexperiment. So, sentence 4 will follow sentence 3. Further,\nsentence 2 states the third stage, i.e. verified data is compiled\ninto digital formats & sentence 1 states the final stage. So,\nsentence 1 will follow sentence 2. Going through the options,\noption (a) has the correct sequence."}, {"num": 23, "orig_id": 226, "exam_tag": "Graduate Level 31/07/2025 (Shift - 3)", "text": "Rearrange the following sentences in correct order to\nmake a meaningful passage.\n1. The soil was ploughed to prepare the field.\n2. Water and fertilizers were applied to the saplings.\n3. Seeds were sown in neat rows across the land.\n4. The harvest was gathered at the end of the season.", "options": {"a": "2 - 3 - 1 - 4", "b": "1 - 3 - 2 - 4", "c": "1 - 2 - 3 - 4", "d": "3 - 2 - 1 - 4"}, "correct": "b", "correct_seq": "1-3-2-4", "explanation": "Sentence 1 will be the starting line as it states the first step in\nfarming i.e. the soil was ploughed. And, sentence 3 states the\nnext step, i.e. sowing the seeds in neat rows. Further, sentence 2\nstates the third step, i.e. water and fertilizers were applied &\nsentence 4 states the final step, which is gathering the harvest.\nGoing through the options, option (b) has the correct sequence."}, {"num": 24, "orig_id": 227, "exam_tag": "Graduate Level 31/07/2025 (Shift - 3)", "text": "Rearrange the following sentences in correct order to\nmake a meaningful passage\n1. This leads to cost overruns and significant delays in project\ncompletion.\n2. Developers submit blueprints, which then require clearance\nfrom environmental agencies.\n3. Even after the permit is granted, logistical hurdles at the site\nslow down progress.\n4. Large infrastructure projects are restricted by complex\nregulatory frameworks.", "options": {"a": "2 - 3 - 4 - 1", "b": "1 - 2 - 3 - 4", "c": "4 - 2 - 3 - 1", "d": "4 - 3 - 2 - 1"}, "correct": "c", "correct_seq": "4-2-3-1", "explanation": "Sentence 4 will be the starting line as it introduces the main idea\nof the parajumble, i.e. Infrastructure projects are restricted by\ncomplex regulatory frameworks. And, sentence 2 states that\ndevelopers submit blueprints, which require clearance from\nagencies. So, sentence 2 will follow sentence 4. Sentence 3 talks\nabout further slowdowns due to logistical hurdles even after\npermit grant. So, sentence 3 will follow sentence 2. Finally,\nsentence 1 concludes the parajumble by stating the negative\nconsequence of the delays. Going through the options, option\n(c) has the correct sequence."}, {"num": 25, "orig_id": 230, "exam_tag": "Graduate Level 02/08/2025 (Shift - 3)", "text": "Rearrange the following sentences in correct order to\nmake a meaningful passage.\n1. The findings are finally published in a peer-reviewed journal.\n2. Next, controlled experiments are conducted to gather raw\ndata.\n3. After data collection, statistical analysis confirms the results.\n4. Initially, a hypothesis is formed based on existing literature.", "options": {"a": "1 - 3 - 2 - 4", "b": "4 - 2 - 3 - 1", "c": "2 - 4 - 3 - 1", "d": "3 - 1 - 2 - 4"}, "correct": "b", "correct_seq": "4-2-3-1", "explanation": "Sentence 4 will be the starting line as it introduces the first step\nof forming a hypothesis. And, sentence 2 states the next step,\ni.e. conducting experiments to gather data. Further, sentence 3\ntalks about confirming results after analysis. Finally, sentence 1\ncompletes the parajumble by stating the final step, i.e.\npublishing the findings. Going through the options, option (b)\nhas the correct sequence."}]}, {"id": "mock4", "title": "Mock Test 4: SSC Stenographer 2025 & Classic S1-S6 Patterns", "badge": "SSC Stenographer 2025 Tier - I", "desc": "25 Diverse Questions including Standard S1-S6 Passages, Government Procedures (Union Budget, Census), and Evolutionary Science.", "ids": [237, 238, 240, 241, 242, 244, 245, 247, 249, 250, 258, 259, 266, 267, 268, 270, 271, 273, 274, 275, 277, 278, 298, 304, 328], "questions": [{"num": 1, "orig_id": 237, "exam_tag": "SSC Stenographer 06/08/2025 (Shift 1)", "text": "Which of the given options is the most logical\nsequencing of the following sentences to form a meaningful\nparagraph?\n1. The primary factor in its formation was the Colorado River,\nwhich gradually carved through layers of rock, deepening and\nwidening the canyon.\n2. The Grand Canyon was formed over millions of years through\nthe combined forces of geological activity and erosion.\n3. Weathering from wind, rain, and temperature changes further\nshaped the canyon's intricate rock formations.\n4. Tectonic uplift of the Colorado Plateau increased the river's\nflow and erosive power, allowing it to cut deeper into the\nlandscape.", "options": {"a": "1 - 3 - 4 - 2", "b": "3 - 2 - 1 - 4", "c": "2 -1 - 4 - 3", "d": "4 - 3 - 2 - 1"}, "correct": "c", "correct_seq": "2-1-4-3", "explanation": "Sentence 2 will be the starting line as it introduces the main idea\nof the parajumble, i.e. the formation of the Grand Canyon\nmillions of years ago. And, Sentence 1 states the primary factor\nresponsible for its formation. So, 1 will follow 2. Further,\nsentence 4 states that tectonic uplift of the Colorado Plateau\nincreased the river\u2019s flow and erosive power. So, 4 will follow 1.\nSentence 3 concludes the parajumble by stating that weathering\nfrom wind, rain, and temperature changes further shaped the\ncanyon\u2019s intricate rock formations. Going through the options,\noption (c) has the correct sequence."}, {"num": 2, "orig_id": 238, "exam_tag": "SSC Stenographer 06/08/2025 (Shift 1)", "text": "Which of the given options is the most logical\nsequencing of the following sentences to form a meaningful\nparagraph?\n1. He co-founded Apple Inc. along with Wozniak.\n2. Steve Jobs was a visionary entrepreneur and innovator.\n3. His ideas continue to influence modern technology and\ndesign.\n4. Apple Inc. introduced products like iPhone and iPad.", "options": {"a": "3 - 1 - 2 - 4", "b": "2 - 1 - 4 - 3", "c": "1 - 2 - 4 - 3", "d": "4 - 3 - 1 -2"}, "correct": "b", "correct_seq": "2-1-4-3", "explanation": "Sentence 2 will be the starting line as it introduces the main idea\nof the parajumble, i.e. \u201cSteve Jobs was a visionary entrepreneur\nand innovator.\u201d And sentence 1 begins with the pronoun \u2018he\u2019\nwhich refers to \u2018Steve Jobs\u2019 and states that he co-founded Apple\nInc. along with Wozniak. So, 1 will follow 2. Further, sentence 4\nstates that Apple Inc. introduces products like iPhone and iPad &\nsentence 3 states that his ideas continue to influence modern\ntechnology and design. So, 3 will follow 4. Going through the\noptions, option (b) has the correct sequence."}, {"num": 3, "orig_id": 240, "exam_tag": "SSC Stenographer 06/08/2025 (Shift 1)", "text": "Which of the given options is the most logical\nsequencing of the following sentences to form a meaningful\nparagraph?\n1. His observations eventually contributed to his\ngroundbreaking book, On the Origin of Species.\n2. The Gal\u00e1pagos Islands are famous for their diverse wildlife\nand their role in Charles Darwin's theory of evolution.\n3. This led him to propose the idea of natural selection, where\nspecies evolve over time to adapt to their environment.\n4. Darwin observed that finches on different islands had\ndistinct beak shapes suited to their specific diets.", "options": {"a": "2 - 4 - 1 - 3", "b": "4 - 2 - 3 - 1", "c": "2 - 4 - 3 - 1", "d": "1 - 3 - 2 -4"}, "correct": "c", "correct_seq": "2-4-3-1", "explanation": "Sentence 2 will be the starting line as it introduces the main idea\nof the parajumble, i.e. \u201cThe Galapagos Islands and their role in\nCharles Darwin\u2019s theory of evolution\u201d. And, sentence 4 talks\nabout Darwin\u2019s observation about finches on different islands\nhaving different beak shapes due to their specific diets. So,\nsentence 4 will follow sentence 2. Further, sentence 3 states\nthat this observation helped him propose the idea of natural\nselection, where species evolve over time to adapt to their\nenvironment. So, sentence 3 will follow sentence 4. Finally,\nsentence 1 concludes the paragraph by stating that his\nobservations eventually contributed to his groundbreaking book,\n\u201cOn the Origin of Species\u201d. Going through the options, option (c)\nhas the correct sequence."}, {"num": 4, "orig_id": 241, "exam_tag": "SSC Stenographer 06/08/2025 (Shift 2)", "text": "Which of the given options is the most logical\nsequencing of the following sentences to form a meaningful\nparagraph?\n1. Feminism began as a fight for women's suffrage and then\nexpanded to include social discrimination, workplace\ninequalities and reproductive rights.\n2. Nevertheless, the movement received significant support\nfrom progressive thinkers who believed in gender equality\nand the dismantling of patriarchal structures.\n3. Conservatives viewed the feminist movement as threatening\nto family values, with fears that women would abandon\ntraditional roles as wives and mothers.\n4. The evolution of feminism has been a transformative journey,\nreflecting changing societal attitudes and the struggles for\ngender equality.", "options": {"a": "3 - 4 - 2 - 1", "b": "1 - 3 - 2 - 4", "c": "2 - 3 - 1 - 4", "d": "4 - 1 - 3 - 2"}, "correct": "d", "correct_seq": "4-1-3-2", "explanation": "Sentence 4 is the starting line as it gives a general statement\nabout feminism, introducing the evolution of the movement.\nSentence 1 follows because it explains the beginnings of\nfeminism, starting with women\u2019s suffrage and expanding to\nsocial and workplace issues. Sentence 3 comes next as it\ndescribes the opposition from conservatives, showing the\nchallenges faced by the movement. Finally, sentence 2 states\nthat the movement received support from progressive thinkers,\nbalancing the opposition and showing the broader societal\nresponse. Going through the options, option (d) has the correct\nsequence."}, {"num": 5, "orig_id": 242, "exam_tag": "SSC Stenographer 06/08/2025 (Shift 2)", "text": "Which of the given options is the most logical\nsequencing of the following sentences to form a meaningful\nparagraph?\n1. Franklin hypothesized that lightning was a form of electrical\ndischarge.\n2. Franklin flew a kite made of a silk string and attached a metal\nkey to it during a storm.\n3. He wanted to prove this by conducting an experiment to\ncapture the electrical charge from a thunderstorm.\n4. As the storm approached, the kite was struck by lightning,\nand the metal key conducted the electrical charge.", "options": {"a": "1 - 2 - 3 - 4", "b": "1 - 3 - 2 - 4", "c": "1 - 2 - 4 - 3", "d": "1 - 4 - 3 - 2"}, "correct": "b", "correct_seq": "1-3-2-4", "explanation": "Sentence 1 is the starting line as it introduces the main idea of\nthe parajumble, i.e. \u201cFranklin hypothesized that lightning was a\nform of electrical discharge.\u201d And, sentence 3 states that he\nwanted to prove this by conducting an experiment. So, sentence\n3 will follow sentence 1. Further, sentence 2 states that Franklin\nflew a kite with a silk string and a metal key during a storm to\nconduct the experiment, and sentence 4 states that as the storm\napproached, the kite was struck by lightning and the key\nconducted the charge. So, sentence 4 will follow sentence 2.\nGoing through the options, option (b) has the correct sequence."}, {"num": 6, "orig_id": 244, "exam_tag": "SSC Stenographer 06/08/2025 (Shift 2)", "text": "Which of the given options is the most logical\nsequencing of the following sentences to form a meaningful\nparagraph?\n1. It cut off oxygen and prevented the usual decay caused by\nair, moisture, and bacteria.\n2. The excavation of Pompeii provided a remarkably\nwell-preserved glimpse into life in ancient Rome.\n3. When the eruption occurred, a thick layer of hot ash and\npumice rapidly buried the town.\n4. Unlike other ruins, Pompeii remained frozen in time due to\nMount Vesuvius' sudden eruption.", "options": {"a": "1 - 2 - 4 - 3", "b": "3 - 1 - 4 - 2", "c": "4 - 2 - 3 - 1", "d": "2 - 4 - 3 - 1"}, "correct": "d", "correct_seq": "2-4-3-1", "explanation": "Sentence 2 is the starting line as it introduces the main idea,\n\u2018The excavation of Pompeii provided a remarkably\nwell-preserved glimpse into life in ancient Rome\u2019. Sentence 4\nexplains why Pompeii remained so well-preserved, stating that it\nremained frozen in time due to Mount Vesuvius\u2019 sudden\neruption. Sentence 3 then describes the event of the eruption,\nwhere a thick layer of hot ash and pumice rapidly buried the\ntown. Finally, sentence 1 states the effect of this burial,\nexplaining that it cut off oxygen and prevented the usual decay\ncaused by air, moisture, and bacteria. Going through the options,\noption (d) has the correct sequence."}, {"num": 7, "orig_id": 245, "exam_tag": "SSC Stenographer 06/08/2025 (Shift 2)", "text": "Rearrange the following steps of the Union Budget\npreparation in the correct order:\nP. The finance minister presents the budget in Parliament\nQ. The Ministry of Finance collects estimates from various\nministries\nR. The budget is passed by both houses of Parliament\nS. The Cabinet approves the final draft of the budget", "options": {"a": "P \u2192 Q \u2192 S \u2192 R", "b": "Q \u2192 S \u2192 P \u2192 R", "c": "Q \u2192 P \u2192 R \u2192 S", "d": "S \u2192 Q \u2192 P \u2192 R"}, "correct": "b", "correct_seq": "Q \u2192 S \u2192 P \u2192 R", "explanation": "The process of Union Budget preparation follows these steps in\norder. First, Sentence Q: The Ministry of Finance collects\nestimates from various ministries. Next, Sentence S: The\nCabinet approves the final draft of the budget. Then, Sentence P:\nThe Finance Minister presents the budget in Parliament. Finally,\nSentence R: The budget is passed by both houses of Parliament.\nHence, the correct sequence is Q \u2192 S \u2192 P \u2192 R."}, {"num": 8, "orig_id": 247, "exam_tag": "SSC Stenographer 06/08/2025 (Shift 2)", "text": "Which of the given options is the most logical\nsequencing\nof the following sentences to form a meaningful paragraph?\n1. The advancements in science led by figures like Copernicus,\nGalileo and Descartes also questioned its established views\nof the universe.\n2. It encouraged the growth of secularism and individualism,\ndrawing inspiration from the classical works of ancient\nGreece and Rome.\n3. The invention of the printing press further accelerated this\nshift, making books more accessible and promoting literacy\nand individual thinking.\n4. The Renaissance ushered in a new era that questioned the\nmonopoly of the Roman Catholic Church on knowledge and\nspiritual guidance.", "options": {"a": "4-2-1-3", "b": "2-1-4-3", "c": "1-3-4-2", "d": "3-2-1-4"}, "correct": "a", "correct_seq": "4-2-1-3", "explanation": "Sentence 4 is the starting line as it introduces the main idea \u2018the\nRenaissance ushered in a new era that questioned the monopoly\nof the Roman Catholic Church on knowledge and spiritual\nguidance\u2019. Sentence 2 follows, explaining the social and\nintellectual impact of the Renaissance, stating that it\nencouraged secularism and individualism inspired by classical\nworks. Sentence 1 comes next, describing the scientific\nadvancements led by Copernicus, Galileo, and Descartes that\nchallenged established views of the universe. Finally, sentence 3\nconcludes, showing how the invention of the printing press\nfurther accelerated this shift, making knowledge more\naccessible and promoting literacy and individual thinking. Going\nthrough the options, option (a) has the correct sequence."}, {"num": 9, "orig_id": 249, "exam_tag": "SSC Stenographer 06/08/2025 (Shift 2)", "text": "Which of the given options is the most logical\nsequencing of the following sentences to form a meaningful\nparagraph?\n1. He has inspired millions through his speeches and writings.\n2. He came to be known as the \"Missile Man of India\" for his\ncontributions.\n3. In the year 2002, he became the President of India.\n4. Dr. A.P.J. Abdul Kalam worked as a scientist at ISRO for forty\nyears.", "options": {"a": "4 \u2192 1 \u2192 3 \u2192 2", "b": "4 \u2192 2 \u2192 3 \u2192 1", "c": "4 \u2192 1 \u2192 2 \u2192 3", "d": "4 \u2192 3 \u2192 2 \u2192 1"}, "correct": "b", "correct_seq": "4 \u2192 2 \u2192 3 \u2192 1", "explanation": "Sentence 4 will be the starting line as it introduces Dr. A.P.J.\nAbdul Kalam and his early career as a scientist at ISRO for forty\nyears. And, sentence 2 states that he came to be known as the\n\"Missile Man of India\". So, sentence 2 will follow sentence 4.\nFurther, sentence 3 states that he became the President of India\nin the year 2002 & sentence 1 states that he has inspired\nmillions through his speeches and writings. So, sentence 1 will\nfollow sentence 3. Going through the options, option (b) has the\ncorrect sequence."}, {"num": 10, "orig_id": 250, "exam_tag": "SSC Stenographer 06/08/2025 (Shift 3)", "text": "In the following question, the first and the last parts of\nthe sentence/passage are numbered 1 and 6. The rest of the\nsentence/passage is split into four parts\u2014P, Q, R, and S. These\nfour parts are not given in their proper order. Read the\nsentence/passage and find the most logical order of the parts\nbetween 1 and 6.\n1. The Earth's climate has changed over centuries.\nP. But current warming is caused by human actions.\nQ. Historically, it changed due to natural causes.\nR. Burning fossil fuels increases greenhouse gases.\nS. Deforestation worsens the problem.\n6. This calls for urgent action.", "options": {"a": "QPRS", "b": "QPSR", "c": "SQRP", "d": "PRSQ"}, "correct": "a", "correct_seq": "QPRS", "explanation": "Sentence 1 is the starting line as it introduces the main idea of\nthe parajumble, i.e. \u201cThe Earth\u2019s climate has changed over\ncenturies.\u201d Sentence Q will follow sentence 1 as it mentions\nhistorical natural causes. Sentence P states that current\nwarming is caused by human actions. So, P will follow Q .\nFurther, sentence R states that burning fossil fuels increases\ngreenhouse gases & sentence S states that deforestation\nworsens the problem. So, S will follow R. Going through the\noptions, option (a) has the correct sequence."}, {"num": 11, "orig_id": 258, "exam_tag": "SSC Stenographer 06/08/2025 (Shift 3)", "text": "In the following question, the first and the last parts of\nthe sentence/passage are numbered 1 and 6. The rest of the\nsentence/passage is split into four parts\u2014P, Q, R, and S. These\nfour parts are not given in their proper order. Read the\nsentence/passage and find the most logical order of the parts\nbetween 1 and 6.\n1. The invention of the telescope changed astronomy.\nP. Scientists could observe distant galaxies.\nQ. They discovered stars not visible to the naked eye.\nR. Earlier, knowledge was limited to nearby celestial bodies.\nS. The new tool opened a whole new universe.\n6. Astronomy became a precise science.", "options": {"a": "SRPQ", "b": "PQRS", "c": "RPSQ", "d": "RSPQ"}, "correct": "d", "correct_seq": "RSPQ", "explanation": "Sentence 1 is the starting line as it introduces the main idea of\nthe parajumble, i.e. \u2018The invention of the telescope changed\nastronomy.\u2019 Sentence R talks about the limitations of the\nprevious knowledge to nearby celestial bodies. So, R will follow\nS1. Sentence S talks about the new tool & sentence P states that\nscientists could observe distant galaxies. So, P will follow S.\nFurther, sentence Q states that they discovered stars not visible\nto the naked eye. So, Q will follow P. Finally, sentence 6\ncompletes the parajumble by stating that astronomy became a\nprecise science. Going through the options, option (d) has the\ncorrect sequence."}, {"num": 12, "orig_id": 259, "exam_tag": "SSC Stenographer 06/08/2025 (Shift 3)", "text": "In the following question, the first and the last parts of\nthe sentence/passage are numbered 1 and 6. The rest of the\nsentence/passage is split into four parts\u2014P, Q, R, and S. These\nfour parts are not given in their proper order. Read the\nsentence/passage and find the most logical order of the parts\nbetween 1 and 6.\n1. The invention of the wheel changed the world.\nP: Transport became easier.\nQ: Machines could now be built.\nR: Travel became faster.\nS: Roads improved quickly.\n6. It was a great invention.", "options": {"a": "PRQS", "b": "PRSQ", "c": "PQRS", "d": "PSRQ"}, "correct": "b", "correct_seq": "PRSQ", "explanation": "Sentence 1 is the starting line as it introduces the main idea of\nthe parajumble, i.e. \u201cThe invention of the wheel changed the\nworld.\u201d Sentence P talks about the first effect, stating that\ntransport became easier. So, P will follow S1. Sentence R talks\nabout another effect, stating that travel became faster, so R will\nfollow P. Further, sentence S mentions that roads improved\nquickly, so S will follow R. Sentence Q states that machines\ncould now be built, showing a broader impact, so Q will follow S.\nFinally, sentence 6 completes the parajumble by stating that it\nwas a great invention. Going through the options, option (b) has\nthe correct sequence."}, {"num": 13, "orig_id": 266, "exam_tag": "SSC Stenographer 07/08/2025 (Shift 1)", "text": "In the following question, the first and the last parts of\nthe sentence/passage are numbered 1 and 6. The rest of the\nsentence/passage is split into four parts \u2014 P, Q, R, and S. These\nfour parts are not given in their proper order. Read the\nsentence/passage and find the most logical order of the parts\nbetween 1 and 6.\n1. Economic inflation affects both consumers and businesses.\nP. Businesses struggle to maintain profit margins.\nQ. Rising prices reduce the purchasing power of individuals.\nR. Governments may intervene through monetary policy.\nS. It creates uncertainty in long-term investment planning.\n6. Managing inflation is crucial for economic stability.", "options": {"a": "QPSR", "b": "PQRS", "c": "QRSP", "d": "QSPR"}, "correct": "a", "correct_seq": "QPSR", "explanation": "Sentence 1 introduces the topic with \u201cEconomic inflation affects\nboth consumers and businesses.\u201d First, Sentence Q follows\nbecause it explains the consumer impact with \u201cRising prices\nreduce the purchasing power of individuals.\u201d Next, Sentence P\ncomes as it highlights the business consequence with\n\u201cBusinesses struggle to maintain profit margins.\u201d Then, Sentence\nS adds the wider effect with \u201cIt creates uncertainty in long-term\ninvestment planning.\u201d Finally, Sentence R logically concludes the\nsequence with the government\u2019s response with \u201cGovernments\nmay intervene through monetary policy.\u201d Thus, option (a) has the\ncorrect sequence."}, {"num": 14, "orig_id": 267, "exam_tag": "SSC Stenographer 07/08/2025 (Shift 1)", "text": "Which of the given options is the most logical sequence\nof the following sentences to form a meaningful paragraph ?\n1. Cybersecurity is a growing concern in the digital age.\n2. Strong passwords, encryption, and awareness can help\nprevent cybercrimes.\n3. Hackers use advanced techniques to steal personal and\nfinancial data.\n4. It means protecting computer systems from attacks by\nhackers.", "options": {"a": "2-3-1-4", "b": "1-4-3-2", "c": "4-1-3-2", "d": "3-2-4-1"}, "correct": "b", "correct_seq": "1-4-3-2", "explanation": "Sentence 1 is the starting line as it introduces the main idea of\nthe parajumble, i.e. \u201cCybersecurity is a growing concern in the\ndigital age.\u201d And, sentence 4 explains what cybersecurity means,\nso sentence 4 will follow sentence 1. Further, sentence 3 states\nthat hackers use advanced techniques to steal data, and\nsentence 2 states that strong passwords, encryption, and\nawareness can help prevent cybercrimes. So, sentence 2 will\nfollow sentence 3. Going through the options, option (b) has\nthe correct sequence."}, {"num": 15, "orig_id": 268, "exam_tag": "SSC Stenographer 07/08/2025 (Shift 1)", "text": "In the following question, the first and the last parts of\nthe sentence/passage are numbered 1 and 6...\n1. The digital divide continues to deepen social inequalities.\nP. Unequal access to the internet limits educational\nopportunities.\nQ. Those in rural or underserved areas lag behind.\nR. It prevents skill development and employment access.\nS. Technology's benefits are unequally distributed.\n6. Bridging this gap is critical for inclusive growth.", "options": {"a": "SQPR", "b": "SPRQ", "c": "PQRS", "d": "QPRS"}, "correct": "a", "correct_seq": "SQPR", "explanation": "Sentence S will follow S1 as it introduces that technology's\nbenefits are unequally distributed. Sentence Q comes next\nbecause it explains that those in rural or underserved areas lag\nbehind. Further, Sentence P follows Q as it mentions that\nunequal access limits educational opportunities, and Sentence R\nconcludes by stating that it prevents skill development and\nemployment access. Going through the options, option (a) has\nthe correct sequence."}, {"num": 16, "orig_id": 270, "exam_tag": "SSC Stenographer 07/08/2025 (Shift 1)", "text": "In the following question, the first and the last parts of\nthe sentence/passage are numbered 1 and 6. The rest of the\nsentence/passage is split into four parts \u2014 P, Q, R, and S. These\nfour parts are not given in their proper order. Read the\nsentence/passage and find the most logical order of the parts\nbetween 1 and 6.\n1. Honeybees are vital for pollination.\nP. They transfer pollen between flowers.\nQ. This helps in the growth of fruits and seeds.\nR. Without bees, many crops would fail.\nS. But bee populations are declining globally.\n6. Protecting bees is essential for food security.", "options": {"a": "PSQR", "b": "PRQS", "c": "PQRS", "d": "RPQS"}, "correct": "c", "correct_seq": "PQRS", "explanation": "Sentence 1 introduces the topic, \"Honeybees are vital for\npollination.\" First, sentence P follows because it explains the\nprocess, \"they transfer pollen between flowers.\" Next, sentence Q\ncomes as it shows the result of pollination, \"this helps in the\ngrowth of fruits and seeds.\" Then, sentence R highlights the\nconsequence, \"without bees, many crops would fail.\" Finally,\nsentence S points out the current problem, \"but bee populations\nare declining globally.\" Going through the options, option (c) has\nthe correct sequence."}, {"num": 17, "orig_id": 271, "exam_tag": "SSC Stenographer 07/08/2025 (Shift 1)", "text": "In the following question, the first and the last parts of\nthe sentence/passage are numbered 1 and 6. The rest of the\nsentence/passage is split into four parts P, Q, R, and S. These\nfour parts are not given in their proper order. Read the\nsentence/passage and find the most logical order of the parts\nbetween 1 and 6.\n1. Art is a reflection of society.\nP. It communicates emotions beyond words.\nQ. From cave paintings to modern murals, art evolves.\nR. Artists express views on culture, politics, and identity.\nS. It also raises awareness on social issues.\n6. Hence, art holds immense power in society.", "options": {"a": "QPRS", "b": "QRPS", "c": "PRQS", "d": "RSPQ"}, "correct": "b", "correct_seq": "QRPS", "explanation": "Sentence Q will follow S1 as it introduces the evolution of art\nfrom cave paintings to modern murals. Sentence R comes next\nbecause it explains how artists express views on culture,\npolitics, and identity. Further, Sentence P follows R as it shows\nthat art communicates emotions beyond words, and Sentence S\nconcludes by stating that it also raises awareness on social\nissues. Going through the options, option \u2018b\u2019 has the correct\nsequence."}, {"num": 18, "orig_id": 273, "exam_tag": "SSC Stenographer 07/08/2025 (Shift 1)", "text": "Rearrange the following steps of the national census\nprocess in the correct order:\nP. Enumerators visit households to collect data\nQ. Data is compiled and analyzed at central offices\nR. The government announces census dates and guidelines\nS. A final census report is published and shared with the public", "options": {"a": "P \u2192 Q \u2192 S \u2192 R", "b": "S \u2192 Q \u2192 P \u2192 R", "c": "R \u2192 P \u2192 Q \u2192 S", "d": "P \u2192 Q \u2192 S \u2192 R"}, "correct": "c", "correct_seq": "R \u2192 P \u2192 Q \u2192 S", "explanation": "The given sentence starts with part R as it introduces the main\nsubject of the process, i.e., \u201cthe government announces census\ndates and guidelines.\u201d Part P follows, describing the action\n\u201cenumerators visit households to collect data.\u201d Next, part Q\nexplains what happens after data collection, i.e., \u201cdata is\ncompiled and analyzed at central offices.\u201d Finally, part S gives\nthe conclusion, \u201ca final census report is published and shared\nwith the public.\u201d Going through the options, option (c) has the\ncorrect sequence."}, {"num": 19, "orig_id": 274, "exam_tag": "SSC Stenographer 07/08/2025 (Shift 2)", "text": "Which of the given options is the most logical\nsequencing of the following sentences to form a meaningful\nparagraph?\n1. They are formed by tiny animals called coral polyps.\n2. Coral reefs are home to many marine species.\n3. This is caused by rising ocean temperatures and pollution.\n4. Corals are losing their wonderful colours due to coral\nbleaching.", "options": {"a": "1 - 3 - 2 - 4", "b": "2 - 1 - 4 - 3", "c": "4 - 3 - 2 - 1", "d": "2 - 3 - 1 - 4"}, "correct": "b", "correct_seq": "2-1-4-3", "explanation": "Sentence 2 will be the starting line as it introduces the main idea\nof the parajumble, i.e. \u2018Coral reefs are home to many marine\nspecies.\u2019 And, sentence 1 talks about the animals that form coral\nreefs. So, sentence 1 will follow sentence 2. Further, sentence 4\nstates that corals are losing their wonderful colours due to coral\nbleaching & sentence 3 talks about the cause of coral bleaching.\nSo, sentence 3 will follow sentence 4. Going through the options,\noption (b) has the correct sequence."}, {"num": 20, "orig_id": 275, "exam_tag": "SSC Stenographer 07/08/2025 (Shift 2)", "text": "Rearrange the parts of the sentence in the correct order.\nAdvances in satellite imaging\nP. across diverse geographic regions\nQ. enabling accurate climate modelling\nR. and disaster prediction systems\nS. have transformed environmental monitoring,", "options": {"a": "SQRP", "b": "PRQS", "c": "QPSR", "d": "RPSQ"}, "correct": "a", "correct_seq": "SQRP", "explanation": "The given sentence starts with the subject \u201cAdvances in satellite\nimaging\u201d. Now we need the main verb for this subject. Part S\nbegins with the verb \u201chave transformed\u201d, so it will come\nimmediately after the subject. And, Part Q states that it enables\naccurate climate modelling. So, Q follows S. Further, part R\nmentions disaster prediction systems, which is yet another\nservice enabled by advances in satellite imaging. So, R will\nfollow Q . FInally, part P completes the sentence by talking about\nthe scope of the services enabled, i.e. diverse geographic\nregions. Going through the options, option (a) has the correct\nsequence."}, {"num": 21, "orig_id": 277, "exam_tag": "SSC Stenographer 07/08/2025 (Shift 2)", "text": "In the following question, the first and the last parts of\nthe sentence/passage are numbered 1 and 6. The rest of the\nsentence/passage is split into four parts P, Q, R, and S. These\nfour parts are not given in their proper order. Read the\nsentence/passage and find the most logical order of the parts\nbetween 1 and 6.\n1. The spacecraft initiated descent towards the red planet.\nP. The data gathered during this process will aid future\nmissions.\nQ. The heat shield protected it from atmospheric entry.\nR. Soon after, the parachutes deployed successfully.\nS. Engineers monitored every second of the landing sequence.\n6. This landing marked a historic step in interplanetary\nexploration.", "options": {"a": "RQSP", "b": "QSRP", "c": "SQRP", "d": "QRSP"}, "correct": "d", "correct_seq": "QRSP", "explanation": "Sentence 1 is the starting line as it introduces the main idea of\nthe parajumble, i.e. \u2018The spacecraft initiated descent towards the\nred planet.\u2019 Sentence Q will follow sentence 1 as it states the\nfirst stage of the process, i.e. the heat shield protected it from\natmospheric entry. And, sentence R states the next stage, i.e. the\nsuccessful deployment of the parachutes. So, R will follow Q .\nFurther, sentence S states that engineers monitored every\nsecond of the landing sequence & sentence P states that the\ndata gathered during this process will aid future missions. So, P\nwill follow S. Going through the options, option (d) has the\ncorrect sequence."}, {"num": 22, "orig_id": 278, "exam_tag": "SSC Stenographer 07/08/2025 (Shift 2)", "text": "In the following question, the first and the last parts of\nthe sentence/passage are numbered 1 and 6. The rest of the\nsentence/passage is split into four parts - P, Q, R, and S. These\nfour parts are not given in their proper order. Read the\nsentence/passage and find the most logical order of the parts\nbetween 1 and 6.\n1. 1. The United Nations was formed after the Second World\nWar.\nP. It was established to prevent future global conflicts.\nQ. Over the decades, it has expanded its roles.\nR. Now it addresses issues like climate change and human\nrights.\nS. Its peacekeeping missions have played a vital role in conflict\nzones.\n6. Despite criticisms, the UN remains a key international body.", "options": {"a": "QPRS", "b": "PRSQ", "c": "RPSQ", "d": "PQSR"}, "correct": "d", "correct_seq": "PQSR", "explanation": "Sentence 1 is the starting line as it introduces the main idea of\nthe parajumble, i.e. \u2018The United Nations was formed after the\nSecond World War.\u2019 Sentence P will follow sentence 1 as it\nstates the objective of establishing the United Nations. However,\nsentence Q states that over the decades it has expanded its\nroles. So, Q will follow P. Further, sentence S talks about the role\nof its peacekeeping missions & sentence R states that now it\naddresses issues like climate change and human rights. So, R\nwill follow S. Going through the options, option (d) has the\ncorrect sequence."}, {"num": 23, "orig_id": 298, "exam_tag": "SSC Stenographer 08/08/2025 (Shift 1)", "text": "In the following question, the first and the last parts of\nthe sentence/passage are numbered 1 and 6. The rest of the\nsentence/passage is split into four parts \u2014 P, Q, R, and S. These\nfour parts are not given in their proper order. Read the\nsentence/passage and find the most logical order of the parts\nbetween 1 and 6.\n1. Human memory is a complex neurological process.\nP. Short-term memory stores data temporarily for immediate\nuse.\nQ. Information can be transferred to long-term memory with\nrepetition.\nR. The brain filters and encodes information efficiently.\nS. Long-term memory holds information for an extended period.\n6. Understanding memory helps improve learning strategies.", "options": {"a": "RQPS", "b": "PSRQ", "c": "RPSQ", "d": "PRSQ"}, "correct": "c", "correct_seq": "RPSQ", "explanation": "Sentence R will follow S1 as it introduces how the brain filters\nand encodes information efficiently. Sentence P comes next\nbecause it explains short-term memory. Further, Sentence S\nexplains long-term memory, and Sentence Q concludes by\ndescribing how information can be transferred to long-term\nmemory. Going through the options, option (c) has the correct\nsequence."}, {"num": 24, "orig_id": 304, "exam_tag": "SSC Stenographer 08/08/2025 (Shift 1)", "text": "In the following question, the first and the last parts of\nthe sentence/passage are numbered 1 and 6. The rest of the\nsentence/passage is split into four parts \u2014 P, Q, R, and S. These\nfour parts are not given in their proper order. Read the\nsentence/passage and find the most logical order of the parts\nbetween 1 and 6.\n1. The evolution of language is deeply linked to human history.\nP. Early humans used symbols to convey meaning.\nQ. Writing systems emerged thousands of years later.\nR. Spoken language likely developed alongside tool use.\nS. Over time, languages diversified across regions.\n6. Today, language continues to evolve with technology.", "options": {"a": "QRSP", "b": "RPQS", "c": "RPSQ", "d": "PRSQ"}, "correct": "c", "correct_seq": "RPSQ", "explanation": "Sentence R will follow S1 as it introduces that spoken language\nlikely developed alongside tool use. Sentence P comes next\nbecause it explains that early humans used symbols to convey\nmeaning, complementing the rise of speech. Further, Sentence S\nfollows P as it states that over time these communicative\nsystems diversified across regions, and Sentence Q concludes\nby noting that writing systems emerged thousands of years\nlater. Going through the options, option (c) has the correct\nsequence."}, {"num": 25, "orig_id": 328, "exam_tag": "SSC Stenographer 08/08/2025 (Shift 3)", "text": "In the following question, the first and the last parts of\nthe sentence/passage are numbered 1 and 6. The rest of the\nsentence/passage is split into four parts - P, Q, R, and S. These\nfour parts are not given in their proper order. Read the\nsentence/passage and find the most logical order of the parts\nbetween 1 and 6.\n1. Oceans cover more than 70% of Earth's surface.\nP. Marine species are crucial for food chains.\nQ. But plastic waste threatens marine life.\nR. Oceans regulate global temperature and climate.\nS. They provide food and employment to millions.\n6. Ocean conservation must be prioritized.", "options": {"a": "RSPQ", "b": "SRPQ", "c": "RQPS", "d": "PRSQ"}, "correct": "a", "correct_seq": "RSPQ", "explanation": "Sentence 1 is the starting line as it introduces the main idea of\nthe parajumble, i.e. \u2018Oceans cover more than 70% of Earth's\nsurface.\u2019 Sentence R will follow sentence 1 as it states that\noceans regulate global temperature and climate. And, sentence\nS states that they provide food and employment to millions. So,\nS will follow R. Further, sentence P talks about the importance of\nmarine species. So,P will follow S. However, sentence Q states\nthat plastic waste threatens marine life. So, Q will follow P. Going\nthrough the options, option (a) has the correct sequence."}]}];
+
+    // State Management
+    let currentMock = null;
+    let currentQIndex = 0;
+    let userAttempts = []; // array of { status, selectedKey, isMarkedForReview, randomizedOptionKeys }
+    let timerInterval = null;
+    let remainingSeconds = 900; // 15 mins = 900s
+    let totalExamTime = 900;
+    let isPaused = false;
+    let activeSolutionFilter = 'inc_unatt'; // default required: only incorrect and unattempted
+    let lastEvaluatedResults = [];
+
+    // Initialize Dashboard
+    function initDashboard() {
+      const grid = document.getElementById('mocksListGrid');
+      grid.innerHTML = '';
+
+      ALL_MOCKS.forEach((mock) => {
+        const card = document.createElement('div');
+        card.className = 'mock-card';
+        card.innerHTML = `
+          <div>
+            <span class="mock-badge">${mock.badge}</span>
+            <h3>${mock.title}</h3>
+            <p class="mock-desc">${mock.desc}</p>
+          </div>
+          <div>
+            <div class="mock-details-list">
+              <div class="mock-detail-item">
+                <span>Number of Questions:</span>
+                <strong>25 MCQs</strong>
+              </div>
+              <div class="mock-detail-item">
+                <span>Maximum Marks:</span>
+                <strong>50 Marks</strong>
+              </div>
+              <div class="mock-detail-item">
+                <span>Time Duration:</span>
+                <strong>15 Minutes</strong>
+              </div>
+              <div class="mock-detail-item">
+                <span>Marking Scheme:</span>
+                <strong>+2.00, -0.25</strong>
+              </div>
+            </div>
+            <button class="btn-start-mock" data-mock-id="${mock.id}">Start Mock Test</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      // Add click listeners
+      grid.querySelectorAll('.btn-start-mock').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const mId = e.currentTarget.getAttribute('data-mock-id');
+          openIntroScreen(mId);
+        });
+      });
+    }
+
+    // Switch Screen View
+    function showScreen(screenId) {
+      document.querySelectorAll('.view-screen').forEach(s => s.classList.remove('active'));
+      const targetScreen = document.getElementById(screenId);
+      if (targetScreen) targetScreen.classList.add('active');
+
+      const isExam = screenId === 'screenExam';
+      document.getElementById('examTimerPill').style.display = isExam ? 'flex' : 'none';
+      document.getElementById('btnPause').style.display = isExam ? 'flex' : 'none';
+      document.getElementById('btnFullscreenToggle').style.display = isExam ? 'flex' : 'none';
+      document.getElementById('btnExitToDash').style.display = (screenId === 'screenIntro' || screenId === 'screenResult') ? 'block' : 'none';
+
+      window.scrollTo(0, 0);
+    }
+
+    // Screen 2: Intro / Instructions Screen
+    function openIntroScreen(mockId) {
+      currentMock = ALL_MOCKS.find(m => m.id === mockId);
+      if (!currentMock) return;
+
+      document.getElementById('introMockTitle').textContent = `General Instructions - ${currentMock.title}`;
+      document.getElementById('chkIntroDeclaration').checked = false;
+      document.getElementById('btnIntroStartExam').disabled = true;
+
+      showScreen('screenIntro');
+    }
+
+    document.getElementById('chkIntroDeclaration').addEventListener('change', (e) => {
+      document.getElementById('btnIntroStartExam').disabled = !e.target.checked;
+    });
+
+    document.getElementById('btnIntroBack').addEventListener('click', () => {
+      showScreen('screenDashboard');
+    });
+
+    document.getElementById('btnIntroStartExam').addEventListener('click', () => {
+      startExam();
+    });
+
+    // Helper: Shuffle Array (for randomizing options per question on test launch)
+    function shuffleArray(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    // Fullscreen toggling
+    function enterFullscreen() {
+      try {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(() => {});
+        }
+      } catch (err) {}
+    }
+
+    function exitFullscreen() {
+      try {
+        if (document.fullscreenElement) {
+          document.exitFullscreen().catch(() => {});
+        }
+      } catch (err) {}
+    }
+
+    document.getElementById('btnFullscreenToggle').addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        enterFullscreen();
+      } else {
+        exitFullscreen();
+      }
+    });
+
+    // Start Exam Setup
+    function startExam() {
+      enterFullscreen();
+
+      currentQIndex = 0;
+      remainingSeconds = 900;
+      totalExamTime = 900;
+      isPaused = false;
+
+      // Initialize question attempts
+      // Rule: Randomize options on each refresh / start, but DO NOT randomize questions!
+      userAttempts = currentMock.questions.map(() => {
+        const optKeys = ['a', 'b', 'c', 'd'];
+        const shuffledKeys = shuffleArray(optKeys);
+        return {
+          status: 'not-visited', // 'not-visited', 'not-answered', 'answered', 'review', 'ans-review'
+          selectedKey: null,
+          isMarkedForReview: false,
+          randomizedOptionKeys: shuffledKeys
+        };
+      });
+
+      // Mark question 0 as visited/not-answered
+      userAttempts[0].status = 'not-answered';
+
+      document.getElementById('cbtExamTitleDisplay').textContent = currentMock.title;
+
+      renderPaletteGrid();
+      updatePaletteCounts();
+      renderQuestion(0);
+
+      // Start Countdown Timer
+      clearInterval(timerInterval);
+      updateTimerDisplay();
+      timerInterval = setInterval(tickTimer, 1000);
+
+      showScreen('screenExam');
+    }
+
+    // Timer Logic
+    function tickTimer() {
+      if (isPaused) return;
+
+      remainingSeconds--;
+      updateTimerDisplay();
+
+      if (remainingSeconds <= 0) {
+        clearInterval(timerInterval);
+        submitExam();
+      }
+    }
+
+    function updateTimerDisplay() {
+      const mins = Math.floor(remainingSeconds / 60);
+      const secs = remainingSeconds % 60;
+      const displayStr = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      const timerEl = document.getElementById('timerDisplay');
+      const timerPill = document.getElementById('examTimerPill');
+      
+      timerEl.textContent = displayStr;
+      if (remainingSeconds <= 120) {
+        timerPill.classList.add('warning');
+      } else {
+        timerPill.classList.remove('warning');
+      }
+    }
+
+    // Pause functionality
+    document.getElementById('btnPause').addEventListener('click', () => {
+      isPaused = true;
+      document.getElementById('modalPause').classList.add('active');
+    });
+
+    document.getElementById('btnResumeExam').addEventListener('click', () => {
+      isPaused = false;
+      document.getElementById('modalPause').classList.remove('active');
+    });
+
+    // Render Question
+    function renderQuestion(index) {
+      currentQIndex = index;
+      const q = currentMock.questions[index];
+      const attempt = userAttempts[index];
+
+      // If status was not-visited, transition to not-answered
+      if (attempt.status === 'not-visited') {
+        attempt.status = 'not-answered';
+      }
+
+      document.getElementById('currentQNumberDisplay').textContent = `Question No. ${index + 1} of ${currentMock.questions.length}`;
+      document.getElementById('currentExamTagDisplay').textContent = q.exam_tag || 'SSC Para Jumble';
+      document.getElementById('qStatementDisplay').textContent = q.text;
+
+      // Render Options
+      const optionsContainer = document.getElementById('optionsContainer');
+      optionsContainer.innerHTML = '';
+
+      // Use the randomized keys for this question
+      attempt.randomizedOptionKeys.forEach((key, optIdx) => {
+        const optLetter = String.fromCharCode(65 + optIdx); // A, B, C, D
+        const optText = q.options[key] || '';
+        const isSelected = attempt.selectedKey === key;
+
+        const optDiv = document.createElement('div');
+        optDiv.className = `option-item ${isSelected ? 'selected' : ''}`;
+        optDiv.innerHTML = `
+          <input type="radio" id="opt_${key}" name="currentQOpt" value="${key}" ${isSelected ? 'checked' : ''}>
+          <label for="opt_${key}"><strong>(${optLetter})</strong> &nbsp;${htmlEscape(optText)}</label>
+        `;
+
+        optDiv.addEventListener('click', () => {
+          // Do NOT mark any answer on option selection or in-between the test!
+          // Just record the choice
+          attempt.selectedKey = key;
+          optionsContainer.querySelectorAll('.option-item').forEach(el => el.classList.remove('selected'));
+          optDiv.classList.add('selected');
+          const radio = optDiv.querySelector('input[type="radio"]');
+          if (radio) radio.checked = true;
+        });
+
+        optionsContainer.appendChild(optDiv);
+      });
+
+      // Update Navigation buttons
+      document.getElementById('btnPrev').disabled = (index === 0);
+      document.getElementById('btnSaveNext').textContent = (index === currentMock.questions.length - 1) ? 'Save & Review' : 'Save & Next';
+
+      renderPaletteGrid();
+      updatePaletteCounts();
+    }
+
+    function htmlEscape(str) {
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    // Navigation Actions
+    // 1. Save & Next
+    document.getElementById('btnSaveNext').addEventListener('click', () => {
+      const attempt = userAttempts[currentQIndex];
+      if (attempt.selectedKey !== null) {
+        attempt.status = 'answered';
+        attempt.isMarkedForReview = false;
+      } else {
+        attempt.status = 'not-answered';
+      }
+
+      if (currentQIndex < currentMock.questions.length - 1) {
+        renderQuestion(currentQIndex + 1);
+      } else {
+        renderPaletteGrid();
+        updatePaletteCounts();
+      }
+    });
+
+    // 2. Clear Response
+    document.getElementById('btnClearResponse').addEventListener('click', () => {
+      const attempt = userAttempts[currentQIndex];
+      attempt.selectedKey = null;
+      if (attempt.isMarkedForReview) {
+        attempt.status = 'review';
+      } else {
+        attempt.status = 'not-answered';
+      }
+      renderQuestion(currentQIndex);
+    });
+
+    // 3. Mark for Review & Next
+    document.getElementById('btnMarkReview').addEventListener('click', () => {
+      const attempt = userAttempts[currentQIndex];
+      attempt.isMarkedForReview = true;
+      if (attempt.selectedKey !== null) {
+        attempt.status = 'ans-review';
+      } else {
+        attempt.status = 'review';
+      }
+
+      if (currentQIndex < currentMock.questions.length - 1) {
+        renderQuestion(currentQIndex + 1);
+      } else {
+        renderPaletteGrid();
+        updatePaletteCounts();
+      }
+    });
+
+    // 4. Previous
+    document.getElementById('btnPrev').addEventListener('click', () => {
+      if (currentQIndex > 0) {
+        renderQuestion(currentQIndex - 1);
+      }
+    });
+
+    // Palette Grid Rendering
+    function renderPaletteGrid() {
+      const grid = document.getElementById('paletteGridButtons');
+      grid.innerHTML = '';
+
+      userAttempts.forEach((att, idx) => {
+        const btn = document.createElement('button');
+        btn.className = `p-btn ${att.status} ${idx === currentQIndex ? 'current' : ''}`;
+        btn.textContent = idx + 1;
+        btn.title = `Question ${idx + 1} (${att.status})`;
+
+        btn.addEventListener('click', () => {
+          renderQuestion(idx);
+          document.getElementById('examPalettePanel').classList.remove('mobile-open');
+        });
+
+        grid.appendChild(btn);
+      });
+    }
+
+    function updatePaletteCounts() {
+      let ans = 0, notAns = 0, notVis = 0, rev = 0, ansRev = 0;
+      userAttempts.forEach(att => {
+        if (att.status === 'answered') ans++;
+        else if (att.status === 'not-answered') notAns++;
+        else if (att.status === 'not-visited') notVis++;
+        else if (att.status === 'review') rev++;
+        else if (att.status === 'ans-review') ansRev++;
+      });
+
+      document.getElementById('cntAnswered').textContent = ans;
+      document.getElementById('cntNotAnswered').textContent = notAns;
+      document.getElementById('cntNotVisited').textContent = notVis;
+      document.getElementById('cntReview').textContent = rev;
+      document.getElementById('cntAnsReview').textContent = ansRev;
+    }
+
+    // Mobile Palette Toggle
+    document.getElementById('btnMobilePaletteToggle').addEventListener('click', () => {
+      document.getElementById('examPalettePanel').classList.toggle('mobile-open');
+    });
+
+    // Submit Modal Triggers
+    document.getElementById('btnSubmitModalTrigger').addEventListener('click', () => {
+      let ans = 0, notAns = 0, notVis = 0, rev = 0;
+      userAttempts.forEach(att => {
+        if (att.status === 'answered' || att.status === 'ans-review') ans++;
+        else if (att.status === 'not-answered') notAns++;
+        else if (att.status === 'not-visited') notVis++;
+        if (att.status === 'review' || att.status === 'ans-review') rev++;
+      });
+
+      document.getElementById('modalSumAnswered').textContent = ans;
+      document.getElementById('modalSumNotAnswered').textContent = notAns;
+      document.getElementById('modalSumReview').textContent = rev;
+      document.getElementById('modalSumNotVisited').textContent = notVis;
+
+      document.getElementById('modalSubmitConfirm').classList.add('active');
+    });
+
+    document.getElementById('btnCancelSubmitModal').addEventListener('click', () => {
+      document.getElementById('modalSubmitConfirm').classList.remove('active');
+    });
+
+    document.getElementById('btnConfirmSubmitModal').addEventListener('click', () => {
+      document.getElementById('modalSubmitConfirm').classList.remove('active');
+      submitExam();
+    });
+
+    // Final Exam Submission and Score Evaluation
+    function submitExam() {
+      clearInterval(timerInterval);
+      exitFullscreen();
+
+      let correctCount = 0;
+      let incorrectCount = 0;
+      let unattemptedCount = 0;
+
+      lastEvaluatedResults = currentMock.questions.map((q, idx) => {
+        const attempt = userAttempts[idx];
+        const userChoice = attempt.selectedKey;
+        const correctChoice = q.correct;
+
+        let status = 'unattempted';
+        if (userChoice !== null) {
+          if (userChoice.toLowerCase() === correctChoice.toLowerCase()) {
+            status = 'correct';
+            correctCount++;
+          } else {
+            status = 'incorrect';
+            incorrectCount++;
+          }
+        } else {
+          unattemptedCount++;
+        }
+
+        return {
+          q: q,
+          userChoice: userChoice,
+          correctChoice: correctChoice,
+          status: status,
+          randomizedKeys: attempt.randomizedOptionKeys
+        };
+      });
+
+      // Marking: +2 for correct, -0.25 for incorrect
+      const rawScore = (correctCount * 2.0) - (incorrectCount * 0.25);
+      const finalScore = rawScore.toFixed(2);
+      const totalMarks = (currentMock.questions.length * 2).toFixed(2);
+      const accuracy = (correctCount + incorrectCount > 0)
+        ? Math.round((correctCount / (correctCount + incorrectCount)) * 100)
+        : 0;
+
+      const timeTakenSec = totalExamTime - remainingSeconds;
+      const ttMins = Math.floor(timeTakenSec / 60);
+      const ttSecs = timeTakenSec % 60;
+      const timeTakenFormatted = `${ttMins}m ${ttSecs}s`;
+
+      // Update Result Screen Metrics
+      document.getElementById('resMockTitle').textContent = `Scorecard: ${currentMock.title}`;
+      document.getElementById('resScore').textContent = `${finalScore} / ${totalMarks}`;
+      document.getElementById('resCorrect').textContent = `${correctCount} (+${(correctCount * 2).toFixed(2)})`;
+      document.getElementById('resIncorrect').textContent = `${incorrectCount} (-${(incorrectCount * 0.25).toFixed(2)})`;
+      document.getElementById('resUnattempted').textContent = unattemptedCount;
+      document.getElementById('resAccuracy').textContent = `${accuracy}%`;
+      document.getElementById('resTimeTaken').textContent = timeTakenFormatted;
+
+      // Render Solutions List (Default: Incorrect & Unattempted ONLY as requested!)
+      activeSolutionFilter = 'inc_unatt';
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('btnFilterIncUnatt').classList.add('active');
+      renderSolutionCards(lastEvaluatedResults, 'inc_unatt');
+
+      showScreen('screenResult');
+    }
+
+    // Filter button event handlers
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+        const fMode = e.currentTarget.getAttribute('data-filter');
+        activeSolutionFilter = fMode;
+        renderSolutionCards(lastEvaluatedResults, fMode);
+      });
+    });
+
+    // Render Solutions
+    function renderSolutionCards(evalResults, filter) {
+      const container = document.getElementById('solutionCardsList');
+      container.innerHTML = '';
+
+      let filtered = evalResults.filter(item => {
+        if (filter === 'inc_unatt') return (item.status === 'incorrect' || item.status === 'unattempted');
+        if (filter === 'incorrect') return item.status === 'incorrect';
+        if (filter === 'unattempted') return item.status === 'unattempted';
+        return true; // 'all'
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 40px; color: var(--tcs-muted);">
+            <p style="font-size: 16px; font-weight: 600; color: #16a34a;">No questions match this filter!</p>
+            <p style="font-size: 13px;">${filter === 'inc_unatt' ? 'Brilliant performance! You have zero incorrect or unattempted questions.' : 'No questions found in this category.'}</p>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(item => {
+        const q = item.q;
+        const card = document.createElement('div');
+        const borderClass = item.status === 'correct' ? 'correct-border' : (item.status === 'incorrect' ? 'incorrect-border' : 'unattempted-border');
+        card.className = `sol-card ${borderClass}`;
+
+        const statusTagClass = item.status;
+        const statusTagLabel = item.status === 'correct' ? '&#10004; Correct (+2.0)' : (item.status === 'incorrect' ? '&#10008; Incorrect (-0.25)' : '&#9898; Unattempted (0.0)');
+
+        const userChoiceText = item.userChoice ? `(${item.userChoice.toUpperCase()}) ${q.options[item.userChoice] || ''}` : 'Not Attempted';
+        const correctChoiceText = `(${q.correct.toUpperCase()}) ${q.options[q.correct] || ''}`;
+
+        card.innerHTML = `
+          <div class="sol-card-top">
+            <div>
+              <strong>Question ${q.num}</strong> &bull; <span style="color: var(--tcs-muted);">${q.exam_tag || ''}</span>
+            </div>
+            <span class="sol-status-tag ${statusTagClass}">${statusTagLabel}</span>
+          </div>
+
+          <div style="font-size: 13px; color: #334155; white-space: pre-line; line-height: 1.5; margin-bottom: 10px;">${htmlEscape(q.text)}</div>
+
+          <div class="sol-answers-compare">
+            <div class="ans-row">
+              <span class="ans-label">Your Response:</span>
+              <span class="${item.status === 'correct' ? 'ans-val-correct' : (item.status === 'incorrect' ? 'ans-val-incorrect' : '')}">
+                ${htmlEscape(userChoiceText)}
+              </span>
+            </div>
+            <div class="ans-row">
+              <span class="ans-label">Correct Sequence:</span>
+              <span class="ans-val-correct">
+                ${htmlEscape(correctChoiceText)}
+              </span>
+            </div>
+          </div>
+
+          <div class="sol-explanation-box">
+            <strong>Official Logical Solution &amp; Explanation:</strong>
+            ${htmlEscape(q.explanation)}
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    // Result Actions
+    document.getElementById('btnRetakeMock').addEventListener('click', () => {
+      if (currentMock) {
+        openIntroScreen(currentMock.id);
+      }
+    });
+
+    document.getElementById('btnBackDashboardFromRes').addEventListener('click', () => {
+      showScreen('screenDashboard');
+    });
+
+    document.getElementById('btnExitToDash').addEventListener('click', () => {
+      showScreen('screenDashboard');
+    });
+
+    // Initialize on page load
+    window.onload = function() {
+      initDashboard();
+    };
+  </script>
+</body>
+</html>
