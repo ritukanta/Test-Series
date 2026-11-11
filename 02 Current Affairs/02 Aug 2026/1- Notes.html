@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>August Current Affairs — Top 150 MCQs & Comprehensive Revision Notes | Parcham Classes</title>
+  <style>
+    /* -------------------------------------------------------------
+       BASE TYPOGRAPHY & RESET
+       Content Font: Calibri (with high-grade fallback fonts)
+       Theme: Light Theme ONLY, Book-Style Layout
+    -------------------------------------------------------------- */
+    :root {
+      --font-main: Calibri, 'Candara', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      --font-heading: Calibri, 'Candara', 'Segoe UI', sans-serif;
+      --color-bg: #f8fafc;
+      --color-page-bg: #ffffff;
+      --color-text: #1e293b;
+      --color-text-dark: #0f172a;
+      --color-text-muted: #475569;
+      --color-border: #cbd5e1;
+      --color-border-light: #e2e8f0;
+      
+      /* Domain Color Codes */
+      --badge-days: #0369a1;
+      --badge-days-bg: #e0f2fe;
+      --badge-defence: #15803d;
+      --badge-defence-bg: #dcfce7;
+      --badge-science: #6d28d9;
+      --badge-science-bg: #f3e8ff;
+      --badge-env: #047857;
+      --badge-env-bg: #d1fae5;
+      --badge-national: #b45309;
+      --badge-national-bg: #fef3c7;
+      --badge-state: #c2410c;
+      --badge-state-bg: #ffedd5;
+      --badge-awards: #be185d;
+      --badge-awards-bg: #fce7f3;
+      --badge-sports: #0f766e;
+      --badge-sports-bg: #ccfbf1;
+      --badge-finance: #1e40af;
+      --badge-finance-bg: #dbeafe;
+      --badge-appts: #4338ca;
+      --badge-appts-bg: #e0e7ff;
+      
+      --card-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Container: Standard Book-Like Page Width */
+    .notes-wrapper {
+      max-width: 1020px;
+      margin: 24px auto 48px auto;
+      background: var(--color-page-bg);
+      padding: 48px 56px;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    }
+
+    /* Top Book Header */
+    .book-header {
+      border-bottom: 3px double #94a3b8;
+      padding-bottom: 24px;
+      margin-bottom: 28px;
+    }
+    .book-pretitle {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #64748b;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .book-title {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--color-text-dark);
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+    .book-subtitle {
+      font-size: 17px;
+      color: #334155;
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+    .book-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      background: #f1f5f9;
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      border-left: 4px solid #3b82f6;
+    }
+    .book-meta-item strong {
+      color: var(--color-text-dark);
+    }
+
+    /* Top Interactive Toolbar (Excluded from Print) */
+    .top-toolbar {
+      background: #ffffff;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin-bottom: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: var(--card-shadow);
+    }
+    .toolbar-row-main {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .search-box {
+      flex: 1;
+      min-width: 260px;
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      padding: 9px 14px;
+      font-family: var(--font-main);
+      font-size: 15px;
+      border: 1px solid #94a3b8;
+      border-radius: 6px;
+      background: #f8fafc;
+      color: var(--color-text-dark);
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    .search-input:focus {
+      background: #ffffff;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+    .btn-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      font-family: var(--font-main);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #1e293b;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+    .btn:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+    .btn-primary {
+      background: #1e293b;
+      color: #ffffff;
+      border-color: #0f172a;
+    }
+    .btn-primary:hover {
+      background: #0f172a;
+    }
+    .category-filter-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding-top: 4px;
+      border-top: 1px dashed #e2e8f0;
+    }
+    .chip {
+      font-size: 12.5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.15s;
+    }
+    .chip:hover, .chip.active {
+      background: #1e293b;
+      color: #ffffff;
+      border-color: #1e293b;
+    }
+
+    /* Section & Chapter Layout */
+    .topic-section {
+      margin-bottom: 36px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--color-border-light);
+    }
+    .topic-section:last-child {
+      border-bottom: none;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      background: #f8fafc;
+      padding: 10px 14px;
+      border-radius: 6px;
+      border-left: 5px solid #2563eb;
+    }
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--color-text-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-badge {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .timestamp-tag {
+      font-size: 13px;
+      color: #64748b;
+      font-weight: 600;
+      background: #e2e8f0;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    /* Content Cards & Grids */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .card-full {
+      grid-column: 1 / -1;
+    }
+    .note-card {
+      background: #ffffff;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: 16px 20px;
+      box-shadow: var(--card-shadow);
+      transition: border-color 0.15s ease;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .note-card:hover {
+      border-color: #94a3b8;
+    }
+    .note-card.highlight {
+      border-left: 4px solid #2563eb;
+      background: #fafcff;
+    }
+    .note-card.defence-card { border-left: 4px solid #16a34a; }
+    .note-card.science-card { border-left: 4px solid #7c3aed; }
+    .note-card.env-card { border-left: 4px solid #059669; }
+    .note-card.national-card { border-left: 4px solid #d97706; }
+    .note-card.state-card { border-left: 4px solid #ea580c; }
+    .note-card.awards-card { border-left: 4px solid #db2777; }
+    .note-card.sports-card { border-left: 4px solid #0d9488; }
+    .note-card.finance-card { border-left: 4px solid #2563eb; }
+
+    .card-title {
+      font-family: var(--font-heading);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--color-text-dark);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .card-subtitle {
+      font-size: 13.5px;
+      color: #64748b;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    /* Structured Pointers & Bullets */
+    .note-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .note-list li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 8px;
+      color: #1e293b;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    .note-list li:last-child {
+      margin-bottom: 0;
+    }
+    .note-list li::before {
+      content: "•";
+      position: absolute;
+      left: 2px;
+      top: -1px;
+      color: #3b82f6;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .note-list.check li::before {
+      content: "✓";
+      color: #16a34a;
+      font-size: 13px;
+      left: 0;
+      top: 1px;
+    }
+    .note-list.star li::before {
+      content: "★";
+      color: #f59e0b;
+      font-size: 13px;
+      left: 0;
+      top: 1px;
+    }
+
+    .key-label {
+      font-weight: 700;
+      color: var(--color-text-dark);
+    }
+    .memory-hint-box {
+      background: #fefce8;
+      border: 1px solid #fef08a;
+      border-left: 4px solid #eab308;
+      border-radius: 4px;
+      padding: 10px 14px;
+      margin: 10px 0;
+      font-size: 14.5px;
+      color: #713f12;
+    }
+    .memory-hint-title {
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .static-gk-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-left: 4px solid #16a34a;
+      border-radius: 4px;
+      padding: 10px 14px;
+      margin: 10px 0;
+      font-size: 14.5px;
+      color: #14532d;
+    }
+    .static-gk-title {
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+      color: #15803d;
+    }
+
+    /* Structured Data Tables */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      margin: 14px 0;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+    }
+    .notes-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14.5px;
+      background: #ffffff;
+      text-align: left;
+    }
+    .notes-table th {
+      background: #f1f5f9;
+      color: #0f172a;
+      font-weight: 700;
+      padding: 10px 14px;
+      border-bottom: 2px solid #cbd5e1;
+      border-right: 1px solid #e2e8f0;
+      white-space: nowrap;
+    }
+    .notes-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #e2e8f0;
+      border-right: 1px solid #e2e8f0;
+      vertical-align: top;
+      color: #1e293b;
+    }
+    .notes-table tr:last-child td {
+      border-bottom: none;
+    }
+    .notes-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+    .notes-table td:last-child, .notes-table th:last-child {
+      border-right: none;
+    }
+
+    /* MCQ Question Box */
+    .mcq-box {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin-bottom: 14px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .mcq-header {
+      font-weight: 700;
+      font-size: 15.5px;
+      color: #0f172a;
+      margin-bottom: 8px;
+      display: flex;
+      gap: 8px;
+    }
+    .mcq-qnum {
+      background: #2563eb;
+      color: #ffffff;
+      padding: 1px 7px;
+      border-radius: 4px;
+      font-size: 13px;
+      height: fit-content;
+    }
+    .mcq-ans-badge {
+      display: inline-block;
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 13px;
+      margin-bottom: 8px;
+      border: 1px solid #86efac;
+    }
+
+    /* Footer */
+    .book-footer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 2px solid #cbd5e1;
+      text-align: center;
+      font-size: 13.5px;
+      color: #64748b;
+    }
+
+    /* -------------------------------------------------------------
+       PRINT STYLESHEET
+       Make the text dark & crisp for physical paper / PDF conversion
+       Clean margins, avoid cutoffs, hide interactive buttons
+    -------------------------------------------------------------- */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 12pt;
+      }
+      .notes-wrapper {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .top-toolbar, .no-print {
+        display: none !important;
+      }
+      .section-header {
+        background: #f1f5f9 !important;
+        border-left: 4pt solid #000000 !important;
+        page-break-after: avoid;
+        break-after: avoid;
+      }
+      .note-card, .mcq-box, .table-container, tr {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        border: 1px solid #94a3b8 !important;
+        box-shadow: none !important;
+      }
+      .notes-table th {
+        background: #e2e8f0 !important;
+        color: #000000 !important;
+      }
+      .notes-table td {
+        color: #000000 !important;
+      }
+      .key-label, strong, b {
+        color: #000000 !important;
+      }
+      .memory-hint-box, .static-gk-box {
+        border: 1px solid #64748b !important;
+        background: #f8fafc !important;
+        color: #000000 !important;
+      }
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .notes-wrapper {
+        padding: 20px 16px;
+        margin: 10px;
+      }
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+      .book-title {
+        font-size: 24px;
+      }
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="notes-wrapper">
+  
+  <!-- Book Header -->
+  <header class="book-header">
+    <div class="book-pretitle">Parcham Classes — Monthly Current Affairs Marathon</div>
+    <h1 class="book-title">August Current Affairs: Top 150 MCQs & Detailed Revision Notes</h1>
+    <div class="book-subtitle">Comprehensive One-Shot Master Notes with Factual Verification, Mnemonic Tricks, Static GK Linkages & Domain Breakdowns</div>
+    
+    <div class="book-meta-grid">
+      <div class="book-meta-item"><strong>Faculty / Source:</strong> Richa Ma'am, Parcham Classes</div>
+      <div class="book-meta-item"><strong>Curriculum Scope:</strong> Full Month August (One-Shot CA)</div>
+      <div class="book-meta-item"><strong>Structure:</strong> 19 Structured Categories & 150 MCQs</div>
+      <div class="book-meta-item"><strong>Exam Alignment:</strong> SSC, Railway, Banking, Defence, UPSC/PSC</div>
+    </div>
+  </header>
+
+  <!-- Interactive Top Utility Bar (No side panel/pallet, strictly top-oriented) -->
+  <div class="top-toolbar no-print">
+    <div class="toolbar-row-main">
+      <div class="search-box">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search notes, topics, schemes, appointments, keywords..." aria-label="Search notes" />
+      </div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary" id="printBtn">🖨️ Print / Save as PDF</button>
+        <button type="button" class="btn" id="toggleAllBtn">📂 Expand / Collapse All</button>
+        <button type="button" class="btn" id="readModeBtn">📖 Focus View</button>
+      </div>
+    </div>
+    <div class="category-filter-chips">
+      <span class="chip active" data-filter="all">All Topics</span>
+      <span class="chip" data-filter="days">Important Days</span>
+      <span class="chip" data-filter="books">Books & Memoirs</span>
+      <span class="chip" data-filter="appts">Appointments</span>
+      <span class="chip" data-filter="obits">Obituaries</span>
+      <span class="chip" data-filter="defence">Defence</span>
+      <span class="chip" data-filter="scitech">Science & Tech</span>
+      <span class="chip" data-filter="env">Environment</span>
+      <span class="chip" data-filter="schemes">National Schemes & Bills</span>
+      <span class="chip" data-filter="state">State News</span>
+      <span class="chip" data-filter="awards">Awards</span>
+      <span class="chip" data-filter="sports">Sports</span>
+      <span class="chip" data-filter="finance">Banking & Economy</span>
+    </div>
+  </div>
+
+  <!-- Content Container -->
+  <main id="contentContainer">
+
+    <!-- 01. STUDY RESOURCES & COMPANION KITS -->
+    <section class="topic-section" data-category="schemes" id="section-01">
+      <div class="section-header">
+        <div class="section-title">
+          <span>01. Session Introduction & Study Resource Ecosystem</span>
+        </div>
+        <span class="timestamp-tag">00:00:00</span>
+      </div>
+      
+      <div class="note-card highlight">
+        <div class="card-title">Parcham Current Affairs Documentation Support System</div>
+        <ul class="note-list">
+          <li><span class="key-label">Core Revision Philosophy:</span> The monthly one-shot video covers the most critical 150 MCQs across four master segments, but holistic preparation requires systematic document support based on exam type.</li>
+          <li><span class="key-label">Monthly Sawaal (One-Day Exam Kit):</span> Targeted at SSC, Railways, Banking, and Defence exams. Features 400 comprehensive MCQs per month with complete factual explanations and background context.</li>
+          <li><span class="key-label">Monthly CA E-Magazine (Higher Tier & PSC/UPSC):</span> Categorized theory-format publication integrating dynamic current developments with static general knowledge.</li>
+          <li><span class="key-label">Raftaar (Quick-Revision Headlines):</span> Bulleted headliner notes suited for rapid review before college entrance exams, B.Ed, CUET, and CLAT.</li>
+          <li><span class="key-label">CA Complete Kit:</span> Comprehensive one-stop portal including Daily CA, Weekly CA, Monthly Sawaal, Raftaar, 6-Monthly Magazine, and Annual Yearbook.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 02. IMPORTANT DAYS & HISTORICAL MILESTONES -->
+    <section class="topic-section" data-category="days" id="section-02">
+      <div class="section-header">
+        <div class="section-title">
+          <span>02. Important Days: Article 370, Handloom & Independence Day</span>
+        </div>
+        <span class="timestamp-tag">00:01:51</span>
+      </div>
+
+      <div class="mcq-box">
+        <div class="mcq-header">
+          <span class="mcq-qnum">MCQ 1</span>
+          <span>Who among the following drafted Article 370 of the Indian Constitution?</span>
+        </div>
+        <div class="mcq-ans-badge">Correct Answer: N. Gopalaswami Ayyangar</div>
+        <ul class="note-list">
+          <li><span class="key-label">Historical Background:</span> Article 370 conferred temporary special autonomous status to Jammu & Kashmir. It was drafted in 1949 by N. Gopalaswami Ayyangar, who served as Prime Minister of Jammu & Kashmir (1937–1943) and later as a Union Cabinet Minister.</li>
+          <li><span class="key-label">Abrogation Milestone:</span> On 5th August 2019, the President of India issued Constitutional Orders (CO 272 & CO 273), and Parliament passed the Jammu and Kashmir Reorganisation Act, 2019, effectively revoking the special status and bifurcating the state into two Union Territories: Jammu & Kashmir (with a legislature) and Ladakh (without a legislature).</li>
+          <li><span class="key-label">Significance in August:</span> 5th August marks the completion of 5 full years of the abrogation of Article 370.</li>
+        </ul>
+        <div class="static-gk-box">
+          <div class="static-gk-title">Static GK: Drafting Committee of the Constituent Assembly</div>
+          <ul class="note-list">
+            <li><strong>Constitution of Drafting Committee:</strong> Set up on 29th August 1947 with 7 members.</li>
+            <li><strong>Chairman:</strong> Dr. B.R. Ambedkar (Father of the Indian Constitution).</li>
+            <li><strong>Members:</strong> N. Gopalaswami Ayyangar, Alladi Krishnaswami Iyer, Dr. K.M. Munshi, Syed Mohammad Saadulla, N. Madhava Rau (replaced B.L. Mitter), T.T. Krishnamachari (replaced D.P. Khaitan).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card-grid">
+        <div class="note-card">
+          <div class="card-title">National Handloom Day (August 7)</div>
+          <ul class="note-list">
+            <li><span class="key-label">Historical Genesis:</span> Commemorates the formal launch of the Swadeshi Movement on 7th August 1905 at the Calcutta Town Hall to protest the Partition of Bengal by Lord Curzon.</li>
+            <li><span class="key-label">Significance:</span> Swadeshi encouraged indigenous Indian textiles and boycott of Manchester cotton. Handloom represents the soul of rural Indian manufacturing.</li>
+            <li><span class="key-label">Inaugural Edition:</span> First proclaimed by Prime Minister Narendra Modi in Chennai on 7th August 2015. 2024 marks the 10th edition.</li>
+            <li><span class="key-label">Nodal Ministry:</span> Ministry of Textiles, Government of India.</li>
+          </ul>
+        </div>
+
+        <div class="note-card">
+          <div class="card-title">78th Independence Day (August 15)</div>
+          <ul class="note-list">
+            <li><span class="key-label">Edition & Milestone:</span> India celebrated its 78th Independence Day on August 15, 2024.</li>
+            <li><span class="key-label">Official Theme:</span> <strong>"Viksit Bharat @ 2047"</strong> (Transforming India into a fully developed nation by the centenary year of independence in 2047).</li>
+            <li><span class="key-label">National Address:</span> Address by Prime Minister Narendra Modi from the ramparts of the Red Fort in New Delhi, emphasizing indigenous manufacturing, critical technologies, and green transition.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03. ISRO PIONEER MISSIONS & STATIC GK -->
+    <section class="topic-section" data-category="scitech" id="section-03">
+      <div class="section-header">
+        <div class="section-title">
+          <span>03. ISRO Facts & Pioneer Space Missions (Static GK Deep Dive)</span>
+        </div>
+        <span class="timestamp-tag">00:12:00</span>
+      </div>
+
+      <div class="note-card science-card card-full">
+        <div class="card-title">ISRO Institutional Profile & Landmark Space Missions</div>
+        <div class="card-grid" style="margin-top: 10px;">
+          <div>
+            <ul class="note-list">
+              <li><span class="key-label">Formation:</span> Founded on 15 August 1969, superseding INCOSPAR (Indian National Committee for Space Research, established by Dr. Vikram Sarabhai in 1962).</li>
+              <li><span class="key-label">Headquarters:</span> Antariksh Bhavan, Bengaluru, Karnataka.</li>
+              <li><span class="key-label">Current Chairman:</span> S. Somanath (Secretary, Department of Space).</li>
+              <li><span class="key-label">Primary Launch Center:</span> Satish Dhawan Space Centre (SDSC) SHAR, Sriharikota, Tirupati district, Andhra Pradesh.</li>
+              <li><span class="key-label">Key Propulsion Lab:</span> Liquid Propulsion Systems Centre (LPSC) at Valiamala (Thiruvananthapuram) and Bengaluru.</li>
+            </ul>
+          </div>
+          <div>
+            <ul class="note-list star">
+              <li><span class="key-label">Aryabhata (1975):</span> India's first satellite, launched on 19 April 1975 using a Soviet Kosmos-3M launch vehicle from Kapustin Yar.</li>
+              <li><span class="key-label">Chandrayaan-1 (2008):</span> Launched 22 October 2008 aboard PSLV-C11. Confirmed the presence of water molecules ($H_2O/OH$) on lunar soil. Moon Impact Probe (MIP) landed near Shackleton Crater.</li>
+              <li><span class="key-label">Mars Orbiter Mission / MOM (2013):</span> Launched 5 November 2013 on PSLV-C25; entered Martian orbit on 24 September 2014. India became the 1st Asian nation to reach Mars and 1st globally on maiden attempt.</li>
+              <li><span class="key-label">Chandrayaan-3 (2023):</span> Launched 14 July 2023 on LVM3-M4; successfully made soft-landing near the Lunar South Pole at <strong>Shiv Shakti Point</strong> on 23 August 2023.</li>
+              <li><span class="key-label">Aditya-L1 (2023):</span> India's first dedicated solar observatory; successfully inserted into halo orbit around Sun-Earth L1 point on 6 January 2024.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04. IMPORTANT DAYS TABLE WITH MEMORY TRICKS -->
+    <section class="topic-section" data-category="days" id="section-04">
+      <div class="section-header">
+        <div class="section-title">
+          <span>04. Comprehensive August Important Days with Memory Hints</span>
+        </div>
+        <span class="timestamp-tag">00:16:52</span>
+      </div>
+
+      <div class="memory-hint-box">
+        <div class="memory-hint-title">💡 Core Mnemonic Architecture for August: The "Independence & Heroism" Anchor</div>
+        <div>In competitive exams, link August dates to the anchor concept of <strong>15th August (Independence, Freedom, National Pride, Strength)</strong>. Visualize early August as the freedom struggle build-up (Quit India, Swadeshi), mid-August as Sovereignty and Humanitarianism, and late August as Technological and Sporting Excellence (Space Day, Sports Day).</div>
+      </div>
+
+      <div class="table-container">
+        <table class="notes-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Day / Observance</th>
+              <th>Official Theme / Central Context</th>
+              <th>Memory Hint / Exam Hook</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1 August</strong></td>
+              <td>• World Wide Web Day<br>• World Lung Cancer Day<br>• National Mountain Climbing Day</td>
+              <td>Awareness on global hyperlinking, respiratory health prevention, and physical endurance.</td>
+              <td>Month begins (1st): Log onto the <em>Web</em>, breathe fresh air (<em>Lungs</em>), climb high (<em>Mountain</em>).</td>
+            </tr>
+            <tr>
+              <td><strong>6 August</strong></td>
+              <td>Hiroshima Day</td>
+              <td>79th anniversary of the atomic bombing in 1945 by B-29 bomber <em>Enola Gay</em>; bomb codename: <strong>"Little Boy"</strong> (Uranium-235).</td>
+              <td>6th = First nuclear strike on Japan (Hiroshima).</td>
+            </tr>
+            <tr>
+              <td><strong>7 August</strong></td>
+              <td>• National Handloom Day<br>• National Javelin Day</td>
+              <td>Commemorates 1905 Swadeshi Movement launch; Javelin Day commemorates Neeraj Chopra's Olympic Gold (Tokyo 2020 on 7 Aug 2021).</td>
+              <td>7 = Lucky number; weave our own cloth (Handloom) and throw Gold (Javelin).</td>
+            </tr>
+            <tr>
+              <td><strong>8 August</strong></td>
+              <td>Quit India Movement Day (August Kranti Diwas)</td>
+              <td>82nd anniversary of the 1942 movement launched at Gowalia Tank Maidan, Bombay; Mahatma Gandhi gave the clarion call <em>"Do or Die"</em> (Karo ya Maro).</td>
+              <td>8-8-1942 = Quit India Movement / August Kranti.</td>
+            </tr>
+            <tr>
+              <td><strong>9 August</strong></td>
+              <td>• Nagasaki Day<br>• International Day of the World's Indigenous Peoples</td>
+              <td>Atomic bomb <strong>"Fat Man"</strong> (Plutonium-239) dropped in 1945.<br>Theme: <em>"Protecting the Rights of Indigenous Peoples in Voluntary Isolation and Initial Contact"</em>.</td>
+              <td>9th = 3 days after Hiroshima; Nagasaki bombed; protect native indigenous tribes.</td>
+            </tr>
+            <tr>
+              <td><strong>10 August</strong></td>
+              <td>• World Lion Day<br>• World Biofuel Day</td>
+              <td>Conservation of Asiatic and African lions; Biofuel Day marks Sir Rudolf Diesel's successful test of peanut oil engine in 1893.</td>
+              <td>10 = King of the jungle (Lion) roars with clean green energy (Biofuel).</td>
+            </tr>
+            <tr>
+              <td><strong>12 August</strong></td>
+              <td>• International Youth Day<br>• World Elephant Day</td>
+              <td>Youth Day Theme: <em>"From Clicks to Progress: Youth Digital Pathways for Sustainable Development"</em>.<br>Elephant Day: Conservation of pachyderms.</td>
+              <td>Youth have the strength and memory of an Elephant. Both celebrated on the 12th.</td>
+            </tr>
+            <tr>
+              <td><strong>13 August</strong></td>
+              <td>World Organ Donation Day</td>
+              <td>Theme: <em>"Donate Organs, Save Lives"</em> (Advocating pledges for kidney, liver, eye, and heart donations).</td>
+              <td>Unlucky 13 turned lucky by gifting life through organ donation.</td>
+            </tr>
+            <tr>
+              <td><strong>14 August</strong></td>
+              <td>Partition Horrors Remembrance Day</td>
+              <td><em>Vibhajan Vibhishika Smriti Diwas</em>, instituted in 2021 to honor the struggles and sacrifices of millions displaced during Partition.</td>
+              <td>Eve of Independence: A solemn remembrance of partition trauma.</td>
+            </tr>
+            <tr>
+              <td><strong>15 August</strong></td>
+              <td>78th Independence Day of India</td>
+              <td>Theme: <em>"Viksit Bharat @ 2047"</em> (Target of complete national development by 2047).</td>
+              <td>Core National Day: 15 August 1947.</td>
+            </tr>
+            <tr>
+              <td><strong>19 August</strong></td>
+              <td>• World Photography Day<br>• World Humanitarian Day</td>
+              <td>Humanitarian Day Theme: <em>#ActForHumanity</em> (Commemorates 2003 bombing of UN HQ at Canal Hotel in Baghdad).</td>
+              <td>Photographers capture humanitarian bravery on camera.</td>
+            </tr>
+            <tr>
+              <td><strong>20 August</strong></td>
+              <td>• Sadbhavana Diwas<br>• Indian Akshay Urja Day<br>• World Mosquito Day</td>
+              <td>Sadbhavana marks 80th birth anniversary of Rajiv Gandhi (born 20 Aug 1944).<br>Mosquito Day marks Sir Ronald Ross's 1897 discovery of malaria transmission in Secunderabad.</td>
+              <td>Rajiv Gandhi (Harmony) + Renewable Energy + Defeating Malaria mosquitoes.</td>
+            </tr>
+            <tr>
+              <td><strong>21 August</strong></td>
+              <td>World Senior Citizen's Day</td>
+              <td>Honoring the contributions, wisdom, and social welfare needs of elder generations.</td>
+              <td>At 21 one becomes an adult; 21 reversed is a reminder to care for seniors.</td>
+            </tr>
+            <tr>
+              <td><strong>23 August</strong></td>
+              <td>National Space Day (Inaugural Official Celebration)</td>
+              <td>Commemorates the historic landing of Chandrayaan-3 on the Moon's South Pole on 23 August 2023.<br>Theme: <em>"Touching Lives while Touching the Moon: India's Space Saga"</em>.</td>
+              <td>23 August = Chandrayaan-3 landing at Shiv Shakti Point. Declared National Space Day.</td>
+            </tr>
+            <tr>
+              <td><strong>26 August</strong></td>
+              <td>Women's Equality Day</td>
+              <td>Commemorates the 1920 certification of the 19th Amendment to the US Constitution granting women the right to vote.</td>
+              <td>Equality and constitutional franchise for women.</td>
+            </tr>
+            <tr>
+              <td><strong>29 August</strong></td>
+              <td>• National Sports Day (Rashtriya Khel Diwas)<br>• Telugu Language Day</td>
+              <td>Birth anniversary of hockey legend Major Dhyan Chand (born 29 Aug 1905).<br>Theme: <em>"Sports as an enabler for an inclusive and fit society"</em>.<br>Telugu Day marks birth of linguist Gidugu Venkata Ramamurthy.</td>
+              <td>Major Dhyan Chand's hockey wizardry (Sports Day).</td>
+            </tr>
+            <tr>
+              <td><strong>30 August</strong></td>
+              <td>• National Small Industry Day<br>• Int'l Day of Victims of Enforced Disappearances</td>
+              <td>Recognizing MSMEs as the growth engine of the Indian economy (contributing ~30% of GDP and ~45% of exports).</td>
+              <td>Small industries empower the nation at month's end.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 05. BOOKS & MEMOIRS -->
+    <section class="topic-section" data-category="books" id="section-05">
+      <div class="section-header">
+        <div class="section-title">
+          <span>05. Books, Authors & Memoirs</span>
+        </div>
+        <span class="timestamp-tag">00:38:34</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="note-card">
+          <div class="card-title">
+            <span>Sankalp Se Siddhi Ka Modi Yug</span>
+            <span class="section-badge" style="background:#fef3c7; color:#b45309;">Polity & Leadership</span>
+          </div>
+          <ul class="note-list">
+            <li><span class="key-label">Author:</span> <strong>Ghanshyam Tiwari</strong> (Member of Parliament, Rajya Sabha from Rajasthan).</li>
+            <li><span class="key-label">Released By:</span> Hon'ble Vice President of India, <strong>Jagdeep Dhankhar</strong> at the Vice-President's Enclave.</li>
+            <li><span class="key-label">Core Theme:</span> Chronicles Prime Minister Narendra Modi's governance philosophy, portraying him as a <em>"Setu Purush"</em> (bridge builder connecting national aspirations with tangible on-ground realities).</li>
+          </ul>
+        </div>
+
+        <div class="note-card">
+          <div class="card-title">
+            <span>China's Wars: The Politics & Diplomacy Behind Its Military Coercion</span>
+            <span class="section-badge" style="background:#fce7f3; color:#be185d;">Strategic Affairs</span>
+          </div>
+          <ul class="note-list">
+            <li><span class="key-label">Author:</span> <strong>Vijay Gokhale</strong> (Former Foreign Secretary of India & former Ambassador to China).</li>
+            <li><span class="key-label">Core Analysis:</span> Deep investigation into how China employs gray-zone tactics, psychological warfare, diplomatic coercion, and targeted military posturing without engaging in full-scale conventional warfare.</li>
+            <li><span class="key-label">Previous Notable Books:</span> <em>The Long Game: How the Chinese Negotiate with India</em> and <em>Tiananmen Square: The Making of a Protest</em>.</li>
+          </ul>
+        </div>
+
+        <div class="note-card">
+          <div class="card-title">
+            <span>Ed Finds a Home</span>
+            <span class="section-badge" style="background:#dcfce7; color:#15803d;">Children's Literature</span>
+          </div>
+          <ul class="note-list">
+            <li><span class="key-label">Author:</span> Bollywood Actress <strong>Alia Bhatt</strong>.</li>
+            <li><span class="key-label">Genre:</span> Illustrated children's book focusing on animal welfare, compassion, and adopting rescue pets. Published under Ed-a-Mamma initiatives.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06. KEY APPOINTMENTS -->
+    <section class="topic-section" data-category="appts" id="section-06">
+      <div class="section-header">
+        <div class="section-title">
+          <span>06. National & International Appointments</span>
+        </div>
+        <span class="timestamp-tag">00:47:30</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="note-card highlight">
+          <div class="card-title">T.V. Somanathan — Cabinet Secretary of India</div>
+          <ul class="note-list check">
+            <li>Appointed as the 33rd Cabinet Secretary of India for a tenure of 2 years.</li>
+            <li>Succeeds Rajiv Gauba (who served an extended five-year tenure from 2019 to 2024).</li>
+            <li>1987-batch IAS officer of the Tamil Nadu cadre; previously served as Union Finance Secretary and Expenditure Secretary.</li>
+          </ul>
+        </div>
+
+        <div class="note-card">
+          <div class="card-title">Govind Mohan — Union Home Secretary</div>
+          <ul class="note-list check">
+            <li>Appointed as the new Union Home Secretary in the Ministry of Home Affairs.</li>
+            <li>Succeeds Ajay Kumar Bhalla.</li>
+            <li>1989-batch IAS officer of the Sikkim cadre; previously served as Secretary in the Ministry of Culture.</li>
+          </ul>
+        </div>
+
+        <div class="note-card">
+          <div class="card-title">Challa Sreenivasulu Setty (C.S. Setty) — Chairman, SBI</div>
+          <ul class="note-list check">
+            <li>Appointed Chairman of the State Bank of India (SBI) for a three-year term.</li>
+            <li>Succeeds Dinesh Kumar Khara who retired on 28th August 2024.</li>
+            <li>Joined SBI as a Probationary Officer in 1988 and rose to Managing Director.</li>
+          </ul>
+        </div>
+
+        <div class="note-card">
+          <div class="card-title">Daljit Singh Chaudhary — DG, Border Security Force (BSF)</div>
+          <ul class="note-list check">
+            <li>Appointed to hold additional charge as Director General of BSF following the premature repatriation of Nitin Agrawal.</li>
+            <li>Full-time Director General of Sashastra Seema Bal (SSB). 1990-batch IPS officer of UP cadre.</li>
+          </ul>
+        </div>
+
+        <div class="note-card">
+          <div class="card-title">Shalini Singh — DGP of Puducherry</div>
+          <ul class="note-list check">
+            <li>Appointed Director General of Police (DGP) of Puducherry, succeeding B. Srinivas.</li>
+            <li>1996-batch AGMUT cadre IPS officer; prominent senior woman officer leading UT police.</li>
+          </ul>
+        </div>
+
+        <div class="note-card">
+          <div class="card-title">Paetongtarn Shinawatra — Prime Minister of Thailand</div>
+          <ul class="note-list check">
+            <li>Elected Thailand's 31st Prime Minister following the dismissal of Srettha Thavisin by the Constitutional Court.</li>
+            <li>Youngest Prime Minister in Thai history (37 years old) and the second woman PM after her aunt Yingluck Shinawatra.</li>
+            <li>Leader of the Pheu Thai Party and youngest daughter of former PM Thaksin Shinawatra.</li>
+          </ul>
+        </div>
+
+        <div class="note-card">
+          <div class="card-title">Dr. Muhammad Yunus — Chief Adviser of Bangladesh</div>
+          <ul class="note-list check">
+            <li>Sworn in as Chief Adviser heading the interim government of Bangladesh.</li>
+            <li>Appointed following the resignation and departure of Prime Minister Sheikh Hasina amidst mass protests.</li>
+            <li>Nobel Peace Prize laureate (2006) and pioneer of microcredit and the Grameen Bank.</li>
+          </ul>
+        </div>
+
+        <div class="note-card">
+          <div class="card-title">Masoud Pezeshkian & Paul Kagame</div>
+          <ul class="note-list check">
+            <li><strong>Masoud Pezeshkian:</strong> Sworn in as the 9th President of Iran following the tragic death of Ebrahim Raisi in a helicopter crash. Cardiac surgeon and reformist politician.</li>
+            <li><strong>Paul Kagame:</strong> Sworn in for a fourth consecutive five-year term as President of Rwanda after winning over 99% of the vote.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07. OBITUARIES -->
+    <section class="topic-section" data-category="obits" id="section-07">
+      <div class="section-header">
+        <div class="section-title">
+          <span>07. Obituaries: Prominent National & Global Figures</span>
+        </div>
+        <span class="timestamp-tag">01:02:33</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="note-card">
+          <div class="card-title">Susan Wojcicki (1968–2024)</div>
+          <ul class="note-list">
+            <li><span class="key-label">Distinction:</span> Former CEO of YouTube (2014–2023) and tech pioneer.</li>
+            <li><span class="key-label">Silicon Valley History:</span> In 1998, she rented her Menlo Park garage to Larry Page and Sergey Brin as Google's first office; became Google's 16th employee and first marketing manager. Advocated the $1.65 billion acquisition of YouTube in 2006.</li>
+          </ul>
+        </div>
+
+        <div class="note-card">
+          <div class="card-title">Buddhadeb Bhattacharjee (1944–2024)</div>
+          <ul class="note-list">
+            <li><span class="key-label">Distinction:</span> Veteran CPI(M) Politburo member and 7th Chief Minister of West Bengal (2000–2011).</li>
+            <li><span class="key-label">Legacy:</span> Known for his pragmatic pro-industrialization policy in Bengal (initiatives in IT sectors at Salt Lake and automobile manufacturing at Singur). Renowned litterateur and translator.</li>
+          </ul>
+        </div>
+
+        <div class="note-card">
+          <div class="card-title">K. Natwar Singh (1931–2024)</div>
+          <ul class="note-list">
+            <li><span class="key-label">Distinction:</span> Eminent diplomat, author, and former Union External Affairs Minister (2004–2005).</li>
+            <li><span class="key-label">Career Highlights:</span> Joined IFS in 1953; served as Ambassador to Pakistan and Secretary-General of the 7th NAM Summit (1983). Author of the acclaimed autobiography <em>One Life Is Not Enough</em>.</li>
+          </ul>
+        </div>
+
+        <div class="note-card">
+          <div class="card-title">Dr. Ram Narain Agarwal (1940–2024)</div>
+          <ul class="note-list">
+            <li><span class="key-label">Distinction:</span> Revered as the <strong>"Father of Agni Missiles"</strong>; former Director of ASL (Advanced Systems Laboratory) DRDO.</li>
+            <li><span class="key-label">Scientific Impact:</span> Inaugural Programme Director of India's prestigious Agni surface-to-surface ballistic missile series under Dr. A.P.J. Abdul Kalam's IGMDP. Conferred Padma Shri (1990) and Padma Bhushan (2000).</li>
+          </ul>
+        </div>
+
+        <div class="note-card">
+          <div class="card-title">Dr. M.S. Valiathan (1934–2024)</div>
+          <ul class="note-list">
+            <li><span class="key-label">Distinction:</span> Renowned cardiac surgeon and healthcare innovator; former Director of SCTIMST, Thiruvananthapuram.</li>
+            <li><span class="key-label">Innovation:</span> Pioneered the indigenous <strong>Chitra-TTK prosthetic heart valve</strong>, providing an affordable, lifesaving solution for rheumatic heart disease patients across developing countries.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08. STRATEGIC PREPARATION GUIDANCE -->
+    <section class="topic-section" data-category="schemes" id="section-08">
+      <div class="section-header">
+        <div class="section-title">
+          <span>08. Current Affairs Strategic Preparation & Linking Framework</span>
+        </div>
+        <span class="timestamp-tag">01:07:51</span>
+      </div>
+
+      <div class="note-card card-full">
+        <div class="card-title">Exam Blueprint: The Dynamic-Static Integrated Learning System</div>
+        <div class="card-grid" style="margin-top: 10px;">
+          <div>
+            <div class="card-subtitle">Common Aspirant Pitfalls:</div>
+            <ul class="note-list">
+              <li>Studying news headlines in isolated vacuum without mapping constitutional or geographic roots.</li>
+              <li>Relying solely on last-minute 500-question marathons without building weekly comprehension.</li>
+              <li>Ignoring static questions derived from trending news (e.g., memorizing an Olympic medalist but forgetting the governing sports federation or stadium history).</li>
+            </ul>
+          </div>
+          <div>
+            <div class="card-subtitle">The 3-Step Winning Formula:</div>
+            <ul class="note-list check">
+              <li><strong>Step 1 (Daily/Weekly Habit):</strong> 20 minutes daily tracking or weekly wrap-up to internalize events chronologically.</li>
+              <li><strong>Step 2 (Monthly Consolidation):</strong> Solve 150–400 structured MCQs to stress-test retention under exam-like multiple-choice conditions.</li>
+              <li><strong>Step 3 (Static GK Branching):</strong> Immediately branch into associated static facts: Headquarters, Founder, Article number, River basin, Treaty date, or IUCN category.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09. DEFENCE NEWS -->
+    <section class="topic-section" data-category="defence" id="section-09">
+      <div class="section-header">
+        <div class="section-title">
+          <span>09. Defence News: Exercises, Missiles, Submarines & Hardware</span>
+        </div>
+        <span class="timestamp-tag">01:12:15</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="note-card defence-card">
+          <div class="card-title">GAURAV — Long-Range Glide Bomb (LRGB)</div>
+          <ul class="note-list">
+            <li><span class="key-label">Developer:</span> Research Centre Imarat (RCI), DRDO, Hyderabad.</li>
+            <li><span class="key-label">Successful Test:</span> Maiden flight trial conducted successfully from an Indian Air Force <strong>Su-30 MKI</strong> fighter jet off the coast of Odisha.</li>
+            <li><span class="key-label">Specifications:</span> 1,000-kg class winged precision-guided glide bomb designed to destroy enemy airfields, bunkers, and command centers from standoff distances.</li>
+            <li><span class="key-label">Guidance:</span> Highly sophisticated Inertial Navigation System integrated with GPS/NavIC satellite positioning.</li>
+          </ul>
+        </div>
+
+        <div class="note-card defence-card">
+          <div class="card-title">Exercise Tarang Shakti 2024</div>
+          <ul class="note-list">
+            <li><span class="key-label">Distinction:</span> Indian Air Force's <strong>first-ever multinational air combat exercise</strong> held on Indian soil.</li>
+            <li><span class="key-label">Two Distinct Phases:</span>
+              <ul style="margin-top: 4px; padding-left: 14px;">
+                <li><strong>Phase 1 (Sulur, Tamil Nadu):</strong> 6–14 August 2024. Participants included Germany (Eurofighter Typhoon), France (Rafale), Spain, and UK.</li>
+                <li><strong>Phase 2 (Jodhpur, Rajasthan):</strong> 30 August – 14 September 2024. Participants included USA, Australia, Greece (first deployment in India), Japan, Singapore, UAE.</li>
+              </ul>
+            </li>
+            <li><span class="key-label">Aircraft Deployed:</span> Over 150 aircraft, including LCA Tejas, Su-30 MKI, Rafale, Mirage 2000, and airborne warning systems.</li>
+          </ul>
+        </div>
+
+        <div class="note-card defence-card">
+          <div class="card-title">Exercise Udara Shakti & Mitra Shakti 2024</div>
+          <ul class="note-list">
+            <li><span class="key-label">Ex Udara Shakti 2024:</span> Bilateral air combat exercise conducted between Indian Air Force (IAF Su-30 MKI) and Royal Malaysian Air Force (RMAF) at Kuantan Air Base, Malaysia.</li>
+            <li><span class="key-label">Ex Mitra Shakti 2024 (10th Edition):</span> Joint military counter-insurgency exercise between Indian Army (Rajputana Rifles) and Sri Lankan Army held at Army Training School, Maduru Oya, Sri Lanka.</li>
+          </ul>
+        </div>
+
+        <div class="note-card defence-card">
+          <div class="card-title">INS Arighat — India's 2nd Nuclear Submarine</div>
+          <ul class="note-list">
+            <li><span class="key-label">Commissioning:</span> Formally commissioned into the Indian Navy on 29 August 2024 at Visakhapatnam in the presence of Defence Minister Rajnath Singh.</li>
+            <li><span class="key-label">Class & Role:</span> India's second indigenous nuclear-powered ballistic missile submarine (SSBN) built under the Advanced Technology Vessel (ATV) Project, succeeding INS Arihant (commissioned 2016).</li>
+            <li><span class="key-label">Armament:</span> Armed with nuclear-tipped <strong>K-15 (Sagarika)</strong> Submarine-Launched Ballistic Missiles (SLBMs) with a strike range of 750 km. Solidifies India's nuclear triad and "No First Use" deterrence.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. SCIENCE & TECHNOLOGY -->
+    <section class="topic-section" data-category="scitech" id="section-10">
+      <div class="section-header">
+        <div class="section-title">
+          <span>10. Science & Technology: Inventions, Space & Health</span>
+        </div>
+        <span class="timestamp-tag">01:42:11</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="note-card science-card">
+          <div class="card-title">BHISHM Portable Cube (Project Aarogya Maitri)</div>
+          <ul class="note-list">
+            <li><span class="key-label">Disaster Deployment:</span> Deployed by the Indian Air Force and Army in Meppadi/Chooralmala, Wayanad (Kerala) following devastating landslides.</li>
+            <li><span class="key-label">What is BHISHM:</span> Bharat Health Initiative for Sahyog Hita and Maitri. The world's first portable, modular emergency hospital.</li>
+            <li><span class="key-label">Capacity:</span> Comprises 72 lightweight mini-cubes that can be air-dropped by drone or helicopter, unpacking into a fully operational field hospital with operating theatre, X-ray, ultrasound, ICU ventilator, power generator, and mini-lab able to treat up to 200 trauma patients within 12 minutes.</li>
+          </ul>
+        </div>
+
+        <div class="note-card science-card">
+          <div class="card-title">Nabhmitra Satellite Communication System</div>
+          <ul class="note-list">
+            <li><span class="key-label">Developer:</span> ISRO's Space Applications Centre (SAC), Ahmedabad.</li>
+            <li><span class="key-label">Function:</span> Two-way satellite communication transponder installed on coastal marine fishing vessels.</li>
+            <li><span class="key-label">Features:</span> Relays real-time cyclone warnings, potential fishing zone (PFZ) data, and distress alerts in local regional languages directly to maritime control stations.</li>
+          </ul>
+        </div>
+
+        <div class="note-card science-card">
+          <div class="card-title">SSLV-D3 Launch / EOS-08 Satellite</div>
+          <ul class="note-list">
+            <li><span class="key-label">Milestone:</span> ISRO successfully completed the third and final developmental flight (D3) of the Small Satellite Launch Vehicle (SSLV) on 16 August 2024 from Sriharikota.</li>
+            <li><span class="key-label">Payload:</span> Placed primary payload <strong>EOS-08 (Earth Observation Satellite-08)</strong> and passenger cubesat SR-0 DEMOSAT into an orbit of 475 km.</li>
+            <li><span class="key-label">Operational Transition:</span> With this success, SSLV developmental phase is complete; technology transfer to private industry will proceed.</li>
+          </ul>
+        </div>
+
+        <div class="note-card science-card">
+          <div class="card-title">Asha — High-Protein Pigeon Pea Genome Assembly</div>
+          <ul class="note-list">
+            <li><span class="key-label">Institution:</span> ICAR-National Institute for Plant Biotechnology (NIPB), New Delhi.</li>
+            <li><span class="key-label">Discovery:</span> Completed chromosome-level reference genome assembly of the popular Arhar/Tur variety named <strong>"Asha"</strong> (ICPL 87119).</li>
+            <li><span class="key-label">Impact:</span> Accelerates genetic breeding of climate-resilient, disease-resistant, and high-yield pulse varieties to boost domestic pulse production.</li>
+          </ul>
+        </div>
+
+        <div class="note-card science-card">
+          <div class="card-title">WHO Mpox Global Health Emergency (PHEIC)</div>
+          <ul class="note-list">
+            <li><span class="key-label">Declaration:</span> On 14 August 2024, WHO Director-General Dr. Tedros Adhanom Ghebreyesus declared the rapid spread of Mpox a <strong>Public Health Emergency of International Concern (PHEIC)</strong>.</li>
+            <li><span class="key-label">Epicenter & Strain:</span> Outbreak driven by the virulent <strong>Clade 1b strain</strong> originating in the Democratic Republic of the Congo (DRC) and spilling into Burundi, Rwanda, and Uganda.</li>
+          </ul>
+        </div>
+
+        <div class="note-card science-card">
+          <div class="card-title">World's First mRNA Lung Cancer Vaccine Trial</div>
+          <ul class="note-list">
+            <li><span class="key-label">Vaccine Candidate:</span> <strong>BNT116</strong>, manufactured by BioNTech.</li>
+            <li><span class="key-label">Clinical Trial:</span> Phase 1 clinical trial launched across 34 research sites in seven countries (UK, US, Germany, Hungary, Poland, Spain, Turkey).</li>
+            <li><span class="key-label">Mechanism:</span> Targets non-small cell lung cancer (NSCLC) by instructing the immune system to recognize tumor markers without harming healthy tissue.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. ENVIRONMENT & WILDLIFE -->
+    <section class="topic-section" data-category="env" id="section-11">
+      <div class="section-header">
+        <div class="section-title">
+          <span>11. Environment, Ecology & Ramsar Wetlands</span>
+        </div>
+        <span class="timestamp-tag">02:23:51</span>
+      </div>
+
+      <div class="note-card env-card card-full">
+        <div class="card-title">India Expands Ramsar Sites Tally to 85</div>
+        <div>In August 2024, the Ministry of Environment, Forest and Climate Change designated <strong>3 new wetlands</strong> as Wetlands of International Importance under the Ramsar Convention:</div>
+        
+        <div class="table-container" style="margin-top: 10px;">
+          <table class="notes-table">
+            <thead>
+              <tr>
+                <th>New Ramsar Wetland</th>
+                <th>Location / State</th>
+                <th>Ecological Importance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Nanjarayan Bird Sanctuary</strong></td>
+                <td>Tiruppur District, Tamil Nadu</td>
+                <td>Large freshwater tank on the Sarkar Periyapalayam river basin; major wintering haven for migratory waterbirds like bar-headed geese.</td>
+              </tr>
+              <tr>
+                <td><strong>2. Kazhuveli Bird Sanctuary</strong></td>
+                <td>Villupuram District, Tamil Nadu</td>
+                <td>One of the largest brackish water wetlands in South India; crucial feeding ground on the Central Asian Flyway (CAF).</td>
+              </tr>
+              <tr>
+                <td><strong>3. Tawa Reservoir</strong></td>
+                <td>Narmadapuram District, Madhya Pradesh</td>
+                <td>Massive reservoir located inside Satpura National Park & Bori Sanctuary; supports mugger crocodiles and rich aquatic biodiversity.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <ul class="note-list star" style="margin-top: 10px;">
+          <li><strong>India's Ramsar Standings:</strong> India now has <strong>85 Ramsar Sites</strong>, the highest in South Asia and third globally (after UK with 175 and Mexico with 144).</li>
+          <li><strong>Top States in India:</strong> <strong>Tamil Nadu</strong> leads with <strong>18 sites</strong>, followed by <strong>Uttar Pradesh</strong> with <strong>10 sites</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="card-grid">
+        <div class="note-card env-card">
+          <div class="card-title">Glaw Lake (Glow Lake) — Arunachal Pradesh</div>
+          <ul class="note-list">
+            <li><span class="key-label">Location:</span> High-altitude alpine lake nestled inside the <strong>Kamlang Wildlife Sanctuary</strong>, Lohit district, Arunachal Pradesh.</li>
+            <li><span class="key-label">Status:</span> Proposed to become Arunachal Pradesh's <strong>first Ramsar site</strong> due to its pristine glacio-fluvial hydrology, Mishmi takin habitat, and medicinal alpine flora.</li>
+          </ul>
+        </div>
+
+        <div class="note-card env-card">
+          <div class="card-title">Clouded Leopard & Hoolock Gibbon</div>
+          <ul class="note-list">
+            <li><span class="key-label">Clouded Leopard (Neofelis nebulosa):</span> International Clouded Leopard Day observed on 4th August. IUCN Red List Status: <strong>Vulnerable</strong>. State animal of Meghalaya; arboreal feline of Northeast Himalayan foothills.</li>
+            <li><span class="key-label">Hoolock Gibbon:</span> India's only ape species, inhabiting Assam and Arunachal evergreen forests (Western Hoolock Gibbon is Endangered).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. NATIONAL NEWS: SCHEMES -->
+    <section class="topic-section" data-category="schemes" id="section-12">
+      <div class="section-header">
+        <div class="section-title">
+          <span>12. National News: Flagship Schemes & Social Welfare</span>
+        </div>
+        <span class="timestamp-tag">02:43:47</span>
+      </div>
+
+      <div class="note-card national-card card-full">
+        <div class="card-title">Unified Pension Scheme (UPS) — Approved by Union Cabinet</div>
+        <div class="card-subtitle">Approved on 24 August 2024 by PM Narendra Modi-led Cabinet; operational from 1 April 2025 for 23 lakh central employees.</div>
+        
+        <div class="table-container">
+          <table class="notes-table">
+            <thead>
+              <tr>
+                <th>Pillar</th>
+                <th>Benefit Formula</th>
+                <th>Qualifying Criteria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Assured Pension</strong></td>
+                <td><strong>50%</strong> of the average basic pay drawn over the last 12 months prior to superannuation.</td>
+                <td>Minimum <strong>25 years</strong> of qualifying service (proportionate pension for service between 10 and 25 years).</td>
+              </tr>
+              <tr>
+                <td><strong>2. Assured Family Pension</strong></td>
+                <td><strong>60%</strong> of the pension drawn by the employee immediately before demise.</td>
+                <td>Applicable to spouse/dependents upon employee's demise.</td>
+              </tr>
+              <tr>
+                <td><strong>3. Assured Minimum Pension</strong></td>
+                <td><strong>₹10,000 per month</strong> upon superannuation.</td>
+                <td>Minimum qualifying service of <strong>10 years</strong>.</td>
+              </tr>
+              <tr>
+                <td><strong>4. Inflation Indexation</strong></td>
+                <td>Dearness Relief (DR) calculated in accordance with All India Consumer Price Index for Industrial Workers (AICPI-IW).</td>
+                <td>Applicable to Assured Pension, Family Pension, and Minimum Pension.</td>
+              </tr>
+              <tr>
+                <td><strong>5. Govt Contribution Hike</strong></td>
+                <td>Central Government contribution increased from <strong>14% to 18.5%</strong> of basic pay. Employee contribution remains unchanged at <strong>10%</strong>.</td>
+                <td>Provides funded sovereign assurance without market-linked downside.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card-grid">
+        <div class="note-card national-card">
+          <div class="card-title">PM Jan Dhan Yojana (PMJDY) Completes 10 Years</div>
+          <ul class="note-list">
+            <li><span class="key-label">Milestone:</span> Completed 10 full years on <strong>28th August 2024</strong> (Launched 28 August 2014).</li>
+            <li><span class="key-label">National Slogan:</span> <em>"Mera Khata, Bhagya Vidhata"</em>.</li>
+            <li><span class="key-label">Achievements:</span> Over <strong>53.13 crore</strong> bank accounts opened with total deposit balance surpassing <strong>₹2.31 lakh crore</strong>.</li>
+            <li><span class="key-label">Financial Inclusion:</span> ~67% accounts opened in rural/semi-urban branches; ~55% accounts held by women; over 36 crore RuPay debit cards issued with inbuilt ₹2 lakh accidental insurance cover.</li>
+          </ul>
+        </div>
+
+        <div class="note-card national-card">
+          <div class="card-title">BioE3 Policy & Vigyan Dhara Scheme</div>
+          <ul class="note-list">
+            <li><span class="key-label">BioE3 Policy:</span> Biotechnology for Economy, Environment and Employment. Promotes high-performance biomanufacturing, bioplastics, bio-enzymes, and carbon-neutral bio-foundries.</li>
+            <li><span class="key-label">Vigyan Dhara Scheme:</span> Cabinet approved unified Department of Science & Technology (DST) scheme with ₹10,579 crore outlay (2021–22 to 2025–26) integrating S&T capacity building, R&D, and tech development.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. NATIONAL NEWS: BILLS & ACTS -->
+    <section class="topic-section" data-category="schemes" id="section-13">
+      <div class="section-header">
+        <div class="section-title">
+          <span>13. National News: Legislative Bills, Acts & Economic Reforms</span>
+        </div>
+        <span class="timestamp-tag">03:02:06</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="note-card national-card">
+          <div class="card-title">Bharatiya Vayuyan Vidheyak 2024</div>
+          <ul class="note-list">
+            <li><span class="key-label">Legislation:</span> Passed by Lok Sabha to replace the colonial <strong>Aircraft Act, 1934</strong>.</li>
+            <li><span class="key-label">Objectives:</span> Modernize civil aviation administration, ease business for airlines and aircraft leasing in GIFT City, empower DGCA and BCAS, and promote domestic aircraft manufacturing and maintenance, repair, and overhaul (MRO) under <em>Atmanirbhar Bharat</em>.</li>
+          </ul>
+        </div>
+
+        <div class="note-card national-card">
+          <div class="card-title">Waqf (Amendment) Bill, 2024</div>
+          <ul class="note-list">
+            <li><span class="key-label">Introduction:</span> Introduced in Lok Sabha by Union Minority Affairs Minister Kiren Rijiju to amend the Waqf Act, 1995.</li>
+            <li><span class="key-label">Renaming:</span> Proposes renaming the parent Act to <strong>Unified Waqf Management, Empowerment, Efficiency and Development Act, 1995 (UMEED Act)</strong>.</li>
+            <li><span class="key-label">Referred to JPC:</span> Referred to a 31-member Joint Parliamentary Committee (JPC) headed by senior MP Jagdambika Pal for wide stakeholder consultations.</li>
+          </ul>
+        </div>
+
+        <div class="note-card national-card">
+          <div class="card-title">Finance (No. 2) Bill & Disaster Management Amendment</div>
+          <ul class="note-list">
+            <li><span class="key-label">Finance (No. 2) Bill 2024:</span> Parliament passed the Finance Bill enacting Union Budget tax proposals. Revised Long-Term Capital Gains (LTCG) to 12.5% while providing taxpayers the option to compute tax on real estate acquired before 23 July 2024 under either old (20% with indexation) or new (12.5% without indexation) regime.</li>
+            <li><span class="key-label">Disaster Management (Amendment) Bill 2024:</span> Creates a unified national disaster database and statutory framework for urban flood and catastrophe management.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14. STATE NEWS -->
+    <section class="topic-section" data-category="state" id="section-14">
+      <div class="section-header">
+        <div class="section-title">
+          <span>14. State & Union Territory News</span>
+        </div>
+        <span class="timestamp-tag">03:40:51</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="note-card state-card">
+          <div class="card-title">Kerala: Wayanad Landslide Tragedy</div>
+          <ul class="note-list">
+            <li><span class="key-label">Catastrophe:</span> Massive flash-landslides struck Chooralmala, Mundakkai, and Attamala villages in Wayanad district in the early hours of 30 July 2024, claiming over 300 lives.</li>
+            <li><span class="key-label">Rescue Operations:</span> Indian Army launched <strong>Operation Madad / Operation Sahayata</strong>, erecting a 190-foot Bailey Bridge in Chooralmala within 31 hours. Deployed ZAWER ground-penetrating radars, dog squads, and BHISHM portable cubes.</li>
+          </ul>
+        </div>
+
+        <div class="note-card state-card">
+          <div class="card-title">Maharashtra: Vadhvan Mega Port Approved</div>
+          <ul class="note-list">
+            <li><span class="key-label">Mega Port Project:</span> Union Cabinet approved development of an all-weather greenfield deep-draft major port at <strong>Vadhvan in Palghar district</strong> at a cost of <strong>₹76,220 crore</strong>.</li>
+            <li><span class="key-label">Executing Body:</span> Vadhvan Port Project Limited (VPPL), a joint venture between Jawaharlal Nehru Port Authority (JNPA, 74%) and Maharashtra Maritime Board (MMB, 26%).</li>
+            <li><span class="key-label">Global Standing:</span> Natural draft of 20 meters, capable of accommodating mega container ships; will rank among the world's top 10 container ports.</li>
+          </ul>
+        </div>
+
+        <div class="note-card state-card">
+          <div class="card-title">Uttar Pradesh: Jatayu Conservation Centre</div>
+          <ul class="note-list">
+            <li><span class="key-label">Inauguration:</span> World's first dedicated conservation and breeding centre for the <strong>Asian King Vulture (Red-headed Vulture)</strong> inaugurated in Campierganj, Maharajganj district, UP.</li>
+            <li><span class="key-label">Species Status:</span> Asian King Vulture (Sarcogyps calvus) is critically endangered due to diclofenac poisoning. Named Jatayu Conservation and Breeding Centre.</li>
+          </ul>
+        </div>
+
+        <div class="note-card state-card">
+          <div class="card-title">Arunachal Pradesh: 'e-Bhavishya' Pension System</div>
+          <ul class="note-list">
+            <li><span class="key-label">System Launch:</span> Government of Arunachal Pradesh rolled out <strong>'e-Bhavishya'</strong>, an end-to-end paperless pension sanction and tracking portal.</li>
+            <li><span class="key-label">Impact:</span> Eliminates bureaucratic delays, ensuring hassle-free processing of pension payment orders (PPOs) on the day of retirement for state government employees.</li>
+          </ul>
+        </div>
+
+        <div class="note-card state-card">
+          <div class="card-title">Madhya Pradesh, Karnataka & Assam Updates</div>
+          <ul class="note-list">
+            <li><span class="key-label">Madhya Pradesh:</span> Inauguration of <strong>PM College of Excellence</strong> across all 55 districts to enhance academic, research, and vocational infrastructure under NEP 2020.</li>
+            <li><span class="key-label">Karnataka:</span> Approved development of an all-weather greenfield deep-water commercial port at <strong>Belekeri</strong> in Uttara Kannada district.</li>
+            <li><span class="key-label">Assam:</span> State Legislative Assembly passed the Assam Repealing Bill, 2024, repealing the Assam Muslim Marriages and Divorces Registration Act, 1935, to eliminate child marriages and establish official civil registration.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15. AWARDS & HONORS -->
+    <section class="topic-section" data-category="awards" id="section-15">
+      <div class="section-header">
+        <div class="section-title">
+          <span>15. Awards, Honors & Cultural Recognitions</span>
+        </div>
+        <span class="timestamp-tag">04:22:31</span>
+      </div>
+
+      <div class="note-card awards-card card-full">
+        <div class="card-title">70th National Film Awards (For Films of 2022)</div>
+        <div class="card-subtitle">Announced by the Ministry of Information and Broadcasting on 16 August 2024; celebrating excellence in Indian cinema.</div>
+        
+        <div class="table-container">
+          <table class="notes-table">
+            <thead>
+              <tr>
+                <th>Award Category</th>
+                <th>Recipient / Winner</th>
+                <th>Language / Associated Film Work</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Best Feature Film</strong></td>
+                <td><strong>Aattam (The Play)</strong></td>
+                <td>Malayalam (Directed by Anand Ekarshi)</td>
+              </tr>
+              <tr>
+                <td><strong>Best Actor in a Leading Role</strong></td>
+                <td><strong>Rishab Shetty</strong></td>
+                <td>Kannada (for <em>Kantara</em>)</td>
+              </tr>
+              <tr>
+                <td><strong>Best Actress in a Leading Role (Joint)</strong></td>
+                <td><strong>Nithya Menen</strong> & <strong>Manasi Parekh</strong></td>
+                <td>Nithya Menen (Tamil: <em>Thiruchitrambalam</em>)<br>Manasi Parekh (Gujarati: <em>Kutch Express</em>)</td>
+              </tr>
+              <tr>
+                <td><strong>Best Director</strong></td>
+                <td><strong>Sooraj R. Barjatya</strong></td>
+                <td>Hindi (for <em>Uunchai</em>)</td>
+              </tr>
+              <tr>
+                <td><strong>Best Popular Film Providing Wholesome Entertainment</strong></td>
+                <td><strong>Kantara</strong></td>
+                <td>Kannada (Produced by Hombale Films)</td>
+              </tr>
+              <tr>
+                <td><strong>Best Non-Feature Film</strong></td>
+                <td><strong>Ayena (Mirror)</strong></td>
+                <td>Directed by Siddhant Sarin</td>
+              </tr>
+              <tr>
+                <td><strong>Best Film in AVGC</strong></td>
+                <td><strong>Brahmāstra: Part One – Shiva</strong></td>
+                <td>Hindi (Visual Effects / Animation)</td>
+              </tr>
+              <tr>
+                <td><strong>Best Film on Social/Environmental Values</strong></td>
+                <td><strong>Sam Bahadur</strong></td>
+                <td>Hindi (Directed by Meghna Gulzar)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card-grid">
+        <div class="note-card awards-card">
+          <div class="card-title">Inaugural Rashtriya Vigyan Puraskar 2024</div>
+          <ul class="note-list star">
+            <li><span class="key-label">Prestige:</span> India's newly instituted highest civilian honors in Science, Technology, and Innovation, conferred on National Space Day (August 23) by President Droupadi Murmu.</li>
+            <li><span class="key-label">Vigyan Ratna (Lifetime Achievement):</span> Awarded to <strong>Prof. Govindarajan Padmanabhan</strong>, renowned molecular biologist, biochemist, and former Director of IISc Bengaluru.</li>
+            <li><span class="key-label">Vigyan Team Award:</span> Conferred upon the <strong>ISRO Chandrayaan-3 Team</strong> for accomplishing the historic lunar south pole soft landing.</li>
+            <li><span class="key-label">Other Tiers:</span> 13 Vigyan Shri awards, 18 Vigyan Yuva-Shanti Swarup Bhatnagar awards.</li>
+          </ul>
+        </div>
+
+        <div class="note-card awards-card">
+          <div class="card-title">Ramon Magsaysay Awards 2024</div>
+          <ul class="note-list">
+            <li><span class="key-label">Karma Phuntsho (Bhutan):</span> Buddhist scholar and social worker, honored for bridging ancient spiritual wisdom with modern education and rural community upliftment.</li>
+            <li><span class="key-label">Farwiza Farhan (Indonesia):</span> Forest conservationist leading the protection of the Leuser Ecosystem in Sumatra.</li>
+            <li><span class="key-label">Hayao Miyazaki (Japan):</span> Legendary Studio Ghibli co-founder and animator, honored for inspiring environmental empathy in youth.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 16. INDICES & RANKINGS -->
+    <section class="topic-section" data-category="finance" id="section-16">
+      <div class="section-header">
+        <div class="section-title">
+          <span>16. Indices, Reports & Global Rankings</span>
+        </div>
+        <span class="timestamp-tag">05:17:40</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="note-card">
+          <div class="card-title">World Bank: World Development Report 2024</div>
+          <ul class="note-list">
+            <li><span class="key-label">Theme:</span> <em>The Middle-Income Trap</em>. Explores why emerging economies stall when reaching middle-income status.</li>
+            <li><span class="key-label">The "3i Strategy":</span> Recommends three progressive phases:
+              <ol style="margin-top: 4px; padding-left: 16px;">
+                <li><strong>Investment (Phase 1):</strong> Capital accumulation and basic infrastructure.</li>
+                <li><strong>Infusion (Phase 2):</strong> Adopting foreign technologies and modern management systems.</li>
+                <li><strong>Innovation (Phase 3):</strong> Developing indigenous frontier technologies and high-value research.</li>
+              </ol>
+            </li>
+          </ul>
+        </div>
+
+        <div class="note-card">
+          <div class="card-title">Global Agricultural Trade & DJSI Sustainability</div>
+          <ul class="note-list">
+            <li><span class="key-label">Global Agri Exporters:</span> India retained its rank as the <strong>8th largest agricultural exporter</strong> in the world ($51 billion in 2023, down from $55 billion in 2022 due to domestic food-security restrictions on rice, sugar, and wheat). The EU, US, and Brazil maintain the top three positions.</li>
+            <li><span class="key-label">DJSI Aluminium Sustainability:</span> <strong>Hindalco Industries</strong> (Aditya Birla Group) achieved the #1 global ranking as the World's Most Sustainable Aluminium Company in the S&P Global Corporate Sustainability Assessment (CSA).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 17. INTERNATIONAL AFFAIRS -->
+    <section class="topic-section" data-category="national" id="section-17">
+      <div class="section-header">
+        <div class="section-title">
+          <span>17. International Affairs & Global Geopolitics</span>
+        </div>
+        <span class="timestamp-tag">05:21:46</span>
+      </div>
+
+      <div class="card-grid">
+        <div class="note-card">
+          <div class="card-title">Bangladesh Political Crisis & Transition</div>
+          <ul class="note-list">
+            <li><span class="key-label">Leadership Resignation:</span> Prime Minister Sheikh Hasina resigned and flew to India on 5th August 2024 following nationwide student-led anti-quota demonstrations that escalated into mass unrest.</li>
+            <li><span class="key-label">Interim Government:</span> Nobel Peace laureate <strong>Dr. Muhammad Yunus</strong> was sworn in as Chief Adviser to head the interim caretaker administration.</li>
+            <li><span class="key-label">Border Security:</span> BSF bolstered surveillance along the 4,096-km Indo-Bangladesh international border.</li>
+          </ul>
+        </div>
+
+        <div class="note-card">
+          <div class="card-title">Nepal Trishuli Disaster & 8th Schedule Constitutional Link</div>
+          <ul class="note-list">
+            <li><span class="key-label">Event:</span> Massive mudslide swept two passenger buses into the swollen Trishuli River in Chitwan district, Nepal.</li>
+            <li><span class="key-label">Constitutional Static GK Link:</span> The 8th Schedule of the Indian Constitution includes <strong>22 official languages</strong>.</li>
+            <li><span class="key-label">71st Constitutional Amendment Act (1992):</span> Added <strong>Nepali, Manipuri, and Konkani</strong> to the Eighth Schedule (increasing languages from 15 to 18).</li>
+            <li><span class="key-label">92nd Constitutional Amendment Act (2003):</span> Later added Bodo, Dogri, Maithili, and Santhali (taking the total to 22).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 18. SPORTS NEWS -->
+    <section class="topic-section" data-category="sports" id="section-18">
+      <div class="section-header">
+        <div class="section-title">
+          <span>18. Sports: Paris Olympics 2024, Durand Cup & Retirements</span>
+        </div>
+        <span class="timestamp-tag">05:33:04</span>
+      </div>
+
+      <div class="note-card sports-card card-full">
+        <div class="card-title">Paris Olympics 2024: Complete Indian Medal Ledger</div>
+        <div class="card-subtitle">Held July 26 – August 11, 2024 in Paris, France. Motto: "Games Wide Open". India finished with 6 medals (1 Silver, 5 Bronze).</div>
+        
+        <div class="table-container">
+          <table class="notes-table">
+            <thead>
+              <tr>
+                <th>Athlete / Team</th>
+                <th>Medal</th>
+                <th>Sport / Discipline</th>
+                <th>Historic Milestone / Performance Detail</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Neeraj Chopra</strong></td>
+                <td>🥈 <strong>Silver</strong></td>
+                <td>Men's Javelin Throw</td>
+                <td>Threw season-best <strong>89.45 m</strong>. Became India's most successful individual Olympian in track and field (Gold in Tokyo 2020 + Silver in Paris 2024). Arshad Nadeem (Pakistan) won Gold with Olympic record 92.97 m.</td>
+              </tr>
+              <tr>
+                <td><strong>Manu Bhaker</strong></td>
+                <td>🥉 <strong>Bronze</strong></td>
+                <td>Women's 10m Air Pistol</td>
+                <td>Opened India's medal tally at Paris 2024. First Indian female shooter to ever win an Olympic medal.</td>
+              </tr>
+              <tr>
+                <td><strong>Manu Bhaker & Sarabjot Singh</strong></td>
+                <td>🥉 <strong>Bronze</strong></td>
+                <td>10m Air Pistol Mixed Team</td>
+                <td>Defeated South Korea 16-10 in bronze playoff. <strong>Manu Bhaker became the 1st athlete in independent India to win 2 medals in a single Olympic edition!</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Swapnil Kusale</strong></td>
+                <td>🥉 <strong>Bronze</strong></td>
+                <td>Men's 50m Rifle 3 Positions</td>
+                <td>First-ever Indian shooter to win an Olympic medal in the grueling 50m Rifle 3 Positions event.</td>
+              </tr>
+              <tr>
+                <td><strong>Indian Men's Hockey Team</strong></td>
+                <td>🥉 <strong>Bronze</strong></td>
+                <td>Men's Field Hockey</td>
+                <td>Defeated Spain 2-1 in the bronze playoff match (Captain: Harmanpreet Singh). Secured back-to-back Olympic hockey medals for India (Tokyo & Paris). Legendary goalkeeper <strong>P.R. Sreejesh</strong> officially retired after this victory.</td>
+              </tr>
+              <tr>
+                <td><strong>Aman Sehrawat</strong></td>
+                <td>🥉 <strong>Bronze</strong></td>
+                <td>Men's Freestyle 57kg Wrestling</td>
+                <td>Defeated Darian Cruz (Puerto Rico) 13-5. At <strong>21 years and 24 days</strong>, Aman became the <strong>youngest individual Olympic medalist in Indian history</strong>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <ul class="note-list" style="margin-top: 10px;">
+          <li><span class="key-label">Heartbreak for Vinesh Phogat:</span> Vinesh made history as the first Indian woman wrestler to reach an Olympic final in the 50kg freestyle category, defeating world #1 Yui Susaki. However, on the morning of the gold bout, she was disqualified for being 100 grams over the weight limit.</li>
+        </ul>
+      </div>
+
+      <div class="card-grid">
+        <div class="note-card sports-card">
+          <div class="card-title">133rd Durand Cup Football Tournament</div>
+          <ul class="note-list">
+            <li><span class="key-label">Tournament:</span> Asia's oldest football tournament, conducted across Kolkata, Kokrajhar, Jamshedpur, and Shillong.</li>
+            <li><span class="key-label">Champions:</span> <strong>NorthEast United FC</strong> clinched their <strong>maiden Durand Cup title</strong>, defeating defending champions Mohun Bagan Super Giant 4-3 on penalties after a 2-2 draw at Vivekananda Yuba Bharati Krirangan (Salt Lake Stadium), Kolkata.</li>
+          </ul>
+        </div>
+
+        <div class="note-card sports-card">
+          <div class="card-title">Shikhar Dhawan Announces Retirement</div>
+          <ul class="note-list">
+            <li><span class="key-label">Career:</span> Veteran Indian opening batsman <strong>Shikhar Dhawan</strong> ("Gabbar") announced his retirement from international and domestic cricket on 24 August 2024.</li>
+            <li><span class="key-label">Statistics:</span> Represented India in 34 Tests (2,315 runs), 167 ODIs (6,793 runs), and 68 T20Is (1,759 runs). Golden Bat winner at the 2013 and 2017 ICC Champions Trophy.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 19. BANKING, ECONOMY & FINANCE -->
+    <section class="topic-section" data-category="finance" id="section-19">
+      <div class="section-header">
+        <div class="section-title">
+          <span>19. Banking, Economy & RBI Monetary Policy</span>
+        </div>
+        <span class="timestamp-tag">06:00:44</span>
+      </div>
+
+      <div class="note-card finance-card card-full">
+        <div class="card-title">RBI Monetary Policy Committee (MPC) Review Decisions</div>
+        <div class="card-subtitle">3rd Bi-Monthly Monetary Policy Statement announced by Governor Shaktikanta Das following the MPC meeting.</div>
+        
+        <div class="table-container">
+          <table class="notes-table">
+            <thead>
+              <tr>
+                <th>Policy Indicator / Metric</th>
+                <th>Rate / Forecast Value</th>
+                <th>Status / Monetary Rationale</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Policy Repo Rate</strong></td>
+                <td><strong>6.50%</strong></td>
+                <td>Kept unchanged for the 9th consecutive meeting (4:2 majority decision).</td>
+              </tr>
+              <tr>
+                <td><strong>Standing Deposit Facility (SDF)</strong></td>
+                <td><strong>6.25%</strong></td>
+                <td>Unchanged (absorbs overnight excess liquidity without collateral).</td>
+              </tr>
+              <tr>
+                <td><strong>Marginal Standing Facility (MSF)</strong></td>
+                <td><strong>6.75%</strong></td>
+                <td>Unchanged (penal emergency borrowing rate for banks).</td>
+              </tr>
+              <tr>
+                <td><strong>Bank Rate</strong></td>
+                <td><strong>6.75%</strong></td>
+                <td>Aligned with MSF under the liquidity adjustment framework.</td>
+              </tr>
+              <tr>
+                <td><strong>Monetary Policy Stance</strong></td>
+                <td><strong>"Withdrawal of Accommodation"</strong></td>
+                <td>Focused on ensuring inflation progressively aligns with the 4.0% medium-term target while supporting growth.</td>
+              </tr>
+              <tr>
+                <td><strong>Real GDP Growth Projection (FY 2024-25)</strong></td>
+                <td><strong>7.2%</strong></td>
+                <td>Q1: 7.1%, Q2: 7.2%, Q3: 7.3%, Q4: 7.2%. Reflects strong rural demand, private consumption, and public capex.</td>
+              </tr>
+              <tr>
+                <td><strong>CPI Inflation Projection (FY 2024-25)</strong></td>
+                <td><strong>4.5%</strong></td>
+                <td>Q2: 4.4%, Q3: 4.7%, Q4: 4.3%. Headline inflation kept high due to food price volatility.</td>
+              </tr>
+              <tr>
+                <td><strong>Digital Payment Volume Growth</strong></td>
+                <td><strong>131 Billion Transactions</strong></td>
+                <td>Surged exponentially from 12.5 billion transactions in FY20 to 131 billion in FY24, with major increase in per capita transaction value.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Book Footer -->
+  <footer class="book-footer">
+    <div><strong>August Current Affairs Master Revision Notes</strong> | Based on Parcham Classes Top 150 MCQs Marathon</div>
+    <div style="margin-top: 4px;">Optimized for High-Resolution Printing & Digital Screen Revision • 100% Data Fidelity Preserved</div>
+  </footer>
+
+</div>
+
+<script>
+  // DOM Elements
+  const searchInput = document.getElementById('searchInput');
+  const printBtn = document.getElementById('printBtn');
+  const toggleAllBtn = document.getElementById('toggleAllBtn');
+  const readModeBtn = document.getElementById('readModeBtn');
+  const chips = document.querySelectorAll('.chip');
+  const sections = document.querySelectorAll('.topic-section');
+  const cards = document.querySelectorAll('.note-card, .mcq-box');
+  const wrapper = document.querySelector('.notes-wrapper');
+
+  let areCardsCollapsed = false;
+  let isFocusMode = false;
+
+  // Search Functionality
+  searchInput.addEventListener('input', function() {
+    const query = this.value.toLowerCase().trim();
+    
+    sections.forEach(sec => {
+      const text = sec.textContent.toLowerCase();
+      if (text.includes(query)) {
+        sec.style.display = 'block';
+      } else {
+        sec.style.display = 'none';
+      }
+    });
+  });
+
+  // Category Filter Chips
+  chips.forEach(chip => {
+    chip.addEventListener('click', function() {
+      chips.forEach(c => c.classList.remove('active'));
+      this.classList.add('active');
+      const filter = this.getAttribute('data-filter');
+
+      sections.forEach(sec => {
+        const cat = sec.getAttribute('data-category');
+        if (filter === 'all' || cat === filter) {
+          sec.style.display = 'block';
+        } else {
+          sec.style.display = 'none';
+        }
+      });
+      // Clear search when filtering
+      searchInput.value = '';
+    });
+  });
+
+  // Print Action
+  printBtn.addEventListener('click', function() {
+    window.print();
+  });
+
+  // Toggle Collapse / Expand
+  toggleAllBtn.addEventListener('click', function() {
+    areCardsCollapsed = !areCardsCollapsed;
+    cards.forEach(card => {
+      const lists = card.querySelectorAll('.note-list, .table-container, .card-grid, .memory-hint-box, .static-gk-box');
+      lists.forEach(el => {
+        el.style.display = areCardsCollapsed ? 'none' : 'block';
+      });
+    });
+    this.textContent = areCardsCollapsed ? '📂 Expand All' : '📁 Collapse All';
+  });
+
+  // Focus / Reading Mode Toggle
+  readModeBtn.addEventListener('click', function() {
+    isFocusMode = !isFocusMode;
+    if (isFocusMode) {
+      wrapper.style.maxWidth = '100%';
+      wrapper.style.borderRadius = '0';
+      wrapper.style.margin = '0';
+      document.body.style.background = '#ffffff';
+      this.textContent = '🖥️ Standard View';
+    } else {
+      wrapper.style.maxWidth = '1020px';
+      wrapper.style.borderRadius = '8px';
+      wrapper.style.margin = '24px auto 48px auto';
+      document.body.style.background = '#f8fafc';
+      this.textContent = '📖 Focus View';
+    }
+  });
+</script>
+
+</body>
+</html>
