@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>September 2026 Monthly Current Affairs — Complete Exam Notes (Top 150 MCQs &amp; One-Shot Revision)</title>
+  <title>September 2026 Monthly Current Affairs — Master Exam Notes</title>
   <style>
     /* ==========================================================================
        CORE TYPOGRAPHY & COLOR TOKENS (CALIBRI + ULTRA-DARK CRISP PRINTABLE INK)
@@ -19,34 +19,42 @@
       --border-light: #cbd5e1;
       --border-strong: #64748b;
 
-      /* Category Accent Palette (High-Contrast Print-Safe Dark Tones) */
-      --cat-audit: #991b1b;
-      --cat-audit-bg: #fef2f2;
-      --cat-audit-border: #fca5a5;
-
+      /* Category Accent Palette (11 High-Contrast Print-Safe Dark Tones) */
       --cat-days: #1e40af;
       --cat-days-bg: #eff6ff;
       --cat-days-border: #93c5fd;
 
-      --cat-people: #5b21b6;
-      --cat-people-bg: #f5f3ff;
-      --cat-people-border: #c4b5fd;
+      --cat-books: #7c2d12;
+      --cat-books-bg: #fff7ed;
+      --cat-books-border: #fdba74;
+
+      --cat-appt: #5b21b6;
+      --cat-appt-bg: #f5f3ff;
+      --cat-appt-border: #c4b5fd;
+
+      --cat-obit: #334155;
+      --cat-obit-bg: #f1f5f9;
+      --cat-obit-border: #94a3b8;
 
       --cat-def: #065f46;
       --cat-def-bg: #ecfdf5;
       --cat-def-border: #6ee7b7;
 
+      --cat-sci: #0369a1;
+      --cat-sci-bg: #f0f9ff;
+      --cat-sci-border: #7dd3fc;
+
       --cat-env: #166534;
       --cat-env-bg: #f0fdf4;
       --cat-env-border: #86efac;
 
-      --cat-state: #9a3412;
-      --cat-state-bg: #fff7ed;
-      --cat-state-border: #fdba74;
-
       --cat-awards: #831843;
       --cat-awards-bg: #fdf2f8;
       --cat-awards-border: #f9a8d4;
+
+      --cat-index: #78350f;
+      --cat-index-bg: #fffbeb;
+      --cat-index-border: #fcd34d;
 
       --cat-intl: #1e3a8a;
       --cat-intl-bg: #eef2ff;
@@ -55,10 +63,6 @@
       --cat-sports: #0f766e;
       --cat-sports-bg: #f0fdfa;
       --cat-sports-border: #5eead4;
-
-      --cat-fin: #78350f;
-      --cat-fin-bg: #fffbeb;
-      --cat-fin-border: #fcd34d;
     }
 
     * {
@@ -168,7 +172,7 @@
 
     .hero-stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
       gap: 12px;
       margin-top: 14px;
     }
@@ -371,16 +375,6 @@
       line-height: 1.25;
     }
 
-    .section-timestamp {
-      font-size: 0.88rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 6px;
-      background: #f1f5f9;
-      color: var(--text-secondary);
-      border: 1px solid #cbd5e1;
-    }
-
     .sub-heading {
       font-size: 1.24rem;
       font-weight: 800;
@@ -391,41 +385,55 @@
       line-height: 1.3;
     }
 
-    /* Section Theme Variations */
-    .theme-audit { border-top: 6px solid var(--cat-audit); }
-    .theme-audit .section-header { border-bottom-color: var(--cat-audit); }
-    .theme-audit .section-part-tag { background: var(--cat-audit); }
-    .theme-audit .sub-heading { border-left-color: var(--cat-audit); }
+    .sub-heading:first-of-type {
+      margin-top: 4px;
+    }
 
+    /* Section Theme Variations (11 Categories) */
     .theme-days { border-top: 6px solid var(--cat-days); }
     .theme-days .section-header { border-bottom-color: var(--cat-days); }
     .theme-days .section-part-tag { background: var(--cat-days); }
     .theme-days .sub-heading { border-left-color: var(--cat-days); }
 
-    .theme-people { border-top: 6px solid var(--cat-people); }
-    .theme-people .section-header { border-bottom-color: var(--cat-people); }
-    .theme-people .section-part-tag { background: var(--cat-people); }
-    .theme-people .sub-heading { border-left-color: var(--cat-people); }
+    .theme-books { border-top: 6px solid var(--cat-books); }
+    .theme-books .section-header { border-bottom-color: var(--cat-books); }
+    .theme-books .section-part-tag { background: var(--cat-books); }
+    .theme-books .sub-heading { border-left-color: var(--cat-books); }
+
+    .theme-appt { border-top: 6px solid var(--cat-appt); }
+    .theme-appt .section-header { border-bottom-color: var(--cat-appt); }
+    .theme-appt .section-part-tag { background: var(--cat-appt); }
+    .theme-appt .sub-heading { border-left-color: var(--cat-appt); }
+
+    .theme-obit { border-top: 6px solid var(--cat-obit); }
+    .theme-obit .section-header { border-bottom-color: var(--cat-obit); }
+    .theme-obit .section-part-tag { background: var(--cat-obit); }
+    .theme-obit .sub-heading { border-left-color: var(--cat-obit); }
 
     .theme-def { border-top: 6px solid var(--cat-def); }
     .theme-def .section-header { border-bottom-color: var(--cat-def); }
     .theme-def .section-part-tag { background: var(--cat-def); }
     .theme-def .sub-heading { border-left-color: var(--cat-def); }
 
+    .theme-sci { border-top: 6px solid var(--cat-sci); }
+    .theme-sci .section-header { border-bottom-color: var(--cat-sci); }
+    .theme-sci .section-part-tag { background: var(--cat-sci); }
+    .theme-sci .sub-heading { border-left-color: var(--cat-sci); }
+
     .theme-env { border-top: 6px solid var(--cat-env); }
     .theme-env .section-header { border-bottom-color: var(--cat-env); }
     .theme-env .section-part-tag { background: var(--cat-env); }
     .theme-env .sub-heading { border-left-color: var(--cat-env); }
 
-    .theme-state { border-top: 6px solid var(--cat-state); }
-    .theme-state .section-header { border-bottom-color: var(--cat-state); }
-    .theme-state .section-part-tag { background: var(--cat-state); }
-    .theme-state .sub-heading { border-left-color: var(--cat-state); }
-
     .theme-awards { border-top: 6px solid var(--cat-awards); }
     .theme-awards .section-header { border-bottom-color: var(--cat-awards); }
     .theme-awards .section-part-tag { background: var(--cat-awards); }
     .theme-awards .sub-heading { border-left-color: var(--cat-awards); }
+
+    .theme-index { border-top: 6px solid var(--cat-index); }
+    .theme-index .section-header { border-bottom-color: var(--cat-index); }
+    .theme-index .section-part-tag { background: var(--cat-index); }
+    .theme-index .sub-heading { border-left-color: var(--cat-index); }
 
     .theme-intl { border-top: 6px solid var(--cat-intl); }
     .theme-intl .section-header { border-bottom-color: var(--cat-intl); }
@@ -436,11 +444,6 @@
     .theme-sports .section-header { border-bottom-color: var(--cat-sports); }
     .theme-sports .section-part-tag { background: var(--cat-sports); }
     .theme-sports .sub-heading { border-left-color: var(--cat-sports); }
-
-    .theme-fin { border-top: 6px solid var(--cat-fin); }
-    .theme-fin .section-header { border-bottom-color: var(--cat-fin); }
-    .theme-fin .section-part-tag { background: var(--cat-fin); }
-    .theme-fin .sub-heading { border-left-color: var(--cat-fin); }
 
     /* ==========================================================================
        HOVERING CARDS & RESPONSIVE GRIDS
@@ -493,15 +496,16 @@
     }
 
     .badge-days { background: var(--cat-days-bg); color: var(--cat-days); border: 1px solid var(--cat-days-border); }
-    .badge-people { background: var(--cat-people-bg); color: var(--cat-people); border: 1px solid var(--cat-people-border); }
+    .badge-books { background: var(--cat-books-bg); color: var(--cat-books); border: 1px solid var(--cat-books-border); }
+    .badge-appt { background: var(--cat-appt-bg); color: var(--cat-appt); border: 1px solid var(--cat-appt-border); }
+    .badge-obit { background: var(--cat-obit-bg); color: var(--cat-obit); border: 1px solid var(--cat-obit-border); }
     .badge-def { background: var(--cat-def-bg); color: var(--cat-def); border: 1px solid var(--cat-def-border); }
+    .badge-sci { background: var(--cat-sci-bg); color: var(--cat-sci); border: 1px solid var(--cat-sci-border); }
     .badge-env { background: var(--cat-env-bg); color: var(--cat-env); border: 1px solid var(--cat-env-border); }
-    .badge-state { background: var(--cat-state-bg); color: var(--cat-state); border: 1px solid var(--cat-state-border); }
     .badge-awards { background: var(--cat-awards-bg); color: var(--cat-awards); border: 1px solid var(--cat-awards-border); }
+    .badge-index { background: var(--cat-index-bg); color: var(--cat-index); border: 1px solid var(--cat-index-border); }
     .badge-intl { background: var(--cat-intl-bg); color: var(--cat-intl); border: 1px solid var(--cat-intl-border); }
     .badge-sports { background: var(--cat-sports-bg); color: var(--cat-sports); border: 1px solid var(--cat-sports-border); }
-    .badge-fin { background: var(--cat-fin-bg); color: var(--cat-fin); border: 1px solid var(--cat-fin-border); }
-    .badge-audit { background: var(--cat-audit-bg); color: var(--cat-audit); border: 1px solid var(--cat-audit-border); }
 
     .ca-card h3 {
       font-size: 1.12rem;
@@ -666,7 +670,7 @@
       }
 
       /* Ensure every section and item is visible when printing even if filtered */
-      .ca-section, .ca-card, tbody tr {
+      .ca-section, .ca-card, tbody tr, .table-wrapper, .cards-grid, .cards-grid-3, .sub-heading {
         display: revert !important;
       }
 
@@ -769,27 +773,23 @@
          ====================================================================== -->
     <header class="hero-banner">
       <div class="hero-top-row">
-        <span class="hero-badge">Complete One-Shot Revision Notes • September 2026</span>
+        <span class="hero-badge">One-Shot Revision Notes • September 2026</span>
         <a class="hero-source-link" href="https://www.youtube.com/watch?v=ubhD1kQKkfc" target="_blank" rel="noopener noreferrer">
-          Source Lecture: Parcham Classes — September 2026 Monthly Current Affairs (7h 04m) ↗
+          Source Lecture: Parcham Classes — September 2026 Monthly Current Affairs ↗
         </a>
       </div>
       <h1>September 2026 Monthly Current Affairs — Master Exam Notes</h1>
       <p class="hero-subtitle">
-        100% Exhaustive, Fact-Checked &amp; Ordered Extraction of All Categories Taught in the Source Video (Important Days, Books, Appointments, Obituaries, Defence, Science &amp; Tech, Environment, National &amp; State News, GI Tags, Festivals, Awards, Indexes, International Summits, Sports &amp; Banking/Finance). Designed in <strong>Calibri</strong> for Crisp Physical Paper Printing &amp; Rapid Exam Revision.
+        Structured Exam Revision Notes Organized into 11 Core Categories: Important Days, Books, Appointments, Obituaries, Defence, Science &amp; Tech, Environment &amp; National News, Awards, Index &amp; Rankings, International News, and Sports. Designed in <strong>Calibri</strong> for Crisp Physical Paper Printing &amp; Rapid Revision.
       </p>
       <div class="hero-stats-grid">
         <div class="hero-stat-box">
-          <span class="hero-stat-num">14 Categories</span>
-          <span class="hero-stat-label">In Exact Lecture Sequence</span>
+          <span class="hero-stat-num">11 Categories</span>
+          <span class="hero-stat-label">Cleanly Separated Topics</span>
         </div>
         <div class="hero-stat-box">
-          <span class="hero-stat-num">150+ MCQs &amp; Facts</span>
-          <span class="hero-stat-label">100% Exam-Relevant Data</span>
-        </div>
-        <div class="hero-stat-box">
-          <span class="hero-stat-num">12 Fact-Checks</span>
-          <span class="hero-stat-label">ASR &amp; Context Corrections</span>
+          <span class="hero-stat-num">Exam-Focused</span>
+          <span class="hero-stat-label">High-Yield Current Affairs</span>
         </div>
         <div class="hero-stat-box">
           <span class="hero-stat-num">A4 Print-Ready</span>
@@ -808,7 +808,7 @@
             type="text"
             id="searchInput"
             class="search-input"
-            placeholder="Search any current affair, award, exercise, scheme, person, state, or rank (e.g., BRICS, Asian Games, Anant Nag, Blue Bond)..."
+            placeholder="Search any current affair, award, exercise, scheme, person, or rank (e.g., BRICS, Asian Games, Anant Nag, Yudh Abhyas, Ozone)..."
             aria-label="Search notes"
           />
         </div>
@@ -828,114 +828,35 @@
         </div>
       </div>
 
-      <div class="filter-chips-row" role="tablist" aria-label="Filter by Lecture Segment">
-        <button type="button" class="filter-chip active" data-filter="all">All Segments (100%)</button>
-        <button type="button" class="filter-chip" data-filter="sec-audit">0. Factual Checks</button>
-        <button type="button" class="filter-chip" data-filter="sec-days">1. Important Days (0:01:40)</button>
-        <button type="button" class="filter-chip" data-filter="sec-people">2. Books, Appointments &amp; Obituaries (0:45:44)</button>
-        <button type="button" class="filter-chip" data-filter="sec-def">3. Defence &amp; Sci-Tech (1:27:14)</button>
-        <button type="button" class="filter-chip" data-filter="sec-env">4. Environment &amp; National (2:20:04)</button>
-        <button type="button" class="filter-chip" data-filter="sec-state">5. State News, GI &amp; Awards (3:11:14)</button>
-        <button type="button" class="filter-chip" data-filter="sec-intl">6. Index &amp; International (4:37:00)</button>
-        <button type="button" class="filter-chip" data-filter="sec-sports">7. Sports &amp; Finance (5:22:32)</button>
+      <div class="filter-chips-row" role="tablist" aria-label="Filter by Topic Category">
+        <button type="button" class="filter-chip active" data-filter="all">All Topics (11)</button>
+        <button type="button" class="filter-chip" data-filter="sec-days">1. Important Days</button>
+        <button type="button" class="filter-chip" data-filter="sec-books">2. Books</button>
+        <button type="button" class="filter-chip" data-filter="sec-appointments">3. Appointments</button>
+        <button type="button" class="filter-chip" data-filter="sec-obituaries">4. Obituaries</button>
+        <button type="button" class="filter-chip" data-filter="sec-defence">5. Defence</button>
+        <button type="button" class="filter-chip" data-filter="sec-scitech">6. Science &amp; Tech</button>
+        <button type="button" class="filter-chip" data-filter="sec-env-nat">7. Environment &amp; National News</button>
+        <button type="button" class="filter-chip" data-filter="sec-awards">8. Awards</button>
+        <button type="button" class="filter-chip" data-filter="sec-index">9. Index &amp; Rankings</button>
+        <button type="button" class="filter-chip" data-filter="sec-intl">10. International News</button>
+        <button type="button" class="filter-chip" data-filter="sec-sports">11. Sports</button>
       </div>
       <div id="searchStatus" class="search-status"></div>
     </section>
 
     <!-- ======================================================================
-         SECTION 0: FACTUAL CHECKS, SPELLING FIXES & CONTEXT VERIFICATION
-         ====================================================================== -->
-    <section id="sec-audit" class="ca-section theme-audit" data-category="sec-audit">
-      <div class="section-header">
-        <div class="section-title-group">
-          <span class="section-part-tag">Pre-Note Verification</span>
-          <h2>Factual Checks, ASR Spelling Corrections &amp; Required Exam Contexts</h2>
-        </div>
-        <span class="section-timestamp">Source Audit &amp; Verification</span>
-      </div>
-
-      <p style="margin-bottom: 12px; color: var(--text-primary); font-weight: 600;">
-        Before compiling the lecture notes, all data and auto-generated captions from the <a href="https://www.youtube.com/watch?v=ubhD1kQKkfc" target="_blank" rel="noopener noreferrer">source video</a> and its four component sessions (<a href="https://www.youtube.com/watch?v=HymrCpALKY0" target="_blank" rel="noopener noreferrer">Part 1</a>, <a href="https://www.youtube.com/watch?v=7m3nhypfQO8" target="_blank" rel="noopener noreferrer">Part 2</a>, <a href="https://www.youtube.com/watch?v=GAMLmIIXF84" target="_blank" rel="noopener noreferrer">Part 3</a>, <a href="https://www.youtube.com/watch?v=zEw2EL6pcNU" target="_blank" rel="noopener noreferrer">Part 4</a>) were cross-verified against official Government of India (<a href="https://www.pib.gov.in/PressNoteDetails.aspx?NoteId=159946&amp;ModuleId=3&amp;reg=3&amp;lang=1" target="_blank" rel="noopener noreferrer">PIB</a>), UN, and international registries:
-      </p>
-
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th style="width: 18%;">Source / ASR Term</th>
-              <th style="width: 26%;">Corrected Official Term &amp; Spelling</th>
-              <th style="width: 56%;">Verified Factual Context for Competitive Exams</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><em>"रेंच नाई / आर ए एन सीएच एनएआई"</em> (07:03:24)</td>
-              <td><strong>'Rain Chennai' (<span class="high-yield">RAINCHNAI</span>)</strong></td>
-              <td>Launched by <strong>NCDEX</strong> (National Commodity &amp; Derivatives Exchange Ltd) as India's rainfall-based weather derivative index tracking <strong>Chennai's Northeast Monsoon</strong>.</td>
-            </tr>
-            <tr>
-              <td><em>"मोदी की रेटिंग / मोदी फॉरकास्ट"</em> (07:02:56)</td>
-              <td><strong><span class="high-yield">Moody's Ratings</span></strong></td>
-              <td>Global credit rating agency Moody's upgraded India's <strong>FY27 GDP growth forecast to 7.0%</strong> (up from its previous 6.0% / 6.6% estimate).</td>
-            </tr>
-            <tr>
-              <td><em>"प्रोसोपिस सिनेरेरिया"</em> (00:04:03)</td>
-              <td><strong><em><span class="high-yield">Prosopis cineraria</span></em> (Khejri Tree)</strong></td>
-              <td>Scientific name of the <strong>Khejri tree</strong>, protected during the <strong>1730 Khejarli Massacre</strong> in Marwar (Jodhpur), Rajasthan. It is the official <strong>State Tree of Rajasthan</strong> and <strong>Telangana</strong> (called <em>Jammi Chettu</em>).</td>
-            </tr>
-            <tr>
-              <td><em>"धनवंतरी जयंती / 23 सितंबर आयुर्वेद डे"</em> (00:13:35)</td>
-              <td><strong>11th National Ayurveda Day (<span class="high-yield">23 September 2026</span>)</strong></td>
-              <td>Previously observed on Dhanteras (Dhanvantari Jayanti, which varied annually by lunar calendar). Starting in <strong>2025</strong>, the Government of India fixed <strong>23 September</strong> (Autumnal Equinox) as the permanent date for <a href="https://www.pib.gov.in/PressReleaseDetail.aspx?PRID=2307397&amp;reg=3&amp;lang=1" target="_blank" rel="noopener noreferrer">National Ayurveda Day</a>.</td>
-            </tr>
-            <tr>
-              <td><em>"UNWTO / यूएन डब्ल्यूटीओ हेड"</em> (00:18:08)</td>
-              <td><strong>UN Tourism SG: <span class="high-yield">Shaikha Nasser Al Nowais</span></strong></td>
-              <td>UNWTO was officially renamed <strong>UN Tourism</strong>. <strong>Shaikha Nasser Al Nowais</strong> (UAE) was elected Secretary-General for the <strong>2026–2029 term</strong>, becoming the <strong>first woman</strong> to lead the organisation since its inception (succeeding Zurab Pololikashvili).</td>
-            </tr>
-            <tr>
-              <td><em>"जेड टी लाल रथांगी"</em> (Part 4, 00:07:26)</td>
-              <td><strong><span class="high-yield">Z. T. Lalrithangi</span> (Mizoram)</strong></td>
-              <td>Teacher-turned-strawberry farmer from Champhai, Mizoram, selected by the <strong>Food and Agriculture Organization (FAO)</strong> among the <strong>'100 Women Heroes in Agrifood Systems and Rural Development'</strong> (felicitated at the World Food Forum in Rome).</td>
-            </tr>
-            <tr>
-              <td><em>"शास्त्र रामानुजन प्राइज — सारा पेलूज"</em> (Part 4, 00:09:36)</td>
-              <td><strong><span class="high-yield">Dr. Sarah Peluse</span> (2026 SASTRA Ramanujan Prize)</strong></td>
-              <td>Associate Professor of Mathematics (Stanford University / University of Michigan), awarded the <strong>2026 SASTRA Ramanujan Prize</strong> ($10,000 cash award for mathematicians aged ≤32) for breakthroughs in <strong>arithmetic combinatorics and analytic number theory</strong>.</td>
-            </tr>
-            <tr>
-              <td><em>"अवार्ड में ₹5 लाख / ₹1 लाख कैश प्राइस"</em> (ASR slip in Shorts)</td>
-              <td><strong>Dadasaheb Phalke Award Cash Prize: <span class="high-yield">₹10,00,000 (₹10 Lakh)</span></strong></td>
-              <td>As confirmed in the 72nd National Film Awards session, the Dadasaheb Phalke Award carries a <strong>Swarna Kamal (Golden Lotus)</strong> medallion, a shawl, and a cash prize of <strong>₹10,00,000 (₹10 Lakh)</strong> (ASR misheard "दस लाख" as "एक लाख" in one caption).</td>
-            </tr>
-            <tr>
-              <td><em>"UNESCO Tentative List 73 vs 78 properties"</em></td>
-              <td><strong><span class="high-yield">73 Properties</span> (Early Sept) → <span class="high-yield">78 Properties</span> (29 Sept 2026)</strong></td>
-              <td>India's UNESCO Tentative List reached <strong>73 properties</strong> in early September with Assam's <em>Rangpur–Sivasagar Historical Ensemble</em>, and expanded to <strong>78 properties</strong> on 29 September 2026 with 5 additions: <em>Sites of Satyagraha</em>, <em>Bagh Caves</em>, <em>Chambal Valley Temples</em>, <em>Udayagiri Caves</em>, and <em>Ginnorgarh Fort</em>.</td>
-            </tr>
-            <tr>
-              <td><em>"ब्रिक्स एग्रीन (BRICS AGRIN)"</em></td>
-              <td><strong><span class="high-yield">Agro-Inputs, Genetic Resources, and Information Network</span></strong></td>
-              <td>Voluntary, non-binding, farmer-centric platform established under the <a href="https://www.pib.gov.in/PressNoteDetails.aspx?NoteId=159946&amp;ModuleId=3&amp;reg=3&amp;lang=1" target="_blank" rel="noopener noreferrer">18th BRICS Summit New Delhi Declaration</a> (12–13 Sept 2026) for cooperation in seeds, germplasm, and agricultural inputs.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- ======================================================================
-         SEGMENT 1: IMPORTANT DAYS & THEMES — SEPTEMBER 2026 (0:01:40 – 0:45:44)
+         1. IMPORTANT DAYS
          ====================================================================== -->
     <section id="sec-days" class="ca-section theme-days" data-category="sec-days">
       <div class="section-header">
         <div class="section-title-group">
-          <span class="section-part-tag">Segment 1 • Part 1</span>
-          <h2>Important Days &amp; Themes — September 2026</h2>
+          <span class="section-part-tag">Category 1</span>
+          <h2>1. Important Days</h2>
         </div>
-        <span class="section-timestamp">⏱️ Video Timestamp: 0:01:40 – 0:45:44</span>
       </div>
 
-      <h3 class="sub-heading">1A. Deep-Dive Featured Important Days &amp; Static Linkages (As Taught First in Lecture)</h3>
+      <h3 class="sub-heading">1A. Featured Important Days &amp; Static Linkages</h3>
       <div class="cards-grid">
 
         <!-- Card 1: National Forest Martyrs Day -->
@@ -958,7 +879,7 @@
             </li>
           </ul>
           <div class="memory-box">
-            <strong>💡 Memory Trick (As Taught):</strong> Draw two tree trunks side-by-side (<code>1 1</code>) → <strong>11 September</strong> is National Forest Martyrs' Day.
+            <strong>💡 Memory Trick:</strong> Draw two tree trunks side-by-side (<code>1 1</code>) → <strong>11 September</strong> is National Forest Martyrs' Day.
           </div>
         </article>
 
@@ -966,7 +887,7 @@
         <article class="ca-card">
           <div class="card-top-bar">
             <span class="card-badge badge-days">14 September</span>
-            <span class="card-badge badge-state">Polity &amp; Constitutional GK</span>
+            <span class="card-badge badge-env">Polity &amp; Constitutional GK</span>
           </div>
           <h3>2. Hindi Diwas (हिंदी दिवस) vs. World Hindi Day</h3>
           <ul>
@@ -995,20 +916,20 @@
             <li><strong>2026 Theme:</strong> <span class="high-yield">"Global Action for a Cooler Planet"</span> (<a href="https://ozone.unep.org/ozone-day/global-action-cooler-planet" target="_blank" rel="noopener noreferrer">UNEP Ozone Secretariat</a> — marking 10 years of the Kigali Amendment).</li>
             <li><strong>Scientific &amp; Atmospheric Context:</strong>
               <ul>
-                <li><strong>Molecular Formula:</strong> $\text{O}_3$ (Trioxygen).</li>
+                <li><strong>Molecular Formula:</strong> O<sub>3</sub> (Trioxygen).</li>
                 <li><strong>Atmospheric Layer:</strong> Located in the <strong>Stratosphere</strong> (~15–35 km altitude), where it absorbs harmful solar <strong>Ultraviolet (UV-B) radiation</strong>. Unlike the Troposphere (where temperature decreases with height due to the normal lapse rate), temperature in the <strong>Stratosphere increases with altitude</strong> due to UV absorption by ozone.</li>
               </ul>
             </li>
             <li><strong>Treaties &amp; Amendments:</strong>
               <ul>
                 <li><strong>Vienna Convention (1985):</strong> Framework for ozone protection.</li>
-                <li><strong>Montreal Protocol (Signed 16 Sept 1987):</strong> Legally binding treaty to phase out <strong>Ozone Depleting Substances (ODS)</strong> such as CFCs (Chlorofluorocarbons), Halons, and Carbon Tetrachloride ($\text{CCl}_4$).</li>
+                <li><strong>Montreal Protocol (Signed 16 Sept 1987):</strong> Legally binding treaty to phase out <strong>Ozone Depleting Substances (ODS)</strong> such as CFCs (Chlorofluorocarbons), Halons, and Carbon Tetrachloride (CCl<sub>4</sub>).</li>
                 <li><strong>Kigali Amendment (2016, Rwanda):</strong> Phase-down of <strong>HFCs (Hydrofluorocarbons)</strong> — potent greenhouse gases that warm the planet.</li>
               </ul>
             </li>
           </ul>
           <div class="memory-box">
-            <strong>💡 Memory Trick:</strong> On your "Sweet <strong>16th</strong> Birthday" (16 Sept), your teacher asks your wish: you wish for a <strong>Cooler Planet</strong> with a healthy Ozone Layer to protect your skin from UV rays!
+            <strong>💡 Memory Trick:</strong> On your "Sweet <strong>16th</strong> Birthday" (16 Sept), wish for a <strong>Cooler Planet</strong> with a healthy Ozone Layer to protect against UV rays.
           </div>
         </article>
 
@@ -1016,7 +937,7 @@
         <article class="ca-card">
           <div class="card-top-bar">
             <span class="card-badge badge-days">23 September</span>
-            <span class="card-badge badge-state">Ministry of AYUSH</span>
+            <span class="card-badge badge-env">Ministry of AYUSH</span>
           </div>
           <h3>4. 11th National Ayurveda Day 2026</h3>
           <ul>
@@ -1038,7 +959,7 @@
             <li><strong>Observed On:</strong> <span class="high-yield">27 September</span> (first celebrated in <strong>1980</strong>; marks the adoption of the UNWTO Statutes on 27 September 1970).</li>
             <li><strong>2026 Official Global Host Cities:</strong> <span class="high-yield">San Salvador and Surf City (El Salvador)</span>.</li>
             <li><strong>Nodal UN Agency:</strong> <strong>UN Tourism</strong> (formerly UNWTO; Headquarters: <strong>Madrid, Spain</strong>; Secretary-General: <strong>Shaikha Nasser Al Nowais</strong>).</li>
-            <li><strong>Major Indian Government Tourism Schemes (PIB Compilation):</strong>
+            <li><strong>Major Indian Government Tourism Schemes:</strong>
               <ul>
                 <li><strong>Swadesh Darshan 1.0 (Launched Jan 2015):</strong> Development of theme-based tourist circuits (e.g., Buddhist Circuit, Ramayana Circuit, Himalayan Circuit).</li>
                 <li><strong>Swadesh Darshan 2.0 (Launched 2023):</strong> Shifted focus to sustainable and responsible destination-centric tourism across <strong>110+ projects</strong>.</li>
@@ -1147,8 +1068,8 @@
             </tr>
             <tr>
               <td><strong>15 Sept</strong></td>
-              <td><strong>National Engineers' Day</strong> &amp; <strong>International Day of Democracy</strong></td>
-              <td>Engineers' Day marks the birth anniversary of Bharat Ratna <strong>Sir M. Visvesvaraya</strong> (author of <em>Planned Economy for India</em>, 1934). UN International Day of Democracy observed globally.</td>
+              <td><strong>National Engineers' Day</strong>, <strong>International Day of Democracy</strong>, <strong>Doordarshan 67th Foundation Day</strong> &amp; <strong>Sarat Chandra Chattopadhyay 150th Birth Anniversary</strong></td>
+              <td>Engineers' Day marks the birth anniversary of Bharat Ratna <strong>Sir M. Visvesvaraya</strong> (author of <em>Planned Economy for India</em>, 1934); UN International Day of Democracy; <strong>Doordarshan</strong> founded on <strong>15 Sept 1959</strong>; 150th Birth Anniversary of Bengali novelist <strong>Sarat Chandra Chattopadhyay</strong> (<em>Devdas</em>, <em>Srikanta</em>, <em>Pather Dabi</em>).</td>
             </tr>
             <tr>
               <td><strong>16 Sept</strong></td>
@@ -1157,8 +1078,8 @@
             </tr>
             <tr>
               <td><strong>17 Sept</strong></td>
-              <td><strong>World Patient Safety Day</strong>, <strong>Hyderabad Liberation Day</strong> &amp; <strong>Doordarshan 67th Foundation Day</strong></td>
-              <td><strong>Hyderabad Liberation Day</strong> commemorates <strong>Operation Polo (17 Sept 1948)</strong> led by Major General J. N. Chaudhuri; <strong>Doordarshan</strong> founded on 15/17 Sept 1959; also marks <strong>PM Narendra Modi's 76th Birthday</strong> (Seva Pakhwada) &amp; <strong>Vishwakarma Jayanti</strong>.</td>
+              <td><strong>World Patient Safety Day</strong>, <strong>Hyderabad Liberation Day</strong> &amp; <strong>Social Justice Day (TN)</strong></td>
+              <td><strong>Hyderabad Liberation Day</strong> commemorates <strong>Operation Polo (17 Sept 1948)</strong> led by Major General J. N. Chaudhuri; birth anniversary of <strong>E. V. Ramasamy 'Periyar'</strong> (Self-Respect Movement, 1925) observed as Social Justice Day in Tamil Nadu; also marks <strong>PM Narendra Modi's 76th Birthday</strong> (Seva Pakhwada) &amp; <strong>Vishwakarma Jayanti</strong>.</td>
             </tr>
             <tr>
               <td><strong>18 Sept</strong></td>
@@ -1236,18 +1157,16 @@
     </section>
 
     <!-- ======================================================================
-         SEGMENT 2: BOOKS, APPOINTMENTS & OBITUARIES (0:45:44 – 1:27:14)
+         2. BOOKS
          ====================================================================== -->
-    <section id="sec-people" class="ca-section theme-people" data-category="sec-people">
+    <section id="sec-books" class="ca-section theme-books" data-category="sec-books">
       <div class="section-header">
         <div class="section-title-group">
-          <span class="section-part-tag">Segment 2 • Part 1</span>
-          <h2>Books &amp; Authors, Appointments (National &amp; International) &amp; Obituaries</h2>
+          <span class="section-part-tag">Category 2</span>
+          <h2>2. Books</h2>
         </div>
-        <span class="section-timestamp">⏱️ Video Timestamp: 0:45:44 – 1:27:14</span>
       </div>
 
-      <h3 class="sub-heading">2A. Books &amp; Literary Releases in News (September 2026)</h3>
       <div class="table-wrapper">
         <table>
           <thead>
@@ -1266,7 +1185,7 @@
             <tr>
               <td><strong><em><span class="high-yield">Who Owns What</span></em></strong></td>
               <td><strong>Judge Renata</strong></td>
-              <td>Featured in September 2026 Books &amp; Authors MCQ segment on property rights and legal ownership frameworks.</td>
+              <td>Focuses on property rights and legal ownership frameworks.</td>
             </tr>
             <tr>
               <td><strong>Russian Translation of <em><span class="high-yield">Thirukkural</span></em></strong></td>
@@ -1275,8 +1194,8 @@
             </tr>
             <tr>
               <td><strong><em><span class="high-yield">Belongings: A Journey of Love</span></em></strong></td>
-              <td><strong>Sonia Gandhi</strong> (and contemporary political/biographical releases)</td>
-              <td>Highlighted in the September 2026 Books &amp; Authors revision roundup.</td>
+              <td><strong>Sonia Gandhi</strong></td>
+              <td>Notable biographical and literary release in September 2026.</td>
             </tr>
             <tr>
               <td><strong><em>Epic of Manas</em> (Commemorative Edition)</strong></td>
@@ -1284,19 +1203,31 @@
               <td>Highlighted alongside Mahatma Gandhi statue tribute during the 26th SCO Summit visit.</td>
             </tr>
             <tr>
-              <td><strong>Classical Static GK Book Mentioned: <em>Malavikagnimitram</em></strong></td>
-              <td><strong>Kalidasa</strong> (Corrected from student comment confusion with Ashvaghosha's <em>Buddhacharita</em>)</td>
-              <td>Sanskrit drama depicting the love story of Shunga king Agnimitra and Malavika.</td>
+              <td><strong><em>Malavikagnimitram</em> (Static GK Reference)</strong></td>
+              <td><strong>Kalidasa</strong></td>
+              <td>Classical Sanskrit drama depicting the love story of Shunga king Agnimitra and Malavika.</td>
             </tr>
           </tbody>
         </table>
       </div>
+    </section>
 
-      <h3 class="sub-heading">2B. National Appointments (September 2026)</h3>
+    <!-- ======================================================================
+         3. APPOINTMENTS
+         ====================================================================== -->
+    <section id="sec-appointments" class="ca-section theme-appt" data-category="sec-appointments">
+      <div class="section-header">
+        <div class="section-title-group">
+          <span class="section-part-tag">Category 3</span>
+          <h2>3. Appointments</h2>
+        </div>
+      </div>
+
+      <h3 class="sub-heading">3A. National Appointments (September 2026)</h3>
       <div class="cards-grid">
         <article class="ca-card">
           <div class="card-top-bar">
-            <span class="card-badge badge-people">Constitutional &amp; Defence</span>
+            <span class="card-badge badge-appt">Constitutional &amp; Defence</span>
           </div>
           <h3>Key Governance, Security &amp; Regulatory Appointments</h3>
           <ul>
@@ -1312,22 +1243,21 @@
 
         <article class="ca-card">
           <div class="card-top-bar">
-            <span class="card-badge badge-people">PSU, Banking &amp; Corporate</span>
+            <span class="card-badge badge-appt">PSU, Banking &amp; Corporate</span>
           </div>
           <h3>Banking, PSU &amp; Corporate Leadership Updates</h3>
           <ul>
             <li><strong>Executive Director, Reserve Bank of India (RBI):</strong> <span class="high-yield">Suman Ray</span> appointed as RBI Executive Director.</li>
-            <li><strong>CMD of NCL / NLC India Ltd:</strong> <span class="high-yield">N. Franklin Jayakumar</span> appointed as Chairman &amp; Managing Director.</li>
+            <li><strong>CMD of NLC India Ltd:</strong> <span class="high-yield">N. Franklin Jayakumar</span> appointed as Chairman &amp; Managing Director.</li>
             <li><strong>Chairman of Asian Paints:</strong> <span class="high-yield">Leo Puri</span> appointed as Chairman of the Board.</li>
             <li><strong>Interim CEO of Ujjivan Small Finance Bank:</strong> <span class="high-yield">Carol Furtado</span> named Interim CEO.</li>
             <li><strong>HDFC Bank CEO Update:</strong> <span class="high-yield">Sashidhar Jagdishan</span> announced retirement timeline following tenure milestones.</li>
             <li><strong>Secretary-General of Asian-Pacific Postal Union (APPU):</strong> <span class="high-yield">Dr. Vinay Prakash Singh</span> re-elected as Secretary-General of APPU (HQ: Bangkok, Thailand).</li>
-            <li><strong>Other Corporate/Sports Bodies:</strong> Leadership updates in <strong>Tata Sons</strong> and the <strong>Indian Super League (ISL) CEO</strong>.</li>
           </ul>
         </article>
       </div>
 
-      <h3 class="sub-heading">2C. International Appointments &amp; Diplomatic Envoys (September 2026)</h3>
+      <h3 class="sub-heading">3B. International Appointments &amp; Diplomatic Envoys (September 2026)</h3>
       <div class="table-wrapper">
         <table>
           <thead>
@@ -1386,11 +1316,22 @@
           </tbody>
         </table>
       </div>
+    </section>
 
-      <h3 class="sub-heading">2D. Obituaries &amp; Notable Personalities in News (September 2026)</h3>
+    <!-- ======================================================================
+         4. OBITUARIES
+         ====================================================================== -->
+    <section id="sec-obituaries" class="ca-section theme-obit" data-category="sec-obituaries">
+      <div class="section-header">
+        <div class="section-title-group">
+          <span class="section-part-tag">Category 4</span>
+          <h2>4. Obituaries</h2>
+        </div>
+      </div>
+
       <div class="cards-grid-3">
         <article class="ca-card">
-          <span class="card-badge badge-people">Classical Music</span>
+          <span class="card-badge badge-obit">Classical Music</span>
           <h3>Pandit Indudhar Nirode</h3>
           <ul>
             <li><strong>Field:</strong> Veteran <strong>Hindustani Classical Vocalist</strong>.</li>
@@ -1399,7 +1340,7 @@
         </article>
 
         <article class="ca-card">
-          <span class="card-badge badge-people">Carnatic Music</span>
+          <span class="card-badge badge-obit">Carnatic Music</span>
           <h3>Prof. S. R. Janakiraman</h3>
           <ul>
             <li><strong>Field:</strong> Legendary <strong>Carnatic Vocalist &amp; Musicologist</strong>.</li>
@@ -1408,7 +1349,7 @@
         </article>
 
         <article class="ca-card">
-          <span class="card-badge badge-people">Armed Forces</span>
+          <span class="card-badge badge-obit">Armed Forces</span>
           <h3>Flt Lt Alfred Tyrone Cooke</h3>
           <ul>
             <li><strong>Field:</strong> <strong>1965 Indo-Pak War Hero</strong> (Indian Air Force).</li>
@@ -1417,47 +1358,35 @@
         </article>
 
         <article class="ca-card">
-          <span class="card-badge badge-people">Politics &amp; Theatre</span>
-          <h3>Bhagat Chuni Lal &amp; Surya Krishnamoorthy</h3>
+          <span class="card-badge badge-obit">Politics</span>
+          <h3>Bhagat Chuni Lal</h3>
           <ul>
-            <li><strong>Bhagat Chuni Lal:</strong> Veteran BJP leader and former Cabinet Minister of <strong>Punjab</strong> passed away.</li>
-            <li><strong>Surya Krishnamoorthy:</strong> Founder of the <strong>Soorya Stage and Film Society</strong> (Kerala) and pioneer of light-and-sound theatre passed away.</li>
+            <li><strong>Field:</strong> Veteran BJP leader and former Cabinet Minister of <strong>Punjab</strong>.</li>
           </ul>
         </article>
 
         <article class="ca-card">
-          <span class="card-badge badge-people">Trailblazers</span>
-          <h3>Tenzing Sangyang &amp; Nova Williams</h3>
+          <span class="card-badge badge-obit">Theatre &amp; Culture</span>
+          <h3>Surya Krishnamoorthy</h3>
           <ul>
-            <li><strong>Tenzing Sangyang:</strong> Commissioned as the <span class="high-yield">first woman officer from Ladakh</span> in the Armed Forces.</li>
-            <li><strong>Nova Williams:</strong> Recognised as the world's <strong>youngest computer programmer</strong>.</li>
-          </ul>
-        </article>
-
-        <article class="ca-card">
-          <span class="card-badge badge-people">Historic Anniversaries</span>
-          <h3>Sarat Chandra Chattopadhyay &amp; Periyar</h3>
-          <ul>
-            <li><strong>Sarat Chandra Chattopadhyay:</strong> Nation commemorated the <strong>150th Birth Anniversary</strong> of the iconic Bengali novelist (author of <em>Devdas</em>, <em>Srikanta</em>, <em>Pather Dabi</em>).</li>
-            <li><strong>E. V. Ramasamy 'Periyar':</strong> Birth anniversary observed on 17 Sept as <strong>Social Justice Day</strong> in Tamil Nadu (Self-Respect Movement, 1925).</li>
+            <li><strong>Field:</strong> Founder of the <strong>Soorya Stage and Film Society</strong> (Kerala) and pioneer of light-and-sound theatre.</li>
           </ul>
         </article>
       </div>
     </section>
 
     <!-- ======================================================================
-         SEGMENT 3: DEFENCE & SCIENCE & TECHNOLOGY (1:27:14 – 2:20:04)
+         5. DEFENCE
          ====================================================================== -->
-    <section id="sec-def" class="ca-section theme-def" data-category="sec-def">
+    <section id="sec-defence" class="ca-section theme-def" data-category="sec-defence">
       <div class="section-header">
         <div class="section-title-group">
-          <span class="section-part-tag">Segment 3 • Part 2</span>
-          <h2>Defence News, Military Exercises &amp; Science &amp; Technology</h2>
+          <span class="section-part-tag">Category 5</span>
+          <h2>5. Defence</h2>
         </div>
-        <span class="section-timestamp">⏱️ Video Timestamp: 1:27:14 – 2:20:04</span>
       </div>
 
-      <h3 class="sub-heading">3A. Military Exercises in September 2026 (Complete Exam Table)</h3>
+      <h3 class="sub-heading">5A. Military Exercises in September 2026</h3>
       <div class="table-wrapper">
         <table>
           <thead>
@@ -1533,7 +1462,7 @@
         </table>
       </div>
 
-      <h3 class="sub-heading">3B. Weapons, Indigenisation, Naval Vessels &amp; Defence Operations</h3>
+      <h3 class="sub-heading">5B. Weapons, Indigenisation, Naval Vessels &amp; Defence Operations</h3>
       <div class="cards-grid">
         <article class="ca-card">
           <span class="card-badge badge-def">Indigenous Weapons &amp; Labs</span>
@@ -1546,6 +1475,7 @@
             <li><strong><span class="high-yield">DRDO Gallium Nitride (GaN) MMIC</span>:</strong> DRDO indigenously developed GaN Monolithic Microwave Integrated Circuit technology for next-generation AESA radars and electronic warfare.</li>
             <li><strong><span class="high-yield">Drone-a-thon 2026</span>:</strong> Conducted by the <strong>Indian Air Force (IAF)</strong> at <strong>Pokhran, Rajasthan</strong>.</li>
             <li><strong><span class="high-yield">VIMARSH 2026</span>:</strong> DRDO Industry Synergy Meet held to accelerate defence indigenisation.</li>
+            <li><strong><span class="high-yield">Tenzing Sangyang</span>:</strong> Commissioned as the <strong>first woman officer from Ladakh</strong> in the Indian Armed Forces.</li>
           </ul>
         </article>
 
@@ -1561,7 +1491,7 @@
               <ul>
                 <li><strong>VAMPIRE System:</strong> Counter-drone rocket system deployed by the <strong>US Navy</strong>.</li>
                 <li><strong>LORA Missile:</strong> Long-Range Artillery ballistic missile tested by <strong>Germany</strong> (developed by Israel Aerospace Industries).</li>
-                <li><strong>Javelin Anti-Tank Missile:</strong> Indian defense partner signed MoU for co-production of Javelin all-up-round missiles in India.</li>
+                <li><strong>Javelin Anti-Tank Missile:</strong> Indian defence partner signed MoU for co-production of Javelin all-up-round missiles in India.</li>
                 <li><strong>Geran-2 Drones (Russia)</strong> &amp; <strong>Patriot Air Defence System (USA)</strong>.</li>
               </ul>
             </li>
@@ -1569,11 +1499,22 @@
           </ul>
         </article>
       </div>
+    </section>
 
-      <h3 class="sub-heading">3C. Science, Space, AI, Semiconductors &amp; Biotech Headlines</h3>
+    <!-- ======================================================================
+         6. SCIENCE & TECH
+         ====================================================================== -->
+    <section id="sec-scitech" class="ca-section theme-sci" data-category="sec-scitech">
+      <div class="section-header">
+        <div class="section-title-group">
+          <span class="section-part-tag">Category 6</span>
+          <h2>6. Science &amp; Tech</h2>
+        </div>
+      </div>
+
       <div class="cards-grid">
         <article class="ca-card">
-          <span class="card-badge badge-def">Space &amp; Astronomy</span>
+          <span class="card-badge badge-sci">Space &amp; Astronomy</span>
           <h3>ISRO, NASA &amp; Global Space Missions</h3>
           <ul>
             <li><strong><span class="high-yield">NASA's Nancy Grace Roman Space Telescope</span>:</strong> Next-generation wide-field infrared space observatory (named after NASA's first Chief of Astronomy) prepared for launch to study dark energy and exoplanets.</li>
@@ -1587,11 +1528,12 @@
         </article>
 
         <article class="ca-card">
-          <span class="card-badge badge-def">AI, Chips &amp; Biotech</span>
+          <span class="card-badge badge-sci">AI, Chips &amp; Biotech</span>
           <h3>Semiconductors, AI Platforms &amp; Health Science</h3>
           <ul>
             <li><strong><span class="high-yield">Google DeepMind 'AlphaGenome'</span>:</strong> AI atlas designed to decode non-coding human DNA and genetic disease variants; OpenAI introduced <strong>GPT-6 Astra</strong>.</li>
             <li><strong><span class="high-yield">SARAL AI Platform</span>:</strong> Launched in India to convert complex scientific research papers into accessible summaries and regional languages.</li>
+            <li><strong><span class="high-yield">Nova Williams</span>:</strong> Recognised as the world's <strong>youngest computer programmer</strong>.</li>
             <li><strong>Indigenous Semiconductors (<span class="high-yield">SEMICON India 2026</span>):</strong> <strong>L&amp;T Semiconductor Technologies</strong> unveiled India's first indigenous <strong>Silicon Carbide (SiC) chip</strong>; <strong>TCS</strong> developed an indigenous <strong>System-on-Chip (SoC)</strong>.</li>
             <li><strong><span class="high-yield">India Mobile Congress (IMC) 2026 &amp; Viksit Tech 47</span>:</strong> Hosted in <strong>New Delhi</strong>.</li>
             <li><strong>Agriculture &amp; Health Science:</strong>
@@ -1607,18 +1549,17 @@
     </section>
 
     <!-- ======================================================================
-         SEGMENT 4: ENVIRONMENT & NATIONAL NEWS (2:20:04 – 3:11:14)
+         7. ENVIRONMENT & NATIONAL NEWS
          ====================================================================== -->
-    <section id="sec-env" class="ca-section theme-env" data-category="sec-env">
+    <section id="sec-env-nat" class="ca-section theme-env" data-category="sec-env-nat">
       <div class="section-header">
         <div class="section-title-group">
-          <span class="section-part-tag">Segment 4 • Part 2 &amp; Part 3</span>
-          <h2>Environment, Ecology &amp; National News, Schemes &amp; Initiatives</h2>
+          <span class="section-part-tag">Category 7</span>
+          <h2>7. Environment &amp; National News</h2>
         </div>
-        <span class="section-timestamp">⏱️ Video Timestamp: 2:20:04 – 3:11:14</span>
       </div>
 
-      <h3 class="sub-heading">4A. Environment, COP Conferences, Wildlife &amp; Conservation</h3>
+      <h3 class="sub-heading">7A. Environment, COP Conferences, Wildlife &amp; Conservation</h3>
       <div class="cards-grid">
         <article class="ca-card">
           <span class="card-badge badge-env">Global Summits &amp; Reports</span>
@@ -1647,7 +1588,7 @@
         </article>
       </div>
 
-      <h3 class="sub-heading">4B. National News, Flagship Government Schemes, Ports &amp; Railways</h3>
+      <h3 class="sub-heading">7B. National News, Flagship Government Schemes, Ports &amp; Railways</h3>
       <div class="cards-grid">
         <article class="ca-card">
           <span class="card-badge badge-env">Flagship Schemes</span>
@@ -1656,7 +1597,7 @@
             <li><strong><span class="high-yield">PM Vishwakarma Scheme Completes 3 Years</span> (17 Sept 2023 – 2026):</strong>
               <ul>
                 <li>Crossed <strong>30 Lakh registrations</strong>; it is a <strong>100% Central Sector Scheme</strong> (fully funded by Union Govt; nodal ministry: <strong>Ministry of MSME</strong>) with an outlay of ₹13,000 crore.</li>
-                <li>Covers traditional artisans and craftspeople (aged <strong>18 years and above</strong>) engaged in <strong>18 traditional trades</strong> in the unorganised sector (1 beneficiary per family; must not have availed mudra/SVANidhi credit in past 5 years).</li>
+                <li>Covers traditional artisans and craftspeople (aged <strong>18 years and above</strong>) engaged in <strong>18 traditional trades</strong> in the unorganised sector (1 beneficiary per family; must not have availed MUDRA/PM SVANidhi credit in past 5 years).</li>
                 <li>Provides PM Vishwakarma Certificate/ID, ₹500/day skill stipend, ₹15,000 toolkit e-voucher, and collateral-free enterprise development loans of <strong>₹1 Lakh (1st tranche, 18 months)</strong> and <strong>₹2 Lakh (2nd tranche, 30 months)</strong> at a concessional <strong>5% interest rate</strong> (with 8% MoMSME interest subvention).</li>
               </ul>
             </li>
@@ -1713,101 +1654,17 @@
     </section>
 
     <!-- ======================================================================
-         SEGMENT 5: STATE NEWS, FESTIVALS, GI TAGS & AWARDS (3:11:14 – 4:37:00)
+         8. AWARDS
          ====================================================================== -->
-    <section id="sec-state" class="ca-section theme-state" data-category="sec-state">
+    <section id="sec-awards" class="ca-section theme-awards" data-category="sec-awards">
       <div class="section-header">
         <div class="section-title-group">
-          <span class="section-part-tag">Segment 5 • Part 3 &amp; Part 4</span>
-          <h2>State News, GI Tags, Cultural Festivals &amp; Awards and Honours</h2>
+          <span class="section-part-tag">Category 8</span>
+          <h2>8. Awards</h2>
         </div>
-        <span class="section-timestamp">⏱️ Video Timestamp: 3:11:14 – 4:37:00</span>
       </div>
 
-      <h3 class="sub-heading">5A. State-Wise Current Affairs, Schemes &amp; Heritage (September 2026)</h3>
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th style="width: 20%;">State / UT</th>
-              <th style="width: 80%;">Key Schemes, Projects, Heritage &amp; Governance Developments</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Ladakh</strong></td>
-              <td>• <span class="high-yield">Kumik Village</span> (Zanskar Valley, Kargil) declared <strong>Ladakh's First Designated Heritage Village</strong>.<br/>• Proposal discussed for inserting <strong>Article 371K</strong> for constitutional land and cultural safeguards.<br/>• Monthly honorarium increased for traditional village heads known as <strong>'Goba'</strong>; <strong>Drass Festival</strong> celebrated; <strong>Mount Ramjak</strong> expedition completed.</td>
-            </tr>
-            <tr>
-              <td><strong>Mizoram &amp; Arunachal Pradesh</strong></td>
-              <td>• <span class="high-yield">Saitual District (Mizoram)</span> achieved <strong>"Surakshit" HIV Status</strong> by meeting the UNAIDS 95-95-95 targets; Mizoram also hosted the <strong>Pluck &amp; Pay Festival</strong>.<br/>• <strong>Arunachal Pradesh</strong> developed <strong>India's First 'Bio-Happy District'</strong>.</td>
-            </tr>
-            <tr>
-              <td><strong>Jammu &amp; Kashmir</strong></td>
-              <td>• Hosted the inaugural <strong>J&amp;K International Film Festival</strong> with the theme <span class="high-yield">"Rangi Cinema"</span>.<br/>• Organised <strong>Jammu Euphoria</strong> cultural festival; GI-tagged <strong>Guchi Mushroom</strong> (Morel from Doda) featured at the 18th BRICS Summit.</td>
-            </tr>
-            <tr>
-              <td><strong>Delhi (NCT)</strong></td>
-              <td>• Delhi Cabinet approved the <span class="high-yield">Durga e-Auto Scheme</span> exclusively for <strong>women and transgender persons</strong>.<br/>• Launched <strong>Delhi Pink Force</strong> for women's security, <strong>Delhi Solar Portal</strong>, and a <strong>₹2,000/month financial support scheme</strong> for school athletes.<br/>• Historic 160-year-old <strong>Chandni Chowk Town Hall</strong> being transformed into a Heritage Centre.</td>
-            </tr>
-            <tr>
-              <td><strong>Uttar Pradesh</strong></td>
-              <td>• Launched <strong>Health Insurance Scheme for Advocates</strong>, <strong>Bharat Taxi</strong> service, and <strong>Krishak Samriddhi Yojana</strong>.<br/>• <strong>National Security Guard (NSG) Hub</strong> inaugurated in <strong>Ayodhya</strong>; hosted <strong>UP International Trade Show 2026</strong> in Greater Noida.</td>
-            </tr>
-            <tr>
-              <td><strong>Karnataka</strong></td>
-              <td>• State Cabinet cleared proposal to recognise <span class="high-yield">Tulu</span> as a <strong>Second Official/Administrative Language</strong>.<br/>• Launched <strong>e-Aasthi 2.0</strong> digital property tax and record portal in Bengaluru.<br/>• Archaeological excavations highlighted the medieval port city of <strong>Barkur (Barah)</strong> in Udupi district.</td>
-            </tr>
-            <tr>
-              <td><strong>Madhya Pradesh</strong></td>
-              <td>• <span class="high-yield">Asia's First Telecom Manufacturing Zone (TMZ)</span> announced at <strong>Gwalior</strong>.<br/>• 4 MP heritage sites (<em>Bagh Caves, Chambal Valley Temples, Udayagiri Caves, Ginnorgarh Fort</em>) added to UNESCO Tentative List.</td>
-            </tr>
-            <tr>
-              <td><strong>Uttarakhand &amp; Himachal Pradesh</strong></td>
-              <td>• <strong>Kishau Multipurpose Dam Project</strong> (660 MW) on the <strong>Tons River</strong> (tributary of Yamuna on HP–Uttarakhand border) advanced.<br/>• Uttarakhand recorded birth of first <strong>IVF calf of indigenous Badri Cattle</strong>; Uttarakhand Waqf Board introduced revised Nikahnama.<br/>• <strong>Pangwala Tribe</strong> of Pangi Valley (Chamba, Himachal Pradesh) featured in cultural heritage news.</td>
-            </tr>
-            <tr>
-              <td><strong>Andhra Pradesh, Telangana &amp; Tamil Nadu</strong></td>
-              <td>• <span class="high-yield">PRAMAAN Certification</span>: <strong>Andhra Pradesh Forest Development Corporation (APFDC)</strong> became India's first agency certified under the PRAMAAN forestry standard.<br/>• Commemorative postage stamp released on <strong>Gooty Fort</strong> (Anantapur, AP, "King of Hills"); <strong>Gollagudi Temple</strong> declared a National Monument.<br/>• <strong>75 Years of Dinamalar</strong> Tamil daily newspaper marked with a commemorative postage stamp.</td>
-            </tr>
-            <tr>
-              <td><strong>Assam, Sikkim, Punjab, Kerala &amp; Maharashtra</strong></td>
-              <td>• <strong>Assam:</strong> Notified <em>Assam Muslim Marriages and Divorces Mandatory Registration Rules, 2026</em>; hosted Guwahati International Marathon.<br/>• <strong>Sikkim:</strong> Celebrated the <strong>Rangeet River Festival</strong>.<br/>• <strong>Punjab:</strong> Launched the <strong>'Pehchaan' Initiative / Portal</strong>.<br/>• <strong>Kerala:</strong> Welfare &amp; health screening (HPT) for the <strong>Paniya Tribe</strong> (Kerala's largest Scheduled Tribe, Wayanad).<br/>• <strong>Maharashtra:</strong> Hosted <strong>26th FICCI FRAMES 2026</strong> (Asia's Media &amp; Entertainment Convention) and <strong>Gyan Ganesh Exhibition</strong> in Mumbai.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3 class="sub-heading">5B. GI Tags &amp; Cultural Festivals in News (September 2026)</h3>
-      <div class="cards-grid">
-        <article class="ca-card">
-          <span class="card-badge badge-state">Geographical Indications (GI Tags)</span>
-          <h3>6 GI-Tagged Products in September 2026 News</h3>
-          <ul>
-            <li><strong><span class="high-yield">Gulbarga Tur Dal (Karnataka)</span>:</strong> APEDA facilitated the first commercial export shipment of GI-tagged Kalaburagi (Gulbarga) red gram / arhar dal from <strong>Karnataka to Maldives</strong>.</li>
-            <li><strong><span class="high-yield">Mandar Drum (Jharkhand)</span>:</strong> Traditional tribal percussion instrument from Jharkhand received the <strong>GI Tag</strong> in September 2026.</li>
-            <li><strong><span class="high-yield">Raja Mircha / Naga King Chili (Nagaland)</span>:</strong> Export &amp; agri-value chain promotion in Northeast India.</li>
-            <li><strong><span class="high-yield">Bidriware (Bidar, Karnataka)</span>:</strong> 14th-century Bahmani Sultanate metal handicraft (zinc-copper alloy inlaid with pure silver) highlighted at national exhibitions.</li>
-            <li><strong><span class="high-yield">Koraput Coffee &amp; Kalajeera Rice (Odisha)</span>:</strong> Included in the official gift hamper/media kit presented to delegates at the 18th BRICS Summit in New Delhi.</li>
-            <li><strong><span class="high-yield">Guchi Mushroom (Doda, J&amp;K)</span>:</strong> High-value wild morel mushroom featured on the BRICS royal menu.</li>
-          </ul>
-        </article>
-
-        <article class="ca-card">
-          <span class="card-badge badge-state">Art, Culture &amp; Festivals</span>
-          <h3>Major Festivals Celebrated in September 2026</h3>
-          <ul>
-            <li><strong><span class="high-yield">Nuakhai Juhar (Odisha)</span>:</strong> Agrarian harvest festival of Western Odisha celebrated the day after Ganesh Chaturthi (Panchami Tithi of Bhadrapada) to offer new season rice (<em>Nabanha</em>) to Goddess Samaleswari.</li>
-            <li><strong><span class="high-yield">Karma Festival (Jharkhand, Odisha, Chhattisgarh)</span>:</strong> Tribal harvest and nature-worship festival dedicated to Karam Devta and the sacred Karam tree (<em>Nauclea parvifolia</em>).</li>
-            <li><strong><span class="high-yield">Heikru Hidongba (Manipur)</span>:</strong> Traditional socio-religious <strong>boat race festival</strong> celebrated on the 11th day of Langban (September) along the moat of Bijoy Govinda in Imphal.</li>
-            <li><strong><span class="high-yield">Paryushan Parva &amp; Samvatsari (Jainism)</span>:</strong> 8-day (Svetambara) / 10-day (Digambara — Das Lakshana) spiritual festival culminating in <em>Michhami Dukkadam</em> (universal forgiveness).</li>
-            <li><strong><span class="high-yield">Rosh Hashanah</span>:</strong> Jewish New Year festival celebrated globally.</li>
-            <li><strong><span class="high-yield">Ganesh Chaturthi &amp; Anant Chaturdashi</span>:</strong> Transformed into a grand public nationalist festival in <strong>1893 by Bal Gangadhar Tilak</strong> in Maharashtra; also observed <strong>Hartalika Teej</strong>, <strong>Radha Ashtami</strong>, and the <strong>Kathakali Festival</strong> at Kalakshetra Foundation, Chennai.</li>
-          </ul>
-        </article>
-      </div>
-
-      <h3 class="sub-heading">5C. Awards &amp; Honours — 72nd National Film Awards, Ramon Magsaysay, Tenzing Norgay &amp; More</h3>
+      <h3 class="sub-heading">8A. 72nd National Film Awards, 68th Ramon Magsaysay &amp; Tenzing Norgay Awards</h3>
       <div class="cards-grid">
         <article class="ca-card">
           <span class="card-badge badge-awards">72nd National Film Awards</span>
@@ -1848,6 +1705,7 @@
         </article>
       </div>
 
+      <h3 class="sub-heading">8B. Other Major Awards &amp; Honours (September 2026)</h3>
       <div class="table-wrapper">
         <table>
           <thead>
@@ -1894,9 +1752,14 @@
               <td>Named among the 100 most influential people in Artificial Intelligence globally.</td>
             </tr>
             <tr>
+              <td><strong>International Earth Science Olympiad 2026</strong></td>
+              <td><strong><span class="high-yield">India (9 Medals)</span></strong></td>
+              <td>Indian student contingent won 9 medals at the global Earth Science competition.</td>
+            </tr>
+            <tr>
               <td><strong>Other Key Honours (Sept 2026)</strong></td>
               <td><strong>5th Swachh Vayu Survekshan Awards</strong> (MoEFCC), <strong>4th Eco Warrior Awards</strong>, <strong>UNESCO International Literacy Prizes</strong>, <strong>Booker Prize 2026 Shortlist</strong>, <strong>78th Emmy Awards</strong>, &amp; <strong>Miss World 2026 (Jauhari Mola)</strong></td>
-              <td>Covered across the September 2026 Awards Headlines roundup.</td>
+              <td>Notable national and international awards announced in September 2026.</td>
             </tr>
           </tbody>
         </table>
@@ -1904,18 +1767,16 @@
     </section>
 
     <!-- ======================================================================
-         SEGMENT 6: INDEX, RANKINGS & INTERNATIONAL NEWS (4:37:00 – 5:22:32)
+         9. INDEX & RANKINGS
          ====================================================================== -->
-    <section id="sec-intl" class="ca-section theme-intl" data-category="sec-intl">
+    <section id="sec-index" class="ca-section theme-index" data-category="sec-index">
       <div class="section-header">
         <div class="section-title-group">
-          <span class="section-part-tag">Segment 6 • Part 4</span>
-          <h2>Index, Reports &amp; Rankings and International Affairs &amp; Summits</h2>
+          <span class="section-part-tag">Category 9</span>
+          <h2>9. Index &amp; Rankings</h2>
         </div>
-        <span class="section-timestamp">⏱️ Video Timestamp: 4:37:00 – 5:22:32</span>
       </div>
 
-      <h3 class="sub-heading">6A. Global &amp; National Indexes, Reports and Rankings (September 2026)</h3>
       <div class="table-wrapper">
         <table>
           <thead>
@@ -1984,8 +1845,20 @@
           </tbody>
         </table>
       </div>
+    </section>
 
-      <h3 class="sub-heading">6B. Major Multilateral Summits: 18th BRICS Summit (New Delhi) &amp; 26th SCO Summit (Bishkek)</h3>
+    <!-- ======================================================================
+         10. INTERNATIONAL NEWS
+         ====================================================================== -->
+    <section id="sec-intl" class="ca-section theme-intl" data-category="sec-intl">
+      <div class="section-header">
+        <div class="section-title-group">
+          <span class="section-part-tag">Category 10</span>
+          <h2>10. International News</h2>
+        </div>
+      </div>
+
+      <h3 class="sub-heading">10A. Major Multilateral Summits: 18th BRICS Summit (New Delhi) &amp; 26th SCO Summit (Bishkek)</h3>
       <div class="cards-grid">
         <article class="ca-card">
           <span class="card-badge badge-intl">12–13 Sept 2026 • New Delhi</span>
@@ -1995,7 +1868,7 @@
             <li><strong>2026 Official Theme:</strong> <span class="high-yield">"Building for Resilience, Innovation, Cooperation and Sustainability"</span>.</li>
             <li><strong>11 Full Member Nations (49.5% Global Pop., 40% Global GDP, 26% Trade):</strong>
               <ul>
-                <li><strong>Original 5:</strong> Brazil, Russia, India, China, South Africa.</li>
+                <li><strong>Core 5 (BRICS):</strong> Brazil, Russia, India, China, South Africa.</li>
                 <li><strong>Joined Jan 2024 (5):</strong> Egypt, Ethiopia, Iran, Saudi Arabia, UAE.</li>
                 <li><strong>11th Full Member (Joined Jan 2025):</strong> <span class="high-yield">Indonesia</span>.</li>
                 <li><strong>10 Partner Countries (Joined 2025):</strong> Belarus, Bolivia, Cuba, Kazakhstan, Malaysia, Nigeria, Thailand, Uganda, Uzbekistan, Vietnam.</li>
@@ -2034,7 +1907,7 @@
         </article>
       </div>
 
-      <h3 class="sub-heading">6C. Other International Agreements, Geopolitics &amp; Bilateral Updates</h3>
+      <h3 class="sub-heading">10B. Bilateral Agreements, Geopolitics &amp; Global Updates</h3>
       <div class="cards-grid-3">
         <article class="ca-card">
           <span class="card-badge badge-intl">Trade &amp; Tech Pacts</span>
@@ -2069,18 +1942,17 @@
     </section>
 
     <!-- ======================================================================
-         SEGMENT 7: SPORTS & FINANCE / BANKING (5:22:32 – 7:04:35)
+         11. SPORTS
          ====================================================================== -->
     <section id="sec-sports" class="ca-section theme-sports" data-category="sec-sports">
       <div class="section-header">
         <div class="section-title-group">
-          <span class="section-part-tag">Segment 7 • Part 4</span>
-          <h2>Sports Current Affairs &amp; Banking, Finance and Economy</h2>
+          <span class="section-part-tag">Category 11</span>
+          <h2>11. Sports</h2>
         </div>
-        <span class="section-timestamp">⏱️ Video Timestamp: 5:22:32 – 7:04:35</span>
       </div>
 
-      <h3 class="sub-heading">7A. 20th Asian Games 2026 (Aichi-Nagoya, Japan) — Complete India Campaign</h3>
+      <h3 class="sub-heading">11A. 20th Asian Games 2026 (Aichi-Nagoya, Japan) — Complete India Campaign</h3>
       <div class="cards-grid">
         <article class="ca-card">
           <span class="card-badge badge-sports">20th Asian Games Overview</span>
@@ -2114,7 +1986,7 @@
         </article>
       </div>
 
-      <h3 class="sub-heading">7B. Other Major Sports Tournaments &amp; National Records (September 2026)</h3>
+      <h3 class="sub-heading">11B. Other Major Sports Tournaments &amp; National Records (September 2026)</h3>
       <div class="table-wrapper">
         <table>
           <thead>
@@ -2168,37 +2040,10 @@
             <tr>
               <td><strong>World Archery Para Series, Pickleball &amp; UEFA</strong></td>
               <td><strong>India</strong> (2nd in Para Archery Stage 3; 4th in Pickleball WC); <strong>UEFA Finals</strong></td>
-              <td>India finished <strong>2nd with 15 medals</strong> at World Archery Para Series Stage 3 in <strong>Ahmedabad</strong>; finished <strong>4th with 41 medals</strong> at the <strong>2026 Pickleball World Cup</strong>; India won <strong>9 medals</strong> at the <strong>International Earth Science Olympiad 2026</strong>; UEFA Champions League Final hosts named: <strong>Munich (2028)</strong> and <strong>Barcelona (2029)</strong>.</td>
+              <td>India finished <strong>2nd with 15 medals</strong> at World Archery Para Series Stage 3 in <strong>Ahmedabad</strong>; finished <strong>4th with 41 medals</strong> at the <strong>2026 Pickleball World Cup</strong>; UEFA Champions League Final hosts named: <strong>Munich (2028)</strong> and <strong>Barcelona (2029)</strong>.</td>
             </tr>
           </tbody>
         </table>
-      </div>
-
-      <h3 class="sub-heading">7C. Banking, Finance &amp; Economy Current Affairs (Including Closing Lecture Slides at 07:02:45)</h3>
-      <div class="cards-grid">
-        <article class="ca-card">
-          <span class="card-badge badge-fin">Capital Markets &amp; Derivatives</span>
-          <h3>India's First Blue Bond, NCDEX 'Rain Chennai' &amp; NSE Listing</h3>
-          <ul>
-            <li><strong><span class="high-yield">India's First Blue Bond</span>:</strong> Issued by <strong>Sagarmala Finance Corporation Limited (SFCL)</strong> worth <span class="high-yield">₹1,000 Crore</span> to finance sustainable maritime, port infrastructure, and blue economy projects.</li>
-            <li><strong><span class="high-yield">NCDEX Launches 'Rain Chennai' (RAINCHNAI)</span>:</strong> The <em>National Commodity &amp; Derivatives Exchange Ltd (NCDEX)</em> launched a rainfall-based weather derivative index for <strong>Chennai's Northeast Monsoon</strong>, allowing farmers, insurers, and businesses to hedge against monsoon deficit or excess.</li>
-            <li><strong><span class="high-yield">NSE Lists on BSE via OFS</span>:</strong> National Stock Exchange (NSE) advanced its listing on the Bombay Stock Exchange (BSE) through the <strong>Offer for Sale (OFS)</strong> mechanism.</li>
-            <li><strong><span class="high-yield">RBI InvIT &amp; REIT Valuation Norms</span>:</strong> RBI revised valuation and exposure rules for Infrastructure Investment Trusts (InvITs) and Real Estate Investment Trusts (REITs), and conducted <strong>Open Market Operations (OMO)</strong> to absorb surplus rupee liquidity.</li>
-          </ul>
-        </article>
-
-        <article class="ca-card">
-          <span class="card-badge badge-fin">GDP, Ratings &amp; Digital Payments</span>
-          <h3>Moody's 7% GDP Forecast, UPI MDR Rules &amp; Banking Milestones</h3>
-          <ul>
-            <li><strong><span class="high-yield">Moody's Upgrades India's GDP Forecast to 7.0%</span>:</strong> Moody's Ratings raised India's current fiscal GDP growth projection from 6.0%/6.6% to <strong>7.0%</strong>; <strong>India's Real GDP grew 7.8% in Q1 FY27</strong>; <strong>Japan Credit Rating Agency (JCR)</strong> upgraded India's sovereign rating to <strong>A-</strong>.</li>
-            <li><strong><span class="high-yield">UPI Payments Up to ₹2,000 Remain MDR-Free</span>:</strong> Government clarified that small UPI transactions up to ₹2,000 remain completely free of <strong>Merchant Discount Rate (MDR)</strong> (a fee charged to merchants for processing digital payments).</li>
-            <li><strong><span class="high-yield">UPI Tap-to-Pay &amp; 24.51 Billion Record</span>:</strong> RBI enabled <strong>UPI Tap-to-Pay (NFC)</strong> without PIN for transactions up to <strong>₹5,000</strong>; UPI recorded an all-time high of <strong>24.51 billion transactions</strong> in August 2026.</li>
-            <li><strong><span class="high-yield">India Post Payments Bank (IPPB) 9th Foundation Day</span>:</strong> Celebrated on <strong>1 September 2026</strong> (launched 1 Sept 2018 under Department of Posts; 100% Govt equity).</li>
-            <li><strong><span class="high-yield">EPFO Wage Ceiling Raised to ₹25,000</span>:</strong> Employees' Provident Fund Organisation raised the mandatory salary threshold from ₹15,000 to <strong>₹25,000/month</strong>.</li>
-            <li><strong>Other High-Yield Banking Updates:</strong> <strong>'OneTag' FASTag Portability</strong> launched; <strong>Coastal Local Area Bank</strong> granted <strong>Scheduled Bank Status</strong> by RBI; <strong>LIC received RBI approval</strong> for up to <strong>9.99% (~10%) stake in ICICI Bank</strong>; <strong>CGTMSE guarantee</strong> launched on <strong>TReDS</strong> for MSMEs; <strong>IRDAI proposed Public Insurance Registry (PIR)</strong>; <strong>Financial Fraud Risk Indicator (FRI)</strong> prevented ₹5,000 crore fraud; <strong>FIU-IND</strong> issued PMLA notices to 15 offshore VDA/crypto providers; <strong>Direct Tax Buoyancy stayed &gt;1.0</strong> for 3rd straight year; <strong>GST collection rose 14.8%</strong>; <strong>Coconut exports surged 62%</strong>; <strong>Anti-dumping duty extended on Décor Paper</strong> from China; <strong>IBC Amendments 2026</strong> &amp; <strong>Bankers' Books Evidence Act 2026</strong> (in force from 1 Oct 2026); <strong>SWIFT Alternatives:</strong> <em>CIPS</em> (China), <em>SPFS</em> (Russia), and <em>Project mBridge</em> (BIS multi-CBDC).</li>
-          </ul>
-        </article>
       </div>
     </section>
 
@@ -2207,7 +2052,7 @@
          ====================================================================== -->
     <footer class="page-footer">
       <p>
-        <strong>September 2026 Monthly Current Affairs — Master Revision Notes</strong> • Extracted 100% in Lecture Order from <a href="https://www.youtube.com/watch?v=ubhD1kQKkfc" target="_blank" rel="noopener noreferrer">Parcham Classes One-Shot Marathon (Richa Ma'am &amp; Ashmeet Sir)</a> • Fact-Checked &amp; Optimized in <strong>Calibri</strong> for Physical Paper Printing (A4/PDF).
+        <strong>September 2026 Monthly Current Affairs — Master Revision Notes</strong> • Source: <a href="https://www.youtube.com/watch?v=ubhD1kQKkfc" target="_blank" rel="noopener noreferrer">Parcham Classes One-Shot Marathon</a> • Optimized in <strong>Calibri</strong> for Physical Paper Printing (A4/PDF).
       </p>
     </footer>
 
@@ -2244,37 +2089,60 @@
 
           if (!query) {
             sec.style.display = 'block';
-            sec.querySelectorAll('.ca-card').forEach(function (c) { c.style.display = ''; });
-            sec.querySelectorAll('tbody tr').forEach(function (r) { r.style.display = ''; });
+            sec.querySelectorAll('.ca-card, tbody tr, .table-wrapper, .cards-grid, .cards-grid-3, .sub-heading').forEach(function (el) {
+              el.style.display = '';
+            });
             return;
           }
 
           let sectionHasMatch = false;
 
-          // Filter cards inside section
-          const cards = sec.querySelectorAll('.ca-card');
-          cards.forEach(function (card) {
-            const text = (card.textContent || '').toLowerCase();
-            if (text.indexOf(query) !== -1) {
-              card.style.display = '';
-              sectionHasMatch = true;
-              visibleCardsAndRows++;
-            } else {
-              card.style.display = 'none';
-            }
+          // Filter card grids
+          sec.querySelectorAll('.cards-grid, .cards-grid-3').forEach(function (grid) {
+            let gridHasMatch = false;
+            grid.querySelectorAll('.ca-card').forEach(function (card) {
+              const text = (card.textContent || '').toLowerCase();
+              if (text.indexOf(query) !== -1) {
+                card.style.display = '';
+                gridHasMatch = true;
+                sectionHasMatch = true;
+                visibleCardsAndRows++;
+              } else {
+                card.style.display = 'none';
+              }
+            });
+            grid.style.display = gridHasMatch ? '' : 'none';
           });
 
-          // Filter table rows inside section
-          const rows = sec.querySelectorAll('tbody tr');
-          rows.forEach(function (row) {
-            const text = (row.textContent || '').toLowerCase();
-            if (text.indexOf(query) !== -1) {
-              row.style.display = '';
-              sectionHasMatch = true;
-              visibleCardsAndRows++;
-            } else {
-              row.style.display = 'none';
+          // Filter tables
+          sec.querySelectorAll('.table-wrapper').forEach(function (wrap) {
+            let tableHasMatch = false;
+            wrap.querySelectorAll('tbody tr').forEach(function (row) {
+              const text = (row.textContent || '').toLowerCase();
+              if (text.indexOf(query) !== -1) {
+                row.style.display = '';
+                tableHasMatch = true;
+                sectionHasMatch = true;
+                visibleCardsAndRows++;
+              } else {
+                row.style.display = 'none';
+              }
+            });
+            wrap.style.display = tableHasMatch ? '' : 'none';
+          });
+
+          // Hide sub-headings whose immediately following content block is hidden
+          sec.querySelectorAll('.sub-heading').forEach(function (heading) {
+            let nextEl = heading.nextElementSibling;
+            let hasVisibleContent = false;
+            while (nextEl && !nextEl.classList.contains('sub-heading')) {
+              if (nextEl.style.display !== 'none') {
+                hasVisibleContent = true;
+                break;
+              }
+              nextEl = nextEl.nextElementSibling;
             }
+            heading.style.display = hasVisibleContent ? '' : 'none';
           });
 
           sec.style.display = sectionHasMatch ? 'block' : 'none';
@@ -2282,7 +2150,7 @@
 
         if (query) {
           searchStatus.style.display = 'block';
-          searchStatus.textContent = 'Showing ' + visibleCardsAndRows + ' matching current affairs cards/table entries for "' + searchInput.value.trim() + '".';
+          searchStatus.textContent = 'Showing ' + visibleCardsAndRows + ' matching current affairs entries for "' + searchInput.value.trim() + '".';
         } else {
           searchStatus.style.display = 'none';
           searchStatus.textContent = '';
