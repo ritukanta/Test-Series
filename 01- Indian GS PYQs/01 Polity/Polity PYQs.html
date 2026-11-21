@@ -8517,9 +8517,9 @@
           "Four",
           "Two"
         ],
-        "answer": "Two",
+        "answer": "Three",
         "tag": "RRB NTPC UG 18/08/2025",
-        "solution": "Correct Answer: Two"
+        "solution": "Correct Answer: Three (Justices N.V. Anjaria, Vijay Bishnoi, and A.S. Chandurkar were sworn in as Supreme Court judges on 30 May 2025.)"
       },
       {
         "id": 22,
@@ -12257,6 +12257,8 @@
       let dashboardSearch = "";
       let resultFilter = "all"; // 'all' | 'incorrect' | 'unattempted'
       let savedStats = {};
+      let savedAnalyses = {};
+      let activeResultData = null;
 
       // Load saved progress safely
       function loadSavedStats() {
@@ -12265,6 +12267,12 @@
           if (raw) savedStats = JSON.parse(raw) || {};
         } catch (e) {
           savedStats = {};
+        }
+        try {
+          const rawAnalysis = localStorage.getItem("polity_16_mocks_analysis_v1");
+          if (rawAnalysis) savedAnalyses = JSON.parse(rawAnalysis) || {};
+        } catch (e) {
+          savedAnalyses = {};
         }
       }
 
@@ -12280,6 +12288,16 @@
           localStorage.setItem(
             "polity_16_mocks_stats_v1",
             JSON.stringify(savedStats),
+          );
+        } catch (e) {}
+      }
+
+      function saveChapterAnalysis(chapterId, analysisObj) {
+        try {
+          savedAnalyses[chapterId] = analysisObj;
+          localStorage.setItem(
+            "polity_16_mocks_analysis_v1",
+            JSON.stringify(savedAnalyses),
           );
         } catch (e) {}
       }
@@ -12406,12 +12424,26 @@
           </div>
           <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
             <span class="text-[11px] text-slate-400">Order #${ch.id} of 16</span>
-            <button type="button" data-launch-idx="${chIdx}" class="btn-launch-mock px-4 py-2 rounded bg-[#1e40af] hover:bg-blue-800 text-white text-xs font-bold shadow-xs transition">
-              ${stat ? "Re-attempt Mock →" : "Start Mock Test →"}
-            </button>
+            <div class="flex items-center gap-2">
+              ${
+                savedAnalyses[ch.id]
+                  ? `<button type="button" data-review-idx="${chIdx}" class="btn-review-analysis px-3 py-2 rounded border border-blue-700 bg-blue-50 hover:bg-blue-100 text-blue-800 text-xs font-bold transition">Review Analysis</button>`
+                  : ""
+              }
+              <button type="button" data-launch-idx="${chIdx}" class="btn-launch-mock px-4 py-2 rounded bg-[#1e40af] hover:bg-blue-800 text-white text-xs font-bold shadow-xs transition">
+                ${stat ? "Re-attempt Mock →" : "Start Mock Test →"}
+              </button>
+            </div>
           </div>
         `;
           grid.appendChild(card);
+        });
+
+        document.querySelectorAll(".btn-review-analysis").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const idx = parseInt(btn.getAttribute("data-review-idx"), 10);
+            openSavedAnalysis(idx);
+          });
         });
 
         document.querySelectorAll(".btn-launch-mock").forEach((btn) => {
@@ -12784,24 +12816,78 @@
           total > 0 ? ((correctCount / total) * 100).toFixed(1) : "0.0";
         const timeSpent = Math.max(0, timerTotalSeconds - timerSecondsLeft);
 
-        saveChapterResult(ch.id, correctCount, total, timeSpent);
+        const reviewItems = [];
+        activeQuestions.forEach((q, idx) => {
+          const isUnattempted = q.selectedOption === null;
+          const isCorrect = !isUnattempted && q.selectedOption === q.answer;
+          const isIncorrect = !isUnattempted && !isCorrect;
+          if (isCorrect) return;
+          reviewItems.push({
+            qNum: idx + 1,
+            id: q.id,
+            q: q.q,
+            answer: q.answer,
+            tag: q.tag || "",
+            solution: q.solution || "Correct Answer: " + q.answer,
+            selectedOption: q.selectedOption,
+            isIncorrect: isIncorrect,
+            isUnattempted: isUnattempted,
+          });
+        });
 
-        document.getElementById("res-chapter-title").textContent = ch.header;
+        const analysisRecord = {
+          chapterId: ch.id,
+          header: ch.header,
+          correctCount: correctCount,
+          incorrectCount: incorrectCount,
+          unattemptedCount: unattemptedCount,
+          total: total,
+          percentage: pct,
+          timeSpent: timeSpent,
+          items: reviewItems,
+        };
+
+        saveChapterResult(ch.id, correctCount, total, timeSpent);
+        saveChapterAnalysis(ch.id, analysisRecord);
+        renderResultScreen(analysisRecord);
+      }
+
+      function renderResultScreen(analysisRecord) {
+        activeResultData = analysisRecord;
+        document.getElementById("res-chapter-title").textContent =
+          analysisRecord.header;
         document.getElementById("res-score").textContent =
-          correctCount + " / " + total;
-        document.getElementById("res-percentage").textContent = pct + "%";
-        document.getElementById("res-correct").textContent = correctCount;
-        document.getElementById("res-incorrect").textContent = incorrectCount;
+          analysisRecord.correctCount + " / " + analysisRecord.total;
+        document.getElementById("res-percentage").textContent =
+          analysisRecord.percentage + "%";
+        document.getElementById("res-correct").textContent =
+          analysisRecord.correctCount;
+        document.getElementById("res-incorrect").textContent =
+          analysisRecord.incorrectCount;
         document.getElementById("res-unattempted").textContent =
-          unattemptedCount;
-        document.getElementById("res-time-taken").textContent =
-          formatTime(timeSpent);
+          analysisRecord.unattemptedCount;
+        document.getElementById("res-time-taken").textContent = formatTime(
+          analysisRecord.timeSpent,
+        );
 
         resultFilter = "all";
         updateResultFilterButtons();
         renderSolutionsList();
         showView("view-result");
         window.scrollTo(0, 0);
+      }
+
+      function openSavedAnalysis(idx) {
+        stopTimer();
+        loadSavedStats();
+        currentChapterIndex = idx;
+        const ch = CHAPTERS_DATA[currentChapterIndex];
+        const saved = savedAnalyses[ch.id];
+        if (!saved) {
+          openIntroForChapter(idx);
+          return;
+        }
+        renderResultScreen(saved);
       }
 
       function updateResultFilterButtons() {
@@ -12821,25 +12907,27 @@
         });
       }
 
-      // Provide the solution/answer for ONLY incorrect & un-attempted questions on submission
+      // Provide the solution/answer for ONLY incorrect & un-attempted questions on submission (and saved reviews)
       function renderSolutionsList() {
         const listEl = document.getElementById("res-solutions-list");
         listEl.innerHTML = "";
 
+        const sourceItems =
+          activeResultData && Array.isArray(activeResultData.items)
+            ? activeResultData.items
+            : [];
+
         const itemsToShow = [];
-        activeQuestions.forEach((q, idx) => {
-          const isUnattempted = q.selectedOption === null;
-          const isCorrect = !isUnattempted && q.selectedOption === q.answer;
-          const isIncorrect = !isUnattempted && !isCorrect;
+        sourceItems.forEach((item) => {
+          if (resultFilter === "incorrect" && !item.isIncorrect) return;
+          if (resultFilter === "unattempted" && !item.isUnattempted) return;
 
-          // Strictly exclude correct questions from the solutions list per prompt instruction:
-          // "Provide the solution/answer for ONLY incorrect & un-attempted questions on submission."
-          if (isCorrect) return;
-
-          if (resultFilter === "incorrect" && !isIncorrect) return;
-          if (resultFilter === "unattempted" && !isUnattempted) return;
-
-          itemsToShow.append({ q, qNum: idx + 1, isIncorrect, isUnattempted });
+          itemsToShow.push({
+            q: item,
+            qNum: item.qNum,
+            isIncorrect: item.isIncorrect,
+            isUnattempted: item.isUnattempted,
+          });
         });
 
         if (itemsToShow.length === 0) {
@@ -12936,8 +13024,11 @@
           .getElementById("btn-reset-all-progress")
           .addEventListener("click", () => {
             savedStats = {};
+            savedAnalyses = {};
+            activeResultData = null;
             try {
               localStorage.removeItem("polity_16_mocks_stats_v1");
+              localStorage.removeItem("polity_16_mocks_analysis_v1");
             } catch (e) {}
             renderDashboard();
           });
