@@ -1,0 +1,2942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Odisha Current Affairs — September 2026 (Notes &amp; Mock Test)</title>
+  <style>
+    :root {
+      --bg-page: #f5f6f8;
+      --bg-sheet: #ffffff;
+      --text-primary: #111827;
+      --text-secondary: #1f2937;
+      --text-muted: #374151;
+      --border-light: #d1d5db;
+      --border-subtle: #e5e7eb;
+
+      /* Notes Category Colour-Coding (Light Theme, High Contrast, Print Safe) */
+      --cat-gov: #1d4ed8;
+      --cat-gov-bg: #eff6ff;
+      --cat-app: #0f766e;
+      --cat-app-bg: #f0fdfa;
+      --cat-env: #15803d;
+      --cat-env-bg: #f0fdf4;
+      --cat-awd: #b45309;
+      --cat-awd-bg: #fffbeb;
+      --cat-eco: #4338ca;
+      --cat-eco-bg: #eef2ff;
+      --cat-spc: #be123c;
+      --cat-spc-bg: #fff1f2;
+      --cat-sec: #6d28d9;
+      --cat-sec-bg: #f5f3ff;
+
+      /* TCS / Eduquity Exam Theme (Light Only) */
+      --tcs-header: #1e3a8a;
+      --tcs-blue: #1d4ed8;
+      --tcs-answered: #15803d;
+      --tcs-not-answered: #dc2626;
+      --tcs-marked: #7c3aed;
+      --tcs-not-visited: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Calibri', 'Carlito', 'Segoe UI', Arial, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.exam-locked {
+      overflow: hidden;
+      background-color: #ffffff;
+    }
+
+    .is-hidden {
+      display: none !important;
+    }
+
+    /* Top Section Switcher (Two Distinct Sections: Notes & Mock Test) */
+    .mode-switcher-bar {
+      background: #ffffff;
+      border-bottom: 2px solid var(--border-light);
+      padding: 10px 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .mode-tab-btn {
+      font-family: 'Calibri', 'Carlito', 'Segoe UI', Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 9px 22px;
+      border-radius: 6px;
+      border: 1.5px solid #374151;
+      background: #ffffff;
+      color: #111827;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .mode-tab-btn:hover {
+      background: #f3f4f6;
+    }
+
+    .mode-tab-btn.active {
+      background: #1e3a8a;
+      color: #ffffff;
+      border-color: #1e3a8a;
+    }
+
+    /* =========================================================================
+       SECTION 1: STUDY NOTES (BOOK STYLE, NO SIDEBAR, PRINTABLE)
+       ========================================================================= */
+    .book-wrapper {
+      max-width: 1180px;
+      margin: 22px auto 32px;
+      background: var(--bg-sheet);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(17, 24, 39, 0.06);
+      padding: 32px 36px 40px;
+    }
+
+    .book-header {
+      border-bottom: 2.5px solid #111827;
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .book-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #000000;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .book-subtitle {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 10px 12px;
+      background: #fafafa;
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding: 12px 14px;
+      background: #f9fafb;
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+    }
+
+    .toolbar-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .search-input,
+    .category-select {
+      font-family: 'Calibri', 'Carlito', 'Segoe UI', Arial, sans-serif;
+      font-size: 0.95rem;
+      padding: 7px 11px;
+      border: 1px solid #9ca3af;
+      border-radius: 5px;
+      background: #ffffff;
+      color: #111827;
+      outline: none;
+    }
+
+    .search-input {
+      min-width: 220px;
+    }
+
+    .search-input:focus,
+    .category-select:focus {
+      border-color: #1d4ed8;
+      box-shadow: 0 0 0 2px rgba(29, 78, 216, 0.15);
+    }
+
+    .btn {
+      font-family: 'Calibri', 'Carlito', 'Segoe UI', Arial, sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      padding: 7px 13px;
+      border-radius: 5px;
+      border: 1px solid #374151;
+      background: #ffffff;
+      color: #111827;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn:hover {
+      background: #f3f4f6;
+    }
+
+    .btn-primary {
+      background: #111827;
+      color: #ffffff;
+      border-color: #111827;
+    }
+
+    .btn-primary:hover {
+      background: #1f2937;
+    }
+
+    .btn-active {
+      background: #1d4ed8;
+      color: #ffffff;
+      border-color: #1d4ed8;
+    }
+
+    .btn-active:hover {
+      background: #1e40af;
+    }
+
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+
+    .note-card {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-left: 5px solid var(--accent, #1d4ed8);
+      border-radius: 6px;
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 7px;
+    }
+
+    .q-badge {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #ffffff;
+      background-color: var(--accent, #1d4ed8);
+      padding: 2px 9px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    .cat-tag {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent, #1d4ed8);
+      background-color: var(--accent-bg, #eff6ff);
+      border: 1px solid var(--accent, #1d4ed8);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .question-text {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #000000;
+      line-height: 1.4;
+    }
+
+    .options-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 5px 12px;
+      margin-top: 2px;
+      padding: 8px 10px;
+      background: #fafafa;
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+    }
+
+    .options-list li {
+      font-size: 0.94rem;
+      color: #1f2937;
+      line-height: 1.35;
+    }
+
+    .answer-box {
+      background-color: var(--accent-bg, #eff6ff);
+      border: 1px solid var(--accent, #1d4ed8);
+      border-radius: 5px;
+      padding: 8px 11px;
+    }
+
+    .answer-label {
+      font-size: 0.86rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent, #1d4ed8);
+      margin-right: 5px;
+    }
+
+    .answer-value {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: #000000;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-top: 6px;
+      border-top: 1px dashed var(--border-subtle);
+    }
+
+    .source-link {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #1d4ed8;
+      text-decoration: underline;
+    }
+
+    .source-link:hover {
+      color: #1e3a8a;
+    }
+
+    .reveal-btn {
+      font-family: 'Calibri', 'Carlito', 'Segoe UI', Arial, sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: 1px dashed var(--accent, #1d4ed8);
+      background: #ffffff;
+      color: var(--accent, #1d4ed8);
+      cursor: pointer;
+      align-self: flex-start;
+    }
+
+    .reveal-btn:hover {
+      background: var(--accent-bg, #eff6ff);
+    }
+
+    .hidden-in-quiz {
+      display: none;
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 36px 16px;
+      border: 1px dashed var(--border-light);
+      border-radius: 6px;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .cat-gov { --accent: var(--cat-gov); --accent-bg: var(--cat-gov-bg); }
+    .cat-app { --accent: var(--cat-app); --accent-bg: var(--cat-app-bg); }
+    .cat-env { --accent: var(--cat-env); --accent-bg: var(--cat-env-bg); }
+    .cat-awd { --accent: var(--cat-awd); --accent-bg: var(--cat-awd-bg); }
+    .cat-eco { --accent: var(--cat-eco); --accent-bg: var(--cat-eco-bg); }
+    .cat-spc { --accent: var(--cat-spc); --accent-bg: var(--cat-spc-bg); }
+    .cat-sec { --accent: var(--cat-sec); --accent-bg: var(--cat-sec-bg); }
+
+    /* =========================================================================
+       SECTION 2: MOCK TEST (TCS / EDUQUITY SSC / RAILWAY INTERFACE — LIGHT ONLY)
+       ========================================================================= */
+
+    /* 2A: Introductory Screen */
+    .exam-intro-wrap {
+      max-width: 920px;
+      margin: 24px auto 40px;
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(17, 24, 39, 0.06);
+      overflow: hidden;
+    }
+
+    .exam-intro-banner {
+      background: var(--tcs-header);
+      color: #ffffff;
+      padding: 20px 28px;
+    }
+
+    .exam-intro-banner h2 {
+      font-size: 1.55rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .exam-intro-banner p {
+      font-size: 0.98rem;
+      opacity: 0.92;
+    }
+
+    .exam-intro-body {
+      padding: 24px 28px 28px;
+    }
+
+    .exam-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .exam-meta-card {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 12px 14px;
+      text-align: center;
+    }
+
+    .exam-meta-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .exam-meta-val {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 3px;
+    }
+
+    .intro-section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 10px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 5px;
+    }
+
+    .instructions-list {
+      padding-left: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.98rem;
+      color: #1f2937;
+    }
+
+    .palette-legend-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 10px;
+      margin-bottom: 24px;
+      padding: 12px;
+      background: #f9fafb;
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+    }
+
+    .pal-leg-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .pal-sample {
+      width: 26px;
+      height: 26px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .pal-not-visited { background: #e5e7eb; color: #111827; border: 1px solid #9ca3af; }
+    .pal-not-answered { background: #dc2626; color: #ffffff; border: 1px solid #b91c1c; }
+    .pal-answered { background: #15803d; color: #ffffff; border: 1px solid #166534; }
+    .pal-marked { background: #7c3aed; color: #ffffff; border: 1px solid #6d28d9; border-radius: 50%; }
+    .pal-ans-marked { background: #7c3aed; color: #ffffff; border: 1px solid #6d28d9; border-radius: 50%; }
+    .pal-ans-marked::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 1.5px solid #ffffff;
+    }
+
+    .start-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: 6px;
+    }
+
+    .btn-start-exam {
+      font-family: 'Calibri', 'Carlito', 'Segoe UI', Arial, sans-serif;
+      font-size: 1.08rem;
+      font-weight: 700;
+      padding: 11px 32px;
+      border-radius: 6px;
+      border: none;
+      background: #15803d;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    .btn-start-exam:hover {
+      background: #166534;
+    }
+
+    /* Saved LocalStorage History */
+    .history-panel {
+      margin-top: 26px;
+      border-top: 1.5px solid var(--border-subtle);
+      padding-top: 18px;
+    }
+
+    .history-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .history-table-wrap {
+      overflow-x: auto;
+    }
+
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+
+    .history-table th,
+    .history-table td {
+      border: 1px solid var(--border-light);
+      padding: 8px 10px;
+      text-align: center;
+    }
+
+    .history-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    /* 2B: Active TCS / Eduquity Exam Screen (Viewport-Locked, Scrollable Palette) */
+    .exam-active-shell {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+    }
+
+    .exam-topbar {
+      background: var(--tcs-header);
+      color: #ffffff;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+
+    .exam-topbar-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+    }
+
+    .exam-topbar-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .timer-pill {
+      background: #ffffff;
+      color: #111827;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 5px 12px;
+      border-radius: 4px;
+      border: 1.5px solid #cbd5e1;
+      min-width: 122px;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timer-pill.timer-warn {
+      background: #fef3c7;
+      color: #92400e;
+      border-color: #d97706;
+    }
+
+    .timer-pill.timer-danger {
+      background: #fee2e2;
+      color: #991b1b;
+      border-color: #dc2626;
+    }
+
+    .tcs-top-btn {
+      font-family: 'Calibri', 'Carlito', 'Segoe UI', Arial, sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    .tcs-top-btn:hover {
+      background: rgba(255, 255, 255, 0.26);
+    }
+
+    .tcs-submit-btn {
+      background: #dc2626;
+      border-color: #b91c1c;
+      color: #ffffff;
+    }
+
+    .tcs-submit-btn:hover {
+      background: #b91c1c;
+    }
+
+    .exam-workspace {
+      flex: 1;
+      display: flex;
+      min-height: 0;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    /* Left Main Question Column */
+    .exam-main-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+      border-right: 1px solid var(--border-light);
+    }
+
+    .exam-q-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border-light);
+      flex-shrink: 0;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .exam-q-num {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .exam-marks-info {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #374151;
+    }
+
+    .mark-plus { color: #15803d; }
+    .mark-minus { color: #dc2626; }
+
+    .exam-q-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 22px 24px;
+      background: #ffffff;
+    }
+
+    .exam-q-stem {
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: #000000;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    .exam-options-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 780px;
+    }
+
+    .exam-opt-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      padding: 12px 14px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: background-color 0.12s ease, border-color 0.12s ease;
+      font-size: 1.04rem;
+      color: #111827;
+    }
+
+    .exam-opt-label:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    .exam-opt-label.selected {
+      background: #eff6ff;
+      border-color: #1d4ed8;
+    }
+
+    .exam-opt-label input[type="radio"] {
+      margin-top: 4px;
+      width: 16px;
+      height: 16px;
+      accent-color: #1d4ed8;
+      flex-shrink: 0;
+    }
+
+    .exam-opt-key {
+      font-weight: 700;
+      color: #1e3a8a;
+      flex-shrink: 0;
+    }
+
+    /* Pinned Bottom Exam Action Bar (Always Visible) */
+    .exam-action-bar {
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+
+    .exam-btn-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tcs-btn {
+      font-family: 'Calibri', 'Carlito', 'Segoe UI', Arial, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 8px 15px;
+      border-radius: 5px;
+      border: 1px solid #6b7280;
+      background: #ffffff;
+      color: #111827;
+      cursor: pointer;
+    }
+
+    .tcs-btn:hover:not(:disabled) {
+      background: #e5e7eb;
+    }
+
+    .tcs-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .tcs-btn-review {
+      background: #f5f3ff;
+      color: #5b21b6;
+      border-color: #7c3aed;
+    }
+
+    .tcs-btn-review:hover {
+      background: #ede9fe;
+    }
+
+    .tcs-btn-next {
+      background: #1d4ed8;
+      color: #ffffff;
+      border-color: #1e40af;
+    }
+
+    .tcs-btn-next:hover {
+      background: #1e40af;
+    }
+
+    /* Right-Side Small Scrollable Question-Number Palette */
+    .exam-palette-col {
+      width: 270px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      background: #f8fafc;
+    }
+
+    .palette-header {
+      padding: 10px 12px;
+      background: #e2e8f0;
+      border-bottom: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #0f172a;
+      flex-shrink: 0;
+    }
+
+    .palette-stats {
+      padding: 10px 12px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+      border-bottom: 1px solid #cbd5e1;
+      background: #ffffff;
+      flex-shrink: 0;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .p-stat-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .p-stat-box {
+      width: 22px;
+      height: 22px;
+      border-radius: 3px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.76rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .palette-scroll-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 7px;
+    }
+
+    .pal-btn {
+      font-family: 'Calibri', 'Carlito', 'Segoe UI', Arial, sans-serif;
+      height: 34px;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pal-btn.current-q {
+      outline: 2.5px solid #1d4ed8;
+      outline-offset: 1px;
+    }
+
+    /* Overlays (Pause & Submit Confirmation Modal) */
+    .exam-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      background: rgba(15, 23, 42, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .exam-modal {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      max-width: 460px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+      text-align: center;
+    }
+
+    .exam-modal h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 10px;
+    }
+
+    .exam-modal p {
+      font-size: 0.98rem;
+      color: #374151;
+      margin-bottom: 16px;
+    }
+
+    .modal-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    .modal-summary-item {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 5px;
+      padding: 8px 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* 2C: Result & Analysis Screen */
+    .exam-result-wrap {
+      max-width: 980px;
+      margin: 24px auto 40px;
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(17, 24, 39, 0.06);
+      padding: 26px 30px 34px;
+    }
+
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      border-bottom: 2px solid #111827;
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+
+    .result-header h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #000000;
+    }
+
+    .saved-badge {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #15803d;
+      background: #f0fdf4;
+      border: 1px solid #15803d;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .score-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .kpi-card {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 12px 10px;
+      text-align: center;
+    }
+
+    .kpi-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #475569;
+      text-transform: uppercase;
+    }
+
+    .kpi-val {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 3px;
+    }
+
+    .kpi-correct .kpi-val { color: #15803d; }
+    .kpi-wrong .kpi-val { color: #dc2626; }
+    .kpi-skip .kpi-val { color: #b45309; }
+    .kpi-score { background: #eff6ff; border-color: #1d4ed8; }
+    .kpi-score .kpi-val { color: #1d4ed8; }
+
+    .review-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .review-card {
+      border: 1px solid var(--border-light);
+      border-left: 5px solid #dc2626;
+      border-radius: 6px;
+      padding: 14px 16px;
+      background: #ffffff;
+    }
+
+    .review-card.is-unattempted {
+      border-left-color: #b45309;
+    }
+
+    .review-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .status-pill-wrong {
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #dc2626;
+    }
+
+    .status-pill-skip {
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #d97706;
+    }
+
+    .review-q-text {
+      font-size: 1.04rem;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 8px;
+    }
+
+    .review-ans-row {
+      font-size: 0.96rem;
+      margin-top: 4px;
+    }
+
+    .review-user-wrong {
+      color: #b91c1c;
+      font-weight: 600;
+    }
+
+    .review-correct-ans {
+      color: #15803d;
+      font-weight: 700;
+    }
+
+    .perfect-banner {
+      background: #f0fdf4;
+      border: 1.5px solid #15803d;
+      color: #166534;
+      padding: 18px;
+      border-radius: 6px;
+      text-align: center;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 900px) {
+      .book-wrapper,
+      .exam-intro-wrap,
+      .exam-result-wrap {
+        margin: 12px;
+        padding: 18px 16px 26px;
+      }
+
+      .exam-intro-wrap {
+        padding: 0;
+      }
+
+      .exam-intro-body {
+        padding: 18px 16px 22px;
+      }
+
+      .notes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .exam-meta-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .score-kpi-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    /* Hide right-side question-number palette for mobile phone interface */
+    @media (max-width: 768px) {
+      .exam-palette-col {
+        display: none !important;
+      }
+
+      .exam-main-col {
+        border-right: none;
+      }
+
+      .exam-q-scroll {
+        padding: 16px;
+      }
+
+      .exam-action-bar {
+        padding: 10px 12px;
+      }
+
+      .tcs-btn {
+        font-size: 0.86rem;
+        padding: 7px 11px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .book-title {
+        font-size: 1.5rem;
+      }
+
+      .options-list {
+        grid-template-columns: 1fr;
+      }
+
+      .search-input,
+      .category-select {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .toolbar-group {
+        width: 100%;
+      }
+
+      .score-kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    /* Crisp Print & PDF Export Styling (Notes Section) */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 12mm 12mm 14mm 12mm;
+      }
+
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 10.5pt;
+        line-height: 1.4;
+      }
+
+      .mode-switcher-bar,
+      #mockTestSection,
+      .toolbar,
+      .status-row,
+      .reveal-btn {
+        display: none !important;
+      }
+
+      #notesSection {
+        display: block !important;
+      }
+
+      .book-wrapper {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+
+      .book-header {
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #000000;
+      }
+
+      .book-title {
+        font-size: 17pt;
+        color: #000000 !important;
+      }
+
+      .book-subtitle {
+        font-size: 10pt;
+        color: #111827 !important;
+      }
+
+      .legend-bar {
+        margin-bottom: 12px;
+        padding: 6px 8px;
+        background: #ffffff !important;
+        border: 1px solid #9ca3af !important;
+      }
+
+      .legend-item {
+        font-size: 8.5pt;
+        color: #000000 !important;
+      }
+
+      .notes-grid {
+        display: block !important;
+      }
+
+      .note-card {
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: 11px !important;
+        padding: 10px 13px !important;
+        border: 1px solid #6b7280 !important;
+        border-left: 5px solid var(--accent, #1d4ed8) !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+        overflow: visible !important;
+      }
+
+      .card-header {
+        margin-bottom: 6px;
+        padding-bottom: 4px;
+      }
+
+      .question-text {
+        font-size: 11pt;
+        color: #000000 !important;
+        margin-bottom: 6px;
+      }
+
+      .options-list {
+        margin-bottom: 6px;
+        padding: 5px 8px;
+        border: 1px solid #9ca3af !important;
+      }
+
+      .options-list li {
+        font-size: 9.5pt;
+        color: #000000 !important;
+      }
+
+      .answer-section,
+      .hidden-in-quiz {
+        display: block !important;
+      }
+
+      .answer-box {
+        margin-bottom: 6px;
+        padding: 5px 9px;
+      }
+
+      .answer-value {
+        font-size: 10.5pt;
+        color: #000000 !important;
+      }
+
+      .card-footer {
+        margin-top: 5px;
+        padding-top: 4px;
+      }
+
+      .source-link {
+        font-size: 8pt;
+        color: #111827 !important;
+        text-decoration: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Mode Switcher: Two Distinct Sections (Study Notes vs. Mock Test) -->
+  <nav id="modeSwitcherBar" class="mode-switcher-bar" aria-label="Section Switcher">
+    <button type="button" id="tabNotesBtn" class="mode-tab-btn active">Study Notes (40 Questions)</button>
+    <button type="button" id="tabTestBtn" class="mode-tab-btn">Mock Test (40 MCQs)</button>
+  </nav>
+
+  <!-- =========================================================================
+       SECTION 1: STUDY NOTES
+       ========================================================================= -->
+  <section id="notesSection" aria-label="Study Notes Section">
+    <main class="book-wrapper">
+      <header class="book-header">
+        <h1 class="book-title">Odisha Current Affairs — September 2026</h1>
+        <p class="book-subtitle">Complete Verified Question Bank (40 Questions in Source Order)</p>
+      </header>
+
+      <section class="legend-bar" aria-label="Category Colour Legend">
+        <span class="legend-item"><span class="legend-dot" style="background: var(--cat-gov);"></span>Governance &amp; Schemes</span>
+        <span class="legend-item"><span class="legend-dot" style="background: var(--cat-app);"></span>Appointments &amp; Leadership</span>
+        <span class="legend-item"><span class="legend-dot" style="background: var(--cat-env);"></span>Environment &amp; Infrastructure</span>
+        <span class="legend-item"><span class="legend-dot" style="background: var(--cat-awd);"></span>Awards &amp; Recognition</span>
+        <span class="legend-item"><span class="legend-dot" style="background: var(--cat-eco);"></span>Economy, Tech &amp; Mobility</span>
+        <span class="legend-item"><span class="legend-dot" style="background: var(--cat-spc);"></span>Sports, Culture &amp; Heritage</span>
+        <span class="legend-item"><span class="legend-dot" style="background: var(--cat-sec);"></span>Security &amp; Public Safety</span>
+      </section>
+
+      <section class="toolbar" aria-label="Study Controls">
+        <div class="toolbar-group">
+          <input
+            type="search"
+            id="searchInput"
+            class="search-input"
+            placeholder="Search questions or answers..."
+            aria-label="Search current affairs notes"
+          />
+          <select id="categoryFilter" class="category-select" aria-label="Filter by category">
+            <option value="all">All Categories (40)</option>
+            <option value="gov">Governance &amp; Schemes</option>
+            <option value="app">Appointments &amp; Leadership</option>
+            <option value="env">Environment &amp; Infrastructure</option>
+            <option value="awd">Awards &amp; Recognition</option>
+            <option value="eco">Economy, Tech &amp; Mobility</option>
+            <option value="spc">Sports, Culture &amp; Heritage</option>
+            <option value="sec">Security &amp; Public Safety</option>
+          </select>
+          <button type="button" id="resetBtn" class="btn">Reset</button>
+        </div>
+        <div class="toolbar-group">
+          <button type="button" id="quizModeBtn" class="btn">Quiz Mode: Hide Answers</button>
+          <button type="button" id="printBtn" class="btn btn-primary">Print / Save PDF</button>
+        </div>
+      </section>
+
+      <div class="status-row">
+        <span id="visibleCount">Showing 40 of 40 Questions</span>
+        <span id="modeStatus">Study Mode: All Answers Visible</span>
+      </div>
+
+      <section id="notesGrid" class="notes-grid" aria-live="polite"></section>
+    </main>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 2: MOCK TEST (TCS / EDUQUITY EXAM INTERFACE — LIGHT THEME ONLY)
+       ========================================================================= -->
+  <section id="mockTestSection" class="is-hidden" aria-label="Mock Test Section">
+    <!-- 2A: Introductory Screen -->
+    <div id="examIntroView" class="exam-intro-wrap">
+      <div class="exam-intro-banner">
+        <h2>Odisha Current Affairs — September 2026 Mock Test</h2>
+        <p>Standard CBT Exam Interface (SSC / Railway / OSSC / ASO Pattern)</p>
+      </div>
+      <div class="exam-intro-body">
+        <div class="exam-meta-grid">
+          <div class="exam-meta-card">
+            <div class="exam-meta-label">Total Questions</div>
+            <div class="exam-meta-val">40 MCQs</div>
+          </div>
+          <div class="exam-meta-card">
+            <div class="exam-meta-label">Duration</div>
+            <div class="exam-meta-val">24 Minutes</div>
+          </div>
+          <div class="exam-meta-card">
+            <div class="exam-meta-label">Marking Scheme</div>
+            <div class="exam-meta-val">+2 / -0.5</div>
+          </div>
+          <div class="exam-meta-card">
+            <div class="exam-meta-label">Maximum Marks</div>
+            <div class="exam-meta-val">80 Marks</div>
+          </div>
+        </div>
+
+        <h3 class="intro-section-title">General Instructions</h3>
+        <ul class="instructions-list">
+          <li>Total duration of the examination is <strong>24 minutes</strong> (36 seconds per question). The test submits automatically when the countdown timer reaches <strong>00:00</strong>.</li>
+          <li>Each correct answer awards <strong>+2 marks</strong>; each incorrect answer deducts <strong>0.5 marks</strong>; unattempted questions carry <strong>0 marks</strong>.</li>
+          <li>Questions appear in fixed sequential order (Q1 to Q40), while the four options for each question are randomized on every fresh attempt or page refresh.</li>
+          <li>Selecting an option does not reveal the answer and does not automatically jump to the next question. Use <strong>Next</strong>, <strong>Previous</strong>, <strong>Clear</strong>, or <strong>Mark for Review &amp; Next</strong> to navigate.</li>
+          <li>The test enters fullscreen automatically upon starting. You can pause the timer or exit fullscreen at any time using the top toolbar.</li>
+          <li>Upon submission, your score and analysis are saved in your browser's local storage, and solutions are shown strictly for <strong>incorrect and unattempted</strong> questions.</li>
+        </ul>
+
+        <h3 class="intro-section-title">Question Palette Legend</h3>
+        <div class="palette-legend-grid">
+          <div class="pal-leg-item"><span class="pal-sample pal-not-visited">1</span>Not Visited</div>
+          <div class="pal-leg-item"><span class="pal-sample pal-not-answered">2</span>Not Answered</div>
+          <div class="pal-leg-item"><span class="pal-sample pal-answered">3</span>Answered</div>
+          <div class="pal-leg-item"><span class="pal-sample pal-marked">4</span>Marked for Review</div>
+          <div class="pal-leg-item"><span class="pal-sample pal-ans-marked">5</span>Answered &amp; Marked for Review</div>
+        </div>
+
+        <div class="start-actions">
+          <button type="button" id="startTestBtn" class="btn-start-exam">Start Mock Test</button>
+        </div>
+
+        <div id="savedHistoryPanel" class="history-panel is-hidden">
+          <div class="history-header">
+            <h3 class="intro-section-title" style="border:none; margin:0; padding:0;">Saved Test History (Local Storage)</h3>
+            <button type="button" id="clearHistoryBtn" class="btn">Clear Saved History</button>
+          </div>
+          <div class="history-table-wrap">
+            <table class="history-table">
+              <thead>
+                <tr>
+                  <th>Attempt Date</th>
+                  <th>Score</th>
+                  <th>Correct</th>
+                  <th>Incorrect</th>
+                  <th>Unattempted</th>
+                  <th>Accuracy</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="historyTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2B: Active Exam Interface -->
+    <div id="examActiveView" class="exam-active-shell is-hidden">
+      <header class="exam-topbar">
+        <div class="exam-topbar-title">Odisha Current Affairs — September 2026 Mock Test</div>
+        <div class="exam-topbar-controls">
+          <div id="examTimerDisplay" class="timer-pill" aria-live="off">Time Left: 24:00</div>
+          <button type="button" id="pauseBtn" class="tcs-top-btn">Pause</button>
+          <button type="button" id="fullscreenBtn" class="tcs-top-btn">Exit Fullscreen</button>
+          <button type="button" id="submitTopBtn" class="tcs-top-btn tcs-submit-btn">Submit</button>
+        </div>
+      </header>
+
+      <div class="exam-workspace">
+        <div class="exam-main-col">
+          <div class="exam-q-bar">
+            <span id="examQNumber" class="exam-q-num">Question No. 1 of 40</span>
+            <span class="exam-marks-info">Marks: <span class="mark-plus">+2.0</span> | Negative: <span class="mark-minus">-0.5</span></span>
+          </div>
+
+          <div class="exam-q-scroll">
+            <div id="examQStem" class="exam-q-stem"></div>
+            <div id="examOptionsBox" class="exam-options-group" role="radiogroup" aria-label="Question Options"></div>
+          </div>
+
+          <div class="exam-action-bar">
+            <div class="exam-btn-group">
+              <button type="button" id="prevBtn" class="tcs-btn">Previous</button>
+              <button type="button" id="clearBtn" class="tcs-btn">Clear</button>
+              <button type="button" id="markNextBtn" class="tcs-btn tcs-btn-review">Mark for Review &amp; Next</button>
+            </div>
+            <div class="exam-btn-group">
+              <button type="button" id="nextBtn" class="tcs-btn tcs-btn-next">Next</button>
+              <button type="button" id="submitBottomBtn" class="tcs-btn tcs-submit-btn">Submit</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right-Side Scrollable Question Palette (Hidden on Mobile Phones) -->
+        <aside class="exam-palette-col" aria-label="Question Number Palette">
+          <div class="palette-header">Question Palette</div>
+          <div class="palette-stats">
+            <div class="p-stat-row"><span id="statAnswered" class="p-stat-box pal-answered">0</span>Answered</div>
+            <div class="p-stat-row"><span id="statNotAnswered" class="p-stat-box pal-not-answered">0</span>Not Answered</div>
+            <div class="p-stat-row"><span id="statNotVisited" class="p-stat-box pal-not-visited">40</span>Not Visited</div>
+            <div class="p-stat-row"><span id="statMarked" class="p-stat-box pal-marked">0</span>Marked</div>
+            <div class="p-stat-row" style="grid-column: 1 / -1;"><span id="statAnsMarked" class="p-stat-box pal-ans-marked">0</span>Answered &amp; Marked</div>
+          </div>
+          <div class="palette-scroll-area">
+            <div id="paletteGrid" class="palette-grid"></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- Pause Overlay -->
+    <div id="pauseOverlay" class="exam-overlay is-hidden" role="dialog" aria-modal="true" aria-labelledby="pauseTitle">
+      <div class="exam-modal">
+        <h3 id="pauseTitle">Test Paused</h3>
+        <p id="pauseTimeText">Time Remaining: 24:00</p>
+        <div class="modal-actions">
+          <button type="button" id="resumeBtn" class="btn-start-exam">Resume Test</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Confirmation Modal -->
+    <div id="submitModal" class="exam-overlay is-hidden" role="dialog" aria-modal="true" aria-labelledby="submitTitle">
+      <div class="exam-modal">
+        <h3 id="submitTitle">Submit Mock Test?</h3>
+        <p>Review your attempt summary before final submission.</p>
+        <div id="submitSummaryGrid" class="modal-summary-grid"></div>
+        <div class="modal-actions">
+          <button type="button" id="cancelSubmitBtn" class="btn">Cancel</button>
+          <button type="button" id="confirmSubmitBtn" class="tcs-btn tcs-submit-btn">Confirm Submit</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2C: Post-Submission Score & Analysis View -->
+    <div id="examResultView" class="exam-result-wrap is-hidden">
+      <div class="result-header">
+        <h2>Mock Test Result &amp; Analysis</h2>
+        <span id="savedStatusBadge" class="saved-badge">Saved to Browser Local Storage</span>
+      </div>
+
+      <div id="scoreKpiGrid" class="score-kpi-grid"></div>
+
+      <div class="review-section-header">
+        <h3 class="intro-section-title" style="border:none; margin:0; padding:0;">Solutions for Incorrect &amp; Unattempted Questions</h3>
+        <span id="reviewCountLabel" style="font-size:0.92rem; font-weight:700; color:#374151;"></span>
+      </div>
+
+      <div id="reviewContainer"></div>
+
+      <div class="start-actions">
+        <button type="button" id="retakeBtn" class="btn-start-exam">Retake Mock Test</button>
+        <button type="button" id="backToIntroBtn" class="btn">Back to Test Instructions</button>
+        <button type="button" id="goToNotesBtn" class="btn btn-primary">Go to Study Notes</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const CATEGORY_META = {
+      gov: { label: "Governance & Schemes", cls: "cat-gov" },
+      app: { label: "Appointments & Leadership", cls: "cat-app" },
+      env: { label: "Environment & Infrastructure", cls: "cat-env" },
+      awd: { label: "Awards & Recognition", cls: "cat-awd" },
+      eco: { label: "Economy, Tech & Mobility", cls: "cat-eco" },
+      spc: { label: "Sports, Culture & Heritage", cls: "cat-spc" },
+      sec: { label: "Security & Public Safety", cls: "cat-sec" }
+    };
+
+    const QUESTIONS = [
+      {
+        id: 1,
+        cat: "gov",
+        question: "How many high-impact development-oriented programmes has the Odisha Government identified under Vision 2036?",
+        options: null,
+        answer: "36 Programmes (\"36 for 36\" Strategy)",
+        mcqOptions: ["36", "24", "47", "50"],
+        mcqCorrect: "36",
+        sourceUrl: "https://www.newindianexpress.com/states/odisha/2025/Apr/24/cm-majhi-announces-36-for-36-strategy-for-viksit-odisha-vision-document-soon",
+        sourceLabel: "The New Indian Express"
+      },
+      {
+        id: 2,
+        cat: "spc",
+        question: "Which of the following was NOT a key focus of Odisha's World Tourism Day 2026 event?",
+        options: [
+          "(A) Digital Innovation",
+          "(B) Sustainable Infrastructure",
+          "(C) Institutional Partnership",
+          "(D) Industrial Mining Expansion"
+        ],
+        answer: "(D) Industrial Mining Expansion",
+        mcqOptions: ["Digital Innovation", "Sustainable Infrastructure", "Institutional Partnership", "Industrial Mining Expansion"],
+        mcqCorrect: "Industrial Mining Expansion",
+        sourceUrl: "https://pragativadi.com/odisha-world-tourism-day-2026-initiatives-and-innovations/",
+        sourceLabel: "Pragativadi"
+      },
+      {
+        id: 3,
+        cat: "app",
+        question: "Who has been nominated as the Executive Chairperson of the Odisha State Legal Services Authority (OSLSA)?",
+        options: null,
+        answer: "Justice Bibhu Prasad Routray",
+        mcqOptions: ["Justice Bibhu Prasad Routray", "Justice Manash Ranjan Pathak", "Justice Sanjeeb Kumar Panigrahi", "Justice Arindam Sinha"],
+        mcqCorrect: "Justice Bibhu Prasad Routray",
+        sourceUrl: "https://ommcomnews.com/odisha-news/justice-bibhu-prasad-routray-nominated-oslsa-executive-chairman/",
+        sourceLabel: "Ommcom News"
+      },
+      {
+        id: 4,
+        cat: "env",
+        question: "Which edition of the Odisha Environment Congress (OEC) is scheduled to be held in 2026?",
+        options: [
+          "(A) 15th Edition",
+          "(B) 16th Edition",
+          "(C) 17th Edition",
+          "(D) 18th Edition"
+        ],
+        answer: "(C) 17th Edition",
+        mcqOptions: ["15th Edition", "16th Edition", "17th Edition", "18th Edition"],
+        mcqCorrect: "17th Edition",
+        sourceUrl: "https://orissadiary.com/nit-rourkela-to-host-17th-odisha-environment-congress-from-november-3-5/",
+        sourceLabel: "Orissa Diary"
+      },
+      {
+        id: 5,
+        cat: "gov",
+        question: "What is the main objective of the 'Sambandha' campaign launched in Odisha?",
+        options: [
+          "(A) Promoting tourism",
+          "(B) Expanding the cooperative movement to rural households",
+          "(C) Promoting industrialisation",
+          "(D) Increasing urban employment"
+        ],
+        answer: "(B) Expanding the cooperative movement to rural households",
+        mcqOptions: [
+          "Promoting tourism",
+          "Expanding the cooperative movement to rural households",
+          "Promoting industrialisation",
+          "Increasing urban employment"
+        ],
+        mcqCorrect: "Expanding the cooperative movement to rural households",
+        sourceUrl: "https://ommcomnews.com/odisha-news/odisha-cm-to-launch-sambandha-mega-cooperative-membership-drive-on-sept-25/",
+        sourceLabel: "Ommcom News"
+      },
+      {
+        id: 6,
+        cat: "app",
+        question: "Who has been appointed as the BJP In-Charge (Prabhari) for Odisha in September 2026?",
+        options: null,
+        answer: "D. Purandeswari",
+        mcqOptions: ["D. Purandeswari", "Dr. Swadesh Singh", "Nitin Nabin", "Baijayant Panda"],
+        mcqCorrect: "D. Purandeswari",
+        sourceUrl: "https://timesofindia.indiatimes.com/city/bhubaneswar/bjp-appoints-d-purandeswari-as-state-in-charge-in-major-shuffle/articleshow/134439359.cms",
+        sourceLabel: "The Times of India"
+      },
+      {
+        id: 7,
+        cat: "env",
+        question: "Which of the following is Odisha showcasing at the 9th India International Water Week (IIWW) 2026?",
+        options: [
+          "(A) Integrated Water Management Initiatives",
+          "(B) Climate-Resilient Agriculture Practices",
+          "(C) Irrigation Infrastructure",
+          "(D) All of the above"
+        ],
+        answer: "(D) All of the above",
+        mcqOptions: [
+          "Integrated Water Management Initiatives",
+          "Climate-Resilient Agriculture Practices",
+          "Irrigation Infrastructure",
+          "All of the above"
+        ],
+        mcqCorrect: "All of the above",
+        sourceUrl: "https://www.newindianexpress.com/cities/bhubaneswar/2026/Sep/23/odisha-water-management-model-showcased-at-international-meet",
+        sourceLabel: "The New Indian Express"
+      },
+      {
+        id: 8,
+        cat: "gov",
+        question: "What is the main objective of the Baristha Nagarika Tirtha Yatra Yojana (BNTYY)?",
+        options: [
+          "(A) To promote general tourism",
+          "(B) To facilitate senior citizens in undertaking pilgrimage",
+          "(C) To provide employment to rural youth",
+          "(D) To promote railway tourism"
+        ],
+        answer: "(B) To facilitate senior citizens in undertaking pilgrimage",
+        mcqOptions: [
+          "To promote general tourism",
+          "To facilitate senior citizens in undertaking pilgrimage",
+          "To provide employment to rural youth",
+          "To promote railway tourism"
+        ],
+        mcqCorrect: "To facilitate senior citizens in undertaking pilgrimage",
+        sourceUrl: "https://www.uniindia.com/east-india/odisha-senior-citizen-pilgrimage/189005",
+        sourceLabel: "UNI India"
+      },
+      {
+        id: 9,
+        cat: "gov",
+        question: "Which department of the Odisha Government launched the 24x7 'Sahar Sathi' helpline?",
+        options: [
+          "(A) Energy Department",
+          "(B) Housing and Urban Development Department",
+          "(C) Panchayati Raj Department",
+          "(D) Works Department"
+        ],
+        answer: "(B) Housing and Urban Development Department",
+        mcqOptions: [
+          "Energy Department",
+          "Housing and Urban Development Department",
+          "Panchayati Raj Department",
+          "Works Department"
+        ],
+        mcqCorrect: "Housing and Urban Development Department",
+        sourceUrl: "https://ommcomnews.com/odisha-news/hud-dept-launches-24x7-sahar-sathi-helpline-for-civic-services/",
+        sourceLabel: "Ommcom News"
+      },
+      {
+        id: 10,
+        cat: "gov",
+        question: "What is the total number of electors in Odisha according to the Final Electoral Roll 2026 under the SIR programme?",
+        options: null,
+        answer: "3,16,32,754 Electors",
+        mcqOptions: ["3,16,32,754", "3,33,69,591", "3,13,87,034", "3,20,45,610"],
+        mcqCorrect: "3,16,32,754",
+        sourceUrl: "https://www.thehindu.com/news/national/odisha/odishas-final-electoral-roll-has-316-crore-voters-1766-lakh-names-struck-off/article71491775.ece",
+        sourceLabel: "The Hindu"
+      },
+      {
+        id: 11,
+        cat: "eco",
+        question: "Which chip designed by NIT Rourkela was presented to Prime Minister Narendra Modi at SEMICON India 2026?",
+        options: null,
+        answer: "ASCON AEAD Security Chip (C2S0091)",
+        mcqOptions: [
+          "ASCON AEAD Security Chip (C2S0091)",
+          "SHAKTI RISC-V Processor (C2S0045)",
+          "VEGA Microprocessor (C2S0072)",
+          "AJIT Security Core (C2S0088)"
+        ],
+        mcqCorrect: "ASCON AEAD Security Chip (C2S0091)",
+        sourceUrl: "https://www.gktoday.in/nit-rourkela-presents-indigenous-security-chip-at-semicon-india-2026/",
+        sourceLabel: "GKToday"
+      },
+      {
+        id: 12,
+        cat: "spc",
+        question: "Which historic temple hosted the state-level 'Aashirbad Ka Diya' (Ashirbad Deepa — Lamp of Blessings) programme in Bhubaneswar?",
+        options: null,
+        answer: "Mukteswar Temple, Bhubaneswar",
+        mcqOptions: [
+          "Mukteswar Temple, Bhubaneswar",
+          "Lingaraj Temple, Bhubaneswar",
+          "Rajarani Temple, Bhubaneswar",
+          "Ananta Vasudeva Temple, Bhubaneswar"
+        ],
+        mcqCorrect: "Mukteswar Temple, Bhubaneswar",
+        sourceUrl: "https://timesofindia.indiatimes.com/city/bhubaneswar/mukteswar-temple-lit-up-with-11k-lamps-for-modis-bday/articleshow/134319018.cms",
+        sourceLabel: "The Times of India"
+      },
+      {
+        id: 13,
+        cat: "env",
+        question: "Where in Odisha was the state's third 'Make in India' Doppler Weather Radar (DWR) inaugurated?",
+        options: null,
+        answer: "Sambalpur",
+        mcqOptions: ["Sambalpur", "Paradip", "Gopalpur", "Balasore"],
+        mcqCorrect: "Sambalpur",
+        sourceUrl: "https://www.manoramayearbook.in/current-affairs/india/2026/09/18/51st-doppler-weather-radar-at-sambalpur.html",
+        sourceLabel: "Manorama Yearbook"
+      },
+      {
+        id: 14,
+        cat: "env",
+        question: "In September 2026, five infant orangutans were rescued by forest officials in which district of Odisha?",
+        options: null,
+        answer: "Balasore District",
+        mcqOptions: ["Balasore District", "Mayurbhanj District", "Bhadrak District", "Kendrapara District"],
+        mcqCorrect: "Balasore District",
+        sourceUrl: "https://www.aninews.in/news/national/general-news/odisha-all-5-rescued-baby-orangutans-at-nandankanan-zoo-stable-feed-intake-normal20260915091336/",
+        sourceLabel: "ANI News"
+      },
+      {
+        id: 15,
+        cat: "gov",
+        question: "The Odisha Department of Higher Education has directed institutions to nominate distinguished women professionals under which new title?",
+        options: null,
+        answer: "Shakti Apa",
+        mcqOptions: ["Shakti Apa", "Mission Shakti Mitra", "Shaktishree Fellow", "Vidya Shakti"],
+        mcqCorrect: "Shakti Apa",
+        sourceUrl: "https://timesofindia.indiatimes.com/city/bhubaneswar/colleges-to-identify-distinguished-women-professionals-to-mentor-girl-students/articleshow/133710020.cms",
+        sourceLabel: "The Times of India"
+      },
+      {
+        id: 16,
+        cat: "env",
+        question: "Which institution has been certified as India's first Platinum-rated Green Campus under the IGBC Green Campus Rating System?",
+        options: [
+          "(A) Odisha Lok Bhavan",
+          "(B) Odisha Secretariat",
+          "(C) Odisha Legislative Assembly",
+          "(D) Odisha State Museum"
+        ],
+        answer: "(A) Odisha Lok Bhavan (Governor's Campus)",
+        mcqOptions: ["Odisha Lok Bhavan", "Odisha Secretariat", "Odisha Legislative Assembly", "Odisha State Museum"],
+        mcqCorrect: "Odisha Lok Bhavan",
+        sourceUrl: "https://odishaconnect.com/odisha-lok-bhavan-india-first-igbc-platinum-green-campus/",
+        sourceLabel: "Odisha Connect"
+      },
+      {
+        id: 17,
+        cat: "spc",
+        question: "Which two individuals are credited with turning rural Odisha into a cinematic experience through 'Maliput Melodies'?",
+        options: null,
+        answer: "Vishal Patnaik and Tosh Nanda",
+        mcqOptions: [
+          "Vishal Patnaik and Tosh Nanda",
+          "Mohan Charan Majhi and Suresh Pujari",
+          "Sabyasachi Mohapatra and Vishal Patnaik",
+          "Kaushik Das and C. Sekhar Reddy"
+        ],
+        mcqCorrect: "Vishal Patnaik and Tosh Nanda",
+        sourceUrl: "https://www.mycitylinks.in/from-odisha-to-the-world-maliput-melodies-takes-odia-cinema-global",
+        sourceLabel: "My City Links"
+      },
+      {
+        id: 18,
+        cat: "gov",
+        question: "The new ex-gratia guidelines issued by the Odisha School and Mass Education Department cover students across which educational range?",
+        options: [
+          "(A) Class 1 to Class 10",
+          "(B) Shishu Vatika to Class 12",
+          "(C) Nursery to Class 8",
+          "(D) Class 6 to Class 12"
+        ],
+        answer: "(B) Shishu Vatika to Class 12",
+        mcqOptions: ["Class 1 to Class 10", "Shishu Vatika to Class 12", "Nursery to Class 8", "Class 6 to Class 12"],
+        mcqCorrect: "Shishu Vatika to Class 12",
+        sourceUrl: "https://www.newindianexpress.com/cities/bhubaneswar/2026/Sep/05/odisha-government-announces-rs-2-lakh-ex-gratia-for-students-dying-in-school-mishaps",
+        sourceLabel: "The New Indian Express"
+      },
+      {
+        id: 19,
+        cat: "awd",
+        question: "Who received the Odisha Journalism Award 2026 as the Chief Editor of 'Dainik Sanchar'?",
+        options: null,
+        answer: "Ajit Kumar Dash",
+        mcqOptions: ["Ajit Kumar Dash", "Bijayalaxmi Rath", "Jaladhara Pradhan", "Sandeep Sahu"],
+        mcqCorrect: "Ajit Kumar Dash",
+        sourceUrl: "https://pragativadi.com/six-journalists-honoured-as-pallibani-mission-marks-changing-face-of-news/",
+        sourceLabel: "Pragativadi"
+      },
+      {
+        id: 20,
+        cat: "awd",
+        question: "Which Odisha city topped the Swachh Vayu Sarvekshan 2026 in the mid-sized city category?",
+        options: [
+          "(A) Bhubaneswar",
+          "(B) Cuttack",
+          "(C) Rourkela",
+          "(D) Sambalpur"
+        ],
+        answer: "(C) Rourkela",
+        mcqOptions: ["Bhubaneswar", "Cuttack", "Rourkela", "Sambalpur"],
+        mcqCorrect: "Rourkela",
+        sourceUrl: "https://sambadenglish.com/latest-news/rourkela-tops-swachh-vayu-sarvekshan-2026-rankings-in-mid-sized-cities-category-bhubaneswar-ranks-4th-12502377",
+        sourceLabel: "Sambad English"
+      },
+      {
+        id: 21,
+        cat: "awd",
+        question: "Who is set to receive the prestigious SKOCH Award for Administrative Excellence from Odisha?",
+        options: null,
+        answer: "Prathamesh Arvind Rajeshirke",
+        mcqOptions: [
+          "Prathamesh Arvind Rajeshirke",
+          "Somesh Kumar Upadhyay",
+          "Siddheshwar Baliram Bondar",
+          "Rehan Khatri"
+        ],
+        mcqCorrect: "Prathamesh Arvind Rajeshirke",
+        sourceUrl: "https://pragativadi.com/malkangiri-collector-prathamesh-arvind-rajeshirke-to-receive-prestigious-skoch-award/",
+        sourceLabel: "Pragativadi"
+      },
+      {
+        id: 22,
+        cat: "eco",
+        question: "Who embarked on Odisha's second international investment roadshow to the United Arab Emirates (UAE)?",
+        options: null,
+        answer: "Mohan Charan Majhi (Chief Minister of Odisha)",
+        mcqOptions: ["Mohan Charan Majhi", "Pravati Parida", "K. V. Singh Deo", "Sampad Chandra Swain"],
+        mcqCorrect: "Mohan Charan Majhi",
+        sourceUrl: "https://www.newindianexpress.com/states/odisha/2026/Sep/08/cm-majhi-to-begin-uae-investment-outreach-today",
+        sourceLabel: "The New Indian Express"
+      },
+      {
+        id: 23,
+        cat: "awd",
+        question: "The Pollution Control Excellence Award 2026 was conferred on Kurmitar Iron Ore Mines by which organisation?",
+        options: [
+          "(A) Odisha Forest Department",
+          "(B) Ministry of Environment, Forest and Climate Change",
+          "(C) State Pollution Control Board, Odisha",
+          "(D) Odisha Environmental Society"
+        ],
+        answer: "(C) State Pollution Control Board, Odisha",
+        mcqOptions: [
+          "Odisha Forest Department",
+          "Ministry of Environment, Forest and Climate Change",
+          "State Pollution Control Board, Odisha",
+          "Odisha Environmental Society"
+        ],
+        mcqCorrect: "State Pollution Control Board, Odisha",
+        sourceUrl: "https://psuwatch.com/events-reports/omcs-kurmitar-mines-wins-pollution-control-excellence-award-2026",
+        sourceLabel: "PSU Watch"
+      },
+      {
+        id: 24,
+        cat: "eco",
+        question: "The India Electric Mobility Index (IEMI) 2025 was released by which organisation?",
+        options: null,
+        answer: "NITI Aayog (in collaboration with WRI India)",
+        mcqOptions: [
+          "NITI Aayog",
+          "Ministry of Heavy Industries",
+          "Ministry of Road Transport and Highways",
+          "Bureau of Energy Efficiency"
+        ],
+        mcqCorrect: "NITI Aayog",
+        sourceUrl: "https://kalingatv.com/odisha/odisha-ev-ranking-slips-to-8th-in-niti-aayog-mobility-index/",
+        sourceLabel: "Kalinga TV"
+      },
+      {
+        id: 25,
+        cat: "sec",
+        question: "Which coastal security exercise was recently conducted at Paradip, Odisha to strengthen coastal security?",
+        options: null,
+        answer: "Exercise Sagar Kavach",
+        mcqOptions: ["Exercise Sagar Kavach", "Exercise Milan", "Exercise Varuna", "Exercise Malabar"],
+        mcqCorrect: "Exercise Sagar Kavach",
+        sourceUrl: "https://www.gktoday.in/question/odisha-joined-which-neighbouring-state-for-the-sagar-kavach-coastal-security-exercise-82705",
+        sourceLabel: "GKToday"
+      },
+      {
+        id: 26,
+        cat: "sec",
+        question: "Odisha Police launched which special state-wide campaign ahead of the festive season to curb criminals, habitual offenders, and anti-social elements?",
+        options: null,
+        answer: "Operation Daman",
+        mcqOptions: ["Operation Daman", "Operation Prahar", "Operation Suraksha", "Operation Shakti"],
+        mcqCorrect: "Operation Daman",
+        sourceUrl: "https://www.newindianexpress.com/states/odisha/2026/Sep/21/operation-daman-launched-to-keep-criminals-at-bay-during-festivals-in-odisha",
+        sourceLabel: "The New Indian Express"
+      },
+      {
+        id: 27,
+        cat: "awd",
+        question: "Tanisha Agrawal created history as the first woman from which district of Odisha to obtain a Commercial Pilot Licence (CPL)?",
+        options: null,
+        answer: "Bargarh District",
+        mcqOptions: ["Bargarh District", "Sambalpur District", "Sundargarh District", "Balangir District"],
+        mcqCorrect: "Bargarh District",
+        sourceUrl: "https://odishatv.in/odisha/odisha-bargarhs-tanisha-agrawal-becomes-districts-first-woman-commercial-pilot-12484605",
+        sourceLabel: "Odisha TV"
+      },
+      {
+        id: 28,
+        cat: "eco",
+        question: "Which app was launched by Chief Minister Mohan Charan Majhi to enhance safety in urban mobility?",
+        options: null,
+        answer: "Odisha Yatri Safety App",
+        mcqOptions: [
+          "Odisha Yatri Safety App",
+          "Odisha Suraksha App",
+          "Ama Bus Safety App",
+          "Mo Sahar Mobility App"
+        ],
+        mcqCorrect: "Odisha Yatri Safety App",
+        sourceUrl: "https://sambadenglish.com/latest-news/odisha-yatri-launches-indias-first-state-owned-safety-app-12490413",
+        sourceLabel: "Sambad English"
+      },
+      {
+        id: 29,
+        cat: "gov",
+        question: "Which day of the week has the Odisha Government declared as 'No Meeting Day' across government offices?",
+        options: null,
+        answer: "Monday",
+        mcqOptions: ["Monday", "Tuesday", "Wednesday", "Friday"],
+        mcqCorrect: "Monday",
+        sourceUrl: "https://www.newindianexpress.com/states/odisha/2026/Sep/28/odisha-declares-mondays-no-meeting-day-to-prioritise-public-grievances",
+        sourceLabel: "The New Indian Express"
+      },
+      {
+        id: 30,
+        cat: "spc",
+        question: "Who created a special sand animation to congratulate Suruchi Singh and Kamaljeet on winning gold in the 10m Air Pistol Mixed Team event?",
+        options: null,
+        answer: "Manas Kumar Sahoo",
+        mcqOptions: ["Manas Kumar Sahoo", "Sudarsan Pattnaik", "Pramod Patnaik", "Subal Maharana"],
+        mcqCorrect: "Manas Kumar Sahoo",
+        sourceUrl: "https://ommcomnews.com/odisha-news/golden-tribute-on-sand-manas-sahoo-honours-asian-games-champions-suruchi-kamaljeet/",
+        sourceLabel: "Ommcom News"
+      },
+      {
+        id: 31,
+        cat: "env",
+        question: "Which port in Odisha has been officially designated as a 'Mega Port' by the Central Government?",
+        options: null,
+        answer: "Paradip Port",
+        mcqOptions: ["Paradip Port", "Dhamra Port", "Gopalpur Port", "Astaranga Port"],
+        mcqCorrect: "Paradip Port",
+        sourceUrl: "https://timesofindia.indiatimes.com/city/bhubaneswar/centre-designates-paradip-as-mega-port/articleshow/134487711.cms",
+        sourceLabel: "The Times of India"
+      },
+      {
+        id: 32,
+        cat: "spc",
+        question: "Who have been announced as the Brand Ambassadors of the Odisha T20 League 2026 (CM Trophy)?",
+        options: null,
+        answer: "Suresh Raina and Debasis Mohanty",
+        mcqOptions: [
+          "Suresh Raina and Debasis Mohanty",
+          "Siba Sundar Das and Debasis Mohanty",
+          "Suresh Raina and Pragyan Ojha",
+          "Virender Sehwag and Debasis Mohanty"
+        ],
+        mcqCorrect: "Suresh Raina and Debasis Mohanty",
+        sourceUrl: "https://www.tribuneindia.com/news/sports/suresh-raina-debashish-mohanty-named-brand-ambassadors-for-odisha-t20-league-2026-cm-trophy/",
+        sourceLabel: "The Tribune"
+      },
+      {
+        id: 33,
+        cat: "eco",
+        question: "Odisha's Koraput Coffee was featured and served at which major international summit in September 2026?",
+        options: null,
+        answer: "18th BRICS Summit (New Delhi)",
+        mcqOptions: ["18th BRICS Summit", "G20 Summit", "SCO Summit", "BIMSTEC Summit"],
+        mcqCorrect: "18th BRICS Summit",
+        sourceUrl: "https://www.thehindu.com/news/national/a-taste-of-odisha-at-brics-summit-koraput-coffee-given-to-global-delegates/article71460966.ece",
+        sourceLabel: "The Hindu"
+      },
+      {
+        id: 34,
+        cat: "awd",
+        question: "Saptagiri Sankar Ulaka, who received the Sansad Ratna Award 2026, is the Member of Parliament from which Odisha constituency?",
+        options: null,
+        answer: "Koraput Lok Sabha Constituency",
+        mcqOptions: [
+          "Koraput Lok Sabha Constituency",
+          "Nabarangpur Lok Sabha Constituency",
+          "Kalahandi Lok Sabha Constituency",
+          "Kandhamal Lok Sabha Constituency"
+        ],
+        mcqCorrect: "Koraput Lok Sabha Constituency",
+        sourceUrl: "https://timesofindia.indiatimes.com/city/bhubaneswar/koraput-mp-ulaka-gets-sansad-ratna-award/articleshow/134016966.cms",
+        sourceLabel: "The Times of India"
+      },
+      {
+        id: 35,
+        cat: "spc",
+        question: "Who became the youngest female player to hold an official FIDE rating in September 2026?",
+        options: null,
+        answer: "Elena Mishra",
+        mcqOptions: ["Elena Mishra", "Saina Salonika", "Padmini Rout", "Kiran Manisha Mohanty"],
+        mcqCorrect: "Elena Mishra",
+        sourceUrl: "https://www.drishtiias.com/state-pcs-current-affairs/elena-mishra-becomes-youngest-female-fide-rated-chess-player",
+        sourceLabel: "Drishti IAS"
+      },
+      {
+        id: 36,
+        cat: "app",
+        question: "Who has been appointed as the Chairman of the Internal Audit Committee of the World Federation of Engineering Organizations (WFEO)?",
+        options: null,
+        answer: "Ashok Basa",
+        mcqOptions: ["Ashok Basa", "Vishal Kumar Dev", "K. Umamaheshwar Rao", "C. Sekhar Reddy"],
+        mcqCorrect: "Ashok Basa",
+        sourceUrl: "https://ommcomnews.com/odisha-news/odia-engineer-ashok-basa-appointed-first-chair-of-wfeo-internal-audit-committee/",
+        sourceLabel: "Ommcom News"
+      },
+      {
+        id: 37,
+        cat: "awd",
+        question: "Which certificate was awarded to Odisha's bamboo sector under the Indian Forest and Wood Certification Scheme (IFWCS)?",
+        options: [
+          "(A) PRAMAAN Certificate",
+          "(B) Pragati Certificate",
+          "(C) Prerana Certificate",
+          "(D) Harit Certificate"
+        ],
+        answer: "(A) PRAMAAN Certificate",
+        mcqOptions: ["PRAMAAN Certificate", "Pragati Certificate", "Prerana Certificate", "Harit Certificate"],
+        mcqCorrect: "PRAMAAN Certificate",
+        sourceUrl: "https://ommcomnews.com/odisha-news/odishas-bamboo-sector-achieves-milestone-with-pramaan-certification-under-ifwcs/",
+        sourceLabel: "Ommcom News"
+      },
+      {
+        id: 38,
+        cat: "spc",
+        question: "Where was a life-size statue of former Odisha Chief Minister Nandini Satpathy unveiled in September 2026?",
+        options: null,
+        answer: "Daya Ashram Park, Cuttack",
+        mcqOptions: [
+          "Daya Ashram Park, Cuttack",
+          "Biju Patnaik Park, Bhubaneswar",
+          "Indira Gandhi Park, Bhubaneswar",
+          "Barabati Fort Park, Cuttack"
+        ],
+        mcqCorrect: "Daya Ashram Park, Cuttack",
+        sourceUrl: "https://www.orissapost.com/former-odisha-cm-nandini-satpathys-statue-unveiled-in-kataka/",
+        sourceLabel: "OrissaPOST"
+      },
+      {
+        id: 39,
+        cat: "app",
+        question: "Who took charge as the new Deputy Commissioner of Police (DCP), Bhubaneswar in September 2026?",
+        options: null,
+        answer: "Dr. Saravana Vivek M (IPS)",
+        mcqOptions: ["Dr. Saravana Vivek M", "Jagmohan Meena", "Prateek Singh", "Pinak Mishra"],
+        mcqCorrect: "Dr. Saravana Vivek M",
+        sourceUrl: "https://ommcomnews.com/odisha-news/ips-reshuffle-saravana-vivek-replaces-jagmohan-meena-as-bhubaneswar-dcp/",
+        sourceLabel: "Ommcom News"
+      },
+      {
+        id: 40,
+        cat: "spc",
+        question: "What is the name of the first state-level special handicrafts exhibition launched by the Odisha Government in September 2026?",
+        options: null,
+        answer: "Utkalaa: Shri Ganesh",
+        mcqOptions: [
+          "Utkalaa: Shri Ganesh",
+          "Ekamra Shilpa Utsav",
+          "Kalinga Hastashilpa Mela",
+          "Odisha Kala Samruddhi"
+        ],
+        mcqCorrect: "Utkalaa: Shri Ganesh",
+        sourceUrl: "https://ommcomnews.com/odisha-news/odisha-launches-utkalaa-shri-ganesh-handicrafts-exhibition-in-bhubaneswar/",
+        sourceLabel: "Ommcom News"
+      }
+    ];
+
+    /* =========================================================================
+       SHARED UTILITIES & SECTION SWITCHER
+       ========================================================================= */
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    const modeSwitcherBar = document.getElementById("modeSwitcherBar");
+    const tabNotesBtn = document.getElementById("tabNotesBtn");
+    const tabTestBtn = document.getElementById("tabTestBtn");
+    const notesSection = document.getElementById("notesSection");
+    const mockTestSection = document.getElementById("mockTestSection");
+
+    function switchAppSection(section) {
+      if (section === "notes") {
+        notesSection.classList.remove("is-hidden");
+        mockTestSection.classList.add("is-hidden");
+        tabNotesBtn.classList.add("active");
+        tabTestBtn.classList.remove("active");
+      } else {
+        notesSection.classList.add("is-hidden");
+        mockTestSection.classList.remove("is-hidden");
+        tabTestBtn.classList.add("active");
+        tabNotesBtn.classList.remove("active");
+        renderSavedHistory();
+      }
+    }
+
+    tabNotesBtn.addEventListener("click", () => switchAppSection("notes"));
+    tabTestBtn.addEventListener("click", () => switchAppSection("test"));
+
+    /* =========================================================================
+       SECTION 1 LOGIC: STUDY NOTES
+       ========================================================================= */
+    const notesState = {
+      search: "",
+      category: "all",
+      quizMode: false,
+      revealedIds: new Set()
+    };
+
+    const notesGrid = document.getElementById("notesGrid");
+    const searchInput = document.getElementById("searchInput");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const resetBtn = document.getElementById("resetBtn");
+    const quizModeBtn = document.getElementById("quizModeBtn");
+    const printBtn = document.getElementById("printBtn");
+    const visibleCount = document.getElementById("visibleCount");
+    const modeStatus = document.getElementById("modeStatus");
+
+    function getFilteredNotes() {
+      const q = notesState.search.trim().toLowerCase();
+      return QUESTIONS.filter((item) => {
+        if (notesState.category !== "all" && item.cat !== notesState.category) {
+          return false;
+        }
+        if (!q) return true;
+        const haystack = [
+          "q" + item.id,
+          item.question,
+          item.answer,
+          CATEGORY_META[item.cat].label,
+          ...(item.options || [])
+        ].join(" ").toLowerCase();
+        return haystack.includes(q);
+      });
+    }
+
+    function renderNotes() {
+      const list = getFilteredNotes();
+      visibleCount.textContent = `Showing ${list.length} of ${QUESTIONS.length} Questions`;
+
+      if (notesState.quizMode) {
+        quizModeBtn.textContent = "Study Mode: Show All Answers";
+        quizModeBtn.classList.add("btn-active");
+        modeStatus.textContent = "Quiz Mode: Click 'Reveal Answer' on any card";
+      } else {
+        quizModeBtn.textContent = "Quiz Mode: Hide Answers";
+        quizModeBtn.classList.remove("btn-active");
+        modeStatus.textContent = "Study Mode: All Answers Visible";
+      }
+
+      if (list.length === 0) {
+        notesGrid.innerHTML = `<div class="empty-state">No matching questions found. Try clearing your search or category filter.</div>`;
+        return;
+      }
+
+      const html = list.map((item) => {
+        const meta = CATEGORY_META[item.cat];
+        const isAnswerHidden = notesState.quizMode && !notesState.revealedIds.has(item.id);
+
+        const optionsHtml = item.options
+          ? `<ul class="options-list">${item.options.map((opt) => `<li>${escapeHtml(opt)}</li>`).join("")}</ul>`
+          : "";
+
+        const revealControlHtml = notesState.quizMode
+          ? `<button type="button" class="reveal-btn" data-toggle-id="${item.id}">${isAnswerHidden ? "Reveal Answer" : "Hide Answer"}</button>`
+          : "";
+
+        return `
+          <article class="note-card ${meta.cls}">
+            <div class="card-header">
+              <span class="q-badge">Q${item.id}</span>
+              <span class="cat-tag">${escapeHtml(meta.label)}</span>
+            </div>
+            <h2 class="question-text">${escapeHtml(item.question)}</h2>
+            ${optionsHtml}
+            ${revealControlHtml}
+            <div class="answer-section ${isAnswerHidden ? "hidden-in-quiz" : ""}">
+              <div class="answer-box">
+                <span class="answer-label">Answer:</span>
+                <span class="answer-value">${escapeHtml(item.answer)}</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a class="source-link" href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">Source: ${escapeHtml(item.sourceLabel)}</a>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      notesGrid.innerHTML = html;
+    }
+
+    searchInput.addEventListener("input", (e) => {
+      notesState.search = e.target.value;
+      renderNotes();
+    });
+
+    categoryFilter.addEventListener("change", (e) => {
+      notesState.category = e.target.value;
+      renderNotes();
+    });
+
+    resetBtn.addEventListener("click", () => {
+      notesState.search = "";
+      notesState.category = "all";
+      searchInput.value = "";
+      categoryFilter.value = "all";
+      renderNotes();
+    });
+
+    quizModeBtn.addEventListener("click", () => {
+      notesState.quizMode = !notesState.quizMode;
+      notesState.revealedIds.clear();
+      renderNotes();
+    });
+
+    printBtn.addEventListener("click", () => {
+      window.print();
+    });
+
+    notesGrid.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-toggle-id]");
+      if (!btn) return;
+      const id = Number(btn.getAttribute("data-toggle-id"));
+      if (notesState.revealedIds.has(id)) {
+        notesState.revealedIds.delete(id);
+      } else {
+        notesState.revealedIds.add(id);
+      }
+      renderNotes();
+    });
+
+    /* =========================================================================
+       SECTION 2 LOGIC: MOCK TEST (TCS / EDUQUITY INTERFACE)
+       ========================================================================= */
+    const STORAGE_KEY = "odisha_sept_2026_mock_history_v1";
+    const TOTAL_SECONDS = QUESTIONS.length * 36; // 40 * 36s = 1440s = 24:00
+    const OPTION_KEYS = ["A", "B", "C", "D"];
+
+    const examIntroView = document.getElementById("examIntroView");
+    const examActiveView = document.getElementById("examActiveView");
+    const examResultView = document.getElementById("examResultView");
+    const pauseOverlay = document.getElementById("pauseOverlay");
+    const submitModal = document.getElementById("submitModal");
+
+    const startTestBtn = document.getElementById("startTestBtn");
+    const examTimerDisplay = document.getElementById("examTimerDisplay");
+    const pauseBtn = document.getElementById("pauseBtn");
+    const resumeBtn = document.getElementById("resumeBtn");
+    const pauseTimeText = document.getElementById("pauseTimeText");
+    const fullscreenBtn = document.getElementById("fullscreenBtn");
+    const submitTopBtn = document.getElementById("submitTopBtn");
+    const submitBottomBtn = document.getElementById("submitBottomBtn");
+    const cancelSubmitBtn = document.getElementById("cancelSubmitBtn");
+    const confirmSubmitBtn = document.getElementById("confirmSubmitBtn");
+    const submitSummaryGrid = document.getElementById("submitSummaryGrid");
+
+    const examQNumber = document.getElementById("examQNumber");
+    const examQStem = document.getElementById("examQStem");
+    const examOptionsBox = document.getElementById("examOptionsBox");
+    const prevBtn = document.getElementById("prevBtn");
+    const clearBtn = document.getElementById("clearBtn");
+    const markNextBtn = document.getElementById("markNextBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    const paletteGrid = document.getElementById("paletteGrid");
+    const statAnswered = document.getElementById("statAnswered");
+    const statNotAnswered = document.getElementById("statNotAnswered");
+    const statNotVisited = document.getElementById("statNotVisited");
+    const statMarked = document.getElementById("statMarked");
+    const statAnsMarked = document.getElementById("statAnsMarked");
+
+    const scoreKpiGrid = document.getElementById("scoreKpiGrid");
+    const reviewCountLabel = document.getElementById("reviewCountLabel");
+    const reviewContainer = document.getElementById("reviewContainer");
+    const savedStatusBadge = document.getElementById("savedStatusBadge");
+    const retakeBtn = document.getElementById("retakeBtn");
+    const backToIntroBtn = document.getElementById("backToIntroBtn");
+    const goToNotesBtn = document.getElementById("goToNotesBtn");
+
+    const savedHistoryPanel = document.getElementById("savedHistoryPanel");
+    const historyTableBody = document.getElementById("historyTableBody");
+    const clearHistoryBtn = document.getElementById("clearHistoryBtn");
+
+    const examState = {
+      active: false,
+      paused: false,
+      currentIndex: 0,
+      remainingSeconds: TOTAL_SECONDS,
+      timerId: null,
+      randomizedOptions: [], // Array of 4-option arrays in fixed Q1..Q40 order
+      responses: {},         // index -> selected option text
+      visited: new Set(),
+      marked: new Set()
+    };
+
+    function shuffleArray(arr) {
+      const copy = arr.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = copy[i];
+        copy[i] = copy[j];
+        copy[j] = tmp;
+      }
+      return copy;
+    }
+
+    function buildRandomizedOptions() {
+      return QUESTIONS.map((q) => {
+        const hasAllAbove = q.mcqOptions.includes("All of the above");
+        if (hasAllAbove) {
+          const others = q.mcqOptions.filter((o) => o !== "All of the above");
+          return [...shuffleArray(others), "All of the above"];
+        }
+        return shuffleArray(q.mcqOptions);
+      });
+    }
+
+    function formatTime(totalSec) {
+      const s = Math.max(0, totalSec);
+      const mins = Math.floor(s / 60);
+      const secs = s % 60;
+      return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+    }
+
+    function updateTimerUI() {
+      const formatted = formatTime(examState.remainingSeconds);
+      examTimerDisplay.textContent = `Time Left: ${formatted}`;
+      examTimerDisplay.classList.remove("timer-warn", "timer-danger");
+      if (examState.remainingSeconds <= 60) {
+        examTimerDisplay.classList.add("timer-danger");
+      } else if (examState.remainingSeconds <= 300) {
+        examTimerDisplay.classList.add("timer-warn");
+      }
+    }
+
+    function stopTimer() {
+      if (examState.timerId !== null) {
+        clearInterval(examState.timerId);
+        examState.timerId = null;
+      }
+    }
+
+    function startTimer() {
+      stopTimer();
+      examState.timerId = setInterval(() => {
+        if (!examState.active || examState.paused) return;
+        examState.remainingSeconds -= 1;
+        updateTimerUI();
+        if (examState.remainingSeconds <= 0) {
+          submitExam(true);
+        }
+      }, 1000);
+    }
+
+    function requestExamFullscreen() {
+      try {
+        const el = document.documentElement;
+        if (!document.fullscreenElement && el.requestFullscreen) {
+          const p = el.requestFullscreen();
+          if (p && typeof p.catch === "function") p.catch(() => {});
+        }
+      } catch (e) {
+        // Ignore fullscreen restriction in sandboxed preview
+      }
+    }
+
+    function exitExamFullscreen() {
+      try {
+        if (document.fullscreenElement && document.exitFullscreen) {
+          const p = document.exitFullscreen();
+          if (p && typeof p.catch === "function") p.catch(() => {});
+        }
+      } catch (e) {
+        // Ignore
+      }
+    }
+
+    function updateFullscreenBtnLabel() {
+      fullscreenBtn.textContent = document.fullscreenElement ? "Exit Fullscreen" : "Enter Fullscreen";
+    }
+
+    document.addEventListener("fullscreenchange", updateFullscreenBtnLabel);
+
+    function getQuestionStatus(idx) {
+      const hasAns = Object.prototype.hasOwnProperty.call(examState.responses, idx);
+      const isMarked = examState.marked.has(idx);
+      const isVisited = examState.visited.has(idx);
+      if (hasAns && isMarked) return "ans-marked";
+      if (isMarked) return "marked";
+      if (hasAns) return "answered";
+      if (isVisited) return "not-answered";
+      return "not-visited";
+    }
+
+    function computePaletteCounts() {
+      let answered = 0;
+      let notAnswered = 0;
+      let notVisited = 0;
+      let marked = 0;
+      let ansMarked = 0;
+      for (let i = 0; i < QUESTIONS.length; i++) {
+        const st = getQuestionStatus(i);
+        if (st === "answered") answered++;
+        else if (st === "not-answered") notAnswered++;
+        else if (st === "not-visited") notVisited++;
+        else if (st === "marked") marked++;
+        else if (st === "ans-marked") ansMarked++;
+      }
+      return { answered, notAnswered, notVisited, marked, ansMarked };
+    }
+
+    function renderPalette() {
+      const counts = computePaletteCounts();
+      statAnswered.textContent = String(counts.answered);
+      statNotAnswered.textContent = String(counts.notAnswered);
+      statNotVisited.textContent = String(counts.notVisited);
+      statMarked.textContent = String(counts.marked);
+      statAnsMarked.textContent = String(counts.ansMarked);
+
+      const clsMap = {
+        "not-visited": "pal-not-visited",
+        "not-answered": "pal-not-answered",
+        "answered": "pal-answered",
+        "marked": "pal-marked",
+        "ans-marked": "pal-ans-marked"
+      };
+
+      paletteGrid.innerHTML = QUESTIONS.map((q, idx) => {
+        const st = getQuestionStatus(idx);
+        const curCls = idx === examState.currentIndex ? "current-q" : "";
+        return `<button type="button" class="pal-btn ${clsMap[st]} ${curCls}" data-q-idx="${idx}">${q.id}</button>`;
+      }).join("");
+    }
+
+    function renderActiveQuestion() {
+      const idx = examState.currentIndex;
+      examState.visited.add(idx);
+      const q = QUESTIONS[idx];
+      const opts = examState.randomizedOptions[idx];
+      const chosen = examState.responses[idx];
+
+      examQNumber.textContent = `Question No. ${q.id} of ${QUESTIONS.length}`;
+      examQStem.textContent = q.question;
+
+      examOptionsBox.innerHTML = opts.map((optText, optIdx) => {
+        const isSelected = chosen === optText;
+        return `
+          <label class="exam-opt-label ${isSelected ? "selected" : ""}">
+            <input
+              type="radio"
+              name="examOption"
+              value="${escapeHtml(optText)}"
+              ${isSelected ? "checked" : ""}
+              data-opt-idx="${optIdx}"
+            />
+            <span class="exam-opt-key">(${OPTION_KEYS[optIdx]})</span>
+            <span>${escapeHtml(optText)}</span>
+          </label>
+        `;
+      }).join("");
+
+      prevBtn.disabled = idx === 0;
+      nextBtn.textContent = idx === QUESTIONS.length - 1 ? "Save" : "Next";
+      renderPalette();
+    }
+
+    function startNewExam() {
+      stopTimer();
+      examState.active = true;
+      examState.paused = false;
+      examState.currentIndex = 0;
+      examState.remainingSeconds = TOTAL_SECONDS;
+      examState.randomizedOptions = buildRandomizedOptions();
+      examState.responses = {};
+      examState.visited = new Set([0]);
+      examState.marked = new Set();
+
+      modeSwitcherBar.classList.add("is-hidden");
+      examIntroView.classList.add("is-hidden");
+      examResultView.classList.add("is-hidden");
+      pauseOverlay.classList.add("is-hidden");
+      submitModal.classList.add("is-hidden");
+      examActiveView.classList.remove("is-hidden");
+      document.body.classList.add("exam-locked");
+
+      updateTimerUI();
+      renderActiveQuestion();
+      startTimer();
+      requestExamFullscreen();
+      updateFullscreenBtnLabel();
+    }
+
+    function loadHistory() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return [];
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveAttemptToStorage(record) {
+      try {
+        const list = loadHistory();
+        list.unshift(record);
+        const trimmed = list.slice(0, 15);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(trimmed));
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function renderSavedHistory() {
+      const list = loadHistory();
+      if (list.length === 0) {
+        savedHistoryPanel.classList.add("is-hidden");
+        return;
+      }
+      savedHistoryPanel.classList.remove("is-hidden");
+      historyTableBody.innerHTML = list.map((rec, idx) => `
+        <tr>
+          <td>${escapeHtml(rec.dateStr)}</td>
+          <td><strong>${rec.score.toFixed(1)} / ${rec.maxScore}</strong></td>
+          <td>${rec.correct}</td>
+          <td>${rec.incorrect}</td>
+          <td>${rec.unattempted}</td>
+          <td>${rec.accuracy}%</td>
+          <td><button type="button" class="btn" data-view-history="${idx}">View Analysis</button></td>
+        </tr>
+      `).join("");
+    }
+
+    function renderResultView(record, savedOk) {
+      examIntroView.classList.add("is-hidden");
+      examActiveView.classList.add("is-hidden");
+      pauseOverlay.classList.add("is-hidden");
+      submitModal.classList.add("is-hidden");
+      examResultView.classList.remove("is-hidden");
+      modeSwitcherBar.classList.remove("is-hidden");
+      document.body.classList.remove("exam-locked");
+
+      savedStatusBadge.textContent = savedOk
+        ? "Score & Analysis Saved in Browser Local Storage"
+        : "Result Displayed (Local Storage Unavailable)";
+
+      scoreKpiGrid.innerHTML = `
+        <div class="kpi-card kpi-score">
+          <div class="kpi-label">Total Score</div>
+          <div class="kpi-val">${record.score.toFixed(1)} / ${record.maxScore}</div>
+        </div>
+        <div class="kpi-card kpi-correct">
+          <div class="kpi-label">Correct (+2)</div>
+          <div class="kpi-val">${record.correct}</div>
+        </div>
+        <div class="kpi-card kpi-wrong">
+          <div class="kpi-label">Incorrect (-0.5)</div>
+          <div class="kpi-val">${record.incorrect}</div>
+        </div>
+        <div class="kpi-card kpi-skip">
+          <div class="kpi-label">Unattempted</div>
+          <div class="kpi-val">${record.unattempted}</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Accuracy</div>
+          <div class="kpi-val">${record.accuracy}%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Time Taken</div>
+          <div class="kpi-val">${escapeHtml(record.timeTaken)}</div>
+        </div>
+      `;
+
+      const items = record.reviewItems || [];
+      reviewCountLabel.textContent = `${items.length} Question${items.length === 1 ? "" : "s"} to Review`;
+
+      if (items.length === 0) {
+        reviewContainer.innerHTML = `<div class="perfect-banner">All 40 questions answered correctly! There are no incorrect or unattempted questions to review.</div>`;
+        return;
+      }
+
+      reviewContainer.innerHTML = `<div class="review-list">` + items.map((item) => {
+        const isSkip = item.status === "unattempted";
+        const badge = isSkip
+          ? `<span class="status-pill-skip">Unattempted (0)</span>`
+          : `<span class="status-pill-wrong">Incorrect (-0.5)</span>`;
+        const userRow = isSkip
+          ? `<div class="review-ans-row">Your Response: <strong>Not Attempted</strong></div>`
+          : `<div class="review-ans-row">Your Answer: <span class="review-user-wrong">${escapeHtml(item.userAnswer)}</span></div>`;
+
+        return `
+          <article class="review-card ${isSkip ? "is-unattempted" : ""}">
+            <div class="review-card-top">
+              <strong>Question ${item.id}</strong>
+              ${badge}
+            </div>
+            <div class="review-q-text">${escapeHtml(item.question)}</div>
+            ${userRow}
+            <div class="review-ans-row">Correct Answer: <span class="review-correct-ans">${escapeHtml(item.correctAnswer)}</span></div>
+          </article>
+        `;
+      }).join("") + `</div>`;
+    }
+
+    function submitExam(isAuto) {
+      stopTimer();
+      examState.active = false;
+      examState.paused = false;
+      exitExamFullscreen();
+
+      let correct = 0;
+      let incorrect = 0;
+      let unattempted = 0;
+      const reviewItems = [];
+
+      QUESTIONS.forEach((q, idx) => {
+        const hasAns = Object.prototype.hasOwnProperty.call(examState.responses, idx);
+        if (!hasAns) {
+          unattempted++;
+          reviewItems.push({
+            id: q.id,
+            question: q.question,
+            status: "unattempted",
+            userAnswer: null,
+            correctAnswer: q.mcqCorrect
+          });
+        } else if (examState.responses[idx] === q.mcqCorrect) {
+          correct++;
+        } else {
+          incorrect++;
+          reviewItems.push({
+            id: q.id,
+            question: q.question,
+            status: "incorrect",
+            userAnswer: examState.responses[idx],
+            correctAnswer: q.mcqCorrect
+          });
+        }
+      });
+
+      const attempted = correct + incorrect;
+      const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+      const score = correct * 2 - incorrect * 0.5;
+      const elapsedSec = Math.max(0, TOTAL_SECONDS - examState.remainingSeconds);
+
+      const record = {
+        dateStr: new Date().toLocaleString(),
+        score,
+        maxScore: QUESTIONS.length * 2,
+        correct,
+        incorrect,
+        unattempted,
+        accuracy,
+        timeTaken: formatTime(elapsedSec),
+        autoSubmitted: Boolean(isAuto),
+        reviewItems
+      };
+
+      const savedOk = saveAttemptToStorage(record);
+      renderResultView(record, savedOk);
+    }
+
+    function openSubmitModal() {
+      const counts = computePaletteCounts();
+      const totalAns = counts.answered + counts.ansMarked;
+      const totalUnans = QUESTIONS.length - totalAns;
+      submitSummaryGrid.innerHTML = `
+        <div class="modal-summary-item">Total Questions: <strong>${QUESTIONS.length}</strong></div>
+        <div class="modal-summary-item">Answered: <strong style="color:#15803d;">${totalAns}</strong></div>
+        <div class="modal-summary-item">Unattempted: <strong style="color:#dc2626;">${totalUnans}</strong></div>
+        <div class="modal-summary-item">Marked for Review: <strong style="color:#7c3aed;">${counts.marked + counts.ansMarked}</strong></div>
+      `;
+      submitModal.classList.remove("is-hidden");
+    }
+
+    /* Event Listeners: Mock Test */
+    startTestBtn.addEventListener("click", startNewExam);
+    retakeBtn.addEventListener("click", startNewExam);
+
+    backToIntroBtn.addEventListener("click", () => {
+      examResultView.classList.add("is-hidden");
+      examIntroView.classList.remove("is-hidden");
+      renderSavedHistory();
+    });
+
+    goToNotesBtn.addEventListener("click", () => {
+      switchAppSection("notes");
+    });
+
+    examOptionsBox.addEventListener("change", (e) => {
+      if (e.target && e.target.name === "examOption") {
+        const idx = examState.currentIndex;
+        const optIdx = Number(e.target.getAttribute("data-opt-idx"));
+        examState.responses[idx] = examState.randomizedOptions[idx][optIdx];
+        renderActiveQuestion();
+      }
+    });
+
+    prevBtn.addEventListener("click", () => {
+      if (examState.currentIndex > 0) {
+        examState.currentIndex -= 1;
+        renderActiveQuestion();
+      }
+    });
+
+    nextBtn.addEventListener("click", () => {
+      if (examState.currentIndex < QUESTIONS.length - 1) {
+        examState.currentIndex += 1;
+        renderActiveQuestion();
+      } else {
+        renderPalette();
+      }
+    });
+
+    clearBtn.addEventListener("click", () => {
+      const idx = examState.currentIndex;
+      delete examState.responses[idx];
+      examState.marked.delete(idx);
+      renderActiveQuestion();
+    });
+
+    markNextBtn.addEventListener("click", () => {
+      examState.marked.add(examState.currentIndex);
+      if (examState.currentIndex < QUESTIONS.length - 1) {
+        examState.currentIndex += 1;
+      }
+      renderActiveQuestion();
+    });
+
+    paletteGrid.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-q-idx]");
+      if (!btn) return;
+      examState.currentIndex = Number(btn.getAttribute("data-q-idx"));
+      renderActiveQuestion();
+    });
+
+    pauseBtn.addEventListener("click", () => {
+      if (!examState.active) return;
+      examState.paused = true;
+      pauseTimeText.textContent = `Time Remaining: ${formatTime(examState.remainingSeconds)}`;
+      pauseOverlay.classList.remove("is-hidden");
+    });
+
+    resumeBtn.addEventListener("click", () => {
+      examState.paused = false;
+      pauseOverlay.classList.add("is-hidden");
+    });
+
+    fullscreenBtn.addEventListener("click", () => {
+      if (document.fullscreenElement) {
+        exitExamFullscreen();
+      } else {
+        requestExamFullscreen();
+      }
+    });
+
+    submitTopBtn.addEventListener("click", openSubmitModal);
+    submitBottomBtn.addEventListener("click", openSubmitModal);
+
+    cancelSubmitBtn.addEventListener("click", () => {
+      submitModal.classList.add("is-hidden");
+    });
+
+    confirmSubmitBtn.addEventListener("click", () => {
+      submitExam(false);
+    });
+
+    historyTableBody.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-view-history]");
+      if (!btn) return;
+      const idx = Number(btn.getAttribute("data-view-history"));
+      const list = loadHistory();
+      if (list[idx]) {
+        renderResultView(list[idx], true);
+      }
+    });
+
+    clearHistoryBtn.addEventListener("click", () => {
+      try {
+        localStorage.removeItem(STORAGE_KEY);
+      } catch (e) {
+        // Ignore
+      }
+      renderSavedHistory();
+    });
+
+    /* Initial Render */
+    renderNotes();
+    renderSavedHistory();
+  </script>
+</body>
+</html>
