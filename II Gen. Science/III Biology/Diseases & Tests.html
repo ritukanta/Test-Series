@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diseases &amp; Diagnostic Tests — CBT Mock Test</title>
+  <style>
+    :root {
+      --bg-page: #f3f5f8;
+      --bg-surface: #ffffff;
+      --bg-subtle: #f8fafc;
+      --header-bg: #1e40af;
+      --header-text: #ffffff;
+      --primary: #1d4ed8;
+      --primary-hover: #1e40af;
+      --border: #d1d5db;
+      --border-light: #e5e7eb;
+      --text-main: #111827;
+      --text-muted: #4b5563;
+      --text-light: #6b7280;
+      --answered-bg: #16a34a;
+      --answered-border: #15803d;
+      --not-answered-bg: #dc2626;
+      --not-answered-border: #b91c1c;
+      --marked-bg: #7c3aed;
+      --marked-border: #6d28d9;
+      --not-visited-bg: #f3f4f6;
+      --not-visited-border: #d1d5db;
+      --danger: #dc2626;
+      --danger-hover: #b91c1c;
+      --warning: #d97706;
+      --success: #15803d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* ================= INTRO SCREEN ================= */
+    .intro-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top-brand-bar {
+      background-color: var(--header-bg);
+      color: var(--header-text);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3px solid #1e3a8a;
+    }
+
+    .top-brand-bar h1 {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .top-brand-bar .badge {
+      background: rgba(255, 255, 255, 0.16);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .intro-container {
+      max-width: 920px;
+      width: 100%;
+      margin: 24px auto;
+      padding: 0 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 20px 24px;
+    }
+
+    .intro-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .intro-subtitle {
+      color: var(--text-muted);
+      font-size: 13.5px;
+      margin-bottom: 16px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .meta-box {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      border-radius: 5px;
+      padding: 10px 12px;
+    }
+
+    .meta-label {
+      font-size: 11.5px;
+      color: var(--text-light);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+    }
+
+    .meta-value {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-top: 2px;
+    }
+
+    .section-heading {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .instructions-list {
+      padding-left: 20px;
+      color: var(--text-muted);
+      font-size: 13.5px;
+    }
+
+    .instructions-list li {
+      margin-bottom: 6px;
+    }
+
+    .legend-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .palette-sample {
+      width: 26px;
+      height: 26px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .status-not-visited {
+      background: var(--not-visited-bg);
+      border: 1px solid var(--not-visited-border);
+      color: var(--text-main);
+    }
+
+    .status-not-answered {
+      background: var(--not-answered-bg);
+      border: 1px solid var(--not-answered-border);
+      color: #ffffff;
+    }
+
+    .status-answered {
+      background: var(--answered-bg);
+      border: 1px solid var(--answered-border);
+      color: #ffffff;
+    }
+
+    .status-marked {
+      background: var(--marked-bg);
+      border: 1px solid var(--marked-border);
+      color: #ffffff;
+    }
+
+    .status-answered-marked {
+      background: var(--marked-bg);
+      border: 1px solid var(--marked-border);
+      color: #ffffff;
+    }
+
+    .status-answered-marked::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 1.5px solid #ffffff;
+    }
+
+    .intro-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: 8px;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #ffffff;
+      padding: 10px 22px;
+      font-size: 14px;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background-color: #ffffff;
+      color: var(--text-main);
+      border-color: var(--border);
+      padding: 8px 14px;
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background-color: #f3f4f6;
+    }
+
+    .btn-danger {
+      background-color: var(--danger);
+      color: #ffffff;
+      padding: 8px 16px;
+    }
+
+    .btn-danger:hover:not(:disabled) {
+      background-color: var(--danger-hover);
+    }
+
+    .btn-purple {
+      background-color: var(--marked-bg);
+      color: #ffffff;
+      padding: 8px 14px;
+    }
+
+    .btn-purple:hover:not(:disabled) {
+      background-color: var(--marked-border);
+    }
+
+    .btn-success {
+      background-color: var(--answered-bg);
+      color: #ffffff;
+      padding: 8px 18px;
+    }
+
+    .btn-success:hover:not(:disabled) {
+      background-color: var(--answered-border);
+    }
+
+    /* History table */
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .history-table th,
+    .history-table td {
+      border: 1px solid var(--border-light);
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .history-table th {
+      background: var(--bg-subtle);
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* ================= EXAM INTERFACE ================= */
+    .exam-shell {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: var(--bg-page);
+    }
+
+    .exam-header {
+      background-color: var(--header-bg);
+      color: var(--header-text);
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-shrink: 0;
+      border-bottom: 2px solid #1e3a8a;
+    }
+
+    .exam-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .exam-header-title {
+      font-size: 15px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .exam-header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .timer-box {
+      background: #ffffff;
+      color: var(--text-main);
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #cbd5e1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timer-box.timer-warning {
+      background: #fef2f2;
+      color: #b91c1c;
+      border-color: #fca5a5;
+    }
+
+    .header-btn {
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 6px 11px;
+      font-size: 12.5px;
+    }
+
+    .header-btn:hover {
+      background: rgba(255, 255, 255, 0.24);
+    }
+
+    .header-submit-btn {
+      background: #16a34a;
+      color: #ffffff;
+      border: 1px solid #15803d;
+      padding: 6px 14px;
+      font-size: 12.5px;
+    }
+
+    .header-submit-btn:hover {
+      background: #15803d;
+    }
+
+    .exam-body {
+      flex: 1;
+      display: flex;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    /* Left Question Area */
+    .question-pane {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-surface);
+      border-right: 1px solid var(--border);
+      min-width: 0;
+      min-height: 0;
+    }
+
+    .question-subbar {
+      padding: 10px 20px;
+      background: var(--bg-subtle);
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .q-number-label {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .q-marks-label {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .q-marks-pos {
+      color: var(--success);
+    }
+
+    .q-marks-neg {
+      color: var(--danger);
+    }
+
+    .question-scroll-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 24px;
+      position: relative;
+    }
+
+    .question-text {
+      font-size: 15.5px;
+      font-weight: 500;
+      color: var(--text-main);
+      margin-bottom: 18px;
+      white-space: pre-line;
+      line-height: 1.6;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 760px;
+    }
+
+    .option-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 11px 14px;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: background-color 0.12s ease, border-color 0.12s ease;
+    }
+
+    .option-label:hover {
+      background: #f8fafc;
+      border-color: #93c5fd;
+    }
+
+    .option-label.selected {
+      background: #eff6ff;
+      border-color: var(--primary);
+    }
+
+    .option-label input[type="radio"] {
+      margin-top: 3px;
+      accent-color: var(--primary);
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .option-prefix {
+      font-weight: 700;
+      color: var(--text-muted);
+      min-width: 20px;
+    }
+
+    .option-text {
+      color: var(--text-main);
+      font-size: 14.5px;
+    }
+
+    .question-footer {
+      padding: 12px 20px;
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+    }
+
+    .footer-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Right Question Palette */
+    .palette-pane {
+      width: 265px;
+      background: var(--bg-surface);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      min-height: 0;
+    }
+
+    .palette-header {
+      padding: 10px 14px;
+      background: var(--bg-subtle);
+      border-bottom: 1px solid var(--border-light);
+      font-weight: 700;
+      font-size: 13.5px;
+      color: var(--text-main);
+      flex-shrink: 0;
+    }
+
+    .palette-summary {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border-light);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .summary-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .summary-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 3px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .palette-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 14px;
+      min-height: 0;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+
+    .palette-btn {
+      height: 34px;
+      width: 100%;
+      border-radius: 4px;
+      font-size: 12.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .palette-btn.current-q {
+      outline: 2px solid #1e40af;
+      outline-offset: 1px;
+    }
+
+    /* ================= PAUSE OVERLAY & MODALS ================= */
+    .overlay-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 16px;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      max-width: 440px;
+      width: 100%;
+      padding: 20px 24px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .modal-title {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .modal-body {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .modal-stats {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+
+    .modal-stats td {
+      padding: 6px 8px;
+      border: 1px solid var(--border-light);
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    /* ================= RESULTS & ANALYSIS ================= */
+    .results-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .results-container {
+      max-width: 960px;
+      width: 100%;
+      margin: 24px auto;
+      padding: 0 16px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .score-stat {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      border-radius: 5px;
+      padding: 12px 14px;
+    }
+
+    .score-stat-label {
+      font-size: 11.5px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      font-weight: 600;
+    }
+
+    .score-stat-value {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .solution-card {
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      background: #ffffff;
+    }
+
+    .solution-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .sol-badge {
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 3px;
+    }
+
+    .sol-badge-wrong {
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+
+    .sol-badge-unattempted {
+      background: #fffbeb;
+      color: #b45309;
+      border: 1px solid #fde68a;
+    }
+
+    .sol-q-text {
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      white-space: pre-line;
+    }
+
+    .sol-detail-row {
+      font-size: 13px;
+      margin-bottom: 4px;
+      color: var(--text-muted);
+    }
+
+    .sol-explanation {
+      margin-top: 8px;
+      padding: 8px 10px;
+      background: #f8fafc;
+      border-left: 3px solid var(--primary);
+      font-size: 13px;
+      color: var(--text-main);
+    }
+
+    /* Mobile responsive adjustments: Hide right-side question palette on mobile */
+    @media (max-width: 768px) {
+      .meta-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .palette-pane {
+        display: none !important;
+      }
+
+      .exam-header-title {
+        font-size: 13px;
+      }
+
+      .question-scroll-area {
+        padding: 14px 16px;
+      }
+
+      .question-footer {
+        padding: 10px 12px;
+      }
+
+      .header-btn {
+        padding: 5px 8px;
+        font-size: 11.5px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= 1. INTRODUCTORY INTERFACE ================= -->
+  <div id="introView" class="intro-wrapper">
+    <div class="top-brand-bar">
+      <h1>CBT Mock Test Portal — General Science</h1>
+      <span class="badge">SSC / Railway Exam Pattern</span>
+    </div>
+
+    <div class="intro-container">
+      <div class="card">
+        <div class="intro-title">Diseases &amp; Diagnostic Tests — Full Mock Test</div>
+        <div class="intro-subtitle">
+          Based strictly on the provided Diseases &amp; Diagnostic Tests reference notes. Please read the instructions carefully before starting.
+        </div>
+
+        <div class="meta-grid">
+          <div class="meta-box">
+            <div class="meta-label">Total Questions</div>
+            <div class="meta-value">21 MCQs</div>
+          </div>
+          <div class="meta-box">
+            <div class="meta-label">Total Duration</div>
+            <div class="meta-value">12 Min 36 Sec</div>
+          </div>
+          <div class="meta-box">
+            <div class="meta-label">Maximum Marks</div>
+            <div class="meta-value">42.00</div>
+          </div>
+          <div class="meta-box">
+            <div class="meta-label">Marking Scheme</div>
+            <div class="meta-value">+2.0 / -0.5</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-heading">General Instructions</div>
+        <ol class="instructions-list">
+          <li>The test contains <strong>21 multiple-choice questions</strong> with 4 options each. Questions remain in fixed order, while options are randomized on every attempt.</li>
+          <li>The countdown timer is set at <strong>36 seconds per question</strong> (<strong>12 minutes 36 seconds</strong> total). When the timer reaches zero, the test submits automatically.</li>
+          <li>Each correct answer awards <strong>+2 marks</strong>, and each incorrect answer deducts <strong>0.5 marks</strong>. Un-attempted questions carry <strong>0 marks</strong>.</li>
+          <li>Selecting an option does not highlight correctness or automatically advance to the next question. Use <strong>Next</strong>, <strong>Previous</strong>, <strong>Clear</strong>, or <strong>Mark for Review &amp; Next</strong> to navigate.</li>
+          <li>Clicking <strong>Start Test</strong> will enter Fullscreen mode automatically. You may exit or re-enter Fullscreen at any time using the top bar button.</li>
+          <li>Upon submission, your score, accuracy, and solutions for <strong>only incorrect and un-attempted questions</strong> will be displayed and saved in your browser.</li>
+        </ol>
+
+        <div class="legend-grid">
+          <div class="legend-item">
+            <span class="palette-sample status-not-visited">1</span>
+            <span>Not Visited</span>
+          </div>
+          <div class="legend-item">
+            <span class="palette-sample status-not-answered">2</span>
+            <span>Not Answered</span>
+          </div>
+          <div class="legend-item">
+            <span class="palette-sample status-answered">3</span>
+            <span>Answered</span>
+          </div>
+          <div class="legend-item">
+            <span class="palette-sample status-marked">4</span>
+            <span>Marked for Review</span>
+          </div>
+          <div class="legend-item">
+            <span class="palette-sample status-answered-marked">5</span>
+            <span>Answered &amp; Marked for Review</span>
+          </div>
+        </div>
+
+        <div class="intro-actions" style="margin-top: 18px; border-top: 1px solid var(--border-light); padding-top: 14px;">
+          <span style="font-size: 12.5px; color: var(--text-light);">All 21 questions ready. Click Start Test when you are ready.</span>
+          <button id="startTestBtn" type="button" class="btn-primary">Start Test</button>
+        </div>
+      </div>
+
+      <div id="introHistoryCard" class="card hidden">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+          <div class="section-heading" style="margin-bottom: 0; border-bottom: none; padding-bottom: 0;">Previous Saved Attempts</div>
+          <button id="clearHistoryBtn" type="button" class="btn-secondary" style="font-size: 12px; padding: 4px 10px;">Clear History</button>
+        </div>
+        <div style="overflow-x: auto;">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Date &amp; Time</th>
+                <th>Score</th>
+                <th>Correct</th>
+                <th>Incorrect</th>
+                <th>Un-attempted</th>
+                <th>Accuracy</th>
+                <th>Time Taken</th>
+              </tr>
+            </thead>
+            <tbody id="introHistoryBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 2. MAIN EXAM INTERFACE ================= -->
+  <div id="examView" class="exam-shell hidden">
+    <header class="exam-header">
+      <div class="exam-header-left">
+        <span class="exam-header-title">Diseases &amp; Diagnostic Tests — Mock Test</span>
+      </div>
+      <div class="exam-header-right">
+        <div id="timerBox" class="timer-box">
+          <span>Time Left:</span>
+          <span id="timerDisplay">12:36</span>
+        </div>
+        <button id="pauseBtn" type="button" class="header-btn">Pause</button>
+        <button id="fullscreenBtn" type="button" class="header-btn">Exit Fullscreen</button>
+        <button id="submitBtn" type="button" class="header-submit-btn">Submit</button>
+      </div>
+    </header>
+
+    <main class="exam-body">
+      <section class="question-pane">
+        <div class="question-subbar">
+          <span id="questionCounter" class="q-number-label">Question No. 1 of 21</span>
+          <span class="q-marks-label">
+            Marks: <span class="q-marks-pos">+2.0</span> | <span class="q-marks-neg">-0.5</span>
+          </span>
+        </div>
+
+        <div class="question-scroll-area">
+          <div id="questionText" class="question-text"></div>
+          <div id="optionsContainer" class="options-list"></div>
+        </div>
+
+        <footer class="question-footer">
+          <div class="footer-group">
+            <button id="prevBtn" type="button" class="btn-secondary">Previous</button>
+            <button id="clearBtn" type="button" class="btn-secondary">Clear</button>
+          </div>
+          <div class="footer-group">
+            <button id="markReviewBtn" type="button" class="btn-purple">Mark for Review &amp; Next</button>
+            <button id="nextBtn" type="button" class="btn-primary" style="padding: 8px 18px;">Next</button>
+          </div>
+        </footer>
+      </section>
+
+      <aside class="palette-pane" aria-label="Question Number Palette">
+        <div class="palette-header">Question Palette</div>
+        <div class="palette-summary">
+          <div class="summary-chip">
+            <span id="countAnswered" class="summary-dot status-answered">0</span>
+            <span>Answered</span>
+          </div>
+          <div class="summary-chip">
+            <span id="countNotAnswered" class="summary-dot status-not-answered">0</span>
+            <span>Not Answered</span>
+          </div>
+          <div class="summary-chip">
+            <span id="countMarked" class="summary-dot status-marked">0</span>
+            <span>Marked</span>
+          </div>
+          <div class="summary-chip">
+            <span id="countNotVisited" class="summary-dot status-not-visited">21</span>
+            <span>Not Visited</span>
+          </div>
+        </div>
+        <div class="palette-scroll">
+          <div id="paletteGrid" class="palette-grid"></div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <!-- ================= PAUSE OVERLAY ================= -->
+  <div id="pauseModal" class="overlay-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-title">Test Paused</div>
+      <div class="modal-body">
+        The countdown timer is paused and questions are hidden. Click Resume Test to continue from where you left off.
+      </div>
+      <div class="modal-actions">
+        <button id="resumeBtn" type="button" class="btn-primary">Resume Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SUBMIT CONFIRMATION MODAL ================= -->
+  <div id="submitModal" class="overlay-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-title">Submit Mock Test?</div>
+      <div class="modal-body">
+        Please review your attempt summary before final submission:
+        <table class="modal-stats">
+          <tr><td>Total Questions</td><td><strong>21</strong></td></tr>
+          <tr><td>Answered</td><td><strong id="modalAnswered">0</strong></td></tr>
+          <tr><td>Not Answered</td><td><strong id="modalNotAnswered">0</strong></td></tr>
+          <tr><td>Marked for Review</td><td><strong id="modalMarked">0</strong></td></tr>
+          <tr><td>Not Visited</td><td><strong id="modalNotVisited">0</strong></td></tr>
+        </table>
+      </div>
+      <div class="modal-actions">
+        <button id="cancelSubmitBtn" type="button" class="btn-secondary">Cancel</button>
+        <button id="confirmSubmitBtn" type="button" class="btn-success">Confirm Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 3. RESULTS & ANALYSIS INTERFACE ================= -->
+  <div id="resultsView" class="results-wrapper hidden">
+    <div class="top-brand-bar">
+      <h1>Mock Test Result &amp; Analysis</h1>
+      <span id="resultTimestampBadge" class="badge">Completed</span>
+    </div>
+
+    <div class="results-container">
+      <div class="card">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <div class="intro-title" style="margin-bottom: 2px;">Performance Summary</div>
+            <div style="font-size: 13px; color: var(--text-muted);">Marking Scheme: +2.0 for Correct, -0.5 for Incorrect, 0 for Un-attempted</div>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button id="retakeBtn" type="button" class="btn-primary" style="padding: 8px 16px;">Retake Test</button>
+            <button id="backHomeBtn" type="button" class="btn-secondary">Back to Home</button>
+          </div>
+        </div>
+
+        <div class="score-grid">
+          <div class="score-stat">
+            <div class="score-stat-label">Total Score</div>
+            <div id="resScore" class="score-stat-value" style="color: var(--primary);">0 / 42</div>
+          </div>
+          <div class="score-stat">
+            <div class="score-stat-label">Correct (+2)</div>
+            <div id="resCorrect" class="score-stat-value" style="color: var(--success);">0</div>
+          </div>
+          <div class="score-stat">
+            <div class="score-stat-label">Incorrect (-0.5)</div>
+            <div id="resIncorrect" class="score-stat-value" style="color: var(--danger);">0</div>
+          </div>
+          <div class="score-stat">
+            <div class="score-stat-label">Un-attempted (0)</div>
+            <div id="resUnattempted" class="score-stat-value" style="color: var(--warning);">0</div>
+          </div>
+          <div class="score-stat">
+            <div class="score-stat-label">Accuracy</div>
+            <div id="resAccuracy" class="score-stat-value">0%</div>
+          </div>
+          <div class="score-stat">
+            <div class="score-stat-label">Time Taken</div>
+            <div id="resTimeTaken" class="score-stat-value">00:00</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-heading">Solutions for Incorrect &amp; Un-attempted Questions</div>
+        <div id="solutionsContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const STORAGE_KEY = "disease_tests_mock_history_v1";
+      const SECONDS_PER_QUESTION = 36;
+      const MARKS_CORRECT = 2;
+      const MARKS_INCORRECT = -0.5;
+
+      // 21 Questions strictly grounded in the provided "Disease - Tests" reference sheet
+      const BASE_QUESTIONS = [
+        {
+          id: 1,
+          question: "Which diagnostic test is used to detect Typhoid fever?",
+          options: ["Widal Test", "Mantoux Test", "VDRL Test", "Schick Test"],
+          correct: "Widal Test",
+          explanation: "Typhoid fever is diagnosed using the Widal Test."
+        },
+        {
+          id: 2,
+          question: "Which test is used primarily for the screening of AIDS?",
+          options: ["ELISA", "Western Blot", "Mantoux Test", "Dick Test"],
+          correct: "ELISA",
+          explanation: "ELISA (Enzyme-Linked Immunosorbent Assay) is used as the screening test for AIDS."
+        },
+        {
+          id: 3,
+          question: "Which test is used for the confirmation of AIDS after an initial screening?",
+          options: ["Western Blot", "ELISA", "Widal Test", "Lepromin Test"],
+          correct: "Western Blot",
+          explanation: "Western Blot is used for the confirmation of AIDS following screening by ELISA."
+        },
+        {
+          id: 4,
+          question: "The Mantoux Test is associated with the diagnosis of which disease?",
+          options: ["Tuberculosis", "Typhoid", "Diphtheria", "Leprosy"],
+          correct: "Tuberculosis",
+          explanation: "The Mantoux Test is used to test for Tuberculosis."
+        },
+        {
+          id: 5,
+          question: "Which diagnostic test is used to record and monitor heart rate and cardiac electrical activity?",
+          options: ["ECG", "EEG", "EMG", "EOG"],
+          correct: "ECG",
+          explanation: "ECG (Electrocardiography) is used to assess heart rate and cardiac electrical activity."
+        },
+        {
+          id: 6,
+          question: "EEG (Electroencephalography) is used to examine which part of the human body?",
+          options: ["Brain", "Skeletal Muscles", "Eye", "Heart"],
+          correct: "Brain",
+          explanation: "EEG (Electroencephalography) records the electrical activity of the Brain."
+        },
+        {
+          id: 7,
+          question: "Which test is used to diagnose Osteoporosis?",
+          options: ["BMD Test or DEXA Scan", "HbA1c Test", "Biopsy", "Pap Smear Test"],
+          correct: "BMD Test or DEXA Scan",
+          explanation: "Osteoporosis is diagnosed using a BMD (Bone Mineral Density) Test or DEXA Scan."
+        },
+        {
+          id: 8,
+          question: "Which diagnostic procedure is commonly used to confirm Cancer?",
+          options: ["Biopsy", "Widal Test", "Ishihara Test", "Schick Test"],
+          correct: "Biopsy",
+          explanation: "Biopsy is used to diagnose and confirm Cancer."
+        },
+        {
+          id: 9,
+          question: "EMG (Electromyography) is used to evaluate the condition of:",
+          options: ["Skeletal Muscles", "Brain", "Eye", "Heart Rate"],
+          correct: "Skeletal Muscles",
+          explanation: "EMG (Electromyography) evaluates the electrical activity of Skeletal Muscles."
+        },
+        {
+          id: 10,
+          question: "Which test is used to examine the electrical activity of the Eye?",
+          options: ["EOG (Electro-oculography)", "EEG (Electroencephalography)", "EMG (Electromyography)", "ECG (Electrocardiography)"],
+          correct: "EOG (Electro-oculography)",
+          explanation: "EOG (Electro-oculography) is used for testing the Eye."
+        },
+        {
+          id: 11,
+          question: "The Pap Smear Test is a screening test specifically used for:",
+          options: ["Cervical Cancer", "Breast Cancer", "Osteoporosis", "Syphilis"],
+          correct: "Cervical Cancer",
+          explanation: "The Pap Smear Test is used to screen for Cervical Cancer."
+        },
+        {
+          id: 12,
+          question: "Which diagnostic imaging test is used for the detection of Breast Cancer?",
+          options: ["Mammography", "Pap Smear Test", "DEXA Scan", "Biopsy"],
+          correct: "Mammography",
+          explanation: "Mammography is the diagnostic test used for Breast Cancer."
+        },
+        {
+          id: 13,
+          question: "The HbA1c Test is used in the diagnosis and monitoring of which condition?",
+          options: ["Diabetes Mellitus", "Dengue Fever", "Malaria", "Tuberculosis"],
+          correct: "Diabetes Mellitus",
+          explanation: "The HbA1c Test is used for Diabetes Mellitus."
+        },
+        {
+          id: 14,
+          question: "Which test is used for the detection of COVID-19?",
+          options: ["RT-PCR Test", "VDRL Test", "Widal Test", "Dick Test"],
+          correct: "RT-PCR Test",
+          explanation: "COVID-19 is detected using the RT-PCR Test."
+        },
+        {
+          id: 15,
+          question: "Tourniquet and NS1 Antigen Tests are used in the diagnosis of:",
+          options: ["Dengue Fever", "Malaria", "Typhoid", "Scarlet Fever"],
+          correct: "Dengue Fever",
+          explanation: "Tourniquet and NS1 Antigen Tests are used to diagnose Dengue Fever."
+        },
+        {
+          id: 16,
+          question: "Which test is used to determine susceptibility to Diphtheria?",
+          options: ["Schick Test", "Dick Test", "Lepromin Test", "Mantoux Test"],
+          correct: "Schick Test",
+          explanation: "The Schick Test is used for Diphtheria."
+        },
+        {
+          id: 17,
+          question: "The VDRL Test is used for the diagnosis of which disease?",
+          options: ["Syphilis", "Leprosy", "Gonorrhea", "AIDS"],
+          correct: "Syphilis",
+          explanation: "The VDRL Test is used to diagnose Syphilis."
+        },
+        {
+          id: 18,
+          question: "Consider the following statements:\nStatement I: The Ishihara Test is used to detect Color Blindness.\nStatement II: The Dick Test is associated with Scarlet Fever.\n\nWhich of the statements given above is/are correct?",
+          options: ["Both Statement I and Statement II", "Only Statement I", "Only Statement II", "Neither Statement I nor Statement II"],
+          correct: "Both Statement I and Statement II",
+          explanation: "Both statements are correct: Color Blindness is tested using the Ishihara Test, and Scarlet Fever is tested using the Dick Test."
+        },
+        {
+          id: 19,
+          question: "Consider the following pairs:\n1. Leprosy — Lepromin Test\n2. Scarlet Fever — Schick Test\n\nWhich of the pairs given above is/are correctly matched?",
+          options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+          correct: "Only 1",
+          explanation: "Pair 1 is correct (Leprosy — Lepromin Test). Pair 2 is incorrect because Scarlet Fever is associated with the Dick Test, whereas the Schick Test is for Diphtheria."
+        },
+        {
+          id: 20,
+          question: "Consider the following statements regarding diagnostic tests:\nStatement I: Peripheral Blood Smear and Antigen Test are used to diagnose Malaria.\nStatement II: The VDRL Test is used to confirm Malaria.\n\nWhich of the statements given above is/are correct?",
+          options: ["Only Statement I", "Only Statement II", "Both Statement I and Statement II", "Neither Statement I nor Statement II"],
+          correct: "Only Statement I",
+          explanation: "Statement I is correct: Malaria is diagnosed via Peripheral Blood Smear and Antigen Test. Statement II is incorrect because the VDRL Test is for Syphilis."
+        },
+        {
+          id: 21,
+          question: "Consider the following pairs of diagnostic tests and their target organs:\n1. EEG — Brain\n2. EMG — Skeletal Muscles\n3. EOG — Eye\n\nHow many of the pairs given above are correctly matched?",
+          options: ["All three pairs", "Only two pairs", "Only one pair", "None of the pairs"],
+          correct: "All three pairs",
+          explanation: "All three pairs are correctly matched: EEG is for the Brain, EMG is for Skeletal Muscles, and EOG is for the Eye."
+        }
+      ];
+
+      // State
+      let questions = [];
+      let currentIndex = 0;
+      let timerSeconds = BASE_QUESTIONS.length * SECONDS_PER_QUESTION; // 756s = 12:36
+      let timerInterval = null;
+      let isPaused = false;
+      let isSubmitted = false;
+
+      // DOM Elements
+      const introView = document.getElementById("introView");
+      const examView = document.getElementById("examView");
+      const resultsView = document.getElementById("resultsView");
+      const introHistoryCard = document.getElementById("introHistoryCard");
+      const introHistoryBody = document.getElementById("introHistoryBody");
+
+      const timerBox = document.getElementById("timerBox");
+      const timerDisplay = document.getElementById("timerDisplay");
+      const questionCounter = document.getElementById("questionCounter");
+      const questionText = document.getElementById("questionText");
+      const optionsContainer = document.getElementById("optionsContainer");
+      const paletteGrid = document.getElementById("paletteGrid");
+
+      const countAnswered = document.getElementById("countAnswered");
+      const countNotAnswered = document.getElementById("countNotAnswered");
+      const countMarked = document.getElementById("countMarked");
+      const countNotVisited = document.getElementById("countNotVisited");
+
+      const prevBtn = document.getElementById("prevBtn");
+      const clearBtn = document.getElementById("clearBtn");
+      const markReviewBtn = document.getElementById("markReviewBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const pauseBtn = document.getElementById("pauseBtn");
+      const fullscreenBtn = document.getElementById("fullscreenBtn");
+      const submitBtn = document.getElementById("submitBtn");
+
+      const pauseModal = document.getElementById("pauseModal");
+      const resumeBtn = document.getElementById("resumeBtn");
+      const submitModal = document.getElementById("submitModal");
+      const cancelSubmitBtn = document.getElementById("cancelSubmitBtn");
+      const confirmSubmitBtn = document.getElementById("confirmSubmitBtn");
+
+      function shuffleArray(arr) {
+        const copy = arr.slice();
+        for (let i = copy.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const temp = copy[i];
+          copy[i] = copy[j];
+          copy[j] = temp;
+        }
+        return copy;
+      }
+
+      function formatTime(totalSec) {
+        const mins = Math.floor(totalSec / 60);
+        const secs = totalSec % 60;
+        return String(mins).padStart(2, "0") + ":" + String(secs).padStart(2, "0");
+      }
+
+      function loadHistory() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : [];
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function saveHistoryEntry(entry) {
+        try {
+          const history = loadHistory();
+          history.unshift(entry);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(history.slice(0, 15)));
+        } catch (e) {
+          // Ignore storage quota / sandbox restrictions
+        }
+      }
+
+      function clearHistory() {
+        try {
+          localStorage.removeItem(STORAGE_KEY);
+        } catch (e) {
+          // Ignore
+        }
+        renderIntroHistory();
+      }
+
+      function renderIntroHistory() {
+        const history = loadHistory();
+        if (!history || history.length === 0) {
+          introHistoryCard.classList.add("hidden");
+          return;
+        }
+        introHistoryCard.classList.remove("hidden");
+        introHistoryBody.innerHTML = "";
+        history.forEach(function (item) {
+          const tr = document.createElement("tr");
+          tr.innerHTML =
+            "<td>" + escapeHtml(item.date) + "</td>" +
+            "<td><strong>" + escapeHtml(String(item.score)) + " / " + (BASE_QUESTIONS.length * MARKS_CORRECT) + "</strong></td>" +
+            "<td>" + escapeHtml(String(item.correct)) + "</td>" +
+            "<td>" + escapeHtml(String(item.incorrect)) + "</td>" +
+            "<td>" + escapeHtml(String(item.unattempted)) + "</td>" +
+            "<td>" + escapeHtml(item.accuracy) + "</td>" +
+            "<td>" + escapeHtml(item.timeTaken) + "</td>";
+          introHistoryBody.appendChild(tr);
+        });
+      }
+
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function enterFullscreenSafe() {
+        try {
+          const el = document.documentElement;
+          if (!document.fullscreenElement && el.requestFullscreen) {
+            const p = el.requestFullscreen();
+            if (p && typeof p.catch === "function") {
+              p.catch(function () {});
+            }
+          }
+        } catch (e) {
+          // Ignore if blocked
+        }
+      }
+
+      function exitFullscreenSafe() {
+        try {
+          if (document.fullscreenElement && document.exitFullscreen) {
+            const p = document.exitFullscreen();
+            if (p && typeof p.catch === "function") {
+              p.catch(function () {});
+            }
+          }
+        } catch (e) {
+          // Ignore
+        }
+      }
+
+      function updateFullscreenButtonLabel() {
+        if (document.fullscreenElement) {
+          fullscreenBtn.textContent = "Exit Fullscreen";
+        } else {
+          fullscreenBtn.textContent = "Enter Fullscreen";
+        }
+      }
+
+      function initTest() {
+        // Keep questions in fixed order; randomize options on each refresh / test start
+        questions = BASE_QUESTIONS.map(function (q) {
+          return {
+            id: q.id,
+            question: q.question,
+            options: shuffleArray(q.options),
+            correct: q.correct,
+            explanation: q.explanation,
+            selected: null,
+            visited: false,
+            marked: false
+          };
+        });
+
+        currentIndex = 0;
+        questions[0].visited = true;
+        timerSeconds = BASE_QUESTIONS.length * SECONDS_PER_QUESTION;
+        isPaused = false;
+        isSubmitted = false;
+
+        introView.classList.add("hidden");
+        resultsView.classList.add("hidden");
+        examView.classList.remove("hidden");
+        pauseModal.classList.add("hidden");
+        submitModal.classList.add("hidden");
+
+        enterFullscreenSafe();
+        updateFullscreenButtonLabel();
+        renderQuestion();
+        renderPalette();
+        startTimer();
+      }
+
+      function startTimer() {
+        if (timerInterval) {
+          clearInterval(timerInterval);
+        }
+        updateTimerUI();
+        timerInterval = setInterval(function () {
+          if (isPaused || isSubmitted) return;
+          timerSeconds -= 1;
+          if (timerSeconds <= 0) {
+            timerSeconds = 0;
+            updateTimerUI();
+            clearInterval(timerInterval);
+            finalizeSubmission(true);
+          } else {
+            updateTimerUI();
+          }
+        }, 1000);
+      }
+
+      function updateTimerUI() {
+        timerDisplay.textContent = formatTime(timerSeconds);
+        if (timerSeconds <= 60) {
+          timerBox.classList.add("timer-warning");
+        } else {
+          timerBox.classList.remove("timer-warning");
+        }
+      }
+
+      function getPaletteStatusClass(q) {
+        if (!q.visited) return "status-not-visited";
+        if (q.selected !== null && q.marked) return "status-answered-marked";
+        if (q.marked) return "status-marked";
+        if (q.selected !== null) return "status-answered";
+        return "status-not-answered";
+      }
+
+      function renderQuestion() {
+        const q = questions[currentIndex];
+        q.visited = true;
+
+        questionCounter.textContent = "Question No. " + (currentIndex + 1) + " of " + questions.length;
+        questionText.textContent = q.question;
+
+        const letters = ["A", "B", "C", "D"];
+        optionsContainer.innerHTML = "";
+
+        q.options.forEach(function (optText, idx) {
+          const label = document.createElement("label");
+          label.className = "option-label" + (q.selected === optText ? " selected" : "");
+
+          const radio = document.createElement("input");
+          radio.type = "radio";
+          radio.name = "q_option";
+          radio.value = optText;
+          radio.checked = q.selected === optText;
+
+          radio.addEventListener("change", function () {
+            if (isPaused || isSubmitted) return;
+            q.selected = optText;
+            // Do NOT mark right/wrong and do NOT auto-jump to next question
+            renderQuestion();
+            renderPalette();
+          });
+
+          const prefix = document.createElement("span");
+          prefix.className = "option-prefix";
+          prefix.textContent = letters[idx] + ".";
+
+          const textSpan = document.createElement("span");
+          textSpan.className = "option-text";
+          textSpan.textContent = optText;
+
+          label.appendChild(radio);
+          label.appendChild(prefix);
+          label.appendChild(textSpan);
+          optionsContainer.appendChild(label);
+        });
+
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.textContent = currentIndex === questions.length - 1 ? "Save" : "Next";
+      }
+
+      function renderPalette() {
+        paletteGrid.innerHTML = "";
+        let ans = 0;
+        let notAns = 0;
+        let marked = 0;
+        let notVisited = 0;
+
+        questions.forEach(function (q, idx) {
+          if (!q.visited) {
+            notVisited++;
+          } else {
+            if (q.marked) marked++;
+            if (q.selected !== null) ans++;
+            else if (!q.marked) notAns++;
+          }
+
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "palette-btn " + getPaletteStatusClass(q) + (idx === currentIndex ? " current-q" : "");
+          btn.textContent = String(idx + 1);
+          btn.addEventListener("click", function () {
+            if (isPaused || isSubmitted) return;
+            currentIndex = idx;
+            questions[currentIndex].visited = true;
+            renderQuestion();
+            renderPalette();
+          });
+          paletteGrid.appendChild(btn);
+        });
+
+        countAnswered.textContent = String(ans);
+        countNotAnswered.textContent = String(notAns);
+        countMarked.textContent = String(marked);
+        countNotVisited.textContent = String(notVisited);
+      }
+
+      function openSubmitModal() {
+        let ans = 0, notAns = 0, marked = 0, notVisited = 0;
+        questions.forEach(function (q) {
+          if (!q.visited) notVisited++;
+          else {
+            if (q.marked) marked++;
+            if (q.selected !== null) ans++;
+            else if (!q.marked) notAns++;
+          }
+        });
+        document.getElementById("modalAnswered").textContent = String(ans);
+        document.getElementById("modalNotAnswered").textContent = String(notAns);
+        document.getElementById("modalMarked").textContent = String(marked);
+        document.getElementById("modalNotVisited").textContent = String(notVisited);
+        submitModal.classList.remove("hidden");
+      }
+
+      function finalizeSubmission(autoSubmitted) {
+        if (isSubmitted) return;
+        isSubmitted = true;
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+        submitModal.classList.add("hidden");
+        pauseModal.classList.add("hidden");
+        exitFullscreenSafe();
+
+        const totalTime = BASE_QUESTIONS.length * SECONDS_PER_QUESTION;
+        const timeSpent = totalTime - timerSeconds;
+
+        let correctCount = 0;
+        let incorrectCount = 0;
+        let unattemptedCount = 0;
+        const reviewItems = [];
+
+        questions.forEach(function (q, idx) {
+          if (q.selected === null) {
+            unattemptedCount++;
+            reviewItems.push({
+              number: idx + 1,
+              status: "Un-attempted",
+              question: q.question,
+              userAnswer: "Not Attempted",
+              correctAnswer: q.correct,
+              explanation: q.explanation
+            });
+          } else if (q.selected === q.correct) {
+            correctCount++;
+          } else {
+            incorrectCount++;
+            reviewItems.push({
+              number: idx + 1,
+              status: "Incorrect",
+              question: q.question,
+              userAnswer: q.selected,
+              correctAnswer: q.correct,
+              explanation: q.explanation
+            });
+          }
+        });
+
+        const score = correctCount * MARKS_CORRECT + incorrectCount * MARKS_INCORRECT;
+        const attempted = correctCount + incorrectCount;
+        const accuracy = attempted > 0 ? ((correctCount / attempted) * 100).toFixed(1) + "%" : "0.0%";
+        const timeTakenStr = formatTime(timeSpent);
+        const nowStr = new Date().toLocaleString();
+
+        saveHistoryEntry({
+          date: nowStr,
+          score: score,
+          correct: correctCount,
+          incorrect: incorrectCount,
+          unattempted: unattemptedCount,
+          accuracy: accuracy,
+          timeTaken: timeTakenStr,
+          autoSubmitted: Boolean(autoSubmitted)
+        });
+
+        document.getElementById("resultTimestampBadge").textContent = autoSubmitted
+          ? "Auto-Submitted (Time Up)"
+          : "Submitted on " + nowStr;
+        document.getElementById("resScore").textContent = score + " / " + (questions.length * MARKS_CORRECT);
+        document.getElementById("resCorrect").textContent = String(correctCount);
+        document.getElementById("resIncorrect").textContent = String(incorrectCount);
+        document.getElementById("resUnattempted").textContent = String(unattemptedCount);
+        document.getElementById("resAccuracy").textContent = accuracy;
+        document.getElementById("resTimeTaken").textContent = timeTakenStr;
+
+        const solutionsContainer = document.getElementById("solutionsContainer");
+        solutionsContainer.innerHTML = "";
+
+        if (reviewItems.length === 0) {
+          solutionsContainer.innerHTML =
+            '<div style="padding: 14px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 5px; color: #166534; font-weight: 600;">All 21 questions were answered correctly. There are no incorrect or un-attempted questions to review.</div>';
+        } else {
+          reviewItems.forEach(function (item) {
+            const card = document.createElement("div");
+            card.className = "solution-card";
+
+            const badgeClass = item.status === "Incorrect" ? "sol-badge-wrong" : "sol-badge-unattempted";
+            card.innerHTML =
+              '<div class="solution-header">' +
+                '<strong>Question ' + item.number + '</strong>' +
+                '<span class="sol-badge ' + badgeClass + '">' + escapeHtml(item.status) + '</span>' +
+              '</div>' +
+              '<div class="sol-q-text">' + escapeHtml(item.question) + '</div>' +
+              '<div class="sol-detail-row"><strong>Your Answer:</strong> ' + escapeHtml(item.userAnswer) + '</div>' +
+              '<div class="sol-detail-row" style="color: var(--success);"><strong>Correct Answer:</strong> ' + escapeHtml(item.correctAnswer) + '</div>' +
+              '<div class="sol-explanation"><strong>Solution:</strong> ' + escapeHtml(item.explanation) + '</div>';
+
+            solutionsContainer.appendChild(card);
+          });
+        }
+
+        examView.classList.add("hidden");
+        resultsView.classList.remove("hidden");
+      }
+
+      // Event Listeners
+      document.getElementById("startTestBtn").addEventListener("click", initTest);
+      document.getElementById("clearHistoryBtn").addEventListener("click", clearHistory);
+
+      prevBtn.addEventListener("click", function () {
+        if (currentIndex > 0) {
+          currentIndex--;
+          questions[currentIndex].visited = true;
+          renderQuestion();
+          renderPalette();
+        }
+      });
+
+      nextBtn.addEventListener("click", function () {
+        if (currentIndex < questions.length - 1) {
+          currentIndex++;
+          questions[currentIndex].visited = true;
+        }
+        renderQuestion();
+        renderPalette();
+      });
+
+      clearBtn.addEventListener("click", function () {
+        questions[currentIndex].selected = null;
+        questions[currentIndex].marked = false;
+        renderQuestion();
+        renderPalette();
+      });
+
+      markReviewBtn.addEventListener("click", function () {
+        questions[currentIndex].marked = true;
+        if (currentIndex < questions.length - 1) {
+          currentIndex++;
+          questions[currentIndex].visited = true;
+        }
+        renderQuestion();
+        renderPalette();
+      });
+
+      pauseBtn.addEventListener("click", function () {
+        isPaused = true;
+        pauseModal.classList.remove("hidden");
+      });
+
+      resumeBtn.addEventListener("click", function () {
+        isPaused = false;
+        pauseModal.classList.add("hidden");
+      });
+
+      fullscreenBtn.addEventListener("click", function () {
+        if (document.fullscreenElement) {
+          exitFullscreenSafe();
+        } else {
+          enterFullscreenSafe();
+        }
+      });
+
+      document.addEventListener("fullscreenchange", updateFullscreenButtonLabel);
+
+      submitBtn.addEventListener("click", openSubmitModal);
+      cancelSubmitBtn.addEventListener("click", function () {
+        submitModal.classList.add("hidden");
+      });
+      confirmSubmitBtn.addEventListener("click", function () {
+        finalizeSubmission(false);
+      });
+
+      document.getElementById("retakeBtn").addEventListener("click", initTest);
+      document.getElementById("backHomeBtn").addEventListener("click", function () {
+        resultsView.classList.add("hidden");
+        introView.classList.remove("hidden");
+        renderIntroHistory();
+      });
+
+      // Initialize Intro View
+      renderIntroHistory();
+    })();
+  </script>
+</body>
+</html>
