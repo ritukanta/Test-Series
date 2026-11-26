@@ -1,0 +1,3019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biology: Human Diseases — CBT Mock Test Portal</title>
+  <style>
+    :root {
+      --primary: #1a569c;
+      --primary-dark: #133f73;
+      --primary-light: #e8f1fb;
+      --accent: #0f766e;
+      --bg-page: #f3f5f8;
+      --bg-card: #ffffff;
+      --border: #d5dce4;
+      --border-strong: #b8c4d0;
+      --text-main: #1c2430;
+      --text-muted: #526071;
+      --text-light: #6b7a8c;
+      --green: #1e8e3e;
+      --green-bg: #e6f4ea;
+      --red: #d93025;
+      --red-bg: #fce8e6;
+      --purple: #6b21a8;
+      --purple-bg: #f3e8ff;
+      --amber: #b45309;
+      --amber-bg: #fef3c7;
+      --gray-pill: #e5e9ef;
+      --shadow-sm: 0 1px 3px rgba(16, 24, 40, 0.08);
+      --shadow-md: 0 4px 14px rgba(16, 24, 40, 0.1);
+      --radius: 6px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* ================= SHARED TOP NAV ================= */
+    .portal-header {
+      background: var(--primary);
+      color: #ffffff;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    }
+
+    .portal-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .portal-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      background: #ffffff;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      letter-spacing: -0.5px;
+    }
+
+    .portal-title h1 {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .portal-title p {
+      font-size: 12px;
+      color: #dbeafe;
+      margin-top: 2px;
+    }
+
+    .header-btn {
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 7px 14px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background 0.15s;
+    }
+
+    .header-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* ================= DASHBOARD VIEW ================= */
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 20px 40px;
+    }
+
+    .summary-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .summary-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .summary-card .label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .summary-card .value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-top: 4px;
+    }
+
+    .summary-card .sub {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 2px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .section-heading h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .marking-pill {
+      font-size: 12px;
+      font-weight: 600;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border: 1px solid #bfd7f2;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .mock-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .mock-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--primary);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: box-shadow 0.15s, border-color 0.15s;
+    }
+
+    .mock-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-strong);
+      border-top-color: var(--primary);
+    }
+
+    .mock-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .mock-num {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .status-chip {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+
+    .status-chip.pending {
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .status-chip.done {
+      background: var(--green-bg);
+      color: var(--green);
+    }
+
+    .mock-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .mock-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      line-height: 1.45;
+    }
+
+    .mock-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      background: #f8fafc;
+      border: 1px solid #e5ebf1;
+      border-radius: 5px;
+      padding: 10px 8px;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .mock-meta-item .m-val {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .mock-meta-item .m-lbl {
+      font-size: 11px;
+      color: var(--text-light);
+    }
+
+    .saved-score-box {
+      background: #f4f8fd;
+      border: 1px solid #cfe0f5;
+      border-radius: 5px;
+      padding: 10px 12px;
+      margin-bottom: 14px;
+      font-size: 12.5px;
+    }
+
+    .saved-score-box .row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 3px;
+    }
+
+    .saved-score-box .row:last-child {
+      margin-bottom: 0;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 9px 14px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--primary-dark);
+    }
+
+    .btn-outline {
+      background: #ffffff;
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .btn-outline:hover:not(:disabled) {
+      background: var(--primary-light);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--text-main);
+      border-color: var(--border-strong);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background: #eef2f6;
+    }
+
+    .btn-success {
+      background: var(--green);
+      color: #ffffff;
+    }
+
+    .btn-success:hover:not(:disabled) {
+      background: #167131;
+    }
+
+    .btn-purple {
+      background: var(--purple);
+      color: #ffffff;
+    }
+
+    .btn-purple:hover:not(:disabled) {
+      background: #581c87;
+    }
+
+    .btn-danger {
+      background: var(--red);
+      color: #ffffff;
+    }
+
+    .btn-danger:hover:not(:disabled) {
+      background: #b91c1c;
+    }
+
+    .btn-full {
+      flex: 1;
+    }
+
+    /* ================= INSTRUCTIONS / INTRO VIEW ================= */
+    .instructions-card {
+      max-width: 860px;
+      margin: 24px auto 40px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .instructions-header {
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .instructions-header h2 {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .instructions-body {
+      padding: 22px 24px;
+    }
+
+    .inst-specs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .inst-spec-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .inst-spec-box .k {
+      font-size: 11px;
+      color: var(--text-light);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .inst-spec-box .v {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-top: 2px;
+    }
+
+    .inst-list {
+      margin: 0 0 20px 20px;
+      font-size: 14px;
+      color: var(--text-main);
+    }
+
+    .inst-list li {
+      margin-bottom: 8px;
+    }
+
+    .legend-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 10px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 14px;
+      margin-bottom: 20px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-main);
+    }
+
+    .declaration-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 14px;
+      background: var(--primary-light);
+      border: 1px solid #bfd7f2;
+      border-radius: 5px;
+      margin-bottom: 18px;
+      font-size: 13.5px;
+    }
+
+    .declaration-box input {
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .instructions-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* ================= TCS / EDUQUITY EXAM VIEW ================= */
+    #exam-view {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .exam-topbar {
+      background: var(--primary);
+      color: #ffffff;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-shrink: 0;
+      border-bottom: 2px solid var(--primary-dark);
+    }
+
+    .exam-topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .exam-title-badge {
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .exam-topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .timer-box {
+      background: #ffffff;
+      color: var(--primary-dark);
+      font-weight: 800;
+      font-size: 15px;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #dbeafe;
+    }
+
+    .timer-box.warning {
+      background: var(--amber-bg);
+      color: var(--amber);
+      border-color: #f59e0b;
+    }
+
+    .timer-box.danger {
+      background: var(--red-bg);
+      color: var(--red);
+      border-color: var(--red);
+    }
+
+    .topbar-action-btn {
+      background: rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .topbar-action-btn:hover {
+      background: rgba(255, 255, 255, 0.28);
+    }
+
+    .topbar-submit-btn {
+      background: #16a34a;
+      color: #ffffff;
+      border: 1px solid #15803d;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .topbar-submit-btn:hover {
+      background: #15803d;
+    }
+
+    .exam-workspace {
+      flex: 1;
+      display: flex;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    /* Main Question Column */
+    .question-pane {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+      background: #ffffff;
+    }
+
+    .question-subheader {
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--border);
+      padding: 9px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      font-size: 13.5px;
+    }
+
+    .q-number-label {
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .q-marks-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .q-marks-label .plus {
+      color: var(--green);
+      margin-right: 6px;
+    }
+
+    .q-marks-label .minus {
+      color: var(--red);
+    }
+
+    .question-scroll-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 22px 26px;
+    }
+
+    .question-text {
+      font-size: 16px;
+      font-weight: 500;
+      color: #111827;
+      margin-bottom: 20px;
+      line-height: 1.65;
+      white-space: pre-line;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      max-width: 780px;
+    }
+
+    .option-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 15px;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: background 0.12s, border-color 0.12s;
+      user-select: none;
+    }
+
+    .option-row:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    .option-row.selected {
+      background: var(--primary-light);
+      border-color: var(--primary);
+    }
+
+    .option-row input[type="radio"] {
+      margin-top: 3px;
+      accent-color: var(--primary);
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .option-prefix {
+      font-weight: 700;
+      color: var(--primary-dark);
+      min-width: 22px;
+      font-size: 14.5px;
+    }
+
+    .option-text {
+      font-size: 14.5px;
+      color: var(--text-main);
+      line-height: 1.45;
+    }
+
+    /* Sticky Bottom Action Bar */
+    .exam-footer {
+      background: #f8fafc;
+      border-top: 1px solid var(--border);
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+    }
+
+    .footer-left-btns,
+    .footer-right-btns {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Right Palette Sidebar */
+    .palette-sidebar {
+      width: 268px;
+      flex-shrink: 0;
+      border-left: 1px solid var(--border);
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .palette-header {
+      background: #e9eff6;
+      border-bottom: 1px solid var(--border);
+      padding: 10px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      flex-shrink: 0;
+    }
+
+    .palette-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      background: #ffffff;
+      flex-shrink: 0;
+      font-size: 11.5px;
+    }
+
+    .p-stat-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+    }
+
+    .p-stat-item.full-span {
+      grid-column: 1 / -1;
+    }
+
+    .palette-scroll-box {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 7px;
+    }
+
+    .q-pill {
+      position: relative;
+      height: 34px;
+      border-radius: 4px;
+      border: 1px solid #cbd5e1;
+      background: var(--gray-pill);
+      color: #334155;
+      font-size: 12.5px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+
+    .q-pill:hover {
+      transform: translateY(-1px);
+    }
+
+    .q-pill.mini {
+      width: 24px;
+      height: 24px;
+      font-size: 11px;
+      flex-shrink: 0;
+      pointer-events: none;
+    }
+
+    .q-pill.not-visited {
+      background: #e5e9ef;
+      color: #334155;
+      border-color: #cbd5e1;
+    }
+
+    .q-pill.not-answered {
+      background: var(--red);
+      color: #ffffff;
+      border-color: #b91c1c;
+      border-radius: 4px 4px 12px 12px;
+    }
+
+    .q-pill.answered {
+      background: var(--green);
+      color: #ffffff;
+      border-color: #15803d;
+      border-radius: 12px 12px 4px 4px;
+    }
+
+    .q-pill.marked {
+      background: var(--purple);
+      color: #ffffff;
+      border-color: #581c87;
+      border-radius: 50%;
+    }
+
+    .q-pill.answered-marked {
+      background: var(--purple);
+      color: #ffffff;
+      border-color: #581c87;
+      border-radius: 50%;
+    }
+
+    .q-pill.answered-marked::after {
+      content: "";
+      position: absolute;
+      bottom: 1px;
+      right: 1px;
+      width: 9px;
+      height: 9px;
+      background: #22c55e;
+      border: 1.5px solid #ffffff;
+      border-radius: 50%;
+    }
+
+    .q-pill.current {
+      box-shadow: 0 0 0 2.5px #111827;
+    }
+
+    /* ================= RESULT & ANALYSIS VIEW ================= */
+    .result-banner {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--primary);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .result-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .result-top-row h2 {
+      font-size: 20px;
+      color: var(--primary-dark);
+    }
+
+    .auto-submit-notice {
+      background: var(--amber-bg);
+      color: var(--amber);
+      border: 1px solid #fcd34d;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .score-metrics {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+    }
+
+    .metric-tile {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 12px 10px;
+      text-align: center;
+    }
+
+    .metric-tile .m-k {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-light);
+      text-transform: uppercase;
+    }
+
+    .metric-tile .m-v {
+      font-size: 20px;
+      font-weight: 800;
+      margin-top: 4px;
+      color: var(--text-main);
+    }
+
+    .metric-tile.score .m-v { color: var(--primary); }
+    .metric-tile.correct .m-v { color: var(--green); }
+    .metric-tile.incorrect .m-v { color: var(--red); }
+
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab {
+      padding: 7px 13px;
+      border-radius: 4px;
+      border: 1px solid var(--border-strong);
+      background: #ffffff;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .filter-tab.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .solution-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--red);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .solution-card.unattempted {
+      border-left-color: #64748b;
+    }
+
+    .sol-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
+    .sol-tag {
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 11.5px;
+    }
+
+    .sol-tag.wrong {
+      background: var(--red-bg);
+      color: var(--red);
+    }
+
+    .sol-tag.skipped {
+      background: #e2e8f0;
+      color: #475569;
+    }
+
+    .sol-q-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 12px;
+      white-space: pre-line;
+      line-height: 1.55;
+    }
+
+    .sol-ans-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 13.5px;
+    }
+
+    .sol-ans-box {
+      padding: 9px 12px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    .sol-ans-box.user-wrong {
+      background: var(--red-bg);
+      border-color: #f5c2c0;
+      color: #991b1b;
+    }
+
+    .sol-ans-box.user-skip {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+      color: #475569;
+    }
+
+    .sol-ans-box.right-ans {
+      background: var(--green-bg);
+      border-color: #b7dfc2;
+      color: #14532d;
+    }
+
+    .sol-explanation {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 10px 13px;
+      font-size: 13.5px;
+      color: var(--text-main);
+      line-height: 1.55;
+    }
+
+    .perfect-box {
+      background: var(--green-bg);
+      border: 1px solid #b7dfc2;
+      color: #14532d;
+      padding: 24px;
+      border-radius: var(--radius);
+      text-align: center;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    /* ================= IN-PAGE MODALS ================= */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.58);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 1000;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      border-radius: var(--radius);
+      max-width: 440px;
+      width: 100%;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+      overflow: hidden;
+    }
+
+    .modal-header {
+      background: var(--primary);
+      color: #ffffff;
+      padding: 13px 18px;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .modal-body {
+      padding: 18px;
+      font-size: 14px;
+      color: var(--text-main);
+    }
+
+    .modal-summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 13.5px;
+    }
+
+    .modal-summary-table td {
+      padding: 7px 8px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .modal-summary-table td:last-child {
+      text-align: right;
+      font-weight: 700;
+    }
+
+    .modal-footer {
+      padding: 12px 18px;
+      background: #f8fafc;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 960px) {
+      .mock-grid {
+        grid-template-columns: 1fr;
+      }
+      .summary-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .score-metrics {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .inst-specs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      /* Hide right-side question palette on mobile phone interface as required */
+      .palette-sidebar {
+        display: none !important;
+      }
+      .exam-topbar {
+        padding: 8px 10px;
+      }
+      .exam-title-badge {
+        font-size: 12.5px;
+        max-width: 130px;
+      }
+      .question-scroll-area {
+        padding: 16px;
+      }
+      .exam-footer {
+        padding: 8px 10px;
+      }
+      .exam-footer .btn {
+        padding: 8px 10px;
+        font-size: 12px;
+      }
+      .score-metrics {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= VIEW 1: MAIN DASHBOARD ================= -->
+  <div id="dashboard-view">
+    <header class="portal-header">
+      <div class="portal-brand">
+        <div class="portal-logo">CBT</div>
+        <div class="portal-title">
+          <h1>Human Diseases — CBT Mock Test Dashboard</h1>
+          <p>SSC / Railway Exam Pattern &bull; Fact-Checked Biology Series</p>
+        </div>
+      </div>
+      <button type="button" id="btn-reset-storage" class="header-btn">Reset Saved Scores</button>
+    </header>
+
+    <main class="container">
+      <section class="summary-strip" aria-label="Overall Progress">
+        <div class="summary-card">
+          <div class="label">Mocks Completed</div>
+          <div class="value" id="dash-completed">0 / 3</div>
+          <div class="sub">Saved in browser storage</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Total Question Bank</div>
+          <div class="value">70 MCQs</div>
+          <div class="sub">10 + 30 + 30 questions</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Combined Latest Score</div>
+          <div class="value" id="dash-total-score">0 / 140</div>
+          <div class="sub">Across attempted mocks</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Average Accuracy</div>
+          <div class="value" id="dash-avg-accuracy">—</div>
+          <div class="sub">Attempted questions</div>
+        </div>
+      </section>
+
+      <div class="section-heading">
+        <h2>Available Mock Tests</h2>
+        <span class="marking-pill">Marking: +2 Correct &nbsp;|&nbsp; &minus;0.5 Incorrect &nbsp;|&nbsp; 36s / Question</span>
+      </div>
+
+      <section class="mock-grid" id="mock-cards-container"></section>
+    </main>
+  </div>
+
+  <!-- ================= VIEW 2: MOCK INTRO / INSTRUCTIONS ================= -->
+  <div id="instructions-view" class="hidden">
+    <header class="portal-header">
+      <div class="portal-brand">
+        <div class="portal-logo">CBT</div>
+        <div class="portal-title">
+          <h1 id="inst-header-title">Mock Test Instructions</h1>
+          <p>Please read the instructions carefully before beginning the test</p>
+        </div>
+      </div>
+      <button type="button" id="btn-inst-back-top" class="header-btn">Back to Dashboard</button>
+    </header>
+
+    <div class="container">
+      <div class="instructions-card">
+        <div class="instructions-header">
+          <h2 id="inst-test-name">Mock Test</h2>
+          <span class="marking-pill" id="inst-test-tag">SSC / Railway CBT Mode</span>
+        </div>
+
+        <div class="instructions-body">
+          <div class="inst-specs">
+            <div class="inst-spec-box">
+              <div class="k">Questions</div>
+              <div class="v" id="inst-q-count">10 MCQs</div>
+            </div>
+            <div class="inst-spec-box">
+              <div class="k">Duration</div>
+              <div class="v" id="inst-duration">06:00 Mins</div>
+            </div>
+            <div class="inst-spec-box">
+              <div class="k">Max Marks</div>
+              <div class="v" id="inst-max-marks">20 Marks</div>
+            </div>
+            <div class="inst-spec-box">
+              <div class="k">Marking Scheme</div>
+              <div class="v">+2 / &minus;0.5</div>
+            </div>
+          </div>
+
+          <ol class="inst-list">
+            <li>Total duration is strictly calculated at <strong>36 seconds per question</strong>. The countdown timer at the top-right starts as soon as you begin and will automatically submit the test when it reaches <strong>00:00</strong>.</li>
+            <li>Each question carries <strong>+2 marks</strong> for a correct answer and a penalty of <strong>&minus;0.5 marks</strong> for an incorrect answer. Unattempted questions carry <strong>0 marks</strong>.</li>
+            <li>Options are randomized on every attempt, while the sequence of questions remains fixed.</li>
+            <li>The exam opens in <strong>Fullscreen Mode</strong> automatically. You may use the <em>Exit Fullscreen</em> or <em>Pause</em> buttons in the top bar at any time.</li>
+            <li>No answers or hints are revealed during the test. Detailed solutions for <strong>incorrect and unattempted questions</strong> are shown immediately after submission, and your result is saved automatically in browser storage.</li>
+          </ol>
+
+          <div class="legend-grid">
+            <div class="legend-item"><span class="q-pill mini not-visited">1</span> Not Visited</div>
+            <div class="legend-item"><span class="q-pill mini not-answered">2</span> Not Answered</div>
+            <div class="legend-item"><span class="q-pill mini answered">3</span> Answered</div>
+            <div class="legend-item"><span class="q-pill mini marked">4</span> Marked for Review</div>
+            <div class="legend-item"><span class="q-pill mini answered-marked">5</span> Answered &amp; Marked (Evaluated)</div>
+          </div>
+
+          <label class="declaration-box">
+            <input type="checkbox" id="chk-declaration" />
+            <span>I have read and understood all the instructions. I am ready to begin the mock test in fullscreen CBT mode.</span>
+          </label>
+
+          <div class="instructions-footer">
+            <button type="button" id="btn-inst-back" class="btn btn-secondary">Back to Dashboard</button>
+            <button type="button" id="btn-start-exam" class="btn btn-primary" disabled>Start Test</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= VIEW 3: TCS / EDUQUITY EXAM INTERFACE ================= -->
+  <div id="exam-view" class="hidden">
+    <header class="exam-topbar">
+      <div class="exam-topbar-left">
+        <span class="exam-title-badge" id="exam-title-label">Mock Test</span>
+      </div>
+      <div class="exam-topbar-right">
+        <div class="timer-box" id="exam-timer" aria-live="polite">
+          <span>Time Left:</span>
+          <span id="timer-display">06:00</span>
+        </div>
+        <button type="button" id="btn-pause" class="topbar-action-btn">Pause</button>
+        <button type="button" id="btn-fullscreen" class="topbar-action-btn">Exit Fullscreen</button>
+        <button type="button" id="btn-top-submit" class="topbar-submit-btn">Submit</button>
+      </div>
+    </header>
+
+    <div class="exam-workspace">
+      <section class="question-pane">
+        <div class="question-subheader">
+          <span class="q-number-label" id="q-number-label">Question No. 1 of 10</span>
+          <span class="q-marks-label">
+            <span class="plus">Correct: +2.0</span>
+            <span class="minus">Wrong: &minus;0.5</span>
+          </span>
+        </div>
+
+        <div class="question-scroll-area" id="question-scroll-area">
+          <div class="question-text" id="question-text"></div>
+          <div class="options-list" id="options-list"></div>
+        </div>
+
+        <footer class="exam-footer">
+          <div class="footer-left-btns">
+            <button type="button" id="btn-prev" class="btn btn-secondary">Previous</button>
+            <button type="button" id="btn-clear" class="btn btn-secondary">Clear</button>
+            <button type="button" id="btn-mark-next" class="btn btn-purple">Mark for Review &amp; Next</button>
+          </div>
+          <div class="footer-right-btns">
+            <button type="button" id="btn-next" class="btn btn-primary">Next</button>
+            <button type="button" id="btn-bottom-submit" class="btn btn-success">Submit</button>
+          </div>
+        </footer>
+      </section>
+
+      <aside class="palette-sidebar" aria-label="Question Palette">
+        <div class="palette-header">Question Palette</div>
+        <div class="palette-stats">
+          <div class="p-stat-item"><span class="q-pill mini answered" id="cnt-answered">0</span> Answered</div>
+          <div class="p-stat-item"><span class="q-pill mini not-answered" id="cnt-not-answered">0</span> Not Answered</div>
+          <div class="p-stat-item"><span class="q-pill mini not-visited" id="cnt-not-visited">0</span> Not Visited</div>
+          <div class="p-stat-item"><span class="q-pill mini marked" id="cnt-marked">0</span> Marked</div>
+          <div class="p-stat-item full-span"><span class="q-pill mini answered-marked" id="cnt-ans-marked">0</span> Answered &amp; Marked for Review</div>
+        </div>
+        <div class="palette-scroll-box">
+          <div class="palette-grid" id="palette-grid"></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ================= VIEW 4: RESULT & ANALYSIS ================= -->
+  <div id="result-view" class="hidden">
+    <header class="portal-header">
+      <div class="portal-brand">
+        <div class="portal-logo">CBT</div>
+        <div class="portal-title">
+          <h1 id="res-header-title">Scorecard &amp; Analysis</h1>
+          <p id="res-header-sub">Detailed review of incorrect &amp; unattempted questions</p>
+        </div>
+      </div>
+      <button type="button" id="btn-res-dashboard-top" class="header-btn">Back to Dashboard</button>
+    </header>
+
+    <main class="container">
+      <section class="result-banner">
+        <div id="res-auto-notice" class="auto-submit-notice hidden">
+          Time expired! Your test was submitted automatically.
+        </div>
+        <div class="result-top-row">
+          <div>
+            <h2 id="res-test-title">Mock Test Result</h2>
+            <p style="font-size:12.5px; color:var(--text-muted); margin-top:2px;" id="res-timestamp"></p>
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button type="button" id="btn-retake-test" class="btn btn-primary">Retake Test</button>
+            <button type="button" id="btn-res-dashboard" class="btn btn-secondary">Back to Dashboard</button>
+          </div>
+        </div>
+
+        <div class="score-metrics">
+          <div class="metric-tile score">
+            <div class="m-k">Total Score</div>
+            <div class="m-v" id="res-score">0 / 20</div>
+          </div>
+          <div class="metric-tile">
+            <div class="m-k">Accuracy</div>
+            <div class="m-v" id="res-accuracy">0%</div>
+          </div>
+          <div class="metric-tile correct">
+            <div class="m-k">Correct (+2)</div>
+            <div class="m-v" id="res-correct">0</div>
+          </div>
+          <div class="metric-tile incorrect">
+            <div class="m-k">Incorrect (&minus;0.5)</div>
+            <div class="m-v" id="res-incorrect">0</div>
+          </div>
+          <div class="metric-tile">
+            <div class="m-k">Unattempted</div>
+            <div class="m-v" id="res-unattempted">0</div>
+          </div>
+          <div class="metric-tile">
+            <div class="m-k">Time Taken</div>
+            <div class="m-v" id="res-time">00:00</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="filter-bar">
+        <h3 style="font-size:16px; font-weight:700;">Solutions (Incorrect &amp; Unattempted Only)</h3>
+        <div class="filter-tabs" id="solution-filter-tabs">
+          <button type="button" class="filter-tab active" data-filter="all">All Reviewable (<span id="f-all-cnt">0</span>)</button>
+          <button type="button" class="filter-tab" data-filter="incorrect">Incorrect (<span id="f-wrong-cnt">0</span>)</button>
+          <button type="button" class="filter-tab" data-filter="unattempted">Unattempted (<span id="f-skip-cnt">0</span>)</button>
+        </div>
+      </div>
+
+      <section id="solutions-container"></section>
+    </main>
+  </div>
+
+  <!-- ================= MODALS ================= -->
+  <div id="pause-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <div class="modal-header">Test Paused</div>
+      <div class="modal-body">
+        <p>Your countdown timer is paused and the current question is hidden. Click <strong>Resume Test</strong> to continue.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btn-pause-exit" class="btn btn-secondary">Exit to Dashboard</button>
+        <button type="button" id="btn-pause-resume" class="btn btn-primary">Resume Test</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="submit-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <div class="modal-header">Confirm Test Submission</div>
+      <div class="modal-body">
+        <p>Are you sure you want to submit this mock test? Review your attempt summary below:</p>
+        <table class="modal-summary-table">
+          <tr><td>Total Questions</td><td id="sub-total">0</td></tr>
+          <tr><td>Answered (incl. Answered &amp; Marked)</td><td id="sub-answered">0</td></tr>
+          <tr><td>Not Answered</td><td id="sub-not-answered">0</td></tr>
+          <tr><td>Marked for Review (Unanswered)</td><td id="sub-marked">0</td></tr>
+          <tr><td>Not Visited</td><td id="sub-not-visited">0</td></tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btn-submit-cancel" class="btn btn-secondary">Continue Test</button>
+        <button type="button" id="btn-submit-confirm" class="btn btn-success">Final Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="reset-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <div class="modal-header">Reset Saved Progress</div>
+      <div class="modal-body">
+        <p>This will clear all saved scores and test analysis history stored in your browser for all 3 mock tests. Do you want to proceed?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btn-reset-cancel" class="btn btn-secondary">Cancel</button>
+        <button type="button" id="btn-reset-confirm" class="btn btn-danger">Reset All Data</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const STORAGE_KEY = "diseases_mock_portal_v1";
+      const SECONDS_PER_QUESTION = 36;
+      const MARKS_CORRECT = 2;
+      const MARKS_INCORRECT = -0.5;
+
+      /* ================= FACT-CHECKED QUESTION BANK (70 MCQs) ================= */
+      const MOCK_TESTS = [
+        {
+          id: "intro",
+          number: "Mock Test 01",
+          title: "Introduction to Diseases & Pathogens",
+          shortDesc: "Disease definitions, acute vs. chronic, communicable vs. non-communicable, zoonotic diseases, and viruses, bacteria, protozoa & fungi.",
+          questions: [
+            {
+              q: "Consider the following statements regarding the fundamentals of medicine and immunology:\n1. A disease is defined as any disturbance in the internal structure and function of any organ or part of the body, usually associated with specific signs and symptoms.\n2. Hippocrates is known as the Father of Medicine.\n3. Edward Jenner is known as the Father of Immunology for his contribution towards the eradication of smallpox.\n\nWhich of the statements given above are correct?",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 and 3 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "All three statements are correct. Hippocrates is regarded as the Father of Medicine, Edward Jenner is the Father of Immunology (pioneer of the smallpox vaccine), and a disease is a structural or functional disturbance of any organ or body part with specific signs and symptoms."
+            },
+            {
+              q: "Consider the following statements on the classification of diseases based on time:\n1. Acute diseases last for a short period of time and cause major effects on health in a short duration; examples include fever, cold, and cough.\n2. Chronic diseases last for a longer period of time and take a long time to cause major effects on health; examples include diabetes, tuberculosis (TB), and elephantiasis.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Acute diseases (e.g., fever, cold, cough) are short-duration conditions with rapid effects, whereas chronic diseases (e.g., diabetes, tuberculosis, elephantiasis) persist for a long duration and develop major effects over time."
+            },
+            {
+              q: "Which of the following statements accurately distinguishes communicable diseases from non-communicable diseases?\n1. Communicable diseases spread from one person to another and are caused by pathogens (e.g., malaria, AIDS, TB, chickenpox, COVID-19).\n2. Non-communicable diseases do not spread from person to person and are caused by nutrient deficiency, allergy, or proliferation of abnormal cells (e.g., diabetes, arthritis, asthma, cancer).\n\nSelect the correct answer using the code given below:",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Communicable diseases are pathogen-driven and transmissible (malaria, AIDS, TB, chickenpox, COVID-19). Non-communicable diseases (diabetes, arthritis, asthma, cancer) are non-transmissible and arise from deficiencies, allergies, or abnormal cell proliferation."
+            },
+            {
+              q: "Consider the following statements:\n1. Zoonotic diseases are diseases that spread from animals to humans.\n2. Pathogens are disease-causing agents that enter a host body and cause infections and physiological disruptions.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Zoonotic diseases are transmitted from animals to humans, and pathogens are disease-causing organisms/agents that enter hosts to cause infections and physiological disruptions."
+            },
+            {
+              q: "With reference to viruses, consider the following statements:\n1. They are small infectious agents that require a host cell to replicate and cause diseases such as the common cold, flu, and HIV.\n2. The genetic material of a virus is enclosed in a protective protein envelope known as a capsid.\n3. Viral genetic material can be RNA (such as single-stranded RNA in retroviruses) or DNA (such as double-stranded DNA).\n\nWhich of the statements given above are correct?",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 and 3 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "Viruses are obligate intracellular parasites needing a host cell to replicate. Their DNA or RNA genome is enclosed within a protein coat called a capsid, and they cause diseases like the common cold, influenza, and HIV."
+            },
+            {
+              q: "Why are antibiotics ineffective in treating viral infections?",
+              options: [
+                "Antibiotics commonly target bacterial cell wall formation, whereas viruses lack cell walls and are enclosed in a protein coat.",
+                "Viruses are larger than 1000 nm and physically block antibiotic molecules from entering.",
+                "Viruses are saprophytic organisms that neutralize antibiotics using their plasmids.",
+                "Antibiotics act only on eukaryotic organelles such as the macronucleus."
+              ],
+              answer: "Antibiotics commonly target bacterial cell wall formation, whereas viruses lack cell walls and are enclosed in a protein coat.",
+              explanation: "Many antibiotics work by disrupting bacterial cell wall synthesis or bacterial cellular machinery. Viruses do not possess cell walls—they have a protective protein capsid—so antibiotics cannot treat viral infections."
+            },
+            {
+              q: "Match the following bacterial shapes with their correct scientific terms:\n1. Sphere-shaped bacteria — Coccus\n2. Rod-shaped bacteria — Bacillus\n3. Spiral-shaped bacteria — Spirillum\n\nWhich of the pairs given above are correctly matched?",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 and 3 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "Bacteria are single-celled organisms (causing pneumonia, strep throat, food poisoning, etc.) classified by shape into Coccus (sphere-shaped), Bacillus (rod-shaped), and Spirillum (spiral-shaped)."
+            },
+            {
+              q: "Consider the following statements comparing Viruses and Bacteria:\n1. Bacteria are unicellular living prokaryotes that lack a true nucleus and membrane-bound organelles; instead they have a nucleoid whose bacterial DNA is called a genophore.\n2. Viruses are smaller (typically 20–400 nm) and act as non-living entities outside a host cell, whereas bacteria are larger (~1000 nm) and can divide on their own.\n3. Viruses are strictly parasitic in nature, whereas bacteria can be parasitic or saprophytic.\n\nWhich of the statements given above are correct?",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "1 and 3 only",
+                "2 and 3 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "All three statements accurately contrast viruses and bacteria. Bacteria also contain structures such as ribosomes, plasmid, cell membrane, cell wall, capsule, pili, and flagellum, and their nucleoid DNA is called the genophore."
+            },
+            {
+              q: "Consider the following statements regarding Protozoa:\n1. Protozoa are unicellular organisms that can cause intestinal infections, amoebiasis, giardiasis, and toxoplasmosis.\n2. Protozoan diseases often spread through contaminated water or insect bites.\n3. Structures such as cilia, contractile vacuole, oral groove, macronucleus, and micronucleus are characteristic of ciliated protozoa like Paramecium.\n\nWhich of the statements given above are correct?",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "Protozoa are one-celled organisms causing amoebiasis, giardiasis, toxoplasmosis, and intestinal infections, typically spread via contaminated water or insect vectors. Ciliated protozoa (e.g., Paramecium) contain cilia, oral groove, food/contractile vacuoles, anal pore, macronucleus, and micronucleus."
+            },
+            {
+              q: "With reference to Fungi, consider the following statements:\n1. Fungi are a group of eukaryotic organisms.\n2. Fungal infections in humans include athlete's foot and yeast infections.\n3. Unlike bacteria, fungi are prokaryotic organisms whose genetic material is called a genophore.\n\nWhich of the statements given above are correct?",
+              options: [
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 and 3 only",
+                "1, 2 and 3"
+              ],
+              answer: "1 and 2 only",
+              explanation: "Fungi are eukaryotic (not prokaryotic) organisms that cause diseases such as athlete's foot and yeast infections. Prokaryotic organisms with a genophore are bacteria."
+            }
+          ]
+        },
+        {
+          id: "virus_bacteria",
+          number: "Mock Test 02",
+          title: "Diseases Caused by Virus & Bacteria",
+          shortDesc: "Complete coverage of viral diseases, bacterial diseases, Gram staining, vaccines, diagnostic tests, and key microbiology pointers.",
+          questions: [
+            {
+              q: "Consider the following pairs of viral shapes and their examples:\n1. Polyhedral — Adenovirus\n2. Spherical — Influenza virus\n3. Helical — Tobacco mosaic virus\n4. Complex — Bacteriophage\n\nHow many of the pairs given above are correctly matched?",
+              options: [
+                "All four pairs",
+                "Only three pairs",
+                "Only two pairs",
+                "Only one pair"
+              ],
+              answer: "All four pairs",
+              explanation: "All four viral shape examples are correctly matched: Adenovirus (polyhedral), Influenza (spherical), Tobacco Mosaic Virus (helical), and Bacteriophage (complex)."
+            },
+            {
+              q: "Consider the following statements regarding Hepatitis (Types A, B, and C):\n1. Hepatitis primarily affects the liver, and its major symptom is jaundice (also called icterus).\n2. Hepatitis A is transmitted through contaminated food and water.\n3. Hepatitis B is transmitted through bodily fluids including sexual contact, while Hepatitis C is transmitted through contact with infected blood.\n\nWhich of the statements given above are correct?",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 and 3 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "Hepatitis targets the liver and presents with jaundice (icterus). Hepatitis A spreads via contaminated food/water, Hepatitis B spreads through bodily fluids/sexual contact, and Hepatitis C spreads through contact with infected blood."
+            },
+            {
+              q: "What is the name of India's first indigenous Hepatitis-A vaccine?",
+              options: [
+                "Havisure",
+                "Covaxin",
+                "Salvarsan",
+                "BCG"
+              ],
+              answer: "Havisure",
+              explanation: "Havisure is India's first indigenous Hepatitis-A vaccine."
+            },
+            {
+              q: "Mumps is a viral disease that specifically causes swelling and inflammation in which of the following glands?",
+              options: [
+                "Parotid salivary glands",
+                "Thyroid gland",
+                "Adrenal glands",
+                "Pituitary gland"
+              ],
+              answer: "Parotid salivary glands",
+              explanation: "Mumps is a viral infection that primarily affects the parotid salivary glands located in the cheek and jaw area."
+            },
+            {
+              q: "Consider the following statements about respiratory viral infections:\n1. Flu is caused by Influenza viruses, which include Types A, B, and C.\n2. The term 'Influenza' is historically associated with the phrase 'evil influence of stars'.\n3. The common cold is caused by Rhinovirus.\n\nWhich of the statements given above are correct?",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 and 3 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "All three statements are correct: Influenza (Types A, B, and C) historically derives from 'evil influence of stars', and the common cold is caused by Rhinovirus."
+            },
+            {
+              q: "Consider the following statements regarding Polio (Poliomyelitis):\n1. It is caused by the Poliovirus and affects the nervous system, specifically nerves in the spinal cord or brain stem cells.\n2. India was declared polio-free (polio eradicated from India) in 2014.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Poliomyelitis is caused by Poliovirus, damaging motor nerves in the spinal cord or brain stem. India was certified polio-free in 2014."
+            },
+            {
+              q: "With reference to Polio immunization, consider the following statements:\n1. The first polio vaccine was created by Dr. Jonas Salk.\n2. India launched the Pulse Polio Immunisation Programme on October 2, 1995.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Dr. Jonas Salk developed the first polio vaccine, and India launched the Pulse Polio Immunisation Programme on October 2, 1995."
+            },
+            {
+              q: "Consider the following statements regarding Cervical Cancer:\n1. It is caused by the Human Papillomavirus (HPV).\n2. It affects the cervix region in women.\n3. It is detected through the PAP Smear Test.\n\nWhich of the statements given above are correct?",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 and 3 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "Cervical cancer affects the cervix in women, is caused by Human Papillomavirus (HPV), and is screened/detected via the PAP Smear Test."
+            },
+            {
+              q: "Consider the following statements regarding Chickenpox and Smallpox:\n1. Chickenpox is caused by the Varicella-Zoster Virus.\n2. Smallpox is caused by the Variola Virus.\n3. Edward Jenner developed the smallpox vaccine in 1796, and smallpox was eradicated from India in 1977.\n\nWhich of the statements given above are correct?",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 and 3 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "Chickenpox is caused by Varicella-Zoster Virus, whereas Smallpox is caused by Variola Virus. Edward Jenner introduced the smallpox vaccine in 1796, and India was declared smallpox-free in 1977."
+            },
+            {
+              q: "Consider the following statements regarding Dengue:\n1. It is caused by a Flavivirus (serotypes DENV 1–4).\n2. The carrier of the dengue virus is the Aedes aegypti mosquito, which is also responsible for transmitting Chikungunya.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Dengue is caused by Flavivirus (DENV 1–4) and transmitted by the Aedes aegypti mosquito, which is also the vector for Chikungunya."
+            },
+            {
+              q: "Which of the following statements is correct regarding Rabies?",
+              options: [
+                "It is caused by Lyssavirus and affects the Central Nervous System (CNS), leading to hydrophobia.",
+                "It is caused by Flavivirus and affects the liver, leading to jaundice.",
+                "It is caused by Rhinovirus and affects the parotid salivary glands.",
+                "It is caused by Variola virus and is detected by the Widal test."
+              ],
+              answer: "It is caused by Lyssavirus and affects the Central Nervous System (CNS), leading to hydrophobia.",
+              explanation: "Rabies is caused by Lyssavirus (rabies virus) and attacks the Central Nervous System (CNS), characteristically causing hydrophobia (fear of water)."
+            },
+            {
+              q: "Consider the following statements regarding AIDS (Acquired Immunodeficiency Syndrome):\n1. It is caused by HIV (Human Immunodeficiency Virus), which is a retrovirus.\n2. The first clinical case of AIDS was reported in 1981.\n3. World AIDS Day is observed on 1st December every year, and death in AIDS occurs due to a severely weakened immune system.\n\nWhich of the statements given above are correct?",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 and 3 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "AIDS is caused by HIV (a retrovirus). First reported in 1981, World AIDS Day is observed on December 1, and mortality results from opportunistic infections due to a weakened immune system."
+            },
+            {
+              q: "Consider the following statements regarding the transmission and diagnosis of AIDS:\n1. HIV/AIDS is a sexually transmitted disease that can also spread through infected blood transfusions and from mother to baby.\n2. The ELISA Test (Enzyme-Linked Immunosorbent Assay) is used for the detection of HIV/AIDS.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "HIV spreads via sexual contact, contaminated blood transfusions, and mother-to-child transmission, and is screened using the ELISA (Enzyme-Linked Immunosorbent Assay) test."
+            },
+            {
+              q: "Consider the following statements regarding viral brain and zoonotic infections:\n1. Encephalitis refers to inflammation of the brain and can be caused by viruses such as Herpes Simplex.\n2. Japanese encephalitis virus is spread by mosquitoes and causes inflammation in the brain.\n3. The natural host of the Nipah virus is Fruit Bats.\n\nWhich of the statements given above are correct?",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 and 3 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "Encephalitis is brain inflammation (e.g., caused by Herpes Simplex or mosquito-borne Japanese encephalitis virus), and Fruit Bats serve as the natural host of the Nipah virus."
+            },
+            {
+              q: "Consider the following statements:\n1. Swine flu is caused by the H1N1 virus.\n2. Bird flu is caused by the H5N1 virus.\n3. Both HIV-AIDS and Genital Warts are viral sexually transmitted diseases (STDs).\n\nWhich of the statements given above are correct?",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 and 3 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "Swine flu is caused by H1N1, bird flu by H5N1, and HIV-AIDS along with genital warts are viral STDs (as distinct from bacterial STDs like gonorrhea and syphilis)."
+            },
+            {
+              q: "Consider the following statements regarding Plague:\n1. Plague is a bacterial disease caused by Yersinia pestis.\n2. Historically, mass mortality due to plague has been referred to as the 'Black Death'.\n3. Around 12 million deaths were reported in India during the major plague epidemic period starting in the late 1890s (1897–1906).\n\nWhich of the statements given above are correct?",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "Plague is caused by Yersinia pestis, historically known as the 'Black Death', and caused massive mortality (~12 million deaths reported in India during the late 19th/early 20th century outbreak)."
+            },
+            {
+              q: "Leprosy, which primarily affects the skin and peripheral nerves, is caused by which bacterium and is also known by what name?",
+              options: [
+                "Mycobacterium leprae; Hansen's Disease",
+                "Mycobacterium tuberculosis; Koch's Disease",
+                "Corynebacterium diphtheriae; Blue Death",
+                "Treponema pallidum; Lockjaw"
+              ],
+              answer: "Mycobacterium leprae; Hansen's Disease",
+              explanation: "Leprosy is caused by Mycobacterium leprae, affects the skin and peripheral nerves, and is also known as Hansen's Disease."
+            },
+            {
+              q: "Consider the following statements regarding Cholera:\n1. It is a water-borne bacterial disease caused by Vibrio cholerae.\n2. It primarily affects the small intestine.\n3. Death caused by cholera has historically been referred to as the 'Blue Death'.\n\nWhich of the statements given above are correct?",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 and 3 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "Cholera is a water-borne infection caused by Vibrio cholerae that affects the small intestine; severe dehydration turns skin bluish-gray, earning it the historical name 'Blue Death'."
+            },
+            {
+              q: "Consider the following statements regarding Tuberculosis (TB):\n1. It is caused by the bacterium Mycobacterium tuberculosis and primarily affects the lungs.\n2. The vaccine provided against tuberculosis is BCG, which stands for Bacillus Calmette-Guérin.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Tuberculosis is caused by Mycobacterium tuberculosis (mainly affecting the lungs) and is prevented by the BCG (Bacillus Calmette-Guérin) vaccine."
+            },
+            {
+              q: "Consider the following statements regarding Pneumonia and Bronchitis:\n1. Bacterial pneumonia is commonly caused by Streptococcus pneumoniae, leading to swollen bronchioles, inflammation in alveolar walls, and fluid-filled air spaces in the alveoli.\n2. Bronchitis is characterized by inflammation of the lining of the bronchial tubes, which carry air to and from the lungs.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Streptococcus pneumoniae causes bacterial pneumonia with fluid accumulation and inflammation in the lung alveoli. Bronchitis is inflammation of the lining of the bronchial tubes (most often viral, occasionally bacterial)."
+            },
+            {
+              q: "Consider the following pairs:\n1. Diphtheria — Caused by Corynebacterium diphtheriae; affects mucous membranes of the nose and throat.\n2. Whooping Cough (Pertussis) — Caused by Bordetella pertussis.\n\nWhich of the pairs given above is/are correctly matched?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Diphtheria is caused by Corynebacterium diphtheriae (affecting the mucous membranes of the nose and throat), and Whooping Cough (pertussis) is caused by Bordetella pertussis."
+            },
+            {
+              q: "With reference to Escherichia coli (E. coli), a major bacterial cause of diarrhoea, which of the following descriptions is accurate?",
+              options: [
+                "Gram-negative, facultative anaerobic, rod-shaped, coliform bacterium",
+                "Gram-positive, strictly aerobic, sphere-shaped bacterium",
+                "Gram-negative, spiral-shaped, spore-forming virus",
+                "Gram-positive, strictly anaerobic, helical protozoan"
+              ],
+              answer: "Gram-negative, facultative anaerobic, rod-shaped, coliform bacterium",
+              explanation: "Escherichia coli (E. coli) is a Gram-negative, facultative anaerobic, rod-shaped coliform bacterium associated with diarrhoea."
+            },
+            {
+              q: "Consider the following statements regarding Peptic Ulcers:\n1. Peptic ulcers are caused by the bacterium Helicobacter pylori.\n2. Robin Warren and Barry Marshall were awarded the 2005 Nobel Prize in Physiology or Medicine for discovering this bacterium's role in peptic ulcer disease.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Helicobacter pylori causes peptic ulcers, a discovery for which Robin Warren and Barry Marshall received the 2005 Nobel Prize in Physiology or Medicine."
+            },
+            {
+              q: "Consider the following statements regarding Typhoid:\n1. It is caused by Salmonella typhi and affects the small intestine (gut).\n2. It is detected by the Widal Test, which is a serological method.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Typhoid is caused by Salmonella typhi, affects the small intestine, and is detected via the serological Widal Test."
+            },
+            {
+              q: "Consider the following statements regarding Tetanus and Acne:\n1. Tetanus is caused by Clostridium tetani and its characteristic symptom is locked jaw (lockjaw).\n2. Acne vulgaris is primarily associated with the bacterium Cutibacterium acnes (formerly Propionibacterium acnes).\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Tetanus is caused by Clostridium tetani and produces lockjaw. Acne vulgaris is primarily driven by Cutibacterium acnes (formerly Propionibacterium acnes), rather than Staphylococcus alone."
+            },
+            {
+              q: "Consider the following statements regarding Syphilis and bacterial STDs:\n1. Syphilis is caused by the bacterium Treponema pallidum.\n2. Both Gonorrhea and Syphilis are bacterial sexually transmitted diseases.\n3. Paul Ehrlich won the 1908 Nobel Prize in Physiology or Medicine for his work on immunity and his laboratory discovered Salvarsan (1909), the first effective chemotherapeutic treatment for syphilis.\n\nWhich of the statements given above are correct?",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 and 3 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "Syphilis (Treponema pallidum) and Gonorrhea are bacterial STDs. Paul Ehrlich shared the 1908 Nobel Prize for immunity research and developed Salvarsan (arsphenamine, discovered 1909 / introduced 1910), the first effective chemotherapeutic drug for syphilis."
+            },
+            {
+              q: "Consider the following statements:\n1. Tooth decay is caused by the bacterium Streptococcus mutans.\n2. Trachoma is a contagious bacterial eye infection caused by Chlamydia trachomatis.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Streptococcus mutans causes tooth decay. Trachoma is a contagious bacterial eye infection caused by Chlamydia trachomatis (causing conjunctival scarring and blindness, distinct from glaucoma's increased intraocular pressure)."
+            },
+            {
+              q: "With reference to Gram staining of bacteria, consider the following statements:\n1. It is a differential staining technique that classifies bacteria into Gram-positive (purple) and Gram-negative (pink/red) based on cell wall structure.\n2. The four-step staining sequence uses crystal violet, iodine, decolorizer (alcohol/acetone), and safranin.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Gram staining follows the 4-step sequence: Crystal violet -> Iodine -> Decolorizer (alcohol/acetone) -> Safranin, staining Gram-positive bacteria purple and Gram-negative bacteria pink/red."
+            },
+            {
+              q: "Consider the following statements regarding bacterial cell wall differences in Gram staining:\n1. Gram-positive bacteria possess a thick peptidoglycan layer over the cytoplasmic membrane.\n2. Gram-negative bacteria have a thin peptidoglycan layer, a periplasmic space, and an outer membrane, which makes them generally more resistant to antibiotics.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Gram-positive bacteria have a thick peptidoglycan layer. Gram-negative bacteria have a thin peptidoglycan layer, periplasm, and an outer lipid membrane that makes them more resistant to many antibiotics."
+            },
+            {
+              q: "Consider the following statements:\n1. Staphylococcus, Streptococcus, and Bacillus are examples of Gram-positive bacteria.\n2. Escherichia, Salmonella, and Vibrio cholerae are examples of Gram-negative bacteria.\n3. Alexander Fleming discovered the first true antibiotic, penicillin, in 1928.\n\nWhich of the statements given above are correct?",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 and 3 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "All three statements are correct: Staphylococcus, Streptococcus, and Bacillus are Gram-positive; Escherichia, Salmonella, and Vibrio cholerae are Gram-negative; and Alexander Fleming discovered penicillin in 1928."
+            }
+          ]
+        },
+        {
+          id: "other_diseases",
+          number: "Mock Test 03",
+          title: "Other Diseases (Fungal, Protozoan, Genetic & Misc.)",
+          shortDesc: "Fungal & protozoan diseases, water/air-borne lists, genetic & chromosomal disorders, heavy-metal toxicities, prions, cancer types & biotechnology.",
+          questions: [
+            {
+              q: "Consider the following statements regarding fungal infections:\n1. Tinea capitis, also known as scalp ringworm, is a fungal infection that can cause patchy hair loss (baldness).\n2. Athlete's foot is a type of ringworm fungal infection affecting the feet.\n3. Ringworm is a common fungal skin infection that causes a red, itchy rash.\n\nWhich of the statements given above are correct?",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 and 3 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "All three are fungal skin infections: Tinea capitis (scalp ringworm causing patchy hair loss), Athlete's foot (ringworm of the feet), and Ringworm (red, itchy fungal rash)."
+            },
+            {
+              q: "Consider the following statements regarding Scabies and Asthma:\n1. Scabies is a contagious skin disease caused by the parasitic mite Sarcoptes scabiei (not a fungus), characterized by intense itching and skin rashes.\n2. Fungal exposure can act as a significant trigger or contributor to asthma symptoms.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Scabies is caused by the parasitic mite Sarcoptes scabiei (not a fungus), while fungal spores/exposure can trigger or worsen asthma symptoms."
+            },
+            {
+              q: "Consider the following statements regarding Malaria:\n1. It is caused by the protozoan Plasmodium, and Plasmodium falciparum is the deadliest species in humans.\n2. The vector (carrier) of malaria is the female Anopheles mosquito.\n3. World Malaria Day is observed on 25th April.\n\nWhich of the statements given above are correct?",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 and 3 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "Malaria is caused by Plasmodium (with P. falciparum being the deadliest human species), transmitted by the female Anopheles mosquito, and World Malaria Day is observed on April 25."
+            },
+            {
+              q: "Consider the following statements regarding the mechanism and treatment of Malaria:\n1. Maturation and multiplication of Plasmodium merozoites inside red blood cells (RBCs) causes RBC rupture and periodic toxin release every few days, resulting in cyclical fever.\n2. Quinine, used to treat malaria, is obtained from the bark of the Cinchona tree, which is found in evergreen forests.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Periodic rupture of RBCs by multiplying Plasmodium merozoites releases toxins causing cyclical fever. Quinine is extracted from the bark of the Cinchona tree native to evergreen forests."
+            },
+            {
+              q: "Consider the following pairs of protozoan diseases, pathogens, and vectors:\n1. Sleeping Sickness — Trypanosoma — Tsetse fly\n2. Kala Azar — Leishmania — Sandfly (causes enlargement of spleen and liver)\n\nWhich of the pairs given above is/are correctly matched?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Sleeping Sickness is caused by Trypanosoma (carried by the Tsetse fly), and Kala Azar is caused by Leishmania (carried by the Sandfly), causing enlargement of the spleen and liver."
+            },
+            {
+              q: "Which of the following groups consists EXCLUSIVELY of water-borne diseases?",
+              options: [
+                "Hepatitis A, Diarrhoea, Typhoid, Cholera, Giardiasis",
+                "Hepatitis A, Measles, Typhoid, Cholera, COVID-19",
+                "Tuberculosis, Pertussis, Diarrhoea, Cholera, Influenza",
+                "Chickenpox, Giardiasis, Typhoid, Measles, Influenza"
+              ],
+              answer: "Hepatitis A, Diarrhoea, Typhoid, Cholera, Giardiasis",
+              explanation: "Hepatitis A, Diarrhoea, Typhoid, Cholera, and Giardiasis are water-borne diseases. Measles, Tuberculosis, Pertussis, Influenza, Chickenpox, and COVID-19 are air-borne."
+            },
+            {
+              q: "Which of the following diseases are classified as air-borne diseases?\n1. Influenza and Tuberculosis\n2. Measles and Pertussis\n3. Chickenpox and COVID-19\n\nSelect the correct answer using the code given below:",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 and 3 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "Influenza, Tuberculosis, Measles, Pertussis, Chickenpox, and COVID-19 are all transmitted as air-borne diseases."
+            },
+            {
+              q: "Consider the following statements regarding categories of genetic disorders:\n1. Mendelian disorders occur mainly due to alteration or mutation in a single gene; examples include sickle cell anaemia, thalassemia, colour blindness, and haemophilia.\n2. Polygenic disorders involve multiple genes; examples include hypertension, coronary heart disease, and diabetes.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Mendelian disorders arise from single-gene mutations (sickle cell anaemia, thalassemia, colour blindness, haemophilia), whereas polygenic disorders (hypertension, coronary heart disease, diabetes) involve multiple genes."
+            },
+            {
+              q: "Consider the following statements regarding autosomal genetic disorders:\n1. Down's syndrome is a chromosomal disorder caused by an extra (or partial) copy of chromosome 21 (Trisomy 21), giving a total of 47 chromosomes instead of 46.\n2. Albinism is an autosomal genetic disorder in which the body produces little or no melanin.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Down's syndrome results from Trisomy 21 (47 chromosomes total), and Albinism is an autosomal recessive disorder resulting in little or no melanin pigment production."
+            },
+            {
+              q: "Consider the following statements regarding Turner's Syndrome:\n1. It is a sex-linked chromosomal disorder in which one X chromosome is missing in females (XO).\n2. Typical clinical signs include short stature, webbing of the neck, low posterior hairline, broad chest with widely spaced nipples, coarctation of the aorta, cubitus valgus, streak ovaries (infertility/amenorrhea), pigmented nevi, and peripheral lymphedema at birth.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Turner's syndrome (45, XO) occurs in females missing one X chromosome and presents with short stature, webbed neck, low posterior hairline, broad chest, coarctation of aorta, cubitus valgus, streak ovaries/infertility, pigmented nevi, and peripheral lymphedema at birth."
+            },
+            {
+              q: "Consider the following statements regarding Klinefelter's Syndrome:\n1. It is a sex-linked chromosomal disorder in which one extra X chromosome is present in males (XXY).\n2. Clinical signs include a taller, less muscular build, broader hips and longer legs, larger breasts, weaker bones, lower energy level, smaller penis and testicles, delayed puberty, and less facial and body hair.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Klinefelter's syndrome (47, XXY) occurs in males with an extra X chromosome and produces taller less muscular stature, broader hips, larger breasts, weaker bones, lower energy, smaller testes, delayed puberty, and sparse facial/body hair."
+            },
+            {
+              q: "Which of the following statements accurately describes Haemophilia?",
+              options: [
+                "It is a rare X-linked recessive disorder in which blood does not clot properly.",
+                "It is an autosomal trisomy of chromosome 21 causing extra melanin production.",
+                "It is a bacterial blood infection transmitted by the female Anopheles mosquito.",
+                "It is a polygenic lung disorder caused by damaged alveolar walls."
+              ],
+              answer: "It is a rare X-linked recessive disorder in which blood does not clot properly.",
+              explanation: "Haemophilia affects a recessive gene located on the X chromosome (X-linked recessive Mendelian disorder) and prevents normal blood clotting."
+            },
+            {
+              q: "Consider the following statements:\n1. Patau syndrome, also known as Trisomy 13, is a genetic disorder caused by having an extra copy of chromosome 13.\n2. Charcot-Marie-Tooth disease is caused by duplication of the peripheral myelin protein-22 (PMP22) gene on chromosome 17.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Patau syndrome is Trisomy 13 (extra chromosome 13), and Charcot-Marie-Tooth disease (CMT1A) results from duplication of the PMP22 gene on chromosome 17."
+            },
+            {
+              q: "Consider the following statements regarding Glaucoma:\n1. Glaucoma damages the eye's optic nerve, leading to vision loss or blindness.\n2. It is caused by an increase in intraocular (eye fluid) pressure and often has a genetic predisposition.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Glaucoma is caused by elevated eye fluid (intraocular) pressure that damages the optic nerve, potentially causing vision loss or blindness."
+            },
+            {
+              q: "Consider the following epidemiological terms and their definitions:\n1. Pandemic — Sudden increase in cases across several countries, continents, or the world.\n2. Epidemic — Sudden increase in cases spreading rapidly through a large population.\n3. Endemic — Diseases constantly present in a particular population or region with relatively low/steady spread.\n\nWhich of the pairs given above are correctly matched?",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 and 3 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "Pandemic spans countries/continents globally; Epidemic is a sudden surge in a large population; Endemic is a disease consistently present in a specific region or population."
+            },
+            {
+              q: "Wilson Disease is a rare autosomal recessive disorder caused by abnormal accumulation of which metal in the body (particularly involving the brain, liver, and cornea)?",
+              options: [
+                "Copper",
+                "Iron",
+                "Cadmium",
+                "Mercury"
+              ],
+              answer: "Copper",
+              explanation: "Wilson disease is an autosomal recessive disorder caused by abnormal copper accumulation affecting the brain, liver, and cornea."
+            },
+            {
+              q: "Both 'Mad Hatter Disease' (neurological symptoms from prolonged exposure) and 'Minamata Disease' are caused by poisoning from which heavy metal?",
+              options: [
+                "Mercury",
+                "Cadmium",
+                "Copper",
+                "Iron"
+              ],
+              answer: "Mercury",
+              explanation: "Mercury poisoning causes both Mad Hatter disease (chronic neurological mercury toxicity) and Minamata disease."
+            },
+            {
+              q: "Siderosis disease is caused by the excessive deposition of which element in body tissue?",
+              options: [
+                "Iron",
+                "Copper",
+                "Nitrate",
+                "Cadmium"
+              ],
+              answer: "Iron",
+              explanation: "Siderosis results from excessive iron deposition in body tissues."
+            },
+            {
+              q: "Consider the following pairs:\n1. Itai-Itai disease — Cadmium deposition/poisoning\n2. Blue Baby Syndrome — Nitrate excess/deposition\n\nWhich of the pairs given above is/are correctly matched?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Itai-Itai disease is caused by cadmium poisoning, and Blue Baby Syndrome is caused by nitrate contamination/deposition."
+            },
+            {
+              q: "Which of the following combinations of disease and causative element/substance is INCORRECTLY matched?",
+              options: [
+                "Wilson Disease — Cadmium",
+                "Minamata Disease — Mercury",
+                "Siderosis — Iron",
+                "Blue Baby Syndrome — Nitrate"
+              ],
+              answer: "Wilson Disease — Cadmium",
+              explanation: "Wilson Disease is caused by abnormal Copper accumulation (not Cadmium). Cadmium causes Itai-Itai disease."
+            },
+            {
+              q: "Mesothelioma disease is characteristically and specifically linked to exposure to which of the following?",
+              options: [
+                "Asbestos (Asbestosis)",
+                "Mercury vapour",
+                "Excessive nitrates in water",
+                "Fruit bat saliva"
+              ],
+              answer: "Asbestos (Asbestosis)",
+              explanation: "Mesothelioma is characteristically and specifically linked to asbestos exposure / asbestosis."
+            },
+            {
+              q: "Which of the following diseases are caused by prions?\n1. Scrapie in sheep\n2. Bovine Spongiform Encephalopathy (BSE) in cattle\n3. Creutzfeldt-Jakob Disease (CJD) in humans\n\nSelect the correct answer using the code given below:",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 and 3 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "Prions cause transmissible spongiform encephalopathies including Scrapie in sheep, Bovine Spongiform Encephalopathy (BSE) in cattle, and Creutzfeldt-Jakob Disease (CJD) in humans."
+            },
+            {
+              q: "Consider the following statements regarding Vaccination:\n1. In vaccination, a preparation of antigenic proteins of pathogens or inactivated/weakened pathogens is introduced into the body.\n2. Vaccines generate memory-B and memory-T cells that recognize the pathogens quickly upon subsequent exposure.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Vaccines introduce antigenic proteins or weakened/inactivated pathogens to trigger the formation of memory-B and memory-T cells for rapid immune recognition."
+            },
+            {
+              q: "Consider the following statements:\n1. Red Biotechnology is applied to manufacture pharmaceutical products such as insulin, antibiotics, and vaccines.\n2. Insulin was discovered in 1921–1922 by a team led by Canadian physician Frederick Banting and student Charles Best.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Red Biotechnology covers medical/pharmaceutical manufacturing (insulin, antibiotics, vaccines), and insulin was discovered in 1921–1922 by Frederick Banting and Charles Best."
+            },
+            {
+              q: "Which indigenous breed of cows is specifically noted for being resistant to diseases?",
+              options: [
+                "Red Sindhi",
+                "Holstein Friesian",
+                "Jersey",
+                "Brown Swiss"
+              ],
+              answer: "Red Sindhi",
+              explanation: "The Red Sindhi breed of cows is well known for its natural resistance to diseases."
+            },
+            {
+              q: "Consider the following statements regarding Eating Disorders:\n1. Anorexia Nervosa involves a distorted perception of body weight and extreme efforts to lose weight, such as restricting food and exercising excessively.\n2. Bulimia Nervosa is characterized by episodes of eating too much (binge eating).\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Anorexia Nervosa involves a distorted perception of weight and excessive weight-loss efforts (e.g., over-exercising), while Bulimia Nervosa involves eating too much (binge eating)."
+            },
+            {
+              q: "Emphysema is a chronic respiratory disease primarily characterized by which of the following?",
+              options: [
+                "Damage to the inner walls of the lungs' alveoli, causing them to eventually burst",
+                "Swelling of the parotid salivary glands near the cheek and jaw",
+                "Abnormal electrical discharge from brain cells causing seizures",
+                "Increased fluid pressure damaging the optic nerve of the eye"
+              ],
+              answer: "Damage to the inner walls of the lungs' alveoli, causing them to eventually burst",
+              explanation: "Emphysema is a chronic lung condition in which the inner walls of the alveoli become damaged and eventually burst, reducing respiratory surface area."
+            },
+            {
+              q: "Consider the following statements:\n1. Epilepsy is a neurological disorder resulting from abnormal electrical discharge from brain cells, causing seizures.\n2. Jaundice is medically also known as icterus.\n\nWhich of the statements given above is/are correct?",
+              options: [
+                "Both 1 and 2",
+                "1 only",
+                "2 only",
+                "Neither 1 nor 2"
+              ],
+              answer: "Both 1 and 2",
+              explanation: "Epilepsy is caused by abnormal electrical discharges in brain cells leading to seizures, and jaundice is also called icterus."
+            },
+            {
+              q: "Consider the following pairs of cancer types and their tissues/cells of origin:\n1. Carcinoma — Epithelial cells\n2. Sarcoma — Connective tissues\n3. Melanoma — Melanocytes\n\nWhich of the pairs given above are correctly matched?",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 and 3 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "Carcinoma forms in epithelial cells, Sarcoma develops in connective tissues, and Melanoma originates in melanocytes."
+            },
+            {
+              q: "Consider the following pairs of blood/immune cancers and their sites of origin:\n1. Leukemia — Blood-forming tissue, particularly bone marrow\n2. Lymphoma — Lymphocytes (T cells or B cells)\n3. Multiple Myeloma — Plasma cells\n\nWhich of the pairs given above are correctly matched?",
+              options: [
+                "1, 2 and 3",
+                "1 and 2 only",
+                "2 and 3 only",
+                "1 and 3 only"
+              ],
+              answer: "1, 2 and 3",
+              explanation: "Leukemia arises in blood-forming tissue (especially bone marrow), Lymphoma begins in lymphocytes (T cells or B cells), and Multiple Myeloma begins in plasma cells."
+            }
+          ]
+        }
+      ];
+
+      /* ================= STORAGE HELPERS ================= */
+      function loadStore() {
+        try {
+          const raw = window.localStorage.getItem(STORAGE_KEY);
+          if (!raw) return {};
+          const parsed = JSON.parse(raw);
+          return parsed && typeof parsed === "object" ? parsed : {};
+        } catch (e) {
+          return {};
+        }
+      }
+
+      function saveStore(data) {
+        try {
+          window.localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        } catch (e) {
+          // Graceful fallback if storage is unavailable
+        }
+      }
+
+      function clearStore() {
+        try {
+          window.localStorage.removeItem(STORAGE_KEY);
+        } catch (e) {
+          // Graceful fallback
+        }
+      }
+
+      /* ================= UTILITY HELPERS ================= */
+      function shuffleArray(arr) {
+        const copy = arr.slice();
+        for (let i = copy.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const temp = copy[i];
+          copy[i] = copy[j];
+          copy[j] = temp;
+        }
+        return copy;
+      }
+
+      function formatMMSS(totalSec) {
+        const s = Math.max(0, Math.floor(totalSec));
+        const mins = Math.floor(s / 60);
+        const secs = s % 60;
+        return String(mins).padStart(2, "0") + ":" + String(secs).padStart(2, "0");
+      }
+
+      function formatScore(val) {
+        return Number.isInteger(val) ? String(val) : val.toFixed(1);
+      }
+
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function getTestById(id) {
+        return MOCK_TESTS.find((t) => t.id === id);
+      }
+
+      /* ================= APP STATE ================= */
+      let activeTest = null;
+      let examState = null;
+      let timerInterval = null;
+      let currentAnalysisRecord = null;
+      let currentSolutionFilter = "all";
+
+      /* ================= DOM REFERENCES ================= */
+      const views = {
+        dashboard: document.getElementById("dashboard-view"),
+        instructions: document.getElementById("instructions-view"),
+        exam: document.getElementById("exam-view"),
+        result: document.getElementById("result-view")
+      };
+
+      const pauseModal = document.getElementById("pause-modal");
+      const submitModal = document.getElementById("submit-modal");
+      const resetModal = document.getElementById("reset-modal");
+
+      function showView(name) {
+        Object.keys(views).forEach((k) => {
+          views[k].classList.toggle("hidden", k !== name);
+        });
+        window.scrollTo(0, 0);
+      }
+
+      /* ================= FULLSCREEN HELPERS ================= */
+      function enterFullscreen() {
+        try {
+          const el = document.documentElement;
+          if (!document.fullscreenElement && el.requestFullscreen) {
+            const p = el.requestFullscreen();
+            if (p && typeof p.catch === "function") p.catch(() => {});
+          }
+        } catch (e) {
+          // Ignore if blocked by iframe/browser policy
+        }
+        updateFullscreenBtn();
+      }
+
+      function exitFullscreen() {
+        try {
+          if (document.fullscreenElement && document.exitFullscreen) {
+            const p = document.exitFullscreen();
+            if (p && typeof p.catch === "function") p.catch(() => {});
+          }
+        } catch (e) {
+          // Ignore
+        }
+        updateFullscreenBtn();
+      }
+
+      function toggleFullscreen() {
+        if (document.fullscreenElement) {
+          exitFullscreen();
+        } else {
+          enterFullscreen();
+        }
+      }
+
+      function updateFullscreenBtn() {
+        const btn = document.getElementById("btn-fullscreen");
+        if (!btn) return;
+        btn.textContent = document.fullscreenElement ? "Exit Fullscreen" : "Fullscreen";
+      }
+
+      document.addEventListener("fullscreenchange", updateFullscreenBtn);
+
+      /* ================= VIEW 1: DASHBOARD ================= */
+      function renderDashboard() {
+        stopTimer();
+        exitFullscreen();
+        const store = loadStore();
+
+        let completedCount = 0;
+        let combinedScore = 0;
+        let totalCorrectAll = 0;
+        let totalAttemptedAll = 0;
+
+        MOCK_TESTS.forEach((test) => {
+          const rec = store[test.id];
+          if (rec) {
+            completedCount++;
+            combinedScore += rec.score;
+            totalCorrectAll += rec.correct;
+            totalAttemptedAll += rec.correct + rec.incorrect;
+          }
+        });
+
+        document.getElementById("dash-completed").textContent = completedCount + " / " + MOCK_TESTS.length;
+        document.getElementById("dash-total-score").textContent = formatScore(combinedScore) + " / 140";
+        document.getElementById("dash-avg-accuracy").textContent =
+          totalAttemptedAll > 0 ? Math.round((totalCorrectAll / totalAttemptedAll) * 100) + "%" : "—";
+
+        const container = document.getElementById("mock-cards-container");
+        container.innerHTML = "";
+
+        MOCK_TESTS.forEach((test) => {
+          const qCount = test.questions.length;
+          const durationMin = Math.round((qCount * SECONDS_PER_QUESTION) / 60);
+          const maxMarks = qCount * MARKS_CORRECT;
+          const rec = store[test.id];
+
+          const card = document.createElement("article");
+          card.className = "mock-card";
+
+          const savedBlock = rec
+            ? `<div class="saved-score-box">
+                 <div class="row"><span>Last Score</span><strong>${formatScore(rec.score)} / ${rec.maxMarks}</strong></div>
+                 <div class="row"><span>Accuracy</span><strong>${rec.accuracy}% (${rec.correct}C / ${rec.incorrect}W / ${rec.unattempted}U)</strong></div>
+                 <div class="row"><span>Attempts</span><strong>${rec.attempts || 1}</strong></div>
+               </div>`
+            : `<div class="saved-score-box" style="background:#f8fafc; border-color:#e2e8f0; color:#64748b;">
+                 No attempt recorded yet. Click below to view instructions and start.
+               </div>`;
+
+          card.innerHTML = `
+            <div>
+              <div class="mock-badge-row">
+                <span class="mock-num">${escapeHtml(test.number)}</span>
+                <span class="status-chip ${rec ? "done" : "pending"}">${rec ? "Attempted" : "Not Attempted"}</span>
+              </div>
+              <h3>${escapeHtml(test.title)}</h3>
+              <p class="mock-desc">${escapeHtml(test.shortDesc)}</p>
+              <div class="mock-meta-grid">
+                <div class="mock-meta-item">
+                  <div class="m-val">${qCount}</div>
+                  <div class="m-lbl">Questions</div>
+                </div>
+                <div class="mock-meta-item">
+                  <div class="m-val">${durationMin} Min</div>
+                  <div class="m-lbl">Strict Timer</div>
+                </div>
+                <div class="mock-meta-item">
+                  <div class="m-val">${maxMarks}</div>
+                  <div class="m-lbl">Max Marks</div>
+                </div>
+              </div>
+              ${savedBlock}
+            </div>
+            <div class="card-actions">
+              <button type="button" class="btn btn-primary btn-full" data-open-test="${test.id}">
+                ${rec ? "Re-attempt Mock" : "Open Mock Test"}
+              </button>
+              ${rec ? `<button type="button" class="btn btn-outline" data-view-analysis="${test.id}">Analysis</button>` : ""}
+            </div>
+          `;
+
+          container.appendChild(card);
+        });
+
+        container.querySelectorAll("[data-open-test]").forEach((btn) => {
+          btn.addEventListener("click", () => openInstructions(btn.getAttribute("data-open-test")));
+        });
+
+        container.querySelectorAll("[data-view-analysis]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const id = btn.getAttribute("data-view-analysis");
+            const rec = loadStore()[id];
+            if (rec) {
+              activeTest = getTestById(id);
+              renderAnalysis(rec);
+            }
+          });
+        });
+
+        showView("dashboard");
+      }
+
+      /* ================= VIEW 2: INSTRUCTIONS ================= */
+      function openInstructions(testId) {
+        const test = getTestById(testId);
+        if (!test) return;
+        activeTest = test;
+
+        const qCount = test.questions.length;
+        const totalSec = qCount * SECONDS_PER_QUESTION;
+        const maxMarks = qCount * MARKS_CORRECT;
+
+        document.getElementById("inst-header-title").textContent = test.number + " — Instructions";
+        document.getElementById("inst-test-name").textContent = test.number + ": " + test.title;
+        document.getElementById("inst-q-count").textContent = qCount + " MCQs";
+        document.getElementById("inst-duration").textContent = formatMMSS(totalSec) + " Mins";
+        document.getElementById("inst-max-marks").textContent = maxMarks + " Marks";
+
+        const chk = document.getElementById("chk-declaration");
+        const startBtn = document.getElementById("btn-start-exam");
+        chk.checked = false;
+        startBtn.disabled = true;
+
+        showView("instructions");
+      }
+
+      document.getElementById("chk-declaration").addEventListener("change", (e) => {
+        document.getElementById("btn-start-exam").disabled = !e.target.checked;
+      });
+
+      document.getElementById("btn-inst-back").addEventListener("click", renderDashboard);
+      document.getElementById("btn-inst-back-top").addEventListener("click", renderDashboard);
+      document.getElementById("btn-start-exam").addEventListener("click", startExam);
+
+      /* ================= VIEW 3: EXAM ENGINE ================= */
+      function startExam() {
+        if (!activeTest) return;
+        const qCount = activeTest.questions.length;
+        const totalSeconds = qCount * SECONDS_PER_QUESTION;
+
+        // Randomize ONLY options on each attempt; NEVER randomize question order
+        const randomizedOptions = activeTest.questions.map((item) => shuffleArray(item.options));
+
+        examState = {
+          testId: activeTest.id,
+          currentIndex: 0,
+          totalSeconds: totalSeconds,
+          remainingSeconds: totalSeconds,
+          paused: false,
+          randomizedOptions: randomizedOptions,
+          answers: new Array(qCount).fill(null), // stores selected option string or null
+          visited: new Array(qCount).fill(false),
+          marked: new Array(qCount).fill(false)
+        };
+
+        examState.visited[0] = true;
+
+        document.getElementById("exam-title-label").textContent =
+          activeTest.number + ": " + activeTest.title;
+
+        pauseModal.classList.add("hidden");
+        submitModal.classList.add("hidden");
+
+        showView("exam");
+        enterFullscreen();
+        renderQuestion();
+        renderPalette();
+        updateTimerUI();
+        startTimer();
+      }
+
+      function startTimer() {
+        stopTimer();
+        timerInterval = window.setInterval(() => {
+          if (!examState || examState.paused) return;
+          examState.remainingSeconds -= 1;
+          updateTimerUI();
+          if (examState.remainingSeconds <= 0) {
+            stopTimer();
+            finalizeSubmission(true);
+          }
+        }, 1000);
+      }
+
+      function stopTimer() {
+        if (timerInterval !== null) {
+          window.clearInterval(timerInterval);
+          timerInterval = null;
+        }
+      }
+
+      function updateTimerUI() {
+        if (!examState) return;
+        const box = document.getElementById("exam-timer");
+        const disp = document.getElementById("timer-display");
+        disp.textContent = formatMMSS(examState.remainingSeconds);
+
+        box.classList.remove("warning", "danger");
+        if (examState.remainingSeconds <= 60) {
+          box.classList.add("danger");
+        } else if (examState.remainingSeconds <= 180) {
+          box.classList.add("warning");
+        }
+      }
+
+      function getQuestionStatus(idx) {
+        const hasAns = examState.answers[idx] !== null;
+        const isMarked = examState.marked[idx];
+        const isVisited = examState.visited[idx];
+
+        if (hasAns && isMarked) return "answered-marked";
+        if (isMarked) return "marked";
+        if (hasAns) return "answered";
+        if (isVisited) return "not-answered";
+        return "not-visited";
+      }
+
+      function renderQuestion() {
+        if (!activeTest || !examState) return;
+        const idx = examState.currentIndex;
+        const total = activeTest.questions.length;
+        const qObj = activeTest.questions[idx];
+        const opts = examState.randomizedOptions[idx];
+        const selected = examState.answers[idx];
+
+        document.getElementById("q-number-label").textContent =
+          "Question No. " + (idx + 1) + " of " + total;
+        document.getElementById("question-text").textContent = qObj.q;
+
+        const listEl = document.getElementById("options-list");
+        listEl.innerHTML = "";
+
+        const letters = ["A", "B", "C", "D"];
+        opts.forEach((optText, i) => {
+          const isSelected = selected === optText;
+          const label = document.createElement("label");
+          label.className = "option-row" + (isSelected ? " selected" : "");
+
+          const radio = document.createElement("input");
+          radio.type = "radio";
+          radio.name = "mcq-option";
+          radio.value = optText;
+          radio.checked = isSelected;
+
+          radio.addEventListener("change", () => {
+            if (examState.paused) return;
+            examState.answers[idx] = optText;
+            // Highlight selection only (never mark right/wrong, never auto-jump)
+            listEl.querySelectorAll(".option-row").forEach((r) => r.classList.remove("selected"));
+            label.classList.add("selected");
+            renderPalette();
+          });
+
+          const prefix = document.createElement("span");
+          prefix.className = "option-prefix";
+          prefix.textContent = "(" + letters[i] + ")";
+
+          const textSpan = document.createElement("span");
+          textSpan.className = "option-text";
+          textSpan.textContent = optText;
+
+          label.appendChild(radio);
+          label.appendChild(prefix);
+          label.appendChild(textSpan);
+          listEl.appendChild(label);
+        });
+
+        document.getElementById("btn-prev").disabled = idx === 0;
+        document.getElementById("btn-next").textContent = idx === total - 1 ? "Next" : "Next";
+        document.getElementById("btn-next").disabled = idx === total - 1;
+
+        const scrollArea = document.getElementById("question-scroll-area");
+        if (scrollArea) scrollArea.scrollTop = 0;
+      }
+
+      function renderPalette() {
+        if (!activeTest || !examState) return;
+        const grid = document.getElementById("palette-grid");
+        grid.innerHTML = "";
+
+        const counts = {
+          answered: 0,
+          "not-answered": 0,
+          "not-visited": 0,
+          marked: 0,
+          "answered-marked": 0
+        };
+
+        activeTest.questions.forEach((_, idx) => {
+          const status = getQuestionStatus(idx);
+          counts[status] += 1;
+
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className =
+            "q-pill " + status + (idx === examState.currentIndex ? " current" : "");
+          btn.textContent = String(idx + 1);
+          btn.setAttribute("aria-label", "Question " + (idx + 1));
+
+          btn.addEventListener("click", () => {
+            if (examState.paused) return;
+            goToQuestion(idx);
+          });
+
+          grid.appendChild(btn);
+        });
+
+        document.getElementById("cnt-answered").textContent = counts.answered;
+        document.getElementById("cnt-not-answered").textContent = counts["not-answered"];
+        document.getElementById("cnt-not-visited").textContent = counts["not-visited"];
+        document.getElementById("cnt-marked").textContent = counts.marked;
+        document.getElementById("cnt-ans-marked").textContent = counts["answered-marked"];
+      }
+
+      function goToQuestion(idx) {
+        if (!activeTest || !examState) return;
+        const total = activeTest.questions.length;
+        if (idx < 0 || idx >= total) return;
+        examState.currentIndex = idx;
+        examState.visited[idx] = true;
+        renderQuestion();
+        renderPalette();
+      }
+
+      /* ================= EXAM CONTROLS ================= */
+      document.getElementById("btn-prev").addEventListener("click", () => {
+        if (!examState || examState.paused) return;
+        goToQuestion(examState.currentIndex - 1);
+      });
+
+      document.getElementById("btn-next").addEventListener("click", () => {
+        if (!examState || examState.paused) return;
+        if (examState.currentIndex < activeTest.questions.length - 1) {
+          goToQuestion(examState.currentIndex + 1);
+        }
+      });
+
+      document.getElementById("btn-clear").addEventListener("click", () => {
+        if (!examState || examState.paused) return;
+        const idx = examState.currentIndex;
+        examState.answers[idx] = null;
+        renderQuestion();
+        renderPalette();
+      });
+
+      document.getElementById("btn-mark-next").addEventListener("click", () => {
+        if (!examState || examState.paused) return;
+        const idx = examState.currentIndex;
+        examState.marked[idx] = true;
+        const nextIdx = idx < activeTest.questions.length - 1 ? idx + 1 : 0;
+        goToQuestion(nextIdx);
+      });
+
+      document.getElementById("btn-fullscreen").addEventListener("click", toggleFullscreen);
+
+      document.getElementById("btn-pause").addEventListener("click", () => {
+        if (!examState) return;
+        examState.paused = true;
+        pauseModal.classList.remove("hidden");
+      });
+
+      document.getElementById("btn-pause-resume").addEventListener("click", () => {
+        if (!examState) return;
+        examState.paused = false;
+        pauseModal.classList.add("hidden");
+      });
+
+      document.getElementById("btn-pause-exit").addEventListener("click", () => {
+        pauseModal.classList.add("hidden");
+        examState = null;
+        renderDashboard();
+      });
+
+      function openSubmitModal() {
+        if (!activeTest || !examState) return;
+        examState.paused = true;
+
+        let answered = 0;
+        let notAnswered = 0;
+        let markedOnly = 0;
+        let notVisited = 0;
+
+        activeTest.questions.forEach((_, idx) => {
+          const st = getQuestionStatus(idx);
+          if (st === "answered" || st === "answered-marked") answered++;
+          else if (st === "not-answered") notAnswered++;
+          else if (st === "marked") markedOnly++;
+          else notVisited++;
+        });
+
+        document.getElementById("sub-total").textContent = activeTest.questions.length;
+        document.getElementById("sub-answered").textContent = answered;
+        document.getElementById("sub-not-answered").textContent = notAnswered;
+        document.getElementById("sub-marked").textContent = markedOnly;
+        document.getElementById("sub-not-visited").textContent = notVisited;
+
+        submitModal.classList.remove("hidden");
+      }
+
+      document.getElementById("btn-top-submit").addEventListener("click", openSubmitModal);
+      document.getElementById("btn-bottom-submit").addEventListener("click", openSubmitModal);
+
+      document.getElementById("btn-submit-cancel").addEventListener("click", () => {
+        submitModal.classList.add("hidden");
+        if (examState) examState.paused = false;
+      });
+
+      document.getElementById("btn-submit-confirm").addEventListener("click", () => {
+        submitModal.classList.add("hidden");
+        finalizeSubmission(false);
+      });
+
+      /* ================= GRADING & PERSISTENCE ================= */
+      function finalizeSubmission(autoSubmitted) {
+        if (!activeTest || !examState) return;
+        stopTimer();
+        exitFullscreen();
+
+        let correct = 0;
+        let incorrect = 0;
+        let unattempted = 0;
+        const reviewItems = [];
+
+        activeTest.questions.forEach((qObj, idx) => {
+          const userAns = examState.answers[idx];
+          if (userAns === null) {
+            unattempted++;
+            reviewItems.push({
+              qNum: idx + 1,
+              status: "unattempted",
+              question: qObj.q,
+              userAnswer: null,
+              correctAnswer: qObj.answer,
+              explanation: qObj.explanation
+            });
+          } else if (userAns === qObj.answer) {
+            correct++;
+          } else {
+            incorrect++;
+            reviewItems.push({
+              qNum: idx + 1,
+              status: "incorrect",
+              question: qObj.q,
+              userAnswer: userAns,
+              correctAnswer: qObj.answer,
+              explanation: qObj.explanation
+            });
+          }
+        });
+
+        const score = correct * MARKS_CORRECT + incorrect * MARKS_INCORRECT;
+        const maxMarks = activeTest.questions.length * MARKS_CORRECT;
+        const attempted = correct + incorrect;
+        const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+        const timeTakenSec = examState.totalSeconds - Math.max(0, examState.remainingSeconds);
+
+        const store = loadStore();
+        const prevAttempts = store[activeTest.id] ? store[activeTest.id].attempts || 1 : 0;
+
+        const record = {
+          testId: activeTest.id,
+          testNumber: activeTest.number,
+          testTitle: activeTest.title,
+          score: score,
+          maxMarks: maxMarks,
+          correct: correct,
+          incorrect: incorrect,
+          unattempted: unattempted,
+          accuracy: accuracy,
+          timeTakenSec: timeTakenSec,
+          autoSubmitted: Boolean(autoSubmitted),
+          attempts: prevAttempts + 1,
+          completedAt: new Date().toLocaleString(),
+          reviewItems: reviewItems
+        };
+
+        store[activeTest.id] = record;
+        saveStore(store);
+
+        examState = null;
+        renderAnalysis(record);
+      }
+
+      /* ================= VIEW 4: RESULT & ANALYSIS ================= */
+      function renderAnalysis(record) {
+        currentAnalysisRecord = record;
+        currentSolutionFilter = "all";
+
+        document.getElementById("res-header-title").textContent = record.testNumber + " — Analysis";
+        document.getElementById("res-test-title").textContent = record.testNumber + ": " + record.testTitle;
+        document.getElementById("res-timestamp").textContent =
+          "Attempt #" + (record.attempts || 1) + " • Completed on " + record.completedAt;
+
+        document.getElementById("res-auto-notice").classList.toggle("hidden", !record.autoSubmitted);
+        document.getElementById("res-score").textContent = formatScore(record.score) + " / " + record.maxMarks;
+        document.getElementById("res-accuracy").textContent = record.accuracy + "%";
+        document.getElementById("res-correct").textContent = record.correct;
+        document.getElementById("res-incorrect").textContent = record.incorrect;
+        document.getElementById("res-unattempted").textContent = record.unattempted;
+        document.getElementById("res-time").textContent = formatMMSS(record.timeTakenSec);
+
+        const wrongCount = record.reviewItems.filter((r) => r.status === "incorrect").length;
+        const skipCount = record.reviewItems.filter((r) => r.status === "unattempted").length;
+
+        document.getElementById("f-all-cnt").textContent = record.reviewItems.length;
+        document.getElementById("f-wrong-cnt").textContent = wrongCount;
+        document.getElementById("f-skip-cnt").textContent = skipCount;
+
+        document.querySelectorAll("#solution-filter-tabs .filter-tab").forEach((tab) => {
+          tab.classList.toggle("active", tab.getAttribute("data-filter") === "all");
+        });
+
+        renderSolutionsList();
+        showView("result");
+      }
+
+      function renderSolutionsList() {
+        const container = document.getElementById("solutions-container");
+        container.innerHTML = "";
+
+        if (!currentAnalysisRecord) return;
+        const allItems = currentAnalysisRecord.reviewItems || [];
+
+        if (allItems.length === 0) {
+          container.innerHTML =
+            '<div class="perfect-box">Excellent! You answered every question correctly. There are no incorrect or unattempted questions to review.</div>';
+          return;
+        }
+
+        const filtered =
+          currentSolutionFilter === "all"
+            ? allItems
+            : allItems.filter((item) => item.status === currentSolutionFilter);
+
+        if (filtered.length === 0) {
+          container.innerHTML =
+            '<div class="perfect-box" style="background:#f8fafc; border-color:#cbd5e1; color:#475569;">No questions in this filter category.</div>';
+          return;
+        }
+
+        filtered.forEach((item) => {
+          const isWrong = item.status === "incorrect";
+          const card = document.createElement("article");
+          card.className = "solution-card" + (isWrong ? "" : " unattempted");
+
+          const userBlock = isWrong
+            ? `<div class="sol-ans-box user-wrong"><strong>Your Answer:</strong> ${escapeHtml(item.userAnswer)}</div>`
+            : `<div class="sol-ans-box user-skip"><strong>Your Answer:</strong> Not Attempted</div>`;
+
+          card.innerHTML = `
+            <div class="sol-header">
+              <span>Question No. ${item.qNum}</span>
+              <span class="sol-tag ${isWrong ? "wrong" : "skipped"}">
+                ${isWrong ? "Incorrect (&minus;0.5)" : "Unattempted (0)"}
+              </span>
+            </div>
+            <div class="sol-q-text">${escapeHtml(item.question)}</div>
+            <div class="sol-ans-grid">
+              ${userBlock}
+              <div class="sol-ans-box right-ans"><strong>Correct Answer:</strong> ${escapeHtml(item.correctAnswer)}</div>
+            </div>
+            <div class="sol-explanation"><strong>Solution:</strong> ${escapeHtml(item.explanation)}</div>
+          `;
+
+          container.appendChild(card);
+        });
+      }
+
+      document.querySelectorAll("#solution-filter-tabs .filter-tab").forEach((tab) => {
+        tab.addEventListener("click", () => {
+          currentSolutionFilter = tab.getAttribute("data-filter");
+          document.querySelectorAll("#solution-filter-tabs .filter-tab").forEach((t) => {
+            t.classList.toggle("active", t === tab);
+          });
+          renderSolutionsList();
+        });
+      });
+
+      document.getElementById("btn-res-dashboard").addEventListener("click", renderDashboard);
+      document.getElementById("btn-res-dashboard-top").addEventListener("click", renderDashboard);
+      document.getElementById("btn-retake-test").addEventListener("click", () => {
+        if (currentAnalysisRecord) {
+          openInstructions(currentAnalysisRecord.testId);
+        }
+      });
+
+      /* ================= RESET STORAGE MODAL ================= */
+      document.getElementById("btn-reset-storage").addEventListener("click", () => {
+        resetModal.classList.remove("hidden");
+      });
+
+      document.getElementById("btn-reset-cancel").addEventListener("click", () => {
+        resetModal.classList.add("hidden");
+      });
+
+      document.getElementById("btn-reset-confirm").addEventListener("click", () => {
+        clearStore();
+        resetModal.classList.add("hidden");
+        renderDashboard();
+      });
+
+      /* ================= INIT ================= */
+      renderDashboard();
+    })();
+  </script>
+</body>
+</html>
