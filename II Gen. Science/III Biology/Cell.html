@@ -1,0 +1,2694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biology: Cell Structure &amp; Functions — RRB PYQ Mock Test</title>
+  <style>
+    :root {
+      --bg-page: #f3f6fa;
+      --bg-surface: #ffffff;
+      --bg-subtle: #f8fafc;
+      --header-bg: #1a4b8c;
+      --header-dark: #13396b;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --border: #d1d9e6;
+      --border-strong: #b8c4d6;
+      --text-main: #1e293b;
+      --text-muted: #526074;
+      --text-light: #64748b;
+
+      /* TCS / Eduquity Palette Status Colors */
+      --st-not-visited-bg: #eef2f7;
+      --st-not-visited-border: #cbd5e1;
+      --st-not-visited-text: #334155;
+
+      --st-not-answered-bg: #e11d48;
+      --st-not-answered-text: #ffffff;
+
+      --st-answered-bg: #16a34a;
+      --st-answered-text: #ffffff;
+
+      --st-marked-bg: #7c3aed;
+      --st-marked-text: #ffffff;
+
+      --danger: #dc2626;
+      --danger-hover: #b91c1c;
+      --warning: #d97706;
+      --success: #15803d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      font-size: 14px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* ==================== TOP BRAND BAR ==================== */
+    .brand-bar {
+      background: var(--header-bg);
+      color: #ffffff;
+      padding: 0 20px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--header-dark);
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-badge {
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* ==================== INTRO VIEW ==================== */
+    #intro-view {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .intro-container {
+      max-width: 920px;
+      width: 100%;
+      margin: 24px auto 40px;
+      padding: 0 16px;
+      flex: 1;
+    }
+
+    .intro-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.05);
+      overflow: hidden;
+    }
+
+    .intro-header {
+      background: var(--bg-subtle);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 24px;
+    }
+
+    .intro-header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .intro-header p {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      background: #ffffff;
+    }
+
+    .meta-box {
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 10px 14px;
+      background: var(--bg-subtle);
+    }
+
+    .meta-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-light);
+      font-weight: 600;
+    }
+
+    .meta-value {
+      font-size: 17px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2px;
+    }
+
+    .intro-body {
+      padding: 20px 24px;
+    }
+
+    .intro-section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .instructions-list {
+      margin: 0 0 20px 18px;
+      color: var(--text-main);
+      font-size: 13.5px;
+    }
+
+    .instructions-list li {
+      margin-bottom: 6px;
+    }
+
+    .legend-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .legend-chip {
+      width: 26px;
+      height: 24px;
+      border-radius: 3px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .chip-not-visited {
+      background: var(--st-not-visited-bg);
+      border: 1px solid var(--st-not-visited-border);
+      color: var(--st-not-visited-text);
+    }
+
+    .chip-not-answered {
+      background: var(--st-not-answered-bg);
+      color: var(--st-not-answered-text);
+    }
+
+    .chip-answered {
+      background: var(--st-answered-bg);
+      color: var(--st-answered-text);
+    }
+
+    .chip-marked {
+      background: var(--st-marked-bg);
+      color: var(--st-marked-text);
+      border-radius: 50%;
+    }
+
+    .chip-answered-marked {
+      background: var(--st-marked-bg);
+      color: var(--st-marked-text);
+      border-radius: 50%;
+    }
+
+    .chip-answered-marked::after {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 1.5px solid #ffffff;
+      right: -2px;
+      bottom: -2px;
+    }
+
+    .intro-footer {
+      padding: 16px 24px;
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      padding: 10px 24px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--text-main);
+      border-color: var(--border-strong);
+      padding: 8px 14px;
+      font-size: 13px;
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background: #f1f5f9;
+    }
+
+    .btn-purple {
+      background: #7c3aed;
+      color: #ffffff;
+      padding: 8px 14px;
+      font-size: 13px;
+    }
+
+    .btn-purple:hover:not(:disabled) {
+      background: #6d28d9;
+    }
+
+    .btn-success {
+      background: #16a34a;
+      color: #ffffff;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .btn-success:hover:not(:disabled) {
+      background: #15803d;
+    }
+
+    .btn-danger {
+      background: var(--danger);
+      color: #ffffff;
+      padding: 8px 14px;
+      font-size: 13px;
+    }
+
+    .btn-danger:hover:not(:disabled) {
+      background: var(--danger-hover);
+    }
+
+    .btn-header {
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 5px 11px;
+      font-size: 12.5px;
+      font-weight: 500;
+    }
+
+    .btn-header:hover {
+      background: rgba(255, 255, 255, 0.24);
+    }
+
+    .btn-header-submit {
+      background: #16a34a;
+      color: #ffffff;
+      border-color: #15803d;
+      padding: 5px 13px;
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+
+    .btn-header-submit:hover {
+      background: #15803d;
+    }
+
+    /* Saved History Box on Intro */
+    .history-card {
+      margin-top: 18px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px 20px;
+    }
+
+    .history-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+    }
+
+    .history-table th, .history-table td {
+      text-align: left;
+      padding: 7px 10px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .history-table th {
+      background: var(--bg-subtle);
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* ==================== EXAM VIEW (TCS / EDUQUITY) ==================== */
+    #exam-view {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: var(--bg-page);
+    }
+
+    .exam-header-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .timer-pill {
+      background: #ffffff;
+      color: #0f172a;
+      border-radius: 4px;
+      padding: 4px 12px;
+      font-size: 14px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .timer-pill.timer-warn {
+      background: #fef3c7;
+      color: #92400e;
+      border-color: #f59e0b;
+    }
+
+    .timer-pill.timer-danger {
+      background: #fee2e2;
+      color: #991b1b;
+      border-color: #ef4444;
+    }
+
+    .exam-subbar {
+      background: #e9eff7;
+      border-bottom: 1px solid var(--border);
+      padding: 6px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .section-pill {
+      background: var(--header-bg);
+      color: #ffffff;
+      padding: 2px 10px;
+      border-radius: 3px;
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    .exam-workspace {
+      flex: 1;
+      display: flex;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    /* Left Question Area */
+    .question-pane {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+      background: var(--bg-surface);
+      border-right: 1px solid var(--border);
+    }
+
+    .question-meta-bar {
+      padding: 10px 22px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+
+    .q-number-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .q-right-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .exam-tag-text {
+      font-size: 11px;
+      color: var(--text-light);
+      background: #eef2f7;
+      border: 1px solid #d7e0ec;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-weight: 500;
+    }
+
+    .marks-badge {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .marks-plus {
+      color: #15803d;
+    }
+
+    .marks-minus {
+      color: #dc2626;
+    }
+
+    .question-scroll-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 24px;
+      min-height: 0;
+    }
+
+    .question-text {
+      font-size: 15.5px;
+      font-weight: 500;
+      color: #0f172a;
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 780px;
+    }
+
+    .option-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 11px 14px;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: border-color 0.12s ease, background-color 0.12s ease;
+      user-select: none;
+    }
+
+    .option-row:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    .option-row.selected {
+      background: #eff6ff;
+      border-color: #2563eb;
+    }
+
+    .option-row input[type="radio"] {
+      margin-top: 3px;
+      accent-color: #2563eb;
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .option-letter {
+      font-weight: 700;
+      color: var(--text-muted);
+      min-width: 20px;
+    }
+
+    .option-content {
+      font-size: 14.5px;
+      color: var(--text-main);
+      line-height: 1.45;
+    }
+
+    .action-footer {
+      padding: 10px 22px;
+      border-top: 1px solid var(--border);
+      background: var(--bg-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+
+    .action-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Right Palette Panel (Compact + Independent Scroll) */
+    .palette-pane {
+      width: 248px;
+      flex-shrink: 0;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .palette-header {
+      padding: 9px 12px;
+      background: #e9eff7;
+      border-bottom: 1px solid var(--border);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #0f172a;
+      flex-shrink: 0;
+    }
+
+    .palette-stats {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 8px;
+      background: #ffffff;
+      font-size: 11px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .stat-mini {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .stat-dot {
+      width: 18px;
+      height: 16px;
+      border-radius: 3px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .palette-grid-wrap {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px 12px;
+      min-height: 0;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+    }
+
+    .pal-btn {
+      height: 30px;
+      width: 100%;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 0;
+    }
+
+    .pal-btn.st-not-visited {
+      background: var(--st-not-visited-bg);
+      border: 1px solid var(--st-not-visited-border);
+      color: var(--st-not-visited-text);
+    }
+
+    .pal-btn.st-not-answered {
+      background: var(--st-not-answered-bg);
+      border: 1px solid #be123c;
+      color: var(--st-not-answered-text);
+    }
+
+    .pal-btn.st-answered {
+      background: var(--st-answered-bg);
+      border: 1px solid #15803d;
+      color: var(--st-answered-text);
+    }
+
+    .pal-btn.st-marked {
+      background: var(--st-marked-bg);
+      border: 1px solid #6d28d9;
+      color: var(--st-marked-text);
+      border-radius: 50%;
+    }
+
+    .pal-btn.st-answered-marked {
+      background: var(--st-marked-bg);
+      border: 1px solid #6d28d9;
+      color: var(--st-marked-text);
+      border-radius: 50%;
+    }
+
+    .pal-btn.st-answered-marked::after {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 1.5px solid #ffffff;
+      right: -1px;
+      bottom: -1px;
+    }
+
+    .pal-btn.current-q {
+      outline: 2px solid #1d4ed8;
+      outline-offset: 1px;
+    }
+
+    .palette-footer {
+      padding: 10px 12px;
+      border-top: 1px solid var(--border);
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .palette-footer .btn-success {
+      width: 100%;
+    }
+
+    /* ==================== MODALS (PAUSE & SUBMIT) ==================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.58);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 16px;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      max-width: 440px;
+      width: 100%;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.22);
+      overflow: hidden;
+    }
+
+    .modal-head {
+      background: var(--header-bg);
+      color: #ffffff;
+      padding: 12px 18px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .modal-body {
+      padding: 18px;
+      font-size: 13.5px;
+      color: var(--text-main);
+    }
+
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 13px;
+    }
+
+    .summary-table td {
+      padding: 6px 8px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .summary-table td:last-child {
+      text-align: right;
+      font-weight: 700;
+    }
+
+    .modal-foot {
+      padding: 12px 18px;
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    /* ==================== RESULT / ANALYSIS VIEW ==================== */
+    #result-view {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-page);
+    }
+
+    .result-container {
+      max-width: 960px;
+      width: 100%;
+      margin: 22px auto 48px;
+      padding: 0 16px;
+    }
+
+    .score-banner {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin-bottom: 18px;
+    }
+
+    .score-banner-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .score-banner-top h2 {
+      font-size: 19px;
+      color: #0f172a;
+    }
+
+    .score-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+    }
+
+    .kpi-card {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 10px 12px;
+      text-align: center;
+    }
+
+    .kpi-label {
+      font-size: 11px;
+      color: var(--text-light);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .kpi-val {
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 2px;
+      color: #0f172a;
+    }
+
+    .kpi-val.green { color: #15803d; }
+    .kpi-val.red { color: #dc2626; }
+    .kpi-val.blue { color: #1d4ed8; }
+
+    .solutions-panel {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 22px;
+    }
+
+    .solutions-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .solutions-head h3 {
+      font-size: 16px;
+      color: #0f172a;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab {
+      background: #f1f5f9;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      font-size: 12.5px;
+      border-radius: 4px;
+    }
+
+    .filter-tab.active {
+      background: var(--header-bg);
+      color: #ffffff;
+      border-color: var(--header-bg);
+    }
+
+    .sol-card {
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      background: #ffffff;
+    }
+
+    .sol-card.sol-incorrect {
+      border-left: 4px solid #dc2626;
+    }
+
+    .sol-card.sol-unattempted {
+      border-left: 4px solid #64748b;
+    }
+
+    .sol-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .sol-status-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+
+    .badge-incorrect {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .badge-unattempted {
+      background: #e2e8f0;
+      color: #334155;
+    }
+
+    .sol-q-text {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 10px;
+    }
+
+    .sol-answers {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .sol-your-ans {
+      color: #b91c1c;
+    }
+
+    .sol-correct-ans {
+      color: #15803d;
+      font-weight: 600;
+    }
+
+    .sol-explanation {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 9px 12px;
+      font-size: 13px;
+      color: #334155;
+    }
+
+    .perfect-box {
+      text-align: center;
+      padding: 28px 16px;
+      color: #15803d;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    /* ==================== RESPONSIVE (HIDE PALETTE ON MOBILE) ==================== */
+    @media (max-width: 768px) {
+      .palette-pane {
+        display: none !important;
+      }
+
+      .meta-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .score-kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .brand-bar {
+        padding: 0 10px;
+      }
+
+      .brand-badge {
+        display: none;
+      }
+
+      .brand-title {
+        font-size: 13px;
+      }
+
+      .question-pane {
+        border-right: none;
+      }
+
+      .question-meta-bar,
+      .question-scroll-body,
+      .action-footer {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .btn-header, .btn-header-submit {
+        padding: 4px 8px;
+        font-size: 11.5px;
+      }
+
+      .timer-pill {
+        padding: 3px 8px;
+        font-size: 12.5px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== 1. INTRODUCTORY INTERFACE ==================== -->
+  <section id="intro-view">
+    <header class="brand-bar">
+      <div class="brand-title">
+        <span>Cell Structure &amp; Functions — RRB PYQ Mock Test</span>
+        <span class="brand-badge">CBT Interface</span>
+      </div>
+    </header>
+
+    <main class="intro-container">
+      <div class="intro-card">
+        <div class="intro-header">
+          <h1>Biology: Cell Structure &amp; Functions (Notes-Matched PYQs)</h1>
+          <p>62 distinct, high-yield Railway/SSC Previous Year Questions strictly matched with Cell.pdf notes.</p>
+        </div>
+
+        <div class="meta-grid">
+          <div class="meta-box">
+            <div class="meta-label">Total Questions</div>
+            <div class="meta-value" id="intro-total-q">62</div>
+          </div>
+          <div class="meta-box">
+            <div class="meta-label">Duration (36s / Q)</div>
+            <div class="meta-value" id="intro-duration">37m 12s</div>
+          </div>
+          <div class="meta-box">
+            <div class="meta-label">Maximum Marks</div>
+            <div class="meta-value" id="intro-max-marks">124</div>
+          </div>
+          <div class="meta-box">
+            <div class="meta-label">Marking Scheme</div>
+            <div class="meta-value">+2 / -0.5</div>
+          </div>
+        </div>
+
+        <div class="intro-body">
+          <div class="intro-section-title">General Instructions</div>
+          <ul class="instructions-list">
+            <li>Each correct answer carries <strong>+2 marks</strong>, each incorrect answer carries a penalty of <strong>-0.5 marks</strong>, and unattempted questions carry <strong>0 marks</strong>.</li>
+            <li>The countdown timer is set strictly to <strong>36 seconds per question</strong>. When the timer reaches 00:00, the test submits automatically.</li>
+            <li>Options are randomized on every fresh attempt, while the question sequence remains fixed.</li>
+            <li>Selecting an option does not reveal the answer and does not jump to the next question automatically.</li>
+            <li>Solutions and correct answers are displayed <strong>only for incorrect and unattempted questions</strong> after submission.</li>
+            <li>Clicking <strong>Start Test</strong> enters full-screen mode automatically. You may pause or exit full-screen anytime using the top bar buttons.</li>
+          </ul>
+
+          <div class="intro-section-title">Question Palette Legend</div>
+          <div class="legend-grid">
+            <div class="legend-item">
+              <span class="legend-chip chip-not-visited">1</span>
+              <span>Not Visited</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-chip chip-not-answered">2</span>
+              <span>Not Answered</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-chip chip-answered">3</span>
+              <span>Answered</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-chip chip-marked">4</span>
+              <span>Marked for Review</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-chip chip-answered-marked">5</span>
+              <span>Answered &amp; Marked for Review</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="intro-footer">
+          <div style="font-size: 12.5px; color: var(--text-muted);">
+            Your scores and analyses are saved locally in this browser.
+          </div>
+          <button type="button" id="start-test-btn" class="btn-primary">Start Test</button>
+        </div>
+      </div>
+
+      <div id="history-section" class="history-card hidden">
+        <div class="history-top">
+          <strong style="font-size: 14px; color: #0f172a;">Saved Attempt History</strong>
+          <div class="action-group">
+            <button type="button" id="view-last-analysis-btn" class="btn-secondary">View Last Analysis</button>
+            <button type="button" id="clear-history-btn" class="btn-secondary">Clear History</button>
+          </div>
+        </div>
+        <div style="overflow-x: auto;">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Date &amp; Time</th>
+                <th>Score</th>
+                <th>Correct</th>
+                <th>Incorrect</th>
+                <th>Unattempted</th>
+                <th>Accuracy</th>
+                <th>Time Taken</th>
+              </tr>
+            </thead>
+            <tbody id="history-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </section>
+
+  <!-- ==================== 2. MAIN EXAM INTERFACE ==================== -->
+  <section id="exam-view" class="hidden">
+    <header class="brand-bar">
+      <div class="brand-title">
+        <span>Cell Structure &amp; Functions Mock Test</span>
+      </div>
+      <div class="exam-header-controls">
+        <div id="timer-display" class="timer-pill" aria-live="polite">
+          <span>Time Left:</span>
+          <span id="timer-value">37:12</span>
+        </div>
+        <button type="button" id="pause-btn" class="btn-header">Pause</button>
+        <button type="button" id="fullscreen-btn" class="btn-header">Exit Fullscreen</button>
+        <button type="button" id="header-submit-btn" class="btn-header-submit">Submit</button>
+      </div>
+    </header>
+
+    <div class="exam-subbar">
+      <div><span class="section-pill">Biology — Cell Structure &amp; Functions</span></div>
+      <div id="subbar-progress">Question 1 of 62</div>
+    </div>
+
+    <div class="exam-workspace">
+      <!-- Left Main Question Pane -->
+      <div class="question-pane">
+        <div class="question-meta-bar">
+          <div id="q-number-label" class="q-number-label">Question No. 1</div>
+          <div class="q-right-meta">
+            <span id="q-exam-tag" class="exam-tag-text"></span>
+            <span class="marks-badge">
+              Marks: <span class="marks-plus">+2.0</span> | <span class="marks-minus">-0.5</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="question-scroll-body">
+          <div id="question-text" class="question-text"></div>
+          <div id="options-container" class="options-list" role="radiogroup" aria-label="Answer choices"></div>
+        </div>
+
+        <div class="action-footer">
+          <div class="action-group">
+            <button type="button" id="prev-btn" class="btn-secondary">Previous</button>
+            <button type="button" id="clear-btn" class="btn-secondary">Clear</button>
+            <button type="button" id="mark-next-btn" class="btn-purple">Mark for Review &amp; Next</button>
+          </div>
+          <div class="action-group">
+            <button type="button" id="next-btn" class="btn-primary">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Scrollable Question Palette (Hidden on Mobile) -->
+      <aside class="palette-pane" aria-label="Question Number Palette">
+        <div class="palette-header">Question Palette</div>
+        <div class="palette-stats">
+          <div class="stat-mini">
+            <span class="stat-dot chip-answered" id="stat-answered">0</span>
+            <span>Answered</span>
+          </div>
+          <div class="stat-mini">
+            <span class="stat-dot chip-not-answered" id="stat-not-answered">0</span>
+            <span>Not Answered</span>
+          </div>
+          <div class="stat-mini">
+            <span class="stat-dot chip-marked" id="stat-marked">0</span>
+            <span>Marked</span>
+          </div>
+          <div class="stat-mini">
+            <span class="stat-dot chip-not-visited" id="stat-not-visited">62</span>
+            <span>Not Visited</span>
+          </div>
+        </div>
+        <div class="palette-grid-wrap">
+          <div id="palette-grid" class="palette-grid"></div>
+        </div>
+        <div class="palette-footer">
+          <button type="button" id="palette-submit-btn" class="btn-success">Submit Test</button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ==================== 3. RESULT & ANALYSIS INTERFACE ==================== -->
+  <section id="result-view" class="hidden">
+    <header class="brand-bar">
+      <div class="brand-title">
+        <span>Test Analysis — Cell Structure &amp; Functions</span>
+      </div>
+      <div class="exam-header-controls">
+        <button type="button" id="retake-btn" class="btn-header">Retake Test</button>
+        <button type="button" id="back-intro-btn" class="btn-header">Instructions</button>
+      </div>
+    </header>
+
+    <main class="result-container">
+      <div class="score-banner">
+        <div class="score-banner-top">
+          <div>
+            <h2>Score Summary &amp; Performance Analysis</h2>
+            <div id="result-timestamp" style="font-size: 12px; color: var(--text-light); margin-top: 2px;"></div>
+          </div>
+          <div class="action-group">
+            <button type="button" id="result-retake-btn" class="btn-primary">Retake Mock Test</button>
+          </div>
+        </div>
+
+        <div class="score-kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">Total Score</div>
+            <div class="kpi-val blue" id="res-score">0 / 124</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Correct (+2)</div>
+            <div class="kpi-val green" id="res-correct">0</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Incorrect (-0.5)</div>
+            <div class="kpi-val red" id="res-incorrect">0</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Unattempted</div>
+            <div class="kpi-val" id="res-unattempted">0</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Accuracy</div>
+            <div class="kpi-val" id="res-accuracy">0%</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Time Taken</div>
+            <div class="kpi-val" id="res-time">00:00</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solutions-panel">
+        <div class="solutions-head">
+          <h3>Solutions for Incorrect &amp; Unattempted Questions</h3>
+          <div class="filter-tabs">
+            <button type="button" class="filter-tab active" data-filter="all">All Review Items</button>
+            <button type="button" class="filter-tab" data-filter="incorrect">Incorrect Only</button>
+            <button type="button" class="filter-tab" data-filter="unattempted">Unattempted Only</button>
+          </div>
+        </div>
+        <div id="solutions-list"></div>
+      </div>
+    </main>
+  </section>
+
+  <!-- ==================== PAUSE MODAL ==================== -->
+  <div id="pause-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="pause-modal-title">
+    <div class="modal-box">
+      <div id="pause-modal-title" class="modal-head">Test Paused</div>
+      <div class="modal-body">
+        <p>The countdown timer is paused and the current question is hidden. Click <strong>Resume Test</strong> when you are ready to continue.</p>
+      </div>
+      <div class="modal-foot">
+        <button type="button" id="resume-btn" class="btn-primary">Resume Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SUBMIT CONFIRMATION MODAL ==================== -->
+  <div id="submit-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="submit-modal-title">
+    <div class="modal-box">
+      <div id="submit-modal-title" class="modal-head">Confirm Test Submission</div>
+      <div class="modal-body">
+        <p>Are you sure you want to submit the mock test? Once submitted, you cannot change your answers.</p>
+        <table class="summary-table">
+          <tbody>
+            <tr><td>Total Questions</td><td id="mod-total">62</td></tr>
+            <tr><td>Answered</td><td id="mod-answered">0</td></tr>
+            <tr><td>Not Answered</td><td id="mod-not-answered">0</td></tr>
+            <tr><td>Marked for Review (Unanswered)</td><td id="mod-marked-only">0</td></tr>
+            <tr><td>Answered &amp; Marked for Review</td><td id="mod-answered-marked">0</td></tr>
+            <tr><td>Not Visited</td><td id="mod-not-visited">0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-foot">
+        <button type="button" id="cancel-submit-btn" class="btn-secondary">Cancel</button>
+        <button type="button" id="confirm-submit-btn" class="btn-success">Confirm Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    "use strict";
+
+    // 62 Distinct, High-Yield, Fact-Checked RRB/RPF PYQs Strictly Matched to Cell.pdf
+    const RAW_QUESTIONS = [
+      {
+        id: 1,
+        exam: "RRB NTPC Tier I : 6 Apr 2016 Shift 1",
+        question: "The branch of science that studies cells is called ________.",
+        options: ["Cytology", "Entomology", "Homoplastic", "Hormonology"],
+        correctIndex: 0,
+        explanation: "Cytology (Cyto = cell, Logy = study) is the branch of biology concerned with the study of cell structure and function."
+      },
+      {
+        id: 2,
+        exam: "RRB NTPC CBT-I : 7 Jan 2021 Shift 2",
+        question: "What is the smallest unit of life capable of independent existence?",
+        options: ["Protoplasm", "Cytoplasm", "Cell", "Vacuole"],
+        correctIndex: 2,
+        explanation: "The cell is the fundamental, structural, and functional unit of life capable of independent existence."
+      },
+      {
+        id: 3,
+        exam: "RRB ALP CBT-I 2024 : 28 Nov, 2024 Shift 3",
+        question: "Which scientist first discovered the cell in 1665?",
+        options: ["Matthias Jakob Schleiden", "Theodor Schwann", "Antonie van Leeuwenhoek", "Robert Hooke"],
+        correctIndex: 3,
+        explanation: "Robert Hooke first discovered dead cells in a thin slice of cork in 1665 and is known as the Father of Cytology."
+      },
+      {
+        id: 4,
+        exam: "RRB Technician Grade III : 27 Dec, 2024 Shift 1",
+        question: "Who first discovered free-living cells in pond water?",
+        options: ["Robert Hooke in 1665", "Antonie van Leeuwenhoek in 1674", "Robert Brown in 1831", "Rudolf Virchow in 1855"],
+        correctIndex: 1,
+        explanation: "Antonie van Leeuwenhoek first observed free-living cells in pond water in 1674."
+      },
+      {
+        id: 5,
+        exam: "RRB Technician Grade III : 27 Dec, 2024 Shift 2",
+        question: "Which scientist gave the statement: \"All cells arise from pre-existing cells\"?",
+        options: ["Rudolf Virchow", "Robert Brown", "Purkinje", "Robert Hooke"],
+        correctIndex: 0,
+        explanation: "In 1855, Rudolf Virchow proposed 'Omnis cellula e cellula', meaning all new cells arise from pre-existing cells."
+      },
+      {
+        id: 6,
+        exam: "RRB ALP CBT-I 2024 : 26 Nov, 2024 Shift 1",
+        question: "Which of the following lacks a membrane?",
+        options: ["Plant cell", "Fungal cell", "Virus", "Animal cell"],
+        correctIndex: 2,
+        explanation: "Viruses are an exception to cell theory; they lack membranes, protoplasm, and cell organelles."
+      },
+      {
+        id: 7,
+        exam: "RRB ALP CBT-I 2024 : 27 Nov, 2024 Shift 2",
+        question: "Which of the following is the longest cell in the human body?",
+        options: ["Nerve cell", "Ovum", "Blood cell", "Fat cell"],
+        correctIndex: 0,
+        explanation: "The nerve cell (neuron) is the longest cell in the human body."
+      },
+      {
+        id: 8,
+        exam: "RRB Level 01 Stage I : 05 Dec, 2025 Shift 3",
+        question: "Why is the plasma membrane called selectively permeable?",
+        options: [
+          "It allows only certain substances to move in or out.",
+          "It dissolves unwanted substances.",
+          "It allows all substances to pass freely.",
+          "It blocks all substances from entering."
+        ],
+        correctIndex: 0,
+        explanation: "The plasma membrane controls the movement of substances by permitting only selected molecules to enter or leave the cell."
+      },
+      {
+        id: 9,
+        exam: "RRB ALP CBT-I : 16 Feb, 2026 Shift 2",
+        question: "Which of the following statements regarding the plasma membrane is INCORRECT?",
+        options: [
+          "It is the outermost covering of an animal cell.",
+          "The plasma membrane is made up of lipids and proteins.",
+          "It is selectively permeable.",
+          "It is rigid in nature."
+        ],
+        correctIndex: 3,
+        explanation: "The plasma membrane is thin, elastic, and flexible—not rigid. Rigidity is provided by the cell wall in plant cells."
+      },
+      {
+        id: 10,
+        exam: "RRB Level 01 Stage I : 27 Dec, 2025 Shift 3",
+        question: "Movement of gases like CO2 or O2 across the cell membrane occurs by ________, from ________ concentration to ________ concentration.",
+        options: [
+          "Diffusion; higher; lower",
+          "Endocytosis; equal; equal",
+          "Active transport; lower; higher",
+          "Osmosis; lower; higher"
+        ],
+        correctIndex: 0,
+        explanation: "Diffusion is the spontaneous movement of molecules (such as O2 and CO2) from a region of higher concentration to lower concentration."
+      },
+      {
+        id: 11,
+        exam: "RRB Technician Grade III : 20 Dec, 2024 Shift 2",
+        question: "When living plant cells lose water through osmosis, the contents shrink away from the cell wall. This phenomenon is known as ________.",
+        options: ["Diffusion", "Plasmolysis", "Active transport", "Passive transport"],
+        correctIndex: 1,
+        explanation: "In a hypertonic (concentrated) solution, water moves out of the plant cell by osmosis, causing the cytoplasm to shrink away from the cell wall (plasmolysis)."
+      },
+      {
+        id: 12,
+        exam: "RRB Technician Grade III : 10 Mar, 2026 Shift 1",
+        question: "When both plant and animal cells are placed in pure water, why does only the animal cell burst?",
+        options: [
+          "Plant cells can actively pump water out.",
+          "Osmosis occurs only in animal cells.",
+          "Animal cells have a thicker membrane.",
+          "Plant cells have a rigid cell wall."
+        ],
+        correctIndex: 3,
+        explanation: "In a hypotonic medium (pure water), animal cells swell and burst, whereas plant cells withstand the internal pressure because of their rigid cell wall."
+      },
+      {
+        id: 13,
+        exam: "RRB Level 01 Stage I : 28 Nov, 2025 Shift 2",
+        question: "The plant cell wall is mainly composed of ________.",
+        options: ["Cellulose", "Chitin", "Suberin", "N-Acetyl glucosamine"],
+        correctIndex: 0,
+        explanation: "Plant cell walls are made of cellulose (whereas fungal cell walls are made of chitin and bacterial cell walls of peptidoglycan)."
+      },
+      {
+        id: 14,
+        exam: "RRB Technician Grade III : 06 Mar, 2026 Shift 1",
+        question: "What is the primary function of the cell wall in plant cells?",
+        options: [
+          "Regulating cellular respiration",
+          "Transporting nutrients",
+          "Controlling cell division",
+          "Providing rigidity and protection"
+        ],
+        correctIndex: 3,
+        explanation: "The cell wall is a non-living outer covering in plants that provides shape, rigidity, structural support, and protection."
+      },
+      {
+        id: 15,
+        exam: "RRB Level 01 Stage I : 27 Nov, 2025 Shift 2",
+        question: "What is the location of the cell wall in an organism?",
+        options: [
+          "Just inside the plasma membrane in an animal cell",
+          "Just inside the plasma membrane in a plant cell",
+          "Just outside the plasma membrane in an animal cell",
+          "Just outside the plasma membrane in a plant cell"
+        ],
+        correctIndex: 3,
+        explanation: "In plant cells, the plasma membrane lies just beneath the cell wall; thus, the cell wall lies just outside the plasma membrane."
+      },
+      {
+        id: 16,
+        exam: "RRB ALP CBT-I 2024 : 26 Nov, 2024 Shift 2",
+        question: "Who coined the term 'Protoplasm' for the fluid substance of the cell?",
+        options: ["Rudolf Virchow", "Robert Brown", "Purkinje", "Robert Hooke"],
+        correctIndex: 2,
+        explanation: "Purkinje coined the term 'protoplasm' in 1839 for the living material of the cell."
+      },
+      {
+        id: 17,
+        exam: "RRB Level 01 Stage I : 10 Feb, 2026 Shift 2",
+        question: "Select the INCORRECT statement regarding the cytoplasm of a cell.",
+        options: [
+          "Cytoplasm is the fluid-filled region inside the plasma membrane.",
+          "Cytoplasm contains many cell organelles.",
+          "In a plant cell, cytoplasm is found between the cell wall and the plasma membrane.",
+          "Cytoplasm is present in both eukaryotic and prokaryotic cells."
+        ],
+        correctIndex: 2,
+        explanation: "Cytoplasm is located inside the plasma membrane (between the plasma membrane and nuclear envelope), not between the cell wall and plasma membrane."
+      },
+      {
+        id: 18,
+        exam: "RRB Level 01 Stage I : 08 Jan, 2026 Shift 3",
+        question: "What is the aqueous filling substance of which cytoplasm is composed called?",
+        options: ["Chromoplasm", "Nucleoplasm", "Cytosol", "Lysosomal fluid"],
+        correctIndex: 2,
+        explanation: "Cytosol is the aqueous (water-based) fluid portion of the cytoplasm."
+      },
+      {
+        id: 19,
+        exam: "RRB Level 01 Stage I : 10 Dec, 2025 Shift 1",
+        question: "Which of the following options is NOT a cell organelle?",
+        options: ["Endoplasmic reticulum", "Mitochondria", "Golgi apparatus", "Cytoplasm"],
+        correctIndex: 3,
+        explanation: "Cytoplasm is the fluid filling the cell in which specialized cell organelles (such as ER, mitochondria, and Golgi apparatus) are suspended."
+      },
+      {
+        id: 20,
+        exam: "RPF SI CBT-I 2024 : 13 Dec, 2024 Shift 1",
+        question: "Cytoplasmic strands connecting one plant cell to another are known as ________.",
+        options: ["Spindle fibres", "Endoplasmic reticulum", "Centriole", "Plasmodesmata"],
+        correctIndex: 3,
+        explanation: "Plasmodesmata form cytoplasmic channels in plant cells that allow communication and transport between adjacent cells."
+      },
+      {
+        id: 21,
+        exam: "RRB Level 01 Stage I : 23 Dec, 2025 Shift 3",
+        question: "Who first described the nucleus as a cell organelle in 1831?",
+        options: ["Rudolf Virchow", "Robert Hooke", "Antonie van Leeuwenhoek", "Robert Brown"],
+        correctIndex: 3,
+        explanation: "Robert Brown discovered the nucleus in 1831."
+      },
+      {
+        id: 22,
+        exam: "RRB JE CBT-I : 23 May 2019 Shift 2",
+        question: "Which is the largest organelle in a eukaryotic cell?",
+        options: ["Mitochondria", "Endoplasmic reticulum", "Nucleus", "Golgi body"],
+        correctIndex: 2,
+        explanation: "The nucleus is the largest double-membraned organelle in a eukaryotic cell and acts as the 'Brain of the Cell'."
+      },
+      {
+        id: 23,
+        exam: "RRB Level 01 Stage I : 11 Dec, 2025 Shift 1",
+        question: "Which of the following statements regarding the nucleus is NOT correct?",
+        options: [
+          "The nucleus contains chromosomes.",
+          "The nuclear membrane is a double-layered structure.",
+          "The nuclear membrane is a non-porous and rigid structure.",
+          "The nucleus plays a central role in cellular reproduction."
+        ],
+        correctIndex: 2,
+        explanation: "The double-layered nuclear membrane is porous and permits the transfer of materials between the nucleoplasm and cytoplasm."
+      },
+      {
+        id: 24,
+        exam: "RRB Level 01 Stage I : 17 Dec, 2025 Shift 1",
+        question: "The dense structure inside the nucleus that manufactures ribosomes is called ________.",
+        options: ["Nucleolus", "Lysosome", "Centrosome", "Mitochondria"],
+        correctIndex: 0,
+        explanation: "The nucleolus is a distinct, non-membrane-bound structure inside the nucleus primarily responsible for ribosome biogenesis."
+      },
+      {
+        id: 25,
+        exam: "RRB Technician Grade III : 24 Dec, 2024 Shift 2",
+        question: "Which of the following rod-shaped structures is visible in the nucleus only when the cell is about to divide?",
+        options: ["Mitochondria", "Lysosome", "Chromosomes", "Chromatin"],
+        correctIndex: 2,
+        explanation: "In a non-dividing cell, genetic material exists as entangled chromatin; during cell division, chromatin condenses to form rod-shaped chromosomes."
+      },
+      {
+        id: 26,
+        exam: "RRB Technician Grade III : 28 Dec, 2024 Shift 3",
+        question: "Genes that control hereditary traits are located on:",
+        options: ["Chromosomes", "Vacuoles", "Endoplasmic reticulum", "Lysosomes"],
+        correctIndex: 0,
+        explanation: "Chromosomes are thread-like structures in the nucleus composed of DNA and histone proteins that contain genes."
+      },
+      {
+        id: 27,
+        exam: "RPF Constable 2018 : 20 Jan 2019 Shift 1",
+        question: "Which of the following is the functional segment of DNA?",
+        options: ["Endoplasmic reticulum", "Lysosome", "Gene", "Golgi apparatus"],
+        correctIndex: 2,
+        explanation: "Genes are the functional segments of DNA responsible for transmitting genetic information from one generation to the next."
+      },
+      {
+        id: 28,
+        exam: "RRB ALP CBT-I 2024 : 27 Nov, 2024 Shift 1",
+        question: "Which of the following molecules acts as the information source for making proteins in a cell?",
+        options: ["Deoxyribonucleic acid (DNA)", "Carbohydrate", "Ribonucleic acid (RNA)", "Phospholipid"],
+        correctIndex: 0,
+        explanation: "DNA carries the genetic instructions for protein synthesis; mRNA copies these instructions from DNA and carries them to ribosomes."
+      },
+      {
+        id: 29,
+        exam: "RRB Technician Grade III : 29 Dec, 2024 Shift 1",
+        question: "Select the correct statement regarding the characteristics of a prokaryotic cell.",
+        options: [
+          "It contains more than one chromosome.",
+          "It contains a single chromosome.",
+          "The nuclear region is well-defined and membrane-bound.",
+          "Membrane-bound cell organelles are present."
+        ],
+        correctIndex: 1,
+        explanation: "Prokaryotic cells have a single chromosome, an undefined nuclear region (nucleoid), and lack membrane-bound cell organelles."
+      },
+      {
+        id: 30,
+        exam: "RRB Technician Grade III : 06 Mar, 2026 Shift 1",
+        question: "Select a term to complete the analogy: Nucleus : Eukaryotic cell :: Nucleoid : ________",
+        options: ["Multicellular organism", "Plant cell", "Prokaryotic cell", "Animal cell"],
+        correctIndex: 2,
+        explanation: "Eukaryotic cells possess a membrane-bound nucleus, whereas prokaryotic cells have an undefined nuclear region called a nucleoid."
+      },
+      {
+        id: 31,
+        exam: "RRB Level 01 Stage I : 30 Dec, 2025 Shift 2",
+        question: "Select the INCORRECT statement regarding cell organelles.",
+        options: [
+          "Each cell organelle performs a specific function.",
+          "They are found in prokaryotic cells.",
+          "They are found in eukaryotic cells.",
+          "They are membrane-bound structures."
+        ],
+        correctIndex: 1,
+        explanation: "Membrane-bound cell organelles are absent in prokaryotic cells and present in eukaryotic cells."
+      },
+      {
+        id: 32,
+        exam: "RRB NTPC CBT-I : 23 Jan 2021 Shift 2",
+        question: "________ is called the powerhouse of the cell.",
+        options: ["Nucleus", "Cytoplasm", "Mitochondria", "Endoplasmic reticulum"],
+        correctIndex: 2,
+        explanation: "Mitochondria are known as the 'Powerhouse of the cell' because they synthesize ATP to supply cellular energy."
+      },
+      {
+        id: 33,
+        exam: "RRB Level 01 Stage I : 09 Dec, 2025 Shift 2",
+        question: "Which cell organelle is responsible for releasing energy in the form of ATP, enabling various metabolic activities in an animal cell?",
+        options: ["Endoplasmic reticulum", "Mitochondria", "Lysosome", "Nucleus"],
+        correctIndex: 1,
+        explanation: "Mitochondria synthesize ATP (Adenosine Triphosphate), known as the energy currency of the cell."
+      },
+      {
+        id: 34,
+        exam: "RRB Level 01 Stage I : 09 Jan, 2026 Shift 2",
+        question: "The number of mitochondria in a cell depends on which of the following?",
+        options: [
+          "Age of the organism",
+          "Size of the nucleus",
+          "Amount of DNA present in the cell",
+          "Physiological activity of the cell"
+        ],
+        correctIndex: 3,
+        explanation: "The number of mitochondria per cell varies depending on the physiological activity and energy demand of the cell."
+      },
+      {
+        id: 35,
+        exam: "RRB Level 01 Stage I : 12 Dec, 2025 Shift 1",
+        question: "Which of the following statements regarding mitochondria in a plant cell is correct?",
+        options: [
+          "Mitochondria do not have their own DNA.",
+          "Mitochondria perform photosynthesis.",
+          "Mitochondria have only a single membranous covering.",
+          "The mitochondrial inner membrane is deeply folded."
+        ],
+        correctIndex: 3,
+        explanation: "Mitochondria are double-membraned organelles with their own DNA and ribosomes; their inner membrane is deeply folded (cristae) for ATP synthesis."
+      },
+      {
+        id: 36,
+        exam: "RRB Technician Grade III : 06 Mar, 2026 Shift 2",
+        question: "What is the unique feature that allows mitochondria to synthesize some of their own proteins?",
+        options: [
+          "They have their own DNA and ribosomes.",
+          "They have two membranes.",
+          "They produce ATP.",
+          "Their outer membrane is porous."
+        ],
+        correctIndex: 0,
+        explanation: "Mitochondria are semi-autonomous ('cell within a cell') because they contain their own DNA and ribosomes to make some of their own proteins."
+      },
+      {
+        id: 37,
+        exam: "RRB Level 01 Stage I : 16 Dec, 2025 Shift 1",
+        question: "Which of the following is NOT a membrane-bound organelle in eukaryotic cells?",
+        options: ["Lysosome", "Vacuole", "Ribosome", "Chromoplast"],
+        correctIndex: 2,
+        explanation: "Ribosomes do not have any membrane; they are non-membrane-bound structures essential for protein synthesis."
+      },
+      {
+        id: 38,
+        exam: "RRB Level 01 Stage I : 30 Dec, 2025 Shift 1",
+        question: "Which of the following statements about the Endoplasmic Reticulum (ER) is INCORRECT?",
+        options: [
+          "Rough Endoplasmic Reticulum (RER) has ribosomes attached to its surface that aid in protein synthesis.",
+          "Endoplasmic reticulum stores genetic material inside it.",
+          "Endoplasmic reticulum helps in the transport of materials within the cell, especially between cytoplasm and nucleus.",
+          "Smooth Endoplasmic Reticulum (SER) is involved in the synthesis of lipids (fat molecules)."
+        ],
+        correctIndex: 1,
+        explanation: "Genetic material (DNA) is stored in the nucleus (and in mitochondria/plastids), not inside the endoplasmic reticulum."
+      },
+      {
+        id: 39,
+        exam: "RRB Level 01 Stage I : 27 Dec, 2025 Shift 2",
+        question: "What distinguishes Rough ER (RER) from Smooth ER (SER)?",
+        options: [
+          "Presence of ribosomes on RER, absence on SER",
+          "Presence of chlorophyll on RER, absence on SER",
+          "Absence of membranes in RER, presence in SER",
+          "Absence of proteins in RER, presence in SER"
+        ],
+        correctIndex: 0,
+        explanation: "RER looks rough under a microscope due to ribosomes attached to its surface, whereas SER lacks ribosomes."
+      },
+      {
+        id: 40,
+        exam: "RRB Level 01 Stage I : 04 Feb, 2026 Shift 3",
+        question: "Rough Endoplasmic Reticulum (RER) bears ________ for protein synthesis, whereas Smooth Endoplasmic Reticulum (SER) synthesizes ________.",
+        options: [
+          "Enzymes; Sugars",
+          "Ribosomes; Lipids",
+          "Lysosomes; DNA",
+          "Pores; RNA"
+        ],
+        correctIndex: 1,
+        explanation: "RER has ribosomes on its surface for protein synthesis, while SER lacks ribosomes and synthesizes lipids and fats."
+      },
+      {
+        id: 41,
+        exam: "RRB Level 01 Stage I : 30 Dec, 2025 Shift 3",
+        question: "Who first observed densely stained reticular structures near the nucleus, now known as Golgi bodies?",
+        options: ["Robert Hooke", "Camillo Golgi", "Matthias Schleiden", "Antonie van Leeuwenhoek"],
+        correctIndex: 1,
+        explanation: "Camillo Golgi first discovered and described the Golgi apparatus in 1898."
+      },
+      {
+        id: 42,
+        exam: "RRB Level 01 Stage I : 29 Dec, 2025 Shift 3",
+        question: "What are the flat, stacked sacs that make up the Golgi apparatus called?",
+        options: ["Cristae", "Thylakoids", "Cisternae", "Vesicles"],
+        correctIndex: 2,
+        explanation: "The Golgi apparatus consists of flattened, stacked membrane-bound sacs called cisternae, along with vesicles and vacuoles."
+      },
+      {
+        id: 43,
+        exam: "RRB Level 01 Stage I : 05 Dec, 2025 Shift 1",
+        question: "Which of the following functions is NOT associated with the Golgi complex?",
+        options: [
+          "It modifies and packages proteins received from the endoplasmic reticulum.",
+          "It transports and dispatches materials outside the cell.",
+          "It forms lysosomes that aid in digestion within the cell.",
+          "It regulates the entry and exit of substances across the cell boundary."
+        ],
+        correctIndex: 3,
+        explanation: "Regulating the entry and exit of substances across the cell boundary is the function of the plasma membrane, not the Golgi complex."
+      },
+      {
+        id: 44,
+        exam: "RRB Level 01 Stage I : 28 Nov, 2025 Shift 3",
+        question: "Which cell organelle is known as the 'suicide bag' of the cell?",
+        options: ["Ribosome", "Golgi body", "Mitochondria", "Lysosome"],
+        correctIndex: 3,
+        explanation: "Lysosomes are called 'suicide bags of the cell' because if the cell is damaged, they may burst and their digestive enzymes digest their own cell."
+      },
+      {
+        id: 45,
+        exam: "RRB NTPC CBT-I : 16 Jan 2021 Shift 1",
+        question: "________ is a kind of waste disposal system of the cell. It helps keep the cell clean by digesting any foreign material as well as worn-out cell organelles.",
+        options: ["Mitochondria", "Plastid", "Lysosome", "Golgi apparatus"],
+        correctIndex: 2,
+        explanation: "Lysosomes contain powerful digestive enzymes (made in RER) and function as the waste disposal system of the cell."
+      },
+      {
+        id: 46,
+        exam: "RRB Level 01 Stage I : 30 Dec, 2025 Shift 2",
+        question: "During an experiment, a cell gets damaged and its lysosomes burst, releasing digestive enzymes into the cytoplasm. What is most likely to happen next?",
+        options: [
+          "The cell will increase in size.",
+          "Mitochondria will produce more energy.",
+          "The nucleus will divide rapidly.",
+          "The cell will destroy itself and die."
+        ],
+        correctIndex: 3,
+        explanation: "When a cell is damaged and lysosomes burst, their digestive enzymes break down the cell's own components, leading to self-digestion."
+      },
+      {
+        id: 47,
+        exam: "RRB Level 01 Stage I : 24 Dec, 2025 Shift 1",
+        question: "What is the name of the fluid present inside a plant cell vacuole?",
+        options: ["Cell sap", "Cytoplasm", "Protoplasm", "Nucleoplasm"],
+        correctIndex: 0,
+        explanation: "Plant cell vacuoles store cell sap, which consists of water, amino acids, sugars, and organic acids."
+      },
+      {
+        id: 48,
+        exam: "RRB Level 01 Stage I : 12 Dec, 2025 Shift 1",
+        question: "Which of the following statements regarding vacuoles is INCORRECT?",
+        options: [
+          "In plant cells, vacuoles are full of cell sap and provide turgidity and rigidity.",
+          "Vacuoles store important substances like amino acids, sugars, organic acids, and some proteins.",
+          "Plant cells typically have a large central vacuole.",
+          "Vacuoles are meant for protein synthesis in the cell."
+        ],
+        correctIndex: 3,
+        explanation: "Protein synthesis is performed by ribosomes (and RER), not by vacuoles. Vacuoles are storage sacs that provide turgidity and rigidity."
+      },
+      {
+        id: 49,
+        exam: "RRB Level 01 Stage I : 27 Dec, 2025 Shift 1",
+        question: "Which of the following statements correctly compares vacuoles in plant and animal cells?",
+        options: [
+          "Vacuoles are absent in both plant and animal cells.",
+          "Animal cells have larger vacuoles than plant cells.",
+          "Plant cells have large vacuoles, whereas animal cells have small vacuoles.",
+          "Both plant and animal cells have vacuoles of the same size."
+        ],
+        correctIndex: 2,
+        explanation: "Plant cells have a large, permanent central vacuole (occupying 50–90% of cell volume), whereas animal cells have smaller, often temporary vacuoles."
+      },
+      {
+        id: 50,
+        exam: "RRB Level 01 Stage I : 24 Dec, 2025 Shift 3",
+        question: "Which of the following statements correctly describes plastids in plant cells?",
+        options: [
+          "They are present in equal amounts in both plant and animal cells.",
+          "They are found in prokaryotic cells like bacteria for photosynthesis.",
+          "They are present only in plant cells and absent in animal cells.",
+          "They are present only in animal cells and absent in plant cells."
+        ],
+        correctIndex: 2,
+        explanation: "Plastids are present exclusively in plant cells and are absent in animal cells."
+      },
+      {
+        id: 51,
+        exam: "RRB Technician Grade III : 23 Dec, 2024 Shift 3",
+        question: "What is the similarity between plastids and mitochondria?",
+        options: [
+          "Both have their own DNA and ribosomes.",
+          "Both are present only in animal cells.",
+          "Both are present only in plant cells.",
+          "Both contain chlorophyll."
+        ],
+        correctIndex: 0,
+        explanation: "Both mitochondria and plastids are semi-autonomous organelles that possess their own DNA and ribosomes."
+      },
+      {
+        id: 52,
+        exam: "RRB Level 01 Stage I : 14 Dec, 2025 Shift 2",
+        question: "Which of the following cell organelles does NOT have its own DNA?",
+        options: ["Lysosome", "Nucleus", "Mitochondria", "Plastid"],
+        correctIndex: 0,
+        explanation: "The nucleus, mitochondria, and plastids contain their own DNA, whereas lysosomes do not contain DNA."
+      },
+      {
+        id: 53,
+        exam: "RRB NTPC UG CBT-I : 28 Aug, 2025 Shift 1",
+        question: "Which cell organelle is responsible for photosynthesis in plants?",
+        options: ["Mitochondria", "Chloroplast", "Leucoplast", "Chromoplast"],
+        correctIndex: 1,
+        explanation: "Chloroplasts are green plastids containing chlorophyll, the pigment responsible for photosynthesis."
+      },
+      {
+        id: 54,
+        exam: "RRB Level 01 Stage I : 01 Dec, 2025 Shift 1",
+        question: "Which of the following plastids contain pigments that impart yellow, orange, or red colour to plants?",
+        options: ["Amyloplasts", "Leucoplasts", "Chloroplasts", "Chromoplasts"],
+        correctIndex: 3,
+        explanation: "Chromoplasts are coloured plastids containing pigments (such as lycopene in tomato and capsanthin in chilli) that impart yellow, orange, or red colour."
+      },
+      {
+        id: 55,
+        exam: "RRB Level 01 Stage I : 09 Dec, 2025 Shift 1",
+        question: "Which of the following cell organelles stores starch, oil, and protein granules?",
+        options: ["All plastids", "Leucoplast", "Chromoplast", "Chloroplast"],
+        correctIndex: 1,
+        explanation: "Leucoplasts are colourless plastids specialized for storage: amyloplasts (carbohydrates/starch), aleuroplasts (proteins), and elaioplasts (fats/oils)."
+      },
+      {
+        id: 56,
+        exam: "RRB Level 01 Stage I : 03 Feb, 2026 Shift 3",
+        question: "What is the main purpose of cell division in multicellular organisms?",
+        options: [
+          "Growth, repair, and replacement of damaged or old cells",
+          "Absorption of nutrients and excretion of wastes",
+          "Transport of substances across the cell membrane",
+          "Formation of vacuoles and maintenance of turgidity"
+        ],
+        correctIndex: 0,
+        explanation: "Cell division is essential for organism growth, replacing old, dead, and injured cells, and gamete formation."
+      },
+      {
+        id: 57,
+        exam: "RRB Level 01 Stage I : 05 Feb, 2026 Shift 2",
+        question: "Which of the following outcomes represents meiosis rather than mitosis?",
+        options: [
+          "Many cells with the same chromosome number",
+          "One large cell with double the chromosome number",
+          "Two identical cells with the same chromosome number",
+          "Four cells with half the chromosome number"
+        ],
+        correctIndex: 3,
+        explanation: "Meiosis involves two nuclear divisions and produces four haploid (n) daughter cells with half the number of chromosomes, whereas mitosis produces two diploid (2n) identical cells."
+      },
+      {
+        id: 58,
+        exam: "RRB Level 01 Stage I : 05 Feb, 2026 Shift 3",
+        question: "What is the term used for the division of cytoplasm following nuclear division?",
+        options: ["Chromatin condensation", "Karyokinesis", "Cytokinesis", "Interphase"],
+        correctIndex: 2,
+        explanation: "During the mitotic phase, division of the nucleus is followed by division of the cytoplasm, which is called cytokinesis."
+      },
+      {
+        id: 59,
+        exam: "RRB NTPC Graduate CBT-I : 17 Mar, 2026 Shift 2",
+        question: "Which cell structure is responsible for maintaining cell shape and providing structural support?",
+        options: ["Peroxisome", "Cytoskeleton", "Nucleus", "Golgi apparatus"],
+        correctIndex: 1,
+        explanation: "The cytoskeleton (microfilaments, intermediate filaments, and microtubules) provides structural support to the cell and aids in cell movement."
+      },
+      {
+        id: 60,
+        exam: "RRB Level 01 Stage I : 04 Feb, 2026 Shift 1",
+        question: "Which of the following cell organelles is present only in animal cells, and not in higher plant cells?",
+        options: ["Vacuole", "Golgi apparatus", "Mitochondria", "Centrosome"],
+        correctIndex: 3,
+        explanation: "The centrosome (containing centrioles) acts as the Microtubule Organizing Center (MTOC) in animal cells and is absent in higher plant cells."
+      },
+      {
+        id: 61,
+        exam: "RRB JE : 20 Feb, 2026 Shift 2",
+        question: "Which of the following is NOT correctly matched regarding plant and animal cells?",
+        options: [
+          "Plastids — absent in animal cells",
+          "Vacuoles — very large and present in plant cells",
+          "Plastids — present in plant cells",
+          "Cell wall — present in animal cells"
+        ],
+        correctIndex: 3,
+        explanation: "The cell wall is present in plant cells (as well as bacteria, fungi, and algae) and is absent in animal cells."
+      },
+      {
+        id: 62,
+        exam: "RPF SI CBT-I 2024 : 02 Dec, 2024 Shift 2",
+        question: "In the context of cell biology, which statement best describes pseudopodia?",
+        options: [
+          "Temporary projections of the cell membrane used for locomotion and feeding",
+          "Permanent structures on the cell surface used for locomotion and respiration",
+          "Specialized organelles that generate energy for the cell",
+          "Rigid structures that provide mechanical support to the cell"
+        ],
+        correctIndex: 0,
+        explanation: "Pseudopodia ('false feet') are temporary extensions of the plasma membrane used by Amoeba for movement and engulfing food particles via endocytosis."
+      }
+    ];
+
+    const SECONDS_PER_QUESTION = 36;
+    const MARKS_CORRECT = 2;
+    const MARKS_INCORRECT = -0.5;
+    const STORAGE_KEY = "cell_pyq_mock_results_v1";
+    const OPTION_LABELS = ["A", "B", "C", "D"];
+
+    // Runtime state
+    let activeQuestions = [];
+    let currentIndex = 0;
+    let totalDurationSec = RAW_QUESTIONS.length * SECONDS_PER_QUESTION;
+    let remainingSec = totalDurationSec;
+    let timerInterval = null;
+    let isPaused = false;
+    let isTestActive = false;
+    let lastResultData = null;
+    let activeSolutionFilter = "all";
+
+    // DOM references
+    const introView = document.getElementById("intro-view");
+    const examView = document.getElementById("exam-view");
+    const resultView = document.getElementById("result-view");
+
+    const introTotalQ = document.getElementById("intro-total-q");
+    const introDuration = document.getElementById("intro-duration");
+    const introMaxMarks = document.getElementById("intro-max-marks");
+    const startTestBtn = document.getElementById("start-test-btn");
+
+    const historySection = document.getElementById("history-section");
+    const historyTbody = document.getElementById("history-tbody");
+    const viewLastAnalysisBtn = document.getElementById("view-last-analysis-btn");
+    const clearHistoryBtn = document.getElementById("clear-history-btn");
+
+    const timerDisplay = document.getElementById("timer-display");
+    const timerValue = document.getElementById("timer-value");
+    const pauseBtn = document.getElementById("pause-btn");
+    const fullscreenBtn = document.getElementById("fullscreen-btn");
+    const headerSubmitBtn = document.getElementById("header-submit-btn");
+    const paletteSubmitBtn = document.getElementById("palette-submit-btn");
+
+    const subbarProgress = document.getElementById("subbar-progress");
+    const qNumberLabel = document.getElementById("q-number-label");
+    const qExamTag = document.getElementById("q-exam-tag");
+    const questionText = document.getElementById("question-text");
+    const optionsContainer = document.getElementById("options-container");
+
+    const prevBtn = document.getElementById("prev-btn");
+    const clearBtn = document.getElementById("clear-btn");
+    const markNextBtn = document.getElementById("mark-next-btn");
+    const nextBtn = document.getElementById("next-btn");
+
+    const paletteGrid = document.getElementById("palette-grid");
+    const statAnswered = document.getElementById("stat-answered");
+    const statNotAnswered = document.getElementById("stat-not-answered");
+    const statMarked = document.getElementById("stat-marked");
+    const statNotVisited = document.getElementById("stat-not-visited");
+
+    const pauseModal = document.getElementById("pause-modal");
+    const resumeBtn = document.getElementById("resume-btn");
+
+    const submitModal = document.getElementById("submit-modal");
+    const cancelSubmitBtn = document.getElementById("cancel-submit-btn");
+    const confirmSubmitBtn = document.getElementById("confirm-submit-btn");
+    const modTotal = document.getElementById("mod-total");
+    const modAnswered = document.getElementById("mod-answered");
+    const modNotAnswered = document.getElementById("mod-not-answered");
+    const modMarkedOnly = document.getElementById("mod-marked-only");
+    const modAnsweredMarked = document.getElementById("mod-answered-marked");
+    const modNotVisited = document.getElementById("mod-not-visited");
+
+    const retakeBtn = document.getElementById("retake-btn");
+    const resultRetakeBtn = document.getElementById("result-retake-btn");
+    const backIntroBtn = document.getElementById("back-intro-btn");
+    const resultTimestamp = document.getElementById("result-timestamp");
+    const resScore = document.getElementById("res-score");
+    const resCorrect = document.getElementById("res-correct");
+    const resIncorrect = document.getElementById("res-incorrect");
+    const resUnattempted = document.getElementById("res-unattempted");
+    const resAccuracy = document.getElementById("res-accuracy");
+    const resTime = document.getElementById("res-time");
+    const solutionsList = document.getElementById("solutions-list");
+    const filterTabs = document.querySelectorAll(".filter-tab");
+
+    // ==================== UTILITY FUNCTIONS ====================
+    function formatMMSS(sec) {
+      const s = Math.max(0, Math.floor(sec));
+      const m = Math.floor(s / 60);
+      const r = s % 60;
+      return String(m).padStart(2, "0") + ":" + String(r).padStart(2, "0");
+    }
+
+    function formatDurationWords(sec) {
+      const m = Math.floor(sec / 60);
+      const r = sec % 60;
+      return r === 0 ? `${m}m` : `${m}m ${r}s`;
+    }
+
+    function shuffleArray(arr) {
+      const copy = arr.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = copy[i];
+        copy[i] = copy[j];
+        copy[j] = tmp;
+      }
+      return copy;
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function readHistory() {
+      try {
+        const raw = window.localStorage.getItem(STORAGE_KEY);
+        if (!raw) return [];
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (err) {
+        return [];
+      }
+    }
+
+    function saveHistoryEntry(entry) {
+      try {
+        const list = readHistory();
+        list.unshift(entry);
+        const trimmed = list.slice(0, 15);
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(trimmed));
+      } catch (err) {
+        // Ignore storage quota or sandbox restrictions gracefully
+      }
+    }
+
+    function clearHistoryStorage() {
+      try {
+        window.localStorage.removeItem(STORAGE_KEY);
+      } catch (err) {
+        // Ignore
+      }
+    }
+
+    // ==================== FULLSCREEN HANDLING ====================
+    function requestFullscreenSafe() {
+      try {
+        const el = document.documentElement;
+        if (!document.fullscreenElement) {
+          if (el.requestFullscreen) {
+            const p = el.requestFullscreen();
+            if (p && typeof p.catch === "function") p.catch(function () {});
+          } else if (el.webkitRequestFullscreen) {
+            el.webkitRequestFullscreen();
+          }
+        }
+      } catch (err) {
+        // Ignore if iframe restricts fullscreen
+      }
+    }
+
+    function exitFullscreenSafe() {
+      try {
+        if (document.fullscreenElement) {
+          if (document.exitFullscreen) {
+            const p = document.exitFullscreen();
+            if (p && typeof p.catch === "function") p.catch(function () {});
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          }
+        }
+      } catch (err) {
+        // Ignore
+      }
+    }
+
+    function updateFullscreenBtnLabel() {
+      if (document.fullscreenElement) {
+        fullscreenBtn.textContent = "Exit Fullscreen";
+      } else {
+        fullscreenBtn.textContent = "Enter Fullscreen";
+      }
+    }
+
+    document.addEventListener("fullscreenchange", updateFullscreenBtnLabel);
+
+    // ==================== INTRO & HISTORY RENDER ====================
+    function initIntroView() {
+      const totalQ = RAW_QUESTIONS.length;
+      introTotalQ.textContent = String(totalQ);
+      introDuration.textContent = formatDurationWords(totalQ * SECONDS_PER_QUESTION);
+      introMaxMarks.textContent = String(totalQ * MARKS_CORRECT);
+      renderHistoryTable();
+    }
+
+    function renderHistoryTable() {
+      const history = readHistory();
+      if (!history.length) {
+        historySection.classList.add("hidden");
+        return;
+      }
+      historySection.classList.remove("hidden");
+      historyTbody.innerHTML = "";
+      history.slice(0, 6).forEach(function (item) {
+        const tr = document.createElement("tr");
+        tr.innerHTML =
+          `<td>${escapeHtml(item.timestamp)}</td>` +
+          `<td><strong>${item.score} / ${item.maxMarks}</strong></td>` +
+          `<td style="color:#15803d;font-weight:600;">${item.correct}</td>` +
+          `<td style="color:#dc2626;font-weight:600;">${item.incorrect}</td>` +
+          `<td>${item.unattempted}</td>` +
+          `<td>${item.accuracy}%</td>` +
+          `<td>${escapeHtml(item.timeTaken)}</td>`;
+        historyTbody.appendChild(tr);
+      });
+    }
+
+    // ==================== TEST INITIALIZATION ====================
+    function prepareQuestions() {
+      // Keep question order strictly fixed; randomize options on each fresh start/refresh
+      return RAW_QUESTIONS.map(function (q) {
+        const indexedOptions = q.options.map(function (text, idx) {
+          return { text: text, isCorrect: idx === q.correctIndex };
+        });
+        const shuffled = shuffleArray(indexedOptions);
+        const newCorrectIdx = shuffled.findIndex(function (opt) { return opt.isCorrect; });
+        return {
+          id: q.id,
+          exam: q.exam,
+          question: q.question,
+          options: shuffled.map(function (opt) { return opt.text; }),
+          correctIndex: newCorrectIdx,
+          explanation: q.explanation,
+          selectedIndex: null,
+          visited: false,
+          marked: false
+        };
+      });
+    }
+
+    function startTest() {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+      activeQuestions = prepareQuestions();
+      currentIndex = 0;
+      totalDurationSec = activeQuestions.length * SECONDS_PER_QUESTION;
+      remainingSec = totalDurationSec;
+      isPaused = false;
+      isTestActive = true;
+
+      activeQuestions[0].visited = true;
+
+      introView.classList.add("hidden");
+      resultView.classList.add("hidden");
+      pauseModal.classList.add("hidden");
+      submitModal.classList.add("hidden");
+      examView.classList.remove("hidden");
+
+      requestFullscreenSafe();
+      updateFullscreenBtnLabel();
+      buildPalette();
+      renderCurrentQuestion();
+      updatePaletteAndCounts();
+      updateTimerDisplay();
+      startTimerLoop();
+    }
+
+    function startTimerLoop() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(function () {
+        if (!isTestActive || isPaused) return;
+        remainingSec -= 1;
+        updateTimerDisplay();
+        if (remainingSec <= 0) {
+          remainingSec = 0;
+          updateTimerDisplay();
+          submitTest(true);
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      timerValue.textContent = formatMMSS(remainingSec);
+      timerDisplay.classList.remove("timer-warn", "timer-danger");
+      if (remainingSec <= 60) {
+        timerDisplay.classList.add("timer-danger");
+      } else if (remainingSec <= 300) {
+        timerDisplay.classList.add("timer-warn");
+      }
+    }
+
+    // ==================== QUESTION & PALETTE RENDERING ====================
+    function getQuestionStatus(q) {
+      const answered = q.selectedIndex !== null;
+      if (answered && q.marked) return "st-answered-marked";
+      if (q.marked) return "st-marked";
+      if (answered) return "st-answered";
+      if (q.visited) return "st-not-answered";
+      return "st-not-visited";
+    }
+
+    function buildPalette() {
+      paletteGrid.innerHTML = "";
+      activeQuestions.forEach(function (q, idx) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "pal-btn st-not-visited";
+        btn.textContent = String(idx + 1);
+        btn.dataset.index = String(idx);
+        btn.setAttribute("aria-label", "Go to question " + (idx + 1));
+        btn.addEventListener("click", function () {
+          if (!isTestActive || isPaused) return;
+          navigateToQuestion(idx);
+        });
+        paletteGrid.appendChild(btn);
+      });
+    }
+
+    function updatePaletteAndCounts() {
+      let answeredCount = 0;
+      let notAnsweredCount = 0;
+      let markedCount = 0;
+      let notVisitedCount = 0;
+
+      const btns = paletteGrid.querySelectorAll(".pal-btn");
+      activeQuestions.forEach(function (q, idx) {
+        const st = getQuestionStatus(q);
+        if (q.selectedIndex !== null) answeredCount += 1;
+        if (q.visited && q.selectedIndex === null && !q.marked) notAnsweredCount += 1;
+        if (q.marked) markedCount += 1;
+        if (!q.visited) notVisitedCount += 1;
+
+        const btn = btns[idx];
+        if (btn) {
+          btn.className = "pal-btn " + st + (idx === currentIndex ? " current-q" : "");
+        }
+      });
+
+      statAnswered.textContent = String(answeredCount);
+      statNotAnswered.textContent = String(notAnsweredCount);
+      statMarked.textContent = String(markedCount);
+      statNotVisited.textContent = String(notVisitedCount);
+    }
+
+    function renderCurrentQuestion() {
+      const q = activeQuestions[currentIndex];
+      const total = activeQuestions.length;
+
+      subbarProgress.textContent = `Question ${currentIndex + 1} of ${total}`;
+      qNumberLabel.textContent = `Question No. ${currentIndex + 1}`;
+
+      if (q.exam && q.exam.trim()) {
+        qExamTag.textContent = q.exam;
+        qExamTag.classList.remove("hidden");
+      } else {
+        qExamTag.textContent = "";
+        qExamTag.classList.add("hidden");
+      }
+
+      questionText.textContent = q.question;
+      optionsContainer.innerHTML = "";
+
+      q.options.forEach(function (optText, optIdx) {
+        const label = document.createElement("label");
+        label.className = "option-row" + (q.selectedIndex === optIdx ? " selected" : "");
+
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = "mcq-option";
+        radio.value = String(optIdx);
+        radio.checked = q.selectedIndex === optIdx;
+
+        radio.addEventListener("change", function () {
+          if (!isTestActive || isPaused) return;
+          q.selectedIndex = optIdx;
+          // Do NOT reveal correctness and do NOT auto-jump to next question
+          const rows = optionsContainer.querySelectorAll(".option-row");
+          rows.forEach(function (r, rIdx) {
+            r.classList.toggle("selected", rIdx === optIdx);
+          });
+          updatePaletteAndCounts();
+        });
+
+        const letterSpan = document.createElement("span");
+        letterSpan.className = "option-letter";
+        letterSpan.textContent = `(${OPTION_LABELS[optIdx]})`;
+
+        const textSpan = document.createElement("span");
+        textSpan.className = "option-content";
+        textSpan.textContent = optText;
+
+        label.appendChild(radio);
+        label.appendChild(letterSpan);
+        label.appendChild(textSpan);
+        optionsContainer.appendChild(label);
+      });
+
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === total - 1;
+      markNextBtn.textContent = q.marked
+        ? (currentIndex === total - 1 ? "Unmark Review" : "Mark for Review & Next")
+        : "Mark for Review & Next";
+    }
+
+    function navigateToQuestion(idx) {
+      if (idx < 0 || idx >= activeQuestions.length) return;
+      currentIndex = idx;
+      activeQuestions[currentIndex].visited = true;
+      renderCurrentQuestion();
+      updatePaletteAndCounts();
+
+      // Keep active question button visible inside the scrollable palette
+      const activePalBtn = paletteGrid.querySelector(`.pal-btn[data-index="${currentIndex}"]`);
+      if (activePalBtn && typeof activePalBtn.scrollIntoView === "function") {
+        activePalBtn.scrollIntoView({ block: "nearest" });
+      }
+    }
+
+    // ==================== EXAM CONTROLS ====================
+    prevBtn.addEventListener("click", function () {
+      if (!isTestActive || isPaused) return;
+      if (currentIndex > 0) navigateToQuestion(currentIndex - 1);
+    });
+
+    nextBtn.addEventListener("click", function () {
+      if (!isTestActive || isPaused) return;
+      if (currentIndex < activeQuestions.length - 1) navigateToQuestion(currentIndex + 1);
+    });
+
+    clearBtn.addEventListener("click", function () {
+      if (!isTestActive || isPaused) return;
+      const q = activeQuestions[currentIndex];
+      q.selectedIndex = null;
+      q.marked = false;
+      renderCurrentQuestion();
+      updatePaletteAndCounts();
+    });
+
+    markNextBtn.addEventListener("click", function () {
+      if (!isTestActive || isPaused) return;
+      const q = activeQuestions[currentIndex];
+      q.marked = true;
+      if (currentIndex < activeQuestions.length - 1) {
+        navigateToQuestion(currentIndex + 1);
+      } else {
+        updatePaletteAndCounts();
+      }
+    });
+
+    pauseBtn.addEventListener("click", function () {
+      if (!isTestActive) return;
+      isPaused = true;
+      pauseModal.classList.remove("hidden");
+    });
+
+    resumeBtn.addEventListener("click", function () {
+      if (!isTestActive) return;
+      isPaused = false;
+      pauseModal.classList.add("hidden");
+    });
+
+    fullscreenBtn.addEventListener("click", function () {
+      if (document.fullscreenElement) {
+        exitFullscreenSafe();
+      } else {
+        requestFullscreenSafe();
+      }
+    });
+
+    function openSubmitModal() {
+      if (!isTestActive) return;
+      let ansOnly = 0;
+      let notAns = 0;
+      let markedOnly = 0;
+      let ansMarked = 0;
+      let notVisited = 0;
+
+      activeQuestions.forEach(function (q) {
+        const answered = q.selectedIndex !== null;
+        if (answered && q.marked) ansMarked += 1;
+        else if (answered) ansOnly += 1;
+        else if (q.marked) markedOnly += 1;
+        else if (q.visited) notAns += 1;
+        else notVisited += 1;
+      });
+
+      modTotal.textContent = String(activeQuestions.length);
+      modAnswered.textContent = String(ansOnly + ansMarked);
+      modNotAnswered.textContent = String(notAns);
+      modMarkedOnly.textContent = String(markedOnly);
+      modAnsweredMarked.textContent = String(ansMarked);
+      modNotVisited.textContent = String(notVisited);
+
+      submitModal.classList.remove("hidden");
+    }
+
+    headerSubmitBtn.addEventListener("click", openSubmitModal);
+    paletteSubmitBtn.addEventListener("click", openSubmitModal);
+
+    cancelSubmitBtn.addEventListener("click", function () {
+      submitModal.classList.add("hidden");
+    });
+
+    confirmSubmitBtn.addEventListener("click", function () {
+      submitModal.classList.add("hidden");
+      submitTest(false);
+    });
+
+    // ==================== SUBMISSION & ANALYSIS ====================
+    function submitTest(isAutoSubmit) {
+      if (!isTestActive) return;
+      isTestActive = false;
+      isPaused = false;
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+      pauseModal.classList.add("hidden");
+      submitModal.classList.add("hidden");
+      exitFullscreenSafe();
+
+      let correct = 0;
+      let incorrect = 0;
+      let unattempted = 0;
+      const reviewItems = [];
+
+      activeQuestions.forEach(function (q, idx) {
+        if (q.selectedIndex === null) {
+          unattempted += 1;
+          reviewItems.push({
+            qNo: idx + 1,
+            exam: q.exam,
+            question: q.question,
+            status: "unattempted",
+            selectedText: null,
+            correctText: q.options[q.correctIndex],
+            explanation: q.explanation
+          });
+        } else if (q.selectedIndex === q.correctIndex) {
+          correct += 1;
+          // Correctly answered questions are intentionally omitted from solutions per instructions
+        } else {
+          incorrect += 1;
+          reviewItems.push({
+            qNo: idx + 1,
+            exam: q.exam,
+            question: q.question,
+            status: "incorrect",
+            selectedText: q.options[q.selectedIndex],
+            correctText: q.options[q.correctIndex],
+            explanation: q.explanation
+          });
+        }
+      });
+
+      const attempted = correct + incorrect;
+      const rawScore = correct * MARKS_CORRECT + incorrect * MARKS_INCORRECT;
+      const score = Number(rawScore.toFixed(2));
+      const maxMarks = activeQuestions.length * MARKS_CORRECT;
+      const accuracy = attempted > 0 ? Number(((correct / attempted) * 100).toFixed(1)) : 0;
+      const elapsedSec = Math.max(0, totalDurationSec - remainingSec);
+      const nowStr = new Date().toLocaleString();
+
+      lastResultData = {
+        timestamp: nowStr + (isAutoSubmit ? " (Auto-Submitted)" : ""),
+        score: score,
+        maxMarks: maxMarks,
+        correct: correct,
+        incorrect: incorrect,
+        unattempted: unattempted,
+        accuracy: accuracy,
+        timeTaken: formatMMSS(elapsedSec),
+        reviewItems: reviewItems
+      };
+
+      saveHistoryEntry(lastResultData);
+      showResultView(lastResultData);
+    }
+
+    function showResultView(data) {
+      introView.classList.add("hidden");
+      examView.classList.add("hidden");
+      resultView.classList.remove("hidden");
+
+      resultTimestamp.textContent = "Submitted on: " + data.timestamp;
+      resScore.textContent = `${data.score} / ${data.maxMarks}`;
+      resCorrect.textContent = String(data.correct);
+      resIncorrect.textContent = String(data.incorrect);
+      resUnattempted.textContent = String(data.unattempted);
+      resAccuracy.textContent = `${data.accuracy}%`;
+      resTime.textContent = data.timeTaken;
+
+      activeSolutionFilter = "all";
+      filterTabs.forEach(function (tab) {
+        tab.classList.toggle("active", tab.dataset.filter === "all");
+      });
+
+      renderSolutionsList(data.reviewItems, "all");
+      window.scrollTo(0, 0);
+    }
+
+    function renderSolutionsList(items, filter) {
+      solutionsList.innerHTML = "";
+      if (!items || items.length === 0) {
+        solutionsList.innerHTML =
+          '<div class="perfect-box">All questions were answered correctly. There are no incorrect or unattempted questions to review.</div>';
+        return;
+      }
+
+      const filtered = items.filter(function (item) {
+        if (filter === "all") return true;
+        return item.status === filter;
+      });
+
+      if (filtered.length === 0) {
+        solutionsList.innerHTML =
+          '<div style="padding: 20px; text-align: center; color: var(--text-muted);">No questions match this filter.</div>';
+        return;
+      }
+
+      filtered.forEach(function (item) {
+        const card = document.createElement("article");
+        card.className = "sol-card " + (item.status === "incorrect" ? "sol-incorrect" : "sol-unattempted");
+
+        const badgeClass = item.status === "incorrect" ? "badge-incorrect" : "badge-unattempted";
+        const badgeLabel = item.status === "incorrect" ? "Incorrect (-0.5)" : "Unattempted (0)";
+        const yourAnsHtml = item.status === "incorrect"
+          ? `<div class="sol-your-ans"><strong>Your Answer:</strong> ${escapeHtml(item.selectedText)}</div>`
+          : `<div style="color: var(--text-light);"><strong>Your Answer:</strong> Not Attempted</div>`;
+        const examHtml = item.exam
+          ? `<span class="exam-tag-text">${escapeHtml(item.exam)}</span>`
+          : "";
+
+        card.innerHTML =
+          `<div class="sol-meta">` +
+            `<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">` +
+              `<strong style="font-size:13.5px;">Q${item.qNo}.</strong>` +
+              `<span class="sol-status-badge ${badgeClass}">${badgeLabel}</span>` +
+            `</div>` +
+            examHtml +
+          `</div>` +
+          `<div class="sol-q-text">${escapeHtml(item.question)}</div>` +
+          `<div class="sol-answers">` +
+            yourAnsHtml +
+            `<div class="sol-correct-ans">Correct Answer: ${escapeHtml(item.correctText)}</div>` +
+          `</div>` +
+          `<div class="sol-explanation"><strong>Solution:</strong> ${escapeHtml(item.explanation)}</div>`;
+
+        solutionsList.appendChild(card);
+      });
+    }
+
+    filterTabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        if (!lastResultData) return;
+        activeSolutionFilter = tab.dataset.filter || "all";
+        filterTabs.forEach(function (t) {
+          t.classList.toggle("active", t === tab);
+        });
+        renderSolutionsList(lastResultData.reviewItems, activeSolutionFilter);
+      });
+    });
+
+    // ==================== NAVIGATION BUTTONS ====================
+    startTestBtn.addEventListener("click", startTest);
+    retakeBtn.addEventListener("click", startTest);
+    resultRetakeBtn.addEventListener("click", startTest);
+
+    backIntroBtn.addEventListener("click", function () {
+      resultView.classList.add("hidden");
+      examView.classList.add("hidden");
+      introView.classList.remove("hidden");
+      renderHistoryTable();
+      window.scrollTo(0, 0);
+    });
+
+    viewLastAnalysisBtn.addEventListener("click", function () {
+      const history = readHistory();
+      if (history.length > 0) {
+        lastResultData = history[0];
+        showResultView(lastResultData);
+      }
+    });
+
+    clearHistoryBtn.addEventListener("click", function () {
+      clearHistoryStorage();
+      renderHistoryTable();
+    });
+
+    // Initialize intro page on load
+    initIntroView();
+  </script>
+</body>
+</html>
